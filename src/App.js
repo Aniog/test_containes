@@ -64,7 +64,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <div className="px-4 py-5 sm:px-6">
-          <h1 className="text-2xl font-bold text-gray-800 text-center">Todo App</h1>
+          <h1 className="text-2xl font-bold text-gray-800 text-center">Todo App-xuzheng</h1>
         </div>
         <div className="border-t border-gray-200">
           <TodoForm addTodo={addTodo} />
