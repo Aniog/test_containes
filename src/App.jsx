@@ -43,7 +43,7 @@ function App() {
     <div className="min-h-screen bg-gray-100 py-8">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          TODO App
+          Strikingly
         </h1>
         
         {/* Add new todo */}
