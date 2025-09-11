@@ -47,7 +47,7 @@ function App() {
   const activeCount = todos.length - completedCount
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-violet-100 py-8 px-4">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
@@ -64,11 +64,11 @@ function App() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Add a new todo..."
-              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
             <button
               onClick={addTodo}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors duration-200 flex items-center gap-2 font-medium"
+              className="bg-purple-500 hover:bg-purple-600 text-white px-6 py-3 rounded-lg transition-colors duration-200 flex items-center gap-2 font-medium"
             >
               <Plus size={20} />
               Add
@@ -106,8 +106,8 @@ function App() {
                     onClick={() => toggleTodo(todo.id)}
                     className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                       todo.completed
-                        ? 'bg-green-500 border-green-500 text-white'
-                        : 'border-gray-300 hover:border-green-400'
+                        ? 'bg-purple-500 border-purple-500 text-white'
+                        : 'border-gray-300 hover:border-purple-400'
                     }`}
                   >
                     {todo.completed && <Check size={16} />}

@@ -1,19 +1,13 @@
 # Task List
 
-1. ✅ Set up the project structure and navigate to my-app directory
+1. ✅ Update background gradient to purple theme
 
-2. ✅ Create the main Todo component with state management
+2. ✅ Change primary button colors to purple
 
-3. ✅ Implement add new todo functionality
+3. ✅ Update focus states and accents to purple
 
-4. ✅ Implement delete todo functionality
+4. ✅ Modify completion checkbox to purple theme
 
-5. ✅ Implement mark as completed functionality
-
-6. ✅ Implement clear all completed tasks functionality
-
-7. ✅ Style the application with Tailwind CSS for professional appearance
-
-8. ✅ Start the development server and test all features
+5. ✅ Test the updated purple theme
 
 
