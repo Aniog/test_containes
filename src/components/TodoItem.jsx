@@ -71,7 +71,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
           className={`px-2 py-1 text-xs font-medium rounded-full ${
             todo.completed
               ? 'bg-green-100 text-green-800'
-              : 'bg-blue-100 text-blue-800'
+              : 'bg-purple-100 text-purple-800'
           }`}
         >
           {todo.completed ? 'Completed' : 'Active'}

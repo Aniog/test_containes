@@ -50,9 +50,9 @@ const TodoApp = () => {
     <div className="container mx-auto max-w-2xl px-4 py-8">
       <div className="bg-white rounded-lg shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-8 text-white">
+        <div className="bg-gradient-to-r from-purple-600 to-violet-600 px-6 py-8 text-white">
           <h1 className="text-3xl font-bold text-center mb-2">Todo App</h1>
-          <p className="text-blue-100 text-center">Stay organized and productive</p>
+          <p className="text-purple-100 text-center">Stay organized and productive</p>
         </div>
 
         {/* Add Todo Form */}
@@ -78,7 +78,7 @@ const TodoApp = () => {
                 onClick={() => setFilter(filterType)}
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
                   filter === filterType
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-purple-600 text-white'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                 }`}
               >
