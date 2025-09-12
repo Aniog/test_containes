@@ -38,8 +38,8 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
-        <div className="bg-blue-600 text-white p-6">
-          <h1 className="text-2xl font-bold text-center">Todo App</h1>
+        <div className="bg-purple-600 text-white p-6">
+          <h1 className="text-2xl font-bold text-center">Strikingly</h1>
         </div>
         
         <div className="p-6">

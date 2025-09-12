@@ -7,7 +7,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
         type="checkbox"
         checked={todo.completed}
         onChange={onToggle}
-        className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500 focus:ring-2"
+        className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500 focus:ring-2"
       />
       <span 
         className={`flex-1 ${
