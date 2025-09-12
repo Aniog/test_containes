@@ -50,7 +50,7 @@ function App() {
       <div className="max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
         {/* Header */}
         <div className="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-4">
-          <h1 className="text-2xl font-bold text-white text-center">Todo App</h1>
+          <h1 className="text-2xl font-bold text-white text-center">Strikingly</h1>
         </div>
 
         {/* Add Todo Section */}
