@@ -24,9 +24,13 @@ const TodoForm = ({ onAdd }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a new task..."
-        className="flex-1"
+        className="flex-1 bg-gray-800 border-gray-700 text-gray-200 placeholder:text-gray-500 focus-visible:ring-blue-500"
       />
-      <Button type="submit" disabled={!text.trim()}>
+      <Button 
+        type="submit" 
+        disabled={!text.trim()}
+        className="bg-blue-600 hover:bg-blue-700 text-white"
+      >
         <Plus className="h-5 w-5 mr-1" />
         Add
       </Button>

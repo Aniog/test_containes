@@ -49,8 +49,8 @@ function App() {
   return (
     <div className="max-w-md mx-auto mt-10 px-4">
       <div className="flex items-center justify-center gap-2 mb-8">
-        <ListTodo className="h-8 w-8 text-blue-600" />
-        <h1 className="text-3xl font-bold text-gray-800">Todo App</h1>
+        <ListTodo className="h-8 w-8 text-blue-400" />
+        <h1 className="text-3xl font-bold text-gray-100">Todo App</h1>
       </div>
       
       <TodoForm onAdd={addTodo} />
@@ -62,9 +62,9 @@ function App() {
       />
       
       {todos.length > 0 && (
-        <div className="mt-4 flex items-center justify-between text-sm text-gray-500">
+        <div className="mt-4 flex items-center justify-between text-sm text-gray-400">
           <div className="flex items-center gap-1">
-            <CheckCircle className="h-4 w-4 text-green-500" />
+            <CheckCircle className="h-4 w-4 text-green-400" />
             <span>{completedCount} of {totalCount} completed</span>
           </div>
           
@@ -73,7 +73,7 @@ function App() {
               variant="secondary" 
               size="sm" 
               onClick={clearCompleted}
-              className="text-xs"
+              className="text-xs bg-gray-700 hover:bg-gray-600 text-gray-200"
             >
               Clear completed
             </Button>

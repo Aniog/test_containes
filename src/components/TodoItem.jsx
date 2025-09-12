@@ -7,10 +7,10 @@ import { Trash2 } from "lucide-react";
 
 const TodoItem = ({ todo, onToggle, onDelete }) => {
   return (
-    <div className="flex items-center justify-between p-4 border-b border-gray-200">
+    <div className="flex items-center justify-between p-4 border-b border-gray-700">
       <div className="flex items-center gap-3">
         <Checkbox checked={todo.completed} onChange={() => onToggle(todo.id)} />
-        <span className={`${todo.completed ? "line-through text-gray-500" : ""}`}>
+        <span className={`${todo.completed ? "line-through text-gray-500" : "text-gray-200"}`}>
           {todo.text}
         </span>
       </div>
@@ -18,7 +18,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
         variant="outline" 
         size="sm" 
         onClick={() => onDelete(todo.id)}
-        className="text-red-500 hover:bg-red-50 hover:text-red-600"
+        className="text-red-400 hover:bg-red-900/20 hover:text-red-300 border-gray-700"
       >
         <Trash2 className="h-4 w-4" />
       </Button>
