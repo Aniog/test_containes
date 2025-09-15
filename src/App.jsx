@@ -41,9 +41,9 @@ function App() {
   const activeCount = todos.length - completedCount
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
-        <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
+    <div className="min-h-screen bg-purple-50 py-8">
+      <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6 border-t-4 border-purple-500">
+        <h1 className="text-3xl font-bold text-center text-purple-800 mb-8">
           TODO App
         </h1>
         
@@ -55,11 +55,11 @@ function App() {
             onChange={(e) => setInputValue(e.target.value)}
             onKeyPress={handleKeyPress}
             placeholder="Add a new todo..."
-            className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="flex-1 px-4 py-2 border border-purple-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
           />
           <button
             onClick={addTodo}
-            className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+            className="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-colors"
           >
             Add
           </button>
@@ -72,21 +72,21 @@ function App() {
               key={todo.id}
               className={`flex items-center gap-3 p-3 rounded-lg border ${
                 todo.completed 
-                  ? 'bg-gray-50 border-gray-200' 
-                  : 'bg-white border-gray-300'
+                  ? 'bg-purple-50 border-purple-200' 
+                  : 'bg-white border-purple-300'
               }`}
             >
               <input
                 type="checkbox"
                 checked={todo.completed}
                 onChange={() => toggleComplete(todo.id)}
-                className="w-5 h-5 text-blue-600 rounded focus:ring-blue-500"
+                className="w-5 h-5 text-purple-600 rounded focus:ring-purple-500"
               />
               <span
                 className={`flex-1 ${
                   todo.completed 
-                    ? 'text-gray-500 line-through' 
-                    : 'text-gray-800'
+                    ? 'text-purple-400 line-through' 
+                    : 'text-purple-800'
                 }`}
               >
                 {todo.text}
@@ -101,7 +101,7 @@ function App() {
           ))}
           
           {todos.length === 0 && (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-purple-400">
               No todos yet. Add one above!
             </div>
           )}
@@ -109,9 +109,9 @@ function App() {
 
         {/* Stats and Actions */}
         {todos.length > 0 && (
-          <div className="border-t pt-4">
+          <div className="border-t border-purple-200 pt-4">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-sm text-gray-600">
+              <span className="text-sm text-purple-600">
                 {activeCount} active, {completedCount} completed
               </span>
               {completedCount > 0 && (
