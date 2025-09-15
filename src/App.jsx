@@ -44,7 +44,7 @@ function App() {
     <div className="min-h-screen bg-purple-50 py-8">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6 border-t-4 border-purple-500">
         <h1 className="text-3xl font-bold text-center text-purple-800 mb-8">
-          TODO App
+          Strikingly
         </h1>
         
         {/* Add Todo Input */}
