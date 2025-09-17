@@ -38,11 +38,11 @@ const TodoApp = () => {
     <div className="container mx-auto px-4 py-8 max-w-2xl">
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-violet-600 px-8 py-6">
+        <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-8 py-6">
           <h1 className="text-3xl font-bold text-white text-center">
             📝 My Todo List
           </h1>
-          <p className="text-purple-100 text-center mt-2">
+          <p className="text-green-100 text-center mt-2">
             Stay organized and get things done
           </p>
         </div>

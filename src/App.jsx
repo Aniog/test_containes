@@ -4,7 +4,7 @@ import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-violet-100">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100">
       <TodoApp />
     </div>
   )
