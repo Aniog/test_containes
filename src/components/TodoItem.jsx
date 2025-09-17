@@ -3,7 +3,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
     <div className={`flex items-center gap-3 p-4 rounded-lg border transition-all duration-200 ${
       todo.completed 
         ? 'bg-gray-50 border-gray-200' 
-        : 'bg-white border-gray-200 hover:border-blue-300 hover:shadow-sm'
+        : 'bg-white border-gray-200 hover:border-purple-300 hover:shadow-sm'
     }`}>
       {/* Checkbox */}
       <button
@@ -11,7 +11,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
         className={`flex-shrink-0 w-5 h-5 rounded border-2 flex items-center justify-center transition-colors duration-200 ${
           todo.completed
             ? 'bg-green-500 border-green-500 text-white'
-            : 'border-gray-300 hover:border-green-400'
+            : 'border-gray-300 hover:border-purple-400'
         }`}
       >
         {todo.completed && (
