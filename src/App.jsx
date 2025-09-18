@@ -42,12 +42,12 @@ function App() {
   const activeCount = todos.length - completedCount
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-8 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-purple-100 py-8 px-4">
       <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Header */}
-        <div className="bg-indigo-600 text-white p-6">
+        <div className="bg-purple-600 text-white p-6">
           <h1 className="text-2xl font-bold text-center">TODO App</h1>
-          <p className="text-indigo-200 text-center mt-1">Stay organized and productive</p>
+          <p className="text-purple-200 text-center mt-1">Stay organized and productive</p>
         </div>
 
         {/* Add Todo Section */}
@@ -59,11 +59,11 @@ function App() {
               onChange={(e) => setInputValue(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Add a new task..."
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
             />
             <button
               onClick={addTodo}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2"
+              className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors duration-200 flex items-center gap-2"
             >
               <Plus size={18} />
               Add
@@ -98,7 +98,7 @@ function App() {
                       className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200 ${
                         todo.completed
                           ? 'bg-green-500 border-green-500 text-white'
-                          : 'border-gray-300 hover:border-green-400'
+                          : 'border-gray-300 hover:border-purple-400'
                       }`}
                     >
                       {todo.completed && <Check size={14} />}
