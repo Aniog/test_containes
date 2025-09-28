@@ -45,7 +45,7 @@ const TodoApp = () => {
         {/* Header */}
         <div className="bg-gradient-to-r from-indigo-600 to-purple-600 px-8 py-6">
           <h1 className="text-3xl font-bold text-white text-center">
-            Todo Application
+            Strikingly
           </h1>
           <p className="text-indigo-100 text-center mt-2">
             Stay organized and get things done
