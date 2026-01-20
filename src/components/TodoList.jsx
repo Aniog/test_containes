@@ -1,41 +1,139 @@
-import React, { useState } from 'react'
-import { Plus, Check, X, Circle, CheckCircle2, Trash2 } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { Plus, Circle, CheckCircle2, Trash2, Loader2, AlertCircle } from 'lucide-react'
+import { fetchTodos, createTodo, updateTodo, deleteTodo, toggleTodoCompletion } from '../api/todoApi'
 
 const TodoList = () => {
   const [todos, setTodos] = useState([])
   const [inputText, setInputText] = useState('')
   const [filter, setFilter] = useState('all') // all, active, completed
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Fetch todos on component mount
+  useEffect(() => {
+    loadTodos()
+  }, [])
+
+  // Load todos from database
+  const loadTodos = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      
+      const result = await fetchTodos()
+      
+      if (result.success) {
+        setTodos(result.data)
+      } else {
+        setError(result.error)
+      }
+    } catch (err) {
+      console.error('Load todos failed:', err)
+      setError('Failed to load todos')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   // Add new todo
-  const addTodo = () => {
-    if (inputText.trim() === '') return
+  const addTodo = async () => {
+    if (inputText.trim() === '' || isSubmitting) return
     
-    const newTodo = {
-      id: Date.now(),
-      text: inputText.trim(),
-      completed: false,
-      priority: 'medium'
+    try {
+      setIsSubmitting(true)
+      setError(null)
+      
+      const newTodoData = {
+        text: inputText.trim(),
+        completed: false,
+        priority: 'medium'
+      }
+      
+      const result = await createTodo(newTodoData)
+      
+      if (result.success) {
+        // Prepend the new todo to the list
+        setTodos(prev => [result.data, ...prev])
+        setInputText('')
+      } else {
+        setError(result.error)
+      }
+    } catch (err) {
+      console.error('Add todo failed:', err)
+      setError('Failed to add todo')
+    } finally {
+      setIsSubmitting(false)
     }
-    
-    setTodos(prev => [newTodo, ...prev])
-    setInputText('')
   }
 
   // Toggle todo completion
-  const toggleTodo = (id) => {
-    setTodos(prev => prev.map(todo => 
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    ))
+  const toggleTodo = async (id) => {
+    const todo = todos.find(t => t.id === id)
+    if (!todo) return
+    
+    try {
+      setError(null)
+      
+      const result = await toggleTodoCompletion(id, todo.completed)
+      
+      if (result.success) {
+        // Update the todo in the list
+        setTodos(prev => prev.map(t => 
+          t.id === id ? result.data : t
+        ))
+      } else {
+        setError(result.error)
+      }
+    } catch (err) {
+      console.error('Toggle todo failed:', err)
+      setError('Failed to update todo')
+    }
   }
 
   // Delete todo
-  const deleteTodo = (id) => {
-    setTodos(prev => prev.filter(todo => todo.id !== id))
+  const handleDeleteTodo = async (id) => {
+    try {
+      setError(null)
+      
+      const result = await deleteTodo(id)
+      
+      if (result.success) {
+        // Remove the todo from the list
+        setTodos(prev => prev.filter(t => t.id !== result.data.id))
+      } else {
+        setError(result.error)
+      }
+    } catch (err) {
+      console.error('Delete todo failed:', err)
+      setError('Failed to delete todo')
+    }
   }
 
   // Clear all completed todos
-  const clearCompleted = () => {
-    setTodos(prev => prev.filter(todo => !todo.completed))
+  const clearCompleted = async () => {
+    const completedTodos = todos.filter(todo => todo.completed)
+    
+    try {
+      setError(null)
+      
+      // Delete all completed todos
+      const deletePromises = completedTodos.map(todo => deleteTodo(todo.id))
+      const results = await Promise.all(deletePromises)
+      
+      // Check if all deletions were successful
+      const allSuccessful = results.every(result => result.success)
+      
+      if (allSuccessful) {
+        // Remove completed todos from the list
+        setTodos(prev => prev.filter(todo => !todo.completed))
+      } else {
+        setError('Some todos could not be deleted')
+      }
+    } catch (err) {
+      console.error('Clear completed failed:', err)
+      setError('Failed to clear completed todos')
+    }
   }
 
   // Filter todos based on current filter
@@ -55,11 +153,37 @@ const TodoList = () => {
   const completedCount = todos.filter(todo => todo.completed).length
   const activeCount = todos.length - completedCount
 
+  // Loading state
+  if (loading) {
+    return (
+      <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="animate-spin w-8 h-8 text-blue-500" />
+          <span className="ml-2 text-gray-600">Loading todos...</span>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
         Todo List
       </h1>
+
+      {/* Error Display */}
+      {error && (
+        <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
+          <AlertCircle size={20} />
+          <span>{error}</span>
+          <button
+            onClick={() => setError(null)}
+            className="ml-auto text-red-500 hover:text-red-700"
+          >
+            ×
+          </button>
+        </div>
+      )}
 
       {/* Add Todo Input */}
       <div className="flex gap-2 mb-6">
@@ -69,14 +193,20 @@ const TodoList = () => {
           onChange={(e) => setInputText(e.target.value)}
           onKeyPress={handleKeyPress}
           placeholder="Add a new todo..."
-          className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          disabled={isSubmitting}
+          className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100 disabled:cursor-not-allowed"
         />
         <button
           onClick={addTodo}
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2"
+          disabled={isSubmitting || inputText.trim() === ''}
+          className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
-          <Plus size={20} />
-          Add
+          {isSubmitting ? (
+            <Loader2 className="animate-spin" size={20} />
+          ) : (
+            <Plus size={20} />
+          )}
+          {isSubmitting ? 'Adding...' : 'Add'}
         </button>
       </div>
 
@@ -157,7 +287,7 @@ const TodoList = () => {
               </span>
               
               <button
-                onClick={() => deleteTodo(todo.id)}
+                onClick={() => handleDeleteTodo(todo.id)}
                 className="flex-shrink-0 text-red-400 hover:text-red-600 transition-colors"
               >
                 <Trash2 size={20} />
@@ -170,6 +300,7 @@ const TodoList = () => {
       {/* Footer */}
       <div className="mt-8 text-center text-sm text-gray-500">
         <p>Click the circle to mark as complete • Click the trash to delete</p>
+        <p className="mt-1 text-xs">Data is automatically saved to the database</p>
       </div>
     </div>
   )
