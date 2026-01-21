@@ -19,16 +19,16 @@ const About = () => {
   ]
 
   return (
-    <section id="about" className="py-20 px-4 relative">
+    <section id="about" className="py-20 px-4 relative bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-4">
-            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-purple-400 mr-4"></div>
-            <span className="text-purple-400 font-medium uppercase tracking-wider">About Us</span>
-            <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-purple-400 ml-4"></div>
+            <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-purple-600 mr-4"></div>
+            <span className="text-purple-600 font-medium uppercase tracking-wider">About Us</span>
+            <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-purple-600 ml-4"></div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Leading the AI Revolution
           </h2>
         </div>
@@ -36,16 +36,16 @@ const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
           {/* Content */}
           <div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               Pioneering Tomorrow's Technology Today
             </h3>
-            <p className="text-gray-300 text-lg mb-6 leading-relaxed">
+            <p className="text-gray-600 text-lg mb-6 leading-relaxed">
               We are at the forefront of artificial intelligence innovation, developing cutting-edge 
               solutions that transform how businesses operate and grow. Our team of world-class 
               researchers and engineers work tirelessly to push the boundaries of what's possible 
               with AI technology.
             </p>
-            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
               From machine learning algorithms to neural networks, we create AI systems that 
               understand, learn, and adapt to deliver unprecedented value to our clients across 
               industries worldwide.
@@ -55,8 +55,8 @@ const About = () => {
             <div className="space-y-3">
               {achievements.map((achievement, index) => (
                 <div key={index} className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-400 mr-3 flex-shrink-0" />
-                  <span className="text-gray-300">{achievement}</span>
+                  <CheckCircle className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                  <span className="text-gray-700">{achievement}</span>
                 </div>
               ))}
             </div>
@@ -64,30 +64,30 @@ const About = () => {
 
           {/* Visual Element */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 backdrop-blur-sm border border-purple-500/20 rounded-3xl p-8">
+            <div className="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
               <div className="grid grid-cols-2 gap-6">
                 {stats.map((stat, index) => (
                   <div key={index} className="text-center">
                     <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <stat.icon className="w-8 h-8 text-white" />
                     </div>
-                    <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                    <div className="text-gray-400 text-sm">{stat.label}</div>
+                    <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                    <div className="text-gray-600 text-sm">{stat.label}</div>
                   </div>
                 ))}
               </div>
             </div>
             
             {/* Floating Elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-purple-500/20 rounded-full blur-xl"></div>
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-pink-500/20 rounded-full blur-xl"></div>
+            <div className="absolute -top-4 -right-4 w-24 h-24 bg-purple-200/40 rounded-full blur-xl"></div>
+            <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-pink-200/40 rounded-full blur-xl"></div>
           </div>
         </div>
 
         {/* Mission Statement */}
-        <div className="bg-gradient-to-r from-slate-800/50 to-purple-900/50 backdrop-blur-sm border border-white/10 rounded-3xl p-8 md:p-12 text-center">
-          <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">Our Mission</h3>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <div className="bg-white border border-gray-200 rounded-3xl p-8 md:p-12 text-center shadow-lg">
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">Our Mission</h3>
+          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
             To democratize artificial intelligence and make advanced AI capabilities accessible 
             to businesses of all sizes, empowering them to innovate, automate, and achieve 
             extraordinary results in an increasingly digital world.
