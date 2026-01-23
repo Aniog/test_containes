@@ -59,7 +59,7 @@ const Footer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-6">
-              <div className="p-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg">
+              <div className="p-2 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-lg">
                 <Brain className="w-6 h-6 text-white" />
               </div>
               <span className="text-xl font-bold text-white">AI Platform</span>
@@ -165,9 +165,9 @@ const Footer = () => {
               <input 
                 type="email" 
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-purple-400 transition-colors"
+                className="flex-1 px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-blue-400 transition-colors"
               />
-              <button className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300">
+              <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg hover:from-blue-700 hover:to-cyan-700 transition-all duration-300">
                 <Send className="w-4 h-4" />
               </button>
             </div>

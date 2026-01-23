@@ -47,7 +47,7 @@ const Testimonials = () => {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Trusted by
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> Industry Leaders</span>
+            <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent"> Industry Leaders</span>
           </h2>
           <p className="text-xl text-white/80 max-w-3xl mx-auto">
             Join thousands of companies that have transformed their operations with our AI solutions.
@@ -72,7 +72,7 @@ const Testimonials = () => {
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 opacity-20">
-                <Quote className="w-8 h-8 text-purple-400" />
+                <Quote className="w-8 h-8 text-blue-400" />
               </div>
 
               {/* Rating */}
@@ -92,7 +92,7 @@ const Testimonials = () => {
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
-                  className="w-12 h-12 rounded-full object-cover border-2 border-purple-400/30"
+                  className="w-12 h-12 rounded-full object-cover border-2 border-blue-400/30"
                 />
                 <div>
                   <div className="font-semibold text-white">{testimonial.name}</div>
@@ -101,7 +101,7 @@ const Testimonials = () => {
               </div>
 
               {/* Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-cyan-500/5 rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           ))}
         </div>
@@ -110,7 +110,7 @@ const Testimonials = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <div className="text-3xl md:text-4xl font-bold text-white mb-2 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 {stat.value}
               </div>
               <div className="text-white/70 text-sm md:text-base">{stat.label}</div>
@@ -130,7 +130,7 @@ const Testimonials = () => {
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+            <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-full font-semibold hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
               Start Free Trial
             </button>
             <button className="px-8 py-4 bg-white/10 backdrop-blur-sm text-white rounded-full font-semibold border border-white/20 hover:bg-white/20 transition-all duration-300">
