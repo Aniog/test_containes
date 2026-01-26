@@ -47,13 +47,13 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-yellow-900 to-slate-900">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <Brain className="w-8 h-8 text-purple-400" />
+              <Brain className="w-8 h-8 text-yellow-400" />
               <span className="text-2xl font-bold text-white">AI Site</span>
             </div>
             <div className="hidden md:flex space-x-8">
@@ -61,7 +61,7 @@ function App() {
               <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
               <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
             </div>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-lg transition-colors">
+            <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-lg transition-colors">
               Get Started
             </button>
           </div>
@@ -72,24 +72,24 @@ function App() {
       <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="mb-8">
-            <div className="inline-flex items-center space-x-2 bg-purple-500/20 text-purple-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center space-x-2 bg-yellow-500/20 text-yellow-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Sparkles className="w-4 h-4" />
               <span>Powered by Advanced AI Technology</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
               The Future of
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> AI Solutions</span>
+              <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent"> AI Solutions</span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Transform your business with cutting-edge artificial intelligence. Our platform delivers intelligent automation, 
               predictive analytics, and seamless integration to revolutionize how you work.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
+              <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
                 <span>Start Free Trial</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
-              <button className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all">
+              <button className="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all">
                 Watch Demo
               </button>
             </div>
@@ -128,7 +128,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
               <div key={index} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 transition-all duration-300 group">
-                <div className="text-purple-400 mb-4 group-hover:scale-110 transition-transform">
+                <div className="text-yellow-400 mb-4 group-hover:scale-110 transition-transform">
                   {feature.icon}
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-3">{feature.title}</h3>
@@ -161,31 +161,31 @@ function App() {
                 ))}
               </div>
               
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105">
+              <button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105">
                 Learn More About Our Technology
               </button>
             </div>
             
             <div className="relative">
-              <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-2xl p-8 backdrop-blur-sm border border-white/10">
+              <div className="bg-gradient-to-r from-yellow-500/20 to-orange-500/20 rounded-2xl p-8 backdrop-blur-sm border border-white/10">
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
-                    <Users className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+                    <Users className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
                     <div className="text-2xl font-bold text-white">24/7</div>
                     <div className="text-gray-400">AI Support</div>
                   </div>
                   <div className="text-center">
-                    <Globe className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+                    <Globe className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
                     <div className="text-2xl font-bold text-white">Global</div>
                     <div className="text-gray-400">Coverage</div>
                   </div>
                   <div className="text-center">
-                    <Zap className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+                    <Zap className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
                     <div className="text-2xl font-bold text-white">Instant</div>
                     <div className="text-gray-400">Processing</div>
                   </div>
                   <div className="text-center">
-                    <Shield className="w-12 h-12 text-purple-400 mx-auto mb-3" />
+                    <Shield className="w-12 h-12 text-yellow-400 mx-auto mb-3" />
                     <div className="text-2xl font-bold text-white">Secure</div>
                     <div className="text-gray-400">Platform</div>
                   </div>
@@ -197,7 +197,7 @@ function App() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600/20 to-pink-600/20">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-yellow-600/20 to-orange-600/20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Ready to Transform Your Business?
@@ -206,10 +206,10 @@ function App() {
             Join thousands of companies already using our AI platform to drive innovation and growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-purple-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">
+            <button className="bg-white text-yellow-900 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all transform hover:scale-105">
               Start Your Free Trial
             </button>
-            <button className="border border-white text-white hover:bg-white hover:text-purple-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all">
+            <button className="border border-white text-white hover:bg-white hover:text-yellow-900 px-8 py-4 rounded-lg text-lg font-semibold transition-all">
               Schedule a Demo
             </button>
           </div>
@@ -222,7 +222,7 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center space-x-2 mb-4">
-                <Brain className="w-8 h-8 text-purple-400" />
+                <Brain className="w-8 h-8 text-yellow-400" />
                 <span className="text-2xl font-bold text-white">AI Site</span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
