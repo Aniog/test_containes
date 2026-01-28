@@ -9,8 +9,7 @@ const Layout = ({ children }) => {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About AI', href: '/about' },
-    { name: 'Applications', href: '/applications' },
-    { name: 'Future', href: '/future' }
+    { name: 'Applications', href: '/applications' }
   ]
 
   const isActive = (href) => {
