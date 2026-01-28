@@ -6,13 +6,13 @@ function App() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-yellow-900 to-slate-900">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-md border-b border-white/10 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <Brain className="h-8 w-8 text-purple-400" />
+              <Brain className="h-8 w-8 text-yellow-400" />
               <span className="text-2xl font-bold text-white">AI Site</span>
             </div>
             <div className="hidden md:flex space-x-8">
@@ -20,7 +20,7 @@ function App() {
               <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
               <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
             </div>
-            <button className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full transition-colors">
+            <button className="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-full transition-colors">
               Get Started
             </button>
           </div>
@@ -32,13 +32,13 @@ function App() {
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex justify-center mb-8">
             <div className="relative">
-              <div className="absolute inset-0 bg-purple-500/20 blur-3xl rounded-full"></div>
-              <Sparkles className="relative h-16 w-16 text-purple-400 animate-pulse" />
+              <div className="absolute inset-0 bg-yellow-500/20 blur-3xl rounded-full"></div>
+              <Sparkles className="relative h-16 w-16 text-yellow-400 animate-pulse" />
             </div>
           </div>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             The Future of
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"> AI </span>
+            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent"> AI </span>
             is Here
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -46,11 +46,11 @@ function App() {
             automate processes, and unlock unprecedented possibilities.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
+            <button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
               <span>Start Your AI Journey</span>
               <ArrowRight className="h-5 w-5" />
             </button>
-            <button className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all">
+            <button className="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-white px-8 py-4 rounded-full text-lg font-semibold transition-all">
               Watch Demo
             </button>
           </div>
@@ -71,8 +71,8 @@ function App() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all group">
-              <div className="bg-purple-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Brain className="h-8 w-8 text-purple-400" />
+              <div className="bg-yellow-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Brain className="h-8 w-8 text-yellow-400" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Smart Learning</h3>
               <p className="text-gray-300 leading-relaxed">
@@ -115,8 +115,8 @@ function App() {
             </div>
 
             <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 hover:bg-white/10 transition-all group">
-              <div className="bg-pink-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                <Cpu className="h-8 w-8 text-pink-400" />
+              <div className="bg-yellow-500/20 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Cpu className="h-8 w-8 text-yellow-400" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-4">Neural Networks</h3>
               <p className="text-gray-300 leading-relaxed">
@@ -159,34 +159,34 @@ function App() {
               </p>
               <div className="grid grid-cols-2 gap-8">
                 <div>
-                  <div className="text-3xl font-bold text-purple-400 mb-2">10M+</div>
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">10M+</div>
                   <div className="text-gray-300">AI Interactions</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-400 mb-2">500+</div>
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">500+</div>
                   <div className="text-gray-300">Enterprise Clients</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-400 mb-2">99.9%</div>
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">99.9%</div>
                   <div className="text-gray-300">Uptime</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-purple-400 mb-2">24/7</div>
+                  <div className="text-3xl font-bold text-yellow-400 mb-2">24/7</div>
                   <div className="text-gray-300">Support</div>
                 </div>
               </div>
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 blur-3xl rounded-3xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 blur-3xl rounded-3xl"></div>
               <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="h-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+                  <div className="h-4 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full"></div>
                   <div className="h-4 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
                   <div className="h-4 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full"></div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+                    <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
                     <div className="text-gray-300">Processing neural networks...</div>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -218,26 +218,26 @@ function App() {
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 mb-12">
             <div className="grid md:grid-cols-3 gap-8 text-center">
               <div>
-                <div className="text-2xl font-bold text-purple-400 mb-2">Free Trial</div>
+                <div className="text-2xl font-bold text-yellow-400 mb-2">Free Trial</div>
                 <div className="text-gray-300">30 days, no credit card required</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-purple-400 mb-2">24/7 Support</div>
+                <div className="text-2xl font-bold text-yellow-400 mb-2">24/7 Support</div>
                 <div className="text-gray-300">Expert assistance whenever you need it</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-purple-400 mb-2">Easy Setup</div>
+                <div className="text-2xl font-bold text-yellow-400 mb-2">Easy Setup</div>
                 <div className="text-gray-300">Get started in under 5 minutes</div>
               </div>
             </div>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-12 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
+            <button className="bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white px-12 py-4 rounded-full text-lg font-semibold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
               <span>Start Free Trial</span>
               <ArrowRight className="h-5 w-5" />
             </button>
-            <button className="border border-purple-400 text-purple-400 hover:bg-purple-400 hover:text-white px-12 py-4 rounded-full text-lg font-semibold transition-all">
+            <button className="border border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-white px-12 py-4 rounded-full text-lg font-semibold transition-all">
               Schedule Demo
             </button>
           </div>
@@ -249,7 +249,7 @@ function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Brain className="h-8 w-8 text-purple-400" />
+              <Brain className="h-8 w-8 text-yellow-400" />
               <span className="text-2xl font-bold text-white">AI Site</span>
             </div>
             <div className="flex space-x-8 mb-4 md:mb-0">
