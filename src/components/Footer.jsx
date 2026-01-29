@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { Gamepad2, Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react'
 
 const Footer = () => {
@@ -30,10 +31,10 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#hero" className="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
-              <li><a href="#news" className="text-gray-400 hover:text-blue-400 transition-colors">Latest News</a></li>
-              <li><a href="#store" className="text-gray-400 hover:text-blue-400 transition-colors">Game Store</a></li>
-              <li><a href="#discounts" className="text-gray-400 hover:text-blue-400 transition-colors">Deals & Offers</a></li>
+              <li><Link to="/" className="text-gray-400 hover:text-blue-400 transition-colors">Home</Link></li>
+              <li><Link to="/news" className="text-gray-400 hover:text-blue-400 transition-colors">Latest News</Link></li>
+              <li><Link to="/store" className="text-gray-400 hover:text-blue-400 transition-colors">Game Store</Link></li>
+              <li><Link to="/deals" className="text-gray-400 hover:text-blue-400 transition-colors">Deals & Offers</Link></li>
               <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">PlayStation Plus</a></li>
               <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Support</a></li>
             </ul>
