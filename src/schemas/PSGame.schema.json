@@ -1,0 +1,62 @@
+{
+  "name": "PSGame",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Game title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Game description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Current price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price before discount"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage (0-100)"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Game cover image URL"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["PS5", "PS4", "PS VR", "PS VR2"],
+      "description": "PlayStation platform"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre"
+    },
+    "rating": {
+      "type": "number",
+      "description": "User rating (0-5)"
+    },
+    "release_date": {
+      "type": "string",
+      "description": "Release date in ISO format"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the game is featured"
+    },
+    "is_on_sale": {
+      "type": "boolean",
+      "description": "Whether the game is currently on sale"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "price",
+    "platform",
+    "genre"
+  ]
+}

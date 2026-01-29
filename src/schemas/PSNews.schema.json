@@ -1,0 +1,52 @@
+{
+  "name": "PSNews",
+  "type": "object",
+  "properties": {
+    "headline": {
+      "type": "string",
+      "description": "News headline"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief news summary"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full news content"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "News article image URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Game Release", "Update", "Event", "Hardware", "General"],
+      "description": "News category"
+    },
+    "publish_date": {
+      "type": "string",
+      "description": "Publication date in ISO format"
+    },
+    "author": {
+      "type": "string",
+      "description": "Article author"
+    },
+    "is_breaking": {
+      "type": "boolean",
+      "description": "Whether this is breaking news"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Article tags"
+    }
+  },
+  "required": [
+    "headline",
+    "summary",
+    "category",
+    "publish_date"
+  ]
+}
