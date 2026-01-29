@@ -20,7 +20,7 @@ const Discounts = () => {
       discount: "20%",
       timeLeft: "Member exclusive",
       games: ["All games", "DLC content", "Add-ons"],
-      color: "from-purple-600 to-purple-800",
+      color: "from-blue-600 to-blue-800",
       icon: <Gift className="h-8 w-8" />
     },
     {
@@ -30,7 +30,7 @@ const Discounts = () => {
       discount: "50%",
       timeLeft: "1 week left",
       games: ["Indie titles", "New releases", "Hidden gems"],
-      color: "from-green-600 to-green-800",
+      color: "from-blue-700 to-blue-900",
       icon: <Tag className="h-8 w-8" />
     }
   ]
@@ -75,11 +75,11 @@ const Discounts = () => {
   ]
 
   return (
-    <section id="discounts" className="py-20 bg-gradient-to-br from-gray-800 to-gray-900">
+    <section id="discounts" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Hot Deals & Discounts</h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Hot Deals & Discounts</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Don't miss out on these incredible PlayStation game deals and limited-time offers
           </p>
         </div>
@@ -121,10 +121,10 @@ const Discounts = () => {
 
         {/* Hot Deals Grid */}
         <div className="mb-12">
-          <h3 className="text-3xl font-bold mb-8 text-center">⚡ Flash Deals - Limited Time</h3>
+          <h3 className="text-3xl font-bold mb-8 text-center text-gray-900">⚡ Flash Deals - Limited Time</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {hotDeals.map((deal) => (
-              <div key={deal.id} className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105">
+              <div key={deal.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105">
                 <div className="relative">
                   <img 
                     src={deal.image} 
@@ -141,14 +141,14 @@ const Discounts = () => {
                 </div>
                 
                 <div className="p-4">
-                  <h4 className="font-bold mb-2 text-sm">{deal.title}</h4>
+                  <h4 className="font-bold mb-2 text-sm text-gray-900">{deal.title}</h4>
                   <div className="flex items-center justify-between mb-3">
                     <div>
-                      <span className="text-lg font-bold text-blue-400">${deal.salePrice}</span>
+                      <span className="text-lg font-bold text-blue-700">${deal.salePrice}</span>
                       <span className="text-sm text-gray-500 line-through ml-2">${deal.originalPrice}</span>
                     </div>
                   </div>
-                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors">
+                  <button className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg text-sm font-semibold transition-colors">
                     Buy Now
                   </button>
                 </div>
@@ -158,8 +158,8 @@ const Discounts = () => {
         </div>
 
         {/* Newsletter Signup */}
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-center">
-          <h3 className="text-3xl font-bold mb-4">Never Miss a Deal!</h3>
+        <div className="bg-gradient-to-r from-blue-700 to-blue-800 rounded-2xl p-8 text-center">
+          <h3 className="text-3xl font-bold mb-4 text-white">Never Miss a Deal!</h3>
           <p className="text-xl text-blue-100 mb-6 max-w-2xl mx-auto">
             Subscribe to our newsletter and be the first to know about exclusive PlayStation deals and discounts
           </p>
@@ -169,7 +169,7 @@ const Discounts = () => {
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500"
             />
-            <button className="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+            <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
               Subscribe
             </button>
           </div>

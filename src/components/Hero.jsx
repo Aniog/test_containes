@@ -30,16 +30,16 @@ const Hero = () => {
   ]
 
   return (
-    <section id="hero" className="relative bg-gradient-to-r from-blue-900 via-purple-900 to-blue-800 py-20">
+    <section id="hero" className="relative bg-gradient-to-r from-blue-800 via-blue-900 to-blue-700 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-red-300 bg-clip-text text-transparent">
             PlayStation Games
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
             Discover the latest PlayStation exclusives, get the best deals, and stay updated with gaming news
           </p>
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors flex items-center space-x-2 mx-auto">
+          <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors flex items-center space-x-2 mx-auto">
             <Play className="h-5 w-5" />
             <span>Explore Games</span>
           </button>
@@ -48,7 +48,7 @@ const Hero = () => {
         {/* Featured Games Carousel */}
         <div className="grid md:grid-cols-3 gap-8">
           {featuredGames.map((game) => (
-            <div key={game.id} className="bg-gray-800 rounded-xl overflow-hidden shadow-2xl hover:transform hover:scale-105 transition-all duration-300">
+            <div key={game.id} className="bg-white rounded-xl overflow-hidden shadow-2xl hover:transform hover:scale-105 transition-all duration-300">
               <div className="relative">
                 <img 
                   src={game.image} 
@@ -61,11 +61,11 @@ const Hero = () => {
                 </div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">{game.title}</h3>
-                <p className="text-gray-400 mb-4 text-sm">{game.description}</p>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">{game.title}</h3>
+                <p className="text-gray-600 mb-4 text-sm">{game.description}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-blue-400">{game.price}</span>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors">
+                  <span className="text-2xl font-bold text-blue-700">{game.price}</span>
+                  <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors">
                     Buy Now
                   </button>
                 </div>

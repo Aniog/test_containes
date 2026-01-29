@@ -42,18 +42,18 @@ const News = () => {
   ]
 
   return (
-    <section id="news" className="py-20 bg-gray-800">
+    <section id="news" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Latest Gaming News</h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Latest Gaming News</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Stay updated with the latest PlayStation news, game releases, and industry updates
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {newsArticles.map((article) => (
-            <article key={article.id} className="bg-gray-900 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105">
+            <article key={article.id} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105">
               <div className="relative">
                 <img 
                   src={article.image} 
@@ -61,17 +61,17 @@ const News = () => {
                   className="w-full h-48 object-cover"
                 />
                 <div className="absolute top-4 left-4">
-                  <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                  <span className="bg-blue-700 text-white px-3 py-1 rounded-full text-xs font-semibold">
                     {article.category}
                   </span>
                 </div>
               </div>
               
               <div className="p-6">
-                <h3 className="text-lg font-bold mb-3 line-clamp-2 hover:text-blue-400 transition-colors">
+                <h3 className="text-lg font-bold mb-3 line-clamp-2 hover:text-blue-700 transition-colors text-gray-900">
                   {article.title}
                 </h3>
-                <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                <p className="text-gray-600 text-sm mb-4 line-clamp-3">
                   {article.excerpt}
                 </p>
                 
@@ -86,7 +86,7 @@ const News = () => {
                   </div>
                 </div>
                 
-                <button className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors group">
+                <button className="flex items-center space-x-2 text-red-600 hover:text-red-700 transition-colors group">
                   <span>Read More</span>
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -96,7 +96,7 @@ const News = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          <button className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
             View All News
           </button>
         </div>

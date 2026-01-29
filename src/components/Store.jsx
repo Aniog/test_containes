@@ -93,11 +93,11 @@ const Store = () => {
     : games.filter(game => game.category === selectedCategory)
 
   return (
-    <section id="store" className="py-20 bg-gray-900">
+    <section id="store" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">PlayStation Store</h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">PlayStation Store</h2>
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Discover amazing PlayStation games with exclusive deals and discounts
           </p>
         </div>
@@ -105,7 +105,7 @@ const Store = () => {
         {/* Filters and View Toggle */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 space-y-4 md:space-y-0">
           <div className="flex items-center space-x-4">
-            <Filter className="h-5 w-5 text-gray-400" />
+            <Filter className="h-5 w-5 text-gray-600" />
             <div className="flex flex-wrap gap-2">
               {categories.map((category) => (
                 <button
@@ -113,8 +113,8 @@ const Store = () => {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     selectedCategory === category.id
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                      ? 'bg-blue-700 text-white'
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
                   }`}
                 >
                   {category.name}
@@ -126,13 +126,13 @@ const Store = () => {
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded ${viewMode === 'grid' ? 'bg-blue-600' : 'bg-gray-800'}`}
+              className={`p-2 rounded ${viewMode === 'grid' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-700'}`}
             >
               <Grid className="h-5 w-5" />
             </button>
             <button
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded ${viewMode === 'list' ? 'bg-blue-600' : 'bg-gray-800'}`}
+              className={`p-2 rounded ${viewMode === 'list' ? 'bg-blue-700 text-white' : 'bg-gray-200 text-gray-700'}`}
             >
               <List className="h-5 w-5" />
             </button>
@@ -146,7 +146,7 @@ const Store = () => {
             : 'grid-cols-1'
         }`}>
           {filteredGames.map((game) => (
-            <div key={game.id} className={`bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105 ${
+            <div key={game.id} className={`bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:transform hover:scale-105 ${
               viewMode === 'list' ? 'flex' : ''
             }`}>
               <div className={`relative ${viewMode === 'list' ? 'w-48 flex-shrink-0' : ''}`}>
@@ -168,7 +168,7 @@ const Store = () => {
               </div>
               
               <div className="p-6 flex-1">
-                <h3 className="text-xl font-bold mb-2">{game.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-gray-900">{game.title}</h3>
                 
                 <div className="flex items-center space-x-2 mb-3">
                   <div className="flex items-center">
@@ -178,19 +178,19 @@ const Store = () => {
                         className={`h-4 w-4 ${
                           i < Math.floor(game.rating) 
                             ? 'text-yellow-400 fill-current' 
-                            : 'text-gray-600'
+                            : 'text-gray-400'
                         }`} 
                       />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-400">
+                  <span className="text-sm text-gray-600">
                     {game.rating} ({game.reviews.toLocaleString()} reviews)
                   </span>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-2">
-                    <span className="text-2xl font-bold text-blue-400">
+                    <span className="text-2xl font-bold text-blue-700">
                       ${game.price}
                     </span>
                     {game.originalPrice > game.price && (
@@ -199,7 +199,7 @@ const Store = () => {
                       </span>
                     )}
                   </div>
-                  <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2">
+                  <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors flex items-center space-x-2">
                     <ShoppingCart className="h-4 w-4" />
                     <span>Add to Cart</span>
                   </button>
@@ -210,7 +210,7 @@ const Store = () => {
         </div>
 
         <div className="text-center mt-12">
-          <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          <button className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
             Load More Games
           </button>
         </div>

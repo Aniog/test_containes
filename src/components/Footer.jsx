@@ -5,7 +5,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-gray-900 border-t border-gray-800">
+    <footer className="bg-gray-900 border-t border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand Section */}
@@ -21,8 +21,8 @@ const Footer = () => {
             <div className="flex space-x-4">
               <Facebook className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
               <Twitter className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
-              <Instagram className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
-              <Youtube className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer transition-colors" />
+              <Instagram className="h-5 w-5 text-gray-400 hover:text-red-400 cursor-pointer transition-colors" />
+              <Youtube className="h-5 w-5 text-gray-400 hover:text-red-400 cursor-pointer transition-colors" />
             </div>
           </div>
 
@@ -30,12 +30,12 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#hero" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-              <li><a href="#news" className="text-gray-400 hover:text-white transition-colors">Latest News</a></li>
-              <li><a href="#store" className="text-gray-400 hover:text-white transition-colors">Game Store</a></li>
-              <li><a href="#discounts" className="text-gray-400 hover:text-white transition-colors">Deals & Offers</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">PlayStation Plus</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Support</a></li>
+              <li><a href="#hero" className="text-gray-400 hover:text-blue-400 transition-colors">Home</a></li>
+              <li><a href="#news" className="text-gray-400 hover:text-blue-400 transition-colors">Latest News</a></li>
+              <li><a href="#store" className="text-gray-400 hover:text-blue-400 transition-colors">Game Store</a></li>
+              <li><a href="#discounts" className="text-gray-400 hover:text-blue-400 transition-colors">Deals & Offers</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">PlayStation Plus</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Support</a></li>
             </ul>
           </div>
 
@@ -43,12 +43,12 @@ const Footer = () => {
           <div>
             <h3 className="text-white font-semibold mb-4">Game Categories</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Action Games</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Adventure</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">RPG Games</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Sports</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Racing</a></li>
-              <li><a href="#" className="text-gray-400 hover:text-white transition-colors">Indie Games</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Action Games</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Adventure</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">RPG Games</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Sports</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Racing</a></li>
+              <li><a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Indie Games</a></li>
             </ul>
           </div>
 
@@ -79,7 +79,7 @@ const Footer = () => {
                   placeholder="Your email"
                   className="flex-1 px-3 py-2 bg-gray-800 text-white rounded-l-lg border border-gray-700 focus:outline-none focus:border-blue-400"
                 />
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r-lg transition-colors">
+                <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-r-lg transition-colors">
                   Subscribe
                 </button>
               </div>
@@ -94,9 +94,9 @@ const Footer = () => {
               © {currentYear} PlayStation Hub. All rights reserved. PlayStation and PS5 are trademarks of Sony Interactive Entertainment.
             </div>
             <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Terms of Service</a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">Cookie Policy</a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</a>
+              <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">Cookie Policy</a>
             </div>
           </div>
         </div>
