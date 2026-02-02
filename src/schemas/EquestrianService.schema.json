@@ -1,0 +1,50 @@
+{
+  "name": "EquestrianService",
+  "type": "object",
+  "properties": {
+    "service_name": {
+      "type": "string",
+      "description": "Name of the equestrian service or program"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the service"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price per session or monthly fee"
+    },
+    "duration": {
+      "type": "string",
+      "description": "Duration of the service (e.g., '1 hour', '30 minutes')"
+    },
+    "skill_level": {
+      "type": "string",
+      "enum": ["Beginner", "Intermediate", "Advanced", "All Levels"],
+      "description": "Required skill level for the service"
+    },
+    "age_group": {
+      "type": "string",
+      "description": "Target age group (e.g., 'Children 6-12', 'Adults', 'All Ages')"
+    },
+    "is_available": {
+      "type": "boolean",
+      "description": "Whether the service is currently available"
+    },
+    "instructor": {
+      "type": "string",
+      "description": "Name of the instructor"
+    },
+    "max_participants": {
+      "type": "integer",
+      "description": "Maximum number of participants per session"
+    }
+  },
+  "required": [
+    "service_name",
+    "description",
+    "price",
+    "skill_level",
+    "is_available"
+  ]
+}
