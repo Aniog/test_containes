@@ -7,17 +7,17 @@ function App() {
 
   const features = [
     {
-      icon: <Brain className="w-8 h-8 text-yellow-600" />,
+      icon: <Brain className="w-8 h-8 text-blue-600" />,
       title: "Advanced AI Models",
       description: "Cutting-edge machine learning algorithms that adapt and learn from your data to provide intelligent solutions."
     },
     {
-      icon: <Zap className="w-8 h-8 text-yellow-500" />,
+      icon: <Zap className="w-8 h-8 text-blue-500" />,
       title: "Lightning Fast",
       description: "Optimized performance with real-time processing capabilities that deliver results in milliseconds."
     },
     {
-      icon: <Shield className="w-8 h-8 text-yellow-700" />,
+      icon: <Shield className="w-8 h-8 text-blue-700" />,
       title: "Enterprise Security",
       description: "Bank-level encryption and security protocols to keep your data safe and compliant with industry standards."
     }
@@ -33,21 +33,21 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-yellow-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <Brain className="w-8 h-8 text-yellow-600" />
+              <Brain className="w-8 h-8 text-blue-600" />
               <span className="text-2xl font-bold text-gray-900">AI Site</span>
             </div>
             <nav className="hidden md:flex space-x-8">
-              <a href="#features" className="text-gray-700 hover:text-yellow-600 transition-colors">Features</a>
-              <a href="#about" className="text-gray-700 hover:text-yellow-600 transition-colors">About</a>
-              <a href="#contact" className="text-gray-700 hover:text-yellow-600 transition-colors">Contact</a>
+              <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
+              <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
+              <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
             </nav>
-            <button className="bg-yellow-600 text-white px-6 py-2 rounded-lg hover:bg-yellow-700 transition-colors">
+            <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
               Get Started
             </button>
           </div>
@@ -58,24 +58,24 @@ function App() {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
           <div className="flex justify-center mb-6">
-            <div className="bg-yellow-100 p-4 rounded-full">
-              <Sparkles className="w-12 h-12 text-yellow-600" />
+            <div className="bg-blue-100 p-4 rounded-full">
+              <Sparkles className="w-12 h-12 text-blue-600" />
             </div>
           </div>
           <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
             The Future of
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-orange-600"> AI Technology</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> AI Technology</span>
           </h1>
           <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
             Harness the power of artificial intelligence to transform your business. Our cutting-edge AI solutions 
             provide intelligent automation, predictive analytics, and seamless integration.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-700 transition-colors flex items-center justify-center gap-2">
+            <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2">
               Start Free Trial
               <ArrowRight className="w-5 h-5" />
             </button>
-            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-yellow-600 hover:text-yellow-600 transition-colors">
+            <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg text-lg font-semibold hover:border-blue-600 hover:text-blue-600 transition-colors">
               Watch Demo
             </button>
           </div>
@@ -104,14 +104,14 @@ function App() {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 bg-gradient-to-r from-yellow-600 to-orange-600">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-4xl font-bold text-white mb-6">
                 Why Choose AI Site?
               </h2>
-              <p className="text-yellow-100 text-lg mb-8 leading-relaxed">
+              <p className="text-blue-100 text-lg mb-8 leading-relaxed">
                 Join thousands of companies that have transformed their operations with our AI-powered solutions. 
                 Experience the difference that intelligent automation can make.
               </p>
@@ -127,10 +127,10 @@ function App() {
             <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
               <div className="text-center">
                 <div className="flex justify-center mb-4">
-                  <Star className="w-12 h-12 text-yellow-300" />
+                  <Star className="w-12 h-12 text-yellow-400" />
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4">Trusted by 10,000+ Companies</h3>
-                <p className="text-yellow-100 mb-6">
+                <p className="text-blue-100 mb-6">
                   "AI Site has revolutionized how we handle data processing. The results speak for themselves."
                 </p>
                 <div className="text-white font-semibold">
@@ -165,22 +165,22 @@ function App() {
                 scalability, and ease of use. Our platform is designed for the future.
               </p>
             </div>
-            <div className="bg-gradient-to-br from-yellow-50 to-orange-50 p-8 rounded-xl">
+            <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl">
               <div className="grid grid-cols-2 gap-6 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-yellow-600 mb-2">99.9%</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">99.9%</div>
                   <div className="text-gray-600">Uptime</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-yellow-600 mb-2">10K+</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">10K+</div>
                   <div className="text-gray-600">Active Users</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-yellow-600 mb-2">50M+</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">50M+</div>
                   <div className="text-gray-600">API Calls/Month</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-yellow-600 mb-2">24/7</div>
+                  <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
                   <div className="text-gray-600">Support</div>
                 </div>
               </div>
@@ -197,10 +197,10 @@ function App() {
             Join the AI revolution today. Start your free trial and see how our platform can transform your business.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-yellow-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-yellow-700 transition-colors">
+            <button className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors">
               Start Free Trial
             </button>
-            <button className="border-2 border-gray-600 text-gray-300 px-8 py-4 rounded-lg text-lg font-semibold hover:border-yellow-600 hover:text-yellow-400 transition-colors">
+            <button className="border-2 border-gray-600 text-gray-300 px-8 py-4 rounded-lg text-lg font-semibold hover:border-blue-600 hover:text-blue-400 transition-colors">
               Contact Sales
             </button>
           </div>
@@ -213,7 +213,7 @@ function App() {
           <div className="grid md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-2 mb-4">
-                <Brain className="w-6 h-6 text-yellow-600" />
+                <Brain className="w-6 h-6 text-blue-600" />
                 <span className="text-xl font-bold text-white">AI Site</span>
               </div>
               <p className="text-gray-400">
@@ -223,25 +223,25 @@ function App() {
             <div>
               <h4 className="text-white font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Features</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Pricing</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">API</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Features</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Pricing</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">API</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">About</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Careers</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Contact</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">About</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Contact</a></li>
               </ul>
             </div>
             <div>
               <h4 className="text-white font-semibold mb-4">Support</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Documentation</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-yellow-400 transition-colors">Community</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Documentation</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Help Center</a></li>
+                <li><a href="#" className="hover:text-blue-400 transition-colors">Community</a></li>
               </ul>
             </div>
           </div>
