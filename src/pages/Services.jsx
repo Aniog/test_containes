@@ -137,10 +137,10 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-16 px-4">
+      <section className="bg-gradient-to-r from-purple-600 to-violet-600 text-white py-16 px-4">
         <div className="max-w-6xl mx-auto text-center">
           <h1 className="text-5xl font-bold mb-6">Our Services & Programs</h1>
-          <p className="text-xl text-amber-100 max-w-3xl mx-auto">
+          <p className="text-xl text-purple-100 max-w-3xl mx-auto">
             Discover our comprehensive range of equestrian programs designed for riders of all ages and skill levels. 
             From your first lesson to competitive training, we have the perfect program for you.
           </p>
@@ -157,7 +157,7 @@ const Services = () => {
                 onClick={() => setSelectedCategory(category.id)}
                 className={`px-4 py-2 rounded-full font-medium transition-colors ${
                   selectedCategory === category.id
-                    ? 'bg-amber-600 text-white'
+                    ? 'bg-purple-600 text-white'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -190,37 +190,37 @@ const Services = () => {
 
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center text-sm text-gray-700">
-                      <DollarSign className="w-4 h-4 text-amber-600 mr-2" />
+                      <DollarSign className="w-4 h-4 text-purple-600 mr-2" />
                       <span className="font-semibold">${service.price}</span>
                       {service.duration.includes('day') ? ' per week' : ' per session'}
                     </div>
                     
                     <div className="flex items-center text-sm text-gray-700">
-                      <Clock className="w-4 h-4 text-amber-600 mr-2" />
+                      <Clock className="w-4 h-4 text-purple-600 mr-2" />
                       <span>{service.duration}</span>
                     </div>
                     
                     <div className="flex items-center text-sm text-gray-700">
-                      <Users className="w-4 h-4 text-amber-600 mr-2" />
+                      <Users className="w-4 h-4 text-purple-600 mr-2" />
                       <span>Max {service.max_participants} participants</span>
                     </div>
                     
                     <div className="flex items-center text-sm text-gray-700">
-                      <Calendar className="w-4 h-4 text-amber-600 mr-2" />
+                      <Calendar className="w-4 h-4 text-purple-600 mr-2" />
                       <span>{service.age_group}</span>
                     </div>
                     
                     <div className="flex items-center text-sm text-gray-700">
-                      <Award className="w-4 h-4 text-amber-600 mr-2" />
+                      <Award className="w-4 h-4 text-purple-600 mr-2" />
                       <span>Instructor: {service.instructor}</span>
                     </div>
                   </div>
 
                   <div className="flex gap-2">
-                    <button className="flex-1 bg-amber-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-amber-700 transition-colors">
+                    <button className="flex-1 bg-purple-600 text-white py-2 px-4 rounded-lg font-medium hover:bg-purple-700 transition-colors">
                       Book Now
                     </button>
-                    <button className="px-4 py-2 border border-amber-600 text-amber-600 rounded-lg font-medium hover:bg-amber-50 transition-colors">
+                    <button className="px-4 py-2 border border-purple-600 text-purple-600 rounded-lg font-medium hover:bg-purple-50 transition-colors">
                       Learn More
                     </button>
                   </div>
@@ -232,7 +232,7 @@ const Services = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 px-4 bg-amber-50">
+      <section className="py-16 px-4 bg-purple-50">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">
             Ready to Start Your Equestrian Journey?
@@ -242,10 +242,10 @@ const Services = () => {
             Our experienced instructors are here to help you achieve your riding goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-amber-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-amber-700 transition-colors">
+            <button className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
               Schedule Consultation
             </button>
-            <button className="border-2 border-amber-600 text-amber-600 px-8 py-3 rounded-lg font-semibold hover:bg-amber-50 transition-colors">
+            <button className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition-colors">
               Call (555) 123-4567
             </button>
           </div>

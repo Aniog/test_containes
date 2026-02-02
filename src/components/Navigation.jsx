@@ -19,7 +19,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <h1 className="text-2xl font-bold text-amber-600">
+            <h1 className="text-2xl font-bold text-blue-600">
               Bella Equestrian Center
             </h1>
           </Link>
@@ -32,8 +32,8 @@ const Navigation = () => {
                 to={item.path}
                 className={`font-medium transition-colors ${
                   isActive(item.path)
-                    ? 'text-amber-600 border-b-2 border-amber-600 pb-1'
-                    : 'text-gray-700 hover:text-amber-600'
+                    ? 'text-blue-600 border-b-2 border-blue-600 pb-1'
+                    : 'text-gray-700 hover:text-blue-600'
                 }`}
               >
                 {item.name}
@@ -76,8 +76,8 @@ const Navigation = () => {
                   to={item.path}
                   className={`font-medium transition-colors ${
                     isActive(item.path)
-                      ? 'text-amber-600'
-                      : 'text-gray-700 hover:text-amber-600'
+                      ? 'text-blue-600'
+                      : 'text-gray-700 hover:text-blue-600'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
