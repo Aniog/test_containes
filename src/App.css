@@ -1,0 +1,85 @@
+/* Custom animations and styles for AI Site */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom gradient text animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+/* Backdrop blur fallback */
+@supports not (backdrop-filter: blur(12px)) {
+  .backdrop-blur-md {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Custom hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .text-5xl {
+    font-size: 2.5rem;
+  }
+  .text-7xl {
+    font-size: 3rem;
+  }
+}
+
+/* Ensure full width layout */
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
