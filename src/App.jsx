@@ -1,17 +1,23 @@
 import React from 'react'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import Testimonials from './components/Testimonials'
-import Footer from './components/Footer'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Navigation from './components/Navigation'
+import Home from './pages/Home'
+import About from './pages/About'
+import './App.css'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-      <Hero />
-      <Features />
-      <Testimonials />
-      <Footer />
-    </div>
+    <Router>
+      <div className="min-h-screen">
+        <Navigation />
+        <div className="pt-16"> {/* Add padding-top to account for fixed navigation */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   )
 }
 
