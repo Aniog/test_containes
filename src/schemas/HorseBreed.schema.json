@@ -1,0 +1,87 @@
+{
+  "name": "HorseBreed",
+  "type": "object",
+  "properties": {
+    "breed_name": {
+      "type": "string",
+      "description": "Official name of the horse breed"
+    },
+    "origin_country": {
+      "type": "string",
+      "description": "Country or region where the breed originated"
+    },
+    "breed_type": {
+      "type": "string",
+      "description": "Classification of the breed (e.g., Draft, Sport, Pony, Arabian, etc.)",
+      "enum": ["Draft", "Sport", "Pony", "Arabian", "Thoroughbred", "Quarter Horse", "Warmblood", "Cold Blood", "Hot Blood", "Gaited", "Miniature"]
+    },
+    "height_min": {
+      "type": "number",
+      "description": "Minimum height in hands (1 hand = 4 inches)"
+    },
+    "height_max": {
+      "type": "number",
+      "description": "Maximum height in hands"
+    },
+    "weight_min": {
+      "type": "integer",
+      "description": "Minimum weight in pounds"
+    },
+    "weight_max": {
+      "type": "integer",
+      "description": "Maximum weight in pounds"
+    },
+    "coat_colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Common coat colors for this breed"
+    },
+    "temperament": {
+      "type": "string",
+      "description": "General temperament and personality traits"
+    },
+    "primary_uses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Primary uses and disciplines for this breed"
+    },
+    "life_expectancy": {
+      "type": "integer",
+      "description": "Average life expectancy in years"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the breed's characteristics and history"
+    },
+    "distinctive_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Notable physical or behavioral characteristics"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "URL to a representative image of the breed"
+    },
+    "popularity_rank": {
+      "type": "integer",
+      "description": "Popularity ranking (1 being most popular)"
+    },
+    "is_rare_breed": {
+      "type": "boolean",
+      "description": "Whether this is considered a rare or endangered breed"
+    }
+  },
+  "required": [
+    "breed_name",
+    "origin_country",
+    "breed_type",
+    "description",
+    "temperament"
+  ]
+}
