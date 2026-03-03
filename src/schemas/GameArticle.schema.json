@@ -1,0 +1,68 @@
+{
+  "name": "GameArticle",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title"
+    },
+    "content": {
+      "type": "string",
+      "description": "Article content in markdown or HTML"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short article summary"
+    },
+    "author": {
+      "type": "string",
+      "description": "Article author name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["News", "Review", "Guide", "Interview", "Opinion"],
+      "description": "Article category"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Article tags"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "Article featured image URL"
+    },
+    "is_published": {
+      "type": "boolean",
+      "description": "Whether the article is published"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the article is featured"
+    },
+    "view_count": {
+      "type": "integer",
+      "description": "Number of article views"
+    },
+    "reading_time": {
+      "type": "integer",
+      "description": "Estimated reading time in minutes"
+    },
+    "related_games": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related game titles"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "excerpt",
+    "author",
+    "category"
+  ]
+}

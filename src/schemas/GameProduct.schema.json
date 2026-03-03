@@ -1,0 +1,72 @@
+{
+  "name": "GameProduct",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Game title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Game description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Current price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price before discount"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage (0-100)"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo", "PlayStation", "Xbox"],
+      "description": "Gaming platform"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre (Action, RPG, Strategy, etc.)"
+    },
+    "rating": {
+      "type": "number",
+      "description": "User rating (0-5)"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Game cover image URL"
+    },
+    "trailer_url": {
+      "type": "string",
+      "description": "Game trailer video URL"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the game is featured on homepage"
+    },
+    "is_on_sale": {
+      "type": "boolean",
+      "description": "Whether the game is currently on sale"
+    },
+    "stock_quantity": {
+      "type": "integer",
+      "description": "Available stock quantity"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "price",
+    "platform",
+    "genre",
+    "rating"
+  ]
+}

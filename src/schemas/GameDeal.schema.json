@@ -1,0 +1,64 @@
+{
+  "name": "GameDeal",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "description": "Game title"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo", "PlayStation", "Xbox"],
+      "description": "Gaming platform offering the deal"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price before discount"
+    },
+    "sale_price": {
+      "type": "number",
+      "description": "Current sale price"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage (0-100)"
+    },
+    "deal_start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When the deal started"
+    },
+    "deal_end_date": {
+      "type": "string",
+      "format": "date",
+      "description": "When the deal ends"
+    },
+    "game_image": {
+      "type": "string",
+      "description": "Game image URL"
+    },
+    "deal_url": {
+      "type": "string",
+      "description": "Direct link to the deal"
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the deal is currently active"
+    },
+    "is_hot_deal": {
+      "type": "boolean",
+      "description": "Whether this is marked as a hot deal"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre"
+    }
+  },
+  "required": [
+    "game_title",
+    "platform",
+    "original_price",
+    "sale_price",
+    "discount_percentage"
+  ]
+}
