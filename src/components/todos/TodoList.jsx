@@ -129,7 +129,7 @@ const TodoList = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center p-8">
-        <Loader2 className="animate-spin w-8 h-8 text-blue-600" />
+        <Loader2 className="animate-spin w-8 h-8 text-purple-600" />
       </div>
     )
   }
@@ -152,12 +152,12 @@ const TodoList = () => {
 
       {/* Stats */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-        <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
+        <div className="bg-purple-50 p-4 rounded-lg border border-purple-200">
           <div className="flex items-center gap-2">
-            <Filter className="w-5 h-5 text-blue-600" />
-            <span className="text-sm font-medium text-blue-600">Total</span>
+            <Filter className="w-5 h-5 text-purple-600" />
+            <span className="text-sm font-medium text-purple-600">Total</span>
           </div>
-          <p className="text-2xl font-bold text-blue-900">{stats.total}</p>
+          <p className="text-2xl font-bold text-purple-900">{stats.total}</p>
         </div>
         
         <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
@@ -193,7 +193,7 @@ const TodoList = () => {
           onClick={() => setFilter('all')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
             filter === 'all'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-purple-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
@@ -203,7 +203,7 @@ const TodoList = () => {
           onClick={() => setFilter('active')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
             filter === 'active'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-purple-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
@@ -213,7 +213,7 @@ const TodoList = () => {
           onClick={() => setFilter('completed')}
           className={`px-4 py-2 rounded-lg font-medium transition-colors ${
             filter === 'completed'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-purple-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >

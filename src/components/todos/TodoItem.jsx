@@ -54,14 +54,14 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
 
   if (isEditing) {
     return (
-      <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-200">
+      <div className="bg-white p-4 rounded-lg shadow-sm border border-purple-200">
         <div className="space-y-3">
           <input
             type="text"
             name="title"
             value={editData.title}
             onChange={handleChange}
-            className="w-full px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
             required
           />
           
@@ -71,7 +71,7 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
             onChange={handleChange}
             placeholder="Description (optional)"
             rows="2"
-            className="w-full px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            className="w-full px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
           />
 
           <div className="flex gap-3 flex-wrap">
@@ -79,7 +79,7 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
               name="priority"
               value={editData.priority}
               onChange={handleChange}
-              className="px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
             >
               <option value="low">Low</option>
               <option value="medium">Medium</option>
@@ -91,14 +91,14 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
               name="due_date"
               value={editData.due_date}
               onChange={handleChange}
-              className="px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="px-3 py-2 border border-gray-200 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
             />
           </div>
 
           <div className="flex gap-2">
             <button
               onClick={handleSave}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors"
             >
               Save
             </button>
@@ -165,7 +165,7 @@ const TodoItem = ({ todo, onUpdate, onDelete }) => {
         <div className="flex gap-1">
           <button
             onClick={handleEdit}
-            className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded transition-colors"
+            className="p-2 text-gray-400 hover:text-purple-600 hover:bg-purple-50 rounded transition-colors"
           >
             <Edit2 className="w-4 h-4" />
           </button>
