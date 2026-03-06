@@ -1,0 +1,66 @@
+{
+  "name": "Deal",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "description": "Game title on sale"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price"
+    },
+    "sale_price": {
+      "type": "number",
+      "description": "Sale price"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo", "PlayStation", "Xbox"],
+      "description": "Gaming platform"
+    },
+    "deal_type": {
+      "type": "string",
+      "enum": ["Daily Deal", "Weekly Sale", "Seasonal Sale", "Flash Sale", "Bundle"],
+      "description": "Type of deal"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Deal start date"
+    },
+    "end_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Deal end date"
+    },
+    "game_image": {
+      "type": "string",
+      "description": "Game image URL"
+    },
+    "store_url": {
+      "type": "string",
+      "description": "Direct link to store page"
+    },
+    "is_active": {
+      "type": "boolean",
+      "description": "Whether the deal is currently active"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the deal is featured"
+    }
+  },
+  "required": [
+    "game_title",
+    "original_price",
+    "sale_price",
+    "discount_percentage",
+    "platform",
+    "deal_type"
+  ]
+}

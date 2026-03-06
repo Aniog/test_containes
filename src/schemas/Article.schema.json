@@ -1,0 +1,61 @@
+{
+  "name": "Article",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title"
+    },
+    "content": {
+      "type": "string",
+      "description": "Article content in markdown format"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short article excerpt"
+    },
+    "author": {
+      "type": "string",
+      "description": "Article author name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Review", "Guide", "News", "Opinion", "Interview"],
+      "description": "Article category"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Article tags"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "Featured image URL"
+    },
+    "is_published": {
+      "type": "boolean",
+      "description": "Whether the article is published"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the article is featured"
+    },
+    "read_time": {
+      "type": "integer",
+      "description": "Estimated read time in minutes"
+    },
+    "view_count": {
+      "type": "integer",
+      "description": "Number of views"
+    }
+  },
+  "required": [
+    "title",
+    "content",
+    "excerpt",
+    "author",
+    "category"
+  ]
+}
