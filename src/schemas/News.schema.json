@@ -1,0 +1,54 @@
+{
+  "name": "News",
+  "type": "object",
+  "properties": {
+    "headline": {
+      "type": "string",
+      "description": "News headline"
+    },
+    "content": {
+      "type": "string",
+      "description": "News content"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief news summary"
+    },
+    "source": {
+      "type": "string",
+      "description": "News source"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo", "PlayStation", "Xbox", "General"],
+      "description": "Related gaming platform"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Breaking", "Update", "Release", "Event", "Industry"],
+      "description": "News category"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "News image URL"
+    },
+    "external_url": {
+      "type": "string",
+      "description": "External source URL"
+    },
+    "is_breaking": {
+      "type": "boolean",
+      "description": "Whether this is breaking news"
+    },
+    "priority": {
+      "type": "integer",
+      "description": "News priority (1-5, 5 being highest)"
+    }
+  },
+  "required": [
+    "headline",
+    "content",
+    "source",
+    "category"
+  ]
+}
