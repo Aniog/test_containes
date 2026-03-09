@@ -1,0 +1,56 @@
+{
+  "name": "CoffeeProduct",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "咖啡产品名称"
+    },
+    "description": {
+      "type": "string",
+      "description": "咖啡产品详细描述"
+    },
+    "price": {
+      "type": "number",
+      "description": "咖啡价格（人民币）"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "咖啡产品图片URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["espresso", "americano", "latte", "cappuccino", "mocha", "specialty"],
+      "description": "咖啡类别"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["small", "medium", "large"],
+      "description": "咖啡杯型大小"
+    },
+    "is_available": {
+      "type": "boolean",
+      "description": "是否有库存可售"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "用户评分（0-5星）"
+    },
+    "ingredients": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "咖啡成分列表"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "price",
+    "category",
+    "is_available"
+  ]
+}
