@@ -1,0 +1,77 @@
+{
+  "name": "Activity",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "活动标题"
+    },
+    "description": {
+      "type": "string",
+      "description": "活动详细描述"
+    },
+    "organizer_id": {
+      "type": "integer",
+      "description": "组织者ID（关联Member表）"
+    },
+    "organizer_name": {
+      "type": "string",
+      "description": "组织者姓名"
+    },
+    "event_date": {
+      "type": "string",
+      "description": "活动日期"
+    },
+    "event_time": {
+      "type": "string",
+      "description": "活动时间"
+    },
+    "location": {
+      "type": "string",
+      "description": "活动地点"
+    },
+    "max_participants": {
+      "type": "integer",
+      "description": "最大参与人数"
+    },
+    "current_participants": {
+      "type": "integer",
+      "description": "当前参与人数"
+    },
+    "registration_deadline": {
+      "type": "string",
+      "description": "报名截止日期"
+    },
+    "is_paid": {
+      "type": "boolean",
+      "description": "是否收费活动"
+    },
+    "fee_amount": {
+      "type": "number",
+      "description": "活动费用"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "cancelled", "completed"],
+      "description": "活动状态：草稿、已发布、已取消、已完成"
+    },
+    "category": {
+      "type": "string",
+      "description": "活动类别"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "活动图片URL"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "organizer_id",
+    "organizer_name",
+    "event_date",
+    "event_time",
+    "location",
+    "max_participants"
+  ]
+}

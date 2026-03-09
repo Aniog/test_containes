@@ -1,0 +1,55 @@
+{
+  "name": "ActivityRegistration",
+  "type": "object",
+  "properties": {
+    "activity_id": {
+      "type": "integer",
+      "description": "活动ID（关联Activity表）"
+    },
+    "member_id": {
+      "type": "integer",
+      "description": "会员ID（关联Member表）"
+    },
+    "member_name": {
+      "type": "string",
+      "description": "会员姓名"
+    },
+    "member_email": {
+      "type": "string",
+      "description": "会员邮箱"
+    },
+    "registration_date": {
+      "type": "string",
+      "description": "报名日期"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": ["pending", "paid", "refunded"],
+      "description": "支付状态：待支付、已支付、已退款"
+    },
+    "payment_amount": {
+      "type": "number",
+      "description": "支付金额"
+    },
+    "payment_date": {
+      "type": "string",
+      "description": "支付日期"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["registered", "cancelled", "attended"],
+      "description": "报名状态：已报名、已取消、已参加"
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注信息"
+    }
+  },
+  "required": [
+    "activity_id",
+    "member_id",
+    "member_name",
+    "member_email",
+    "registration_date"
+  ]
+}

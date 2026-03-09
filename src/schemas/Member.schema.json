@@ -1,0 +1,82 @@
+{
+  "name": "Member",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "description": "用户邮箱地址"
+    },
+    "password": {
+      "type": "string",
+      "description": "用户密码（加密存储）"
+    },
+    "full_name": {
+      "type": "string",
+      "description": "用户真实姓名"
+    },
+    "student_id": {
+      "type": "string",
+      "description": "学号"
+    },
+    "graduation_year": {
+      "type": "integer",
+      "description": "毕业年份"
+    },
+    "major": {
+      "type": "string",
+      "description": "专业"
+    },
+    "college": {
+      "type": "string",
+      "description": "学院"
+    },
+    "phone": {
+      "type": "string",
+      "description": "联系电话"
+    },
+    "current_city": {
+      "type": "string",
+      "description": "现居城市"
+    },
+    "current_company": {
+      "type": "string",
+      "description": "现任职公司"
+    },
+    "current_position": {
+      "type": "string",
+      "description": "现任职位"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"],
+      "description": "会员状态：待审核、已通过、已拒绝"
+    },
+    "membership_fee_paid": {
+      "type": "boolean",
+      "description": "是否已缴纳会费"
+    },
+    "membership_fee_amount": {
+      "type": "number",
+      "description": "会费金额"
+    },
+    "membership_fee_paid_date": {
+      "type": "string",
+      "description": "会费缴纳日期"
+    },
+    "role": {
+      "type": "string",
+      "enum": ["member", "admin"],
+      "description": "用户角色：普通会员、管理员"
+    }
+  },
+  "required": [
+    "email",
+    "password",
+    "full_name",
+    "student_id",
+    "graduation_year",
+    "major",
+    "college",
+    "phone"
+  ]
+}

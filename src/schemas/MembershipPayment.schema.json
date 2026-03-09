@@ -1,0 +1,63 @@
+{
+  "name": "MembershipPayment",
+  "type": "object",
+  "properties": {
+    "member_id": {
+      "type": "integer",
+      "description": "会员ID（关联Member表）"
+    },
+    "member_name": {
+      "type": "string",
+      "description": "会员姓名"
+    },
+    "member_email": {
+      "type": "string",
+      "description": "会员邮箱"
+    },
+    "payment_type": {
+      "type": "string",
+      "enum": ["membership_fee", "activity_fee"],
+      "description": "支付类型：会费、活动费"
+    },
+    "amount": {
+      "type": "number",
+      "description": "支付金额"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["wechat", "alipay", "bank_transfer", "cash"],
+      "description": "支付方式：微信、支付宝、银行转账、现金"
+    },
+    "payment_date": {
+      "type": "string",
+      "description": "支付日期"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": ["pending", "completed", "failed", "refunded"],
+      "description": "支付状态：待支付、已完成、失败、已退款"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "交易ID"
+    },
+    "notes": {
+      "type": "string",
+      "description": "备注信息"
+    },
+    "year": {
+      "type": "integer",
+      "description": "缴费年份"
+    }
+  },
+  "required": [
+    "member_id",
+    "member_name",
+    "member_email",
+    "payment_type",
+    "amount",
+    "payment_method",
+    "payment_date",
+    "year"
+  ]
+}
