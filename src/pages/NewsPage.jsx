@@ -10,7 +10,7 @@ const NewsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('All')
   const [sortBy, setSortBy] = useState('created_at')
 
-  const platforms = ['All', 'Steam', 'Epic', 'Nintendo', 'PlayStation', 'Xbox', 'General']
+  const platforms = ['All', 'Steam', 'Epic', 'PlayStation 5', 'PlayStation 4', 'Xbox Series', 'Xbox One', 'Nintendo Switch', 'Nintendo Wii U', 'Nintendo 3DS', 'PlayStation Vita', 'PSP', 'Game Boy Advance', 'Nintendo DS', 'General']
   const categories = ['All', 'Breaking', 'Update', 'Release', 'Event', 'Industry']
   const sortOptions = [
     { value: 'created_at', label: 'Latest' },
@@ -61,12 +61,20 @@ const NewsPage = () => {
 
   const getPlatformColor = (platform) => {
     const colors = {
-      Steam: 'bg-blue-600',
-      Epic: 'bg-gray-800',
-      Nintendo: 'bg-red-600',
-      PlayStation: 'bg-blue-800',
-      Xbox: 'bg-green-600',
-      General: 'bg-purple-600'
+      'Steam': 'bg-blue-600',
+      'Epic': 'bg-gray-800',
+      'PlayStation 5': 'bg-blue-800',
+      'PlayStation 4': 'bg-blue-700',
+      'Xbox Series': 'bg-green-600',
+      'Xbox One': 'bg-green-500',
+      'Nintendo Switch': 'bg-red-600',
+      'Nintendo Wii U': 'bg-red-500',
+      'Nintendo 3DS': 'bg-red-400',
+      'PlayStation Vita': 'bg-blue-400',
+      'PSP': 'bg-blue-300',
+      'Game Boy Advance': 'bg-purple-500',
+      'Nintendo DS': 'bg-red-300',
+      'General': 'bg-purple-600'
     }
     return colors[platform] || 'bg-gray-600'
   }

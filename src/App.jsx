@@ -5,16 +5,27 @@ import StorePage from './pages/StorePage'
 import ArticlesPage from './pages/ArticlesPage'
 import NewsPage from './pages/NewsPage'
 import DealsPage from './pages/DealsPage'
+import PlatformPage from './pages/PlatformPage'
 import './App.css'
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home')
+  const [platformId, setPlatformId] = useState('')
 
   // Simple routing based on hash
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') || 'home'
-      setCurrentPage(hash)
+      
+      // Check if it's a platform page
+      if (hash.startsWith('platform/')) {
+        const platform = hash.replace('platform/', '')
+        setCurrentPage('platform')
+        setPlatformId(platform)
+      } else {
+        setCurrentPage(hash)
+        setPlatformId('')
+      }
     }
 
     window.addEventListener('hashchange', handleHashChange)
@@ -33,6 +44,8 @@ function App() {
         return <NewsPage />
       case 'deals':
         return <DealsPage />
+      case 'platform':
+        return <PlatformPage platformId={platformId} />
       default:
         return <HomePage />
     }

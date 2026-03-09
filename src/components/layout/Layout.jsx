@@ -1,8 +1,21 @@
 import React, { useState } from 'react'
-import { Menu, X, Gamepad2, ShoppingCart, Newspaper, Tag, Home } from 'lucide-react'
+import { Menu, X, Gamepad2, ShoppingCart, Newspaper, Tag, Home, ChevronDown } from 'lucide-react'
 
 const Layout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isPlatformDropdownOpen, setIsPlatformDropdownOpen] = useState(false)
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isPlatformDropdownOpen && !event.target.closest('.platform-dropdown')) {
+        setIsPlatformDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [isPlatformDropdownOpen])
 
   const navigation = [
     { name: 'Home', href: '#home', icon: Home },
@@ -10,6 +23,37 @@ const Layout = ({ children }) => {
     { name: 'Articles', href: '#articles', icon: Newspaper },
     { name: 'News', href: '#news', icon: Gamepad2 },
     { name: 'Deals', href: '#deals', icon: Tag },
+  ]
+
+  const platforms = [
+    { 
+      category: 'Current Gen',
+      items: [
+        { name: 'PlayStation 5', href: '#platform/ps5', color: 'text-blue-400' },
+        { name: 'Xbox Series X/S', href: '#platform/xbox-series', color: 'text-green-400' },
+        { name: 'Nintendo Switch', href: '#platform/switch', color: 'text-red-400' },
+        { name: 'PC (Steam)', href: '#platform/steam', color: 'text-blue-300' },
+        { name: 'Epic Games', href: '#platform/epic', color: 'text-gray-300' },
+      ]
+    },
+    {
+      category: 'Previous Gen',
+      items: [
+        { name: 'PlayStation 4', href: '#platform/ps4', color: 'text-blue-300' },
+        { name: 'Xbox One', href: '#platform/xbox-one', color: 'text-green-300' },
+        { name: 'Nintendo Wii U', href: '#platform/wii-u', color: 'text-red-300' },
+      ]
+    },
+    {
+      category: 'Retro/Handheld',
+      items: [
+        { name: 'Nintendo 3DS', href: '#platform/3ds', color: 'text-red-200' },
+        { name: 'PlayStation Vita', href: '#platform/vita', color: 'text-blue-200' },
+        { name: 'PSP', href: '#platform/psp', color: 'text-blue-200' },
+        { name: 'Game Boy Advance', href: '#platform/gba', color: 'text-purple-300' },
+        { name: 'Nintendo DS', href: '#platform/ds', color: 'text-red-200' },
+      ]
+    }
   ]
 
   return (
@@ -39,6 +83,44 @@ const Layout = ({ children }) => {
                   </a>
                 )
               })}
+              
+              {/* Platforms Dropdown */}
+              <div className="relative platform-dropdown">
+                <button
+                  onClick={() => setIsPlatformDropdownOpen(!isPlatformDropdownOpen)}
+                  className="flex items-center px-3 py-2 text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors"
+                >
+                  <Gamepad2 className="h-4 w-4 mr-2" />
+                  Platforms
+                  <ChevronDown className={`h-4 w-4 ml-1 transition-transform ${isPlatformDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+                
+                {isPlatformDropdownOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-80 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50">
+                    <div className="p-4">
+                      {platforms.map((category, categoryIndex) => (
+                        <div key={category.category} className={categoryIndex > 0 ? 'mt-4' : ''}>
+                          <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+                            {category.category}
+                          </h3>
+                          <div className="space-y-1">
+                            {category.items.map((platform) => (
+                              <a
+                                key={platform.name}
+                                href={platform.href}
+                                className={`block px-3 py-2 text-sm ${platform.color} hover:bg-gray-700 rounded-md transition-colors`}
+                                onClick={() => setIsPlatformDropdownOpen(false)}
+                              >
+                                {platform.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             </nav>
 
             {/* Mobile menu button */}
@@ -71,6 +153,30 @@ const Layout = ({ children }) => {
                   </a>
                 )
               })}
+              
+              {/* Mobile Platforms Section */}
+              <div className="border-t border-gray-700 mt-3 pt-3">
+                <div className="px-3 py-2 text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                  Platforms
+                </div>
+                {platforms.map((category) => (
+                  <div key={category.category} className="mb-3">
+                    <div className="px-3 py-1 text-xs font-medium text-gray-500 uppercase">
+                      {category.category}
+                    </div>
+                    {category.items.map((platform) => (
+                      <a
+                        key={platform.name}
+                        href={platform.href}
+                        className={`block px-6 py-2 text-sm ${platform.color} hover:bg-gray-700 rounded-md transition-colors`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {platform.name}
+                      </a>
+                    ))}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
