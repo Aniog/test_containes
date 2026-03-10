@@ -1,0 +1,58 @@
+{
+  "name": "LessonBooking",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string",
+      "description": "Full name of the student booking the lesson"
+    },
+    "email": {
+      "type": "string",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "lesson_type": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "jumping", "dressage", "trail"],
+      "description": "Type of riding lesson requested"
+    },
+    "preferred_date": {
+      "type": "string",
+      "description": "Preferred lesson date in YYYY-MM-DD format"
+    },
+    "preferred_time": {
+      "type": "string",
+      "description": "Preferred lesson time in HH:MM format"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": ["none", "beginner", "some", "experienced"],
+      "description": "Student's riding experience level"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Age of the student"
+    },
+    "special_requests": {
+      "type": "string",
+      "description": "Any special requests or notes"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "cancelled"],
+      "description": "Booking status"
+    }
+  },
+  "required": [
+    "student_name",
+    "email",
+    "phone",
+    "lesson_type",
+    "preferred_date",
+    "experience_level",
+    "age"
+  ]
+}
