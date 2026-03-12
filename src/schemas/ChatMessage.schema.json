@@ -1,0 +1,34 @@
+{
+  "name": "ChatMessage",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "Display name of the user who sent the message"
+    },
+    "message": {
+      "type": "string",
+      "description": "The actual text content of the chat message"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp when the message was sent"
+    },
+    "room_id": {
+      "type": "string",
+      "description": "Identifier for the chat room this message belongs to"
+    },
+    "message_type": {
+      "type": "string",
+      "enum": ["text", "system"],
+      "description": "Type of message - text for user messages, system for notifications"
+    }
+  },
+  "required": [
+    "username",
+    "message",
+    "timestamp",
+    "room_id"
+  ]
+}
