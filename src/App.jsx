@@ -1,15 +1,18 @@
 import React, { useState } from 'react'
-import { Heart, Flower, Sun, Sparkles, Mail, User, MessageSquare, Send } from 'lucide-react'
+import { Heart, Flower, Sun, Sparkles, Mail, User, MessageSquare, Send, AlertCircle } from 'lucide-react'
+import { submitContactForm } from './api/contact.js'
 
 function App() {
   const currentYear = new Date().getFullYear()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    subject: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
+  const [submitError, setSubmitError] = useState('')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -23,13 +26,23 @@ function App() {
     e.preventDefault()
     setIsSubmitting(true)
     setSubmitMessage('')
+    setSubmitError('')
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const result = await submitContactForm(formData)
+      
+      if (result.success) {
+        setSubmitMessage('Thank you for your message! We\'ve received your inquiry and will get back to you soon.')
+        setFormData({ name: '', email: '', message: '', subject: '' })
+      } else {
+        setSubmitError(result.error || 'Failed to submit your message. Please try again.')
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setSubmitError('An unexpected error occurred. Please try again later.')
+    } finally {
       setIsSubmitting(false)
-      setSubmitMessage('Thank you for your message! We\'ll get back to you soon.')
-      setFormData({ name: '', email: '', message: '' })
-    }, 1500)
+    }
   }
 
   return (
@@ -207,7 +220,7 @@ function App() {
                     <div>
                       <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                         <User className="w-4 h-4 inline mr-2" />
-                        Your Name
+                        Your Name *
                       </label>
                       <input
                         type="text"
@@ -224,7 +237,7 @@ function App() {
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                         <Mail className="w-4 h-4 inline mr-2" />
-                        Email Address
+                        Email Address *
                       </label>
                       <input
                         type="email"
@@ -239,9 +252,25 @@ function App() {
                     </div>
 
                     <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                        <Sparkles className="w-4 h-4 inline mr-2" />
+                        Subject
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-colors"
+                        placeholder="What's your inquiry about?"
+                      />
+                    </div>
+
+                    <div>
                       <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                         <MessageSquare className="w-4 h-4 inline mr-2" />
-                        Your Message
+                        Your Message *
                       </label>
                       <textarea
                         id="message"
@@ -264,6 +293,15 @@ function App() {
                       </div>
                     )}
 
+                    {submitError && (
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                        <p className="text-red-700 text-sm flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4" />
+                          {submitError}
+                        </p>
+                      </div>
+                    )}
+
                     <button
                       type="submit"
                       disabled={isSubmitting}
@@ -272,7 +310,7 @@ function App() {
                       {isSubmitting ? (
                         <>
                           <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                          Sending...
+                          Saving to Database...
                         </>
                       ) : (
                         <>
@@ -281,6 +319,10 @@ function App() {
                         </>
                       )}
                     </button>
+
+                    <p className="text-xs text-gray-500 text-center">
+                      * Required fields. Your information will be stored securely in our database.
+                    </p>
                   </form>
                 </div>
               </div>
