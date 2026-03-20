@@ -1,0 +1,55 @@
+{
+  "name": "UserInfo",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "description": "User's full name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "User's phone number"
+    },
+    "company": {
+      "type": "string",
+      "description": "User's company or organization"
+    },
+    "job_title": {
+      "type": "string",
+      "description": "User's job title or position"
+    },
+    "industry": {
+      "type": "string",
+      "description": "Industry the user works in"
+    },
+    "interest_in_ai": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "expert"],
+      "description": "User's level of interest/experience in AI"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "enum": ["email", "phone", "both"],
+      "description": "User's preferred contact method"
+    },
+    "newsletter_subscription": {
+      "type": "boolean",
+      "description": "Whether user wants to subscribe to newsletter"
+    },
+    "comments": {
+      "type": "string",
+      "description": "Additional comments or questions from user"
+    }
+  },
+  "required": [
+    "full_name",
+    "email",
+    "interest_in_ai",
+    "preferred_contact"
+  ]
+}
