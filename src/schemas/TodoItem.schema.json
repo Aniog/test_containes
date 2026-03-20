@@ -1,0 +1,34 @@
+{
+  "name": "TodoItem",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the todo item"
+    },
+    "description": {
+      "type": "string",
+      "description": "Optional description of the todo item"
+    },
+    "completed": {
+      "type": "boolean",
+      "description": "Whether the todo item is completed",
+      "default": false
+    },
+    "priority": {
+      "type": "string",
+      "description": "Priority level of the todo item",
+      "enum": ["low", "medium", "high"],
+      "default": "medium"
+    },
+    "due_date": {
+      "type": "string",
+      "description": "Due date for the todo item",
+      "format": "date"
+    }
+  },
+  "required": [
+    "title",
+    "completed"
+  ]
+}
