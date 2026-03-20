@@ -1,8 +1,36 @@
-import React from 'react'
-import { Heart, Flower, Sun, Sparkles } from 'lucide-react'
+import React, { useState } from 'react'
+import { Heart, Flower, Sun, Sparkles, Mail, User, MessageSquare, Send } from 'lucide-react'
 
 function App() {
   const currentYear = new Date().getFullYear()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setSubmitMessage('')
+
+    // Simulate form submission
+    setTimeout(() => {
+      setIsSubmitting(false)
+      setSubmitMessage('Thank you for your message! We\'ll get back to you soon.')
+      setFormData({ name: '', email: '', message: '' })
+    }, 1500)
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-pink-50 to-yellow-100">
@@ -126,6 +154,136 @@ function App() {
                 and good wishes. They bring a touch of elegance and warmth 
                 to any garden or bouquet.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Form Section */}
+        <section className="mb-20">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold text-gray-800 mb-4 flex items-center justify-center gap-3">
+                <Mail className="w-10 h-10 text-pink-500" />
+                Get in Touch
+              </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Have questions about tulips or want to share your gardening experience? 
+                We'd love to hear from you!
+              </p>
+            </div>
+
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+              <div className="grid md:grid-cols-2">
+                {/* Contact Info Side */}
+                <div className="bg-gradient-to-br from-pink-400 to-yellow-400 p-12 text-white">
+                  <div className="h-full flex flex-col justify-center">
+                    <Flower className="w-16 h-16 mb-6 animate-pulse" />
+                    <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
+                    <p className="text-white/90 mb-8 leading-relaxed">
+                      Whether you're a seasoned gardener or just starting your tulip journey, 
+                      we're here to help you create the garden of your dreams.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                          <Mail className="w-5 h-5" />
+                        </div>
+                        <span>hello@tulipgarden.com</span>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                          <Flower className="w-5 h-5" />
+                        </div>
+                        <span>Growing beautiful gardens since 2020</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Form Side */}
+                <div className="p-12">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                        <User className="w-4 h-4 inline mr-2" />
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-colors"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <Mail className="w-4 h-4 inline mr-2" />
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-colors"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+                        <MessageSquare className="w-4 h-4 inline mr-2" />
+                        Your Message
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={5}
+                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-400 focus:border-transparent transition-colors resize-none"
+                        placeholder="Tell us about your tulip questions or gardening experience..."
+                      />
+                    </div>
+
+                    {submitMessage && (
+                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                        <p className="text-green-700 text-sm flex items-center gap-2">
+                          <Sparkles className="w-4 h-4" />
+                          {submitMessage}
+                        </p>
+                      </div>
+                    )}
+
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-pink-400 to-yellow-400 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:from-pink-500 hover:to-yellow-500 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </section>
