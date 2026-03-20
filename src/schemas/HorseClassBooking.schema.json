@@ -1,0 +1,58 @@
+{
+  "name": "HorseClassBooking",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string",
+      "description": "Full name of the student booking the class"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "class_type": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "private"],
+      "description": "Type of horse riding class"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Preferred date for the class"
+    },
+    "preferred_time": {
+      "type": "string",
+      "enum": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+      "description": "Preferred time slot for the class"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": ["none", "beginner", "some", "experienced"],
+      "description": "Student's riding experience level"
+    },
+    "special_requests": {
+      "type": "string",
+      "description": "Any special requests or notes"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "cancelled"],
+      "default": "pending",
+      "description": "Booking status"
+    }
+  },
+  "required": [
+    "student_name",
+    "email",
+    "phone",
+    "class_type",
+    "preferred_date",
+    "preferred_time",
+    "experience_level"
+  ]
+}
