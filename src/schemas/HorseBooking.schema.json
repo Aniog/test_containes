@@ -1,0 +1,52 @@
+{
+  "name": "HorseBooking",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "description": "Full name of the person booking the horse"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the visitor"
+    },
+    "visitor_phone": {
+      "type": "string",
+      "description": "Phone number of the visitor"
+    },
+    "horse_name": {
+      "type": "string",
+      "enum": ["Thunder", "Lightning", "Star", "Midnight", "Sunshine", "Spirit"],
+      "description": "Name of the selected horse"
+    },
+    "booking_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date for the horse booking"
+    },
+    "booking_time": {
+      "type": "string",
+      "enum": ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00"],
+      "description": "Time slot for the horse booking"
+    },
+    "duration_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4,
+      "default": 1,
+      "description": "Duration of the booking in hours"
+    },
+    "special_requests": {
+      "type": "string",
+      "description": "Any special requests or notes"
+    }
+  },
+  "required": [
+    "visitor_name",
+    "visitor_email",
+    "horse_name",
+    "booking_date",
+    "booking_time"
+  ]
+}
