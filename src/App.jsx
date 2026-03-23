@@ -6,6 +6,7 @@ import StorePage from './pages/Store'
 import NewsPage from './pages/News'
 import ArticlesPage from './pages/Articles'
 import DealsPage from './pages/Deals'
+import FavoriteGamesPage from './pages/FavoriteGames'
 import './App.css'
 
 function App({ currentPath = '/' }) {
@@ -21,6 +22,8 @@ function App({ currentPath = '/' }) {
         return <ArticlesPage />
       case '/deals':
         return <DealsPage />
+      case '/favorites':
+        return <FavoriteGamesPage />
       default:
         return <HomePage />
     }

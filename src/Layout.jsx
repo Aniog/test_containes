@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Menu, X, Search, ShoppingCart, User, Gamepad2, Newspaper, Tag, Home } from 'lucide-react'
+import { Menu, X, Search, ShoppingCart, User, Gamepad2, Newspaper, Tag, Home, Heart } from 'lucide-react'
 
 const Layout = ({ children }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -10,6 +10,7 @@ const Layout = ({ children }) => {
     { name: 'News', href: '/news', icon: Newspaper },
     { name: 'Articles', href: '/articles', icon: Gamepad2 },
     { name: 'Deals', href: '/deals', icon: Tag },
+    { name: 'Favorites', href: '/favorites', icon: Heart },
   ]
 
   const platforms = [

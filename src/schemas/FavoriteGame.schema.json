@@ -1,0 +1,75 @@
+{
+  "name": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "description": "Name of the visitor submitting the form"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the visitor (optional)"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Name of the favorite game"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "Mobile", "PC", "Other"],
+      "description": "Gaming platform where the game is played"
+    },
+    "play_time_hours": {
+      "type": "number",
+      "description": "Total hours played in the game"
+    },
+    "reason_like": {
+      "type": "string",
+      "description": "Reason why the visitor likes this game"
+    },
+    "last_play_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Last date the game was played"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre (e.g., Action, RPG, Strategy)"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Personal rating of the game (1-10)"
+    },
+    "completion_status": {
+      "type": "string",
+      "enum": ["Not Started", "In Progress", "Completed", "100% Completed", "Abandoned"],
+      "description": "Current completion status of the game"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "description": "Whether the visitor would recommend this game to others"
+    },
+    "favorite_aspect": {
+      "type": "string",
+      "enum": ["Story", "Gameplay", "Graphics", "Music", "Characters", "Multiplayer", "Replayability", "Other"],
+      "description": "Favorite aspect of the game"
+    },
+    "difficulty_level": {
+      "type": "string",
+      "enum": ["Very Easy", "Easy", "Normal", "Hard", "Very Hard"],
+      "description": "Perceived difficulty level of the game"
+    }
+  },
+  "required": [
+    "visitor_name",
+    "game_name",
+    "platform",
+    "play_time_hours",
+    "reason_like",
+    "last_play_date",
+    "rating"
+  ]
+}

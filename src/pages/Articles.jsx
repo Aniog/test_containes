@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { supabase } from '@/api/postgrest-client.js'
-import { BookOpen, Clock, Calendar, User, Filter, Eye, Tag } from 'lucide-react'
+import { BookOpen, Clock, Calendar, User, Filter, Eye, Tag, Heart } from 'lucide-react'
 
 const ArticlesPage = () => {
   const [articles, setArticles] = useState([])
@@ -370,6 +370,25 @@ const ArticlesPage = () => {
             Subscribe
           </button>
         </div>
+      </div>
+
+      {/* Share Favorite Games CTA */}
+      <div className="bg-gradient-to-r from-red-500 to-pink-500 rounded-xl p-8 text-white text-center">
+        <Heart className="h-12 w-12 mx-auto mb-4 text-white" />
+        <h3 className="text-3xl font-bold mb-3">Share Your Gaming Journey!</h3>
+        <p className="text-xl mb-6 opacity-90">
+          Tell us about your favorite games and help other gamers discover amazing titles
+        </p>
+        <button 
+          onClick={() => window.navigate && window.navigate('/favorites')}
+          className="bg-white text-red-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors inline-flex items-center gap-3"
+        >
+          <Heart className="h-6 w-6" />
+          Share My Favorite Games
+        </button>
+        <p className="text-sm mt-4 opacity-75">
+          It only takes a few minutes and helps build our gaming community!
+        </p>
       </div>
     </div>
   )
