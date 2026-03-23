@@ -1,0 +1,38 @@
+{
+  "name": "ContactMessage",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the person contacting"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the person contacting"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number (optional)"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Subject of the message"
+    },
+    "message": {
+      "type": "string",
+      "description": "The actual message content"
+    },
+    "is_read": {
+      "type": "boolean",
+      "description": "Whether the message has been read",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "subject",
+    "message"
+  ]
+}
