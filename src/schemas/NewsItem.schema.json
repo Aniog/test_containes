@@ -1,0 +1,67 @@
+{
+  "name": "NewsItem",
+  "type": "object",
+  "properties": {
+    "headline": {
+      "type": "string",
+      "description": "News headline"
+    },
+    "content": {
+      "type": "string",
+      "description": "News content"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief news summary"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "General"],
+      "description": "Related gaming platform"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Release", "Update", "Sale", "Event", "Industry", "Hardware"],
+      "description": "News category"
+    },
+    "source": {
+      "type": "string",
+      "description": "News source"
+    },
+    "author": {
+      "type": "string",
+      "description": "News author"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "News image URL"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date and time"
+    },
+    "is_breaking": {
+      "type": "boolean",
+      "description": "Whether this is breaking news"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the news is featured"
+    },
+    "external_url": {
+      "type": "string",
+      "description": "External source URL"
+    }
+  },
+  "required": [
+    "headline",
+    "content",
+    "summary",
+    "platform",
+    "category",
+    "source",
+    "author",
+    "published_date"
+  ]
+}
