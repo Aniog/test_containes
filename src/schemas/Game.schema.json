@@ -1,0 +1,86 @@
+{
+  "name": "Game",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Game title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Game description"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox"],
+      "description": "Gaming platform"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre (e.g., Action, RPG, Strategy)"
+    },
+    "price": {
+      "type": "number",
+      "description": "Current price"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price before discount"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage (0-100)"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Game cover image URL"
+    },
+    "trailer_url": {
+      "type": "string",
+      "description": "Game trailer video URL"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Game rating (0-10)"
+    },
+    "developer": {
+      "type": "string",
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Game publisher"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the game is featured on homepage"
+    },
+    "is_on_sale": {
+      "type": "boolean",
+      "description": "Whether the game is currently on sale"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Game tags/keywords"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "platform",
+    "genre",
+    "price",
+    "image_url",
+    "release_date",
+    "developer",
+    "publisher"
+  ]
+}

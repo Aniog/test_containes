@@ -1,0 +1,71 @@
+{
+  "name": "News",
+  "type": "object",
+  "properties": {
+    "headline": {
+      "type": "string",
+      "description": "News headline"
+    },
+    "content": {
+      "type": "string",
+      "description": "News content"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Brief news summary"
+    },
+    "source": {
+      "type": "string",
+      "description": "News source"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "General"],
+      "description": "Related gaming platform"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Breaking", "Updates", "Releases", "Events", "Industry"],
+      "description": "News category"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "News image URL"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "News publication date and time"
+    },
+    "is_breaking": {
+      "type": "boolean",
+      "description": "Whether this is breaking news"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "default": "medium",
+      "description": "News priority level"
+    },
+    "related_games": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Related game titles"
+    },
+    "external_url": {
+      "type": "string",
+      "description": "External source URL"
+    }
+  },
+  "required": [
+    "headline",
+    "content",
+    "summary",
+    "source",
+    "platform",
+    "category",
+    "published_date"
+  ]
+}

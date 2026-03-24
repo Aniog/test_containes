@@ -1,0 +1,103 @@
+{
+  "name": "StoreProduct",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Product price"
+    },
+    "sale_price": {
+      "type": "number",
+      "description": "Sale price if on discount"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage (0-100)"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC", "Multi-platform"],
+      "description": "Gaming platform"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": ["Game", "DLC", "Season Pass", "In-game Currency", "Merchandise"],
+      "description": "Type of product"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Product image URL"
+    },
+    "gallery_images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Additional product images"
+    },
+    "digital_key": {
+      "type": "string",
+      "description": "Digital game key (for digital products)"
+    },
+    "stock_quantity": {
+      "type": "integer",
+      "description": "Available stock quantity"
+    },
+    "is_digital": {
+      "type": "boolean",
+      "description": "Whether the product is digital"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the product is featured"
+    },
+    "is_on_sale": {
+      "type": "boolean",
+      "description": "Whether the product is on sale"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre"
+    },
+    "rating": {
+      "type": "string",
+      "enum": ["E", "E10+", "T", "M", "AO"],
+      "description": "ESRB rating"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Product release date"
+    },
+    "system_requirements": {
+      "type": "object",
+      "properties": {
+        "minimum": {
+          "type": "string"
+        },
+        "recommended": {
+          "type": "string"
+        }
+      },
+      "description": "System requirements for PC games"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "price",
+    "platform",
+    "product_type",
+    "image_url",
+    "stock_quantity",
+    "is_digital"
+  ]
+}
