@@ -5,6 +5,7 @@ import Store from './pages/Store'
 import News from './pages/News'
 import Blog from './pages/Blog'
 import Deals from './pages/Deals'
+import FavoriteGames from './pages/FavoriteGames'
 import './App.css'
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         return <Blog onNavigate={setCurrentPage} />
       case 'deals':
         return <Deals onNavigate={setCurrentPage} />
+      case 'favorite-games':
+        return <FavoriteGames onNavigate={setCurrentPage} />
       default:
         return <Home onNavigate={setCurrentPage} />
     }

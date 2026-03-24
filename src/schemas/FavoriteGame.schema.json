@@ -1,0 +1,70 @@
+{
+  "name": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "game_name": {
+      "type": "string",
+      "description": "Name of the favorite game"
+    },
+    "play_time_hours": {
+      "type": "number",
+      "description": "Total hours played"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC", "Mobile", "Other"],
+      "description": "Gaming platform where the game is played"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why you like this game"
+    },
+    "last_play_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Last date when you played this game"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre (optional)"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Personal rating out of 10"
+    },
+    "completion_status": {
+      "type": "string",
+      "enum": ["Not Started", "In Progress", "Completed", "100% Completed", "Dropped"],
+      "description": "Current completion status"
+    },
+    "favorite_moment": {
+      "type": "string",
+      "description": "Your favorite moment or memory from the game (optional)"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "description": "Would you recommend this game to others"
+    },
+    "visitor_name": {
+      "type": "string",
+      "description": "Name of the visitor submitting the form (optional)"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of the visitor (optional)"
+    }
+  },
+  "required": [
+    "game_name",
+    "play_time_hours",
+    "platform",
+    "reason",
+    "last_play_date",
+    "rating",
+    "completion_status",
+    "would_recommend"
+  ]
+}

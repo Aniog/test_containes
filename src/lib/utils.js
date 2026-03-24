@@ -37,6 +37,8 @@ export function getPlatformColor(platform) {
     'PlayStation': 'bg-blue-700',
     'Xbox': 'bg-green-600',
     'PC': 'bg-purple-600',
+    'Mobile': 'bg-orange-500',
+    'Other': 'bg-gray-500',
     'Multi-platform': 'bg-gradient-to-r from-blue-500 to-purple-600'
   }
   return colors[platform] || 'bg-gray-500'

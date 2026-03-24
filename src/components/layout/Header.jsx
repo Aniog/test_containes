@@ -10,7 +10,8 @@ const Header = ({ onNavigate, currentPage = 'home' }) => {
     { name: 'Store', href: 'store' },
     { name: 'News', href: 'news' },
     { name: 'Blog', href: 'blog' },
-    { name: 'Deals', href: 'deals' }
+    { name: 'Deals', href: 'deals' },
+    { name: 'Favorites', href: 'favorite-games' }
   ]
 
   const handleNavClick = (href) => {
