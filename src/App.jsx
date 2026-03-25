@@ -1,8 +1,14 @@
-import React from 'react'
-import { Brain, Zap, Shield, Users, ArrowRight, Star, CheckCircle, Mail, Phone, MapPin } from 'lucide-react'
+import React, { useState } from 'react'
+import { Brain, Zap, Shield, Users, ArrowRight, Star, CheckCircle, Mail, Phone, MapPin, UserPlus } from 'lucide-react'
+import UserManagement from './components/user/UserManagement'
 
 function App() {
   const currentYear = new Date().getFullYear()
+  const [showUserManagement, setShowUserManagement] = useState(false)
+
+  if (showUserManagement) {
+    return <UserManagement onBack={() => setShowUserManagement(false)} />
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -18,6 +24,13 @@ function App() {
               <a href="#features" className="text-gray-700 hover:text-blue-600 transition-colors">Features</a>
               <a href="#about" className="text-gray-700 hover:text-blue-600 transition-colors">About</a>
               <a href="#contact" className="text-gray-700 hover:text-blue-600 transition-colors">Contact</a>
+              <button 
+                onClick={() => setShowUserManagement(true)}
+                className="text-gray-700 hover:text-blue-600 transition-colors flex items-center"
+              >
+                <UserPlus className="h-4 w-4 mr-1" />
+                User Form
+              </button>
               <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                 Get Started
               </button>

@@ -1,0 +1,71 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "User's first name"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "User's last name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User's email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "User's phone number"
+    },
+    "date_of_birth": {
+      "type": "string",
+      "format": "date",
+      "description": "User's date of birth"
+    },
+    "gender": {
+      "type": "string",
+      "enum": ["male", "female", "other", "prefer_not_to_say"],
+      "description": "User's gender"
+    },
+    "country": {
+      "type": "string",
+      "description": "User's country of residence"
+    },
+    "city": {
+      "type": "string",
+      "description": "User's city of residence"
+    },
+    "occupation": {
+      "type": "string",
+      "description": "User's occupation or job title"
+    },
+    "company": {
+      "type": "string",
+      "description": "User's company or organization"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "User's interests and hobbies"
+    },
+    "newsletter_subscription": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether user wants to receive newsletter"
+    },
+    "terms_accepted": {
+      "type": "boolean",
+      "description": "Whether user has accepted terms and conditions"
+    }
+  },
+  "required": [
+    "first_name",
+    "last_name",
+    "email",
+    "terms_accepted"
+  ]
+}
