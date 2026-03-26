@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Home, BookOpen, Tag, ShoppingCart, Menu, X, Gamepad2 } from 'lucide-react'
+import { Home, BookOpen, Tag, ShoppingCart, Menu, X, Gamepad2, Heart, Database } from 'lucide-react'
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -11,6 +11,8 @@ const Header = () => {
     { name: 'Blog & News', href: '/blog', icon: BookOpen },
     { name: 'Deals', href: '/deals', icon: Tag },
     { name: 'Store', href: '/store', icon: ShoppingCart },
+    { name: 'Share Favorites', href: '/favorite-games', icon: Heart },
+    { name: 'Data', href: '/data', icon: Database },
   ]
 
   const isActive = (path) => location.pathname === path

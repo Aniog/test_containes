@@ -1,0 +1,64 @@
+{
+  "name": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "description": "Name of the visitor submitting the form"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the visitor (optional)"
+    },
+    "game_name": {
+      "type": "string",
+      "description": "Name of the favorite game"
+    },
+    "play_time": {
+      "type": "integer",
+      "description": "Total hours played"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC", "Mobile", "Other"],
+      "description": "Gaming platform where the game is played"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Why you like this game"
+    },
+    "last_play_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Last time you played this game"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Your personal rating (1-10)"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "description": "Would you recommend this game to others"
+    },
+    "favorite_aspect": {
+      "type": "string",
+      "enum": ["Gameplay", "Story", "Graphics", "Music", "Multiplayer", "Characters", "World Building", "Other"],
+      "description": "What aspect of the game you like most"
+    }
+  },
+  "required": [
+    "visitor_name",
+    "game_name",
+    "play_time",
+    "platform",
+    "reason",
+    "last_play_date"
+  ]
+}

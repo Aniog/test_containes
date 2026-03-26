@@ -5,6 +5,8 @@ import Home from './pages/Home'
 import Blog from './pages/Blog'
 import Deals from './pages/Deals'
 import Store from './pages/Store'
+import FavoriteGames from './pages/FavoriteGames'
+import DataManagement from './pages/DataManagement'
 import './App.css'
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
           <Route path="blog" element={<Blog />} />
           <Route path="deals" element={<Deals />} />
           <Route path="store" element={<Store />} />
+          <Route path="favorite-games" element={<FavoriteGames />} />
+          <Route path="data" element={<DataManagement />} />
         </Route>
       </Routes>
     </Router>
