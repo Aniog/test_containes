@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { fetchTulips } from '@/api/tulips.js'
 import { Loader2, AlertCircle, Flower2, Calendar, Ruler, Droplets } from 'lucide-react'
+import HeroSection from './HeroSection.jsx'
 
 const TulipCard = ({ tulip }) => {
   return (
@@ -119,52 +120,58 @@ const TulipShowcase = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-green-50">
-      {/* Header */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-7xl mx-auto px-4 py-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Flower2 className="w-10 h-10 text-pink-500" />
-              <h1 className="text-4xl font-bold text-gray-800">My Tulip Garden</h1>
-              <Flower2 className="w-10 h-10 text-pink-500" />
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <HeroSection />
+      
+      {/* Tulips Collection Section */}
+      <div id="tulips-collection" className="bg-gradient-to-br from-pink-50 via-white to-green-50">
+        {/* Header */}
+        <div className="bg-white shadow-sm border-b">
+          <div className="max-w-7xl mx-auto px-4 py-8">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <Flower2 className="w-10 h-10 text-pink-500" />
+                <h2 className="text-4xl font-bold text-gray-800">Our Collection</h2>
+                <Flower2 className="w-10 h-10 text-pink-500" />
+              </div>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Each bloom tells a story of nature's artistry and careful cultivation.
+              </p>
+              <div className="mt-4 inline-flex items-center gap-2 bg-pink-100 text-pink-800 px-4 py-2 rounded-full">
+                <span className="font-semibold">{tulips.length}</span>
+                <span>Beautiful Varieties</span>
+              </div>
             </div>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Welcome to my beautiful collection of tulip flowers. Each bloom tells a story of nature's artistry and careful cultivation.
+          </div>
+        </div>
+
+        {/* Tulips Grid */}
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          {tulips.length === 0 ? (
+            <div className="text-center py-16">
+              <Flower2 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold text-gray-600 mb-2">No tulips found</h3>
+              <p className="text-gray-500">Your tulip collection will appear here once you add some flowers.</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {tulips.map((tulip) => (
+                <TulipCard key={tulip.id} tulip={tulip} />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Footer */}
+        <footer className="bg-white border-t mt-16">
+          <div className="max-w-7xl mx-auto px-4 py-8 text-center">
+            <p className="text-gray-600">
+              © {new Date().getFullYear()} My Tulip Garden. Cultivated with love and care.
             </p>
-            <div className="mt-4 inline-flex items-center gap-2 bg-pink-100 text-pink-800 px-4 py-2 rounded-full">
-              <span className="font-semibold">{tulips.length}</span>
-              <span>Beautiful Varieties</span>
-            </div>
           </div>
-        </div>
+        </footer>
       </div>
-
-      {/* Tulips Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        {tulips.length === 0 ? (
-          <div className="text-center py-16">
-            <Flower2 className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-xl font-semibold text-gray-600 mb-2">No tulips found</h3>
-            <p className="text-gray-500">Your tulip collection will appear here once you add some flowers.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {tulips.map((tulip) => (
-              <TulipCard key={tulip.id} tulip={tulip} />
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-white border-t mt-16">
-        <div className="max-w-7xl mx-auto px-4 py-8 text-center">
-          <p className="text-gray-600">
-            © {new Date().getFullYear()} My Tulip Garden. Cultivated with love and care.
-          </p>
-        </div>
-      </footer>
     </div>
   )
 }
