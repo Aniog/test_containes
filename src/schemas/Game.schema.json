@@ -1,0 +1,82 @@
+{
+  "name": "Game",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Game title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Game description"
+    },
+    "genre": {
+      "type": "string",
+      "description": "Game genre (Action, RPG, Strategy, etc.)"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "Multi-platform"],
+      "description": "Gaming platform"
+    },
+    "price": {
+      "type": "number",
+      "description": "Current price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "description": "Original price before discount"
+    },
+    "discount_percentage": {
+      "type": "integer",
+      "description": "Discount percentage (0-100)"
+    },
+    "rating": {
+      "type": "number",
+      "description": "Game rating (0-10)"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "developer": {
+      "type": "string",
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "description": "Game publisher"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Game cover image URL"
+    },
+    "trailer_url": {
+      "type": "string",
+      "description": "Game trailer video URL"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Game tags/keywords"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "description": "Whether the game is featured on homepage"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "description": "Whether the game is available for purchase"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "genre",
+    "platform",
+    "price"
+  ]
+}

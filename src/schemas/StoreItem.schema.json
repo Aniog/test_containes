@@ -1,0 +1,68 @@
+{
+  "name": "Store Item",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "description": "Game title"
+    },
+    "sku": {
+      "type": "string",
+      "description": "Stock keeping unit identifier"
+    },
+    "price": {
+      "type": "number",
+      "description": "Selling price"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC Download", "Physical"],
+      "description": "Platform/format"
+    },
+    "stock_quantity": {
+      "type": "integer",
+      "description": "Available stock quantity"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": ["Digital Key", "Physical Copy", "Gift Card", "DLC", "Season Pass"],
+      "description": "Type of product"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Product image URL"
+    },
+    "is_available": {
+      "type": "boolean",
+      "description": "Whether the item is available for purchase"
+    },
+    "is_digital": {
+      "type": "boolean",
+      "description": "Whether this is a digital product"
+    },
+    "delivery_method": {
+      "type": "string",
+      "enum": ["Instant", "Email", "Physical Shipping"],
+      "description": "How the product is delivered"
+    },
+    "region_lock": {
+      "type": "string",
+      "description": "Region restrictions if any"
+    },
+    "system_requirements": {
+      "type": "string",
+      "description": "Minimum system requirements"
+    }
+  },
+  "required": [
+    "game_title",
+    "sku",
+    "price",
+    "platform",
+    "product_type"
+  ]
+}
