@@ -136,7 +136,7 @@ const TodoApp = () => {
           {/* Header */}
           <div className="p-6 border-b">
             <h1 className="text-3xl font-bold text-gray-900 text-center mb-6">
-              Todo App
+              Study Todo App
             </h1>
             
             {/* Add Todo Form */}
