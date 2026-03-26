@@ -1,0 +1,41 @@
+{
+  "name": "TodoItem",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The main task description"
+    },
+    "description": {
+      "type": "string",
+      "description": "Additional details about the task"
+    },
+    "completed": {
+      "type": "boolean",
+      "description": "Whether the task is completed",
+      "default": false
+    },
+    "priority": {
+      "type": "string",
+      "description": "Task priority level",
+      "enum": ["low", "medium", "high"],
+      "default": "medium"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Due date for the task"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags associated with the task",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "title",
+    "completed"
+  ]
+}
