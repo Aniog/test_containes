@@ -1,0 +1,31 @@
+{
+  "name": "User Profile",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "用户名，用于标识用户"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "用户邮箱地址"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 150,
+      "description": "用户年龄"
+    },
+    "is_verified": {
+      "type": "boolean",
+      "description": "用户是否已验证身份",
+      "default": false
+    }
+  },
+  "required": [
+    "username",
+    "email",
+    "age"
+  ]
+}
