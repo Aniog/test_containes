@@ -1,0 +1,66 @@
+{
+  "name": "Borrow Record",
+  "type": "object",
+  "properties": {
+    "user_name": {
+      "type": "string",
+      "description": "借阅用户姓名"
+    },
+    "user_id": {
+      "type": "string",
+      "description": "用户ID或学号"
+    },
+    "contact_info": {
+      "type": "string",
+      "description": "联系方式（电话或邮箱）"
+    },
+    "borrow_items": {
+      "type": "array",
+      "description": "借阅条目列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "book_title": {
+            "type": "string",
+            "description": "书籍标题"
+          },
+          "book_author": {
+            "type": "string",
+            "description": "书籍作者"
+          },
+          "book_isbn": {
+            "type": "string",
+            "description": "书籍ISBN号"
+          },
+          "borrow_date": {
+            "type": "string",
+            "format": "date",
+            "description": "借出日期"
+          },
+          "return_date": {
+            "type": "string",
+            "format": "date",
+            "description": "归还日期（可为空表示未归还）"
+          },
+          "due_date": {
+            "type": "string",
+            "format": "date",
+            "description": "应还日期"
+          }
+        },
+        "required": ["book_title", "book_author", "borrow_date", "due_date"]
+      }
+    },
+    "total_books": {
+      "type": "integer",
+      "description": "总借阅书籍数量"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "completed", "overdue"],
+      "description": "借阅记录状态",
+      "default": "active"
+    }
+  },
+  "required": ["user_name", "user_id", "borrow_items", "total_books", "status"]
+}
