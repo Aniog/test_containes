@@ -1,0 +1,160 @@
+{
+  "name": "Order",
+  "type": "object",
+  "properties": {
+    "order_number": {
+      "type": "string",
+      "description": "订单编号"
+    },
+    "order_status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "shipped", "delivered", "cancelled"],
+      "description": "订单状态"
+    },
+    "user_info": {
+      "type": "object",
+      "description": "用户信息",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "用户姓名"
+        },
+        "phone": {
+          "type": "string",
+          "description": "联系电话"
+        },
+        "email": {
+          "type": "string",
+          "description": "邮箱地址"
+        },
+        "address": {
+          "type": "string",
+          "description": "收货地址"
+        }
+      },
+      "required": ["name", "phone", "address"]
+    },
+    "product_list": {
+      "type": "array",
+      "description": "商品列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sku": {
+            "type": "string",
+            "description": "商品SKU编码"
+          },
+          "product_name": {
+            "type": "string",
+            "description": "商品名称"
+          },
+          "price": {
+            "type": "number",
+            "description": "单价"
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "数量"
+          },
+          "discount_info": {
+            "type": "object",
+            "description": "优惠信息",
+            "properties": {
+              "discount_type": {
+                "type": "string",
+                "enum": ["percentage", "fixed_amount", "none"],
+                "description": "优惠类型"
+              },
+              "discount_value": {
+                "type": "number",
+                "description": "优惠值"
+              },
+              "discount_description": {
+                "type": "string",
+                "description": "优惠描述"
+              }
+            }
+          }
+        },
+        "required": ["sku", "product_name", "price", "quantity"]
+      }
+    },
+    "logistics_info": {
+      "type": "array",
+      "description": "物流信息节点",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "时间戳"
+          },
+          "location": {
+            "type": "string",
+            "description": "地点"
+          },
+          "status": {
+            "type": "string",
+            "description": "状态变化"
+          },
+          "description": {
+            "type": "string",
+            "description": "详细描述"
+          }
+        },
+        "required": ["timestamp", "location", "status"]
+      }
+    },
+    "payment_info": {
+      "type": "array",
+      "description": "支付尝试记录",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "支付时间戳"
+          },
+          "payment_method": {
+            "type": "string",
+            "enum": ["credit_card", "debit_card", "alipay", "wechat_pay", "bank_transfer"],
+            "description": "支付方式"
+          },
+          "amount": {
+            "type": "number",
+            "description": "支付金额"
+          },
+          "result": {
+            "type": "string",
+            "enum": ["success", "failed", "pending", "cancelled"],
+            "description": "支付结果"
+          },
+          "transaction_id": {
+            "type": "string",
+            "description": "交易ID"
+          }
+        },
+        "required": ["timestamp", "payment_method", "amount", "result"]
+      }
+    },
+    "total_amount": {
+      "type": "number",
+      "description": "订单总金额"
+    },
+    "order_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "下单时间"
+    }
+  },
+  "required": [
+    "order_number",
+    "order_status",
+    "user_info",
+    "product_list",
+    "total_amount",
+    "order_date"
+  ]
+}
