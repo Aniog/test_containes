@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
-import { Brain, Zap, Shield, Users, ArrowRight, Sparkles, Bot, Cpu, Database } from 'lucide-react'
+import { Brain, Zap, Shield, Users, ArrowRight, Sparkles, Bot, Cpu, Database, Settings } from 'lucide-react'
 import UserInfoForm from '@/components/forms/UserInfoForm.jsx'
+import UserAdmin from '@/components/UserAdmin.jsx'
 
 const AISite = () => {
   const [showForm, setShowForm] = useState(false)
+  const [showAdmin, setShowAdmin] = useState(false)
+
+  // Check URL parameters for admin access
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.get('admin') === 'true') {
+      setShowAdmin(true)
+    }
+  }, [])
 
   const features = [
     {
@@ -51,6 +61,11 @@ const AISite = () => {
     // You can add additional success handling here
   }
 
+  // Show admin interface if requested
+  if (showAdmin) {
+    return <UserAdmin />
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
@@ -65,13 +80,21 @@ const AISite = () => {
                 AI Site
               </span>
             </div>
-            <nav className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors">Features</a>
-              <a href="#solutions" className="text-gray-600 hover:text-gray-900 transition-colors">Solutions</a>
-              <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors">Contact</a>
+            <nav className="flex items-center gap-4 md:gap-8">
+              <a href="#features" className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block">Features</a>
+              <a href="#solutions" className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block">Solutions</a>
+              <a href="#contact" className="text-gray-600 hover:text-gray-900 transition-colors hidden md:block">Contact</a>
+              <button 
+                onClick={() => setShowAdmin(true)}
+                className="text-gray-600 hover:text-gray-900 transition-colors flex items-center gap-1 text-sm"
+                title="Admin Panel"
+              >
+                <Settings className="w-4 h-4" />
+                <span className="hidden sm:inline">Admin</span>
+              </button>
               <button 
                 onClick={() => setShowForm(true)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 md:px-6 py-2 rounded-lg transition-colors text-sm md:text-base"
               >
                 Get Started
               </button>
