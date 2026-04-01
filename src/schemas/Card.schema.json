@@ -1,0 +1,53 @@
+{
+  "name": "Card",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title/name of the card"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the card"
+    },
+    "list_id": {
+      "type": "integer",
+      "description": "ID of the list this card belongs to"
+    },
+    "position": {
+      "type": "number",
+      "description": "Position order of the card within the list"
+    },
+    "due_date": {
+      "type": "string",
+      "description": "Due date for the card in ISO format"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of label names/colors for the card"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "User ID of the person assigned to this card"
+    },
+    "is_completed": {
+      "type": "boolean",
+      "description": "Whether the card is marked as completed",
+      "default": false
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "urgent"],
+      "description": "Priority level of the card",
+      "default": "medium"
+    }
+  },
+  "required": [
+    "title",
+    "list_id",
+    "position"
+  ]
+}
