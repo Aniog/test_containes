@@ -10,7 +10,18 @@ export const fetchTodos = async () => {
     if (error) throw error
 
     const dataPayload = responseData?.data || {}
-    return { success: true, data: dataPayload.list || [] }
+    const todos = dataPayload.list || []
+    
+    // Add default priority for existing todos that don't have it
+    const todosWithPriority = todos.map(todo => ({
+      ...todo,
+      data: {
+        ...todo.data,
+        priority: todo.data.priority || 'medium' // Default to medium priority
+      }
+    }))
+    
+    return { success: true, data: todosWithPriority }
   } catch (error) {
     console.error('Error fetching todos:', error)
     return { success: false, error: error.message }
@@ -23,7 +34,8 @@ export const createTodo = async (todoData) => {
     const payload = {
       data: {
         title: todoData.title,
-        completed: Boolean(todoData.completed || false)
+        completed: Boolean(todoData.completed || false),
+        priority: todoData.priority || 'medium'
       }
     }
 
@@ -47,7 +59,8 @@ export const updateTodo = async (id, updates) => {
     const payload = {
       data: {
         title: updates.title,
-        completed: Boolean(updates.completed)
+        completed: Boolean(updates.completed),
+        priority: updates.priority || 'medium'
       }
     }
 

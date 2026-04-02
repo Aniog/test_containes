@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Plus, Trash2, Check, X, Loader2, AlertCircle } from 'lucide-react'
+import { Plus, Trash2, Check, X, Loader2, AlertCircle, ChevronUp, ChevronDown, Minus } from 'lucide-react'
 import { fetchTodos, createTodo, updateTodo, deleteTodo } from '@/api/todoApi'
 
 const TodoApp = () => {
@@ -7,6 +7,7 @@ const TodoApp = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [newTodoTitle, setNewTodoTitle] = useState('')
+  const [newTodoPriority, setNewTodoPriority] = useState('medium')
   const [isAdding, setIsAdding] = useState(false)
 
   useEffect(() => {
@@ -21,7 +22,17 @@ const TodoApp = () => {
       const result = await fetchTodos()
       
       if (result.success) {
-        setTodos(result.data)
+        // Sort todos by priority (high -> medium -> low) and then by completion status
+        const sortedTodos = result.data.sort((a, b) => {
+          // First sort by completion status (incomplete first)
+          if (a.data.completed !== b.data.completed) {
+            return a.data.completed ? 1 : -1
+          }
+          // Then sort by priority
+          const priorityOrder = { high: 0, medium: 1, low: 2 }
+          return priorityOrder[a.data.priority] - priorityOrder[b.data.priority]
+        })
+        setTodos(sortedTodos)
       } else {
         setError(result.error || 'Failed to load todos')
       }
@@ -43,12 +54,23 @@ const TodoApp = () => {
       
       const result = await createTodo({
         title: newTodoTitle.trim(),
-        completed: false
+        completed: false,
+        priority: newTodoPriority
       })
       
       if (result.success) {
-        setTodos(prev => [result.data, ...prev])
+        const newTodos = [result.data, ...todos]
+        // Re-sort after adding
+        const sortedTodos = newTodos.sort((a, b) => {
+          if (a.data.completed !== b.data.completed) {
+            return a.data.completed ? 1 : -1
+          }
+          const priorityOrder = { high: 0, medium: 1, low: 2 }
+          return priorityOrder[a.data.priority] - priorityOrder[b.data.priority]
+        })
+        setTodos(sortedTodos)
         setNewTodoTitle('')
+        setNewTodoPriority('medium')
       } else {
         alert('Failed to add todo: ' + result.error)
       }
@@ -67,19 +89,62 @@ const TodoApp = () => {
 
       const result = await updateTodo(id, {
         title: todo.data.title,
-        completed: !currentCompleted
+        completed: !currentCompleted,
+        priority: todo.data.priority
       })
       
       if (result.success) {
-        setTodos(prev => prev.map(item => 
+        const updatedTodos = todos.map(item => 
           item.id === id ? result.data : item
-        ))
+        )
+        // Re-sort after updating
+        const sortedTodos = updatedTodos.sort((a, b) => {
+          if (a.data.completed !== b.data.completed) {
+            return a.data.completed ? 1 : -1
+          }
+          const priorityOrder = { high: 0, medium: 1, low: 2 }
+          return priorityOrder[a.data.priority] - priorityOrder[b.data.priority]
+        })
+        setTodos(sortedTodos)
       } else {
         alert('Failed to update todo: ' + result.error)
       }
     } catch (err) {
       console.error('Toggle complete failed:', err)
       alert('Failed to update todo')
+    }
+  }
+
+  const handleUpdatePriority = async (id, newPriority) => {
+    try {
+      const todo = todos.find(t => t.id === id)
+      if (!todo) return
+
+      const result = await updateTodo(id, {
+        title: todo.data.title,
+        completed: todo.data.completed,
+        priority: newPriority
+      })
+      
+      if (result.success) {
+        const updatedTodos = todos.map(item => 
+          item.id === id ? result.data : item
+        )
+        // Re-sort after updating priority
+        const sortedTodos = updatedTodos.sort((a, b) => {
+          if (a.data.completed !== b.data.completed) {
+            return a.data.completed ? 1 : -1
+          }
+          const priorityOrder = { high: 0, medium: 1, low: 2 }
+          return priorityOrder[a.data.priority] - priorityOrder[b.data.priority]
+        })
+        setTodos(sortedTodos)
+      } else {
+        alert('Failed to update priority: ' + result.error)
+      }
+    } catch (err) {
+      console.error('Update priority failed:', err)
+      alert('Failed to update priority')
     }
   }
 
@@ -121,6 +186,24 @@ const TodoApp = () => {
     } catch (err) {
       console.error('Clear completed failed:', err)
       alert('Failed to clear completed todos')
+    }
+  }
+
+  const getPriorityColor = (priority) => {
+    switch (priority) {
+      case 'high': return 'text-red-600 bg-red-50 border-red-200'
+      case 'medium': return 'text-yellow-600 bg-yellow-50 border-yellow-200'
+      case 'low': return 'text-green-600 bg-green-50 border-green-200'
+      default: return 'text-gray-600 bg-gray-50 border-gray-200'
+    }
+  }
+
+  const getPriorityIcon = (priority) => {
+    switch (priority) {
+      case 'high': return <ChevronUp size={12} />
+      case 'medium': return <Minus size={12} />
+      case 'low': return <ChevronDown size={12} />
+      default: return <Minus size={12} />
     }
   }
 
@@ -172,6 +255,16 @@ const TodoApp = () => {
                 className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 disabled={isAdding}
               />
+              <select
+                value={newTodoPriority}
+                onChange={(e) => setNewTodoPriority(e.target.value)}
+                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                disabled={isAdding}
+              >
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
               <button
                 type="submit"
                 disabled={isAdding || !newTodoTitle.trim()}
@@ -207,15 +300,28 @@ const TodoApp = () => {
                     {todo.data.completed && <Check size={14} />}
                   </button>
                   
-                  <span
-                    className={`flex-1 ${
-                      todo.data.completed
-                        ? 'text-gray-500 line-through'
-                        : 'text-gray-900'
-                    }`}
-                  >
-                    {todo.data.title}
-                  </span>
+                  <div className="flex-1 flex items-center gap-2">
+                    <span
+                      className={`flex-1 ${
+                        todo.data.completed
+                          ? 'text-gray-500 line-through'
+                          : 'text-gray-900'
+                      }`}
+                    >
+                      {todo.data.title}
+                    </span>
+                    
+                    <select
+                      value={todo.data.priority}
+                      onChange={(e) => handleUpdatePriority(todo.id, e.target.value)}
+                      className={`text-xs px-2 py-1 rounded-full border text-center font-medium ${getPriorityColor(todo.data.priority)}`}
+                      disabled={todo.data.completed}
+                    >
+                      <option value="high">High</option>
+                      <option value="medium">Medium</option>
+                      <option value="low">Low</option>
+                    </select>
+                  </div>
                   
                   <button
                     onClick={() => handleDeleteTodo(todo.id)}
