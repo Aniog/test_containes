@@ -129,8 +129,8 @@ const TodoApp = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="flex items-center gap-2 text-gray-600">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-gray-50 flex items-center justify-center">
+        <div className="flex items-center gap-2 text-purple-600">
           <Loader2 className="animate-spin" size={20} />
           <span>Loading todos...</span>
         </div>
@@ -140,7 +140,7 @@ const TodoApp = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 to-gray-50 flex items-center justify-center">
         <div className="text-red-500 flex gap-2 p-4 items-center bg-red-50 rounded-md border border-red-100">
           <AlertCircle size={20} />
           <span>Error: {error}</span>
@@ -150,32 +150,32 @@ const TodoApp = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-gray-50 py-8">
       <div className="max-w-2xl mx-auto px-4">
         <div className="bg-white rounded-lg shadow-sm border">
           {/* Header */}
-          <div className="p-6 border-b">
-            <h1 className="text-2xl font-bold text-gray-900 mb-2">Todo List</h1>
-            <p className="text-gray-600">
+          <div className="p-6 border-b border-purple-100 bg-gradient-to-r from-purple-50 to-white">
+            <h1 className="text-2xl font-bold text-purple-900 mb-2">Todo List</h1>
+            <p className="text-purple-700">
               {totalCount === 0 ? 'No todos yet' : `${completedCount} of ${totalCount} completed`}
             </p>
           </div>
 
           {/* Add Todo Form */}
-          <div className="p-6 border-b bg-gray-50">
+          <div className="p-6 border-b bg-purple-50">
             <form onSubmit={handleAddTodo} className="flex gap-3">
               <input
                 type="text"
                 value={newTodoTitle}
                 onChange={(e) => setNewTodoTitle(e.target.value)}
                 placeholder="Add a new todo..."
-                className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                 disabled={isAdding}
               />
               <button
                 type="submit"
                 disabled={isAdding || !newTodoTitle.trim()}
-                className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
               >
                 {isAdding ? (
                   <Loader2 className="animate-spin" size={16} />
@@ -200,8 +200,8 @@ const TodoApp = () => {
                     onClick={() => handleToggleComplete(todo.id, todo.data.completed)}
                     className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
                       todo.data.completed
-                        ? 'bg-green-500 border-green-500 text-white'
-                        : 'border-gray-300 hover:border-green-500'
+                        ? 'bg-purple-500 border-purple-500 text-white'
+                        : 'border-gray-300 hover:border-purple-500'
                     }`}
                   >
                     {todo.data.completed && <Check size={14} />}
@@ -230,13 +230,13 @@ const TodoApp = () => {
 
           {/* Footer */}
           {completedCount > 0 && (
-            <div className="p-4 border-t bg-gray-50 flex justify-between items-center">
-              <span className="text-sm text-gray-600">
+            <div className="p-4 border-t bg-purple-50 flex justify-between items-center">
+              <span className="text-sm text-purple-700">
                 {completedCount} completed task{completedCount !== 1 ? 's' : ''}
               </span>
               <button
                 onClick={handleClearCompleted}
-                className="text-sm text-red-600 hover:text-red-700 font-medium"
+                className="text-sm text-purple-600 hover:text-purple-700 font-medium"
               >
                 Clear completed
               </button>
