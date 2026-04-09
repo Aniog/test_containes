@@ -7,6 +7,49 @@ function App() {
     setClicked(!clicked)
   }
 
+  const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      role: "Marketing Director",
+      company: "TechCorp",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
+      content: "This platform has completely transformed how we approach our projects. The user experience is exceptional and the results speak for themselves.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Michael Chen",
+      role: "Founder & CEO",
+      company: "StartupXYZ",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
+      content: "Outstanding service and incredible attention to detail. Our team productivity has increased by 300% since we started using this solution.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Emily Rodriguez",
+      role: "Product Manager",
+      company: "InnovateLab",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80",
+      content: "The best investment we've made for our business. The interface is intuitive and the support team is always there when you need them.",
+      rating: 5
+    }
+  ]
+
+  const renderStars = (rating) => {
+    return [...Array(5)].map((_, i) => (
+      <svg
+        key={i}
+        className={`w-5 h-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`}
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+      </svg>
+    ))
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
@@ -77,6 +120,73 @@ function App() {
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">Customizable</h3>
                 <p className="text-gray-600">Easily adaptable to match your brand and requirements.</p>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              What Our Clients Say
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Don't just take our word for it. Here's what real customers have to say about their experience.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial) => (
+              <div
+                key={testimonial.id}
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 p-8 relative"
+              >
+                {/* Quote Icon */}
+                <div className="absolute top-6 right-6 text-blue-100">
+                  <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+
+                {/* Rating */}
+                <div className="flex mb-4">
+                  {renderStars(testimonial.rating)}
+                </div>
+
+                {/* Testimonial Content */}
+                <p className="text-gray-700 mb-6 leading-relaxed">
+                  "{testimonial.content}"
+                </p>
+
+                {/* Customer Info */}
+                <div className="flex items-center">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full object-cover mr-4"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">
+                      {testimonial.role} at {testimonial.company}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Trust Indicators */}
+          <div className="mt-16 text-center">
+            <p className="text-gray-600 mb-8">Trusted by over 10,000+ customers worldwide</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
+              <div className="text-2xl font-bold text-gray-400">TechCorp</div>
+              <div className="text-2xl font-bold text-gray-400">StartupXYZ</div>
+              <div className="text-2xl font-bold text-gray-400">InnovateLab</div>
+              <div className="text-2xl font-bold text-gray-400">GlobalTech</div>
+              <div className="text-2xl font-bold text-gray-400">FutureCo</div>
             </div>
           </div>
         </div>
