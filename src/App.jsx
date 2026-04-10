@@ -17,7 +17,7 @@ function App() {
     setError(null)
     try {
       const data = await fetchTodos()
-      setTodos(data)
+      setTodos(Array.isArray(data) ? data : [])
     } catch (err) {
       console.error('[App] Load error:', err)
       setError(err.message)
@@ -34,8 +34,8 @@ function App() {
     setActionLoading(true)
     setError(null)
     try {
-      const newTodo = await createTodo(text)
-      setTodos((prev) => [...prev, newTodo])
+      await createTodo(text)
+      await loadTodos()
     } catch (err) {
       console.error('[App] Add error:', err)
       setError(err.message)
@@ -48,8 +48,8 @@ function App() {
     setActionLoading(true)
     setError(null)
     try {
-      const updated = await updateTodo(id, { completed })
-      setTodos((prev) => prev.map((t) => (t.id === id ? updated : t)))
+      await updateTodo(id, { completed })
+      setTodos((prev) => prev.map((t) => (t.id === id ? { ...t, data: { ...t.data, completed } } : t)))
     } catch (err) {
       console.error('[App] Toggle error:', err)
       setError(err.message)
@@ -89,15 +89,15 @@ function App() {
   }
 
   const filteredTodos = todos.filter((t) => {
-    if (filter === 'active') return !t.completed
-    if (filter === 'completed') return t.completed
+    if (filter === 'active') return !t.data?.completed
+    if (filter === 'completed') return t.data?.completed
     return true
   })
 
   const counts = {
     all: todos.length,
-    active: todos.filter((t) => !t.completed).length,
-    completed: todos.filter((t) => t.completed).length,
+    active: todos.filter((t) => !t.data?.completed).length,
+    completed: todos.filter((t) => t.data?.completed).length,
   }
 
   const isDisabled = loading || actionLoading

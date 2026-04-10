@@ -3,6 +3,12 @@ import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
+const baseHeaders = {
+  'Content-Type': 'application/json',
+  'apikey': STRK_PROJECT_ANON_KEY,
+  'Authorization': `Bearer ${STRK_PROJECT_ANON_KEY}`,
+}
+
 export const fetchTodos = async () => {
   console.log('[todos] Fetching all todos...')
   const { data, error } = await client
@@ -13,37 +19,40 @@ export const fetchTodos = async () => {
     console.error('[todos] Fetch error:', error)
     throw new Error(error.message || 'Failed to fetch todos')
   }
-  console.log('[todos] Fetched:', data)
-  return data || []
+  console.log('[todos] Fetched raw:', data)
+  const result = data?.list ?? data?.data?.list ?? []
+  console.log('[todos] Fetched normalized:', result)
+  return result
 }
 
 export const createTodo = async (text) => {
   console.log('[todos] Creating todo:', text)
-  const { data, error } = await client
-    .from('TodoItem')
-    .insert([{ text, completed: false }])
-    .select('*')
-  if (error) {
-    console.error('[todos] Create error:', error)
-    throw new Error(error.message || 'Failed to create todo')
+  const res = await fetch(`${STRK_PROJECT_URL}/TodoItem`, {
+    method: 'POST',
+    headers: baseHeaders,
+    body: JSON.stringify({ data: { text, completed: false } }),
+  })
+  if (!res.ok) {
+    const msg = await res.text()
+    console.error('[todos] Create error:', msg)
+    throw new Error(msg || 'Failed to create todo')
   }
-  console.log('[todos] Created:', data)
-  return data[0]
+  console.log('[todos] Created successfully')
 }
 
 export const updateTodo = async (id, updates) => {
   console.log('[todos] Updating todo:', id, updates)
-  const { data, error } = await client
-    .from('TodoItem')
-    .update(updates)
-    .eq('id', id)
-    .select('*')
-  if (error) {
-    console.error('[todos] Update error:', error)
-    throw new Error(error.message || 'Failed to update todo')
+  const res = await fetch(`${STRK_PROJECT_URL}/TodoItem?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: baseHeaders,
+    body: JSON.stringify({ data: updates }),
+  })
+  if (!res.ok) {
+    const msg = await res.text()
+    console.error('[todos] Update error:', msg)
+    throw new Error(msg || 'Failed to update todo')
   }
-  console.log('[todos] Updated:', data)
-  return data[0]
+  console.log('[todos] Updated successfully')
 }
 
 export const deleteTodo = async (id) => {

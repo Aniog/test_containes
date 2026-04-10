@@ -3,11 +3,6 @@
   "title": "Todo Items",
   "type": "object",
   "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid",
-      "description": "Unique identifier for the todo item"
-    },
     "text": {
       "type": "string",
       "minLength": 1,
@@ -18,19 +13,9 @@
       "type": "boolean",
       "default": false,
       "description": "Whether the todo item has been completed"
-    },
-    "created_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Timestamp when the todo item was created"
-    },
-    "updated_at": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Timestamp when the todo item was last updated"
     }
   },
-  "required": ["id", "text", "completed", "created_at", "updated_at"],
+  "required": ["text", "completed"],
   "additionalProperties": false,
   "x-security": {
     "create": { "allow": ["*"] },
