@@ -3,6 +3,13 @@ import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
+const toArray = (data) => {
+  if (Array.isArray(data)) return data
+  if (data && Array.isArray(data.data)) return data.data
+  console.warn('[TodoAPI] Unexpected data shape:', data)
+  return []
+}
+
 export const fetchTodos = async () => {
   console.log('[TodoAPI] Fetching all todos...')
   const { data, error } = await client
@@ -13,8 +20,8 @@ export const fetchTodos = async () => {
     console.error('[TodoAPI] Error fetching todos:', error)
     throw error
   }
-  console.log('[TodoAPI] Fetched todos:', data)
-  return data || []
+  console.log('[TodoAPI] Fetched todos raw:', data)
+  return toArray(data)
 }
 
 export const createTodo = async (text) => {
@@ -27,8 +34,9 @@ export const createTodo = async (text) => {
     console.error('[TodoAPI] Error creating todo:', error)
     throw error
   }
-  console.log('[TodoAPI] Created todo:', data)
-  return data[0]
+  console.log('[TodoAPI] Created todo raw:', data)
+  const arr = toArray(data)
+  return arr[0] || null
 }
 
 export const updateTodo = async (id, updates) => {
@@ -42,8 +50,9 @@ export const updateTodo = async (id, updates) => {
     console.error('[TodoAPI] Error updating todo:', error)
     throw error
   }
-  console.log('[TodoAPI] Updated todo:', data)
-  return data[0]
+  console.log('[TodoAPI] Updated todo raw:', data)
+  const arr = toArray(data)
+  return arr[0] || null
 }
 
 export const deleteTodo = async (id) => {

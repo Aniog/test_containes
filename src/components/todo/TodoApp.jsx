@@ -26,21 +26,23 @@ const TodoApp = () => {
     setLoading(true)
     setError(null)
     const data = await fetchTodos()
-    setTodos(data)
+    setTodos(Array.isArray(data) ? data : [])
     setLoading(false)
   }
 
   const handleAdd = async (text) => {
     setBusy(true)
     const newTodo = await createTodo(text)
-    setTodos((prev) => [...prev, newTodo])
+    if (newTodo) setTodos((prev) => [...prev, newTodo])
+    else await loadTodos()
     setBusy(false)
   }
 
   const handleToggle = async (todo) => {
     setBusy(true)
     const updated = await updateTodo(todo.id, { completed: !todo.completed })
-    setTodos((prev) => prev.map((t) => (t.id === todo.id ? updated : t)))
+    if (updated) setTodos((prev) => prev.map((t) => (t.id === todo.id ? updated : t)))
+    else await loadTodos()
     setBusy(false)
   }
 
