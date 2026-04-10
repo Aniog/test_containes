@@ -32,11 +32,18 @@ function App() {
         .select('*')
         .order('created_at', { ascending: false })
       
+      console.log('API Response:', { data, error }) // Debug log
+      
       if (error) throw error
-      setTodos(data || [])
+      
+      // Ensure data is always an array
+      const todosData = Array.isArray(data) ? data : []
+      console.log('Setting todos to:', todosData) // Debug log
+      setTodos(todosData)
     } catch (err) {
       console.error('Error loading todos:', err)
       setError('Failed to load todos')
+      setTodos([]) // Ensure todos is always an array even on error
     } finally {
       setLoading(false)
     }
@@ -110,6 +117,12 @@ function App() {
   const clearCompleted = async () => {
     try {
       setError(null)
+      // Ensure todos is an array before filtering
+      if (!Array.isArray(todos)) {
+        console.error('todos is not an array:', todos)
+        return
+      }
+      
       const completedTodos = todos.filter(todo => todo.completed)
       
       for (const todo of completedTodos) {
@@ -121,15 +134,16 @@ function App() {
         if (error) throw error
       }
       
-      setTodos(prev => prev.filter(todo => !todo.completed))
+      setTodos(prev => Array.isArray(prev) ? prev.filter(todo => !todo.completed) : [])
     } catch (err) {
       console.error('Error clearing completed todos:', err)
       setError('Failed to clear completed todos')
     }
   }
 
-  const completedCount = todos.filter(todo => todo.completed).length
-  const activeCount = todos.length - completedCount
+  // Safe calculations with array validation
+  const completedCount = Array.isArray(todos) ? todos.filter(todo => todo.completed).length : 0
+  const activeCount = Array.isArray(todos) ? todos.length - completedCount : 0
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -164,7 +178,7 @@ function App() {
         )}
 
         {/* Loading state */}
-        {loading && todos.length === 0 && (
+        {loading && Array.isArray(todos) && todos.length === 0 && (
           <div className="text-center py-8 text-gray-500">
             Loading todos...
           </div>
@@ -172,7 +186,7 @@ function App() {
 
         {/* Todo list */}
         <div className="space-y-2 mb-6">
-          {todos.map((todo) => (
+          {Array.isArray(todos) && todos.map((todo) => (
             <div
               key={todo.id}
               className={`flex items-center gap-3 p-3 rounded-lg border ${
@@ -208,7 +222,7 @@ function App() {
         </div>
 
         {/* Empty state */}
-        {!loading && todos.length === 0 && (
+        {!loading && Array.isArray(todos) && todos.length === 0 && (
           <div className="text-center py-8 text-gray-500">
             <CheckCircle2 className="w-12 h-12 mx-auto mb-3 text-gray-300" />
             <p>No todos yet. Add one above to get started!</p>
@@ -216,7 +230,7 @@ function App() {
         )}
 
         {/* Stats and actions */}
-        {todos.length > 0 && (
+        {Array.isArray(todos) && todos.length > 0 && (
           <div className="border-t pt-4">
             <div className="flex justify-between items-center text-sm text-gray-600 mb-3">
               <span>{activeCount} active, {completedCount} completed</span>
