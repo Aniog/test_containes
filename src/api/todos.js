@@ -40,12 +40,12 @@ export const createTodo = async (text) => {
   console.log('[todos] Created successfully')
 }
 
-export const updateTodo = async (id, updates) => {
-  console.log('[todos] Updating todo:', id, updates)
+export const updateTodo = async (id, data) => {
+  console.log('[todos] Updating todo:', id, data)
   const res = await fetch(`${STRK_PROJECT_URL}/TodoItem?id=eq.${id}`, {
     method: 'PATCH',
     headers: baseHeaders,
-    body: JSON.stringify({ data: updates }),
+    body: JSON.stringify({ data }),
   })
   if (!res.ok) {
     const msg = await res.text()

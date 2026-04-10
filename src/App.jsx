@@ -48,7 +48,8 @@ function App() {
     setActionLoading(true)
     setError(null)
     try {
-      await updateTodo(id, { completed })
+      const todo = todos.find((t) => t.id === id)
+      await updateTodo(id, { text: todo.data.text, completed })
       setTodos((prev) => prev.map((t) => (t.id === id ? { ...t, data: { ...t.data, completed } } : t)))
     } catch (err) {
       console.error('[App] Toggle error:', err)
