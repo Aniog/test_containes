@@ -4,11 +4,12 @@ import { Button } from './components/ui/button'
 import { Input } from './components/ui/input'
 import { Checkbox } from './components/ui/checkbox'
 import { Trash2, Plus, CheckCircle2 } from 'lucide-react'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from './config.jsx'
 import './App.css'
 
 // Initialize the database client
-const projectUrl = import.meta.env.VITE_STRK_PROJECT_URL || 'http://localhost:3001'
-const projectAnonKey = import.meta.env.VITE_STRK_PROJECT_ANON_KEY || 'default-key'
+const projectUrl = STRK_PROJECT_URL
+const projectAnonKey = STRK_PROJECT_ANON_KEY
 const client = new DataClient(projectUrl, projectAnonKey)
 
 function App() {
