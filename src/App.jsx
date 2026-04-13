@@ -1,4 +1,4 @@
-import TodoApp from './components/TodoAppLocal'
+import TodoApp from './components/TodoAppWithDB'
 import './App.css'
 
 function App() {

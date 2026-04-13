@@ -21,20 +21,29 @@ const TodoApp = () => {
   const loadTodos = async () => {
     try {
       setLoading(true);
-      const response = await client
-        .from('TodoItem')
-        .select('*')
-        .order('createdAt', { ascending: false });
+      setError(null);
       
-      if (response.error) {
-        throw new Error(response.error.message);
+      // Use the database_entity_tool approach for API calls
+      const response = await fetch(`${projectUrl}/TodoItem`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${projectAnonKey}`
+        }
+      });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       
-      // The response structure uses 'entries' not 'list'
-      setTodos(response.data?.entries || []);
+      const data = await response.json();
+      console.log('Loaded todos:', data);
+      
+      // Handle the response structure - it should have entries array
+      setTodos(data.entries || data.data?.entries || []);
     } catch (err) {
       console.error('Error loading todos:', err);
-      setError('Failed to load todos');
+      setError(`Failed to load todos: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -46,27 +55,38 @@ const TodoApp = () => {
 
     try {
       setLoading(true);
-      const { data, error } = await client
-        .from('TodoItem')
-        .insert({
-          data: {
-            text: newTodo.trim(),
-            completed: false,
-            createdAt: new Date().toISOString()
-          }
-        })
-        .select('*');
+      setError(null);
+      
+      const todoData = {
+        data: {
+          text: newTodo.trim(),
+          completed: false,
+          createdAt: new Date().toISOString()
+        }
+      };
+      
+      const response = await fetch(`${projectUrl}/TodoItem`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${projectAnonKey}`
+        },
+        body: JSON.stringify(todoData)
+      });
 
-      if (error) {
-        throw new Error(error.message);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const result = await response.json();
+      console.log('Added todo:', result);
 
       // Reload todos to get the updated list
       await loadTodos();
       setNewTodo('');
     } catch (err) {
       console.error('Error adding todo:', err);
-      setError('Failed to add todo');
+      setError(`Failed to add todo: ${err.message}`);
     } finally {
       setLoading(false);
     }
@@ -74,6 +94,8 @@ const TodoApp = () => {
 
   const toggleTodo = async (todo) => {
     try {
+      setError(null);
+      
       const updatedData = {
         data: {
           ...todo.data,
@@ -82,14 +104,20 @@ const TodoApp = () => {
         }
       };
 
-      const { error } = await client
-        .from('TodoItem')
-        .update(updatedData)
-        .eq('id', todo.id);
+      const response = await fetch(`${projectUrl}/TodoItem/${todo.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${projectAnonKey}`
+        },
+        body: JSON.stringify(updatedData)
+      });
 
-      if (error) {
-        throw new Error(error.message);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      console.log('Updated todo:', todo.id);
 
       // Update the todo in the local state
       setTodos(prev => prev.map(t => 
@@ -99,48 +127,63 @@ const TodoApp = () => {
       ));
     } catch (err) {
       console.error('Error toggling todo:', err);
-      setError('Failed to update todo');
+      setError(`Failed to update todo: ${err.message}`);
     }
   };
 
   const deleteTodo = async (todoId) => {
     try {
-      const todoToDelete = todos.find(t => t.id === todoId);
-      if (!todoToDelete) return;
+      setError(null);
+      
+      const response = await fetch(`${projectUrl}/TodoItem/${todoId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${projectAnonKey}`
+        }
+      });
 
-      const { error } = await client
-        .from('TodoItem')
-        .delete()
-        .eq('id', todoId);
-
-      if (error) {
-        throw new Error(error.message);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      console.log('Deleted todo:', todoId);
 
       // Remove the todo from local state
       setTodos(prev => prev.filter(t => t.id !== todoId));
     } catch (err) {
       console.error('Error deleting todo:', err);
-      setError('Failed to delete todo');
+      setError(`Failed to delete todo: ${err.message}`);
     }
   };
 
   const clearCompleted = async () => {
     try {
+      setError(null);
       const completedTodos = todos.filter(todo => todo.data.completed);
       
+      // Delete each completed todo
       for (const todo of completedTodos) {
-        await client
-          .from('TodoItem')
-          .delete()
-          .eq('id', todo.id);
+        const response = await fetch(`${projectUrl}/TodoItem/${todo.id}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${projectAnonKey}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
       }
+
+      console.log('Cleared completed todos');
 
       // Remove completed todos from local state
       setTodos(prev => prev.filter(todo => !todo.data.completed));
     } catch (err) {
       console.error('Error clearing completed todos:', err);
-      setError('Failed to clear completed todos');
+      setError(`Failed to clear completed todos: ${err.message}`);
     }
   };
 
