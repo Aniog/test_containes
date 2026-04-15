@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Orders",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "orderNumber": {
+      "type": "string",
+      "pattern": "^ORD[0-9]{10}$",
+      "description": "订单号"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "book_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "title": {
+            "type": "string"
+          },
+          "author": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number",
+            "minimum": 0
+          },
+          "quantity": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": ["book_id", "title", "price", "quantity"]
+      },
+      "minItems": 1,
+      "description": "订单商品列表"
+    },
+    "totalAmount": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "订单总金额"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "shipped", "delivered", "cancelled"],
+      "default": "pending",
+      "description": "订单状态"
+    },
+    "shippingAddress": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 20
+        },
+        "address": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "city": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "province": {
+          "type": "string",
+          "maxLength": 50
+        },
+        "postalCode": {
+          "type": "string",
+          "maxLength": 10
+        }
+      },
+      "required": ["name", "phone", "address", "city"],
+      "description": "收货地址"
+    },
+    "paymentMethod": {
+      "type": "string",
+      "enum": ["alipay", "wechat", "bank_card", "cash_on_delivery"],
+      "description": "支付方式"
+    },
+    "paymentStatus": {
+      "type": "string",
+      "enum": ["pending", "paid", "failed", "refunded"],
+      "default": "pending",
+      "description": "支付状态"
+    },
+    "orderDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "下单时间"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "订单备注"
+    }
+  },
+  "required": ["user_id", "orderNumber", "items", "totalAmount", "shippingAddress"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

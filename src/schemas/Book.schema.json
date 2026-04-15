@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Books",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "书籍标题"
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "作者姓名"
+    },
+    "isbn": {
+      "type": "string",
+      "pattern": "^(978|979)[0-9]{10}$",
+      "description": "ISBN-13编号"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "书籍简介"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "价格（元）"
+    },
+    "originalPrice": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "原价（元）"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["文学", "历史", "哲学", "科学", "艺术", "传记", "小说", "诗歌", "散文", "经济", "管理", "心理学", "教育", "儿童", "其他"],
+      "description": "书籍分类"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "出版社"
+    },
+    "publishDate": {
+      "type": "string",
+      "format": "date",
+      "description": "出版日期"
+    },
+    "pages": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "页数"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["中文", "英文", "日文", "法文", "德文", "其他"],
+      "default": "中文",
+      "description": "语言"
+    },
+    "coverImage": {
+      "type": "object",
+      "description": "封面图片",
+      "properties": {
+        "filename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageKey": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-imageMaxWidth": 800,
+      "x-imageMaxHeight": 1200,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "库存数量"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "multipleOf": 0.1,
+      "description": "评分（0-5分）"
+    },
+    "reviewCount": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "评价数量"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 20
+      },
+      "uniqueItems": true,
+      "maxItems": 10,
+      "description": "标签列表"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否为推荐书籍"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["available", "out_of_stock", "discontinued"],
+      "default": "available",
+      "description": "书籍状态"
+    }
+  },
+  "required": ["title", "author", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

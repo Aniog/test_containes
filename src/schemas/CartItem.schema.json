@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cart Items",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "book_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "书籍ID",
+      "x-foreignKey": "books.id"
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 99,
+      "description": "数量"
+    },
+    "addedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "添加时间"
+    }
+  },
+  "required": ["user_id", "book_id", "quantity"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

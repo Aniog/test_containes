@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Layout from './components/layout/Layout'
+import Home from './pages/Home'
+import Books from './pages/Books'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchQuery, setSearchQuery] = React.useState('')
+  const [cartItemsCount, setCartItemsCount] = React.useState(0)
+
+  const handleSearchChange = (query) => {
+    setSearchQuery(query)
+  }
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Router>
+      <Layout 
+        cartItemsCount={cartItemsCount}
+        onSearchChange={handleSearchChange}
+        searchQuery={searchQuery}
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/books" element={<Books />} />
+          <Route path="/categories" element={<div className="p-8 text-center">分类页面开发中...</div>} />
+          <Route path="/cart" element={<div className="p-8 text-center">购物车页面开发中...</div>} />
+          <Route path="/about" element={<div className="p-8 text-center">关于页面开发中...</div>} />
+        </Routes>
+      </Layout>
+    </Router>
   )
 }
 
