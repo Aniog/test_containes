@@ -1,9 +1,9 @@
 import React from 'react'
-import TodoApp from './components/TodoApp.jsx'
+import TodoAppFinal from './components/TodoAppFinal.jsx'
 import './App.css'
 
 function App() {
-  return <TodoApp />
+  return <TodoAppFinal />
 }
 
 export default App

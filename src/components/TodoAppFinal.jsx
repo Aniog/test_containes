@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
-import { Plus, Trash2, Check, X } from 'lucide-react';
+import { Plus, Trash2, Check } from 'lucide-react';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
@@ -12,7 +12,6 @@ const TodoApp = () => {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState('all'); // all, active, completed
 
-  // Load todos on component mount
   useEffect(() => {
     loadTodos();
   }, []);
@@ -21,20 +20,23 @@ const TodoApp = () => {
     try {
       setLoading(true);
       setError(null);
+      
       const response = await client
         .from('todoItems')
         .select('*')
         .order('created_at', { ascending: false });
       
-      console.log('Load todos response:', response);
-      
-      if (response?.data?.list) {
-        setTodos(response.data.list);
+      // Handle the nested response structure
+      let todoList = [];
+      if (response?.data?.data?.list) {
+        todoList = response.data.data.list;
+      } else if (response?.data?.list) {
+        todoList = response.data.list;
       } else if (response?.list) {
-        setTodos(response.list);
-      } else if (Array.isArray(response)) {
-        setTodos(response);
+        todoList = response.list;
       }
+      
+      setTodos(todoList);
     } catch (err) {
       console.error('Error loading todos:', err);
       setError('Failed to load todos');
@@ -49,32 +51,19 @@ const TodoApp = () => {
 
     try {
       setError(null);
-      const response = await client
+      
+      await client
         .from('todoItems')
         .insert({
           data: {
             text: newTodo.trim(),
             completed: false,
           }
-        })
-        .select('*');
+        });
 
-      console.log('Add todo response:', response);
-
-      if (response?.data?.list?.[0]) {
-        setTodos(prev => [response.data.list[0], ...prev]);
-        setNewTodo('');
-      } else if (response?.list?.[0]) {
-        setTodos(prev => [response.list[0], ...prev]);
-        setNewTodo('');
-      } else if (Array.isArray(response) && response[0]) {
-        setTodos(prev => [response[0], ...prev]);
-        setNewTodo('');
-      } else {
-        // Fallback: reload all todos
-        await loadTodos();
-        setNewTodo('');
-      }
+      // Reload todos to get the latest data
+      await loadTodos();
+      setNewTodo('');
     } catch (err) {
       console.error('Error adding todo:', err);
       setError('Failed to add todo');
@@ -84,34 +73,18 @@ const TodoApp = () => {
   const toggleTodo = async (todo) => {
     try {
       setError(null);
-      const response = await client
+      
+      await client
         .from('todoItems')
         .update({
           data: {
             completed: !todo.data.completed,
           }
         })
-        .eq('id', todo.id)
-        .select('*');
+        .eq('id', todo.id);
 
-      console.log('Toggle todo response:', response);
-
-      if (response?.data?.list?.[0]) {
-        setTodos(prev => prev.map(t => 
-          t.id === todo.id ? response.data.list[0] : t
-        ));
-      } else if (response?.list?.[0]) {
-        setTodos(prev => prev.map(t => 
-          t.id === todo.id ? response.list[0] : t
-        ));
-      } else if (Array.isArray(response) && response[0]) {
-        setTodos(prev => prev.map(t => 
-          t.id === todo.id ? response[0] : t
-        ));
-      } else {
-        // Fallback: reload all todos
-        await loadTodos();
-      }
+      // Reload todos to get the latest data
+      await loadTodos();
     } catch (err) {
       console.error('Error toggling todo:', err);
       setError('Failed to update todo');
@@ -121,20 +94,17 @@ const TodoApp = () => {
   const deleteTodo = async (todoId) => {
     try {
       setError(null);
-      const response = await client
+      
+      await client
         .from('todoItems')
         .delete()
         .eq('id', todoId);
 
-      console.log('Delete todo response:', response);
-
-      // For delete operations, we just remove from local state
-      setTodos(prev => prev.filter(t => t.id !== todoId));
+      // Reload todos to get the latest data
+      await loadTodos();
     } catch (err) {
       console.error('Error deleting todo:', err);
       setError('Failed to delete todo');
-      // Reload todos to ensure consistency
-      await loadTodos();
     }
   };
 
@@ -143,8 +113,7 @@ const TodoApp = () => {
       setError(null);
       const completedTodos = todos.filter(todo => todo.data.completed);
       
-      console.log('Clearing completed todos:', completedTodos);
-      
+      // Delete all completed todos
       for (const todo of completedTodos) {
         await client
           .from('todoItems')
@@ -152,12 +121,11 @@ const TodoApp = () => {
           .eq('id', todo.id);
       }
 
-      setTodos(prev => prev.filter(t => !t.data.completed));
+      // Reload todos to get the latest data
+      await loadTodos();
     } catch (err) {
       console.error('Error clearing completed todos:', err);
       setError('Failed to clear completed todos');
-      // Reload todos to ensure consistency
-      await loadTodos();
     }
   };
 
