@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Books",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "书名"
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "作者"
+    },
+    "isbn": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "ISBN 编号"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "售价（元）"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "原价（元）"
+    },
+    "cover_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "封面图片 URL"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "书籍简介"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["文学", "历史", "科学", "哲学", "艺术", "社科", "经济", "心理", "传记", "其他"],
+      "description": "书籍分类"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "标签"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "出版社"
+    },
+    "publish_date": {
+      "type": "string",
+      "format": "date",
+      "description": "出版日期"
+    },
+    "pages": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "页数"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "库存数量"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否为精选推荐"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "评分（0-5）"
+    }
+  },
+  "required": ["title", "author", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
