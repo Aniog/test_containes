@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Store Products",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount, if any"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Product cover image URL"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["pc", "steam", "epic", "nintendo", "playstation", "xbox", "multi"],
+      "description": "Platform the game is for"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game publisher"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average user rating out of 5"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of keys/copies in stock"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Tags for the product"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is featured"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the product is available for sale"
+    }
+  },
+  "required": ["title", "price", "platform"],
+  "x-security": {
+    "create": { "allow": [] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
