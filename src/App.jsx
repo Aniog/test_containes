@@ -1,34 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { CartProvider } from './context/CartContext'
+import Navbar from './components/layout/Navbar'
+import Footer from './components/layout/Footer'
+import HomePage from './pages/HomePage'
+import StorePage from './pages/StorePage'
+import GameDetailPage from './pages/GameDetailPage'
+import DealsPage from './pages/DealsPage'
+import ArticlesPage from './pages/ArticlesPage'
+import ArticleDetailPage from './pages/ArticleDetailPage'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <BrowserRouter>
+      <CartProvider>
+        <div className="min-h-screen bg-gray-950 text-white">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/store" element={<StorePage />} />
+              <Route path="/store/:id" element={<GameDetailPage />} />
+              <Route path="/deals" element={<DealsPage />} />
+              <Route path="/articles" element={<ArticlesPage />} />
+              <Route path="/articles/:id" element={<ArticleDetailPage />} />
+            </Routes>
+          </main>
+          <Footer />
+        </div>
+      </CartProvider>
+    </BrowserRouter>
   )
 }
 
