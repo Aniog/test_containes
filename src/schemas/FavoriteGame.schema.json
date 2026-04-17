@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the visitor submitting their favorite games"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Optional email address of the visitor"
+    },
+    "game_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the favorite game"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC", "Mobile", "Other"],
+      "description": "Platform the game is played on"
+    },
+    "play_time_hours": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total hours played on this game"
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Why the visitor likes this game"
+    },
+    "last_played_date": {
+      "type": "string",
+      "format": "date",
+      "description": "The last date the visitor played this game"
+    },
+    "personal_rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Personal rating out of 5 stars"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the visitor would recommend this game to others"
+    },
+    "genre": {
+      "type": "string",
+      "enum": ["Action", "RPG", "Strategy", "Shooter", "Adventure", "Racing", "Sports", "Simulation", "Puzzle", "Horror", "Other"],
+      "description": "Genre of the game"
+    }
+  },
+  "required": ["visitor_name", "game_name", "platform"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

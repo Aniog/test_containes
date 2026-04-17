@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Gamepad2, ShoppingCart, Menu, X, Zap, BookOpen, Tag, Store } from 'lucide-react'
+import { Gamepad2, ShoppingCart, Menu, X, Zap, BookOpen, Tag, Store, Heart } from 'lucide-react'
 import { useCart } from '../../context/CartContext'
 import CartDrawer from '../store/CartDrawer'
 
@@ -9,6 +9,7 @@ const navLinks = [
   { to: '/store', label: 'Store', icon: Store },
   { to: '/deals', label: 'Deals', icon: Tag },
   { to: '/articles', label: 'News & Articles', icon: BookOpen },
+  { to: '/favorites', label: 'My Favorites', icon: Heart },
 ]
 
 export default function Navbar() {
