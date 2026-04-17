@@ -1,9 +1,19 @@
 import React, { useState } from 'react'
-import { Plus, Trash2, Star, Gamepad2, ChevronDown, ChevronUp } from 'lucide-react'
+import { Trash2, Star, Gamepad2, ChevronDown, ChevronUp } from 'lucide-react'
 import { cn } from '../../lib/utils'
+import ImageUploader from './ImageUploader'
 
 const PLATFORMS = ['Steam', 'Epic', 'Nintendo Switch', 'PlayStation', 'Xbox', 'PC', 'Mobile', 'Other']
 const GENRES = ['Action', 'RPG', 'Strategy', 'Shooter', 'Adventure', 'Racing', 'Sports', 'Simulation', 'Puzzle', 'Horror', 'Other']
+const PLAY_STATUSES = ['Currently Playing', 'Completed', 'On Hold', 'Dropped', 'Plan to Play']
+
+const PLAY_STATUS_COLORS = {
+  'Currently Playing': 'text-green-400 bg-green-400/10 border-green-500/40',
+  'Completed':         'text-blue-400 bg-blue-400/10 border-blue-500/40',
+  'On Hold':           'text-yellow-400 bg-yellow-400/10 border-yellow-500/40',
+  'Dropped':           'text-red-400 bg-red-400/10 border-red-500/40',
+  'Plan to Play':      'text-purple-400 bg-purple-400/10 border-purple-500/40',
+}
 
 const PLATFORM_COLORS = {
   Steam: 'bg-[#1b2838] text-[#c7d5e0] border-[#4c6b22]',
@@ -21,12 +31,14 @@ export function createEmptyGame() {
     id: Date.now() + Math.random(),
     game_name: '',
     platform: '',
+    play_status: '',
     genre: '',
     play_time_hours: '',
     last_played_date: '',
     personal_rating: 0,
     reason: '',
     would_recommend: true,
+    game_images: [],
   }
 }
 
@@ -79,11 +91,18 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             <p className="text-white font-semibold text-sm">
               {game.game_name || `Game #${index + 1}`}
             </p>
-            {game.platform && (
-              <span className={cn('text-xs px-2 py-0.5 rounded font-medium border mt-0.5 inline-block', PLATFORM_COLORS[game.platform])}>
-                {game.platform}
-              </span>
-            )}
+            <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+              {game.platform && (
+                <span className={cn('text-xs px-2 py-0.5 rounded font-medium border inline-block', PLATFORM_COLORS[game.platform])}>
+                  {game.platform}
+                </span>
+              )}
+              {game.play_status && (
+                <span className={cn('text-xs px-2 py-0.5 rounded-full font-medium border inline-block', PLAY_STATUS_COLORS[game.play_status])}>
+                  {game.play_status}
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-2">
@@ -153,20 +172,43 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             </div>
           </div>
 
-          {/* Row 2: Genre + Play Time + Last Played */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {/* Row 2: Play Status + Genre */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+                Play Status
+              </label>
+              <select
+                value={game.play_status}
+                onChange={e => set('play_status', e.target.value)}
+                className={cn(
+                  'w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors',
+                  game.play_status ? 'text-white' : 'text-gray-500'
+                )}
+              >
+                <option value="">Select status…</option>
+                {PLAY_STATUSES.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+            </div>
+
             <div>
               <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">Genre</label>
               <select
                 value={game.genre}
                 onChange={e => set('genre', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
+                className={cn(
+                  'w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors',
+                  game.genre ? 'text-white' : 'text-gray-500'
+                )}
               >
                 <option value="">Select genre…</option>
                 {GENRES.map(g => <option key={g} value={g}>{g}</option>)}
               </select>
             </div>
+          </div>
 
+          {/* Row 3: Play Time + Last Played */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
                 Play Time (hours)
@@ -196,7 +238,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             </div>
           </div>
 
-          {/* Row 3: Personal Rating */}
+          {/* Row 4: Personal Rating */}
           <div>
             <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-2">
               Personal Rating
@@ -204,7 +246,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             <StarPicker value={game.personal_rating} onChange={v => set('personal_rating', v)} />
           </div>
 
-          {/* Row 4: Reason */}
+          {/* Row 5: Reason */}
           <div>
             <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
               Why Do You Love This Game?
@@ -220,7 +262,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             <p className="text-gray-600 text-xs mt-1 text-right">{game.reason.length}/1000</p>
           </div>
 
-          {/* Row 5: Would Recommend */}
+          {/* Row 6: Would Recommend */}
           <div className="flex items-center gap-3">
             <button
               type="button"
@@ -238,6 +280,14 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             <span className="text-gray-300 text-sm">
               I would recommend this game to others
             </span>
+          </div>
+
+          {/* Row 7: Image Upload */}
+          <div className="border-t border-gray-800 pt-5">
+            <ImageUploader
+              images={game.game_images}
+              onChange={imgs => set('game_images', imgs)}
+            />
           </div>
         </div>
       )}

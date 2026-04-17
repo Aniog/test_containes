@@ -5,9 +5,11 @@ import { submitFavoriteGames } from '../api/favoriteGameApi'
 import { Button } from '../components/ui/Button'
 import { cn } from '../lib/utils'
 
-function validate(visitorName, games) {
+function validate(visitorName, visitorEmail, games) {
   const topErrors = {}
   if (!visitorName.trim()) topErrors.visitor_name = 'Your name is required'
+  if (!visitorEmail.trim()) topErrors.visitor_email = 'Email is required'
+  else if (!/^\S+@\S+\.\S+$/.test(visitorEmail.trim())) topErrors.visitor_email = 'Please enter a valid email address'
 
   const gameErrors = games.map(g => {
     const e = {}
@@ -76,7 +78,7 @@ export default function FavoritesPage() {
     e.preventDefault()
     setSubmitError('')
 
-    const { topErrors: te, gameErrors: ge } = validate(visitorName, games)
+    const { topErrors: te, gameErrors: ge } = validate(visitorName, visitorEmail, games)
     const hasTopErrors = Object.keys(te).length > 0
     const hasGameErrors = ge.some(e => Object.keys(e).length > 0)
 
@@ -138,10 +140,13 @@ export default function FavoritesPage() {
         <form onSubmit={handleSubmit} noValidate>
           {/* Visitor Info */}
           <div className="bg-gray-900 border border-gray-700 rounded-2xl p-6 mb-6">
-            <div className="flex items-center gap-2 mb-5">
+            <div className="flex items-center gap-2 mb-1">
               <div className="w-1 h-5 bg-indigo-500 rounded-full" />
               <h2 className="text-white font-bold text-base">Your Info</h2>
             </div>
+            <p className="text-gray-500 text-xs mb-5 pl-3">
+              Your email groups all your game submissions together so we can see your full list.
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div data-error={topErrors.visitor_name ? true : undefined}>
                 <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
@@ -169,17 +174,31 @@ export default function FavoritesPage() {
                 )}
               </div>
 
-              <div>
+              <div data-error={topErrors.visitor_email ? true : undefined}>
                 <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
-                  Email <span className="text-gray-600 font-normal normal-case">(optional)</span>
+                  Email <span className="text-red-400">*</span>
+                  <span className="ml-1.5 text-indigo-400 font-normal normal-case text-[10px]">— groups your submissions</span>
                 </label>
                 <input
                   type="email"
                   value={visitorEmail}
-                  onChange={e => setVisitorEmail(e.target.value)}
+                  onChange={e => {
+                    setVisitorEmail(e.target.value)
+                    if (e.target.value.trim()) setTopErrors(prev => { const n = { ...prev }; delete n.visitor_email; return n })
+                  }}
                   placeholder="you@example.com"
-                  className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
+                  className={cn(
+                    'w-full bg-gray-800 border rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-1 transition-colors',
+                    topErrors.visitor_email
+                      ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
+                      : 'border-gray-700 focus:border-indigo-500 focus:ring-indigo-500/30'
+                  )}
                 />
+                {topErrors.visitor_email && (
+                  <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                    <AlertCircle className="w-3 h-3" />{topErrors.visitor_email}
+                  </p>
+                )}
               </div>
             </div>
           </div>

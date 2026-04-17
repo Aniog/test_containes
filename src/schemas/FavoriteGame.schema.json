@@ -12,7 +12,7 @@
     "visitor_email": {
       "type": "string",
       "format": "email",
-      "description": "Optional email address of the visitor"
+      "description": "Email address of the visitor — used to group all their game submissions together"
     },
     "game_name": {
       "type": "string",
@@ -24,6 +24,11 @@
       "type": "string",
       "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC", "Mobile", "Other"],
       "description": "Platform the game is played on"
+    },
+    "play_status": {
+      "type": "string",
+      "enum": ["Currently Playing", "Completed", "On Hold", "Dropped", "Plan to Play"],
+      "description": "Current play status of the game"
     },
     "play_time_hours": {
       "type": "number",
@@ -55,9 +60,30 @@
       "type": "string",
       "enum": ["Action", "RPG", "Strategy", "Shooter", "Adventure", "Racing", "Sports", "Simulation", "Puzzle", "Horror", "Other"],
       "description": "Genre of the game"
+    },
+    "game_images": {
+      "type": "array",
+      "description": "Screenshots or images of the game uploaded by the visitor",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "minLength": 1 },
+          "size": { "type": "integer", "minimum": 0 },
+          "storageKey": { "type": "string" },
+          "storage": { "type": "string" },
+          "mimeType": { "type": "string" },
+          "width": { "type": "integer", "minimum": 0 },
+          "height": { "type": "integer", "minimum": 0 }
+        },
+        "x-upload": true,
+        "x-fileType": "image",
+        "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+        "x-maxFileSize": 5242880,
+        "x-mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp"]
+      }
     }
   },
-  "required": ["visitor_name", "game_name", "platform"],
+  "required": ["visitor_name", "visitor_email", "game_name", "platform"],
   "additionalProperties": false,
   "x-security": {
     "create": { "allow": ["*"] },
