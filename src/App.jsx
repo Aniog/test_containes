@@ -1,9 +1,16 @@
 import { useEffect, useRef, useState } from 'react'
 import { API } from '@strikingly/sdk'
 
+export function buildPublicAssetUrl(s3Domain, storageKey) {
+  const base = (s3Domain || '').trim().replace(/\/+$/, '')
+  const path = (storageKey || '').trim().replace(/^\/+/, '')
+  if (!base || !path) return ''
+  return `${base}/${path}`
+}
+
 const INITIAL_STATE = {
   status: 'idle',
-  url: '',
+  result: null,
   error: '',
   file: null,
 }
@@ -11,6 +18,7 @@ const INITIAL_STATE = {
 export default function UploadDemo() {
   const [siteId, setSiteId] = useState('')
   const [domain, setDomain] = useState('')
+  const [s3Domain, setS3Domain] = useState('')
 
   const [imageState, setImageState] = useState(INITIAL_STATE)
   const [fileState, setFileState] = useState(INITIAL_STATE)
@@ -36,10 +44,10 @@ export default function UploadDemo() {
     const file = imageState.file
     if (!file || !canUpload) return
 
-    setImageState((s) => ({ ...s, status: 'uploading', url: '', error: '' }))
+    setImageState((s) => ({ ...s, status: 'uploading', result: null, error: '' }))
     try {
-      const url = await API.uploadImage(siteId.trim(), domain.trim(), file)
-      setImageState((s) => ({ ...s, status: 'success', url }))
+      const result = await API.uploadImage(siteId.trim(), domain.trim(), file)
+      setImageState((s) => ({ ...s, status: 'success', result }))
     } catch (err) {
       setImageState((s) => ({
         ...s,
@@ -53,10 +61,10 @@ export default function UploadDemo() {
     const file = fileState.file
     if (!file || !canUpload) return
 
-    setFileState((s) => ({ ...s, status: 'uploading', url: '', error: '' }))
+    setFileState((s) => ({ ...s, status: 'uploading', result: null, error: '' }))
     try {
-      const url = await API.uploadFile(siteId.trim(), domain.trim(), file)
-      setFileState((s) => ({ ...s, status: 'success', url }))
+      const result = await API.uploadFile(siteId.trim(), domain.trim(), file)
+      setFileState((s) => ({ ...s, status: 'success', result }))
     } catch (err) {
       setFileState((s) => ({
         ...s,
@@ -100,7 +108,7 @@ export default function UploadDemo() {
               />
             </label>
             <label style={styles.label}>
-              <span style={styles.labelText}>domain</span>
+              <span style={styles.labelText}>domain（presign 接口）</span>
               <input
                 style={styles.input}
                 value={domain}
@@ -109,8 +117,24 @@ export default function UploadDemo() {
               />
             </label>
           </div>
+          <label style={{ ...styles.label, marginTop: 4 }}>
+            <span style={styles.labelText}>
+              S3_DOMAIN（展示用：CDN / 静态资源根地址）
+            </span>
+            <input
+              style={styles.input}
+              value={s3Domain}
+              onChange={(e) => setS3Domain(e.target.value)}
+              placeholder="e.g. https://cd.i.strikingly.com"
+            />
+          </label>
           {!canUpload && (
             <p style={styles.hint}>请先填写 siteId 和 domain 再上传</p>
+          )}
+          {canUpload && !s3Domain.trim() && (
+            <p style={styles.hint}>
+              上传可不填 S3_DOMAIN；填写后成功结果会展示「S3_DOMAIN + storageKey」完整链接
+            </p>
           )}
         </section>
 
@@ -171,7 +195,11 @@ export default function UploadDemo() {
             </div>
           )}
 
-          <UploadResult state={imageState} label="image" />
+          <UploadResult
+            state={imageState}
+            label="image"
+            s3Domain={s3Domain}
+          />
         </section>
 
         <section style={styles.card}>
@@ -222,26 +250,56 @@ export default function UploadDemo() {
             </div>
           )}
 
-          <UploadResult state={fileState} label="file" />
+          <UploadResult
+            state={fileState}
+            label="file"
+            s3Domain={s3Domain}
+          />
         </section>
       </div>
     </div>
   )
 }
 
-function UploadResult({ state, label }) {
-  if (state.status === 'success') {
+function UploadResult({ state, label, s3Domain }) {
+  if (state.status === 'success' && state.result) {
+    const publicUrl = buildPublicAssetUrl(s3Domain, state.result.storageKey)
     return (
       <div style={styles.resultSuccess}>
-        <div style={styles.resultTitle}>✅ Uploaded {label} successfully</div>
-        <a
-          href={state.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={styles.resultLink}
-        >
-          {state.url}
-        </a>
+        <div style={styles.resultTitle}>Uploaded {label} successfully</div>
+        {publicUrl ? (
+          <div style={styles.publicUrlBlock}>
+            <div style={styles.publicUrlLabel}>
+              访问地址（S3_DOMAIN + storageKey）
+            </div>
+            <a
+              href={publicUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={styles.publicUrlLink}
+            >
+              {publicUrl}
+            </a>
+            {label === 'image' && (
+              <div style={styles.uploadedPreviewWrap}>
+                <img
+                  src={publicUrl}
+                  alt="uploaded"
+                  style={styles.uploadedPreviewImg}
+                />
+              </div>
+            )}
+          </div>
+        ) : (
+          <p style={styles.publicUrlHint}>
+            在「基础配置」中填写 S3_DOMAIN 后，将在此显示完整 URL
+            {label === 'image' ? ' 与线上图片预览' : ''}
+          </p>
+        )}
+        <div style={styles.jsonBlockLabel}>上传接口返回 JSON</div>
+        <pre style={styles.resultJson}>
+          {JSON.stringify(state.result, null, 2)}
+        </pre>
       </div>
     )
   }
@@ -387,9 +445,64 @@ const styles = {
     gap: 4,
   },
   resultTitle: { fontWeight: 600 },
-  resultLink: {
-    color: '#065f46',
+  publicUrlBlock: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 6,
+    marginTop: 4,
+  },
+  publicUrlLabel: {
+    fontSize: 11,
+    fontWeight: 600,
+    color: '#047857',
+    textTransform: 'uppercase',
+    letterSpacing: '0.02em',
+  },
+  publicUrlLink: {
+    color: '#047857',
     wordBreak: 'break-all',
+    fontSize: 13,
+  },
+  publicUrlHint: {
+    margin: '4px 0 0',
+    fontSize: 12,
+    color: '#059669',
+    opacity: 0.9,
+  },
+  jsonBlockLabel: {
+    marginTop: 12,
+    fontSize: 11,
+    fontWeight: 600,
+    color: '#047857',
+  },
+  uploadedPreviewWrap: {
+    marginTop: 8,
+    borderRadius: 8,
+    overflow: 'hidden',
+    background: '#d1fae5',
+    display: 'inline-block',
+    maxWidth: '100%',
+    border: '1px solid #6ee7b7',
+  },
+  uploadedPreviewImg: {
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: 220,
+    objectFit: 'contain',
+    verticalAlign: 'middle',
+  },
+  resultJson: {
+    margin: 0,
+    marginTop: 8,
+    padding: 10,
+    background: '#f0fdf4',
+    borderRadius: 6,
+    fontSize: 12,
+    lineHeight: 1.45,
+    overflow: 'auto',
+    fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
+    color: '#14532d',
+    border: '1px solid #bbf7d0',
   },
   resultErrorMsg: {
     margin: 0,
