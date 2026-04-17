@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Articles",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Article title"
+    },
+    "slug": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "URL-friendly identifier"
+    },
+    "excerpt": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "Short excerpt shown in article cards"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full article content (HTML or Markdown)"
+    },
+    "cover_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Author name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["News", "Review", "Guide", "Feature", "Opinion", "Deal"],
+      "description": "Article category"
+    },
+    "platform_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox", "PC", "General"]
+      },
+      "description": "Related platforms"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Article tags"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date and time"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the article is featured"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["published", "draft", "archived"],
+      "default": "published",
+      "description": "Publication status"
+    },
+    "read_time": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Estimated read time in minutes"
+    }
+  },
+  "required": ["title", "content", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

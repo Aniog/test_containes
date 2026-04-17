@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deals",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the game on sale"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo Switch", "PlayStation", "Xbox"],
+      "description": "Platform where the deal is available"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price in USD"
+    },
+    "deal_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Discounted price in USD"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "cover_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Game cover image URL"
+    },
+    "deal_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the deal on the platform store"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the deal expires"
+    },
+    "genre": {
+      "type": "string",
+      "enum": ["Action", "Adventure", "RPG", "Strategy", "Sports", "Racing", "Simulation", "Horror", "Puzzle", "Fighting", "Shooter", "Platformer", "Other"],
+      "description": "Game genre"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Game rating out of 5"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this deal is featured"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "expired", "upcoming"],
+      "default": "active",
+      "description": "Deal status"
+    }
+  },
+  "required": ["game_title", "platform", "original_price", "deal_price", "discount_percent"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
