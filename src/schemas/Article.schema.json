@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Articles",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Title of the article"
+    },
+    "slug": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "URL-friendly slug for the article"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full content body of the article"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short summary or excerpt of the article"
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the article author"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "archived"],
+      "default": "draft",
+      "description": "Publication status of the article"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Category or topic of the article"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "List of tags associated with the article"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the article was published"
+    }
+  },
+  "required": ["title", "status"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
