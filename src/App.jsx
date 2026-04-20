@@ -1,7 +1,122 @@
-import { useState } from 'react'
-import { Plus, Trash2, CheckCircle2, Circle, ClipboardList } from 'lucide-react'
+import { useState, useRef, useEffect } from 'react'
+import { Plus, Trash2, CheckCircle2, Circle, ClipboardList, Pencil, Check, X } from 'lucide-react'
 
 const FILTERS = ['All', 'Active', 'Completed']
+
+function TodoItem({ todo, onToggle, onDelete, onApproveEdit }) {
+  const [editing, setEditing] = useState(false)
+  const [draft, setDraft] = useState(todo.text)
+  const inputRef = useRef(null)
+
+  useEffect(() => {
+    if (editing) inputRef.current?.focus()
+  }, [editing])
+
+  const startEdit = () => {
+    setDraft(todo.text)
+    setEditing(true)
+  }
+
+  const approve = () => {
+    onApproveEdit(todo.id, draft)
+    setEditing(false)
+  }
+
+  const cancel = () => {
+    setDraft(todo.text)
+    setEditing(false)
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') approve()
+    if (e.key === 'Escape') cancel()
+  }
+
+  const isEmpty = todo.text === ''
+
+  return (
+    <li className="flex items-center gap-3 px-4 py-3.5 group transition-colors hover:bg-white/5 border-b border-white/10 last:border-b-0">
+      {/* Complete toggle — hidden while editing */}
+      {!editing && (
+        <button
+          onClick={() => onToggle(todo.id)}
+          className="flex-shrink-0 text-indigo-400 hover:text-violet-400 transition-colors"
+          aria-label={todo.completed ? 'Mark incomplete' : 'Mark complete'}
+        >
+          {todo.completed
+            ? <CheckCircle2 className="w-5 h-5 text-violet-400" />
+            : <Circle className="w-5 h-5" />
+          }
+        </button>
+      )}
+
+      {editing ? (
+        /* ── Edit mode ── */
+        <>
+          <input
+            ref={inputRef}
+            value={draft}
+            onChange={e => setDraft(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Task text…"
+            className="flex-1 bg-white/10 border border-violet-500 rounded-lg px-3 py-1.5 text-white placeholder-indigo-400 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+          />
+          {/* Approve */}
+          <button
+            onClick={approve}
+            className="flex-shrink-0 bg-emerald-500 hover:bg-emerald-400 text-white rounded-lg p-1.5 transition-colors"
+            aria-label="Approve edit"
+          >
+            <Check className="w-4 h-4" />
+          </button>
+          {/* Cancel */}
+          <button
+            onClick={cancel}
+            className="flex-shrink-0 bg-white/10 hover:bg-white/20 text-indigo-300 rounded-lg p-1.5 transition-colors"
+            aria-label="Cancel edit"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        </>
+      ) : (
+        /* ── View mode ── */
+        <>
+          <span
+            className={`flex-1 text-sm cursor-pointer select-none ${
+              isEmpty
+                ? 'italic text-indigo-500'
+                : todo.completed
+                  ? 'line-through text-indigo-500'
+                  : 'text-white'
+            }`}
+            onDoubleClick={startEdit}
+            title="Double-click to edit"
+          >
+            {isEmpty ? '[empty]' : todo.text}
+          </span>
+
+          {/* Edit button */}
+          <button
+            onClick={startEdit}
+            className="opacity-0 group-hover:opacity-100 text-indigo-400 hover:text-violet-300 transition-all flex-shrink-0 mr-1"
+            aria-label="Edit task"
+          >
+            <Pencil className="w-3.5 h-3.5" />
+          </button>
+
+          {/* Delete button */}
+          <button
+            onClick={() => onDelete(todo.id)}
+            className="opacity-0 group-hover:opacity-100 text-indigo-500 hover:text-red-400 transition-all flex-shrink-0"
+            aria-label="Delete task"
+          >
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </>
+      )}
+    </li>
+  )
+}
 
 function App() {
   const [todos, setTodos] = useState([
@@ -25,6 +140,10 @@ function App() {
 
   const deleteTodo = (id) => {
     setTodos(prev => prev.filter(t => t.id !== id))
+  }
+
+  const approveEdit = (id, newText) => {
+    setTodos(prev => prev.map(t => t.id === id ? { ...t, text: newText.trim() } : t))
   }
 
   const clearCompleted = () => {
@@ -80,6 +199,11 @@ function App() {
           </button>
         </div>
 
+        {/* Edit hint */}
+        <p className="text-indigo-500 text-xs mb-3 text-right">
+          Click <Pencil className="inline w-3 h-3 mb-0.5" /> or double-click a task to edit · <Check className="inline w-3 h-3 mb-0.5 text-emerald-400" /> to approve · <X className="inline w-3 h-3 mb-0.5" /> to cancel
+        </p>
+
         {/* Filter Tabs */}
         <div className="flex gap-1 bg-white/5 rounded-xl p-1 mb-4">
           {FILTERS.map(f => (
@@ -116,36 +240,14 @@ function App() {
             </div>
           ) : (
             <ul>
-              {filtered.map((todo, idx) => (
-                <li
+              {filtered.map(todo => (
+                <TodoItem
                   key={todo.id}
-                  className={`flex items-center gap-3 px-4 py-3.5 group transition-colors hover:bg-white/5 ${
-                    idx !== filtered.length - 1 ? 'border-b border-white/10' : ''
-                  }`}
-                >
-                  <button
-                    onClick={() => toggleTodo(todo.id)}
-                    className="flex-shrink-0 text-indigo-400 hover:text-violet-400 transition-colors"
-                    aria-label={todo.completed ? 'Mark incomplete' : 'Mark complete'}
-                  >
-                    {todo.completed
-                      ? <CheckCircle2 className="w-5 h-5 text-violet-400" />
-                      : <Circle className="w-5 h-5" />
-                    }
-                  </button>
-                  <span className={`flex-1 text-sm ${
-                    todo.completed ? 'line-through text-indigo-500' : 'text-white'
-                  }`}>
-                    {todo.text}
-                  </span>
-                  <button
-                    onClick={() => deleteTodo(todo.id)}
-                    className="opacity-0 group-hover:opacity-100 text-indigo-500 hover:text-red-400 transition-all flex-shrink-0"
-                    aria-label="Delete task"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </button>
-                </li>
+                  todo={todo}
+                  onToggle={toggleTodo}
+                  onDelete={deleteTodo}
+                  onApproveEdit={approveEdit}
+                />
               ))}
             </ul>
           )}
