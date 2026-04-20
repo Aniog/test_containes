@@ -2,7 +2,7 @@ import React from 'react'
 import TodoItem from './TodoItem.jsx'
 import { ClipboardList } from 'lucide-react'
 
-export default function TodoList({ todos, loading, onToggle, onDelete }) {
+export default function TodoList({ todos, loading, onToggle, onDelete, onEdit }) {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-gray-400">
@@ -30,6 +30,7 @@ export default function TodoList({ todos, loading, onToggle, onDelete }) {
           item={item}
           onToggle={onToggle}
           onDelete={onDelete}
+          onEdit={onEdit}
         />
       ))}
     </ul>

@@ -60,6 +60,17 @@ export default function TodoApp() {
     }
   }
 
+  const handleEdit = async (item, newTitle) => {
+    try {
+      const updated = await updateTodo(item, { title: newTitle })
+      console.log('Edited todo:', updated)
+      setTodos((prev) => prev.map((t) => (t.id === updated.id ? updated : t)))
+    } catch (err) {
+      console.error('Failed to edit todo:', err)
+      setError(err.message)
+    }
+  }
+
   const handleDelete = async (id) => {
     setTodos((prev) => prev.filter((t) => t.id !== id))
     try {
@@ -119,6 +130,7 @@ export default function TodoApp() {
             loading={loading}
             onToggle={handleToggle}
             onDelete={handleDelete}
+            onEdit={handleEdit}
           />
 
           {todos.length > 0 && (
