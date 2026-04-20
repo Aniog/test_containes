@@ -7,6 +7,7 @@ import ArticleDetail from '@/pages/ArticleDetail'
 import Discounts from '@/pages/Discounts'
 import Store from '@/pages/Store'
 import Checkout from '@/pages/Checkout'
+import AdminArticles from '@/pages/AdminArticles'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/discounts" element={<Discounts />} />
             <Route path="/store" element={<Store />} />
             <Route path="/store/checkout" element={<Checkout />} />
+            <Route path="/admin/articles" element={<AdminArticles />} />
           </Routes>
         </Layout>
       </CartProvider>

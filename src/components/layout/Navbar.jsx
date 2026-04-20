@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Gamepad2, Menu, X, ShoppingCart, Tag, Newspaper, Home } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Gamepad2, Menu, X, ShoppingCart, Tag, Newspaper, Home, Settings } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 
 const navLinks = [
@@ -15,6 +14,8 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const location = useLocation()
   const { cartCount, setCartOpen } = useCart()
+
+  const isAdmin = location.pathname.startsWith('/admin')
 
   return (
     <nav className="sticky top-0 z-50 bg-gray-900 border-b border-gray-700 shadow-lg">
@@ -43,8 +44,20 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Cart + Mobile Toggle */}
+          {/* Right side: Admin + Cart + Mobile Toggle */}
           <div className="flex items-center gap-2">
+            <Link
+              to="/admin/articles"
+              className={`hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-colors ${
+                isAdmin
+                  ? 'bg-amber-600 text-white'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700 border border-gray-600'
+              }`}
+              title="Admin panel"
+            >
+              <Settings className="w-3.5 h-3.5" />
+              Admin
+            </Link>
             <button
               onClick={() => setCartOpen(true)}
               className="relative p-2 text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors"
@@ -84,6 +97,16 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <Link
+            to="/admin/articles"
+            onClick={() => setMobileOpen(false)}
+            className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              isAdmin ? 'bg-amber-600 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+            }`}
+          >
+            <Settings className="w-4 h-4" />
+            Admin
+          </Link>
         </div>
       )}
     </nav>
