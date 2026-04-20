@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Star, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
-import { products } from '../../data/products';
 import { useCart } from '../../context/CartContext';
 
-const heroProducts = [products[0], products[2], products[4]];
-
-const HeroSection = ({ onProductClick }) => {
+const HeroSection = ({ products = [], onProductClick }) => {
+  const heroProducts = products.slice(0, 3);
   const [current, setCurrent] = useState(0);
   const [animating, setAnimating] = useState(false);
   const { addItem } = useCart();
@@ -36,6 +34,8 @@ const HeroSection = ({ onProductClick }) => {
   };
 
   const product = heroProducts[current];
+
+  if (!product) return null;
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-gray-950">

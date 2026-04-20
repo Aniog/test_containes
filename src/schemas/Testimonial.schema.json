@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Testimonials",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Reviewer full name"
+    },
+    "role": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Reviewer job title and company"
+    },
+    "avatar": {
+      "type": "string",
+      "format": "uri",
+      "description": "Avatar image URL"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating given by reviewer"
+    },
+    "product": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the product being reviewed"
+    },
+    "text": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 600,
+      "description": "Review text content"
+    },
+    "sort_order": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Display sort order"
+    }
+  },
+  "required": ["name", "role", "rating", "product", "text"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

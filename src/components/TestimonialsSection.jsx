@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
-import { testimonials } from '../data/products';
 
-const TestimonialsSection = () => {
+const TestimonialsSection = ({ testimonials = [] }) => {
   const [active, setActive] = useState(0);
+
+  if (testimonials.length === 0) return null;
 
   const prev = () => setActive((i) => (i - 1 + testimonials.length) % testimonials.length);
   const next = () => setActive((i) => (i + 1) % testimonials.length);

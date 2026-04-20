@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { SlidersHorizontal, ArrowUpDown } from 'lucide-react';
-import { products } from '../../data/products';
 import ProductCard from './ProductCard';
 
 const sortOptions = [
@@ -11,7 +10,7 @@ const sortOptions = [
   { value: 'discount', label: 'Biggest Discount' },
 ];
 
-const ProductListing = ({ activeCategory, searchQuery, onProductClick }) => {
+const ProductListing = ({ products = [], activeCategory, searchQuery, onProductClick }) => {
   const [sortBy, setSortBy] = useState('featured');
 
   const filtered = useMemo(() => {

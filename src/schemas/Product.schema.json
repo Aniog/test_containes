@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Product name"
+    },
+    "brand": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60,
+      "description": "Brand name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["audio", "accessories", "displays", "wearables"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current selling price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount in USD"
+    },
+    "discount": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating out of 5"
+    },
+    "reviews": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of customer reviews"
+    },
+    "badge": {
+      "type": "string",
+      "enum": ["Best Seller", "Top Rated", "Limited Offer", "Fan Favorite", "New Arrival"],
+      "description": "Promotional badge label"
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "images": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "Gallery image URLs"
+    },
+    "tagline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Short marketing tagline"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Full product marketing description"
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 200 },
+      "minItems": 1,
+      "maxItems": 8,
+      "description": "Key feature bullet points"
+    },
+    "specs": {
+      "type": "object",
+      "description": "Technical specifications as key-value pairs",
+      "properties": {
+        "key1": { "type": "string" },
+        "key2": { "type": "string" }
+      },
+      "additionalProperties": { "type": "string" }
+    },
+    "colors": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 40 },
+      "minItems": 1,
+      "description": "Available color options"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the product is currently in stock"
+    },
+    "sort_order": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Display sort order (lower = first)"
+    }
+  },
+  "required": ["name", "brand", "category", "price", "rating", "reviews", "image", "tagline", "description", "features", "colors"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

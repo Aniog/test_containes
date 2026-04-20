@@ -17,15 +17,22 @@ const categoryMeta = {
   wearables: { bg: 'from-emerald-900 to-emerald-800', accent: 'text-emerald-300', border: 'border-emerald-600' },
 };
 
-const categories = [
-  { id: 'all', label: 'All Products', icon: 'Grid', count: 5 },
-  { id: 'audio', label: 'Audio', icon: 'Headphones', count: 1, desc: 'Earbuds & Headphones' },
-  { id: 'accessories', label: 'Accessories', icon: 'Keyboard', count: 2, desc: 'Keyboards & Power' },
-  { id: 'displays', label: 'Displays', icon: 'Monitor', count: 1, desc: '4K Monitors' },
-  { id: 'wearables', label: 'Wearables', icon: 'Watch', count: 1, desc: 'Smart Watches' },
+const CATEGORY_DEFS = [
+  { id: 'all', label: 'All Products', icon: 'Grid', desc: null },
+  { id: 'audio', label: 'Audio', icon: 'Headphones', desc: 'Earbuds & Headphones' },
+  { id: 'accessories', label: 'Accessories', icon: 'Keyboard', desc: 'Keyboards & Power' },
+  { id: 'displays', label: 'Displays', icon: 'Monitor', desc: '4K Monitors' },
+  { id: 'wearables', label: 'Wearables', icon: 'Watch', desc: 'Smart Watches' },
 ];
 
-const CategoriesSection = ({ activeCategory, onCategoryChange }) => {
+const CategoriesSection = ({ products = [], activeCategory, onCategoryChange }) => {
+  const categories = CATEGORY_DEFS.map((cat) => ({
+    ...cat,
+    count: cat.id === 'all'
+      ? products.length
+      : products.filter((p) => p.category === cat.id).length,
+  }));
+
   return (
     <section className="py-20 bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
