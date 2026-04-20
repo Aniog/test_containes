@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Orders",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Customer full name"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer email address"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "game_id": { "type": "integer" },
+          "game_title": { "type": "string" },
+          "platform": { "type": "string" },
+          "price": { "type": "number" },
+          "quantity": { "type": "integer" }
+        }
+      },
+      "description": "List of ordered games"
+    },
+    "total_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total order amount in USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "completed", "cancelled"],
+      "default": "pending",
+      "description": "Order status"
+    }
+  },
+  "required": ["customer_name", "customer_email", "items", "total_amount"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

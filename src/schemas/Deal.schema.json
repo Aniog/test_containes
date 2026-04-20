@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Deals",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title for this deal"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo", "PlayStation", "Xbox"],
+      "description": "Platform where the deal is available"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price in USD"
+    },
+    "deal_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Deal/discounted price in USD"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Game cover image URL"
+    },
+    "deal_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the deal on the platform"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Deal expiration date/time"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the deal is currently active"
+    }
+  },
+  "required": ["game_title", "platform", "original_price", "deal_price", "discount_percent"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
