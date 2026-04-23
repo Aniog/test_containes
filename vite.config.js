@@ -11,10 +11,21 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    port: 12000,
     allowedHosts: true,
     cors: true,
     hmr: {
       overlay: false
+    },
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
     }
   }
 })
