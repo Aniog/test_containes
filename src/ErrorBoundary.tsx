@@ -19,49 +19,14 @@ class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.error('System rendering interuption (Auto-handled):', error, errorInfo);
-  }
-
-
-  handleWindowError = (event: ErrorEvent) => {
-    console.error('Global error caught:', event.error || event.message);
-    this.setState({ hasError: true });
-    event.preventDefault();
-  };
-
-
-  handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-    console.error('Unhandled promise rejection:', event.reason);
-    this.setState({ hasError: true });
-    event.preventDefault();
-  };
-
-
-  handleResourceError = (event: Event) => {
-    const target = event.target as HTMLElement;
-    console.error('Resource loading error:', target?.tagName);
-    this.setState({ hasError: true });
-  };
-
-  componentDidMount() {
-
-    window.addEventListener('error', this.handleWindowError, true);
-    window.addEventListener('unhandledrejection', this.handleUnhandledRejection);
-    window.addEventListener('error', this.handleResourceError, true);
-  }
-
-  componentWillUnmount() {
-    // 清理事件监听
-    window.removeEventListener('error', this.handleWindowError, true);
-    window.removeEventListener('unhandledrejection', this.handleUnhandledRejection);
-    window.removeEventListener('error', this.handleResourceError, true);
+    console.error('System rendering interruption (Auto-handled):', error, errorInfo);
   }
 
   render() {
     if (this.state.hasError) {
       return (
         <div style={styles.container}>
-          <p style={styles.text}>Agent is creating the web site, please wait</p>
+          <p style={styles.text}>Something went wrong. Please refresh the page.</p>
         </div>
       );
     }

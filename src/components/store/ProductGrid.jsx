@@ -11,7 +11,8 @@ const products = [
     rating: 4.9,
     reviews: 128,
     tag: 'Más Vendido',
-    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80',
+    emoji: '📿',
+    bgGradient: 'from-rose-100 to-pink-200',
     colors: ['#e8b4b8', '#c9a96e', '#9b8ea8'],
     isNew: false,
     isSale: true,
@@ -25,7 +26,8 @@ const products = [
     rating: 5.0,
     reviews: 89,
     tag: 'Nuevo',
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=500&q=80',
+    emoji: '💎',
+    bgGradient: 'from-purple-100 to-violet-200',
     colors: ['#f5f5f0', '#e8c99a', '#d4a5a5'],
     isNew: true,
     isSale: false,
@@ -39,7 +41,8 @@ const products = [
     rating: 4.8,
     reviews: 64,
     tag: 'Oferta',
-    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=500&q=80',
+    emoji: '✨',
+    bgGradient: 'from-amber-100 to-yellow-200',
     colors: ['#c9a96e', '#e8c99a', '#b8860b'],
     isNew: false,
     isSale: true,
@@ -53,7 +56,8 @@ const products = [
     rating: 4.9,
     reviews: 47,
     tag: 'Nuevo',
-    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80',
+    emoji: '💍',
+    bgGradient: 'from-teal-100 to-cyan-200',
     colors: ['#40e0d0', '#20b2aa', '#008b8b'],
     isNew: true,
     isSale: false,
@@ -67,7 +71,8 @@ const products = [
     rating: 4.7,
     reviews: 33,
     tag: 'Oferta',
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500&q=80',
+    emoji: '👜',
+    bgGradient: 'from-orange-100 to-amber-200',
     colors: ['#d2b48c', '#c4a882', '#a0856c'],
     isNew: false,
     isSale: true,
@@ -81,7 +86,8 @@ const products = [
     rating: 4.8,
     reviews: 92,
     tag: 'Popular',
-    image: 'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=500&q=80',
+    emoji: '🌸',
+    bgGradient: 'from-pink-100 to-rose-200',
     colors: ['#ffb6c1', '#ff69b4', '#db7093'],
     isNew: false,
     isSale: false,
@@ -95,7 +101,8 @@ const products = [
     rating: 5.0,
     reviews: 56,
     tag: 'Exclusivo',
-    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=500&q=80',
+    emoji: '🔮',
+    bgGradient: 'from-indigo-100 to-purple-200',
     colors: ['#c9a96e', '#b8860b', '#daa520'],
     isNew: true,
     isSale: false,
@@ -109,7 +116,8 @@ const products = [
     rating: 4.6,
     reviews: 41,
     tag: 'Oferta',
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80',
+    emoji: '🌟',
+    bgGradient: 'from-orange-100 to-red-200',
     colors: ['#8b4513', '#a0522d', '#cd853f'],
     isNew: false,
     isSale: true,
@@ -140,13 +148,11 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 card-hover border border-gray-100">
-      {/* Image */}
-      <div className="relative overflow-hidden aspect-square bg-gray-50">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-        />
+      {/* Product visual */}
+      <div className="relative overflow-hidden aspect-square">
+        <div className={`w-full h-full bg-gradient-to-br ${product.bgGradient} flex items-center justify-center group-hover:scale-105 transition-transform duration-500`}>
+          <span className="text-7xl select-none">{product.emoji}</span>
+        </div>
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">

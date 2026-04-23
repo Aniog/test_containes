@@ -11,7 +11,8 @@ const slides = [
     href: '#pulseras',
     accent: 'from-rose-200 via-pink-100 to-orange-100',
     emoji: '🌸',
-    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80',
+    bgGradient: 'from-rose-300 via-pink-200 to-orange-200',
+    decorEmoji: ['💎', '🌸', '✨', '💫'],
   },
   {
     id: 2,
@@ -22,7 +23,8 @@ const slides = [
     href: '#collares',
     accent: 'from-purple-200 via-pink-100 to-rose-100',
     emoji: '💜',
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80',
+    bgGradient: 'from-purple-300 via-pink-200 to-rose-200',
+    decorEmoji: ['💜', '🔮', '⭐', '🌙'],
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ const slides = [
     href: '#bolsos',
     accent: 'from-amber-100 via-orange-100 to-rose-100',
     emoji: '✨',
-    image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80',
+    bgGradient: 'from-amber-200 via-orange-200 to-rose-200',
+    decorEmoji: ['👜', '✨', '🌟', '🎀'],
   },
 ];
 
@@ -101,16 +104,18 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Image */}
+          {/* Visual */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md">
               <div className="absolute inset-0 bg-gradient-to-br from-rose-300/40 to-purple-300/40 rounded-3xl blur-3xl scale-110" />
-              <div className="relative bg-white/30 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl border border-white/50">
-                <img
-                  src={slide.image}
-                  alt={slide.title}
-                  className="w-full h-80 lg:h-96 object-cover"
-                />
+              <div className={`relative bg-gradient-to-br ${slide.bgGradient} rounded-3xl overflow-hidden shadow-2xl border border-white/50 h-80 lg:h-96 flex items-center justify-center`}>
+                {/* Decorative floating emojis */}
+                <div className="absolute top-6 left-6 text-4xl animate-bounce" style={{ animationDelay: '0s' }}>{slide.decorEmoji[0]}</div>
+                <div className="absolute top-10 right-10 text-3xl animate-bounce" style={{ animationDelay: '0.5s' }}>{slide.decorEmoji[1]}</div>
+                <div className="absolute bottom-16 left-10 text-3xl animate-bounce" style={{ animationDelay: '1s' }}>{slide.decorEmoji[2]}</div>
+                <div className="absolute bottom-8 right-8 text-4xl animate-bounce" style={{ animationDelay: '1.5s' }}>{slide.decorEmoji[3]}</div>
+                {/* Center large emoji */}
+                <div className="text-9xl select-none">{slide.emoji}</div>
                 {/* Floating badge */}
                 <div className="absolute top-4 right-4 bg-white rounded-2xl px-4 py-2 shadow-lg">
                   <div className="text-xs text-gray-500">Hecho a mano</div>
