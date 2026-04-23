@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Name",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Full name of the contact"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "Image URL (uploaded file).",
+        "properties": {
+          "filename": { "type": "string", "minLength": 1 },
+          "storageKey": { "type": "string" },
+          "storage": { "type": "string" },
+          "mimeType": { "type": "string" },
+          "width": { "type": "integer", "minimum": 0 },
+          "height": { "type": "integer", "minimum": 0 }
+        },
+        "x-fileType": "image",
+        "x-upload": true,
+        "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+        "x-mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp"],
+        "x-imageMaxWidth": 1920,
+        "x-imageMaxHeight": 1080
+      },
+      "uniqueItems": true,
+      "description": "List of Images"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "description": "File URL (uploaded file).",
+        "properties": {
+          "filename": { "type": "string", "minLength": 1 },
+          "size": { "type": "integer", "minimum": 0 },
+          "storageKey": { "type": "string" },
+          "storage": { "type": "string" },
+          "mimeType": { "type": "string" }
+        },
+        "x-fileType": "file",
+        "x-upload": true,
+        "x-allowedExtensions": [".pdf", ".tex", ".txt", ".doc", ".docx", ".xls", ".xlsx", ".csv", ".zip"],
+        "x-mimeTypes": [
+          "application/pdf", "application/x-tex", "text/plain",
+          "application/msword",
+          "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "application/vnd.ms-excel",
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+          "text/csv", "application/zip"
+        ],
+        "x-maxFileSize": 10485760
+      },
+      "uniqueItems": true,
+      "description": "List of Files"
+    },
+    "fileUploadSchema": {
+      "type": "object",
+      "title": "file",
+      "description": "Some description here",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" }
+      },
+      "x-fileType": "file",
+      "x-upload": true,
+      "x-allowedExtensions": [".pdf", ".tex", ".txt", ".epub", ".doc", ".docx", ".xls", ".xlsx", ".csv", ".zip"],
+      "x-mimeTypes": [
+        "application/pdf", "application/x-tex", "text/plain", "application/epub+zip",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        "application/vnd.ms-excel",
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "text/csv", "application/zip"
+      ],
+      "x-maxFileSize": 10485760
+    },
+    "imageUploadSchema": {
+      "type": "object",
+      "title": "Image",
+      "description": "Some description here",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-fileType": "image",
+      "x-upload": true,
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp"],
+      "x-imageMaxWidth": 1920,
+      "x-imageMaxHeight": 1080
+    },
+    "audioUploadSchema": {
+      "type": "object",
+      "title": "audio",
+      "description": "Upload an audio file",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" }
+      },
+      "x-fileType": "audio",
+      "x-upload": true,
+      "x-allowedExtensions": [".mp3", ".wav", ".ogg", ".m4a", ".flac"],
+      "x-mimeTypes": ["audio/mpeg", "audio/wav", "audio/ogg", "audio/mp4", "audio/flac"],
+      "x-maxFileSize": 20971520
+    },
+    "videoUploadSchema": {
+      "type": "object",
+      "title": "video",
+      "description": "Upload a video file",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" }
+      },
+      "x-fileType": "video",
+      "x-upload": true,
+      "x-allowedExtensions": [".mp4", ".mov", ".avi", ".webm"],
+      "x-mimeTypes": ["video/mp4", "video/quicktime", "video/x-msvideo", "video/webm"],
+      "x-maxFileSize": 104857600
+    },
+    "uriUrlOnlySchema": {
+      "type": "object",
+      "title": "cover_image",
+      "description": "Paste an image URL (e.g. https://images.unsplash.com/photo-...)",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-fileType": "image",
+      "x-upload": false
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last updated timestamp"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["full_name"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}
