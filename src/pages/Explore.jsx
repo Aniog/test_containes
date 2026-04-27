@@ -1,6 +1,7 @@
 import { exploreCategories, posts, trendingTopics } from '../data/mockData';
 import PostCard from '../components/PostCard';
 import SpotlightCard from '../components/SpotlightCard';
+import SpotlightFeed from '../components/SpotlightFeed';
 import { Hash } from 'lucide-react';
 
 export default function Explore() {
@@ -48,11 +49,11 @@ export default function Explore() {
         <SpotlightCard className="glass mb-4" style={{ padding: '1rem 1.25rem' }} borderRadius="1rem">
           <h2 className="text-sm font-semibold text-white">精选内容</h2>
         </SpotlightCard>
-        <div className="space-y-0">
+        <SpotlightFeed>
           {[...posts].reverse().map(post => (
             <PostCard key={post.id} post={post} />
           ))}
-        </div>
+        </SpotlightFeed>
       </main>
 
       <div className="hidden lg:block w-72 flex-shrink-0" />

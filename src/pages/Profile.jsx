@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { currentUser, posts } from '../data/mockData';
 import PostCard from '../components/PostCard';
 import SpotlightCard from '../components/SpotlightCard';
+import SpotlightFeed from '../components/SpotlightFeed';
 import { MapPin, Link as LinkIcon, Grid, List } from 'lucide-react';
 
 const userPosts = posts.filter(p => p.user.id !== currentUser.id).slice(0, 3).concat(
@@ -92,11 +93,11 @@ export default function Profile() {
 
       {/* Content */}
       {tab === 'posts' && (
-        <div className="space-y-0">
+        <SpotlightFeed>
           {userPosts.map(post => (
             <PostCard key={post.id} post={post} />
           ))}
-        </div>
+        </SpotlightFeed>
       )}
 
       {tab === 'media' && (

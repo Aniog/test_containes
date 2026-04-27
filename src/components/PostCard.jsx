@@ -21,6 +21,7 @@ export default function PostCard({ post }) {
       className="glass-card mb-3"
       style={{ padding: '1.25rem' }}
       borderRadius="1rem"
+      showSurfaceGlow={false}
     >
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
