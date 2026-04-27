@@ -1,5 +1,6 @@
 import { exploreCategories, posts, trendingTopics } from '../data/mockData';
 import PostCard from '../components/PostCard';
+import SpotlightCard from '../components/SpotlightCard';
 import { Hash } from 'lucide-react';
 
 export default function Explore() {
@@ -7,24 +8,26 @@ export default function Explore() {
     <div className="flex gap-6 max-w-5xl mx-auto">
       <main className="flex-1 min-w-0">
         {/* Categories */}
-        <div className="glass rounded-2xl p-5 mb-4">
+        <SpotlightCard className="glass mb-4" style={{ padding: '1.25rem' }} borderRadius="1rem">
           <h2 className="text-sm font-semibold text-white mb-4">发现话题</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {exploreCategories.map(cat => (
-              <button
+              <SpotlightCard
                 key={cat.id}
-                className={`relative overflow-hidden rounded-xl p-4 text-left transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-br ${cat.gradient}`}
+                className={`relative overflow-hidden cursor-pointer transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] bg-gradient-to-br ${cat.gradient}`}
+                style={{ padding: '1rem', borderRadius: '0.75rem' }}
+                borderRadius="0.75rem"
               >
                 <div className="text-2xl mb-1">{cat.emoji}</div>
                 <p className="text-sm font-semibold text-white">{cat.name}</p>
                 <p className="text-xs text-white/70">{cat.count} 帖子</p>
-              </button>
+              </SpotlightCard>
             ))}
           </div>
-        </div>
+        </SpotlightCard>
 
         {/* Trending Tags */}
-        <div className="glass rounded-2xl p-5 mb-4">
+        <SpotlightCard className="glass mb-4" style={{ padding: '1.25rem' }} borderRadius="1rem">
           <h2 className="text-sm font-semibold text-white mb-3">热门标签</h2>
           <div className="flex flex-wrap gap-2">
             {trendingTopics.map(topic => (
@@ -39,12 +42,12 @@ export default function Explore() {
               </button>
             ))}
           </div>
-        </div>
+        </SpotlightCard>
 
         {/* Explore Posts */}
-        <div className="glass rounded-2xl px-5 py-4 mb-4">
+        <SpotlightCard className="glass mb-4" style={{ padding: '1rem 1.25rem' }} borderRadius="1rem">
           <h2 className="text-sm font-semibold text-white">精选内容</h2>
-        </div>
+        </SpotlightCard>
         <div className="space-y-0">
           {[...posts].reverse().map(post => (
             <PostCard key={post.id} post={post} />
@@ -52,7 +55,6 @@ export default function Explore() {
         </div>
       </main>
 
-      {/* Right side spacer for layout consistency */}
       <div className="hidden lg:block w-72 flex-shrink-0" />
     </div>
   );

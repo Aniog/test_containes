@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Search, TrendingUp, UserPlus } from 'lucide-react';
 import { suggestedUsers, trendingTopics } from '../data/mockData';
+import SpotlightCard from './SpotlightCard';
 
 export default function RightPanel() {
   const [search, setSearch] = useState('');
@@ -13,19 +14,21 @@ export default function RightPanel() {
   return (
     <aside className="hidden lg:flex flex-col gap-4 w-72 flex-shrink-0">
       {/* Search */}
-      <div className="glass rounded-2xl px-4 py-3 flex items-center gap-3">
-        <Search size={16} className="text-white/40 flex-shrink-0" />
-        <input
-          type="text"
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-          placeholder="搜索..."
-          className="flex-1 bg-transparent text-sm text-white placeholder-white/30 outline-none"
-        />
-      </div>
+      <SpotlightCard className="glass" style={{ padding: '0.75rem 1rem' }} borderRadius="1rem">
+        <div className="flex items-center gap-3">
+          <Search size={16} className="text-white/40 flex-shrink-0" />
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="搜索..."
+            className="flex-1 bg-transparent text-sm text-white placeholder-white/30 outline-none"
+          />
+        </div>
+      </SpotlightCard>
 
       {/* Trending */}
-      <div className="glass rounded-2xl p-4">
+      <SpotlightCard className="glass" style={{ padding: '1rem' }} borderRadius="1rem">
         <div className="flex items-center gap-2 mb-4">
           <TrendingUp size={15} className="text-purple-400" />
           <span className="text-sm font-semibold text-white">热门话题</span>
@@ -43,10 +46,10 @@ export default function RightPanel() {
             </div>
           ))}
         </div>
-      </div>
+      </SpotlightCard>
 
       {/* Suggested Users */}
-      <div className="glass rounded-2xl p-4">
+      <SpotlightCard className="glass" style={{ padding: '1rem' }} borderRadius="1rem">
         <div className="flex items-center gap-2 mb-4">
           <UserPlus size={15} className="text-pink-400" />
           <span className="text-sm font-semibold text-white">推荐关注</span>
@@ -77,7 +80,7 @@ export default function RightPanel() {
             </div>
           ))}
         </div>
-      </div>
+      </SpotlightCard>
 
       {/* Footer */}
       <p className="text-xs text-white/20 px-1">

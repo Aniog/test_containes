@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { zhCN } from 'date-fns/locale';
+import SpotlightCard from './SpotlightCard';
 
 export default function PostCard({ post }) {
   const [liked, setLiked] = useState(post.liked);
@@ -16,7 +17,11 @@ export default function PostCard({ post }) {
   const timeAgo = formatDistanceToNow(new Date(post.time), { addSuffix: true, locale: zhCN });
 
   return (
-    <article className="glass-card rounded-2xl p-5 mb-3">
+    <SpotlightCard
+      className="glass-card mb-3"
+      style={{ padding: '1.25rem' }}
+      borderRadius="1rem"
+    >
       {/* Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
@@ -83,6 +88,6 @@ export default function PostCard({ post }) {
           </button>
         </div>
       </div>
-    </article>
+    </SpotlightCard>
   );
 }

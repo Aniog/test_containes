@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { currentUser, posts } from '../data/mockData';
 import PostCard from '../components/PostCard';
+import SpotlightCard from '../components/SpotlightCard';
 import { MapPin, Link as LinkIcon, Grid, List } from 'lucide-react';
 
 const userPosts = posts.filter(p => p.user.id !== currentUser.id).slice(0, 3).concat(
@@ -23,7 +24,7 @@ export default function Profile() {
       </div>
 
       {/* Profile Card */}
-      <div className="glass rounded-2xl p-5 mb-4 -mt-6 mx-2 relative z-10">
+      <SpotlightCard className="glass mb-4 -mt-6 mx-2 relative z-10" style={{ padding: '1.25rem' }} borderRadius="1rem">
         <div className="flex items-end justify-between mb-4">
           <img
             src={currentUser.avatar}
@@ -66,7 +67,7 @@ export default function Profile() {
             </div>
           ))}
         </div>
-      </div>
+      </SpotlightCard>
 
       {/* Tabs */}
       <div className="glass rounded-2xl p-1 mb-4 flex gap-1">
