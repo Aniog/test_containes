@@ -128,7 +128,7 @@ export default function TodoApp() {
                 >
                   <button
                     onClick={() => toggleTodo(todo.id)}
-                    className="flex-shrink-0 text-white/40 hover:text-violet-400 transition-colors"
+                    className="flex-shrink-0 text-white/40 hover:text-emerald-400 transition-colors"
                     aria-label={todo.completed ? 'Mark as active' : 'Mark as completed'}
                   >
                     {todo.completed
