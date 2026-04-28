@@ -53,16 +53,16 @@ export default function TodoApp() {
   const completedCount = todos.filter(t => t.completed).length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-950 via-indigo-950 to-slate-900 flex items-start justify-center pt-16 pb-16 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-950 via-emerald-950 to-slate-900 flex items-start justify-center pt-16 pb-16 px-4">
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="bg-violet-500 rounded-xl p-2.5">
+          <div className="bg-emerald-500 rounded-xl p-2.5">
             <ClipboardList className="w-6 h-6 text-white" />
           </div>
           <div>
             <h1 className="text-3xl font-bold text-white tracking-tight">My Tasks</h1>
-            <p className="text-violet-300 text-sm mt-0.5">
+            <p className="text-emerald-300 text-sm mt-0.5">
               {activeCount} task{activeCount !== 1 ? 's' : ''} remaining
             </p>
           </div>
@@ -76,12 +76,12 @@ export default function TodoApp() {
             onChange={e => setInput(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Add a new task..."
-            className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent transition text-sm"
+            className="flex-1 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition text-sm"
           />
           <button
             onClick={addTodo}
             disabled={!input.trim()}
-            className="bg-violet-500 hover:bg-violet-400 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl px-4 py-3 transition-colors flex items-center gap-1.5 font-medium text-sm"
+            className="bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-white rounded-xl px-4 py-3 transition-colors flex items-center gap-1.5 font-medium text-sm"
           >
             <Plus className="w-4 h-4" />
             Add
