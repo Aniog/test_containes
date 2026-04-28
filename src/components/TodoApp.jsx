@@ -132,7 +132,7 @@ export default function TodoApp() {
                     aria-label={todo.completed ? 'Mark as active' : 'Mark as completed'}
                   >
                     {todo.completed
-                      ? <CheckCircle2 className="w-5 h-5 text-violet-400" />
+                      ? <CheckCircle2 className="w-5 h-5 text-emerald-400" />
                       : <Circle className="w-5 h-5" />
                     }
                   </button>
