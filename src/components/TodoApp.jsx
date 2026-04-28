@@ -96,7 +96,7 @@ export default function TodoApp() {
               onClick={() => setFilter(f)}
               className={`flex-1 py-2 rounded-lg text-sm font-medium transition-all ${
                 filter === f
-                  ? 'bg-violet-500 text-white shadow'
+                  ? 'bg-emerald-500 text-white shadow'
                   : 'text-white/50 hover:text-white/80'
               }`}
             >
