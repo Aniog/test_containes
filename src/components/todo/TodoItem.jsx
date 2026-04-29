@@ -6,7 +6,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
       className={`group flex items-center gap-3 p-4 rounded-xl border transition-all duration-200 ${
         todo.completed
           ? 'bg-gray-800/50 border-gray-700/50'
-          : 'bg-gray-800 border-gray-700 hover:border-indigo-500/50'
+          : 'bg-gray-800 border-gray-700 hover:border-green-500/50'
       }`}
     >
       <button
