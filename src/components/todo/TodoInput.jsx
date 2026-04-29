@@ -19,12 +19,12 @@ const TodoInput = ({ onAdd }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a new task..."
-        className="flex-1 px-4 py-3 rounded-xl border border-slate-200 bg-white text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent transition"
+        className="flex-1 px-4 py-3 rounded-xl border border-yellow-200 bg-white text-slate-800 placeholder-yellow-400 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition"
       />
       <button
         type="submit"
         disabled={!text.trim()}
-        className="flex items-center gap-1.5 px-5 py-3 bg-violet-600 hover:bg-violet-700 disabled:bg-violet-300 text-white text-sm font-semibold rounded-xl transition-colors"
+        className="flex items-center gap-1.5 px-5 py-3 bg-yellow-400 hover:bg-yellow-500 disabled:bg-yellow-200 text-yellow-900 disabled:text-yellow-400 text-sm font-semibold rounded-xl transition-colors"
       >
         <Plus className="w-4 h-4" />
         Add

@@ -42,30 +42,30 @@ const TodoApp = () => {
   const activeCount = todos.filter((t) => !t.completed).length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-violet-50 via-white to-indigo-50 flex items-start justify-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 via-amber-50 to-orange-50 flex items-start justify-center px-4 py-12">
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2.5 bg-violet-600 rounded-2xl shadow-lg shadow-violet-200">
-            <CheckCircle2 className="w-6 h-6 text-white" />
+          <div className="p-2.5 bg-yellow-400 rounded-2xl shadow-lg shadow-yellow-200">
+            <CheckCircle2 className="w-6 h-6 text-yellow-900" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-slate-800 leading-tight">My Tasks</h1>
-            <p className="text-sm text-slate-500">
+            <h1 className="text-2xl font-bold text-yellow-900 leading-tight">My Tasks</h1>
+            <p className="text-sm text-yellow-700">
               {activeCount} task{activeCount !== 1 ? 's' : ''} remaining
             </p>
           </div>
         </div>
 
         {/* Card */}
-        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-slate-200/60 border border-slate-100 overflow-hidden">
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-yellow-200/60 border border-yellow-100 overflow-hidden">
           {/* Input section */}
-          <div className="p-5 border-b border-slate-100">
+          <div className="p-5 border-b border-yellow-100">
             <TodoInput onAdd={addTodo} />
           </div>
 
           {/* Filter section */}
-          <div className="px-5 py-3 border-b border-slate-100 bg-slate-50/50">
+          <div className="px-5 py-3 border-b border-yellow-100 bg-yellow-50/50">
             <TodoFilter
               filter={filter}
               onChange={setFilter}
@@ -85,7 +85,7 @@ const TodoApp = () => {
 
           {/* Footer stats */}
           {todos.length > 0 && (
-            <div className="px-5 py-3 border-t border-slate-100 bg-slate-50/50 flex justify-between text-xs text-slate-400">
+            <div className="px-5 py-3 border-t border-yellow-100 bg-yellow-50/50 flex justify-between text-xs text-yellow-600">
               <span>{todos.length} total</span>
               <span>{completedCount} completed</span>
             </div>

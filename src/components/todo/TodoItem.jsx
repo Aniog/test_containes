@@ -8,8 +8,8 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
         aria-label={todo.completed ? 'Mark as incomplete' : 'Mark as complete'}
         className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
           todo.completed
-            ? 'bg-violet-600 border-violet-600'
-            : 'border-slate-300 hover:border-violet-400'
+            ? 'bg-yellow-400 border-yellow-400'
+            : 'border-slate-300 hover:border-yellow-400'
         }`}
       >
         {todo.completed && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
