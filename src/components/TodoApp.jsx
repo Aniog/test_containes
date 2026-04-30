@@ -46,11 +46,11 @@ export default function TodoApp() {
   const completedCount = todos.filter((t) => t.completed).length
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-50 to-pink-100 flex items-start justify-center pt-16 pb-16 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-green-100 via-emerald-50 to-teal-100 flex items-start justify-center pt-16 pb-16 px-4">
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-5xl font-extrabold tracking-widest text-indigo-600 uppercase drop-shadow-sm">
+          <h1 className="text-5xl font-extrabold tracking-widest text-green-600 uppercase drop-shadow-sm">
             Todo
           </h1>
           <p className="text-gray-500 mt-1 text-sm">Stay organised, stay productive</p>
