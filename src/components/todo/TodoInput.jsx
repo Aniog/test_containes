@@ -19,11 +19,11 @@ const TodoInput = ({ onAdd }) => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="What needs to be done?"
-        className="flex-1 px-4 py-3 rounded-xl border border-slate-600 bg-slate-800 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
+        className="flex-1 px-4 py-3 rounded-xl border border-yellow-300 bg-white text-yellow-900 placeholder-yellow-400 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition"
       />
       <button
         type="submit"
-        className="flex items-center gap-2 px-5 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-xl transition-colors disabled:opacity-50"
+        className="flex items-center gap-2 px-5 py-3 bg-yellow-400 hover:bg-yellow-300 text-yellow-900 font-semibold rounded-xl transition-colors disabled:opacity-50"
         disabled={!text.trim()}
       >
         <Plus className="w-5 h-5" />

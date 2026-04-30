@@ -33,21 +33,21 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-start justify-center px-4 py-16">
+    <div className="min-h-screen bg-yellow-50 flex items-start justify-center px-4 py-16">
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-indigo-600 rounded-xl">
-            <CheckSquare className="w-7 h-7 text-white" />
+          <div className="p-2 bg-yellow-400 rounded-xl">
+            <CheckSquare className="w-7 h-7 text-yellow-900" />
           </div>
           <div>
-            <h1 className="text-3xl font-bold text-white tracking-tight">My Tasks</h1>
-            <p className="text-slate-400 text-sm mt-0.5">Stay organised, get things done</p>
+            <h1 className="text-3xl font-bold text-yellow-900 tracking-tight">My Tasks</h1>
+            <p className="text-yellow-700 text-sm mt-0.5">Stay organised, get things done</p>
           </div>
         </div>
 
         {/* Card */}
-        <div className="bg-slate-850 border border-slate-700 rounded-2xl p-6 shadow-2xl" style={{ backgroundColor: '#1a2235' }}>
+        <div className="border border-yellow-200 rounded-2xl p-6 shadow-2xl" style={{ backgroundColor: '#fffbeb' }}>
           <TodoInput onAdd={handleAdd} />
           <TodoList
             todos={todos}
