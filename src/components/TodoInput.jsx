@@ -26,7 +26,7 @@ export default function TodoInput({ onAdd }) {
       <button
         type="submit"
         disabled={!value.trim()}
-        className="flex items-center justify-center w-9 h-9 rounded-full bg-indigo-500 hover:bg-indigo-600 disabled:bg-gray-200 disabled:cursor-not-allowed text-white transition-colors flex-shrink-0"
+        className="flex items-center justify-center w-9 h-9 rounded-full bg-green-500 hover:bg-green-600 disabled:bg-gray-200 disabled:cursor-not-allowed text-white transition-colors flex-shrink-0"
         aria-label="Add todo"
       >
         <Plus className="w-5 h-5" />
