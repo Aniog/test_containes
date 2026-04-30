@@ -9,8 +9,8 @@ export default function TodoItem({ todo, onToggle, onDelete }) {
         aria-label={todo.completed ? 'Mark as active' : 'Mark as completed'}
         className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors ${
           todo.completed
-            ? 'bg-indigo-500 border-indigo-500'
-            : 'border-gray-300 hover:border-indigo-400'
+            ? 'bg-green-500 border-green-500'
+            : 'border-gray-300 hover:border-green-400'
         }`}
       >
         {todo.completed && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}
