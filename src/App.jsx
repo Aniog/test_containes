@@ -15,10 +15,10 @@ function TodoItem({ todo, onToggle, onDelete }) {
       <button
         onClick={() => onToggle(todo.id)}
         aria-label={todo.completed ? 'Mark as active' : 'Mark as completed'}
-        className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-1 ${
+        className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-1 ${
           todo.completed
-            ? 'bg-gradient-to-br from-indigo-400 to-purple-500 border-transparent'
-            : 'border-slate-300 hover:border-indigo-400'
+            ? 'bg-gradient-to-br from-green-400 to-emerald-500 border-transparent'
+            : 'border-slate-300 hover:border-green-400'
         }`}
       >
         {todo.completed && (
@@ -114,11 +114,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex flex-col items-center px-4 py-12">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50 flex flex-col items-center px-4 py-12">
       {/* Header */}
       <div className="w-full max-w-lg mb-8 text-center">
         <h1 className="text-4xl font-bold tracking-tight text-slate-800">
-          My <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600">Tasks</span>
+          My <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-600">Tasks</span>
         </h1>
         <p className="text-slate-500 mt-2 text-sm">
           {activeCount === 0
