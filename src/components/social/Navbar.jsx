@@ -17,17 +17,29 @@ export default function Navbar({ active, setActive }) {
 
         {/* Logo */}
         <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-7 h-7 rounded-lg lg-btn-primary flex items-center justify-center">
+          <div
+            className="w-7 h-7 rounded-xl flex items-center justify-center"
+            style={{
+              background: 'linear-gradient(135deg, rgba(160,100,255,0.9), rgba(220,60,140,0.9))',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.4), 0 4px 12px rgba(140,60,220,0.5)',
+              border: '1px solid rgba(255,255,255,0.25)',
+            }}
+          >
             <Zap className="w-4 h-4 text-white" fill="white" />
           </div>
-          <span className="text-shimmer font-bold text-lg hidden sm:block tracking-tight">Lumina</span>
+          <span className="text-shimmer font-bold text-lg hidden sm:block" style={{ letterSpacing: '-0.03em' }}>
+            Lumina
+          </span>
         </div>
 
-        {/* Search */}
-        <div className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl lg-input transition-all duration-300 ${focused ? 'w-64' : 'w-44'}`}>
-          <Search className="w-3.5 h-3.5 text-white/40 flex-shrink-0" />
+        {/* Search — glass pill */}
+        <div
+          className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full lg-input transition-all duration-300 ${focused ? 'w-60' : 'w-40'}`}
+        >
+          <Search className="w-3.5 h-3.5 flex-shrink-0" style={{ color: 'rgba(255,255,255,0.35)' }} />
           <input
-            className="bg-transparent text-sm text-white/80 placeholder-white/30 outline-none w-full"
+            className="bg-transparent text-sm outline-none w-full"
+            style={{ color: 'rgba(255,255,255,0.85)', caretColor: '#a78bfa' }}
             placeholder="搜索..."
             onFocus={() => setFocused(true)}
             onBlur={() => setFocused(false)}
@@ -40,13 +52,21 @@ export default function Navbar({ active, setActive }) {
             <button
               key={label}
               onClick={() => setActive(label)}
-              className={`relative p-2 rounded-xl transition-all duration-200 font-medium text-sm
-                ${active === label ? 'lg-btn-primary' : 'lg-btn-ghost'}`}
               title={label}
+              className={`relative p-2 rounded-xl transition-all duration-200 ${
+                active === label ? 'lg-btn-primary' : 'lg-btn-ghost'
+              }`}
             >
               <Icon className="w-[18px] h-[18px]" />
               {badge && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-0.5 rounded-full bg-pink-500 text-white text-[9px] font-bold flex items-center justify-center border border-white/20">
+                <span
+                  className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 px-0.5 rounded-full text-white text-[9px] font-bold flex items-center justify-center"
+                  style={{
+                    background: 'linear-gradient(135deg, #f43f5e, #ec4899)',
+                    boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 6px rgba(244,63,94,0.5)',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                  }}
+                >
                   {badge}
                 </span>
               )}
@@ -54,8 +74,22 @@ export default function Navbar({ active, setActive }) {
           ))}
 
           {/* Avatar */}
-          <div className="ml-1 story-ring w-8 h-8 rounded-full cursor-pointer flex-shrink-0">
-            <div className="w-full h-full rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
+          <div
+            className="ml-1 flex-shrink-0 cursor-pointer"
+            style={{
+              padding: '2.5px',
+              background: 'conic-gradient(from 0deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4, #f59e0b)',
+              borderRadius: '9999px',
+              boxShadow: '0 0 10px rgba(139,92,246,0.45)',
+            }}
+          >
+            <div
+              className="w-7 h-7 rounded-full flex items-center justify-center text-white text-xs font-bold"
+              style={{
+                background: 'linear-gradient(135deg, #7c3aed, #db2777)',
+                border: '2px solid #04000f',
+              }}
+            >
               我
             </div>
           </div>
