@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Game Deals",
+  "type": "object",
+  "properties": {
+    "game_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the game"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["steam", "epic", "nintendo", "playstation", "xbox"],
+      "description": "Gaming platform store"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre (e.g. RPG, Action, Strategy)"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price in USD"
+    },
+    "sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sale price in USD"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "cover_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Game cover image URL"
+    },
+    "store_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the store page"
+    },
+    "deal_end_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the deal expires"
+    },
+    "is_free": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is currently free"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short game description"
+    }
+  },
+  "required": ["game_name", "platform", "discount_percent"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
