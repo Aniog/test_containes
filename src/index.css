@@ -10,8 +10,8 @@
 
 body {
   margin: 0;
-  background: #0a0a0f;
-  color: rgba(255,255,255,0.88);
+  background: #f0eeff;
+  color: #2a2640;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -20,23 +20,25 @@ body {
 
   /* Navbar */
   .lg-surface {
-    background: rgba(12, 12, 18, 0.72);
-    backdrop-filter: blur(40px) saturate(160%);
-    -webkit-backdrop-filter: blur(40px) saturate(160%);
-    border-bottom: 1px solid rgba(255,255,255,0.07);
-    box-shadow: inset 0 -1px 0 rgba(255,255,255,0.04);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(40px) saturate(180%);
+    -webkit-backdrop-filter: blur(40px) saturate(180%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.70);
+    box-shadow:
+      inset 0 -1px 0 rgba(180, 160, 240, 0.12),
+      0 2px 20px rgba(160, 140, 220, 0.08);
   }
 
   /* Card */
   .lg-card {
-    background: rgba(255,255,255,0.04);
-    backdrop-filter: blur(32px) saturate(140%);
-    -webkit-backdrop-filter: blur(32px) saturate(140%);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.52);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.80);
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.10),
-      0 1px 3px rgba(0,0,0,0.3),
-      0 8px 24px rgba(0,0,0,0.2);
+      inset 0 1px 0 rgba(255, 255, 255, 0.90),
+      0 2px 12px rgba(160, 140, 220, 0.10),
+      0 8px 32px rgba(140, 120, 200, 0.08);
     position: relative;
   }
   .lg-card::before {
@@ -44,7 +46,7 @@ body {
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    background: linear-gradient(170deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+    background: linear-gradient(165deg, rgba(255,255,255,0.45) 0%, transparent 55%);
     pointer-events: none;
     z-index: 1;
   }
@@ -52,76 +54,82 @@ body {
 
   /* Pill */
   .lg-pill {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.07);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+    background: rgba(255, 255, 255, 0.60);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.80);
   }
 
-  /* Primary button */
+  /* Primary button — soft mint */
   .lg-btn-primary {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.16);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.20);
-    color: rgba(255,255,255,0.92);
-    font-weight: 500;
+    background: linear-gradient(135deg, rgba(134,210,185,0.85) 0%, rgba(110,190,210,0.85) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.55),
+      0 2px 12px rgba(110,190,180,0.30);
+    color: #1a4a42;
+    font-weight: 600;
     transition: all 0.15s ease;
   }
   .lg-btn-primary:hover {
-    background: rgba(255,255,255,0.18);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    background: linear-gradient(135deg, rgba(144,220,195,0.90) 0%, rgba(120,200,220,0.90) 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.60),
+      0 4px 16px rgba(110,190,180,0.40);
+    transform: translateY(-0.5px);
   }
-  .lg-btn-primary:active { background: rgba(255,255,255,0.10); }
+  .lg-btn-primary:active { transform: translateY(0.5px); }
 
   /* Ghost button */
   .lg-btn-ghost {
-    background: transparent;
-    border: 1px solid transparent;
-    color: rgba(255,255,255,0.45);
+    background: rgba(255, 255, 255, 0.40);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    color: #6b6490;
     transition: all 0.15s ease;
   }
   .lg-btn-ghost:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.75);
+    background: rgba(255, 255, 255, 0.65);
+    color: #3d3660;
   }
 
   /* Input */
   .lg-input {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.2);
+    background: rgba(255, 255, 255, 0.50);
+    border: 1px solid rgba(255, 255, 255, 0.70);
+    box-shadow: inset 0 1px 3px rgba(160,140,220,0.06);
     transition: all 0.2s ease;
   }
   .lg-input:focus-within {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.18);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.15), 0 0 0 2px rgba(255,255,255,0.05);
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(160, 200, 190, 0.70);
+    box-shadow: inset 0 1px 3px rgba(160,140,220,0.05), 0 0 0 3px rgba(134,210,185,0.18);
   }
 
-  /* Story ring */
+  /* Story ring — active */
   .story-ring {
     padding: 2px;
-    background: rgba(255,255,255,0.55);
+    background: linear-gradient(135deg, #a8d8c8 0%, #b8c8f0 50%, #e8b8d8 100%);
     border-radius: 9999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(160,180,220,0.25);
   }
-  .story-ring > * { border: 2px solid #0a0a0f; border-radius: 9999px; }
+  .story-ring > * { border: 2px solid #f0eeff; border-radius: 9999px; }
 
+  /* Story ring — seen */
   .story-ring-seen {
     padding: 2px;
-    background: rgba(255,255,255,0.12);
+    background: rgba(180, 170, 210, 0.25);
     border-radius: 9999px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
-  .story-ring-seen > * { border: 2px solid #0a0a0f; border-radius: 9999px; }
+  .story-ring-seen > * { border: 2px solid #f0eeff; border-radius: 9999px; }
 
   /* Shimmer text */
   .text-shimmer {
-    background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 50%, rgba(255,255,255,0.95) 100%);
+    background: linear-gradient(90deg, #7ab8a8 0%, #9898d0 40%, #c898b8 70%, #7ab8a8 100%);
     background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
@@ -130,7 +138,7 @@ body {
   }
 }
 
-/* Background blobs */
+/* Blob animations */
 @keyframes blob-drift-a {
   0%, 100% { transform: translate(0,0) scale(1); }
   50%       { transform: translate(30px,-20px) scale(1.06); }
@@ -159,4 +167,4 @@ body {
 
 ::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.10); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: rgba(160,140,220,0.20); border-radius: 3px; }

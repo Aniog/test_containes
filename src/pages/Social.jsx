@@ -93,8 +93,11 @@ export default function Social() {
           {/* Compose */}
           <div className="lg-card rounded-2xl p-4">
             <div className="flex gap-3 mb-3">
-              <div className="story-ring w-9 h-9 rounded-full flex-shrink-0">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-violet-500 to-pink-500 flex items-center justify-center text-white text-xs font-bold">
+              <div className="story-ring flex-shrink-0">
+                <div
+                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold"
+                  style={{ background: 'rgba(200,185,240,0.50)', color: '#4a3880' }}
+                >
                   我
                 </div>
               </div>
@@ -103,18 +106,23 @@ export default function Social() {
                 onChange={e => setDraft(e.target.value)}
                 placeholder="分享你的精彩瞬间..."
                 rows={2}
-                className="flex-1 bg-transparent text-white/80 placeholder-white/30 text-sm outline-none resize-none leading-relaxed"
+                className="flex-1 bg-transparent text-sm outline-none resize-none leading-relaxed"
+                style={{ color: '#4a4468' }}
               />
             </div>
-            <div className="flex items-center justify-between pt-3 border-t border-white/8">
+            <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(160,140,220,0.10)' }}>
               <div className="flex gap-1.5">
                 {[
-                  { icon: Image, color: 'text-violet-400', label: '图片' },
-                  { icon: Smile, color: 'text-pink-400',   label: '表情' },
-                  { icon: Hash,  color: 'text-amber-400',  label: '话题' },
-                ].map(({ icon: Icon, color, label }) => (
-                  <button key={label} className="lg-btn-ghost px-2.5 py-1.5 rounded-xl flex items-center gap-1.5 text-xs text-white/55">
-                    <Icon className={`w-3.5 h-3.5 ${color}`} />
+                  { icon: Image, label: '图片',  color: '#7ab8a8' },
+                  { icon: Smile, label: '表情',  color: '#c898b8' },
+                  { icon: Hash,  label: '话题',  color: '#8898d0' },
+                ].map(({ icon: Icon, label, color }) => (
+                  <button
+                    key={label}
+                    className="lg-btn-ghost px-2.5 py-1.5 rounded-xl flex items-center gap-1.5 text-xs"
+                    style={{ color: '#8a84a8' }}
+                  >
+                    <Icon className="w-3.5 h-3.5" style={{ color }} />
                     <span className="hidden sm:inline">{label}</span>
                   </button>
                 ))}
@@ -122,7 +130,7 @@ export default function Social() {
               <button
                 onClick={publish}
                 disabled={!draft.trim()}
-                className="lg-btn-primary px-4 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 disabled:opacity-35 disabled:cursor-not-allowed"
+                className="lg-btn-primary px-4 py-1.5 rounded-xl text-xs flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <Send className="w-3.5 h-3.5" />
                 发布
