@@ -5,7 +5,7 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
     <div className={`flex items-center gap-3 p-4 rounded-xl border transition-all duration-200 group
       ${todo.completed
         ? 'bg-gray-800/50 border-gray-700/50'
-        : 'bg-gray-800 border-gray-700 hover:border-indigo-500/50'
+        : 'bg-gray-800 border-gray-700 hover:border-green-500/50'
       }`}
     >
       <button
@@ -13,8 +13,8 @@ const TodoItem = ({ todo, onToggle, onDelete }) => {
         aria-label={todo.completed ? 'Mark as incomplete' : 'Mark as complete'}
         className={`flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-200
           ${todo.completed
-            ? 'bg-indigo-500 border-indigo-500'
-            : 'border-gray-500 hover:border-indigo-400 bg-transparent'
+            ? 'bg-green-500 border-green-500'
+            : 'border-gray-500 hover:border-green-400 bg-transparent'
           }`}
       >
         {todo.completed && <Check className="w-3.5 h-3.5 text-white" strokeWidth={3} />}

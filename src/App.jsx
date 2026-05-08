@@ -46,7 +46,7 @@ function App() {
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2.5 bg-indigo-600 rounded-xl">
+          <div className="p-2.5 bg-green-600 rounded-xl">
             <ClipboardList className="w-6 h-6 text-white" />
           </div>
           <div>
