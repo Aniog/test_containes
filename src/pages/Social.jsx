@@ -78,72 +78,65 @@ export default function Social() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 pt-[72px] pb-10">
-      <div className="grid grid-cols-1 lg:grid-cols-[256px_1fr_240px] gap-4">
+    <div className="max-w-5xl mx-auto pt-14">
+      <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_244px]">
 
-        {/* Left */}
+        {/* Left sidebar */}
         <aside className="hidden lg:block">
-          <div className="sticky top-[72px]"><ProfileSidebar /></div>
+          <div className="sticky top-14 h-[calc(100vh-56px)] overflow-y-auto px-4 py-4" style={{ scrollbarWidth: 'none' }}>
+            <ProfileSidebar />
+          </div>
         </aside>
 
-        {/* Feed */}
-        <main className="space-y-4 min-w-0">
+        {/* Feed — bordered column */}
+        <main className="min-w-0" style={{ borderLeft: '1px solid rgba(140,110,220,0.10)', borderRight: '1px solid rgba(140,110,220,0.10)' }}>
           <Stories />
 
           {/* Compose */}
-          <div className="lg-card rounded-2xl p-4">
-            <div className="flex gap-3 mb-3">
+          <div className="compose-area px-4 py-3">
+            <div className="flex gap-3">
               <div className="story-ring flex-shrink-0">
-                <div
-                  className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-semibold"
-                  style={{ background: 'rgba(200,185,240,0.50)', color: '#4a3880' }}
-                >
-                  我
+                <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold"
+                  style={{ background: 'rgba(155,110,240,0.38)', color: '#2a0868' }}>我</div>
+              </div>
+              <div className="flex-1">
+                <textarea
+                  value={draft}
+                  onChange={e => setDraft(e.target.value)}
+                  placeholder="分享你的精彩瞬间..."
+                  rows={2}
+                  className="bare-input text-sm leading-relaxed mb-2"
+                />
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-0.5 -ml-2">
+                    {[
+                      { icon: Image, label: '图片', color: '#3ec8a0' },
+                      { icon: Smile, label: '表情', color: '#ee60b0' },
+                      { icon: Hash,  label: '话题', color: '#50aae0' },
+                    ].map(({ icon: Icon, label, color }) => (
+                      <button key={label} className="action-btn" style={{ color: '#a898c8' }}>
+                        <Icon className="w-3.5 h-3.5" style={{ color }} />
+                        <span className="hidden sm:inline">{label}</span>
+                      </button>
+                    ))}
+                  </div>
+                  <button onClick={publish} disabled={!draft.trim()}
+                    className="pill-btn pill-btn-primary flex items-center gap-1.5">
+                    <Send className="w-3 h-3" />发布
+                  </button>
                 </div>
               </div>
-              <textarea
-                value={draft}
-                onChange={e => setDraft(e.target.value)}
-                placeholder="分享你的精彩瞬间..."
-                rows={2}
-                className="flex-1 bg-transparent text-sm outline-none resize-none leading-relaxed"
-                style={{ color: '#4a4468' }}
-              />
-            </div>
-            <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(160,140,220,0.10)' }}>
-              <div className="flex gap-1.5">
-                {[
-                  { icon: Image, label: '图片',  color: '#7ab8a8' },
-                  { icon: Smile, label: '表情',  color: '#c898b8' },
-                  { icon: Hash,  label: '话题',  color: '#8898d0' },
-                ].map(({ icon: Icon, label, color }) => (
-                  <button
-                    key={label}
-                    className="lg-btn-ghost px-2.5 py-1.5 rounded-xl flex items-center gap-1.5 text-xs"
-                    style={{ color: '#8a84a8' }}
-                  >
-                    <Icon className="w-3.5 h-3.5" style={{ color }} />
-                    <span className="hidden sm:inline">{label}</span>
-                  </button>
-                ))}
-              </div>
-              <button
-                onClick={publish}
-                disabled={!draft.trim()}
-                className="lg-btn-primary px-4 py-1.5 rounded-xl text-xs flex items-center gap-1.5 disabled:opacity-40 disabled:cursor-not-allowed"
-              >
-                <Send className="w-3.5 h-3.5" />
-                发布
-              </button>
             </div>
           </div>
 
           {posts.map((p, i) => <PostCard key={p.id} post={p} idx={i} />)}
         </main>
 
-        {/* Right */}
+        {/* Right sidebar */}
         <aside className="hidden lg:block">
-          <div className="sticky top-[72px]"><RightSidebar /></div>
+          <div className="sticky top-14 h-[calc(100vh-56px)] overflow-y-auto px-4 py-4" style={{ scrollbarWidth: 'none' }}>
+            <RightSidebar />
+          </div>
         </aside>
       </div>
     </div>
