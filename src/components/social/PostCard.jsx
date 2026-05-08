@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, MapPin, Send } from 'lucide-react';
 
-// Soft pastel avatar tints
 const AVATAR_TINTS = [
-  { bg: 'rgba(168,220,200,0.45)', color: '#1a5a48' },
-  { bg: 'rgba(240,190,210,0.45)', color: '#6a2040' },
-  { bg: 'rgba(180,210,240,0.45)', color: '#1a3a6a' },
-  { bg: 'rgba(200,185,240,0.45)', color: '#3a2070' },
-  { bg: 'rgba(250,220,180,0.45)', color: '#6a3a10' },
-  { bg: 'rgba(200,230,180,0.45)', color: '#2a4a18' },
+  { bg: 'rgba(60,200,160,0.38)',  color: '#0a3828' },
+  { bg: 'rgba(238,100,165,0.35)', color: '#5a0830' },
+  { bg: 'rgba(80,165,240,0.38)',  color: '#0a2858' },
+  { bg: 'rgba(155,110,240,0.38)', color: '#2a0868' },
+  { bg: 'rgba(245,185,60,0.38)',  color: '#5a2800' },
+  { bg: 'rgba(80,210,120,0.38)',  color: '#0a3818' },
 ];
 
 export default function PostCard({ post, idx }) {
@@ -45,22 +44,22 @@ export default function PostCard({ post, idx }) {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-semibold" style={{ color: '#2a2640', letterSpacing: '-0.01em' }}>
+              <span className="text-sm font-semibold" style={{ color: '#221e40', letterSpacing: '-0.01em' }}>
                 {post.author}
               </span>
               {post.verified && (
                 <span
                   className="w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(134,210,185,0.80), rgba(160,190,230,0.80))',
+                    background: 'linear-gradient(135deg, rgba(60,200,160,0.85), rgba(80,170,230,0.85))',
                     border: '1px solid rgba(255,255,255,0.70)',
-                    color: '#1a4a42',
+                    color: '#0a3828',
                     boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.60)',
                   }}
                 >✓</span>
               )}
             </div>
-            <div className="flex items-center gap-1 mt-0.5 text-[11px]" style={{ color: '#a09ac0' }}>
+            <div className="flex items-center gap-1 mt-0.5 text-[11px]" style={{ color: '#8878b8' }}>
               {post.location && (
                 <><MapPin className="w-2.5 h-2.5" /><span>{post.location}</span><span>·</span></>
               )}
@@ -76,7 +75,7 @@ export default function PostCard({ post, idx }) {
       {/* Text */}
       {post.text && (
         <div className="px-4 pb-3">
-          <p className="text-sm leading-relaxed" style={{ color: '#4a4468' }}>{post.text}</p>
+          <p className="text-sm leading-relaxed" style={{ color: '#3a3460' }}>{post.text}</p>
           {post.tags?.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-2">
               {post.tags.map(t => (
@@ -84,9 +83,9 @@ export default function PostCard({ post, idx }) {
                   key={t}
                   className="text-xs px-2 py-0.5 rounded-full cursor-pointer"
                   style={{
-                    background: 'rgba(160,190,230,0.20)',
-                    color: '#5a70b0',
-                    border: '1px solid rgba(160,190,230,0.30)',
+                    background: 'rgba(80,150,240,0.15)',
+                    color: '#3860c0',
+                    border: '1px solid rgba(80,150,240,0.28)',
                   }}
                 >
                   #{t}
@@ -103,25 +102,25 @@ export default function PostCard({ post, idx }) {
           className="mx-4 mb-3 rounded-xl overflow-hidden flex items-center justify-center"
           style={{
             height: 180,
-            background: 'linear-gradient(135deg, rgba(168,220,200,0.20) 0%, rgba(180,210,240,0.20) 50%, rgba(240,190,210,0.20) 100%)',
-            border: '1px solid rgba(255,255,255,0.70)',
+            background: 'linear-gradient(135deg, rgba(60,200,160,0.18) 0%, rgba(80,165,240,0.18) 50%, rgba(238,100,165,0.18) 100%)',
+            border: '1px solid rgba(255,255,255,0.75)',
           }}
         >
           <div className="text-center">
             <div className="text-4xl mb-1.5">{post.emoji ?? '✨'}</div>
-            <span className="text-xs" style={{ color: '#a09ac0' }}>{post.imgCaption ?? '精彩瞬间'}</span>
+            <span className="text-xs" style={{ color: '#8878b8' }}>{post.imgCaption ?? '精彩瞬间'}</span>
           </div>
         </div>
       )}
 
       {/* Actions */}
       <div className="px-4 pb-4">
-        <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(160,140,220,0.10)' }}>
+        <div className="flex items-center justify-between pt-3" style={{ borderTop: '1px solid rgba(140,110,220,0.12)' }}>
           <div className="flex items-center gap-5">
             <button
               onClick={handleLike}
               className="flex items-center gap-1.5 transition-colors duration-150"
-              style={{ color: liked ? '#e06080' : '#b0a8c8' }}
+              style={{ color: liked ? '#e83878' : '#9888c0' }}
             >
               <Heart className={`w-[17px] h-[17px] ${popAnim ? 'like-pop' : ''}`} fill={liked ? 'currentColor' : 'none'} />
               <span className="text-xs font-medium">{fmtNum(likes)}</span>
@@ -130,13 +129,13 @@ export default function PostCard({ post, idx }) {
             <button
               onClick={() => setShowCmt(v => !v)}
               className="flex items-center gap-1.5 transition-colors duration-150"
-              style={{ color: showCmt ? '#7090c0' : '#b0a8c8' }}
+              style={{ color: showCmt ? '#3878d0' : '#9888c0' }}
             >
               <MessageCircle className="w-[17px] h-[17px]" />
               <span className="text-xs font-medium">{post.comments}</span>
             </button>
 
-            <button className="flex items-center gap-1.5" style={{ color: '#b0a8c8' }}>
+            <button className="flex items-center gap-1.5" style={{ color: '#9888c0' }}>
               <Share2 className="w-[17px] h-[17px]" />
               <span className="text-xs font-medium">{post.shares}</span>
             </button>
@@ -145,33 +144,32 @@ export default function PostCard({ post, idx }) {
           <button
             onClick={() => setSaved(v => !v)}
             className="transition-colors duration-150"
-            style={{ color: saved ? '#9070c0' : '#b0a8c8' }}
+            style={{ color: saved ? '#7848d8' : '#9888c0' }}
           >
             <Bookmark className="w-[17px] h-[17px]" fill={saved ? 'currentColor' : 'none'} />
           </button>
         </div>
 
-        {/* Comments */}
         {showCmt && (
           <div className="mt-3 space-y-2">
             {post.commentList?.map((c, i) => (
               <div key={i} className="flex gap-2 items-start">
                 <div
                   className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium flex-shrink-0 mt-0.5"
-                  style={{ background: 'rgba(200,185,240,0.35)', color: '#4a3880' }}
+                  style={{ background: 'rgba(155,110,240,0.28)', color: '#2a0868' }}
                 >
                   {c.user[0]}
                 </div>
                 <div className="lg-pill rounded-xl px-3 py-1.5 flex-1">
-                  <span className="text-xs font-semibold" style={{ color: '#3d3660' }}>{c.user} </span>
-                  <span className="text-xs" style={{ color: '#7a7498' }}>{c.text}</span>
+                  <span className="text-xs font-semibold" style={{ color: '#2e2860' }}>{c.user} </span>
+                  <span className="text-xs" style={{ color: '#6858a0' }}>{c.text}</span>
                 </div>
               </div>
             ))}
             <div className="flex gap-2 items-center mt-1">
               <div
                 className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-medium flex-shrink-0"
-                style={{ background: 'rgba(200,185,240,0.35)', color: '#4a3880' }}
+                style={{ background: 'rgba(155,110,240,0.28)', color: '#2a0868' }}
               >我</div>
               <div className="flex-1 flex items-center gap-2 lg-input rounded-xl px-3 py-1.5">
                 <input
@@ -179,11 +177,11 @@ export default function PostCard({ post, idx }) {
                   onChange={e => setCmtText(e.target.value)}
                   placeholder="写下评论..."
                   className="bg-transparent text-xs outline-none flex-1"
-                  style={{ color: '#4a4468' }}
+                  style={{ color: '#3a3460' }}
                 />
                 <button
                   disabled={!cmtText.trim()}
-                  style={{ color: cmtText.trim() ? '#7090c0' : '#c0b8d8' }}
+                  style={{ color: cmtText.trim() ? '#3878d0' : '#b0a8d0' }}
                 >
                   <Send className="w-3.5 h-3.5" />
                 </button>
