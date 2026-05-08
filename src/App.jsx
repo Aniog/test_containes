@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage'
 import NewsPage from './pages/NewsPage'
 import DealsPage from './pages/DealsPage'
 import ArticleDetailPage from './pages/ArticleDetailPage'
+import FavoriteGamePage from './pages/FavoriteGamePage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:id" element={<ArticleDetailPage />} />
           <Route path="/deals" element={<DealsPage />} />
+          <Route path="/favorites" element={<FavoriteGamePage />} />
         </Routes>
       </Layout>
     </BrowserRouter>

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "submitter_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the visitor submitting their favorite games"
+    },
+    "submitter_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the visitor (optional)"
+    },
+    "game_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the favorite game"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["steam", "epic", "nintendo", "playstation", "xbox", "mobile", "other"],
+      "description": "Platform the game is played on"
+    },
+    "play_time_hours": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total hours played"
+    },
+    "last_play_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the game was last played"
+    },
+    "reason": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Why the visitor likes this game"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Personal rating out of 5 stars"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre (e.g. RPG, FPS, Strategy)"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the visitor would recommend this game to others"
+    }
+  },
+  "required": ["game_name", "platform", "reason"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}

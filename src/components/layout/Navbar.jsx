@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, Gamepad2, Zap } from 'lucide-react'
+import { Menu, X, Gamepad2, Zap, Heart } from 'lucide-react'
 
 const navLinks = [
   { to: '/', label: 'Home' },
   { to: '/news', label: 'News & Articles' },
   { to: '/deals', label: 'Deals' },
+  { to: '/favorites', label: 'Favorite Games' },
 ]
 
 export default function Navbar() {
