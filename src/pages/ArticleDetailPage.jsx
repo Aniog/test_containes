@@ -13,9 +13,9 @@ export default function ArticleDetailPage() {
     return (
       <div className="max-w-3xl mx-auto px-4 py-20 text-center">
         <div className="text-5xl mb-4">📄</div>
-        <h2 className="text-white text-2xl font-bold mb-2">Article Not Found</h2>
-        <p className="text-gray-400 mb-6">The article you're looking for doesn't exist.</p>
-        <Link to="/news" className="text-indigo-400 hover:text-indigo-300 font-medium">
+        <h2 className="text-slate-900 text-2xl font-bold mb-2">Article Not Found</h2>
+        <p className="text-slate-500 mb-6">The article you're looking for doesn't exist.</p>
+        <Link to="/news" className="text-blue-600 hover:text-blue-700 font-medium">
           ← Back to News
         </Link>
       </div>
@@ -34,7 +34,7 @@ export default function ArticleDetailPage() {
           {/* Back link */}
           <Link
             to="/news"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white text-sm mb-6 transition-colors"
+            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 text-sm mb-6 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to News
@@ -56,13 +56,13 @@ export default function ArticleDetailPage() {
           </div>
 
           {/* Title */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight mb-4">
             {article.title}
           </h1>
 
           {/* Meta */}
-          <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400 mb-6 pb-6 border-b border-white/10">
-            <span className="font-semibold text-white">{article.author}</span>
+          <div className="flex flex-wrap items-center gap-4 text-sm text-slate-400 mb-6 pb-6 border-b border-slate-200">
+            <span className="font-semibold text-slate-700">{article.author}</span>
             <span className="flex items-center gap-1.5">
               <Clock className="w-4 h-4" />
               {format(new Date(article.published_at), 'MMMM d, yyyy')}
@@ -74,29 +74,29 @@ export default function ArticleDetailPage() {
           </div>
 
           {/* Summary */}
-          <p className="text-gray-300 text-lg leading-relaxed mb-6 font-medium">
+          <p className="text-slate-700 text-lg leading-relaxed mb-6 font-medium">
             {article.summary}
           </p>
 
           {/* Content */}
           <div className="prose prose-invert max-w-none">
-            <p className="text-gray-400 leading-relaxed text-base">
+            <p className="text-slate-600 leading-relaxed text-base">
               {article.content}
             </p>
-            <p className="text-gray-400 leading-relaxed text-base mt-4">
+            <p className="text-slate-600 leading-relaxed text-base mt-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </p>
-            <p className="text-gray-400 leading-relaxed text-base mt-4">
+            <p className="text-slate-600 leading-relaxed text-base mt-4">
               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
           </div>
 
           {/* Tags */}
           {article.tags && article.tags.length > 0 && (
-            <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-white/10">
-              <Tag className="w-4 h-4 text-gray-500 mt-0.5" />
+            <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-slate-200">
+              <Tag className="w-4 h-4 text-slate-400 mt-0.5" />
               {article.tags.map(tag => (
-                <span key={tag} className="bg-gray-800 text-gray-300 text-xs px-3 py-1 rounded-full">
+                <span key={tag} className="bg-slate-100 text-slate-600 text-xs px-3 py-1 rounded-full">
                   {tag}
                 </span>
               ))}
@@ -107,8 +107,8 @@ export default function ArticleDetailPage() {
         {/* Sidebar */}
         <div className="space-y-6">
           {/* Related articles */}
-          <div className="bg-gray-900 border border-white/10 rounded-2xl p-5">
-            <h3 className="text-white font-bold text-base mb-4">Related Articles</h3>
+          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 className="text-slate-900 font-bold text-base mb-4">Related Articles</h3>
             <div className="space-y-4">
               {related.map(rel => (
                 <Link
@@ -127,7 +127,7 @@ export default function ArticleDetailPage() {
                     <div className="flex gap-1 mb-1">
                       <CategoryBadge category={rel.category} />
                     </div>
-                    <p className="text-white text-xs font-semibold leading-snug line-clamp-2 group-hover:text-indigo-300 transition-colors">
+                    <p className="text-slate-900 text-xs font-semibold leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
                       {rel.title}
                     </p>
                   </div>
@@ -137,15 +137,15 @@ export default function ArticleDetailPage() {
           </div>
 
           {/* Platform info */}
-          <div className="bg-gray-900 border border-white/10 rounded-2xl p-5">
-            <h3 className="text-white font-bold text-base mb-3">Browse Platform</h3>
+          <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 className="text-slate-900 font-bold text-base mb-3">Browse Platform</h3>
             <Link
               to={`/deals?platform=${article.platform}`}
-              className="flex items-center justify-between bg-indigo-600/20 border border-indigo-500/30 rounded-xl px-4 py-3 hover:bg-indigo-600/30 transition-colors"
+              className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 hover:bg-blue-100 transition-colors"
             >
               <div>
                 <PlatformBadge platform={article.platform} size="lg" />
-                <p className="text-gray-400 text-xs mt-1">View all deals</p>
+                <p className="text-slate-500 text-xs mt-1">View all deals</p>
               </div>
               <ArrowLeft className="w-4 h-4 text-indigo-400 rotate-180" />
             </Link>

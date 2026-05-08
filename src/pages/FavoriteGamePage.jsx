@@ -9,7 +9,7 @@ const PLATFORMS = [
   { id: 'playstation', label: 'PlayStation', color: 'bg-blue-900/60 border-blue-400/50 text-blue-300' },
   { id: 'xbox', label: 'Xbox', color: 'bg-green-900/60 border-green-400/50 text-green-300' },
   { id: 'mobile', label: 'Mobile', color: 'bg-purple-900/60 border-purple-400/50 text-purple-300' },
-  { id: 'other', label: 'Other', color: 'bg-gray-700 border-gray-500/50 text-gray-300' },
+  { id: 'other', label: 'Other', color: 'bg-slate-600 border-slate-400/50 text-white' },
 ]
 
 const GENRES = [
@@ -46,13 +46,13 @@ function StarRating({ value, onChange }) {
             className={`w-7 h-7 transition-colors ${
               star <= (hovered || value)
                 ? 'text-yellow-400 fill-yellow-400'
-                : 'text-gray-600'
+                : 'text-slate-400'
             }`}
           />
         </button>
       ))}
       {value > 0 && (
-        <span className="ml-2 text-sm text-gray-400 self-center">{value}/5</span>
+        <span className="ml-2 text-sm text-slate-500 self-center">{value}/5</span>
       )}
     </div>
   )
@@ -64,7 +64,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
 
   return (
     <div className={`border rounded-2xl overflow-hidden transition-all ${
-      isValid ? 'border-indigo-500/40 bg-indigo-950/20' : 'border-white/10 bg-gray-900'
+      isValid ? 'border-blue-400/50 bg-blue-50' : 'border-slate-200 bg-white'
     }`}>
       {/* Card header */}
       <button
@@ -74,16 +74,16 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
       >
         <div className="flex items-center gap-3">
           <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-            isValid ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-400'
+            isValid ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'
           }`}>
             {isValid ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
           </div>
           <div className="text-left">
-            <p className="text-white font-semibold text-sm">
+            <p className="text-slate-900 font-semibold text-sm">
               {game.game_name || `Game #${index + 1}`}
             </p>
             {game.platform && (
-              <p className="text-xs text-gray-400">{platform?.label}</p>
+              <p className="text-xs text-slate-500">{platform?.label}</p>
             )}
           </div>
         </div>
@@ -92,24 +92,24 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
             <button
               type="button"
               onClick={e => { e.stopPropagation(); onRemove() }}
-              className="p-1.5 rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-red-500 hover:bg-red-50 transition-colors"
             >
               <Trash2 className="w-4 h-4" />
             </button>
           )}
           {isExpanded
-            ? <ChevronUp className="w-4 h-4 text-gray-400" />
-            : <ChevronDown className="w-4 h-4 text-gray-400" />
+            ? <ChevronUp className="w-4 h-4 text-slate-400" />
+            : <ChevronDown className="w-4 h-4 text-slate-400" />
           }
         </div>
       </button>
 
       {/* Card body */}
       {isExpanded && (
-        <div className="px-5 pb-6 space-y-5 border-t border-white/10 pt-5">
+        <div className="px-5 pb-6 space-y-5 border-t border-slate-200 pt-5">
           {/* Game name */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Game Name <span className="text-red-400">*</span>
             </label>
             <input
@@ -117,13 +117,13 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               value={game.game_name}
               onChange={e => onChange('game_name', e.target.value)}
               placeholder="e.g. The Witcher 3: Wild Hunt"
-              className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
             />
           </div>
 
           {/* Platform */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
+            <label className="block text-sm font-medium text-slate-700 mb-2">
               Platform <span className="text-red-400">*</span>
             </label>
             <div className="flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
                   className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
                     game.platform === p.id
                       ? p.color + ' scale-105 shadow-md'
-                      : 'bg-gray-800 border-white/10 text-gray-400 hover:border-white/30 hover:text-white'
+                      : 'bg-slate-100 border-slate-200 text-slate-600 hover:border-slate-400 hover:text-slate-900'
                   }`}
                 >
                   {p.label}
@@ -147,11 +147,11 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
           {/* Genre + Play time row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">Genre</label>
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">Genre</label>
               <select
                 value={game.genre}
                 onChange={e => onChange('genre', e.target.value)}
-                className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-blue-500 transition-colors cursor-pointer"
               >
                 <option value="">Select genre...</option>
                 {GENRES.map(g => (
@@ -160,7 +160,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">
                 Play Time (hours)
               </label>
               <input
@@ -170,32 +170,32 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
                 value={game.play_time_hours}
                 onChange={e => onChange('play_time_hours', e.target.value)}
                 placeholder="e.g. 120"
-                className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
 
           {/* Last play date */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">Last Play Date</label>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">Last Play Date</label>
             <input
               type="date"
               value={game.last_play_date}
               onChange={e => onChange('last_play_date', e.target.value)}
               max={new Date().toISOString().split('T')[0]}
-              className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 transition-colors [color-scheme:dark]"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-blue-500 transition-colors"
             />
           </div>
 
           {/* Rating */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Your Rating</label>
+            <label className="block text-sm font-medium text-slate-700 mb-2">Your Rating</label>
             <StarRating value={game.rating} onChange={v => onChange('rating', v)} />
           </div>
 
           {/* Reason */}
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1.5">
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
               Why do you love this game? <span className="text-red-400">*</span>
             </label>
             <textarea
@@ -204,9 +204,9 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               placeholder="Tell us what makes this game special to you..."
               rows={3}
               maxLength={1000}
-              className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none"
             />
-            <p className="text-right text-xs text-gray-600 mt-1">{game.reason.length}/1000</p>
+            <p className="text-right text-xs text-slate-400 mt-1">{game.reason.length}/1000</p>
           </div>
 
           {/* Would recommend */}
@@ -215,14 +215,14 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               type="button"
               onClick={() => onChange('would_recommend', !game.would_recommend)}
               className={`relative w-11 h-6 rounded-full transition-colors ${
-                game.would_recommend ? 'bg-indigo-600' : 'bg-gray-700'
+                game.would_recommend ? 'bg-blue-600' : 'bg-slate-300'
               }`}
             >
               <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
                 game.would_recommend ? 'translate-x-5' : 'translate-x-0'
               }`} />
             </button>
-            <span className="text-sm text-gray-300">
+            <span className="text-sm text-slate-700">
               I would recommend this game to others
             </span>
           </div>
@@ -304,18 +304,18 @@ export default function FavoriteGamePage() {
   if (status === 'success') {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-20 text-center">
-        <div className="bg-gray-900 border border-green-500/30 rounded-3xl p-10">
+        <div className="bg-white border border-green-300 rounded-3xl p-10 shadow-lg">
           <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-10 h-10 text-green-400" />
           </div>
-          <h2 className="text-2xl font-extrabold text-white mb-3">Thanks, {submitterName}!</h2>
-          <p className="text-gray-400 mb-2">
-            You've shared <span className="text-white font-semibold">{submittedCount} favorite game{submittedCount > 1 ? 's' : ''}</span> with the GamePulse community.
+          <h2 className="text-2xl font-extrabold text-slate-900 mb-3">Thanks, {submitterName}!</h2>
+          <p className="text-slate-500 mb-2">
+            You've shared <span className="text-slate-900 font-semibold">{submittedCount} favorite game{submittedCount > 1 ? 's' : ''}</span> with the GamePulse community.
           </p>
-          <p className="text-gray-500 text-sm mb-8">Your picks help other gamers discover great titles!</p>
+          <p className="text-slate-400 text-sm mb-8">Your picks help other gamers discover great titles!</p>
           <button
             onClick={handleReset}
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
+            className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
           >
             Share More Games
           </button>
@@ -329,26 +329,26 @@ export default function FavoriteGamePage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 bg-indigo-600/30 border border-indigo-500/40 rounded-xl flex items-center justify-center">
+          <div className="w-10 h-10 bg-blue-100 border border-blue-300 rounded-xl flex items-center justify-center">
             <Gamepad2 className="w-5 h-5 text-indigo-400" />
           </div>
-          <h1 className="text-3xl font-extrabold text-white">Favorite Games</h1>
+          <h1 className="text-3xl font-extrabold text-slate-900">Favorite Games</h1>
         </div>
-        <p className="text-gray-400">
+        <p className="text-slate-500">
           Share the games you love with the GamePulse community. You can add multiple games at once!
         </p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Submitter info */}
-        <div className="bg-gray-900 border border-white/10 rounded-2xl p-5 space-y-4">
-          <h2 className="text-white font-semibold text-base flex items-center gap-2">
-            <span className="w-6 h-6 bg-indigo-600 rounded-full text-xs flex items-center justify-center font-bold">1</span>
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 space-y-4 shadow-sm">
+          <h2 className="text-slate-900 font-semibold text-base flex items-center gap-2">
+            <span className="w-6 h-6 bg-blue-600 rounded-full text-xs flex items-center justify-center font-bold text-white">1</span>
             About You
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">
                 Your Name <span className="text-red-400">*</span>
               </label>
               <input
@@ -356,19 +356,19 @@ export default function FavoriteGamePage() {
                 value={submitterName}
                 onChange={e => setSubmitterName(e.target.value)}
                 placeholder="e.g. Alex Chen"
-                className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                Email <span className="text-gray-600 font-normal">(optional)</span>
+              <label className="block text-sm font-medium text-slate-700 mb-1.5">
+                Email <span className="text-slate-400 font-normal">(optional)</span>
               </label>
               <input
                 type="email"
                 value={submitterEmail}
                 onChange={e => setSubmitterEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full bg-gray-800 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
               />
             </div>
           </div>
@@ -376,10 +376,10 @@ export default function FavoriteGamePage() {
 
         {/* Games section */}
         <div className="space-y-3">
-          <h2 className="text-white font-semibold text-base flex items-center gap-2">
-            <span className="w-6 h-6 bg-indigo-600 rounded-full text-xs flex items-center justify-center font-bold">2</span>
+          <h2 className="text-slate-900 font-semibold text-base flex items-center gap-2">
+            <span className="w-6 h-6 bg-blue-600 rounded-full text-xs flex items-center justify-center font-bold text-white">2</span>
             Your Favorite Games
-            <span className="ml-auto text-xs text-gray-500 font-normal">
+            <span className="ml-auto text-xs text-slate-400 font-normal">
               {validGames.length}/{games.length} complete
             </span>
           </h2>
@@ -401,7 +401,7 @@ export default function FavoriteGamePage() {
           <button
             type="button"
             onClick={addGame}
-            className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-white/15 hover:border-indigo-500/50 rounded-2xl py-4 text-gray-500 hover:text-indigo-400 text-sm font-medium transition-all hover:bg-indigo-500/5"
+            className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-blue-400 rounded-2xl py-4 text-slate-400 hover:text-blue-600 text-sm font-medium transition-all hover:bg-blue-50"
           >
             <Plus className="w-4 h-4" />
             Add Another Game
@@ -417,7 +417,7 @@ export default function FavoriteGamePage() {
 
         {/* Submit */}
         <div className="flex items-center justify-between pt-2">
-          <p className="text-xs text-gray-600">
+          <p className="text-xs text-slate-400">
             {validGames.length === 0
               ? 'Fill in at least one game to submit'
               : `Ready to submit ${validGames.length} game${validGames.length > 1 ? 's' : ''}`
@@ -426,7 +426,7 @@ export default function FavoriteGamePage() {
           <button
             type="submit"
             disabled={!canSubmit || status === 'submitting'}
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 disabled:bg-gray-700 disabled:text-gray-500 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-xl transition-colors"
           >
             {status === 'submitting' ? (
               <>

@@ -54,12 +54,12 @@ export default function PlatformGrid() {
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h2 className="text-2xl sm:text-3xl font-bold text-white">Browse by Platform</h2>
-          <p className="text-gray-400 mt-1">Find deals and news from your favorite store</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900">Browse by Platform</h2>
+          <p className="text-slate-500 mt-1">Find deals and news from your favorite store</p>
         </div>
         <Link
           to="/deals"
-          className="hidden sm:flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 text-sm font-medium transition-colors"
+          className="hidden sm:flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
         >
           All Deals <ArrowRight className="w-4 h-4" />
         </Link>

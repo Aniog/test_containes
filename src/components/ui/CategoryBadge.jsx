@@ -1,9 +1,9 @@
 export default function CategoryBadge({ category }) {
   const styles = {
-    news: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-    blog: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    review: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
-    article: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+    news: 'bg-yellow-100 text-yellow-700 border-yellow-300',
+    blog: 'bg-purple-100 text-purple-700 border-purple-300',
+    review: 'bg-cyan-100 text-cyan-700 border-cyan-300',
+    article: 'bg-emerald-100 text-emerald-700 border-emerald-300',
   }
   const labels = {
     news: 'News',
@@ -12,7 +12,7 @@ export default function CategoryBadge({ category }) {
     article: 'Article',
   }
 
-  const style = styles[category] || 'bg-gray-500/20 text-gray-300 border-gray-500/30'
+  const style = styles[category] || 'bg-slate-100 text-slate-600 border-slate-300'
   const label = labels[category] || category
 
   return (
