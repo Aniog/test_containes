@@ -1,74 +1,58 @@
 import { useState } from 'react';
-import { Home, Search, Bell, MessageCircle, Compass, Leaf } from 'lucide-react';
-
-const NAV = [
-  { icon: Home,          label: '首页' },
-  { icon: Compass,       label: '发现' },
-  { icon: MessageCircle, label: '消息', badge: 4 },
-  { icon: Bell,          label: '通知', badge: 2 },
-];
+import { Home, Compass, Bell, Search, Leaf } from 'lucide-react';
 
 export default function Navbar({ active, setActive }) {
-  const [focused, setFocused] = useState(false);
+  const [q, setQ] = useState('');
 
   return (
-    <header className="nav-glass fixed inset-x-0 top-0 z-50 h-14">
-      <div className="max-w-5xl mx-auto h-full flex items-center justify-between px-5 gap-4">
+    <header className="nav fixed inset-x-0 top-0 z-50 h-13" style={{ height: 52 }}>
+      <div style={{ maxWidth: 960, margin: '0 auto', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 20px', gap: 16 }}>
 
-        <div className="flex items-center gap-2 flex-shrink-0">
-          <div className="w-7 h-7 rounded-xl flex items-center justify-center" style={{
-            background: 'linear-gradient(135deg, #3ec8a0, #50aae0)',
-            boxShadow: '0 2px 10px rgba(62,200,160,0.38)',
-          }}>
-            <Leaf className="w-3.5 h-3.5" style={{ color: '#fff' }} />
+        {/* Logo */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
+          <div style={{ width: 28, height: 28, borderRadius: 10, background: '#6c5ce7', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Leaf size={14} color="#fff" />
           </div>
-          <span className="font-bold text-base hidden sm:block" style={{ color: '#2a2060', letterSpacing: '-0.03em' }}>
-            Lumina
-          </span>
+          <span style={{ fontWeight: 700, fontSize: 15, color: '#111118', letterSpacing: '-0.03em' }}>Lumina</span>
         </div>
 
         {/* Search */}
-        <div className={`hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full transition-all duration-300 ${focused ? 'w-56' : 'w-36'}`}
-          style={{ background: 'rgba(140,110,220,0.08)', border: '1px solid rgba(140,110,220,0.14)' }}>
-          <Search className="w-3.5 h-3.5 flex-shrink-0" style={{ color: '#a898c8' }} />
+        <div style={{ flex: 1, maxWidth: 240, display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(108,92,231,0.07)', borderRadius: 9999, padding: '6px 14px', border: '1px solid rgba(108,92,231,0.10)' }}>
+          <Search size={13} color="#b0a8c8" />
           <input
-            className="bg-transparent text-sm outline-none w-full"
-            style={{ color: '#2a2060' }}
-            placeholder="搜索..."
-            onFocus={() => setFocused(true)}
-            onBlur={() => setFocused(false)}
+            value={q}
+            onChange={e => setQ(e.target.value)}
+            placeholder="搜索"
+            style={{ background: 'transparent', border: 'none', outline: 'none', fontSize: 13, color: '#111118', width: '100%', fontFamily: 'inherit' }}
           />
         </div>
 
-        <nav className="flex items-center gap-0.5">
-          {NAV.map(({ icon: Icon, label, badge }) => (
-            <button
-              key={label}
-              onClick={() => setActive(label)}
-              title={label}
-              className="relative p-2 rounded-xl transition-all duration-150"
+        {/* Nav icons */}
+        <nav style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          {[
+            { icon: Home,    label: '首页' },
+            { icon: Compass, label: '发现' },
+            { icon: Bell,    label: '通知', badge: 2 },
+          ].map(({ icon: Icon, label, badge }) => (
+            <button key={label} onClick={() => setActive(label)} title={label}
               style={{
-                background: active === label ? 'rgba(62,200,160,0.15)' : 'transparent',
-                color: active === label ? '#1a7a58' : '#8878b8',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              <Icon className="w-[18px] h-[18px]" />
+                position: 'relative', padding: '7px 10px', borderRadius: 10, border: 'none', cursor: 'pointer', fontFamily: 'inherit',
+                background: active === label ? 'rgba(108,92,231,0.10)' : 'transparent',
+                color: active === label ? '#6c5ce7' : '#b0a8c8',
+                transition: 'all 0.12s',
+              }}>
+              <Icon size={18} />
               {badge && (
-                <span className="absolute -top-0.5 -right-0.5 min-w-[15px] h-[15px] px-0.5 rounded-full text-[9px] font-bold flex items-center justify-center"
-                  style={{ background: 'linear-gradient(135deg,#f060a0,#a060e0)', color:'#fff', boxShadow:'0 1px 5px rgba(200,80,200,0.38)' }}>
+                <span style={{ position: 'absolute', top: 4, right: 6, width: 14, height: 14, borderRadius: 9999, background: '#e83878', color: '#fff', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1.5px solid #f7f5ff' }}>
                   {badge}
                 </span>
               )}
             </button>
           ))}
 
-          <div className="ml-2 story-ring cursor-pointer flex-shrink-0">
-            <div className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold"
-              style={{ background: 'rgba(155,110,240,0.40)', color: '#2a0868' }}>
-              我
-            </div>
+          {/* Avatar */}
+          <div style={{ marginLeft: 6, width: 30, height: 30, borderRadius: 9999, background: 'rgba(108,92,231,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#6c5ce7', cursor: 'pointer', flexShrink: 0 }}>
+            我
           </div>
         </nav>
       </div>

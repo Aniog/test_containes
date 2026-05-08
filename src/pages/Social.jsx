@@ -64,8 +64,8 @@ const INITIAL_POSTS = [
 ];
 
 export default function Social() {
-  const [posts, setPosts]     = useState(INITIAL_POSTS);
-  const [draft, setDraft]     = useState('');
+  const [posts, setPosts] = useState(INITIAL_POSTS);
+  const [draft, setDraft] = useState('');
 
   const publish = () => {
     if (!draft.trim()) return;
@@ -78,51 +78,50 @@ export default function Social() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto pt-14">
-      <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_244px]">
+    <div style={{ maxWidth: 960, margin: '0 auto', paddingTop: 52 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr 220px' }}>
 
-        {/* Left sidebar */}
-        <aside className="hidden lg:block">
-          <div className="sticky top-14 h-[calc(100vh-56px)] overflow-y-auto px-4 py-4" style={{ scrollbarWidth: 'none' }}>
+        {/* Left */}
+        <aside style={{ display: 'none' }} className="lg-left">
+          <div style={{ position: 'sticky', top: 52, height: 'calc(100vh - 52px)', overflowY: 'auto', padding: '0 16px 16px', scrollbarWidth: 'none' }}>
             <ProfileSidebar />
           </div>
         </aside>
 
-        {/* Feed — bordered column */}
-        <main className="min-w-0" style={{ borderLeft: '1px solid rgba(140,110,220,0.10)', borderRight: '1px solid rgba(140,110,220,0.10)' }}>
+        {/* Feed */}
+        <main className="feed-col">
           <Stories />
 
           {/* Compose */}
-          <div className="compose-area px-4 py-3">
-            <div className="flex gap-3">
-              <div className="story-ring flex-shrink-0">
-                <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold"
-                  style={{ background: 'rgba(155,110,240,0.38)', color: '#2a0868' }}>我</div>
+          <div className="compose" style={{ padding: '12px 16px' }}>
+            <div style={{ display: 'flex', gap: 12 }}>
+              <div className="s-ring" style={{ flexShrink: 0 }}>
+                <div style={{ width: 34, height: 34, borderRadius: 9999, background: 'rgba(108,92,231,0.14)', color: '#4a3ab0', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700 }}>我</div>
               </div>
-              <div className="flex-1">
+              <div style={{ flex: 1 }}>
                 <textarea
                   value={draft}
                   onChange={e => setDraft(e.target.value)}
-                  placeholder="分享你的精彩瞬间..."
+                  placeholder="分享你的精彩瞬间…"
                   rows={2}
-                  className="bare-input text-sm leading-relaxed mb-2"
+                  className="bare-input"
+                  style={{ fontSize: 14, lineHeight: 1.5, marginBottom: 8 }}
                 />
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-0.5 -ml-2">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', gap: 0, marginLeft: -8 }}>
                     {[
                       { icon: Image, label: '图片', color: '#3ec8a0' },
                       { icon: Smile, label: '表情', color: '#ee60b0' },
-                      { icon: Hash,  label: '话题', color: '#50aae0' },
+                      { icon: Hash,  label: '话题', color: '#6c5ce7' },
                     ].map(({ icon: Icon, label, color }) => (
-                      <button key={label} className="action-btn" style={{ color: '#a898c8' }}>
-                        <Icon className="w-3.5 h-3.5" style={{ color }} />
-                        <span className="hidden sm:inline">{label}</span>
+                      <button key={label} className="act" style={{ fontSize: 12 }}>
+                        <Icon size={14} style={{ color }} />
+                        <span style={{ color: '#b0a8c8' }}>{label}</span>
                       </button>
                     ))}
                   </div>
-                  <button onClick={publish} disabled={!draft.trim()}
-                    className="pill-btn pill-btn-primary flex items-center gap-1.5">
-                    <Send className="w-3 h-3" />发布
+                  <button onClick={publish} disabled={!draft.trim()} className="btn-accent" style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '5px 16px', fontSize: 12 }}>
+                    <Send size={12} />发布
                   </button>
                 </div>
               </div>
@@ -132,9 +131,9 @@ export default function Social() {
           {posts.map((p, i) => <PostCard key={p.id} post={p} idx={i} />)}
         </main>
 
-        {/* Right sidebar */}
-        <aside className="hidden lg:block">
-          <div className="sticky top-14 h-[calc(100vh-56px)] overflow-y-auto px-4 py-4" style={{ scrollbarWidth: 'none' }}>
+        {/* Right */}
+        <aside style={{ display: 'none' }} className="lg-right">
+          <div style={{ position: 'sticky', top: 52, height: 'calc(100vh - 52px)', overflowY: 'auto', padding: '0 16px 16px', scrollbarWidth: 'none' }}>
             <RightSidebar />
           </div>
         </aside>

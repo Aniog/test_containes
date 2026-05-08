@@ -1,144 +1,168 @@
 import { useState } from 'react';
-import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, MapPin, Send } from 'lucide-react';
+import { Heart, MessageCircle, Share2, Bookmark, MoreHorizontal, MapPin, Send, ChevronDown } from 'lucide-react';
 
-const AVATAR_TINTS = [
-  { bg: 'rgba(62,200,160,0.38)',  color: '#0a3828' },
-  { bg: 'rgba(238,96,165,0.35)',  color: '#5a0830' },
-  { bg: 'rgba(80,165,240,0.38)',  color: '#0a2858' },
-  { bg: 'rgba(155,110,240,0.38)', color: '#2a0868' },
-  { bg: 'rgba(245,185,60,0.40)',  color: '#5a2800' },
-  { bg: 'rgba(80,210,120,0.38)',  color: '#0a3818' },
+const TINTS = [
+  { bg: 'rgba(108,92,231,0.14)', color: '#4a3ab0' },
+  { bg: 'rgba(238,96,165,0.14)', color: '#a02060' },
+  { bg: 'rgba(62,200,160,0.16)', color: '#0a5040' },
+  { bg: 'rgba(80,170,240,0.14)', color: '#0a3870' },
+  { bg: 'rgba(245,185,60,0.18)', color: '#6a3800' },
+  { bg: 'rgba(80,210,120,0.16)', color: '#0a4020' },
 ];
 
+const PREVIEW_LEN = 80;
+
 export default function PostCard({ post, idx }) {
+  const [open,    setOpen]    = useState(false);
   const [liked,   setLiked]   = useState(post.liked ?? false);
   const [likes,   setLikes]   = useState(post.likes);
   const [saved,   setSaved]   = useState(false);
-  const [popAnim, setPopAnim] = useState(false);
   const [showCmt, setShowCmt] = useState(false);
   const [cmtText, setCmtText] = useState('');
+  const [popAnim, setPopAnim] = useState(false);
 
-  const tint = AVATAR_TINTS[idx % AVATAR_TINTS.length];
-  const fmtNum = n => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : n;
+  const tint = TINTS[idx % TINTS.length];
+  const fmt  = n => n >= 1000 ? (n / 1000).toFixed(1) + 'K' : n;
+  const needsExpand = post.text?.length > PREVIEW_LEN || post.hasImage || post.tags?.length;
 
-  const handleLike = () => {
+  const handleLike = (e) => {
+    e.stopPropagation();
     setLiked(v => !v);
     setLikes(v => liked ? v - 1 : v + 1);
     if (!liked) { setPopAnim(true); setTimeout(() => setPopAnim(false), 300); }
   };
 
-  return (
-    <article className="post-row px-4 py-4" style={{ borderBottom: '1px solid rgba(140,110,220,0.10)' }}>
-      <div className="flex gap-3">
+  const handleToggle = () => { if (needsExpand) setOpen(v => !v); };
 
-        {/* Avatar column */}
-        <div className="flex-shrink-0 flex flex-col items-center">
-          <div className={post.hasStory ? 'story-ring' : 'story-ring-seen'}>
-            <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold"
-              style={{ background: tint.bg, color: tint.color }}>
+  return (
+    <article
+      className={`post${open ? ' expanded' : ''}`}
+      onClick={handleToggle}
+      style={{ padding: '14px 16px' }}
+    >
+      <div style={{ display: 'flex', gap: 12 }}>
+
+        {/* Avatar + thread line */}
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0 }}>
+          <div className={post.hasStory ? 's-ring' : 's-ring-seen'}>
+            <div style={{ width: 36, height: 36, borderRadius: 9999, background: tint.bg, color: tint.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700 }}>
               {post.author[0]}
             </div>
           </div>
-          {/* Thread line */}
-          {showCmt && <div className="w-px flex-1 mt-2" style={{ background: 'rgba(140,110,220,0.15)', minHeight: 24 }} />}
+          {open && showCmt && <div className="thread-line" style={{ flex: 1, minHeight: 20 }} />}
         </div>
 
-        {/* Content column */}
-        <div className="flex-1 min-w-0">
+        {/* Content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
 
-          {/* Header */}
-          <div className="flex items-start justify-between mb-1">
-            <div className="flex items-center gap-1.5 flex-wrap">
-              <span className="text-sm font-semibold" style={{ color: '#1e1a38' }}>{post.author}</span>
+          {/* Header row */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap' }}>
+              <span style={{ fontSize: 14, fontWeight: 700, color: '#111118', letterSpacing: '-0.01em' }}>{post.author}</span>
               {post.verified && (
-                <span className="w-3.5 h-3.5 rounded-full flex items-center justify-center text-[8px] font-bold"
-                  style={{ background: 'linear-gradient(135deg,#3ec8a0,#50aae0)', color: '#fff' }}>✓</span>
+                <span style={{ width: 14, height: 14, borderRadius: 9999, background: '#6c5ce7', color: '#fff', fontSize: 8, fontWeight: 700, display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>✓</span>
               )}
-              <span className="text-[11px]" style={{ color: '#b0a8d0' }}>·</span>
-              {post.location && (
-                <span className="flex items-center gap-0.5 text-[11px]" style={{ color: '#b0a8d0' }}>
-                  <MapPin className="w-2.5 h-2.5" />{post.location}
+              <span style={{ fontSize: 12, color: '#c0b8d8' }}>{post.time}</span>
+              {open && post.location && (
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: 2, fontSize: 11, color: '#c0b8d8' }} className="fade-in">
+                  <MapPin size={10} />{post.location}
                 </span>
               )}
-              <span className="text-[11px]" style={{ color: '#b0a8d0' }}>{post.time}</span>
             </div>
-            <button className="p-1 rounded-lg hover:bg-white/30 transition-colors" style={{ color: '#c0b8d8', border: 'none', background: 'transparent', cursor: 'pointer' }}>
-              <MoreHorizontal className="w-4 h-4" />
+            <button
+              onClick={e => e.stopPropagation()}
+              style={{ padding: '2px 4px', borderRadius: 6, border: 'none', background: 'transparent', color: '#d0c8e0', cursor: 'pointer' }}
+            >
+              <MoreHorizontal size={15} />
             </button>
           </div>
 
-          {/* Text */}
+          {/* Text — collapsed: preview only */}
           {post.text && (
-            <p className="text-sm leading-relaxed mb-2" style={{ color: '#3a3060' }}>{post.text}</p>
+            <p style={{ fontSize: 14, lineHeight: 1.55, color: '#2a2448', margin: '0 0 8px', wordBreak: 'break-word' }}>
+              {open ? post.text : (
+                <>
+                  {post.text.slice(0, PREVIEW_LEN)}
+                  {post.text.length > PREVIEW_LEN && <span style={{ color: '#b0a8c8' }}>…</span>}
+                </>
+              )}
+            </p>
           )}
 
-          {/* Tags */}
-          {post.tags?.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 mb-3">
-              {post.tags.map(t => <span key={t} className="tag-chip">#{t}</span>)}
-            </div>
-          )}
-
-          {/* Image */}
-          {post.hasImage && (
-            <div className="mb-3 rounded-2xl overflow-hidden flex items-center justify-center"
-              style={{
-                height: 200,
-                background: 'linear-gradient(135deg, rgba(62,200,160,0.14) 0%, rgba(80,165,240,0.14) 50%, rgba(238,96,165,0.14) 100%)',
-                border: '1px solid rgba(255,255,255,0.60)',
-              }}>
-              <div className="text-center">
-                <div className="text-5xl mb-2">{post.emoji ?? '✨'}</div>
-                <span className="text-xs" style={{ color: '#a898c8' }}>{post.imgCaption ?? '精彩瞬间'}</span>
+          {/* Expanded content */}
+          <div className={`expand-body ${open ? 'open' : 'closed'}`}>
+            {/* Tags */}
+            {post.tags?.length > 0 && (
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 10 }}>
+                {post.tags.map(t => (
+                  <span key={t} onClick={e => e.stopPropagation()}
+                    style={{ fontSize: 11, padding: '2px 9px', borderRadius: 9999, background: 'rgba(108,92,231,0.08)', color: '#6c5ce7', border: '1px solid rgba(108,92,231,0.14)', cursor: 'pointer' }}>
+                    #{t}
+                  </span>
+                ))}
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Actions */}
-          <div className="flex items-center justify-between -ml-2">
-            <div className="flex items-center gap-1">
-              <button className={`action-btn ${liked ? 'liked' : ''}`} onClick={handleLike}>
-                <Heart className={`w-4 h-4 ${popAnim ? 'like-pop' : ''}`} fill={liked ? 'currentColor' : 'none'} />
-                <span>{fmtNum(likes)}</span>
+            {/* Image */}
+            {post.hasImage && (
+              <div className="img-ph" onClick={e => e.stopPropagation()}
+                style={{ height: 180, marginBottom: 10, background: 'linear-gradient(135deg, rgba(108,92,231,0.07), rgba(62,200,160,0.07), rgba(238,96,165,0.07))' }}>
+                <span style={{ fontSize: 40 }}>{post.emoji ?? '✨'}</span>
+                <span style={{ fontSize: 11, color: '#b0a8c8' }}>{post.imgCaption ?? '精彩瞬间'}</span>
+              </div>
+            )}
+          </div>
+
+          {/* Action bar — always visible */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 2 }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginLeft: -8 }}>
+              <button className={`act${liked ? ' liked' : ''}`} onClick={handleLike}>
+                <Heart size={14} className={popAnim ? 'like-pop' : ''} fill={liked ? 'currentColor' : 'none'} />
+                <span>{fmt(likes)}</span>
               </button>
-              <button className="action-btn" onClick={() => setShowCmt(v => !v)}>
-                <MessageCircle className="w-4 h-4" />
+              <button className="act" onClick={() => { if (!open) setOpen(true); setShowCmt(v => !v); }}>
+                <MessageCircle size={14} />
                 <span>{post.comments}</span>
               </button>
-              <button className="action-btn">
-                <Share2 className="w-4 h-4" />
+              <button className="act">
+                <Share2 size={14} />
                 <span>{post.shares}</span>
               </button>
             </div>
-            <button className={`action-btn ${saved ? 'saved' : ''}`} onClick={() => setSaved(v => !v)}>
-              <Bookmark className="w-4 h-4" fill={saved ? 'currentColor' : 'none'} />
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+              {needsExpand && (
+                <button className="act" onClick={handleToggle} style={{ fontSize: 11, gap: 2 }}>
+                  <ChevronDown size={13} style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+                  {open ? '收起' : '展开'}
+                </button>
+              )}
+              <button className={`act${saved ? ' saved' : ''}`} onClick={() => setSaved(v => !v)}>
+                <Bookmark size={14} fill={saved ? 'currentColor' : 'none'} />
+              </button>
+            </div>
           </div>
 
-          {/* Comments */}
-          {showCmt && (
-            <div className="mt-3 space-y-3">
+          {/* Comments — only when open + showCmt */}
+          {open && showCmt && (
+            <div className="fade-in" style={{ marginTop: 12, paddingTop: 12, borderTop: '1px solid rgba(100,80,200,0.07)' }} onClick={e => e.stopPropagation()}>
               {post.commentList?.map((c, i) => (
-                <div key={i} className="flex gap-2.5 items-start">
-                  <div className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0"
-                    style={{ background: 'rgba(155,110,240,0.28)', color: '#2a0868' }}>
+                <div key={i} style={{ display: 'flex', gap: 8, marginBottom: 10, alignItems: 'flex-start' }}>
+                  <div style={{ width: 26, height: 26, borderRadius: 9999, background: 'rgba(108,92,231,0.12)', color: '#6c5ce7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>
                     {c.user[0]}
                   </div>
-                  <div className="flex-1">
-                    <span className="text-xs font-semibold mr-1.5" style={{ color: '#2a2060' }}>{c.user}</span>
-                    <span className="text-xs" style={{ color: '#6858a0' }}>{c.text}</span>
+                  <div style={{ flex: 1 }}>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: '#2a2448', marginRight: 6 }}>{c.user}</span>
+                    <span style={{ fontSize: 12, color: '#6a6090' }}>{c.text}</span>
                   </div>
                 </div>
               ))}
-              <div className="flex gap-2.5 items-center">
-                <div className="w-7 h-7 rounded-full flex items-center justify-center text-[11px] font-bold flex-shrink-0"
-                  style={{ background: 'rgba(155,110,240,0.28)', color: '#2a0868' }}>我</div>
-                <div className="flex-1 flex items-center gap-2 px-3 py-1.5 rounded-full"
-                  style={{ background: 'rgba(140,110,220,0.08)', border: '1px solid rgba(140,110,220,0.14)' }}>
-                  <input value={cmtText} onChange={e => setCmtText(e.target.value)}
-                    placeholder="写下评论..." className="bare-input text-xs flex-1" />
-                  <button disabled={!cmtText.trim()} style={{ color: cmtText.trim() ? '#3878d0' : '#c0b8d8', background: 'none', border: 'none', cursor: cmtText.trim() ? 'pointer' : 'default' }}>
-                    <Send className="w-3.5 h-3.5" />
+              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+                <div style={{ width: 26, height: 26, borderRadius: 9999, background: 'rgba(108,92,231,0.12)', color: '#6c5ce7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>我</div>
+                <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(108,92,231,0.06)', borderRadius: 9999, padding: '6px 14px', border: '1px solid rgba(108,92,231,0.10)' }}>
+                  <input value={cmtText} onChange={e => setCmtText(e.target.value)} placeholder="写下评论…"
+                    className="bare-input" style={{ fontSize: 12 }} />
+                  <button disabled={!cmtText.trim()} style={{ background: 'none', border: 'none', cursor: cmtText.trim() ? 'pointer' : 'default', color: cmtText.trim() ? '#6c5ce7' : '#d0c8e0', flexShrink: 0 }}>
+                    <Send size={13} />
                   </button>
                 </div>
               </div>
