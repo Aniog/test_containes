@@ -2,49 +2,54 @@ import { useState } from 'react';
 import { Plus } from 'lucide-react';
 
 const STORIES = [
-  { id: 0, name: '我的',  grad: 'from-violet-500 to-pink-500',  me: true },
-  { id: 1, name: '晓雨',  grad: 'from-sky-400 to-blue-500' },
-  { id: 2, name: '阿明',  grad: 'from-orange-400 to-rose-500' },
-  { id: 3, name: '小林',  grad: 'from-emerald-400 to-teal-500', seen: true },
-  { id: 4, name: '思思',  grad: 'from-purple-400 to-indigo-500' },
-  { id: 5, name: '大伟',  grad: 'from-amber-400 to-orange-500', seen: true },
-  { id: 6, name: '欣欣',  grad: 'from-pink-400 to-rose-500' },
-  { id: 7, name: '子轩',  grad: 'from-cyan-400 to-sky-500' },
+  { name: '我的',  initial: '我', seen: false, isMe: true },
+  { name: '晓雨',  initial: '晓', seen: false },
+  { name: '阿明',  initial: '阿', seen: false },
+  { name: '小林',  initial: '小', seen: true  },
+  { name: '思思',  initial: '思', seen: false },
+  { name: '大伟',  initial: '大', seen: true  },
+  { name: '欣欣',  initial: '欣', seen: false },
+  { name: '子轩',  initial: '子', seen: true  },
 ];
 
 export default function Stories() {
-  const [seen, setSeen] = useState(new Set([3, 5]));
+  const [seen, setSeen] = useState({});
 
   return (
-    <div className="lg-card rounded-2xl p-3">
-      <div className="flex gap-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-        {STORIES.map((s) => (
-          <button
-            key={s.id}
-            onClick={() => setSeen(p => new Set([...p, s.id]))}
-            className="flex flex-col items-center gap-1.5 flex-shrink-0 group"
-          >
-            {s.me ? (
-              <div className="relative">
-                <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${s.grad} flex items-center justify-center text-white font-bold text-lg`}>
-                  我
+    <div className="lg-card rounded-2xl px-4 py-3">
+      <div className="flex gap-4 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
+        {STORIES.map((s, i) => {
+          const isSeen = s.seen || seen[s.name];
+          return (
+            <button
+              key={s.name}
+              onClick={() => setSeen(v => ({ ...v, [s.name]: true }))}
+              className="flex flex-col items-center gap-1.5 flex-shrink-0 transition-opacity duration-150 hover:opacity-75"
+            >
+              <div className={isSeen ? 'story-ring-seen' : 'story-ring'}>
+                <div
+                  className="w-11 h-11 rounded-full flex items-center justify-center text-sm font-semibold relative"
+                  style={{ background: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.70)' }}
+                >
+                  {s.initial}
+                  {s.isMe && (
+                    <span
+                      className="absolute -bottom-0.5 -right-0.5 w-4 h-4 rounded-full flex items-center justify-center"
+                      style={{
+                        background: 'rgba(255,255,255,0.15)',
+                        border: '1.5px solid #0a0a0f',
+                        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.20)',
+                      }}
+                    >
+                      <Plus className="w-2.5 h-2.5" style={{ color: 'rgba(255,255,255,0.75)' }} />
+                    </span>
+                  )}
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-5 h-5 lg-btn-primary rounded-full flex items-center justify-center border border-white/20">
-                  <Plus className="w-3 h-3" />
-                </span>
               </div>
-            ) : (
-              <div className={seen.has(s.id) ? 'story-ring-seen' : 'story-ring'}>
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${s.grad} flex items-center justify-center text-white font-semibold text-sm`}>
-                  {s.name[0]}
-                </div>
-              </div>
-            )}
-            <span className="text-white/55 text-[11px] w-14 text-center truncate group-hover:text-white/80 transition-colors">
-              {s.name}
-            </span>
-          </button>
-        ))}
+              <span className="text-[11px]" style={{ color: 'rgba(255,255,255,0.40)' }}>{s.name}</span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );
