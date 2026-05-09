@@ -39,26 +39,26 @@ export default function Header({ activePlatform, onPlatformChange, searchQuery, 
   const [searchOpen, setSearchOpen] = useState(false);
 
   const platformColors = {
-    all: 'text-purple-400 border-purple-400',
-    steam: 'text-[#66c0f4] border-[#66c0f4]',
-    epic: 'text-[#0078f2] border-[#0078f2]',
-    nintendo: 'text-[#e4000f] border-[#e4000f]',
-    playstation: 'text-[#0070d1] border-[#0070d1]',
-    xbox: 'text-[#52b043] border-[#52b043]',
+    all: 'text-green-600 border-green-600',
+    steam: 'text-[#1b6fa8] border-[#1b6fa8]',
+    epic: 'text-[#0060c0] border-[#0060c0]',
+    nintendo: 'text-[#c0000d] border-[#c0000d]',
+    playstation: 'text-[#0058a8] border-[#0058a8]',
+    xbox: 'text-[#107c10] border-[#107c10]',
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-green-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4">
         {/* Top bar */}
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
                 <Gamepad2 className="w-5 h-5 text-white" />
               </div>
-              <span className="text-white font-bold text-xl tracking-tight">
-                Game<span className="text-purple-400">Pulse</span>
+              <span className="text-gray-900 font-bold text-xl tracking-tight">
+                Game<span className="text-green-600">Pulse</span>
               </span>
             </div>
           </div>
@@ -72,24 +72,24 @@ export default function Header({ activePlatform, onPlatformChange, searchQuery, 
                 placeholder="Search games, news, deals..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-full pl-10 pr-4 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-colors"
+                className="w-full bg-gray-100 border border-gray-200 rounded-full pl-10 pr-4 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-green-500 focus:bg-white transition-colors"
               />
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <button
-              className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+              className="md:hidden p-2 text-gray-500 hover:text-green-600 transition-colors"
               onClick={() => setSearchOpen(!searchOpen)}
             >
               <Search className="w-5 h-5" />
             </button>
-            <button className="relative p-2 text-gray-400 hover:text-white transition-colors">
+            <button className="relative p-2 text-gray-500 hover:text-green-600 transition-colors">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
             </button>
             <button
-              className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
+              className="md:hidden p-2 text-gray-500 hover:text-green-600 transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -107,7 +107,7 @@ export default function Header({ activePlatform, onPlatformChange, searchQuery, 
                 placeholder="Search games, news, deals..."
                 value={searchQuery}
                 onChange={(e) => onSearchChange(e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-full pl-10 pr-4 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-purple-500"
+                className="w-full bg-gray-100 border border-gray-200 rounded-full pl-10 pr-4 py-2 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-green-500"
               />
             </div>
           </div>
@@ -121,14 +121,14 @@ export default function Header({ activePlatform, onPlatformChange, searchQuery, 
               onClick={() => onPlatformChange(p.id)}
               className={`flex items-center gap-2 px-4 py-3 text-sm font-medium whitespace-nowrap border-b-2 transition-all ${
                 activePlatform === p.id
-                  ? `${platformColors[p.id]} bg-gray-800/50`
-                  : 'text-gray-400 border-transparent hover:text-gray-200 hover:bg-gray-800/30'
+                  ? `${platformColors[p.id]} bg-green-50`
+                  : 'text-gray-500 border-transparent hover:text-gray-800 hover:bg-green-50/60'
               }`}
             >
               <PlatformIcon platform={p.id} />
               {p.label}
               {p.id === 'epic' && (
-                <span className="flex items-center gap-0.5 text-xs bg-green-500/20 text-green-400 px-1.5 py-0.5 rounded-full">
+                <span className="flex items-center gap-0.5 text-xs bg-green-100 text-green-700 px-1.5 py-0.5 rounded-full">
                   <Flame className="w-3 h-3" /> Free
                 </span>
               )}
@@ -145,8 +145,8 @@ export default function Header({ activePlatform, onPlatformChange, searchQuery, 
                 onClick={() => { onPlatformChange(p.id); setMobileMenuOpen(false); }}
                 className={`flex flex-col items-center gap-1 px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                   activePlatform === p.id
-                    ? 'bg-gray-700 text-white'
-                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
+                    ? 'bg-green-100 text-green-700'
+                    : 'text-gray-500 hover:bg-green-50 hover:text-gray-800'
                 }`}
               >
                 <PlatformIcon platform={p.id} />

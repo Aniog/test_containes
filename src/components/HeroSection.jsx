@@ -72,10 +72,10 @@ export default function HeroSection({ activePlatform }) {
           {item.summary}
         </p>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 bg-white text-gray-900 font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-gray-100 transition-colors">
+          <button className="flex items-center gap-2 bg-green-600 text-white font-semibold px-5 py-2.5 rounded-full text-sm hover:bg-green-700 transition-colors">
             Read More <ExternalLink className="w-4 h-4" />
           </button>
-          <span className="text-gray-400 text-xs">{item.date}</span>
+          <span className="text-gray-200 text-xs">{item.date}</span>
         </div>
       </div>
 

@@ -2,19 +2,19 @@ import { TrendingUp, Users, ShoppingBag } from 'lucide-react';
 import { PLATFORM_STATS, PLATFORMS } from '../data/gameData';
 
 const platformAccent = {
-  steam: 'text-[#66c0f4]',
-  epic: 'text-[#60a5fa]',
-  nintendo: 'text-[#f87171]',
-  playstation: 'text-[#93c5fd]',
-  xbox: 'text-[#4ade80]',
+  steam: 'text-[#1b6fa8]',
+  epic: 'text-[#0060c0]',
+  nintendo: 'text-[#c0000d]',
+  playstation: 'text-[#0058a8]',
+  xbox: 'text-[#107c10]',
 };
 
 const platformBorder = {
-  steam: 'border-[#66c0f4]/20 hover:border-[#66c0f4]/50',
-  epic: 'border-[#0078f2]/20 hover:border-[#0078f2]/50',
-  nintendo: 'border-[#e4000f]/20 hover:border-[#e4000f]/50',
-  playstation: 'border-[#0070d1]/20 hover:border-[#0070d1]/50',
-  xbox: 'border-[#52b043]/20 hover:border-[#52b043]/50',
+  steam: 'border-[#1b6fa8]/20 hover:border-[#1b6fa8]/50',
+  epic: 'border-[#0060c0]/20 hover:border-[#0060c0]/50',
+  nintendo: 'border-[#c0000d]/20 hover:border-[#c0000d]/50',
+  playstation: 'border-[#0058a8]/20 hover:border-[#0058a8]/50',
+  xbox: 'border-[#107c10]/20 hover:border-[#107c10]/50',
 };
 
 export default function PlatformStats({ activePlatform, onPlatformChange }) {
@@ -33,25 +33,25 @@ export default function PlatformStats({ activePlatform, onPlatformChange }) {
           <button
             key={stat.platform}
             onClick={() => onPlatformChange(stat.platform === activePlatform ? 'all' : stat.platform)}
-            className={`bg-gray-900 border rounded-xl p-4 text-left transition-all duration-200 ${platformBorder[stat.platform]} ${
-              activePlatform === stat.platform ? 'bg-gray-800' : 'hover:bg-gray-800/50'
+            className={`bg-white border rounded-xl p-4 text-left transition-all duration-200 ${platformBorder[stat.platform]} ${
+              activePlatform === stat.platform ? 'bg-green-50 shadow-sm' : 'hover:bg-green-50/50'
             } ${!isActive && activePlatform !== 'all' ? 'opacity-40' : ''}`}
           >
             <div className={`text-sm font-bold mb-3 ${platformAccent[stat.platform]}`}>
               {info?.label}
             </div>
             <div className="space-y-1.5">
-              <div className="flex items-center gap-1.5 text-xs text-gray-400">
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <TrendingUp className="w-3 h-3" />
-                <span className="text-white font-medium">{stat.games}</span> games
+                <span className="text-gray-900 font-medium">{stat.games}</span> games
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-gray-400">
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <Users className="w-3 h-3" />
-                <span className="text-white font-medium">{stat.users}</span> users
+                <span className="text-gray-900 font-medium">{stat.users}</span> users
               </div>
-              <div className="flex items-center gap-1.5 text-xs text-gray-400">
+              <div className="flex items-center gap-1.5 text-xs text-gray-500">
                 <ShoppingBag className="w-3 h-3" />
-                <span className="text-white font-medium">{stat.deals}</span> deals
+                <span className="text-gray-900 font-medium">{stat.deals}</span> deals
               </div>
             </div>
           </button>

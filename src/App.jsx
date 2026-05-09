@@ -25,7 +25,7 @@ function App() {
 
         {/* Platform Stats */}
         <section>
-          <h2 className="text-white text-xl font-bold mb-4">Platform Overview</h2>
+        <h2 className="text-gray-900 text-xl font-bold mb-4">Platform Overview</h2>
           <PlatformStats activePlatform={activePlatform} onPlatformChange={setActivePlatform} />
         </section>
 
