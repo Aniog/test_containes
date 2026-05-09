@@ -11,7 +11,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-green-50 text-gray-900">
       <Header
         activePlatform={activePlatform}
         onPlatformChange={setActivePlatform}
@@ -37,30 +37,30 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gray-800 mt-16 py-10">
+      <footer className="border-t border-green-200 mt-16 py-10 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-indigo-600 flex items-center justify-center">
+              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center">
                 <Gamepad2 className="w-4 h-4 text-white" />
               </div>
-              <span className="text-white font-bold text-lg">
-                Game<span className="text-purple-400">Pulse</span>
+              <span className="text-gray-900 font-bold text-lg">
+                Game<span className="text-green-600">Pulse</span>
               </span>
             </div>
             <p className="text-gray-500 text-sm text-center">
               Your one-stop hub for gaming news & deals across Steam, Epic, Nintendo, PlayStation, and Xbox.
             </p>
             <div className="flex items-center gap-3">
-              <button className="p-2 text-gray-500 hover:text-white transition-colors rounded-lg hover:bg-gray-800">
+              <button className="p-2 text-gray-400 hover:text-green-600 transition-colors rounded-lg hover:bg-green-50">
                 <Twitter className="w-4 h-4" />
               </button>
-              <button className="p-2 text-gray-500 hover:text-white transition-colors rounded-lg hover:bg-gray-800">
+              <button className="p-2 text-gray-400 hover:text-green-600 transition-colors rounded-lg hover:bg-green-50">
                 <Github className="w-4 h-4" />
               </button>
             </div>
           </div>
-          <div className="mt-6 pt-6 border-t border-gray-800/50 text-center text-gray-600 text-xs">
+          <div className="mt-6 pt-6 border-t border-green-100 text-center text-gray-400 text-xs">
             © 2025 GamePulse. All trademarks belong to their respective owners.
           </div>
         </div>
