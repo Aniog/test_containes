@@ -241,7 +241,8 @@ async function processEntries(entries) {
   await Promise.all(entries.map(async ({ imgId, query, ratio, width }) => {
     if (!query) return
     const ex = configData[imgId]
-    if (ex && ex.query === query && ex.results && ex.results.length > 0) return
+    // Preserve any existing entry that already has results (manual or previously fetched)
+    if (ex && ex.results && ex.results.length > 0) return
 
     const h = hashQuery(query)
     const cacheHit = cacheData[h]
