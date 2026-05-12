@@ -1,76 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: #C8D0E0;
+  background-color: #0B0E14;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #0B0E14;
+  color: #C8D0E0;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0B0E14;
+}
+::-webkit-scrollbar-thumb {
+  background: #252D42;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #F5A623;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Selection */
+::selection {
+  background: rgba(245, 166, 35, 0.3);
+  color: #F0F4FF;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Star particle background utility */
+.star-field {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 10% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 35% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(2px 2px at 65% 85%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 75% 45%, rgba(168,196,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 55%, rgba(196,168,255,0.4) 0%, transparent 100%);
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(26, 32, 53, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(37, 45, 66, 0.8);
+}
+
+/* Amber text gradient */
+.text-amber-gradient {
+  background: linear-gradient(135deg, #F5A623 0%, #FFB84D 50%, #E8943A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cosmos gradient text */
+.text-cosmos-gradient {
+  background: linear-gradient(135deg, #F0F4FF 0%, #A8C4FF 50%, #C4A8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Image overlay gradient */
+.img-overlay-bottom {
+  background: linear-gradient(to top, rgba(11,14,20,0.95) 0%, rgba(11,14,20,0.4) 50%, transparent 100%);
+}
+
+.img-overlay-full {
+  background: linear-gradient(135deg, rgba(11,14,20,0.85) 0%, rgba(11,14,20,0.5) 100%);
+}
+

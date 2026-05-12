@@ -24,6 +24,12 @@ class ErrorBoundary extends Component<Props, State> {
 
 
   handleWindowError = (event: ErrorEvent) => {
+    // Ignore resource-loading errors (images, fonts, etc.) — only handle JS errors
+    const target = event.target as HTMLElement | null;
+    if (target && target !== window && target.tagName) {
+      // This is a resource error (img, script, link) — not a JS crash, skip it
+      return;
+    }
     console.error('Global error caught:', event.error || event.message);
     this.setState({ hasError: true });
     event.preventDefault();
@@ -31,30 +37,21 @@ class ErrorBoundary extends Component<Props, State> {
 
 
   handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-    console.error('Unhandled promise rejection:', event.reason);
-    this.setState({ hasError: true });
+    console.warn('Unhandled promise rejection (non-fatal):', event.reason);
+    // Do not set hasError — unhandled rejections from async ops (e.g. image fetch)
+    // should not crash the entire UI.
     event.preventDefault();
   };
 
 
-  handleResourceError = (event: Event) => {
-    const target = event.target as HTMLElement;
-    console.error('Resource loading error:', target?.tagName);
-    this.setState({ hasError: true });
-  };
-
   componentDidMount() {
-
     window.addEventListener('error', this.handleWindowError, true);
     window.addEventListener('unhandledrejection', this.handleUnhandledRejection);
-    window.addEventListener('error', this.handleResourceError, true);
   }
 
   componentWillUnmount() {
-    // 清理事件监听
     window.removeEventListener('error', this.handleWindowError, true);
     window.removeEventListener('unhandledrejection', this.handleUnhandledRejection);
-    window.removeEventListener('error', this.handleResourceError, true);
   }
 
   render() {
