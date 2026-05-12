@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Games",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "slug": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "URL-friendly identifier"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Full game description"
+    },
+    "short_description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short summary for cards"
+    },
+    "cover_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "platform": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Mobile"]
+      },
+      "description": "Available platforms"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Game publisher"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Release date"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average rating out of 5"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is featured on homepage"
+    },
+    "is_on_sale": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is currently on sale"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock (keys)"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Game tags"
+    }
+  },
+  "required": ["title", "price"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
