@@ -1,4 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { Globe, Grid3x3, Navigation } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const concepts = [
   {
@@ -26,20 +29,50 @@ const coordinates = [
 ];
 
 export default function ConstellationsSection() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
   return (
-    <section id="constellations" className="py-20 md:py-28 scroll-mt-16">
+    <section id="constellations" ref={containerRef} className="py-20 md:py-28 scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-14 space-y-3 max-w-2xl">
           <p className="font-inter text-xs uppercase tracking-widest text-aurora">Section A</p>
-          <h2 className="font-cormorant text-3xl md:text-4xl font-light text-moonlight">
+          <h2 id="const-heading" className="font-cormorant text-3xl md:text-4xl font-light text-moonlight">
             Constellations & Coordinate Systems
           </h2>
-          <p className="font-inter text-sm text-comet leading-relaxed">
+          <p id="const-desc" className="font-inter text-sm text-comet leading-relaxed">
             Before we can explore the universe, we must learn to navigate it. The celestial coordinate
             system is the GPS of the cosmos — a precise mathematical framework that lets astronomers
             pinpoint any object in the sky.
           </p>
+        </div>
+
+        {/* Constellation diagram image */}
+        <div className="mb-14 rounded-2xl overflow-hidden border border-stardust/60 bg-deep-space">
+          <div className="relative">
+            <img
+              data-strk-img-id="const-map-7b2e4a"
+              data-strk-img="[const-img-label] [const-heading]"
+              data-strk-img-ratio="16x9"
+              data-strk-img-width="1200"
+              alt="Ursa Major constellation with celestial coordinate grid showing right ascension and declination lines"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              className="w-full h-56 md:h-80 object-cover opacity-0 transition-opacity duration-700"
+            />
+            {/* Overlay label */}
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-deep-space/90 to-transparent p-6">
+              <p id="const-img-label" className="font-inter text-xs uppercase tracking-widest text-aurora mb-1">
+                Ursa Major — Celestial Coordinate Grid
+              </p>
+              <p className="font-cormorant text-lg text-moonlight">
+                Right Ascension & Declination overlaid on the night sky
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Concept cards */}

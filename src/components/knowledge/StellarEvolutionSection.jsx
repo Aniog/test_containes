@@ -1,4 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { Zap } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const stages = [
   {
@@ -10,6 +13,8 @@ const stages = [
     color: 'text-aurora',
     bg: 'bg-aurora/10',
     border: 'border-aurora/30',
+    imgId: 'stellar-nebula-4c8d2f',
+    imgQuery: 'colorful emission nebula gas dust stellar nursery astronomy',
   },
   {
     step: '02',
@@ -20,6 +25,8 @@ const stages = [
     color: 'text-amber-star',
     bg: 'bg-amber-star/10',
     border: 'border-amber-star/30',
+    imgId: 'stellar-protostar-9e1b7c',
+    imgQuery: 'protostar forming young stellar object infrared astronomy',
   },
   {
     step: '03',
@@ -30,6 +37,8 @@ const stages = [
     color: 'text-aurora',
     bg: 'bg-aurora/10',
     border: 'border-aurora/30',
+    imgId: 'stellar-mainseq-2a5f8e',
+    imgQuery: 'yellow dwarf star sun surface solar flare astronomy',
   },
   {
     step: '04',
@@ -40,6 +49,8 @@ const stages = [
     color: 'text-amber-star',
     bg: 'bg-amber-star/10',
     border: 'border-amber-star/30',
+    imgId: 'stellar-redgiant-6d3c1a',
+    imgQuery: 'red giant star expanding outer atmosphere astronomy',
   },
   {
     step: '05',
@@ -50,6 +61,8 @@ const stages = [
     color: 'text-aurora',
     bg: 'bg-aurora/10',
     border: 'border-aurora/30',
+    imgId: 'stellar-supernova-8f4b2d',
+    imgQuery: 'supernova explosion planetary nebula colorful astronomy Hubble',
   },
   {
     step: '06',
@@ -60,17 +73,25 @@ const stages = [
     color: 'text-amber-star',
     bg: 'bg-amber-star/10',
     border: 'border-amber-star/30',
+    imgId: 'stellar-blackhole-3e7a9c',
+    imgQuery: 'black hole accretion disk event horizon neutron star astronomy',
   },
 ];
 
 export default function StellarEvolutionSection() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
   return (
-    <section id="stellar-evolution" className="py-20 md:py-28 bg-deep-space border-y border-stardust/30 scroll-mt-16">
+    <section id="stellar-evolution" ref={containerRef} className="py-20 md:py-28 bg-deep-space border-y border-stardust/30 scroll-mt-16">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         {/* Header */}
         <div className="mb-14 space-y-3 max-w-2xl">
           <p className="font-inter text-xs uppercase tracking-widest text-aurora">Section B</p>
-          <h2 className="font-cormorant text-3xl md:text-4xl font-light text-moonlight">
+          <h2 id="stellar-heading" className="font-cormorant text-3xl md:text-4xl font-light text-moonlight">
             Stellar Evolution
           </h2>
           <p className="font-inter text-sm text-comet leading-relaxed">
@@ -101,14 +122,30 @@ export default function StellarEvolutionSection() {
 
                 {/* Card */}
                 <div className={`sm:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'sm:mr-auto sm:pr-8' : 'sm:ml-auto sm:pl-8'}`}>
-                  <div className={`bg-cosmos border ${stage.border} rounded-xl p-6 space-y-3`}>
-                    <div className="flex items-center gap-3">
-                      <span className={`font-inter text-xs font-medium ${stage.color} opacity-60`}>{stage.step}</span>
-                      <div className={`w-6 h-px ${stage.color === 'text-aurora' ? 'bg-aurora/40' : 'bg-amber-star/40'}`} />
+                  <div className={`bg-cosmos border ${stage.border} rounded-xl overflow-hidden`}>
+                    {/* Stage image */}
+                    <div className="relative h-36 bg-deep-space overflow-hidden">
+                      <img
+                        data-strk-img-id={stage.imgId}
+                        data-strk-img={`[stellar-stage-${stage.step}] [stellar-heading]`}
+                        data-strk-img-ratio="3x2"
+                        data-strk-img-width="600"
+                        alt={`${stage.title} — ${stage.subtitle}`}
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                        className="w-full h-full object-cover opacity-0 transition-opacity duration-700"
+                      />
+                      <span id={`stellar-stage-${stage.step}`} className="sr-only">{stage.imgQuery}</span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-cosmos/80 to-transparent" />
                     </div>
-                    <h3 className="font-cormorant text-2xl font-medium text-moonlight">{stage.title}</h3>
-                    <p className={`font-inter text-xs uppercase tracking-widest ${stage.color}`}>{stage.subtitle}</p>
-                    <p className="font-inter text-sm text-comet leading-relaxed">{stage.description}</p>
+                    <div className="p-6 space-y-3">
+                      <div className="flex items-center gap-3">
+                        <span className={`font-inter text-xs font-medium ${stage.color} opacity-60`}>{stage.step}</span>
+                        <div className={`w-6 h-px ${stage.color === 'text-aurora' ? 'bg-aurora/40' : 'bg-amber-star/40'}`} />
+                      </div>
+                      <h3 className="font-cormorant text-2xl font-medium text-moonlight">{stage.title}</h3>
+                      <p className={`font-inter text-xs uppercase tracking-widest ${stage.color}`}>{stage.subtitle}</p>
+                      <p className="font-inter text-sm text-comet leading-relaxed">{stage.description}</p>
+                    </div>
                   </div>
                 </div>
 

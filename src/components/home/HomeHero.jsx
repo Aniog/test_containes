@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import { ArrowRight, Star } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const STARS = Array.from({ length: 60 }, (_, i) => ({
   id: i,
@@ -12,8 +14,26 @@ const STARS = Array.from({ length: 60 }, (_, i) => ({
 }));
 
 export default function HomeHero() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-hero-gradient">
+    <section ref={containerRef} className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+      {/* Full-bleed background image */}
+      <div
+        data-strk-bg-id="hero-bg-a3f9c1"
+        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+        className="absolute inset-0 opacity-0 bg-cosmos"
+        style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-cosmos/70" />
+
       {/* Decorative stars */}
       {STARS.map((s) => (
         <span
@@ -25,6 +45,10 @@ export default function HomeHero() {
 
       {/* Radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_30%,rgba(79,110,247,0.12)_0%,transparent_60%)] pointer-events-none" />
+
+      {/* Hidden text references for image query */}
+      <span id="hero-title" className="sr-only">Milky Way galaxy night sky stars nebula deep space</span>
+      <span id="hero-subtitle" className="sr-only">stunning wide field astrophotography dark mountain landscape cosmos</span>
 
       {/* Content */}
       <div className="relative z-10 text-center max-w-3xl mx-auto px-6 space-y-8">
