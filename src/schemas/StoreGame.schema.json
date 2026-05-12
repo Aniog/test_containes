@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Store Games",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Game description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sale price if on sale"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "platforms": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Supported platforms"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game publisher"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Release date"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average rating out of 5"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this game is featured"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock (keys)"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Game tags"
+    }
+  },
+  "required": ["title", "price", "genre"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
