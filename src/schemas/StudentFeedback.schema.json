@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Student Feedback",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the student submitting feedback"
+    },
+    "class_grade": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 60,
+      "description": "Class or grade level of the student (e.g. Grade 10, Physics 101)"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Student's email address for follow-up"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The student's question or feedback message for the teacher"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when the feedback was submitted"
+    }
+  },
+  "required": ["student_name", "class_grade", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
