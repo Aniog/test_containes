@@ -46,7 +46,7 @@ const TodoPage = () => {
       <div className="w-full max-w-lg">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <div className="p-2 bg-indigo-600 rounded-xl">
+          <div className="p-2 bg-emerald-600 rounded-xl">
             <CheckSquare className="w-7 h-7 text-white" />
           </div>
           <div>

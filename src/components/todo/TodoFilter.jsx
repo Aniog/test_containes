@@ -10,7 +10,7 @@ const TodoFilter = ({ filter, onChange, completedCount, onClearCompleted }) => {
             onClick={() => onChange(f)}
             className={`px-4 py-1.5 rounded-md text-sm font-medium transition
               ${filter === f
-                ? 'bg-indigo-600 text-white shadow'
+                ? 'bg-emerald-600 text-white shadow'
                 : 'text-slate-400 hover:text-slate-200'
               }`}
           >
