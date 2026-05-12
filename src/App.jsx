@@ -1,131 +1,224 @@
-import { useState } from 'react';
-import { SlidersHorizontal, X } from 'lucide-react';
-import StatusBar from './components/visionos/StatusBar';
-import AppGrid from './components/visionos/AppGrid';
-import Dock from './components/visionos/Dock';
-import ControlCenter from './components/visionos/ControlCenter';
+import { useState, useCallback, useRef } from 'react';
+import { FileSystemProvider, useFS } from './context/FileSystemContext';
+import Window from './components/win10/Window';
+import Taskbar from './components/win10/Taskbar';
+import StartMenu from './components/win10/StartMenu';
+import FileExplorer from './components/win10/FileExplorer';
+import Notepad from './components/win10/Notepad';
+import ContextMenu from './components/win10/ContextMenu';
 
-const Toast = ({ message, onDismiss }) => (
-  <div
-    className="fixed top-16 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-3 px-5 py-3 rounded-2xl"
-    style={{
-      background: 'rgba(30,30,40,0.75)',
-      backdropFilter: 'blur(40px)',
-      border: '1px solid rgba(255,255,255,0.15)',
-      boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
-      animation: 'fadeSlideIn 0.3s ease',
-    }}
-  >
-    <span className="text-white/90 text-sm font-medium">{message}</span>
-    <button onClick={onDismiss} className="text-white/40 hover:text-white/80 transition-colors">
-      <X className="w-3.5 h-3.5" />
-    </button>
-  </div>
-);
+const makeId = () => Math.random().toString(36).slice(2, 10);
 
-function App() {
-  const [showCC, setShowCC] = useState(false);
-  const [toast, setToast] = useState(null);
+const DESKTOP_ICONS = [
+  { id: 'mypc',    label: '此电脑', icon: '💻', action: 'explorer' },
+  { id: 'recycle', label: '回收站', icon: '🗑️', action: null },
+  { id: 'docs',    label: '文档',   icon: '📄', action: 'explorer-documents' },
+];
 
-  const showToast = (msg) => {
-    setToast(msg);
-    setTimeout(() => setToast(null), 2500);
+function Desktop() {
+  const { getNode } = useFS();
+  const [windows, setWindows] = useState([]);
+  const [activeId, setActiveId] = useState(null);
+  const [showStart, setShowStart] = useState(false);
+  const [selectedIcon, setSelectedIcon] = useState(null);
+  const zCounter = useRef(100);
+  const clickTimers = useRef({});
+
+  const bringToFront = useCallback((id) => {
+    zCounter.current += 1;
+    setWindows((ws) => ws.map((w) => w.id === id ? { ...w, zIndex: zCounter.current } : w));
+    setActiveId(id);
+  }, []);
+
+  const openExplorer = useCallback((startFolder = 'this-pc') => {
+    const id = makeId();
+    zCounter.current += 1;
+    setWindows((ws) => [...ws, {
+      id, type: 'explorer', startFolder,
+      title: '文件资源管理器', icon: '📁',
+      minimized: false, zIndex: zCounter.current,
+      x: 80 + ws.length * 24, y: 60 + ws.length * 24,
+    }]);
+    setActiveId(id);
+  }, []);
+
+  const openNotepad = useCallback((fileId) => {
+    // Check if already open
+    const existing = windows.find((w) => w.type === 'notepad' && w.fileId === fileId);
+    if (existing) { bringToFront(existing.id); return; }
+    const node = getNode(fileId);
+    const id = makeId();
+    zCounter.current += 1;
+    setWindows((ws) => [...ws, {
+      id, type: 'notepad', fileId,
+      title: (node?.name || 'Untitled') + ' - 记事本', icon: '📝',
+      minimized: false, zIndex: zCounter.current,
+      x: 140 + ws.length * 24, y: 80 + ws.length * 24,
+    }]);
+    setActiveId(id);
+  }, [windows, getNode, bringToFront]);
+
+  const closeWindow = useCallback((id) => {
+    setWindows((ws) => ws.filter((w) => w.id !== id));
+    setActiveId((cur) => cur === id ? null : cur);
+  }, []);
+
+  const minimizeWindow = useCallback((id) => {
+    setWindows((ws) => ws.map((w) => w.id === id ? { ...w, minimized: true } : w));
+    setActiveId((cur) => cur === id ? null : cur);
+  }, []);
+
+  const handleTaskbarClick = useCallback((id) => {
+    const win = windows.find((w) => w.id === id);
+    if (!win) return;
+    if (win.minimized) {
+      setWindows((ws) => ws.map((w) => w.id === id ? { ...w, minimized: false } : w));
+      bringToFront(id);
+    } else if (activeId === id) {
+      minimizeWindow(id);
+    } else {
+      bringToFront(id);
+    }
+  }, [windows, activeId, bringToFront, minimizeWindow]);
+
+  const handleDesktopIconClick = useCallback((icon) => {
+    setSelectedIcon(icon.id);
+    // Double-click detection via timer
+    if (clickTimers.current[icon.id]) {
+      clearTimeout(clickTimers.current[icon.id]);
+      delete clickTimers.current[icon.id];
+      // Double-click confirmed
+      if (icon.action === 'explorer') openExplorer('this-pc');
+      else if (icon.action === 'explorer-documents') openExplorer('documents');
+    } else {
+      clickTimers.current[icon.id] = setTimeout(() => {
+        delete clickTimers.current[icon.id];
+      }, 400);
+    }
+  }, [openExplorer]);
+
+  const handleDesktopContextMenu = (e) => {
+    e.preventDefault();
+    setCtxMenu({
+      x: e.clientX, y: e.clientY,
+      items: [
+        { label: '查看', icon: '👁️', disabled: true },
+        { label: '排序方式', icon: '↕️', disabled: true },
+        { label: '刷新', icon: '🔄', onClick: () => {} },
+        'separator',
+        { label: '新建文件夹', icon: '📁', disabled: true },
+        'separator',
+        { label: '显示设置', icon: '🖥️', disabled: true },
+        { label: '个性化', icon: '🎨', disabled: true },
+      ],
+    });
   };
 
-  const handleAppOpen = (name) => showToast(`Opening ${name}…`);
-
   return (
-    <div className="relative w-full h-screen overflow-hidden" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+    <div
+      style={{
+        width: '100vw', height: '100vh', overflow: 'hidden', position: 'relative',
+        background: 'linear-gradient(135deg, #0a3d62 0%, #1a5276 30%, #154360 60%, #0d2137 100%)',
+        fontFamily: 'Segoe UI, system-ui, sans-serif',
+        userSelect: 'none',
+      }}
+      onContextMenu={handleDesktopContextMenu}
+      onClick={() => { setShowStart(false); setSelectedIcon(null); }}
+    >
+      {/* Subtle desktop texture */}
+      <div style={{ position: 'absolute', inset: 0, opacity: 0.03, backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
 
-      {/* ── Spatial background ── */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background: 'radial-gradient(ellipse at 20% 50%, #1a0533 0%, #0a0a1a 40%, #000510 100%)',
-        }}
-      />
-
-      {/* Star field */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 120 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white"
-            style={{
-              width: Math.random() * 2 + 0.5 + 'px',
-              height: Math.random() * 2 + 0.5 + 'px',
-              top: Math.random() * 100 + '%',
-              left: Math.random() * 100 + '%',
-              opacity: Math.random() * 0.6 + 0.1,
-              animation: `twinkle ${Math.random() * 4 + 2}s ease-in-out infinite`,
-              animationDelay: Math.random() * 4 + 's',
-            }}
+      {/* Desktop icons */}
+      <div style={{ position: 'absolute', top: 16, left: 16, display: 'flex', flexDirection: 'column', gap: 8 }}>
+        {DESKTOP_ICONS.map((icon) => (
+          <DesktopIcon
+            key={icon.id}
+            icon={icon}
+            isSelected={selectedIcon === icon.id}
+            onClick={() => handleDesktopIconClick(icon)}
           />
         ))}
       </div>
 
-      {/* Ambient glow orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20"
-          style={{ background: 'radial-gradient(circle, #7c3aed, transparent 70%)', filter: 'blur(60px)' }} />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full opacity-15"
-          style={{ background: 'radial-gradient(circle, #2563eb, transparent 70%)', filter: 'blur(60px)' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full opacity-10"
-          style={{ background: 'radial-gradient(circle, #ec4899, transparent 70%)', filter: 'blur(80px)' }} />
-      </div>
-
-      {/* ── Status Bar ── */}
-      <StatusBar />
-
-      {/* ── Control Center toggle button ── */}
-      <button
-        onClick={() => setShowCC(!showCC)}
-        className="fixed top-3 right-6 z-50 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 pointer-events-auto"
-        style={{
-          background: showCC ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.1)',
-          border: '1px solid rgba(255,255,255,0.2)',
-          backdropFilter: 'blur(20px)',
-        }}
-      >
-        <SlidersHorizontal className="w-4 h-4 text-white/80" />
-      </button>
-
-      {/* ── Control Center panel ── */}
-      {showCC && <ControlCenter onClose={() => setShowCC(false)} />}
-
-      {/* ── Main floating window ── */}
-      <div className="absolute inset-0 flex items-center justify-center pt-12 pb-28">
-        <div
-          className="relative w-full max-w-3xl mx-8 rounded-3xl overflow-hidden"
-          style={{
-            background: 'rgba(255,255,255,0.06)',
-            backdropFilter: 'blur(60px) saturate(180%)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            boxShadow: '0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)',
-          }}
+      {/* Windows */}
+      {windows.map((win) => (
+        <Window
+          key={win.id}
+          id={win.id}
+          title={win.title}
+          icon={win.icon}
+          isActive={activeId === win.id}
+          isMinimized={win.minimized}
+          zIndex={win.zIndex}
+          initialX={win.x}
+          initialY={win.y}
+          initialW={win.type === 'notepad' ? 680 : 900}
+          initialH={win.type === 'notepad' ? 500 : 580}
+          onFocus={bringToFront}
+          onClose={closeWindow}
+          onMinimize={minimizeWindow}
         >
-          {/* Window chrome */}
-          <div className="flex items-center gap-2 px-5 py-3 border-b border-white/8">
-            <div className="w-3 h-3 rounded-full bg-red-400/80 cursor-pointer hover:bg-red-400 transition-colors" />
-            <div className="w-3 h-3 rounded-full bg-yellow-400/80 cursor-pointer hover:bg-yellow-400 transition-colors" />
-            <div className="w-3 h-3 rounded-full bg-green-400/80 cursor-pointer hover:bg-green-400 transition-colors" />
-            <span className="ml-3 text-white/40 text-xs font-medium tracking-wide">Home</span>
-          </div>
+          {win.type === 'explorer' && (
+            <FileExplorer onOpenFile={openNotepad} />
+          )}
+          {win.type === 'notepad' && (
+            <Notepad fileId={win.fileId} />
+          )}
+        </Window>
+      ))}
 
-          {/* App grid */}
-          <div className="p-8">
-            <AppGrid onAppOpen={handleAppOpen} />
-          </div>
-        </div>
-      </div>
+      {/* Taskbar */}
+      <Taskbar
+        windows={windows}
+        activeId={activeId}
+        onWindowClick={handleTaskbarClick}
+        onStartClick={(e) => { e.stopPropagation(); setShowStart((s) => !s); }}
+        showStart={showStart}
+      />
 
-      {/* ── Dock ── */}
-      <Dock onAppOpen={handleAppOpen} />
+      {/* Start menu */}
+      {showStart && (
+        <StartMenu
+          onClose={() => setShowStart(false)}
+          onOpenExplorer={() => openExplorer('this-pc')}
+        />
+      )}
 
-      {/* ── Toast ── */}
-      {toast && <Toast message={toast} onDismiss={() => setToast(null)} />}
+      {/* Desktop context menu */}
+      {ctxMenu && (
+        <ContextMenu x={ctxMenu.x} y={ctxMenu.y} items={ctxMenu.items} onClose={() => setCtxMenu(null)} />
+      )}
     </div>
   );
 }
 
-export default App;
+function DesktopIcon({ icon, isSelected, onClick }) {
+  return (
+    <div
+      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      style={{
+        width: 72, display: 'flex', flexDirection: 'column', alignItems: 'center',
+        padding: '6px 4px', borderRadius: 2, cursor: 'default',
+        background: isSelected ? 'rgba(0,120,212,0.4)' : 'transparent',
+        border: isSelected ? '1px solid rgba(0,120,212,0.6)' : '1px solid transparent',
+      }}
+      onMouseEnter={(e) => { if (!isSelected) e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+      onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.background = 'transparent'; }}
+    >
+      <span style={{ fontSize: 36 }}>{icon.icon}</span>
+      <span style={{
+        color: '#fff', fontSize: 11, textAlign: 'center', marginTop: 3,
+        textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: 1.3,
+        wordBreak: 'break-word',
+      }}>{icon.label}</span>
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <FileSystemProvider>
+      <Desktop />
+    </FileSystemProvider>
+  );
+}
