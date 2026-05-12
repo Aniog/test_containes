@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lesson Bookings",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the student"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the student"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the student"
+    },
+    "lesson_type": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced", "private"],
+      "description": "Type of riding lesson requested"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": ["never_ridden", "beginner", "some_experience", "intermediate", "advanced"],
+      "description": "Student's current riding experience level"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Preferred date for the lesson"
+    },
+    "preferred_time": {
+      "type": "string",
+      "enum": ["morning", "afternoon", "evening"],
+      "description": "Preferred time of day for the lesson"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Any additional notes or questions from the student"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "cancelled"],
+      "default": "pending",
+      "description": "Booking status"
+    }
+  },
+  "required": ["name", "email", "lesson_type", "experience_level", "preferred_date", "preferred_time"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
