@@ -68,8 +68,8 @@ const SpotlightCard = ({ animal, reverse }) => (
         {animal.name}
       </h3>
       <p className="text-amber-400/80 italic text-sm mb-4">{animal.scientific}</p>
-      <p id={`${animal.id}-habitat`} className="text-[#a8a090] text-sm mb-4">
-        📍 {animal.habitat}
+      <p className="text-[#a8a090] text-sm mb-4">
+        📍 <span id={`${animal.id}-habitat`}>{animal.habitat}</span>
       </p>
       <p className="text-[#d4cfc5] leading-relaxed mb-6">{animal.description}</p>
       <ul className="space-y-2">
