@@ -3,11 +3,12 @@ import { useFS } from '../../context/FileSystemContext';
 import ContextMenu from './ContextMenu';
 
 const NAV_TREE = [
-  { id: 'this-pc', label: 'This PC', icon: '💻', expandable: true },
+  { id: 'this-pc',   label: 'This PC',   icon: '💻', expandable: true },
   { id: 'desktop',   label: 'Desktop',   icon: '🖥️', indent: 1 },
   { id: 'documents', label: 'Documents', icon: '📄', indent: 1 },
   { id: 'downloads', label: 'Downloads', icon: '⬇️', indent: 1 },
   { id: 'pictures',  label: 'Pictures',  icon: '🖼️', indent: 1 },
+  { id: 'trash',     label: 'Recycle Bin', icon: '🗑️', indent: 1 },
 ];
 
 const FOLDER_ICON = '📁';
@@ -20,13 +21,13 @@ function getFileIcon(node) {
 }
 
 export default function FileExplorer({ onOpenFile }) {
-  const { getNode, getChildren, createFolder, createTextFile, deleteNode, renameNode, renaming, setRenaming } = useFS();
+  const { getNode, getChildren, createFolder, createTextFile, deleteNode, renameNode, renaming, setRenaming, restoreNode, permanentDelete, emptyTrash } = useFS();
   const [currentId, setCurrentId] = useState('this-pc');
   const [history, setHistory] = useState(['this-pc']);
   const [histIdx, setHistIdx] = useState(0);
   const [selected, setSelected] = useState(null);
   const [ctxMenu, setCtxMenu] = useState(null);
-  const [viewMode, setViewMode] = useState('icons'); // 'icons' | 'list'
+  const [viewMode, setViewMode] = useState('icons');
   const renameRef = useRef(null);
 
   const navigate = useCallback((id) => {
@@ -50,9 +51,10 @@ export default function FileExplorer({ onOpenFile }) {
 
   const currentNode = getNode(currentId);
   const children = getChildren(currentId);
+  const isTrash = currentId === 'trash';
 
   const handleItemDblClick = (node) => {
-    if (node.type === 'folder' || node.type === 'drive' || node.type === 'this-pc') {
+    if (node.type === 'folder' || node.type === 'drive' || node.type === 'this-pc' || node.type === 'trash') {
       navigate(node.id);
     } else if (node.type === 'file' && node.ext === 'txt') {
       onOpenFile(node.id);
@@ -63,9 +65,15 @@ export default function FileExplorer({ onOpenFile }) {
     e.preventDefault();
     e.stopPropagation();
     setSelected(node.id);
+    const isInTrash = node.parent === 'trash';
     setCtxMenu({
       x: e.clientX, y: e.clientY,
-      items: [
+      items: isInTrash ? [
+        { label: '还原', icon: '↩️', onClick: () => { restoreNode(node.id); setSelected(null); } },
+        { label: '永久删除', icon: '❌', onClick: () => { permanentDelete(node.id); setSelected(null); } },
+        'separator',
+        { label: '属性', icon: 'ℹ️', disabled: true },
+      ] : [
         { label: '打开', icon: '📂', onClick: () => handleItemDblClick(node) },
         'separator',
         { label: '重命名', icon: '✏️', onClick: () => setRenaming(node.id) },
@@ -79,17 +87,22 @@ export default function FileExplorer({ onOpenFile }) {
   const handleBgContextMenu = (e) => {
     e.preventDefault();
     setSelected(null);
+    if (isTrash) {
+      setCtxMenu({
+        x: e.clientX, y: e.clientY,
+        items: [
+          { label: '清空回收站', icon: '🗑️', onClick: () => emptyTrash() },
+          'separator',
+          { label: '刷新', icon: '🔄', onClick: () => setSelected(null) },
+        ],
+      });
+      return;
+    }
     setCtxMenu({
       x: e.clientX, y: e.clientY,
       items: [
-        {
-          label: '新建文件夹', icon: '📁',
-          onClick: () => createFolder(currentId),
-        },
-        {
-          label: '新建文本文档', icon: '📝',
-          onClick: () => createTextFile(currentId),
-        },
+        { label: '新建文件夹', icon: '📁', onClick: () => createFolder(currentId) },
+        { label: '新建文本文档', icon: '📝', onClick: () => createTextFile(currentId) },
         'separator',
         { label: '查看', icon: '👁️', disabled: true },
         { label: '刷新', icon: '🔄', onClick: () => setSelected(null) },
@@ -102,7 +115,6 @@ export default function FileExplorer({ onOpenFile }) {
     if (e.key === 'Escape') setRenaming(null);
   };
 
-  // Address bar path
   const buildPath = (id) => {
     const parts = [];
     let cur = getNode(id);
@@ -122,12 +134,20 @@ export default function FileExplorer({ onOpenFile }) {
         <ToolBtn disabled={histIdx >= history.length - 1} onClick={goForward} title="前进">›</ToolBtn>
         <ToolBtn disabled={!currentNode?.parent} onClick={goUp} title="向上">↑</ToolBtn>
         <div style={{ width: 1, height: 20, background: '#d0d0d0', margin: '0 4px' }} />
-        <ToolBtn onClick={() => createFolder(currentId)} title="新建文件夹">
-          <span style={{ fontSize: 13 }}>📁</span> <span style={{ fontSize: 12 }}>新建文件夹</span>
-        </ToolBtn>
-        <ToolBtn onClick={() => createTextFile(currentId)} title="新建文本文档">
-          <span style={{ fontSize: 13 }}>📝</span> <span style={{ fontSize: 12 }}>新建文本文档</span>
-        </ToolBtn>
+        {isTrash ? (
+          <ToolBtn onClick={() => emptyTrash()} title="清空回收站">
+            <span style={{ fontSize: 13 }}>🗑️</span> <span style={{ fontSize: 12 }}>清空回收站</span>
+          </ToolBtn>
+        ) : (
+          <>
+            <ToolBtn onClick={() => createFolder(currentId)} title="新建文件夹">
+              <span style={{ fontSize: 13 }}>📁</span> <span style={{ fontSize: 12 }}>新建文件夹</span>
+            </ToolBtn>
+            <ToolBtn onClick={() => createTextFile(currentId)} title="新建文本文档">
+              <span style={{ fontSize: 13 }}>📝</span> <span style={{ fontSize: 12 }}>新建文本文档</span>
+            </ToolBtn>
+          </>
+        )}
         <div style={{ flex: 1 }} />
         <ToolBtn onClick={() => setViewMode(viewMode === 'icons' ? 'list' : 'icons')} title="切换视图">
           {viewMode === 'icons' ? '☰' : '⊞'}

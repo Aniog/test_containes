@@ -9,7 +9,7 @@ const PINNED = [
   { name: 'Calendar',      icon: '📅' },
 ];
 
-export default function StartMenu({ onClose, onOpenExplorer }) {
+export default function StartMenu({ onClose, onOpenExplorer, onOpenEdge }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -51,7 +51,11 @@ export default function StartMenu({ onClose, onOpenExplorer }) {
               key={app.name}
               icon={app.icon}
               name={app.name}
-              onClick={app.name === 'File Explorer' ? () => { onOpenExplorer(); onClose(); } : onClose}
+              onClick={
+                app.name === 'File Explorer' ? () => { onOpenExplorer(); onClose(); } :
+                app.name === 'Edge' ? () => { onOpenEdge?.(); onClose(); } :
+                onClose
+              }
             />
           ))}
         </div>

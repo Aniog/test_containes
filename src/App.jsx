@@ -5,21 +5,21 @@ import Taskbar from './components/win10/Taskbar';
 import StartMenu from './components/win10/StartMenu';
 import FileExplorer from './components/win10/FileExplorer';
 import Notepad from './components/win10/Notepad';
+import EdgeBrowser from './components/win10/EdgeBrowser';
 import ContextMenu from './components/win10/ContextMenu';
+import LockScreen from './components/win10/LockScreen';
 
 const makeId = () => Math.random().toString(36).slice(2, 10);
 
 const DESKTOP_ICONS = [
-  { id: 'mypc',    label: '此电脑', icon: '💻', action: 'explorer' },
-  { id: 'recycle', label: '回收站', icon: '🗑️', action: null },
-  { id: 'docs',    label: '文档',   icon: '📄', action: 'explorer-documents' },
+  { id: 'mypc',    label: '此电脑',  icon: '💻', action: 'explorer' },
+  { id: 'recycle', label: '回收站',  icon: '🗑️', action: 'trash' },
+  { id: 'docs',    label: '文档',    icon: '📄', action: 'explorer-documents' },
+  { id: 'edge',    label: 'Edge',    icon: '🌐', action: 'edge' },
 ];
 
-// Module-level map: survives React re-renders, tracks last click time per icon
-const iconLastClick = {};
-
 function Desktop() {
-  const { getNode } = useFS();
+  const { getNode, trashCount } = useFS();
   const [windows, setWindows] = useState([]);
   const [activeId, setActiveId] = useState(null);
   const [showStart, setShowStart] = useState(false);
@@ -41,6 +41,18 @@ function Desktop() {
       title: '文件资源管理器', icon: '📁',
       minimized: false, zIndex: zCounter.current,
       x: 80 + ws.length * 24, y: 60 + ws.length * 24,
+    }]);
+    setActiveId(id);
+  }, []);
+
+  const openEdge = useCallback(() => {
+    const id = makeId();
+    zCounter.current += 1;
+    setWindows((ws) => [...ws, {
+      id, type: 'edge',
+      title: 'Microsoft Edge', icon: '🌐',
+      minimized: false, zIndex: zCounter.current,
+      x: 100 + ws.length * 24, y: 50 + ws.length * 24,
     }]);
     setActiveId(id);
   }, []);
@@ -86,7 +98,9 @@ function Desktop() {
   const handleIconOpen = useCallback((icon) => {
     if (icon.action === 'explorer') openExplorer('this-pc');
     else if (icon.action === 'explorer-documents') openExplorer('documents');
-  }, [openExplorer]);
+    else if (icon.action === 'trash') openExplorer('trash');
+    else if (icon.action === 'edge') openEdge();
+  }, [openExplorer, openEdge]);
 
   const handleDesktopContextMenu = (e) => {
     e.preventDefault();
@@ -124,6 +138,7 @@ function Desktop() {
           <DesktopIcon
             key={icon.id}
             icon={icon}
+            badge={icon.action === 'trash' && trashCount > 0 ? trashCount : null}
             isSelected={selectedIcon === icon.id}
             onSelect={() => setSelectedIcon(icon.id)}
             onOpen={() => handleIconOpen(icon)}
@@ -143,14 +158,15 @@ function Desktop() {
           zIndex={win.zIndex}
           initialX={win.x}
           initialY={win.y}
-          initialW={win.type === 'notepad' ? 680 : 900}
-          initialH={win.type === 'notepad' ? 500 : 580}
+          initialW={win.type === 'notepad' ? 680 : win.type === 'edge' ? 1100 : 900}
+          initialH={win.type === 'notepad' ? 500 : win.type === 'edge' ? 680 : 580}
           onFocus={bringToFront}
           onClose={closeWindow}
           onMinimize={minimizeWindow}
         >
           {win.type === 'explorer' && <FileExplorer onOpenFile={openNotepad} />}
           {win.type === 'notepad' && <Notepad fileId={win.fileId} />}
+          {win.type === 'edge' && <EdgeBrowser />}
         </Window>
       ))}
 
@@ -166,6 +182,7 @@ function Desktop() {
         <StartMenu
           onClose={() => setShowStart(false)}
           onOpenExplorer={() => { openExplorer('this-pc'); setShowStart(false); }}
+          onOpenEdge={() => { openEdge(); setShowStart(false); }}
         />
       )}
 
@@ -176,33 +193,15 @@ function Desktop() {
   );
 }
 
-function DesktopIcon({ icon, isSelected, onSelect, onOpen }) {
-  const handleClick = (e) => {
-    e.stopPropagation();
-    const now = Date.now();
-    const last = iconLastClick[icon.id] || 0;
-    iconLastClick[icon.id] = now;
-    if (now - last < 500) {
-      iconLastClick[icon.id] = 0;
-      onOpen();
-    } else {
-      onSelect();
-    }
-  };
-
-  const handleDblClick = (e) => {
-    e.stopPropagation();
-    iconLastClick[icon.id] = 0;
-    onOpen();
-  };
-
+// Use only onDoubleClick — no timer needed, avoids double-open bug
+function DesktopIcon({ icon, badge, isSelected, onSelect, onOpen }) {
   return (
     <div
-      onClick={handleClick}
-      onDoubleClick={handleDblClick}
+      onClick={(e) => { e.stopPropagation(); onSelect(); }}
+      onDoubleClick={(e) => { e.stopPropagation(); onOpen(); }}
       style={{
         width: 72, display: 'flex', flexDirection: 'column', alignItems: 'center',
-        padding: '6px 4px', borderRadius: 2, cursor: 'default',
+        padding: '6px 4px', borderRadius: 2, cursor: 'default', position: 'relative',
         background: isSelected ? 'rgba(0,120,212,0.4)' : 'transparent',
         border: isSelected ? '1px solid rgba(0,120,212,0.6)' : '1px solid transparent',
       }}
@@ -210,6 +209,14 @@ function DesktopIcon({ icon, isSelected, onSelect, onOpen }) {
       onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.background = 'transparent'; }}
     >
       <span style={{ fontSize: 36 }}>{icon.icon}</span>
+      {badge != null && (
+        <span style={{
+          position: 'absolute', top: 2, right: 6,
+          background: '#e81123', color: '#fff', borderRadius: '50%',
+          fontSize: 9, width: 16, height: 16, display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontWeight: 700,
+        }}>{badge > 9 ? '9+' : badge}</span>
+      )}
       <span style={{
         color: '#fff', fontSize: 11, textAlign: 'center', marginTop: 3,
         textShadow: '0 1px 3px rgba(0,0,0,0.8)', lineHeight: 1.3,
@@ -220,9 +227,12 @@ function DesktopIcon({ icon, isSelected, onSelect, onOpen }) {
 }
 
 export default function App() {
+  const [locked, setLocked] = useState(true);
+
   return (
     <FileSystemProvider>
-      <Desktop />
+      {locked && <LockScreen onUnlock={() => setLocked(false)} />}
+      {!locked && <Desktop />}
     </FileSystemProvider>
   );
 }
