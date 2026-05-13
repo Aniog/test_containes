@@ -15,14 +15,17 @@ const DESKTOP_ICONS = [
   { id: 'docs',    label: '文档',   icon: '📄', action: 'explorer-documents' },
 ];
 
+// Module-level map: survives React re-renders, tracks last click time per icon
+const iconLastClick = {};
+
 function Desktop() {
   const { getNode } = useFS();
   const [windows, setWindows] = useState([]);
   const [activeId, setActiveId] = useState(null);
   const [showStart, setShowStart] = useState(false);
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [ctxMenu, setCtxMenu] = useState(null);
   const zCounter = useRef(100);
-  const clickTimers = useRef({});
 
   const bringToFront = useCallback((id) => {
     zCounter.current += 1;
@@ -43,7 +46,6 @@ function Desktop() {
   }, []);
 
   const openNotepad = useCallback((fileId) => {
-    // Check if already open
     const existing = windows.find((w) => w.type === 'notepad' && w.fileId === fileId);
     if (existing) { bringToFront(existing.id); return; }
     const node = getNode(fileId);
@@ -81,20 +83,9 @@ function Desktop() {
     }
   }, [windows, activeId, bringToFront, minimizeWindow]);
 
-  const handleDesktopIconClick = useCallback((icon) => {
-    setSelectedIcon(icon.id);
-    // Double-click detection via timer
-    if (clickTimers.current[icon.id]) {
-      clearTimeout(clickTimers.current[icon.id]);
-      delete clickTimers.current[icon.id];
-      // Double-click confirmed
-      if (icon.action === 'explorer') openExplorer('this-pc');
-      else if (icon.action === 'explorer-documents') openExplorer('documents');
-    } else {
-      clickTimers.current[icon.id] = setTimeout(() => {
-        delete clickTimers.current[icon.id];
-      }, 400);
-    }
+  const handleIconOpen = useCallback((icon) => {
+    if (icon.action === 'explorer') openExplorer('this-pc');
+    else if (icon.action === 'explorer-documents') openExplorer('documents');
   }, [openExplorer]);
 
   const handleDesktopContextMenu = (e) => {
@@ -123,9 +114,8 @@ function Desktop() {
         userSelect: 'none',
       }}
       onContextMenu={handleDesktopContextMenu}
-      onClick={() => { setShowStart(false); setSelectedIcon(null); }}
+      onClick={() => { setShowStart(false); setSelectedIcon(null); setCtxMenu(null); }}
     >
-      {/* Subtle desktop texture */}
       <div style={{ position: 'absolute', inset: 0, opacity: 0.03, backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '32px 32px', pointerEvents: 'none' }} />
 
       {/* Desktop icons */}
@@ -135,7 +125,8 @@ function Desktop() {
             key={icon.id}
             icon={icon}
             isSelected={selectedIcon === icon.id}
-            onClick={() => handleDesktopIconClick(icon)}
+            onSelect={() => setSelectedIcon(icon.id)}
+            onOpen={() => handleIconOpen(icon)}
           />
         ))}
       </div>
@@ -158,16 +149,11 @@ function Desktop() {
           onClose={closeWindow}
           onMinimize={minimizeWindow}
         >
-          {win.type === 'explorer' && (
-            <FileExplorer onOpenFile={openNotepad} />
-          )}
-          {win.type === 'notepad' && (
-            <Notepad fileId={win.fileId} />
-          )}
+          {win.type === 'explorer' && <FileExplorer onOpenFile={openNotepad} />}
+          {win.type === 'notepad' && <Notepad fileId={win.fileId} />}
         </Window>
       ))}
 
-      {/* Taskbar */}
       <Taskbar
         windows={windows}
         activeId={activeId}
@@ -176,15 +162,13 @@ function Desktop() {
         showStart={showStart}
       />
 
-      {/* Start menu */}
       {showStart && (
         <StartMenu
           onClose={() => setShowStart(false)}
-          onOpenExplorer={() => openExplorer('this-pc')}
+          onOpenExplorer={() => { openExplorer('this-pc'); setShowStart(false); }}
         />
       )}
 
-      {/* Desktop context menu */}
       {ctxMenu && (
         <ContextMenu x={ctxMenu.x} y={ctxMenu.y} items={ctxMenu.items} onClose={() => setCtxMenu(null)} />
       )}
@@ -192,10 +176,30 @@ function Desktop() {
   );
 }
 
-function DesktopIcon({ icon, isSelected, onClick }) {
+function DesktopIcon({ icon, isSelected, onSelect, onOpen }) {
+  const handleClick = (e) => {
+    e.stopPropagation();
+    const now = Date.now();
+    const last = iconLastClick[icon.id] || 0;
+    iconLastClick[icon.id] = now;
+    if (now - last < 500) {
+      iconLastClick[icon.id] = 0;
+      onOpen();
+    } else {
+      onSelect();
+    }
+  };
+
+  const handleDblClick = (e) => {
+    e.stopPropagation();
+    iconLastClick[icon.id] = 0;
+    onOpen();
+  };
+
   return (
     <div
-      onClick={(e) => { e.stopPropagation(); onClick(); }}
+      onClick={handleClick}
+      onDoubleClick={handleDblClick}
       style={{
         width: 72, display: 'flex', flexDirection: 'column', alignItems: 'center',
         padding: '6px 4px', borderRadius: 2, cursor: 'default',
