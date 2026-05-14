@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        cream: '#FFFBF4',
-        petal: '#FDE8D8',
-        coral: '#E8614A',
-        'coral-dark': '#C94A35',
+        cream: '#F4FBF6',
+        petal: '#D6EDE0',
+        coral: '#2E7D52',
+        'coral-dark': '#1F5C3A',
         leaf: '#4A7C59',
         'leaf-light': '#EAF4EC',
         charcoal: '#2C2C2C',

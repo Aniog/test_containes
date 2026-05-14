@@ -17,10 +17,10 @@ All hex values are registered as named Tailwind colors.
 
 | Name       | Hex       | Usage                              |
 |------------|-----------|------------------------------------|
-| `cream`    | `#FFFBF4` | Page background                    |
-| `petal`    | `#FDE8D8` | Soft section backgrounds, cards    |
-| `coral`    | `#E8614A` | Primary CTA buttons, accents       |
-| `coral-dark`| `#C94A35`| Button hover state                 |
+| `cream`    | `#F4FBF6` | Page background                    |
+| `petal`    | `#D6EDE0` | Soft section backgrounds, cards    |
+| `coral`    | `#2E7D52` | Primary CTA buttons, accents       |
+| `coral-dark`| `#1F5C3A`| Button hover state                 |
 | `leaf`     | `#4A7C59` | Secondary accents, badges          |
 | `leaf-light`| `#EAF4EC`| Light green backgrounds            |
 | `charcoal` | `#2C2C2C` | Primary text                       |
