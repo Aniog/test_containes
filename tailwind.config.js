@@ -7,12 +7,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: '#090D16',
-        charcoal: '#121824',
-        surface: '#1A2235',
-        subtle: '#1E2D42',
-        'bio-green': '#10B981',
-        phosphor: '#F97316',
+        obsidian: '#000000',
+        charcoal: '#0D0D0D',
+        surface: '#1A1A1A',
+        subtle: '#2A2A2A',
+        'bio-green': '#FFFFFF',   // newspaper white — primary accent
+        phosphor: '#9CA3AF',      // gray-400 — secondary accent
       },
       fontFamily: {
         grotesk: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
@@ -20,8 +20,8 @@ export default {
         mono: ['"JetBrains Mono"', 'monospace'],
       },
       backgroundImage: {
-        'dot-pattern': 'radial-gradient(circle, #1E2D42 1px, transparent 1px)',
-        'grid-pattern': 'linear-gradient(#1E2D42 1px, transparent 1px), linear-gradient(90deg, #1E2D42 1px, transparent 1px)',
+        'dot-pattern': 'radial-gradient(circle, #2A2A2A 1px, transparent 1px)',
+        'grid-pattern': 'linear-gradient(#2A2A2A 1px, transparent 1px), linear-gradient(90deg, #2A2A2A 1px, transparent 1px)',
       },
       backgroundSize: {
         'dot-sm': '24px 24px',

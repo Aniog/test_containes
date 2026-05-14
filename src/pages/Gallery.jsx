@@ -40,10 +40,10 @@ export default function Gallery() {
           <div className="flex flex-wrap items-center gap-4 mt-8 pt-6 border-t border-subtle">
             <span className="font-mono text-xs text-slate-600 uppercase tracking-wider">Illumination:</span>
             {[
-              { label: 'Brightfield', color: 'text-bio-green', bg: 'bg-bio-green/10', border: 'border-bio-green/20' },
-              { label: 'Darkfield', color: 'text-cyan-400', bg: 'bg-cyan-400/10', border: 'border-cyan-400/20' },
-              { label: 'Phase Contrast', color: 'text-sky-400', bg: 'bg-sky-400/10', border: 'border-sky-400/20' },
-              { label: 'Fluorescence', color: 'text-fuchsia-400', bg: 'bg-fuchsia-400/10', border: 'border-fuchsia-400/20' },
+              { label: 'Brightfield', color: 'text-white', bg: 'bg-white/10', border: 'border-white/20' },
+              { label: 'Darkfield', color: 'text-slate-300', bg: 'bg-white/8', border: 'border-white/15' },
+              { label: 'Phase Contrast', color: 'text-slate-300', bg: 'bg-white/8', border: 'border-white/15' },
+              { label: 'Fluorescence', color: 'text-slate-300', bg: 'bg-white/8', border: 'border-white/15' },
             ].map((item) => (
               <span
                 key={item.label}
