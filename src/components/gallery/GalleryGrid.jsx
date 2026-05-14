@@ -248,11 +248,19 @@ export default function GalleryGrid() {
   const [activeSlide, setActiveSlide] = useState(null);
   const containerRef = useRef(null);
 
+  // Load images on mount (card thumbnails)
   useEffect(() => {
     if (containerRef.current) {
       ImageHelper.loadImages(strkImgConfig, containerRef.current);
     }
   }, []);
+
+  // Re-run when a slide is opened so the modal image element gets processed
+  useEffect(() => {
+    if (activeSlide && containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    }
+  }, [activeSlide]);
 
   return (
     <div ref={containerRef}>
