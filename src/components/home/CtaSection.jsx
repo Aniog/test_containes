@@ -20,7 +20,7 @@ const CtaSection = () => {
     <section
       id="contact"
       className="py-24 px-6"
-      style={{ background: 'linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 35%, #2563eb 65%, #0ea5e9 100%)' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -128,7 +128,8 @@ const CtaSection = () => {
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 rounded-xl transition shadow-md"
+                    className="w-full flex items-center justify-center gap-2 text-white font-semibold py-3.5 rounded-xl transition shadow-md hover:opacity-90"
+                    style={{ background: 'linear-gradient(90deg, #1d4ed8, #0ea5e9)' }}
                   >
                     <Send className="w-4 h-4" />
                     发送消息

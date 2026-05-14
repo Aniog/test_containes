@@ -16,7 +16,7 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: '#1e3a8a' }} className="text-white">
+    <footer style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%)' }} className="text-white">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 mb-12">
           {/* Brand */}

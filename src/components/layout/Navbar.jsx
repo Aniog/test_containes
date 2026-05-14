@@ -23,7 +23,10 @@ const Navbar = () => {
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 bg-blue-600 rounded-xl flex items-center justify-center shadow-md group-hover:bg-blue-700 transition">
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center shadow-md"
+            style={{ background: 'linear-gradient(135deg, #2563eb, #0ea5e9)' }}
+          >
             <Zap className="w-5 h-5 text-white" />
           </div>
           <span className={`text-xl font-bold transition ${scrolled ? 'text-blue-900' : 'text-white'}`}>

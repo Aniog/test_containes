@@ -12,12 +12,13 @@ const HeroSection = () => {
     <section
       id="home"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #2563eb 100%)' }}
+      style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 30%, #1d4ed8 60%, #0ea5e9 100%)' }}
     >
       {/* Background decorative circles */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500 opacity-20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-400 opacity-15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600 opacity-10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-cyan-400 opacity-20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-400 opacity-20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500 opacity-10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-10 right-1/4 w-48 h-48 bg-sky-300 opacity-15 rounded-full blur-2xl pointer-events-none" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-32 text-center">
         {/* Badge */}
@@ -30,7 +31,9 @@ const HeroSection = () => {
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
           构建更美好的
           <br />
-          <span className="text-blue-300">数字未来</span>
+          <span style={{ background: 'linear-gradient(90deg, #7dd3fc, #a5f3fc, #67e8f9)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+            数字未来
+          </span>
         </h1>
 
         {/* Subheading */}
@@ -43,7 +46,8 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
           <a
             href="#contact"
-            className="flex items-center gap-2 bg-white text-blue-700 hover:bg-blue-50 font-semibold px-8 py-3.5 rounded-full transition shadow-lg text-base"
+            className="flex items-center gap-2 text-blue-700 font-semibold px-8 py-3.5 rounded-full transition shadow-lg text-base"
+            style={{ background: 'linear-gradient(90deg, #ffffff, #e0f2fe)' }}
           >
             立即开始
             <ArrowRight className="w-4 h-4" />
