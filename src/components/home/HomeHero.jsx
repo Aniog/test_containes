@@ -26,13 +26,12 @@ export default function HomeHero() {
       />
       {/* Hidden query text for image search */}
       <span id="hero-bg-query" className="hidden">
-        darkfield microscopy insect creature black background macro
+        fluorescence microscopy cells black background glowing biology
       </span>
 
-      {/* Gradient overlays — stronger to keep text readable over bright microscope field */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-obsidian via-obsidian/90 to-obsidian/70" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-obsidian via-obsidian/50 to-obsidian/70" />
-      <div className="absolute inset-0 z-10 bg-obsidian/40" />
+      {/* Gradient overlays — darken edges, let microscope glow show through centre */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-obsidian via-obsidian/80 to-obsidian/30" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-obsidian via-obsidian/30 to-obsidian/50" />
 
       {/* Dot pattern overlay */}
       <div
