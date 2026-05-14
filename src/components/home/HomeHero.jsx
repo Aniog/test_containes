@@ -15,19 +15,24 @@ export default function HomeHero() {
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background micrograph */}
+      {/* Background — dark creature */}
       <div
         className="absolute inset-0 z-0"
         data-strk-bg-id="hero-bg-mc001"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg="[hero-bg-query]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
       />
+      {/* Hidden query text for image search */}
+      <span id="hero-bg-query" className="hidden">
+        darkfield microscopy insect creature black background macro
+      </span>
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-r from-obsidian via-obsidian/85 to-obsidian/40" />
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-obsidian via-transparent to-obsidian/60" />
+      {/* Gradient overlays — stronger to keep text readable over bright microscope field */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-r from-obsidian via-obsidian/90 to-obsidian/70" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-obsidian via-obsidian/50 to-obsidian/70" />
+      <div className="absolute inset-0 z-10 bg-obsidian/40" />
 
       {/* Dot pattern overlay */}
       <div
