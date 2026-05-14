@@ -24,8 +24,8 @@ export default function Gallery() {
             {/* Stats */}
             <div className="flex items-center gap-6 flex-shrink-0">
               {[
-                { value: '4', label: 'Slides' },
-                { value: '3', label: 'Illumination Types' },
+                { value: '12', label: 'Slides' },
+                { value: '4', label: 'Illumination Types' },
                 { value: '1000×', label: 'Max Magnification' },
               ].map((s) => (
                 <div key={s.label} className="text-center">
@@ -42,7 +42,8 @@ export default function Gallery() {
             {[
               { label: 'Brightfield', color: 'text-bio-green', bg: 'bg-bio-green/10', border: 'border-bio-green/20' },
               { label: 'Darkfield', color: 'text-cyan-400', bg: 'bg-cyan-400/10', border: 'border-cyan-400/20' },
-              { label: 'Fluorescence', color: 'text-phosphor', bg: 'bg-phosphor/10', border: 'border-phosphor/20' },
+              { label: 'Phase Contrast', color: 'text-sky-400', bg: 'bg-sky-400/10', border: 'border-sky-400/20' },
+              { label: 'Fluorescence', color: 'text-fuchsia-400', bg: 'bg-fuchsia-400/10', border: 'border-fuchsia-400/20' },
             ].map((item) => (
               <span
                 key={item.label}
