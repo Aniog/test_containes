@@ -23,10 +23,10 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQty, onRemove }) => {
         {/* Header */}
         <div className="flex items-center justify-between p-5 border-b border-gray-100">
           <div className="flex items-center gap-2">
-            <ShoppingBag className="w-5 h-5 text-rose-400" />
+            <ShoppingBag className="w-5 h-5 text-blue-400" />
             <h2 className="font-display font-bold text-gray-800 text-lg">Mi Carrito</h2>
             {items.length > 0 && (
-              <span className="bg-rose-100 text-rose-600 text-xs font-bold px-2 py-0.5 rounded-full">
+              <span className="bg-blue-100 text-blue-600 text-xs font-bold px-2 py-0.5 rounded-full">
                 {items.length}
               </span>
             )}
@@ -44,8 +44,8 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQty, onRemove }) => {
         <div className="flex-1 overflow-y-auto p-5">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center gap-4">
-              <div className="w-20 h-20 bg-rose-50 rounded-full flex items-center justify-center">
-                <ShoppingBag className="w-10 h-10 text-rose-300" />
+              <div className="w-20 h-20 bg-blue-50 rounded-full flex items-center justify-center">
+                <ShoppingBag className="w-10 h-10 text-blue-300" />
               </div>
               <div>
                 <p className="font-semibold text-gray-700 mb-1">Tu carrito está vacío</p>
@@ -53,7 +53,7 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQty, onRemove }) => {
               </div>
               <button
                 onClick={onClose}
-                className="bg-rose-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-rose-600 transition-all"
+                className="bg-blue-500 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-600 transition-all"
               >
                 Explorar tienda
               </button>
@@ -68,20 +68,20 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQty, onRemove }) => {
                     className="w-16 h-16 object-cover rounded-lg shrink-0"
                   />
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-rose-400 font-semibold">{item.category}</p>
+                    <p className="text-xs text-blue-400 font-semibold">{item.category}</p>
                     <p className="text-sm font-semibold text-gray-800 truncate">{item.name}</p>
                     <p className="text-sm font-bold text-gray-800 mt-1">${item.price.toFixed(2)}</p>
                     <div className="flex items-center gap-2 mt-2">
                       <button
                         onClick={() => onUpdateQty(item.id, item.qty - 1)}
-                        className="w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:border-rose-300 transition-all"
+                        className="w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:border-blue-300 transition-all"
                       >
                         <Minus className="w-3 h-3 text-gray-600" />
                       </button>
                       <span className="text-sm font-semibold text-gray-700 w-5 text-center">{item.qty}</span>
                       <button
                         onClick={() => onUpdateQty(item.id, item.qty + 1)}
-                        className="w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:border-rose-300 transition-all"
+                        className="w-6 h-6 bg-white border border-gray-200 rounded-full flex items-center justify-center hover:border-blue-300 transition-all"
                       >
                         <Plus className="w-3 h-3 text-gray-600" />
                       </button>
@@ -110,7 +110,7 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQty, onRemove }) => {
             <p className="text-xs text-emerald-600 text-center bg-emerald-50 py-2 rounded-lg">
               ✓ Envío gratis incluido
             </p>
-            <button className="w-full bg-gradient-to-r from-rose-500 to-pink-500 text-white py-4 rounded-full font-bold hover:from-rose-600 hover:to-pink-600 transition-all shadow-lg hover:shadow-xl">
+            <button className="w-full bg-gradient-to-r from-blue-500 to-blue-500 text-white py-4 rounded-full font-bold hover:from-blue-600 hover:to-blue-600 transition-all shadow-lg hover:shadow-xl">
               Finalizar Compra
             </button>
             <button

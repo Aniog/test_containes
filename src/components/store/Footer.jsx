@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       {/* Newsletter */}
-      <div className="bg-gradient-to-r from-rose-500 via-pink-500 to-purple-500 py-12">
+      <div className="bg-gradient-to-r from-blue-500 via-blue-500 to-purple-500 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h3 className="font-display text-2xl lg:text-3xl font-bold text-white mb-2">
             Únete a nuestra comunidad creativa
@@ -18,7 +18,7 @@ const Footer = () => {
               placeholder="tu@email.com"
               className="flex-1 px-5 py-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-white/60 focus:outline-none focus:border-white text-sm"
             />
-            <button className="bg-white text-rose-500 px-6 py-3 rounded-full font-bold text-sm hover:bg-rose-50 transition-all whitespace-nowrap">
+            <button className="bg-white text-blue-500 px-6 py-3 rounded-full font-bold text-sm hover:bg-blue-50 transition-all whitespace-nowrap">
               Suscribirme ✨
             </button>
           </div>
@@ -31,11 +31,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-rose-400 to-purple-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
               <span className="font-display text-xl font-bold text-white">
-                Luna<span className="text-rose-400">Creativa</span>
+                Luna<span className="text-blue-400">Creativa</span>
               </span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed mb-5">
@@ -48,7 +48,7 @@ const Footer = () => {
               ].map((social) => (
                 <button
                   key={social.label}
-                  className="w-9 h-9 bg-gray-800 hover:bg-rose-500 rounded-full flex items-center justify-center transition-all"
+                  className="w-9 h-9 bg-gray-800 hover:bg-blue-500 rounded-full flex items-center justify-center transition-all"
                   aria-label={social.label}
                 >
                   {social.icon}
@@ -63,7 +63,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {['Pulseras', 'Collares', 'Pendientes', 'Anillos', 'Bolsos', 'Novedades', 'Ofertas'].map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} className="text-sm text-gray-400 hover:text-rose-400 transition-colors">
+                  <a href={`#${item.toLowerCase()}`} className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                     {item}
                   </a>
                 </li>
@@ -76,7 +76,7 @@ const Footer = () => {
             <ul className="space-y-2.5">
               {['Sobre Nosotras', 'Cómo Comprar', 'Envíos y Devoluciones', 'Preguntas Frecuentes', 'Cuidado de Joyas', 'Contacto'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="text-sm text-gray-400 hover:text-rose-400 transition-colors">
+                  <a href="#" className="text-sm text-gray-400 hover:text-blue-400 transition-colors">
                     {item}
                   </a>
                 </li>
@@ -94,7 +94,7 @@ const Footer = () => {
                 { icon: <MapPin className="w-4 h-4 shrink-0" />, text: 'Madrid, España' },
               ].map((item) => (
                 <li key={item.text} className="flex items-center gap-3 text-sm text-gray-400">
-                  <span className="text-rose-400">{item.icon}</span>
+                  <span className="text-blue-400">{item.icon}</span>
                   {item.text}
                 </li>
               ))}
@@ -116,11 +116,11 @@ const Footer = () => {
             © 2026 LunaCreativa. Todos los derechos reservados.
           </p>
           <p className="text-xs text-gray-500 flex items-center gap-1">
-            Hecho con <Heart className="w-3 h-3 text-rose-400 fill-rose-400" /> en España
+            Hecho con <Heart className="w-3 h-3 text-blue-400 fill-blue-400" /> en España
           </p>
           <div className="flex gap-4">
             {['Privacidad', 'Términos', 'Cookies'].map((item) => (
-              <a key={item} href="#" className="text-xs text-gray-500 hover:text-rose-400 transition-colors">
+              <a key={item} href="#" className="text-xs text-gray-500 hover:text-blue-400 transition-colors">
                 {item}
               </a>
             ))}

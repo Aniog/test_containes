@@ -8,9 +8,9 @@ const PromoBanner = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: <Truck className="w-6 h-6" />, title: 'Envío Gratis', desc: 'En pedidos +$50', color: 'text-rose-400' },
+              { icon: <Truck className="w-6 h-6" />, title: 'Envío Gratis', desc: 'En pedidos +$50', color: 'text-blue-400' },
               { icon: <Leaf className="w-6 h-6" />, title: 'Eco-Friendly', desc: 'Materiales naturales', color: 'text-emerald-500' },
-              { icon: <Heart className="w-6 h-6" />, title: 'Hecho a Mano', desc: 'Con amor y dedicación', color: 'text-pink-500' },
+              { icon: <Heart className="w-6 h-6" />, title: 'Hecho a Mano', desc: 'Con amor y dedicación', color: 'text-blue-500' },
               { icon: <Award className="w-6 h-6" />, title: 'Calidad Premium', desc: 'Garantía de satisfacción', color: 'text-amber-500' },
             ].map((item) => (
               <div key={item.title} className="flex items-center gap-4 group">
@@ -32,7 +32,7 @@ const PromoBanner = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-6">
             {/* Banner 1 */}
-            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-400 to-pink-600 p-10 text-white min-h-64 flex flex-col justify-between">
+            <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-400 to-blue-600 p-10 text-white min-h-64 flex flex-col justify-between">
               <div className="absolute -right-10 -top-10 w-48 h-48 bg-white/10 rounded-full" />
               <div className="absolute -right-4 -bottom-8 w-32 h-32 bg-white/10 rounded-full" />
               <div className="relative z-10">
@@ -47,7 +47,7 @@ const PromoBanner = () => {
                 </p>
                 <a
                   href="#pulseras"
-                  className="inline-flex items-center gap-2 bg-white text-rose-500 px-6 py-3 rounded-full font-bold text-sm hover:bg-rose-50 transition-all hover:gap-3"
+                  className="inline-flex items-center gap-2 bg-white text-blue-500 px-6 py-3 rounded-full font-bold text-sm hover:bg-blue-50 transition-all hover:gap-3"
                 >
                   Comprar Ahora <ArrowRight className="w-4 h-4" />
                 </a>
@@ -86,7 +86,7 @@ const PromoBanner = () => {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-rose-400 font-semibold tracking-widest uppercase text-sm mb-3">Opiniones</p>
+            <p className="text-blue-400 font-semibold tracking-widest uppercase text-sm mb-3">Opiniones</p>
             <h2 className="font-display text-3xl lg:text-4xl font-bold text-gray-800">
               Lo que dicen nuestras clientas
             </h2>
@@ -99,7 +99,7 @@ const PromoBanner = () => {
                 text: 'Las pulseras son increíbles, exactamente como en las fotos. La calidad es excelente y llegaron muy bien empaquetadas. ¡Ya hice mi segundo pedido!',
                 rating: 5,
                 product: 'Pulsera Boho Flores',
-                color: 'bg-rose-100 text-rose-600',
+                color: 'bg-blue-100 text-blue-600',
               },
               {
                 name: 'Laura Martínez',

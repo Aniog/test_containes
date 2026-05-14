@@ -4,8 +4,8 @@ const categories = [
     name: 'Pulseras',
     count: '120+ diseños',
     emoji: '📿',
-    color: 'from-rose-200 to-pink-300',
-    hoverColor: 'hover:from-rose-300 hover:to-pink-400',
+    color: 'from-blue-200 to-blue-300',
+    hoverColor: 'hover:from-blue-300 hover:to-blue-400',
     decorEmojis: ['💎', '🌸', '✨'],
     href: '#pulseras',
   },
@@ -57,7 +57,7 @@ const Categories = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-rose-400 font-semibold tracking-widest uppercase text-sm mb-3">Explora</p>
+          <p className="text-blue-400 font-semibold tracking-widest uppercase text-sm mb-3">Explora</p>
           <h2 className="font-display text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
             Nuestras Categorías
           </h2>

@@ -12,7 +12,7 @@ const products = [
     reviews: 128,
     tag: 'Más Vendido',
     emoji: '📿',
-    bgGradient: 'from-rose-100 to-pink-200',
+    bgGradient: 'from-blue-100 to-blue-200',
     colors: ['#e8b4b8', '#c9a96e', '#9b8ea8'],
     isNew: false,
     isSale: true,
@@ -87,7 +87,7 @@ const products = [
     reviews: 92,
     tag: 'Popular',
     emoji: '🌸',
-    bgGradient: 'from-pink-100 to-rose-200',
+    bgGradient: 'from-blue-100 to-blue-200',
     colors: ['#ffb6c1', '#ff69b4', '#db7093'],
     isNew: false,
     isSale: false,
@@ -125,7 +125,7 @@ const products = [
 ];
 
 const tagColors = {
-  'Más Vendido': 'bg-rose-500',
+  'Más Vendido': 'bg-blue-500',
   'Nuevo': 'bg-emerald-500',
   'Oferta': 'bg-orange-500',
   'Popular': 'bg-purple-500',
@@ -171,7 +171,7 @@ const ProductCard = ({ product, onAddToCart }) => {
           <button
             onClick={() => setLiked(!liked)}
             className={`w-9 h-9 rounded-full flex items-center justify-center shadow-md transition-all ${
-              liked ? 'bg-rose-500 text-white' : 'bg-white text-gray-600 hover:text-rose-500'
+              liked ? 'bg-blue-500 text-white' : 'bg-white text-gray-600 hover:text-blue-500'
             }`}
             aria-label="Favorito"
           >
@@ -203,7 +203,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
       {/* Info */}
       <div className="p-4">
-        <p className="text-xs text-rose-400 font-semibold tracking-wider uppercase mb-1">{product.category}</p>
+        <p className="text-xs text-blue-400 font-semibold tracking-wider uppercase mb-1">{product.category}</p>
         <h3 className="font-semibold text-gray-800 text-sm mb-2 leading-tight">{product.name}</h3>
 
         {/* Colors */}
@@ -254,7 +254,7 @@ const ProductGrid = ({ onAddToCart }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <p className="text-rose-400 font-semibold tracking-widest uppercase text-sm mb-3">Colección</p>
+          <p className="text-blue-400 font-semibold tracking-widest uppercase text-sm mb-3">Colección</p>
           <h2 className="font-display text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
             Productos Destacados
           </h2>

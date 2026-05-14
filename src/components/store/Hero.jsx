@@ -9,9 +9,9 @@ const slides = [
     subtitle: 'Cada pieza es única, hecha a mano con materiales naturales y mucho amor.',
     cta: 'Explorar Pulseras',
     href: '#pulseras',
-    accent: 'from-rose-200 via-pink-100 to-orange-100',
+    accent: 'from-blue-200 via-blue-100 to-orange-100',
     emoji: '🌸',
-    bgGradient: 'from-rose-300 via-pink-200 to-orange-200',
+    bgGradient: 'from-blue-300 via-blue-200 to-orange-200',
     decorEmoji: ['💎', '🌸', '✨', '💫'],
   },
   {
@@ -21,9 +21,9 @@ const slides = [
     subtitle: 'Diseños exclusivos con piedras naturales, perlas y detalles artesanales.',
     cta: 'Ver Collares',
     href: '#collares',
-    accent: 'from-purple-200 via-pink-100 to-rose-100',
+    accent: 'from-purple-200 via-blue-100 to-blue-100',
     emoji: '💜',
-    bgGradient: 'from-purple-300 via-pink-200 to-rose-200',
+    bgGradient: 'from-purple-300 via-blue-200 to-blue-200',
     decorEmoji: ['💜', '🔮', '⭐', '🌙'],
   },
   {
@@ -33,9 +33,9 @@ const slides = [
     subtitle: 'Bolsos artesanales con diseños únicos que expresan tu personalidad.',
     cta: 'Descubrir Bolsos',
     href: '#bolsos',
-    accent: 'from-amber-100 via-orange-100 to-rose-100',
+    accent: 'from-amber-100 via-orange-100 to-blue-100',
     emoji: '✨',
-    bgGradient: 'from-amber-200 via-orange-200 to-rose-200',
+    bgGradient: 'from-amber-200 via-orange-200 to-blue-200',
     decorEmoji: ['👜', '✨', '🌟', '🎀'],
   },
 ];
@@ -59,8 +59,8 @@ const Hero = () => {
           {/* Text content */}
           <div className="animate-fade-in-up">
             <div className="inline-flex items-center gap-2 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-full mb-6 shadow-sm">
-              <Sparkles className="w-4 h-4 text-rose-400" />
-              <span className="text-sm font-semibold text-rose-500 tracking-wide">{slide.tag}</span>
+              <Sparkles className="w-4 h-4 text-blue-400" />
+              <span className="text-sm font-semibold text-blue-500 tracking-wide">{slide.tag}</span>
             </div>
 
             <h1 className="font-display text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800 leading-tight mb-6 whitespace-pre-line">
@@ -107,7 +107,7 @@ const Hero = () => {
           {/* Visual */}
           <div className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-md">
-              <div className="absolute inset-0 bg-gradient-to-br from-rose-300/40 to-purple-300/40 rounded-3xl blur-3xl scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-300/40 to-purple-300/40 rounded-3xl blur-3xl scale-110" />
               <div className={`relative bg-gradient-to-br ${slide.bgGradient} rounded-3xl overflow-hidden shadow-2xl border border-white/50 h-80 lg:h-96 flex items-center justify-center`}>
                 {/* Decorative floating emojis */}
                 <div className="absolute top-6 left-6 text-4xl animate-bounce" style={{ animationDelay: '0s' }}>{slide.decorEmoji[0]}</div>
@@ -142,7 +142,7 @@ const Hero = () => {
               key={i}
               onClick={() => setCurrent(i)}
               className={`h-2 rounded-full transition-all duration-300 ${
-                i === current ? 'w-8 bg-rose-400' : 'w-2 bg-gray-300'
+                i === current ? 'w-8 bg-blue-400' : 'w-2 bg-gray-300'
               }`}
               aria-label={`Slide ${i + 1}`}
             />
