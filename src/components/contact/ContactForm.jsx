@@ -121,7 +121,7 @@ export default function ContactForm() {
             value={form.name}
             onChange={handleChange}
             placeholder="Full name"
-            className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 placeholder-slate-600 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200"
+            className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 placeholder-slate-400 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200"
           />
         </div>
         <div>
@@ -136,7 +136,7 @@ export default function ContactForm() {
             onChange={handleChange}
             className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200 appearance-none"
           >
-            <option value="" disabled className="text-slate-600">Select your group</option>
+            <option value="" disabled className="text-slate-400">Select your group</option>
             {labGroups.map((g) => (
               <option key={g} value={g} className="bg-charcoal">{g}</option>
             ))}
@@ -157,7 +157,7 @@ export default function ContactForm() {
           value={form.email}
           onChange={handleChange}
           placeholder="student@university.edu"
-          className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 placeholder-slate-600 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200"
+          className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 placeholder-slate-400 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200"
         />
       </div>
 
@@ -174,7 +174,7 @@ export default function ContactForm() {
           value={form.observations}
           onChange={handleChange}
           placeholder="Describe your microscopic observations, ask a question about a specimen, or request a specific slide for the next lab session..."
-          className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 placeholder-slate-600 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200 resize-none leading-relaxed"
+          className="w-full px-4 py-3 bg-surface border border-subtle rounded-xl text-slate-100 placeholder-slate-400 font-inter text-sm focus:outline-none focus:border-bio-green/50 focus:ring-1 focus:ring-bio-green/20 transition-colors duration-200 resize-none leading-relaxed"
         />
         <div className="flex justify-end mt-1">
           <span className="font-mono text-xs text-slate-600">
