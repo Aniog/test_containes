@@ -6,9 +6,9 @@ const cellTypes = [
   {
     name: 'Erythrocytes',
     subtitle: 'Red Blood Cells',
-    color: 'text-red-400',
-    bg: 'bg-red-400/10',
-    border: 'border-red-400/20',
+    color: 'text-slate-300',
+    bg: 'bg-white/8',
+    border: 'border-white/12',
     stain: 'Eosin (pink)',
     desc: 'Biconcave discs ~7–8 μm diameter. Lack nucleus and organelles — maximizing hemoglobin content. The concave shape increases surface area for O₂/CO₂ exchange.',
   },
@@ -24,9 +24,9 @@ const cellTypes = [
   {
     name: 'Lymphocytes',
     subtitle: 'Mononuclear Leukocytes',
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-400/10',
-    border: 'border-cyan-400/20',
+    color: 'text-slate-300',
+    bg: 'bg-white/8',
+    border: 'border-white/12',
     stain: 'Hematoxylin (dark round nucleus)',
     desc: 'Large, round nucleus occupying most of the cell. B-lymphocytes produce antibodies; T-lymphocytes coordinate adaptive immune responses and directly kill infected cells.',
   },
@@ -97,7 +97,7 @@ export default function SpecimenCytology() {
                     <span className="font-mono text-xs text-phosphor bg-phosphor/10 px-2 py-1 rounded border border-phosphor/20">
                       400×
                     </span>
-                    <span className="font-mono text-xs text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded border border-cyan-400/20">
+                    <span className="font-mono text-xs text-slate-300 bg-white/8 px-2 py-1 rounded border border-white/12">
                       Brightfield
                     </span>
                   </div>

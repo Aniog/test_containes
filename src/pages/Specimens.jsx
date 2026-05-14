@@ -24,9 +24,9 @@ export default function Specimens() {
           {/* Quick nav */}
           <div className="flex flex-wrap gap-3 mt-8">
             {[
-              { label: 'Plant Histology', href: '#plant', color: 'text-bio-green border-bio-green/30 hover:bg-bio-green/10' },
-              { label: 'Protists & Micro-Invertebrates', href: '#protists', color: 'text-cyan-400 border-cyan-400/30 hover:bg-cyan-400/10' },
-              { label: 'Human Cytology', href: '#cytology', color: 'text-phosphor border-phosphor/30 hover:bg-phosphor/10' },
+              { label: 'Plant Histology', href: '#plant', color: 'text-white border-white/25 hover:bg-white/10' },
+              { label: 'Protists & Micro-Invertebrates', href: '#protists', color: 'text-slate-300 border-white/15 hover:bg-white/8' },
+              { label: 'Human Cytology', href: '#cytology', color: 'text-slate-400 border-white/12 hover:bg-white/6' },
             ].map((item) => (
               <a
                 key={item.label}

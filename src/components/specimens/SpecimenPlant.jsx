@@ -12,9 +12,9 @@ const plantStructures = [
   },
   {
     name: 'Xylem',
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-400/10',
-    border: 'border-cyan-400/30',
+    color: 'text-slate-300',
+    bg: 'bg-white/8',
+    border: 'border-white/15',
     desc: 'Dead, hollow vessel elements forming rigid tubes. Transports water and dissolved minerals upward via cohesion-tension.',
   },
   {
@@ -26,9 +26,9 @@ const plantStructures = [
   },
   {
     name: 'Cortex',
-    color: 'text-amber-400',
-    bg: 'bg-amber-400/10',
-    border: 'border-amber-400/30',
+    color: 'text-slate-300',
+    bg: 'bg-white/8',
+    border: 'border-white/15',
     desc: 'Parenchyma cells between epidermis and vascular bundle. Functions in storage, gas exchange, and structural support.',
   },
 ];
@@ -91,7 +91,7 @@ export default function SpecimenPlant() {
                     <span className="font-mono text-xs text-phosphor bg-phosphor/10 px-2 py-1 rounded border border-phosphor/20">
                       100×
                     </span>
-                    <span className="font-mono text-xs text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded border border-cyan-400/20">
+                    <span className="font-mono text-xs text-slate-300 bg-white/8 px-2 py-1 rounded border border-white/12">
                       Brightfield
                     </span>
                   </div>

@@ -8,9 +8,9 @@ const protistData = [
     classification: 'Ciliophora',
     locomotion: 'Cilia — thousands of hair-like organelles beat in coordinated metachronal waves',
     survival: 'Contractile vacuoles expel excess water; trichocysts discharge for defense',
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-400/10',
-    border: 'border-cyan-400/20',
+    color: 'text-slate-300',
+    bg: 'bg-white/8',
+    border: 'border-white/12',
   },
   {
     organism: 'Amoeba',
@@ -46,8 +46,8 @@ export default function SpecimenProtists() {
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-8 h-px bg-cyan-400" />
-          <span className="font-mono text-xs tracking-widest uppercase text-cyan-400">
+          <div className="w-8 h-px bg-white/8" />
+          <span className="font-mono text-xs tracking-widest uppercase text-slate-300">
             Section B — Protists & Micro-Invertebrates
           </span>
         </div>
@@ -131,7 +131,7 @@ export default function SpecimenProtists() {
                     <span className="font-mono text-xs text-phosphor bg-phosphor/10 px-2 py-1 rounded border border-phosphor/20">
                       400×
                     </span>
-                    <span className="font-mono text-xs text-cyan-400 bg-cyan-400/10 px-2 py-1 rounded border border-cyan-400/20">
+                    <span className="font-mono text-xs text-slate-300 bg-white/8 px-2 py-1 rounded border border-white/12">
                       Phase Contrast
                     </span>
                   </div>
@@ -140,8 +140,8 @@ export default function SpecimenProtists() {
             </div>
 
             {/* Vacuole function note */}
-            <div className="mt-4 p-5 rounded-xl bg-surface border border-cyan-400/20">
-              <div className="font-mono text-xs text-cyan-400 tracking-widest uppercase mb-2">
+            <div className="mt-4 p-5 rounded-xl bg-surface border border-white/12">
+              <div className="font-mono text-xs text-slate-300 tracking-widest uppercase mb-2">
                 Vacuole Functions
               </div>
               <p className="font-inter text-slate-400 text-xs leading-relaxed">

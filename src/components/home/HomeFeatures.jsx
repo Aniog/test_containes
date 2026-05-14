@@ -13,8 +13,8 @@ const features = [
     icon: Layers,
     title: 'Structural Annotations',
     description: 'Key biological structures are labeled and explained, bridging the gap between visual observation and scientific understanding.',
-    accent: 'text-cyan-400',
-    bg: 'bg-cyan-400/10',
+    accent: 'text-slate-300',
+    bg: 'bg-white/8',
   },
   {
     icon: FlaskConical,
