@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ChevronDown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 
@@ -114,11 +114,7 @@ export default function HomeHero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 animate-bounce">
-        <span className="font-mono text-xs text-slate-600 tracking-widest uppercase">Scroll</span>
-        <ChevronDown className="w-4 h-4 text-slate-600" />
-      </div>
+
 
       <style>{`
         @keyframes scanLine {
