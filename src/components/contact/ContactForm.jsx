@@ -187,11 +187,12 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-bio-green text-obsidian font-grotesk font-semibold rounded-xl hover:bg-emerald-400 disabled:opacity-60 disabled:cursor-not-allowed transition-all duration-200 group"
+        className="relative w-full flex items-center justify-center gap-2 px-6 py-4 bg-bio-green/15 backdrop-blur-md border border-bio-green/35 text-bio-green font-grotesk font-semibold rounded-xl shadow-lg shadow-bio-green/10 hover:bg-bio-green/25 hover:border-bio-green/55 hover:shadow-bio-green/20 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300 group overflow-hidden"
       >
+        <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bio-green/40 to-transparent" />
         {submitting ? (
           <>
-            <div className="w-4 h-4 border-2 border-obsidian/30 border-t-obsidian rounded-full animate-spin" />
+            <div className="w-4 h-4 border-2 border-bio-green/30 border-t-bio-green rounded-full animate-spin" />
             Submitting to Lab Records...
           </>
         ) : (

@@ -24,15 +24,17 @@ export default function HomeCTA() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             to="/specimens"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-bio-green text-obsidian font-grotesk font-semibold rounded-lg hover:bg-emerald-400 transition-all duration-200 group"
+            className="relative inline-flex items-center gap-2 px-8 py-4 bg-bio-green/15 backdrop-blur-md border border-bio-green/35 text-bio-green font-grotesk font-semibold rounded-xl shadow-lg shadow-bio-green/10 hover:bg-bio-green/25 hover:border-bio-green/55 hover:shadow-bio-green/20 transition-all duration-300 group overflow-hidden"
           >
+            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-bio-green/40 to-transparent" />
             Open Specimen Hub
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
           </Link>
           <Link
             to="/gallery"
-            className="inline-flex items-center gap-2 px-8 py-4 border border-subtle text-slate-300 font-grotesk font-medium rounded-lg hover:border-bio-green/40 hover:text-slate-100 transition-all duration-200"
+            className="relative inline-flex items-center gap-2 px-8 py-4 bg-white/5 backdrop-blur-md border border-white/15 text-slate-300 font-grotesk font-medium rounded-xl hover:bg-white/10 hover:border-white/25 hover:text-slate-100 transition-all duration-300 overflow-hidden"
           >
+            <span className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
             View Slide Gallery
           </Link>
         </div>
