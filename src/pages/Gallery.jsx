@@ -96,7 +96,7 @@ const slides = [
     magnification: '200×',
     stain: 'Acetocarmine',
     collector: 'Prof. A. Lindqvist',
-    image: 'https://images.unsplash.com/photo-1490750967868-88df5691cc5e?w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=900&q=80',
     notes: 'Mature pollen at anthesis. Exine sculpturing visible. Generative and tube nuclei resolved in some grains. Collected at peak dehiscence.',
     height: 'h-44',
   },
