@@ -46,8 +46,18 @@ export default function AdvantagesSection() {
   }, []);
 
   return (
-    <section id="advantages" className="py-20 md:py-28 bg-brand-blue" ref={containerRef}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="advantages" className="relative py-20 md:py-28" ref={containerRef}>
+      {/* Background: engineering / smart grid control room */}
+      <div
+        className="absolute inset-0"
+        data-strk-bg-id="adv-bg-c5d6e7"
+        data-strk-bg="[adv-title] smart grid control room engineers power technology innovation"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      {/* Deep navy overlay preserving white text readability */}
+      <div className="absolute inset-0 bg-brand-blue/92" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block bg-brand-orange/20 text-brand-orange text-sm font-semibold px-4 py-1.5 rounded-full mb-4">

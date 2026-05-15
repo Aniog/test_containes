@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 
 const contactInfo = [
@@ -27,6 +30,13 @@ const contactInfo = [
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', company: '', phone: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -39,14 +49,24 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-brand-gray">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="contact" className="relative py-20 md:py-28" ref={containerRef}>
+      {/* Background: modern business office / professional meeting */}
+      <div
+        className="absolute inset-0"
+        data-strk-bg-id="contact-bg-a1c2e3"
+        data-strk-bg="[contact-title] modern business office professional meeting cooperation"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      <div className="absolute inset-0 bg-brand-gray/95" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block bg-brand-orange/10 text-brand-orange text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
             联系我们
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-text mb-4">
+          <h2 id="contact-title" className="text-3xl md:text-4xl font-bold text-brand-text mb-4">
             期待与您携手合作
           </h2>
           <p className="text-brand-muted text-base max-w-2xl mx-auto">

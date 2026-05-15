@@ -1,4 +1,7 @@
 import { Award, BadgeCheck, FileText, Star } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const honors = [
   {
@@ -46,15 +49,33 @@ const partners = [
 ];
 
 export default function HonorsSection() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    }
+  }, []);
+
   return (
-    <section id="honors" className="py-20 md:py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="honors" className="relative py-20 md:py-28" ref={containerRef}>
+      {/* Background: certificates / awards / corporate achievement */}
+      <div
+        className="absolute inset-0"
+        data-strk-bg-id="honors-bg-f8a9b0"
+        data-strk-bg="[honors-title] corporate certificates awards quality certification professional achievement"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      <div className="absolute inset-0 bg-white/95" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block bg-brand-orange/10 text-brand-orange text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
             荣誉资质
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-brand-text mb-4">
+          <h2 id="honors-title" className="text-3xl md:text-4xl font-bold text-brand-text mb-4">
             权威认证，实力见证
           </h2>
           <p className="text-brand-muted text-base max-w-2xl mx-auto">

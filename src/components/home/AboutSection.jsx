@@ -28,8 +28,19 @@ export default function AboutSection() {
   }, []);
 
   return (
-    <section id="about" className="py-20 md:py-28 bg-white" ref={containerRef}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="about" className="relative py-20 md:py-28" ref={containerRef}>
+      {/* Background Image */}
+      <div
+        className="absolute inset-0"
+        data-strk-bg-id="about-bg-e7f8a1"
+        data-strk-bg="[about-title] electrical power equipment manufacturing plant industrial"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      {/* Light overlay — keeps text readable on a bright factory/industrial photo */}
+      <div className="absolute inset-0 bg-white/95" />
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block bg-brand-orange/10 text-brand-orange text-sm font-semibold px-4 py-1.5 rounded-full mb-4">

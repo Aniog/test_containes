@@ -76,8 +76,17 @@ export default function ProductsSection() {
   }, []);
 
   return (
-    <section id="products" className="py-20 md:py-28 bg-brand-gray" ref={containerRef}>
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="products" className="relative py-20 md:py-28" ref={containerRef}>
+      {/* Background: high-voltage power grid / transmission lines */}
+      <div
+        className="absolute inset-0"
+        data-strk-bg-id="products-bg-b2c3d4"
+        data-strk-bg="[products-title] high voltage power grid transmission lines electrical infrastructure"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      <div className="absolute inset-0 bg-brand-gray/95" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block bg-brand-orange/10 text-brand-orange text-sm font-semibold px-4 py-1.5 rounded-full mb-4">

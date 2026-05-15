@@ -1,4 +1,7 @@
 import { Zap, Phone, Mail, MapPin } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const footerLinks = [
   {
@@ -16,13 +19,29 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const containerRef = useRef(null);
   const scrollTo = (href) => {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    if (containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    }
+  }, []);
+
   return (
-    <footer className="bg-brand-navy text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16">
+    <footer className="relative bg-brand-navy text-white" ref={containerRef}>
+      {/* Background: aerial city power grid / night cityscape with electricity */}
+      <div
+        className="absolute inset-0"
+        data-strk-bg-id="footer-bg-d4f5g6"
+        data-strk-bg="[footer-brand] aerial city power grid night electricity infrastructure"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      <div className="absolute inset-0 bg-brand-navy/93" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand Column */}
           <div className="lg:col-span-2">
@@ -31,7 +50,7 @@ export default function Footer() {
                 <Zap className="w-5 h-5 text-white" strokeWidth={2.5} />
               </div>
               <div>
-                <div className="text-white font-bold text-base leading-tight">温思达电力装备有限公司</div>
+                <div id="footer-brand" className="text-white font-bold text-base leading-tight">温思达电力装备有限公司</div>
                 <div className="text-brand-orange text-xs tracking-widest">WENSIDA POWER EQUIPMENT</div>
               </div>
             </div>
@@ -77,7 +96,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/10">
+      <div className="relative z-10 border-t border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-xs">
             © 2024 温思达电力装备有限公司 版权所有
