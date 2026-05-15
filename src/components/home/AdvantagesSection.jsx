@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { useRef } from 'react';
 import { FlaskConical, Settings, Globe, HeartHandshake, Leaf, ShieldCheck } from 'lucide-react';
 
 const advantages = [
@@ -38,12 +36,6 @@ const advantages = [
 
 export default function AdvantagesSection() {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, []);
 
   return (
     <section id="advantages" className="relative py-20 md:py-28" ref={containerRef}>

@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { useRef } from 'react';
 import { ChevronDown, Shield, Award, Cpu } from 'lucide-react';
 
 const stats = [
@@ -12,12 +10,6 @@ const stats = [
 
 export default function HeroSection() {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, []);
 
   const scrollToAbout = () => {
     document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' });

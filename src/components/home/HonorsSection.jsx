@@ -1,7 +1,5 @@
+import { useRef } from 'react';
 import { Award, BadgeCheck, FileText, Star } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const honors = [
   {
@@ -50,12 +48,6 @@ const partners = [
 
 export default function HonorsSection() {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, []);
 
   return (
     <section id="honors" className="relative py-20 md:py-28" ref={containerRef}>

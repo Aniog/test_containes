@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { useRef } from 'react';
 import { CheckCircle } from 'lucide-react';
 
 const milestones = [
@@ -20,12 +18,6 @@ const highlights = [
 
 export default function AboutSection() {
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, []);
 
   return (
     <section id="about" className="relative py-20 md:py-28" ref={containerRef}>

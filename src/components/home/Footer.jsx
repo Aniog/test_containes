@@ -1,7 +1,5 @@
+import { useRef } from 'react';
 import { Zap, Phone, Mail, MapPin } from 'lucide-react';
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const footerLinks = [
   {
@@ -23,12 +21,6 @@ export default function Footer() {
   const scrollTo = (href) => {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
   };
-
-  useEffect(() => {
-    if (containerRef.current) {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, []);
 
   return (
     <footer className="relative bg-brand-navy text-white" ref={containerRef}>

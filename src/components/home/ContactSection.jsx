@@ -1,7 +1,4 @@
-import { useState } from 'react';
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { useState, useRef } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
 
 const contactInfo = [
@@ -31,12 +28,6 @@ export default function ContactSection() {
   const [form, setForm] = useState({ name: '', company: '', phone: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, []);
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
