@@ -56,7 +56,7 @@ export default function Lightbox({ slide, onClose }) {
                 src={slide.image}
                 alt={slide.name}
                 className="w-full h-full object-cover"
-                style={{ filter: 'grayscale(100%) contrast(1.15) brightness(0.9)' }}
+                style={{ filter: 'contrast(1.05) brightness(0.95)' }}
               />
               {/* Magnification overlay */}
               <div

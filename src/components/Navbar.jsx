@@ -31,7 +31,7 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl"
+        className="fixed top-4 left-0 right-0 mx-auto z-50 w-[calc(100%-2rem)] max-w-5xl"
       >
         <div
           className="glass rounded-2xl px-6 py-3 flex items-center justify-between"

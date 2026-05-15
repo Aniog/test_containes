@@ -12,7 +12,7 @@ const slides = [
     magnification: '100×',
     stain: 'Safranin / Fast Green',
     collector: 'Dr. E. Hartmann',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=80',
     notes: 'Excellent endodermis definition. Casparian strips clearly visible under polarised light. Pericycle intact. Prepared 14 March 2024.',
     height: 'h-56',
   },
@@ -24,7 +24,7 @@ const slides = [
     magnification: '400×',
     stain: 'Methylene Blue',
     collector: 'Prof. A. Lindqvist',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80',
     notes: 'Live culture fixed at peak motility. Macronucleus and micronucleus both resolved. Cilia visible along oral groove.',
     height: 'h-72',
   },
@@ -36,7 +36,7 @@ const slides = [
     magnification: '400×',
     stain: 'Papanicolaou',
     collector: 'Dr. M. Okonkwo',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&q=80',
     notes: 'Buccal smear from healthy adult volunteer. Nuclei well-defined. No evidence of dysplasia. Cytoplasm staining uniform.',
     height: 'h-48',
   },
@@ -48,7 +48,7 @@ const slides = [
     magnification: '1000×',
     stain: 'Gram Stain (Positive)',
     collector: 'Dr. E. Hartmann',
-    image: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80',
     notes: 'Gram-positive rods in chains. Endospores visible as unstained oval bodies. Culture age: 48 hours on nutrient agar.',
     height: 'h-64',
   },
@@ -60,7 +60,7 @@ const slides = [
     magnification: '200×',
     stain: 'Unstained — Bright Field',
     collector: 'Prof. A. Lindqvist',
-    image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=900&q=80',
     notes: 'Stomatal complexes clearly resolved. Guard cell chloroplasts visible. Epidermal cell junctions well-defined. Cuticle intact.',
     height: 'h-52',
   },
@@ -72,7 +72,7 @@ const slides = [
     magnification: '400×',
     stain: 'Unstained — Phase Contrast',
     collector: 'Dr. M. Okonkwo',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1628595351029-c2bf17511435?w=900&q=80',
     notes: 'Raphe system and striae clearly resolved at this magnification. Frustule symmetry consistent with species description. Isolated from freshwater pond sample.',
     height: 'h-80',
   },
@@ -84,7 +84,7 @@ const slides = [
     magnification: '400×',
     stain: 'Haematoxylin & Eosin',
     collector: 'Dr. E. Hartmann',
-    image: 'https://images.unsplash.com/photo-1576671081837-49000212a370?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1614935151651-0bea6508db6b?w=900&q=80',
     notes: 'Intercalated discs clearly visible. Branching fibres with central nuclei. Striations well-preserved. Post-mortem interval < 4 hours.',
     height: 'h-60',
   },
@@ -96,7 +96,7 @@ const slides = [
     magnification: '200×',
     stain: 'Acetocarmine',
     collector: 'Prof. A. Lindqvist',
-    image: 'https://images.unsplash.com/photo-1490750967868-88df5691cc5e?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1490750967868-88df5691cc5e?w=900&q=80',
     notes: 'Mature pollen at anthesis. Exine sculpturing visible. Generative and tube nuclei resolved in some grains. Collected at peak dehiscence.',
     height: 'h-44',
   },
@@ -108,7 +108,7 @@ const slides = [
     magnification: '400×',
     stain: 'Lactophenol Cotton Blue',
     collector: 'Dr. M. Okonkwo',
-    image: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=900&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80&flip=h',
     notes: 'Conidiophores with vesicles and phialides clearly resolved. Conidia chains intact. Septate hyphae with regular branching pattern.',
     height: 'h-68',
   },
@@ -172,7 +172,7 @@ export default function Gallery() {
                     src={slide.image}
                     alt={slide.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    style={{ filter: 'grayscale(100%) contrast(1.1) brightness(0.88)' }}
+                    style={{ filter: 'contrast(1.05) brightness(0.92)' }}
                   />
 
                   {/* Hover overlay */}

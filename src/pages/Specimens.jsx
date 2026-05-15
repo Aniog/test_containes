@@ -8,7 +8,7 @@ const specimens = [
     name: 'Vascular Bundle',
     latinName: 'Zea mays — Monocot Cross-Section',
     magnification: '100×',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&q=80',
     description:
       'The vascular bundle of Zea mays presents a characteristic scattered arrangement within the ground tissue, distinguishing monocots from their dicotyledonous counterparts. Xylem vessels and phloem sieve tubes are encased within a bundle sheath of sclerenchyma fibres, providing both structural rigidity and metabolic compartmentalisation.',
     data: [
@@ -29,7 +29,7 @@ const specimens = [
     name: 'Radiolarian Skeleton',
     latinName: 'Acantharia — Polycystinea Order',
     magnification: '400×',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1200&q=80',
     description:
       'Radiolarians are marine amoeboid protists distinguished by their intricate mineral skeletons of opaline silica or strontium sulphate. Their geometric precision—often exhibiting icosahedral or spherical symmetry—has fascinated naturalists since Ernst Haeckel\'s monumental Challenger expedition monographs of 1887. Each pseudopodial ray serves dual roles in prey capture and buoyancy regulation.',
     data: [
@@ -50,7 +50,7 @@ const specimens = [
     name: 'Erythrocyte Smear',
     latinName: 'Homo sapiens — Peripheral Blood Film',
     magnification: '1000×',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1200&q=80&sat=-100',
+    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=1200&q=80',
     description:
       'The peripheral blood film remains the cornerstone of haematological diagnosis. Mature erythrocytes present as biconcave discs approximately 6–8 µm in diameter, devoid of nuclei and organelles, optimised for maximal haemoglobin packing and deformability through the microvasculature. Morphological aberrations—poikilocytosis, anisocytosis—provide critical diagnostic indices.',
     data: [

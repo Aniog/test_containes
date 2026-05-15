@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, Microscope, FlaskConical, BookOpen } from 'lucide-react';
 
 const HERO_IMG =
-  'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=80&sat=-100&con=20';
+  'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=80&con=20';
 
 const features = [
   {
@@ -45,8 +45,8 @@ export default function Home() {
           <img
             src={HERO_IMG}
             alt="Radiolarian micrograph — high-contrast black and white"
-            className="w-full h-full object-cover grayscale contrast-110"
-            style={{ filter: 'grayscale(100%) contrast(1.15) brightness(0.88)' }}
+            className="w-full h-full object-cover contrast-110"
+            style={{ filter: 'contrast(1.15) brightness(0.88)' }}
           />
           {/* Vignette */}
           <div
@@ -199,10 +199,10 @@ export default function Home() {
       <section className="relative overflow-hidden">
         <div className="relative h-72 md:h-96">
           <img
-            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1600&q=80&sat=-100"
+            src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1600&q=80"
             alt="Diatom colony under polarised light"
             className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(100%) contrast(1.2) brightness(0.75)' }}
+            style={{ filter: 'contrast(1.2) brightness(0.75)' }}
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <motion.div

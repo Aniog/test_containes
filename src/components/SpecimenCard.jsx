@@ -19,7 +19,7 @@ export default function SpecimenCard({ specimen, reverse = false }) {
           src={specimen.image}
           alt={specimen.name}
           className="w-full h-72 md:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-          style={{ filter: 'grayscale(100%) contrast(1.15) brightness(0.9)' }}
+          style={{ filter: 'contrast(1.08) brightness(0.92)' }}
         />
         {/* Magnification badge */}
         <div
