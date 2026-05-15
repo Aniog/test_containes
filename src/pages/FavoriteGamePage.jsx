@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { Plus, Trash2, Gamepad2, Star, CheckCircle2, ChevronDown, ChevronUp, Send } from 'lucide-react'
-import { submitFavoriteGame } from '../api/favoriteGame'
+import { useState, useRef } from 'react'
+import { Plus, Trash2, Gamepad2, Star, CheckCircle2, ChevronDown, ChevronUp, Send, ImagePlus, X, Upload } from 'lucide-react'
+import { submitFavoriteGame, uploadGameImage, buildPublicImageUrl } from '../api/favoriteGame'
+import { S3_DOMAIN } from '../config.jsx'
 
 const PLATFORMS = [
   { id: 'steam', label: 'Steam', color: 'bg-[#1b2838] border-[#66c0f4]/50 text-[#66c0f4]' },
@@ -27,6 +28,8 @@ const EMPTY_GAME = {
   rating: 0,
   genre: '',
   would_recommend: true,
+  // images: array of { file, previewUrl, uploaded: null | { storageKey, ... } }
+  imageFiles: [],
 }
 
 function StarRating({ value, onChange }) {
@@ -58,6 +61,77 @@ function StarRating({ value, onChange }) {
   )
 }
 
+function ImageUploadArea({ imageFiles, onAdd, onRemove }) {
+  const inputRef = useRef(null)
+  const MAX = 5
+
+  const handleFiles = (e) => {
+    const files = Array.from(e.target.files || [])
+    const remaining = MAX - imageFiles.length
+    const toAdd = files.slice(0, remaining).map(file => ({
+      file,
+      previewUrl: URL.createObjectURL(file),
+      uploaded: null,
+    }))
+    toAdd.forEach(item => onAdd(item))
+    e.target.value = ''
+  }
+
+  return (
+    <div>
+      <label className="block text-sm font-medium text-slate-700 mb-2">
+        Screenshots / Cover Images
+        <span className="ml-1.5 text-xs text-slate-400 font-normal">up to {MAX} images</span>
+      </label>
+
+      {/* Previews */}
+      {imageFiles.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-3">
+          {imageFiles.map((item, i) => (
+            <div key={i} className="relative w-20 h-20 rounded-lg overflow-hidden border border-slate-200 group">
+              <img
+                src={item.previewUrl}
+                alt={`preview-${i}`}
+                className="w-full h-full object-cover"
+              />
+              <button
+                type="button"
+                onClick={() => onRemove(i)}
+                className="absolute top-0.5 right-0.5 w-5 h-5 bg-red-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+              >
+                <X className="w-3 h-3 text-white" />
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Upload button */}
+      {imageFiles.length < MAX && (
+        <>
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            multiple
+            className="hidden"
+            onChange={handleFiles}
+          />
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            className="flex items-center gap-2 px-4 py-2 border border-dashed border-slate-300 hover:border-green-400 rounded-xl text-sm text-slate-500 hover:text-green-600 transition-all hover:bg-green-50"
+          >
+            <ImagePlus className="w-4 h-4" />
+            {imageFiles.length === 0 ? 'Add Images' : 'Add More'}
+            <span className="text-xs text-slate-400">({imageFiles.length}/{MAX})</span>
+          </button>
+        </>
+      )}
+    </div>
+  )
+}
+
 function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle }) {
   const platform = PLATFORMS.find(p => p.id === game.platform)
   const isValid = game.game_name.trim() && game.platform && game.reason.trim()
@@ -82,9 +156,16 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
             <p className="text-slate-900 font-semibold text-sm">
               {game.game_name || `Game #${index + 1}`}
             </p>
-            {game.platform && (
-              <p className="text-xs text-slate-500">{platform?.label}</p>
-            )}
+            <div className="flex items-center gap-2">
+              {game.platform && (
+                <p className="text-xs text-slate-500">{platform?.label}</p>
+              )}
+              {game.imageFiles.length > 0 && (
+                <span className="text-xs text-green-600 flex items-center gap-0.5">
+                  <Upload className="w-3 h-3" />{game.imageFiles.length} img
+                </span>
+              )}
+            </div>
           </div>
         </div>
         <div className="flex items-center gap-3">
@@ -209,6 +290,16 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
             <p className="text-right text-xs text-slate-400 mt-1">{game.reason.length}/1000</p>
           </div>
 
+          {/* Image upload */}
+          <ImageUploadArea
+            imageFiles={game.imageFiles}
+            onAdd={item => onChange('imageFiles', [...game.imageFiles, item])}
+            onRemove={i => {
+              const updated = game.imageFiles.filter((_, idx) => idx !== i)
+              onChange('imageFiles', updated)
+            }}
+          />
+
           {/* Would recommend */}
           <div className="flex items-center gap-3">
             <button
@@ -240,6 +331,7 @@ export default function FavoriteGamePage() {
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [errorMsg, setErrorMsg] = useState('')
   const [submittedCount, setSubmittedCount] = useState(0)
+  const [uploadProgress, setUploadProgress] = useState('')
 
   const updateGame = (index, field, value) => {
     setGames(prev => prev.map((g, i) => i === index ? { ...g, [field]: value } : g))
@@ -256,7 +348,9 @@ export default function FavoriteGamePage() {
   }
 
   const validGames = games.filter(g => g.game_name.trim() && g.platform && g.reason.trim())
-  const canSubmit = submitterName.trim() && validGames.length > 0
+
+  const emailValid = /^\S+@\S+\.\S+$/.test(submitterEmail.trim())
+  const canSubmit = submitterName.trim() && emailValid && validGames.length > 0
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -264,29 +358,46 @@ export default function FavoriteGamePage() {
 
     setStatus('submitting')
     setErrorMsg('')
+    setUploadProgress('')
 
     try {
-      for (const game of validGames) {
+      for (let i = 0; i < validGames.length; i++) {
+        const game = validGames[i]
+
+        // Upload images for this game first
+        let uploadedImages = []
+        if (game.imageFiles.length > 0) {
+          setUploadProgress(`Uploading images for game ${i + 1} of ${validGames.length}…`)
+          uploadedImages = await Promise.all(
+            game.imageFiles.map(item => uploadGameImage(item.file))
+          )
+        }
+
+        setUploadProgress(`Saving game ${i + 1} of ${validGames.length}…`)
+
         const payload = {
           submitter_name: submitterName.trim(),
+          submitter_email: submitterEmail.trim(),
           game_name: game.game_name.trim(),
           platform: game.platform,
           reason: game.reason.trim(),
+          would_recommend: game.would_recommend,
         }
-        if (submitterEmail.trim()) payload.submitter_email = submitterEmail.trim()
         if (game.play_time_hours !== '') payload.play_time_hours = parseFloat(game.play_time_hours)
         if (game.last_play_date) payload.last_play_date = game.last_play_date
         if (game.rating > 0) payload.rating = game.rating
         if (game.genre) payload.genre = game.genre
-        payload.would_recommend = game.would_recommend
+        if (uploadedImages.length > 0) payload.images = uploadedImages
 
         await submitFavoriteGame(payload)
       }
 
       setSubmittedCount(validGames.length)
+      setUploadProgress('')
       setStatus('success')
     } catch (err) {
       console.error('Submission error:', err)
+      setUploadProgress('')
       setErrorMsg(err.message || 'Something went wrong. Please try again.')
       setStatus('error')
     }
@@ -299,6 +410,7 @@ export default function FavoriteGamePage() {
     setExpandedIndex(0)
     setStatus('idle')
     setErrorMsg('')
+    setUploadProgress('')
   }
 
   if (status === 'success') {
@@ -361,15 +473,22 @@ export default function FavoriteGamePage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-1.5">
-                Email <span className="text-slate-400 font-normal">(optional)</span>
+                Email <span className="text-red-400">*</span>
               </label>
               <input
                 type="email"
                 value={submitterEmail}
                 onChange={e => setSubmitterEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors"
+                className={`w-full bg-slate-50 border rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none transition-colors ${
+                  submitterEmail && !emailValid
+                    ? 'border-red-400 focus:border-red-500'
+                    : 'border-slate-200 focus:border-green-500'
+                }`}
               />
+              {submitterEmail && !emailValid && (
+                <p className="text-xs text-red-500 mt-1">Please enter a valid email address</p>
+              )}
             </div>
           </div>
         </div>
@@ -408,9 +527,17 @@ export default function FavoriteGamePage() {
           </button>
         </div>
 
+        {/* Upload progress */}
+        {uploadProgress && (
+          <div className="bg-green-50 border border-green-200 rounded-xl px-4 py-3 text-green-700 text-sm flex items-center gap-2">
+            <div className="w-4 h-4 border-2 border-green-400/40 border-t-green-600 rounded-full animate-spin flex-shrink-0" />
+            {uploadProgress}
+          </div>
+        )}
+
         {/* Error */}
         {status === 'error' && (
-          <div className="bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3 text-red-400 text-sm">
+          <div className="bg-red-500/10 border border-red-500/30 rounded-xl px-4 py-3 text-red-500 text-sm">
             {errorMsg}
           </div>
         )}
