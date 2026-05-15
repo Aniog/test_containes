@@ -11,7 +11,7 @@ function ArticleCard({ article, featured = false }) {
   return (
     <Link
       to={`/news/${article.id}`}
-      className={`group bg-white border border-slate-200 hover:border-blue-400 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-blue-100 flex ${featured ? 'flex-col' : 'flex-col sm:flex-row'}`}
+      className={`group bg-white border border-slate-200 hover:border-green-400 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-green-100 flex ${featured ? 'flex-col' : 'flex-col sm:flex-row'}`}
     >
       <div className={`overflow-hidden flex-shrink-0 ${featured ? 'h-52' : 'h-44 sm:w-48 sm:h-auto'}`}>
         <img
@@ -26,7 +26,7 @@ function ArticleCard({ article, featured = false }) {
             <CategoryBadge category={article.category} />
             <PlatformBadge platform={article.platform} />
           </div>
-          <h3 className={`text-slate-900 font-bold leading-snug mb-2 group-hover:text-blue-600 transition-colors ${featured ? 'text-lg' : 'text-base'}`}>
+          <h3 className={`text-slate-900 font-bold leading-snug mb-2 group-hover:text-green-600 transition-colors ${featured ? 'text-lg' : 'text-base'}`}>
             {article.title}
           </h3>
           <p className="text-slate-500 text-sm leading-relaxed line-clamp-2">{article.summary}</p>
@@ -81,7 +81,7 @@ export default function NewsPage() {
             placeholder="Search articles, news, reviews..."
             value={search}
             onChange={e => setSearch(e.target.value)}
-            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+            className="w-full bg-slate-50 border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors"
           />
         </div>
 
@@ -96,7 +96,7 @@ export default function NewsPage() {
                   onClick={() => setSelectedPlatform(p.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                     selectedPlatform === p.id
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-green-600 text-white'
                       : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
                   }`}
                 >
@@ -116,7 +116,7 @@ export default function NewsPage() {
                   onClick={() => setSelectedCategory(c.id)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
                     selectedCategory === c.id
-                      ? 'bg-blue-600 text-white'
+                      ? 'bg-green-600 text-white'
                       : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
                   }`}
                 >

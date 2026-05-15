@@ -9,18 +9,18 @@ export default function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-green-700 rounded-lg flex items-center justify-center">
                 <Gamepad2 className="w-5 h-5 text-white" />
               </div>
               <span className="text-white font-bold text-xl">
-                Game<span className="text-blue-400">Pulse</span>
+                Game<span className="text-green-400">Pulse</span>
               </span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
               Your one-stop destination for gaming news, reviews, and the best deals across Steam, Epic, Nintendo, PlayStation, and Xbox.
             </p>
             <div className="flex items-center gap-3 mt-4">
-              <a href="#" className="text-slate-500 hover:text-blue-400 transition-colors">
+              <a href="#" className="text-slate-500 hover:text-green-400 transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
               <a href="#" className="text-slate-500 hover:text-red-400 transition-colors">

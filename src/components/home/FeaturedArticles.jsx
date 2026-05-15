@@ -18,7 +18,7 @@ export default function FeaturedArticles() {
         </div>
         <Link
           to="/news"
-          className="hidden sm:flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
+          className="hidden sm:flex items-center gap-1.5 text-green-600 hover:text-green-700 text-sm font-medium transition-colors"
         >
           All Articles <ArrowRight className="w-4 h-4" />
         </Link>
@@ -30,7 +30,7 @@ export default function FeaturedArticles() {
         {featured[0] && (
           <Link
             to={`/news/${featured[0].id}`}
-            className="lg:col-span-2 group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-blue-400 hover:shadow-lg hover:shadow-blue-100 transition-all"
+            className="lg:col-span-2 group relative rounded-2xl overflow-hidden bg-white border border-slate-200 hover:border-green-400 hover:shadow-lg hover:shadow-green-100 transition-all"
           >
             <div className="relative h-64 sm:h-80 overflow-hidden">
               <img
@@ -45,7 +45,7 @@ export default function FeaturedArticles() {
               </div>
             </div>
             <div className="p-6">
-              <h3 className="text-slate-900 font-bold text-xl leading-snug mb-2 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-slate-900 font-bold text-xl leading-snug mb-2 group-hover:text-green-600 transition-colors">
                 {featured[0].title}
               </h3>
               <p className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{featured[0].summary}</p>
@@ -70,7 +70,7 @@ export default function FeaturedArticles() {
             <Link
               key={article.id}
               to={`/news/${article.id}`}
-              className="group flex gap-4 bg-white border border-slate-200 hover:border-blue-400 hover:shadow-md hover:shadow-blue-100 rounded-xl p-4 transition-all"
+              className="group flex gap-4 bg-white border border-slate-200 hover:border-green-400 hover:shadow-md hover:shadow-green-100 rounded-xl p-4 transition-all"
             >
               <div className="w-24 h-20 flex-shrink-0 rounded-lg overflow-hidden">
                 <img
@@ -84,7 +84,7 @@ export default function FeaturedArticles() {
                   <CategoryBadge category={article.category} />
                   <PlatformBadge platform={article.platform} />
                 </div>
-                <h3 className="text-slate-900 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-slate-900 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-green-600 transition-colors">
                   {article.title}
                 </h3>
                 <div className="flex items-center gap-2 mt-2 text-xs text-slate-400">
@@ -103,7 +103,7 @@ export default function FeaturedArticles() {
           <Link
             key={article.id}
             to={`/news/${article.id}`}
-            className="group bg-white border border-slate-200 hover:border-blue-400 hover:shadow-md hover:shadow-blue-100 rounded-xl overflow-hidden transition-all"
+            className="group bg-white border border-slate-200 hover:border-green-400 hover:shadow-md hover:shadow-green-100 rounded-xl overflow-hidden transition-all"
           >
             <div className="h-36 overflow-hidden">
               <img
@@ -117,7 +117,7 @@ export default function FeaturedArticles() {
                 <CategoryBadge category={article.category} />
                 <PlatformBadge platform={article.platform} />
               </div>
-              <h3 className="text-slate-900 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+              <h3 className="text-slate-900 text-sm font-semibold leading-snug line-clamp-2 group-hover:text-green-600 transition-colors">
                 {article.title}
               </h3>
               <div className="flex items-center gap-2 mt-2 text-xs text-slate-400">

@@ -12,7 +12,7 @@ function DealCard({ deal }) {
   return (
     <Link
       to={`/deals?platform=${deal.platform}`}
-      className="group bg-white border border-slate-200 hover:border-blue-400 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-blue-100"
+      className="group bg-white border border-slate-200 hover:border-green-400 rounded-xl overflow-hidden transition-all hover:shadow-lg hover:shadow-green-100"
     >
       <div className="relative h-40 overflow-hidden">
         <img
@@ -24,7 +24,7 @@ function DealCard({ deal }) {
         {/* Discount badge */}
         <div className="absolute top-3 right-3">
           {deal.is_free ? (
-            <span className="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">FREE</span>
+            <span className="bg-green-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">FREE</span>
           ) : (
             <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">
               -{deal.discount_percent}%
@@ -37,7 +37,7 @@ function DealCard({ deal }) {
       </div>
 
       <div className="p-4">
-        <h3 className="text-slate-900 font-semibold text-sm leading-snug mb-1 line-clamp-1 group-hover:text-blue-600 transition-colors">
+        <h3 className="text-slate-900 font-semibold text-sm leading-snug mb-1 line-clamp-1 group-hover:text-green-600 transition-colors">
           {deal.game_title}
         </h3>
         <p className="text-slate-400 text-xs mb-3">{deal.genre}</p>
@@ -45,7 +45,7 @@ function DealCard({ deal }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             {deal.is_free ? (
-              <span className="text-blue-700 font-bold text-base">Free</span>
+              <span className="text-green-700 font-bold text-base">Free</span>
             ) : (
               <>
                 <span className="text-slate-900 font-bold text-base">${deal.sale_price.toFixed(2)}</span>
@@ -88,7 +88,7 @@ export default function HotDeals() {
         </div>
         <Link
           to="/deals"
-          className="hidden sm:flex items-center gap-1.5 text-blue-600 hover:text-blue-700 text-sm font-medium transition-colors"
+          className="hidden sm:flex items-center gap-1.5 text-green-600 hover:text-green-700 text-sm font-medium transition-colors"
         >
           View All <ArrowRight className="w-4 h-4" />
         </Link>
@@ -103,7 +103,7 @@ export default function HotDeals() {
       <div className="mt-6 text-center sm:hidden">
         <Link
           to="/deals"
-          className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm font-medium"
+          className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 text-sm font-medium"
         >
           View All Deals <ArrowRight className="w-4 h-4" />
         </Link>

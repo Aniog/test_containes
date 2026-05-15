@@ -15,7 +15,7 @@ export default function ArticleDetailPage() {
         <div className="text-5xl mb-4">📄</div>
         <h2 className="text-slate-900 text-2xl font-bold mb-2">Article Not Found</h2>
         <p className="text-slate-500 mb-6">The article you're looking for doesn't exist.</p>
-        <Link to="/news" className="text-blue-600 hover:text-blue-700 font-medium">
+        <Link to="/news" className="text-green-600 hover:text-green-700 font-medium">
           ← Back to News
         </Link>
       </div>
@@ -127,7 +127,7 @@ export default function ArticleDetailPage() {
                     <div className="flex gap-1 mb-1">
                       <CategoryBadge category={rel.category} />
                     </div>
-                    <p className="text-slate-900 text-xs font-semibold leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
+                    <p className="text-slate-900 text-xs font-semibold leading-snug line-clamp-2 group-hover:text-green-600 transition-colors">
                       {rel.title}
                     </p>
                   </div>
@@ -141,13 +141,13 @@ export default function ArticleDetailPage() {
             <h3 className="text-slate-900 font-bold text-base mb-3">Browse Platform</h3>
             <Link
               to={`/deals?platform=${article.platform}`}
-              className="flex items-center justify-between bg-blue-50 border border-blue-200 rounded-xl px-4 py-3 hover:bg-blue-100 transition-colors"
+              className="flex items-center justify-between bg-green-50 border border-green-200 rounded-xl px-4 py-3 hover:bg-green-100 transition-colors"
             >
               <div>
                 <PlatformBadge platform={article.platform} size="lg" />
                 <p className="text-slate-500 text-xs mt-1">View all deals</p>
               </div>
-              <ArrowLeft className="w-4 h-4 text-indigo-400 rotate-180" />
+              <ArrowLeft className="w-4 h-4 text-green-400 rotate-180" />
             </Link>
           </div>
         </div>

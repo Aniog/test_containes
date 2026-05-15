@@ -7,7 +7,7 @@ const PLATFORMS = [
   { id: 'epic', label: 'Epic Games', color: 'bg-gray-800 border-white/30 text-white' },
   { id: 'nintendo', label: 'Nintendo', color: 'bg-red-900/60 border-red-400/50 text-red-300' },
   { id: 'playstation', label: 'PlayStation', color: 'bg-blue-900/60 border-blue-400/50 text-blue-300' },
-  { id: 'xbox', label: 'Xbox', color: 'bg-green-900/60 border-blue-400/50 text-blue-300' },
+  { id: 'xbox', label: 'Xbox', color: 'bg-green-900/60 border-green-400/50 text-green-300' },
   { id: 'mobile', label: 'Mobile', color: 'bg-purple-900/60 border-purple-400/50 text-purple-300' },
   { id: 'other', label: 'Other', color: 'bg-slate-600 border-slate-400/50 text-white' },
 ]
@@ -64,7 +64,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
 
   return (
     <div className={`border rounded-2xl overflow-hidden transition-all ${
-      isValid ? 'border-blue-400/50 bg-blue-50' : 'border-slate-200 bg-white'
+      isValid ? 'border-green-400/50 bg-green-50' : 'border-slate-200 bg-white'
     }`}>
       {/* Card header */}
       <button
@@ -74,7 +74,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
       >
         <div className="flex items-center gap-3">
           <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
-            isValid ? 'bg-blue-600 text-white' : 'bg-slate-200 text-slate-500'
+            isValid ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-500'
           }`}>
             {isValid ? <CheckCircle2 className="w-5 h-5" /> : index + 1}
           </div>
@@ -117,7 +117,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               value={game.game_name}
               onChange={e => onChange('game_name', e.target.value)}
               placeholder="e.g. The Witcher 3: Wild Hunt"
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors"
             />
           </div>
 
@@ -151,7 +151,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               <select
                 value={game.genre}
                 onChange={e => onChange('genre', e.target.value)}
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-blue-500 transition-colors cursor-pointer"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-green-500 transition-colors cursor-pointer"
               >
                 <option value="">Select genre...</option>
                 {GENRES.map(g => (
@@ -170,7 +170,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
                 value={game.play_time_hours}
                 onChange={e => onChange('play_time_hours', e.target.value)}
                 placeholder="e.g. 120"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors"
               />
             </div>
           </div>
@@ -183,7 +183,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               value={game.last_play_date}
               onChange={e => onChange('last_play_date', e.target.value)}
               max={new Date().toISOString().split('T')[0]}
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-green-500 transition-colors"
             />
           </div>
 
@@ -204,7 +204,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               placeholder="Tell us what makes this game special to you..."
               rows={3}
               maxLength={1000}
-              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors resize-none"
+              className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors resize-none"
             />
             <p className="text-right text-xs text-slate-400 mt-1">{game.reason.length}/1000</p>
           </div>
@@ -215,7 +215,7 @@ function GameCard({ game, index, total, onChange, onRemove, isExpanded, onToggle
               type="button"
               onClick={() => onChange('would_recommend', !game.would_recommend)}
               className={`relative w-11 h-6 rounded-full transition-colors ${
-                game.would_recommend ? 'bg-blue-600' : 'bg-slate-300'
+                game.would_recommend ? 'bg-green-600' : 'bg-slate-300'
               }`}
             >
               <span className={`absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform ${
@@ -304,9 +304,9 @@ export default function FavoriteGamePage() {
   if (status === 'success') {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-20 text-center">
-        <div className="bg-white border border-blue-300 rounded-3xl p-10 shadow-lg">
-          <div className="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-10 h-10 text-blue-400" />
+        <div className="bg-white border border-green-300 rounded-3xl p-10 shadow-lg">
+          <div className="w-20 h-20 bg-green-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-green-400" />
           </div>
           <h2 className="text-2xl font-extrabold text-slate-900 mb-3">Thanks, {submitterName}!</h2>
           <p className="text-slate-500 mb-2">
@@ -315,7 +315,7 @@ export default function FavoriteGamePage() {
           <p className="text-slate-400 text-sm mb-8">Your picks help other gamers discover great titles!</p>
           <button
             onClick={handleReset}
-            className="bg-blue-600 hover:bg-blue-500 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
+            className="bg-green-600 hover:bg-green-500 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
           >
             Share More Games
           </button>
@@ -329,8 +329,8 @@ export default function FavoriteGamePage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-10 h-10 bg-blue-100 border border-blue-300 rounded-xl flex items-center justify-center">
-            <Gamepad2 className="w-5 h-5 text-indigo-400" />
+          <div className="w-10 h-10 bg-green-100 border border-green-300 rounded-xl flex items-center justify-center">
+            <Gamepad2 className="w-5 h-5 text-green-400" />
           </div>
           <h1 className="text-3xl font-extrabold text-slate-900">Favorite Games</h1>
         </div>
@@ -343,7 +343,7 @@ export default function FavoriteGamePage() {
         {/* Submitter info */}
         <div className="bg-white border border-slate-200 rounded-2xl p-5 space-y-4 shadow-sm">
           <h2 className="text-slate-900 font-semibold text-base flex items-center gap-2">
-            <span className="w-6 h-6 bg-blue-600 rounded-full text-xs flex items-center justify-center font-bold text-white">1</span>
+            <span className="w-6 h-6 bg-green-600 rounded-full text-xs flex items-center justify-center font-bold text-white">1</span>
             About You
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -356,7 +356,7 @@ export default function FavoriteGamePage() {
                 value={submitterName}
                 onChange={e => setSubmitterName(e.target.value)}
                 placeholder="e.g. Alex Chen"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors"
               />
             </div>
             <div>
@@ -368,7 +368,7 @@ export default function FavoriteGamePage() {
                 value={submitterEmail}
                 onChange={e => setSubmitterEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-blue-500 transition-colors"
+                className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-green-500 transition-colors"
               />
             </div>
           </div>
@@ -377,7 +377,7 @@ export default function FavoriteGamePage() {
         {/* Games section */}
         <div className="space-y-3">
           <h2 className="text-slate-900 font-semibold text-base flex items-center gap-2">
-            <span className="w-6 h-6 bg-blue-600 rounded-full text-xs flex items-center justify-center font-bold text-white">2</span>
+            <span className="w-6 h-6 bg-green-600 rounded-full text-xs flex items-center justify-center font-bold text-white">2</span>
             Your Favorite Games
             <span className="ml-auto text-xs text-slate-400 font-normal">
               {validGames.length}/{games.length} complete
@@ -401,7 +401,7 @@ export default function FavoriteGamePage() {
           <button
             type="button"
             onClick={addGame}
-            className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-blue-400 rounded-2xl py-4 text-slate-400 hover:text-blue-600 text-sm font-medium transition-all hover:bg-blue-50"
+            className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-green-400 rounded-2xl py-4 text-slate-400 hover:text-green-600 text-sm font-medium transition-all hover:bg-green-50"
           >
             <Plus className="w-4 h-4" />
             Add Another Game
@@ -426,7 +426,7 @@ export default function FavoriteGamePage() {
           <button
             type="submit"
             disabled={!canSubmit || status === 'submitting'}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-xl transition-colors"
+            className="flex items-center gap-2 bg-green-600 hover:bg-green-500 disabled:bg-slate-200 disabled:text-slate-400 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-xl transition-colors"
           >
             {status === 'submitting' ? (
               <>

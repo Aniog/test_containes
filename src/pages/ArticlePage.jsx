@@ -15,7 +15,7 @@ export default function ArticlePage() {
         <div className="text-6xl mb-4">📰</div>
         <h2 className="text-white text-2xl font-bold mb-2">Article Not Found</h2>
         <p className="text-gray-400 mb-6">The article you're looking for doesn't exist.</p>
-        <Link to="/news" className="text-indigo-400 hover:text-indigo-300 font-medium">
+        <Link to="/news" className="text-green-400 hover:text-green-300 font-medium">
           ← Back to News
         </Link>
       </div>
@@ -112,7 +112,7 @@ export default function ArticlePage() {
               <Link
                 key={rel.id}
                 to={`/news/${rel.id}`}
-                className="group bg-gray-900 border border-white/10 hover:border-indigo-500/50 rounded-xl overflow-hidden transition-all"
+                className="group bg-gray-900 border border-white/10 hover:border-green-500/50 rounded-xl overflow-hidden transition-all"
               >
                 <div className="h-32 overflow-hidden">
                   <img
@@ -125,7 +125,7 @@ export default function ArticlePage() {
                   <div className="flex gap-1.5 mb-2">
                     <CategoryBadge category={rel.category} />
                   </div>
-                  <h3 className="text-white text-sm font-semibold leading-snug line-clamp-2 group-hover:text-indigo-300 transition-colors">
+                  <h3 className="text-white text-sm font-semibold leading-snug line-clamp-2 group-hover:text-green-300 transition-colors">
                     {rel.title}
                   </h3>
                 </div>
