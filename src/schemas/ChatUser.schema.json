@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Chat Users",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Unique random user ID (e.g. WX-XXXXXX)"
+    },
+    "nickname": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Display nickname chosen by the user"
+    },
+    "avatar_color": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Avatar background color hex code"
+    },
+    "last_seen": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last active timestamp"
+    },
+    "is_online": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the user is currently online"
+    }
+  },
+  "required": ["user_id", "nickname"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

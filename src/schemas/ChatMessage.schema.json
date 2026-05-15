@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Chat Messages",
+  "type": "object",
+  "properties": {
+    "conversation_id": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Unique conversation ID composed of two sorted user IDs joined by underscore"
+    },
+    "sender_id": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "User ID of the message sender"
+    },
+    "receiver_id": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "User ID of the message receiver"
+    },
+    "content": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Message text content"
+    },
+    "sent_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the message was sent"
+    },
+    "is_read": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the message has been read by the receiver"
+    }
+  },
+  "required": ["conversation_id", "sender_id", "receiver_id", "content", "sent_at"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
