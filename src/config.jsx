@@ -1,0 +1,5 @@
+export const STRK_PROJECT_URL = 'https://www.uat.strikingly.com/api/v1/sites/57660/form_entities'
+export const STRK_PROJECT_ANON_KEY = 'xx'
+export const SITE_ID = '57660'
+export const REQUEST_DOMAIN = 'xxx'
+export const S3_DOMAIN = 'xxx'
