@@ -50,11 +50,15 @@ export default function AboutSection() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Left: Image */}
           <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
+            {/* Hidden label used as image search anchor — no brand names */}
+            <span id="about-img-hint" className="sr-only">
+              industrial electrical switchgear assembly line workers manufacturing floor interior
+            </span>
             <img
               alt="温思达电力装备生产基地"
               className="w-full h-full object-cover"
               data-strk-img-id="about-factory-d4e5f6"
-              data-strk-img="[about-title] power equipment manufacturing factory"
+              data-strk-img="[about-img-hint]"
               data-strk-img-ratio="4x3"
               data-strk-img-width="800"
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
