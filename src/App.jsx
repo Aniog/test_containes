@@ -1,33 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex flex-col items-center justify-center p-8">
+      <div className="text-center">
+        <div className="mb-6 text-7xl animate-bounce">👋</div>
+        <h1 className="text-6xl md:text-8xl font-extrabold text-white mb-4 tracking-tight">
+          Hello, World!
+        </h1>
+        <p className="text-xl md:text-2xl text-purple-200 mt-4 max-w-md mx-auto leading-relaxed">
+          欢迎来到我的第一个网站，很高兴见到你！
         </p>
+        <div className="mt-10 flex gap-4 justify-center flex-wrap">
+          <span className="px-5 py-2 bg-white/10 text-white rounded-full text-sm font-medium backdrop-blur border border-white/20">
+            ✨ 简单
+          </span>
+          <span className="px-5 py-2 bg-white/10 text-white rounded-full text-sm font-medium backdrop-blur border border-white/20">
+            🎨 美观
+          </span>
+          <span className="px-5 py-2 bg-white/10 text-white rounded-full text-sm font-medium backdrop-blur border border-white/20">
+            🚀 快速
+          </span>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
