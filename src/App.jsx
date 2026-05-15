@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { GameProvider } from './utils/gameContext';
+import HomePage from './pages/HomePage';
+import StandardSudokuGame from './components/sudoku/StandardSudoku';
+import GreaterThanSudokuGame from './components/sudoku/GreaterThanSudoku';
+import SiameseSudokuGame from './components/sudoku/SiameseSudoku';
+import ArithmeticSudokuGame from './components/sudoku/ArithmeticSudoku';
 
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+function GameRouter({ gameId, onBack }) {
+  if (gameId === 'sudoku-4') {
+    return (
+      <StandardSudokuGame
+        size={4} boxRows={2} boxCols={2}
+        title="四宫数独" gameType="sudoku-4"
+        onBack={onBack}
+      />
+    );
+  }
+  if (gameId === 'sudoku-6') {
+    return (
+      <StandardSudokuGame
+        size={6} boxRows={2} boxCols={3}
+        title="六宫数独" gameType="sudoku-6"
+        onBack={onBack}
+      />
+    );
+  }
+  if (gameId === 'sudoku-9') {
+    return (
+      <StandardSudokuGame
+        size={9} boxRows={3} boxCols={3}
+        title="九宫数独" gameType="sudoku-9"
+        onBack={onBack}
+      />
+    );
+  }
+  if (gameId === 'greater-than') {
+    return <GreaterThanSudokuGame onBack={onBack} />;
+  }
+  if (gameId === 'siamese') {
+    return <SiameseSudokuGame onBack={onBack} />;
+  }
+  if (gameId === 'arithmetic') {
+    return <ArithmeticSudokuGame onBack={onBack} />;
+  }
+  return null;
 }
 
-export default App
+function App() {
+  const [currentGame, setCurrentGame] = useState(null);
+
+  return (
+    <GameProvider>
+      {currentGame ? (
+        <GameRouter
+          gameId={currentGame}
+          onBack={() => setCurrentGame(null)}
+        />
+      ) : (
+        <HomePage onSelectGame={setCurrentGame} />
+      )}
+    </GameProvider>
+  );
+}
+
+export default App;
+
