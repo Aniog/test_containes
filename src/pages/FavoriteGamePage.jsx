@@ -7,7 +7,7 @@ const PLATFORMS = [
   { id: 'epic', label: 'Epic Games', color: 'bg-gray-800 border-white/30 text-white' },
   { id: 'nintendo', label: 'Nintendo', color: 'bg-red-900/60 border-red-400/50 text-red-300' },
   { id: 'playstation', label: 'PlayStation', color: 'bg-blue-900/60 border-blue-400/50 text-blue-300' },
-  { id: 'xbox', label: 'Xbox', color: 'bg-green-900/60 border-green-400/50 text-green-300' },
+  { id: 'xbox', label: 'Xbox', color: 'bg-green-900/60 border-blue-400/50 text-blue-300' },
   { id: 'mobile', label: 'Mobile', color: 'bg-purple-900/60 border-purple-400/50 text-purple-300' },
   { id: 'other', label: 'Other', color: 'bg-slate-600 border-slate-400/50 text-white' },
 ]
@@ -304,9 +304,9 @@ export default function FavoriteGamePage() {
   if (status === 'success') {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-20 text-center">
-        <div className="bg-white border border-green-300 rounded-3xl p-10 shadow-lg">
-          <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-10 h-10 text-green-400" />
+        <div className="bg-white border border-blue-300 rounded-3xl p-10 shadow-lg">
+          <div className="w-20 h-20 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-10 h-10 text-blue-400" />
           </div>
           <h2 className="text-2xl font-extrabold text-slate-900 mb-3">Thanks, {submitterName}!</h2>
           <p className="text-slate-500 mb-2">

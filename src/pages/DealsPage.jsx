@@ -18,7 +18,7 @@ const PLATFORM_COLORS = {
   epic: 'border-slate-300 bg-slate-800/80',
   nintendo: 'border-red-400/50 bg-red-900/70',
   playstation: 'border-blue-400/50 bg-blue-900/70',
-  xbox: 'border-green-400/50 bg-green-900/70',
+  xbox: 'border-blue-400/50 bg-green-900/70',
 }
 
 function DealCard({ deal }) {
@@ -42,7 +42,7 @@ function DealCard({ deal }) {
         {/* Discount badge */}
         <div className="absolute top-3 right-3">
           {deal.is_free ? (
-            <span className="bg-green-500 text-white text-sm font-bold px-3 py-1 rounded-xl shadow-lg">
+            <span className="bg-blue-600 text-white text-sm font-bold px-3 py-1 rounded-xl shadow-lg">
               FREE
             </span>
           ) : (
@@ -70,13 +70,13 @@ function DealCard({ deal }) {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             {deal.is_free ? (
-              <span className="text-green-400 font-extrabold text-xl">Free</span>
+              <span className="text-blue-400 font-extrabold text-xl">Free</span>
             ) : (
               <>
                 <span className="text-white font-extrabold text-xl">${deal.sale_price.toFixed(2)}</span>
                 <div className="flex flex-col">
                   <span className="text-slate-400 text-xs line-through">${deal.original_price.toFixed(2)}</span>
-                  <span className="text-green-400 text-xs font-semibold">Save ${savings.toFixed(2)}</span>
+                  <span className="text-blue-400 text-xs font-semibold">Save ${savings.toFixed(2)}</span>
                 </div>
               </>
             )}
@@ -222,7 +222,7 @@ export default function DealsPage() {
           onClick={() => setShowFreeOnly(!showFreeOnly)}
           className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-colors flex-shrink-0 ${
             showFreeOnly
-              ? 'bg-green-600 text-white'
+              ? 'bg-blue-700 text-white'
               : 'bg-slate-100 border border-slate-200 text-slate-600 hover:text-slate-900'
           }`}
         >

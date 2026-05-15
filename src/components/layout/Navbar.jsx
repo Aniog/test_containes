@@ -24,11 +24,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-700 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-700 to-blue-900 rounded-lg flex items-center justify-center">
               <Gamepad2 className="w-5 h-5 text-white" />
             </div>
             <span className="text-slate-900 font-bold text-xl tracking-tight">
-              Game<span className="text-blue-600">Pulse</span>
+              Game<span className="text-blue-800">Pulse</span>
             </span>
           </Link>
 
@@ -40,7 +40,7 @@ export default function Navbar() {
                 to={link.to}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   isActive(link.to)
-                    ? 'bg-blue-600 text-white'
+                    ? 'bg-blue-800 text-white'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
@@ -53,7 +53,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               to="/deals"
-              className="flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all shadow-sm shadow-blue-200"
+              className="flex items-center gap-1.5 bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-all shadow-sm shadow-blue-300"
             >
               <Zap className="w-4 h-4" />
               Hot Deals
@@ -80,7 +80,7 @@ export default function Navbar() {
               onClick={() => setMobileOpen(false)}
               className={`block px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive(link.to)
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-blue-800 text-white'
                   : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
@@ -90,7 +90,7 @@ export default function Navbar() {
           <Link
             to="/deals"
             onClick={() => setMobileOpen(false)}
-            className="flex items-center gap-1.5 bg-gradient-to-r from-blue-600 to-blue-700 text-white text-sm font-semibold px-4 py-2.5 rounded-lg mt-2"
+            className="flex items-center gap-1.5 bg-gradient-to-r from-blue-700 to-blue-900 text-white text-sm font-semibold px-4 py-2.5 rounded-lg mt-2"
           >
             <Zap className="w-4 h-4" />
             Hot Deals

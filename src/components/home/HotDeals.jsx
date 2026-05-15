@@ -24,7 +24,7 @@ function DealCard({ deal }) {
         {/* Discount badge */}
         <div className="absolute top-3 right-3">
           {deal.is_free ? (
-            <span className="bg-green-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">FREE</span>
+            <span className="bg-blue-600 text-white text-xs font-bold px-2.5 py-1 rounded-lg">FREE</span>
           ) : (
             <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-lg">
               -{deal.discount_percent}%
@@ -45,7 +45,7 @@ function DealCard({ deal }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             {deal.is_free ? (
-              <span className="text-green-600 font-bold text-base">Free</span>
+              <span className="text-blue-700 font-bold text-base">Free</span>
             ) : (
               <>
                 <span className="text-slate-900 font-bold text-base">${deal.sale_price.toFixed(2)}</span>
