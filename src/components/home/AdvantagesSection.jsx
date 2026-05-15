@@ -51,7 +51,7 @@ export default function AdvantagesSection() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="adv-bg-c5d6e7"
-        data-strk-bg="[adv-title] smart grid control room engineers power technology innovation"
+        data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />

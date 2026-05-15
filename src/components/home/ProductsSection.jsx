@@ -81,7 +81,7 @@ export default function ProductsSection() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="products-bg-b2c3d4"
-        data-strk-bg="[products-title] high voltage power grid transmission lines electrical infrastructure"
+        data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />

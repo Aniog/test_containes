@@ -36,7 +36,7 @@ export default function Footer() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="footer-bg-d4f5g6"
-        data-strk-bg="[footer-brand] aerial city power grid night electricity infrastructure"
+        data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />

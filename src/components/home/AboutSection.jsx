@@ -33,7 +33,7 @@ export default function AboutSection() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="about-bg-e7f8a1"
-        data-strk-bg="[about-title] electrical power equipment manufacturing plant industrial"
+        data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />

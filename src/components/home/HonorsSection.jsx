@@ -63,7 +63,7 @@ export default function HonorsSection() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="honors-bg-f8a9b0"
-        data-strk-bg="[honors-title] corporate certificates awards quality certification professional achievement"
+        data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />

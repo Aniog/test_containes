@@ -54,7 +54,7 @@ export default function ContactSection() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="contact-bg-a1c2e3"
-        data-strk-bg="[contact-title] modern business office professional meeting cooperation"
+        data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />
