@@ -1,35 +1,58 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import LoginPage from './components/chat/LoginPage.jsx'
+import MainApp from './components/chat/MainApp.jsx'
+import { findUserById, updateUserOnline } from './api/chat.js'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentUser, setCurrentUser] = useState(null)
+  const [checking, setChecking] = useState(true)
 
-  return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+  useEffect(() => {
+    const savedId = localStorage.getItem('wx_user_id')
+    const savedNickname = localStorage.getItem('wx_nickname')
+    const savedColor = localStorage.getItem('wx_avatar_color')
+
+    if (savedId && savedNickname) {
+      findUserById(savedId)
+        .then((user) => {
+          if (user) {
+            updateUserOnline(savedId).catch(console.error)
+            setCurrentUser({
+              userId: savedId,
+              nickname: savedNickname,
+              avatarColor: savedColor || '#07C160',
+              dbRecord: user,
+            })
+          }
+        })
+        .catch(console.error)
+        .finally(() => setChecking(false))
+    } else {
+      setChecking(false)
+    }
+  }, [])
+
+  const handleLogin = (user) => {
+    setCurrentUser(user)
+  }
+
+  const handleLogout = () => {
+    setCurrentUser(null)
+  }
+
+  if (checking) {
+    return (
+      <div className="min-h-screen bg-[#EDEDED] flex items-center justify-center">
+        <div className="text-gray-400 text-sm">加载中...</div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    )
+  }
+
+  if (!currentUser) {
+    return <LoginPage onLogin={handleLogin} />
+  }
+
+  return <MainApp currentUser={currentUser} onLogout={handleLogout} />
 }
 
 export default App
