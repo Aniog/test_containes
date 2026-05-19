@@ -12,11 +12,13 @@ const Hero = () => {
 
   return (
     <section id="hero" ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#050a0f]">
+      {/* Hidden text used as image search context */}
+      <span id="hero-bg-desc" className="hidden">colorful fluorescent microscopy cells glowing bioluminescent abstract science</span>
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
         data-strk-bg-id="hero-bg-a1b2c3"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg="[hero-bg-desc]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
