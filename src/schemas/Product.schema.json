@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "slug": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "URL-friendly slug"
+    },
+    "description": {
+      "type": "string",
+      "description": "Game description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sale price (if on sale)"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["steam", "epic", "nintendo", "playstation", "xbox", "multi"],
+      "description": "Platform"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game publisher"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Release date"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average rating out of 5"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Game tags"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the product is available"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature on homepage"
+    }
+  },
+  "required": ["title", "price", "platform"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] }
+  }
+}
