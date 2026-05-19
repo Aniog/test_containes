@@ -5,6 +5,7 @@ import News from './pages/News';
 import ArticleDetail from './pages/ArticleDetail';
 import Deals from './pages/Deals';
 import Store from './pages/Store';
+import FavoriteGames from './pages/FavoriteGames';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="news/:id" element={<ArticleDetail />} />
           <Route path="deals" element={<Deals />} />
           <Route path="store" element={<Store />} />
+          <Route path="favorite-games" element={<FavoriteGames />} />
         </Route>
       </Routes>
     </BrowserRouter>

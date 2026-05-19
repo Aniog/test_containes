@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Store', path: '/store' },
   { label: 'Deals', path: '/deals' },
   { label: 'News', path: '/news' },
+  { label: 'Favorite Games', path: '/favorite-games' },
 ];
 
 const Navbar = ({ cartCount = 0 }) => {
