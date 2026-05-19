@@ -14,8 +14,8 @@ const HeroSection = () => {
       {/* Full-bleed hero background image */}
       <div
         className="absolute inset-0 w-full h-full"
-        data-strk-bg-id="hero-bg-mc9f2a"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg-id="hero-bg-mc7e3b"
+        data-strk-bg="colorful fluorescent microscopy cells biology abstract [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
