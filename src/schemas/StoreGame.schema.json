@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Store Games",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly slug"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full game description"
+    },
+    "short_description": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Short description for cards"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game developer name"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game publisher name"
+    },
+    "genre": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["action", "adventure", "rpg", "strategy", "sports", "racing", "simulation", "puzzle", "horror", "shooter", "platformer", "fighting", "indie", "mmo"]
+      },
+      "description": "Game genres"
+    },
+    "platform": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["steam", "epic", "nintendo", "playstation", "xbox", "pc"]
+      },
+      "description": "Available platforms"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Regular price in USD"
+    },
+    "sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sale price in USD (if on sale)"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "screenshots": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "Screenshot URLs"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average user rating out of 5"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is featured"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the game is available for purchase"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Searchable tags"
+    }
+  },
+  "required": ["title", "price", "platform"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

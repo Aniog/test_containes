@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Platform Deals",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game or deal title"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["steam", "epic", "nintendo", "playstation", "xbox"],
+      "description": "Platform offering the deal"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price in USD"
+    },
+    "deal_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Discounted price in USD"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Game cover image URL"
+    },
+    "store_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the deal on the platform store"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Game genre"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the deal expires"
+    },
+    "is_free": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is free (e.g. Epic free game)"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this deal prominently"
+    }
+  },
+  "required": ["title", "platform", "discount_percent"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
