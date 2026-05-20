@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
-const NODE_COUNT = 60;
-const CONNECTION_DISTANCE = 150;
-const NODE_SPEED = 0.4;
+const NODE_COUNT = 90;
+const CONNECTION_DISTANCE = 180;
+const NODE_SPEED = 0.35;
 
 function randomBetween(a, b) {
   return a + Math.random() * (b - a);
@@ -21,18 +21,18 @@ export default function NetworkCanvas() {
     const resize = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
+      // Re-scatter nodes on resize so they fill the new dimensions
+      nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
+        x: randomBetween(0, canvas.width),
+        y: randomBetween(0, canvas.height),
+        vx: randomBetween(-NODE_SPEED, NODE_SPEED),
+        vy: randomBetween(-NODE_SPEED, NODE_SPEED),
+        radius: randomBetween(2, 3.5),
+        pulse: randomBetween(0, Math.PI * 2),
+      }));
     };
     resize();
     window.addEventListener('resize', resize);
-
-    // Initialize nodes
-    nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
-      x: randomBetween(0, canvas.width),
-      y: randomBetween(0, canvas.height),
-      vx: randomBetween(-NODE_SPEED, NODE_SPEED),
-      vy: randomBetween(-NODE_SPEED, NODE_SPEED),
-      radius: randomBetween(1.5, 3),
-    }));
 
     const draw = () => {
       const w = canvas.width;
@@ -40,6 +40,7 @@ export default function NetworkCanvas() {
       ctx.clearRect(0, 0, w, h);
 
       const nodes = nodesRef.current;
+      const t = Date.now() * 0.001;
 
       // Update positions
       for (const node of nodes) {
@@ -56,22 +57,42 @@ export default function NetworkCanvas() {
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONNECTION_DISTANCE) {
-            const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.35;
+            const alpha = (1 - dist / CONNECTION_DISTANCE) * 0.5;
+            const gradient = ctx.createLinearGradient(
+              nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y
+            );
+            gradient.addColorStop(0, `rgba(99, 102, 241, ${alpha})`);
+            gradient.addColorStop(1, `rgba(139, 92, 246, ${alpha})`);
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = 1;
             ctx.stroke();
           }
         }
       }
 
-      // Draw nodes
+      // Draw nodes with pulsing glow
       for (const node of nodes) {
+        const glow = 0.6 + 0.4 * Math.sin(t * 1.5 + node.pulse);
+
+        // Outer glow
+        const glowGrad = ctx.createRadialGradient(
+          node.x, node.y, 0,
+          node.x, node.y, node.radius * 4
+        );
+        glowGrad.addColorStop(0, `rgba(139, 92, 246, ${0.35 * glow})`);
+        glowGrad.addColorStop(1, 'rgba(139, 92, 246, 0)');
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
+        ctx.fillStyle = glowGrad;
+        ctx.fill();
+
+        // Core dot
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(139, 92, 246, 0.6)';
+        ctx.fillStyle = `rgba(167, 139, 250, ${0.7 + 0.3 * glow})`;
         ctx.fill();
       }
 
@@ -90,7 +111,6 @@ export default function NetworkCanvas() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: 0.6 }}
     />
   );
 }
