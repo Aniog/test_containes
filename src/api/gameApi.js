@@ -61,3 +61,17 @@ export async function fetchGameDeals({ platform, limit = 20, offset = 0 } = {}) 
   if (error) throw error
   return getRows(response)
 }
+
+export async function submitFavoriteGame(gameData) {
+  const { data: response, error } = await client
+    .from('FavoriteGame')
+    .insert({ data: gameData })
+    .select()
+    .single()
+  if (error) throw error
+  if (response?.success === false) {
+    const msgs = Array.isArray(response.errors) ? response.errors.join(', ') : 'Submission failed'
+    throw new Error(msgs)
+  }
+  return getEntity(response)
+}
