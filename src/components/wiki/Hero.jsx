@@ -1,4 +1,5 @@
 import { ArrowRight, BookOpen, Github, Star } from 'lucide-react';
+import NetworkCanvas from './NetworkCanvas';
 
 export default function Hero() {
   const handleScroll = (href) => {
