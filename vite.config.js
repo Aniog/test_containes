@@ -20,6 +20,10 @@ export default defineConfig({
     cors: true,
     hmr: {
       overlay: false
+    },
+    watch: {
+      usePolling: true,
+      interval: 300
     }
   }
 })
