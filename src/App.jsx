@@ -1,14 +1,24 @@
-import './App.css'
+import Navbar from './components/landing/Navbar'
+import Hero from './components/landing/Hero'
+import Features from './components/landing/Features'
+import Templates from './components/landing/Templates'
+import Pricing from './components/landing/Pricing'
+import Testimonials from './components/landing/Testimonials'
+import CTA from './components/landing/CTA'
+import Footer from './components/landing/Footer'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <Features />
+      <Templates />
+      <Pricing />
+      <Testimonials />
+      <CTA />
+      <Footer />
+    </div>
   )
 }
 
