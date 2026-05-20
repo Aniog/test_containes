@@ -23,7 +23,7 @@ export default function Footer() {
               让厨房成为家中最温暖的角落。
             </p>
             <p className="text-white/40 text-xs mt-4">
-              粤ICP备XXXXXXXX号 | © 2024 金利厨具用品有限公司
+              粤ICP备XXXXXXXX号 | © 2026 金利厨具用品有限公司
             </p>
           </div>
 
