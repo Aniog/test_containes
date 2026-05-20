@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Articles",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Article headline"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly identifier"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["news", "blog", "review", "guide"],
+      "description": "Article category"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["all", "steam", "epic", "nintendo", "playstation", "xbox"],
+      "description": "Related gaming platform"
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short summary shown in cards"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full article body (markdown or plain text)"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Author display name"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication timestamp"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature on homepage"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of tags"
+    }
+  },
+  "required": ["title", "category", "summary", "author"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
