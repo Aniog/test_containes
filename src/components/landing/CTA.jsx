@@ -10,14 +10,14 @@ const stats = [
 export default function CTA() {
   return (
     <section className="relative py-20 md:py-28 bg-[#0F0F0F] overflow-hidden">
-      <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-violet-700/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-purple-800/15 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-emerald-700/20 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-green-800/15 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-violet-400 mb-4">Get Started Today</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-emerald-400 mb-4">Get Started Today</p>
         <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight">
           Your website is{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-purple-300">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-green-300">
             one click away
           </span>
         </h2>
@@ -27,7 +27,7 @@ export default function CTA() {
 
         <div className="flex flex-wrap justify-center gap-4 mb-16">
           <a href="#pricing"
-            className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white font-semibold px-8 py-4 rounded-full transition-colors text-base">
+            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-8 py-4 rounded-full transition-colors text-base">
             Create Your Free Website <ArrowRight className="w-4 h-4" />
           </a>
           <a href="#features"

@@ -18,10 +18,10 @@ export default function Templates() {
   }, [])
 
   return (
-    <section id="templates" ref={containerRef} className="py-20 md:py-28 bg-violet-50">
+    <section id="templates" ref={containerRef} className="py-20 md:py-28 bg-emerald-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-xs font-semibold uppercase tracking-widest text-violet-600 mb-3">Templates</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-emerald-600 mb-3">Templates</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Start with a stunning template</h2>
           <p className="text-gray-500 max-w-xl mx-auto text-lg">
             Choose from 100+ professionally designed templates for every industry and customize them to match your brand.
@@ -30,7 +30,7 @@ export default function Templates() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {templates.map(tpl => (
-            <div key={tpl.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-violet-100 hover:shadow-xl hover:shadow-violet-200/50 hover:-translate-y-1 transition-all duration-200">
+            <div key={tpl.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm border border-emerald-100 hover:shadow-xl hover:shadow-emerald-200/50 hover:-translate-y-1 transition-all duration-200">
               <div className="relative overflow-hidden aspect-[4/3]">
                 <span id={`tpl-cat-${tpl.id}`} className="sr-only">{tpl.category}</span>
                 <span id={`tpl-name-${tpl.id}`} className="sr-only">{tpl.name}</span>
@@ -44,12 +44,12 @@ export default function Templates() {
                   data-strk-img-width="500"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'/%3E"
                 />
-                <div className="absolute inset-0 bg-violet-900/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <button className="bg-white text-violet-700 font-semibold px-6 py-2.5 rounded-full text-sm hover:bg-violet-50 transition-colors">
+                <div className="absolute inset-0 bg-emerald-900/70 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <button className="bg-white text-emerald-700 font-semibold px-6 py-2.5 rounded-full text-sm hover:bg-emerald-50 transition-colors">
                     Use Template
                   </button>
                 </div>
-                <span className="absolute top-3 left-3 bg-violet-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span className="absolute top-3 left-3 bg-emerald-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
                   {tpl.category}
                 </span>
               </div>
@@ -62,7 +62,7 @@ export default function Templates() {
         </div>
 
         <div className="text-center mt-12">
-          <a href="#" className="inline-flex items-center gap-2 border border-violet-300 text-violet-700 hover:bg-violet-100 font-semibold px-7 py-3 rounded-full transition-colors">
+          <a href="#" className="inline-flex items-center gap-2 border border-emerald-300 text-emerald-700 hover:bg-emerald-100 font-semibold px-7 py-3 rounded-full transition-colors">
             Browse All Templates
           </a>
         </div>

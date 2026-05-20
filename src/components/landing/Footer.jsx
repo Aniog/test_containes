@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
           <div className="col-span-2 md:col-span-1">
             <div className="text-white font-extrabold text-xl mb-3">
-              <span className="text-violet-400">S</span>trikingly
+              <span className="text-emerald-400">S</span>trikingly
             </div>
             <p className="text-gray-500 text-sm leading-relaxed mb-5">
               The easiest way to build a beautiful website. No code required.
@@ -20,7 +20,7 @@ export default function Footer() {
             <div className="flex gap-3">
               {['𝕏', 'f', 'in', '▶'].map(icon => (
                 <a key={icon} href="#"
-                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-violet-600 text-gray-400 hover:text-white flex items-center justify-center text-sm transition-colors">
+                  className="w-9 h-9 rounded-full bg-white/10 hover:bg-emerald-600 text-gray-400 hover:text-white flex items-center justify-center text-sm transition-colors">
                   {icon}
                 </a>
               ))}
@@ -33,7 +33,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {links.map(link => (
                   <li key={link}>
-                    <a href="#" className="text-gray-500 hover:text-violet-400 text-sm transition-colors">{link}</a>
+                    <a href="#" className="text-gray-500 hover:text-emerald-400 text-sm transition-colors">{link}</a>
                   </li>
                 ))}
               </ul>
@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-600 text-sm">© {new Date().getFullYear()} Strikingly, Inc. All rights reserved.</p>
           <p className="text-gray-600 text-sm">
-            Made with <span className="text-violet-500">♥</span> for creators everywhere
+            Made with <span className="text-emerald-500">♥</span> for creators everywhere
           </p>
         </div>
       </div>
