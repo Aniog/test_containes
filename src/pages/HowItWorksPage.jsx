@@ -71,12 +71,12 @@ const vsItems = [
 ];
 
 const colorMap = {
-  indigo: { bg: 'bg-indigo-500/10', text: 'text-indigo-400', border: 'border-indigo-500/30', num: 'text-indigo-400/60' },
-  violet: { bg: 'bg-violet-500/10', text: 'text-violet-400', border: 'border-violet-500/30', num: 'text-violet-400/60' },
-  purple: { bg: 'bg-purple-500/10', text: 'text-purple-400', border: 'border-purple-500/30', num: 'text-purple-400/60' },
-  sky: { bg: 'bg-sky-500/10', text: 'text-sky-400', border: 'border-sky-500/30', num: 'text-sky-400/60' },
-  emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-400', border: 'border-emerald-500/30', num: 'text-emerald-400/60' },
-  amber: { bg: 'bg-amber-500/10', text: 'text-amber-400', border: 'border-amber-500/30', num: 'text-amber-400/60' },
+  indigo: { bg: 'bg-indigo-50', text: 'text-indigo-600', border: 'border-indigo-200', num: 'text-indigo-400' },
+  violet: { bg: 'bg-violet-50', text: 'text-violet-600', border: 'border-violet-200', num: 'text-violet-400' },
+  purple: { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-200', num: 'text-purple-400' },
+  sky: { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-200', num: 'text-sky-400' },
+  emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-200', num: 'text-emerald-400' },
+  amber: { bg: 'bg-amber-50', text: 'text-amber-600', border: 'border-amber-200', num: 'text-amber-400' },
 };
 
 export default function HowItWorksPage() {
@@ -85,20 +85,20 @@ export default function HowItWorksPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] pt-24 pb-20">
+    <div className="min-h-screen bg-slate-50 pt-24 pb-20">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full px-4 py-1.5 mb-6">
-            <Layers className="w-3.5 h-3.5 text-indigo-400" />
-            <span className="text-indigo-400 text-sm font-medium">工作原理</span>
+          <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-full px-4 py-1.5 mb-6">
+            <Layers className="w-3.5 h-3.5 text-indigo-500" />
+            <span className="text-indigo-600 text-sm font-medium">工作原理</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4 leading-tight">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
             LLM Wiki 如何
-            <span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent"> 构建知识库</span>
+            <span className="bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 bg-clip-text text-transparent"> 构建知识库</span>
           </h1>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
             从文档到结构化知识，LLM Wiki 通过六个核心步骤，将零散信息转化为持续生长的个人知识图谱。
           </p>
         </div>
@@ -111,7 +111,7 @@ export default function HowItWorksPage() {
             const isLast = index === pipeline.length - 1;
             return (
               <div key={item.step}>
-                <div className={`bg-[#111118] border ${colors.border} rounded-2xl p-6 md:p-8`}>
+                <div className={`bg-white border ${colors.border} rounded-2xl p-6 md:p-8`}>
                   <div className="flex flex-col md:flex-row gap-6">
                     {/* Left: icon + step */}
                     <div className="flex md:flex-col items-center md:items-center gap-4 md:gap-2 md:w-20 flex-shrink-0">
@@ -123,10 +123,10 @@ export default function HowItWorksPage() {
                     {/* Right: content */}
                     <div className="flex-1">
                       <div className="flex flex-wrap items-baseline gap-3 mb-2">
-                        <h3 className="text-slate-100 font-bold text-xl">{item.title}</h3>
-                        <span className="text-slate-600 text-sm font-mono">{item.subtitle}</span>
+                        <h3 className="text-slate-900 font-bold text-xl">{item.title}</h3>
+                        <span className="text-slate-400 text-sm font-mono">{item.subtitle}</span>
                       </div>
-                      <p className="text-slate-400 leading-relaxed mb-4">{item.desc}</p>
+                      <p className="text-slate-500 leading-relaxed mb-4">{item.desc}</p>
                       <ul className="flex flex-wrap gap-2">
                         {item.details.map((d) => (
                           <li key={d} className={`flex items-center gap-1.5 ${colors.bg} ${colors.text} text-xs px-3 py-1.5 rounded-full`}>
@@ -151,30 +151,30 @@ export default function HowItWorksPage() {
         {/* vs RAG */}
         <div className="mb-20">
           <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-slate-100 mb-3">
+            <h2 className="text-3xl font-bold text-slate-900 mb-3">
               与传统 RAG 的区别
             </h2>
-            <p className="text-slate-400 max-w-xl mx-auto">
+            <p className="text-slate-500 max-w-xl mx-auto">
               RAG 每次查询都从原始文档推导，LLM Wiki 将知识预先编译为结构化 Wiki，一次构建，持续复用。
             </p>
           </div>
 
-          <div className="bg-[#111118] border border-[#2d2d4e] rounded-2xl overflow-hidden">
+          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             {/* Table header */}
-            <div className="grid grid-cols-3 bg-[#0d0d1a] border-b border-[#1e1e2e]">
+            <div className="grid grid-cols-3 bg-slate-50 border-b border-slate-200">
               <div className="px-6 py-4 text-slate-500 text-sm font-medium"></div>
-              <div className="px-6 py-4 text-slate-400 text-sm font-semibold border-l border-[#1e1e2e]">传统 RAG</div>
-              <div className="px-6 py-4 text-indigo-400 text-sm font-semibold border-l border-[#1e1e2e] flex items-center gap-2">
+              <div className="px-6 py-4 text-slate-600 text-sm font-semibold border-l border-slate-200">传统 RAG</div>
+              <div className="px-6 py-4 text-indigo-600 text-sm font-semibold border-l border-slate-200 flex items-center gap-2">
                 LLM Wiki
-                <span className="bg-indigo-500/20 text-indigo-400 text-xs px-2 py-0.5 rounded-full">推荐</span>
+                <span className="bg-indigo-50 text-indigo-600 border border-indigo-200 text-xs px-2 py-0.5 rounded-full">推荐</span>
               </div>
             </div>
             {vsItems.map((row, i) => (
-              <div key={row.label} className={`grid grid-cols-3 ${i < vsItems.length - 1 ? 'border-b border-[#1e1e2e]' : ''}`}>
-                <div className="px-6 py-4 text-slate-400 text-sm font-medium">{row.label}</div>
-                <div className="px-6 py-4 text-slate-500 text-sm border-l border-[#1e1e2e]">{row.rag}</div>
-                <div className="px-6 py-4 text-slate-300 text-sm border-l border-[#1e1e2e] flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
+              <div key={row.label} className={`grid grid-cols-3 ${i < vsItems.length - 1 ? 'border-b border-slate-200' : ''}`}>
+                <div className="px-6 py-4 text-slate-700 text-sm font-medium">{row.label}</div>
+                <div className="px-6 py-4 text-slate-400 text-sm border-l border-slate-100">{row.rag}</div>
+                <div className="px-6 py-4 text-slate-700 text-sm border-l border-slate-200 flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 flex-shrink-0" />
                   {row.wiki}
                 </div>
               </div>
@@ -183,14 +183,14 @@ export default function HowItWorksPage() {
         </div>
 
         {/* Incremental update */}
-        <div className="bg-[#111118] border border-[#2d2d4e] rounded-2xl p-8 mb-16">
+        <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-16">
           <div className="flex items-start gap-4 mb-6">
-            <div className="w-10 h-10 bg-violet-500/10 text-violet-400 rounded-xl flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-violet-50 text-violet-600 rounded-xl flex items-center justify-center flex-shrink-0">
               <RefreshCw className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-slate-100 font-bold text-xl mb-1">增量更新机制</h3>
-              <p className="text-slate-400">新文档加入时，只更新受影响的 Wiki 页面，而非重建整个知识库。</p>
+              <h3 className="text-slate-900 font-bold text-xl mb-1">增量更新机制</h3>
+              <p className="text-slate-500">新文档加入时，只更新受影响的 Wiki 页面，而非重建整个知识库。</p>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -199,10 +199,10 @@ export default function HowItWorksPage() {
               { title: '更新文档', desc: '对比前后差异，仅修改受影响的 Wiki 页面，保留已有知识。' },
               { title: '删除文档', desc: '级联清理来源摘要页，移除死链，保留被多个来源共享的实体页。' },
             ].map((item) => (
-              <div key={item.title} className="bg-[#0d0d1a] rounded-xl p-4 border border-[#1e1e2e]">
+              <div key={item.title} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2 h-2 rounded-full bg-violet-400" />
-                  <span className="text-slate-200 font-semibold text-sm">{item.title}</span>
+                  <span className="text-slate-800 font-semibold text-sm">{item.title}</span>
                 </div>
                 <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
               </div>

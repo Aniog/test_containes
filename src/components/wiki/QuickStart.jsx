@@ -9,13 +9,13 @@ const steps = [
 
 export default function QuickStart() {
   return (
-    <section id="quickstart" className="py-20 bg-[#0a0a0f]">
+    <section id="quickstart" className="py-20 bg-slate-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
             4 步开始使用
           </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
+          <p className="text-slate-500 max-w-xl mx-auto">
             从下载到第一次查询，只需几分钟。
           </p>
         </div>
@@ -24,14 +24,14 @@ export default function QuickStart() {
           {steps.map((step) => {
             const Icon = step.icon;
             return (
-              <div key={step.step} className="bg-[#111118] border border-[#2d2d4e] rounded-2xl p-6 hover:border-indigo-500/30 transition-all hover:-translate-y-0.5 group">
+              <div key={step.step} className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-indigo-300 hover:shadow-md transition-all hover:-translate-y-0.5 group">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-indigo-400/50 font-mono text-xs font-bold">{step.step}</span>
+                  <span className="text-indigo-400 font-mono text-xs font-bold">{step.step}</span>
                 </div>
-                <h3 className="text-slate-100 font-semibold mb-1.5">{step.title}</h3>
+                <h3 className="text-slate-900 font-semibold mb-1.5">{step.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{step.desc}</p>
               </div>
             );

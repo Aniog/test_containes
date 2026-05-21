@@ -61,8 +61,8 @@ export default function NetworkCanvas() {
             const gradient = ctx.createLinearGradient(
               nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y
             );
-            gradient.addColorStop(0, `rgba(99, 102, 241, ${alpha})`);
-            gradient.addColorStop(1, `rgba(139, 92, 246, ${alpha})`);
+            gradient.addColorStop(0, `rgba(99, 102, 241, ${alpha * 0.5})`);
+            gradient.addColorStop(1, `rgba(139, 92, 246, ${alpha * 0.5})`);
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -82,8 +82,8 @@ export default function NetworkCanvas() {
           node.x, node.y, 0,
           node.x, node.y, node.radius * 4
         );
-        glowGrad.addColorStop(0, `rgba(139, 92, 246, ${0.35 * glow})`);
-        glowGrad.addColorStop(1, 'rgba(139, 92, 246, 0)');
+        glowGrad.addColorStop(0, `rgba(99, 102, 241, ${0.18 * glow})`);
+        glowGrad.addColorStop(1, 'rgba(99, 102, 241, 0)');
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius * 4, 0, Math.PI * 2);
         ctx.fillStyle = glowGrad;
@@ -92,7 +92,7 @@ export default function NetworkCanvas() {
         // Core dot
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(167, 139, 250, ${0.7 + 0.3 * glow})`;
+        ctx.fillStyle = `rgba(99, 102, 241, ${0.5 + 0.3 * glow})`;
         ctx.fill();
       }
 

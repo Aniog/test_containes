@@ -40,7 +40,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0a0a0f]/90 backdrop-blur-xl border-b border-[#1e1e2e] shadow-lg shadow-black/20' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white/90 backdrop-blur-xl border-b border-slate-200 shadow-sm shadow-slate-200/80' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -48,7 +48,7 @@ export default function Navbar() {
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/30">
               <BookOpen className="w-4 h-4 text-white" />
             </div>
-            <span className="text-slate-100 font-bold text-lg tracking-tight">LLM Wiki</span>
+            <span className="text-slate-900 font-bold text-lg tracking-tight">LLM Wiki</span>
           </Link>
 
           {/* Desktop nav */}
@@ -60,7 +60,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/5 ${isActive ? 'text-indigo-400' : 'text-slate-400 hover:text-slate-100'}`}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 ${isActive ? 'text-indigo-600' : 'text-slate-600 hover:text-slate-900'}`}
                 >
                   {link.label}
                 </a>
@@ -74,7 +74,7 @@ export default function Navbar() {
               href="https://github.com/nashsu/llm_wiki"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 text-slate-400 hover:text-slate-100 px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-white/5"
+              className="flex items-center gap-2 text-slate-600 hover:text-slate-900 px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100"
             >
               <Github className="w-4 h-4" />
               GitHub
@@ -91,7 +91,7 @@ export default function Navbar() {
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden text-slate-400 hover:text-slate-100 p-2 rounded-lg transition-colors"
+            className="md:hidden text-slate-600 hover:text-slate-900 p-2 rounded-lg transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -101,24 +101,24 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-[#1e1e2e]">
+        <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-200">
           <div className="px-4 py-4 space-y-1">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link)}
-                className="block text-slate-400 hover:text-slate-100 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-white/5"
+                className="block text-slate-600 hover:text-slate-900 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100"
               >
                 {link.label}
               </a>
             ))}
-            <div className="pt-3 border-t border-[#1e1e2e] flex flex-col gap-2">
+            <div className="pt-3 border-t border-slate-200 flex flex-col gap-2">
               <a
                 href="https://github.com/nashsu/llm_wiki"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 text-slate-400 hover:text-slate-100 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-white/5"
+                className="flex items-center gap-2 text-slate-600 hover:text-slate-900 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100"
               >
                 <Github className="w-4 h-4" />
                 GitHub

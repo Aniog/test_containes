@@ -39,15 +39,15 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#0a0a0f] border-t border-[#1e1e2e]">
+    <footer className="bg-white border-t border-slate-200">
       {/* CTA Banner */}
-      <div className="border-b border-[#1e1e2e]">
+      <div className="border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             开始构建你的
-            <span className="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent"> 个人知识库</span>
+            <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent"> 个人知识库</span>
           </h2>
-          <p className="text-slate-400 mb-8 max-w-xl mx-auto">
+          <p className="text-slate-500 mb-8 max-w-xl mx-auto">
             免费开源，跨平台支持。让 LLM 帮你维护知识，你专注于思考和探索。
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -64,7 +64,7 @@ export default function Footer() {
               href="https://github.com/nashsu/llm_wiki"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 border border-[#2d2d4e] hover:border-indigo-500/50 text-slate-300 hover:text-slate-100 rounded-xl px-7 py-3.5 font-semibold transition-all hover:bg-white/5"
+              className="flex items-center gap-2 border border-slate-300 hover:border-indigo-400 text-slate-700 hover:text-slate-900 rounded-xl px-7 py-3.5 font-semibold transition-all hover:bg-slate-50"
             >
               <Github className="w-5 h-5" />
               GitHub
@@ -82,7 +82,7 @@ export default function Footer() {
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
                 <BookOpen className="w-4 h-4 text-white" />
               </div>
-              <span className="text-slate-100 font-bold text-lg">LLM Wiki</span>
+              <span className="text-slate-900 font-bold text-lg">LLM Wiki</span>
             </div>
             <p className="text-slate-500 text-sm leading-relaxed mb-4">
               将你的文档转化为结构化、相互关联的知识库。知识一次编译，持续更新。
@@ -92,7 +92,7 @@ export default function Footer() {
                 href="https://github.com/nashsu/llm_wiki"
                 target="_blank"
                 rel="noreferrer"
-                className="text-slate-500 hover:text-slate-300 transition-colors"
+                className="text-slate-400 hover:text-slate-700 transition-colors"
               >
                 <Github className="w-5 h-5" />
               </a>
@@ -102,7 +102,7 @@ export default function Footer() {
           {/* Links */}
           {footerLinks.map((section) => (
             <div key={section.title}>
-              <h4 className="text-slate-300 font-semibold text-sm mb-4">{section.title}</h4>
+              <h4 className="text-slate-700 font-semibold text-sm mb-4">{section.title}</h4>
               <ul className="space-y-2.5">
                 {section.links.map((link) => (
                   <li key={link.label}>
@@ -111,7 +111,7 @@ export default function Footer() {
                       target={link.external ? '_blank' : undefined}
                       rel={link.external ? 'noreferrer' : undefined}
                       onClick={!link.external ? (e) => handleNavClick(e, link.href) : undefined}
-                      className="text-slate-500 hover:text-slate-300 text-sm transition-colors flex items-center gap-1.5 group"
+                      className="text-slate-500 hover:text-slate-800 text-sm transition-colors flex items-center gap-1.5 group"
                     >
                       {link.label}
                       {link.external && <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />}
@@ -124,17 +124,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#1e1e2e] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-slate-600 text-sm">
+        <div className="border-t border-slate-200 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-slate-400 text-sm">
             © 2025 LLM Wiki. 基于{' '}
-            <a href="https://github.com/nashsu/llm_wiki/blob/main/LICENSE" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-slate-400 transition-colors">
+            <a href="https://github.com/nashsu/llm_wiki/blob/main/LICENSE" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-slate-700 transition-colors">
               GPL-3.0
             </a>{' '}
             开源协议。
           </p>
-          <p className="text-slate-600 text-sm flex items-center gap-1.5">
+          <p className="text-slate-400 text-sm flex items-center gap-1.5">
             基于{' '}
-            <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-slate-400 transition-colors">
+            <a href="https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-slate-700 transition-colors">
               Karpathy 的 LLM Wiki 模式
             </a>
             {' '}构建，用{' '}
