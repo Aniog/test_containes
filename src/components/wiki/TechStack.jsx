@@ -3,8 +3,8 @@ const techStack = [
   { category: '前端框架', tech: 'React 19', sub: 'TypeScript + Vite', color: 'text-sky-400', bg: 'bg-sky-500/10' },
   { category: 'UI 组件', tech: 'shadcn/ui', sub: 'Tailwind CSS v4', color: 'text-slate-300', bg: 'bg-slate-500/10' },
   { category: '富文本编辑', tech: 'Milkdown', sub: 'ProseMirror WYSIWYG', color: 'text-green-400', bg: 'bg-green-500/10' },
-  { category: '知识图谱', tech: 'sigma.js', sub: 'graphology + ForceAtlas2', color: 'text-violet-400', bg: 'bg-violet-500/10' },
-  { category: '搜索引擎', tech: '混合搜索', sub: '分词 + 图谱相关性', color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
+  { category: '知识图谱', tech: 'sigma.js', sub: 'graphology + ForceAtlas2', color: 'text-orange-500', bg: 'bg-orange-500/10' },
+  { category: '搜索引擎', tech: '混合搜索', sub: '分词 + 图谱相关性', color: 'text-amber-600', bg: 'bg-amber-600/10' },
   { category: '向量数据库', tech: 'LanceDB', sub: 'Rust 嵌入式（可选）', color: 'text-amber-400', bg: 'bg-amber-500/10' },
   { category: 'PDF 处理', tech: 'pdf-extract', sub: 'Rust 原生', color: 'text-red-400', bg: 'bg-red-500/10' },
   { category: 'Office 文档', tech: 'docx-rs', sub: 'calamine（Excel）', color: 'text-blue-400', bg: 'bg-blue-500/10' },
@@ -64,7 +64,7 @@ export default function TechStack() {
                 <div className="text-4xl mb-3">{p.icon}</div>
                 <div className="text-slate-100 font-semibold mb-1">{p.name}</div>
                 <div className="text-slate-500 text-sm mb-3">{p.desc}</div>
-                <span className="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-full px-3 py-1 text-xs font-mono">
+                <span className="bg-amber-600/10 text-amber-600 border border-indigo-500/20 rounded-full px-3 py-1 text-xs font-mono">
                   {p.badge}
                 </span>
               </div>

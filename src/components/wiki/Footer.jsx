@@ -45,7 +45,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             开始构建你的
-            <span className="bg-gradient-to-r from-indigo-500 to-violet-500 bg-clip-text text-transparent"> 个人知识库</span>
+            <span className="bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent"> 个人知识库</span>
           </h2>
           <p className="text-slate-500 mb-8 max-w-xl mx-auto">
             免费开源，跨平台支持。让 LLM 帮你维护知识，你专注于思考和探索。
@@ -55,7 +55,7 @@ export default function Footer() {
               href="https://github.com/nashsu/llm_wiki/releases"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl px-7 py-3.5 font-semibold transition-all shadow-lg shadow-indigo-500/25 hover:-translate-y-0.5"
+              className="flex items-center gap-2 bg-amber-700 hover:bg-amber-600 text-white rounded-xl px-7 py-3.5 font-semibold transition-all shadow-lg shadow-amber-500/25 hover:-translate-y-0.5"
             >
               <BookOpen className="w-5 h-5" />
               免费下载
@@ -64,7 +64,7 @@ export default function Footer() {
               href="https://github.com/nashsu/llm_wiki"
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 border border-slate-300 hover:border-indigo-400 text-slate-700 hover:text-slate-900 rounded-xl px-7 py-3.5 font-semibold transition-all hover:bg-slate-50"
+              className="flex items-center gap-2 border border-slate-300 hover:border-amber-400 text-slate-700 hover:text-slate-900 rounded-xl px-7 py-3.5 font-semibold transition-all hover:bg-slate-50"
             >
               <Github className="w-5 h-5" />
               GitHub
@@ -79,7 +79,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center">
                 <BookOpen className="w-4 h-4 text-white" />
               </div>
               <span className="text-slate-900 font-bold text-lg">LLM Wiki</span>

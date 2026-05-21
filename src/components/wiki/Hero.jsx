@@ -12,22 +12,22 @@ export default function Hero() {
       {/* Background */}
       <div className="absolute inset-0 bg-slate-50">
         <NetworkCanvas />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-indigo-100/60 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-violet-100/50 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-amber-100/60 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-orange-100/50 rounded-full blur-3xl pointer-events-none" />
       </div>
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-20">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 rounded-full px-4 py-1.5 mb-8">
-          <Star className="w-3.5 h-3.5 text-indigo-500 fill-indigo-500" />
-          <span className="text-indigo-600 text-sm font-medium">基于 Karpathy 的 LLM Wiki 模式</span>
+        <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-1.5 mb-8">
+          <Star className="w-3.5 h-3.5 text-amber-600 fill-indigo-500" />
+          <span className="text-amber-700 text-sm font-medium">基于 Karpathy 的 LLM Wiki 模式</span>
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight">
           <span className="text-slate-900">让 LLM 自动构建</span>
           <br />
-          <span className="bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-amber-600 via-orange-500 to-amber-700 bg-clip-text text-transparent">
             你的个人知识库
           </span>
         </h1>
@@ -44,7 +44,7 @@ export default function Hero() {
             href="https://github.com/nashsu/llm_wiki/releases"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl px-7 py-3.5 font-semibold transition-all shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5"
+            className="flex items-center gap-2 bg-amber-700 hover:bg-amber-600 text-white rounded-xl px-7 py-3.5 font-semibold transition-all shadow-lg shadow-amber-500/25 hover:shadow-amber-500/40 hover:-translate-y-0.5"
           >
             <BookOpen className="w-5 h-5" />
             免费下载
@@ -54,14 +54,14 @@ export default function Hero() {
             href="https://github.com/nashsu/llm_wiki"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 border border-slate-300 hover:border-indigo-400 text-slate-700 hover:text-slate-900 rounded-xl px-7 py-3.5 font-semibold transition-all hover:bg-white"
+            className="flex items-center gap-2 border border-slate-300 hover:border-amber-400 text-slate-700 hover:text-slate-900 rounded-xl px-7 py-3.5 font-semibold transition-all hover:bg-white"
           >
             <Github className="w-5 h-5" />
             查看源码
           </a>
           <button
             onClick={() => handleScroll('#features')}
-            className="text-slate-500 hover:text-indigo-600 font-medium transition-colors flex items-center gap-1.5"
+            className="text-slate-500 hover:text-amber-700 font-medium transition-colors flex items-center gap-1.5"
           >
             了解更多
             <ArrowRight className="w-4 h-4" />

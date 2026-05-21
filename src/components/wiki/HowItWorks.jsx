@@ -44,23 +44,23 @@ const steps = [
 
 const colorMap = {
   indigo: {
-    badge: 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
-    icon: 'bg-indigo-500/10 text-indigo-400',
-    dot: 'bg-indigo-500',
-    border: 'border-indigo-500/30',
+    badge: 'bg-amber-600/10 text-amber-600 border-indigo-500/20',
+    icon: 'bg-amber-600/10 text-amber-600',
+    dot: 'bg-amber-600',
+    border: 'border-amber-400/30',
     glow: 'shadow-indigo-500/10',
   },
   violet: {
-    badge: 'bg-violet-500/10 text-violet-400 border-violet-500/20',
-    icon: 'bg-violet-500/10 text-violet-400',
-    dot: 'bg-violet-500',
+    badge: 'bg-orange-500/10 text-orange-500 border-violet-500/20',
+    icon: 'bg-orange-500/10 text-orange-500',
+    dot: 'bg-orange-500',
     border: 'border-violet-500/30',
     glow: 'shadow-violet-500/10',
   },
   purple: {
-    badge: 'bg-purple-500/10 text-purple-400 border-purple-500/20',
-    icon: 'bg-purple-500/10 text-purple-400',
-    dot: 'bg-purple-500',
+    badge: 'bg-amber-500/10 text-amber-600 border-purple-500/20',
+    icon: 'bg-amber-500/10 text-amber-600',
+    dot: 'bg-amber-500',
     border: 'border-purple-500/30',
     glow: 'shadow-purple-500/10',
   },
@@ -72,8 +72,8 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-violet-400 text-sm font-medium">工作原理</span>
+          <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-orange-500 text-sm font-medium">工作原理</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-100 mb-4">
             三个核心操作
@@ -131,7 +131,7 @@ export default function HowItWorks() {
             {[
               { label: '原始来源', sub: '文档、网页、图片', color: 'bg-slate-700' },
               null,
-              { label: 'LLM 处理', sub: '分析 → 生成', color: 'bg-indigo-600' },
+              { label: 'LLM 处理', sub: '分析 → 生成', color: 'bg-amber-700' },
               null,
               { label: 'Wiki 知识库', sub: '结构化 Markdown', color: 'bg-violet-600' },
               null,
