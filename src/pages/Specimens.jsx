@@ -1,4 +1,7 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import SpecimenCard from '../components/SpecimenCard';
 
 const SPECIMENS = [
@@ -7,7 +10,8 @@ const SPECIMENS = [
     category: 'Plant Histology',
     name: 'Vascular Bundle',
     latinName: 'Zea mays — Monocot Stem',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=85&sat=-100',
+    imgId: 'spm-001-img-3c8a1f',
+    imgQuery: 'vascular bundle plant stem cross section colorful microscopy histology',
     description:
       'The vascular bundle of Zea mays presents a characteristic monocot arrangement — scattered throughout the ground tissue rather than arranged in a ring. Each bundle contains xylem vessels for water transport and phloem sieve tubes for photosynthate distribution, surrounded by a dense bundle sheath of sclerenchyma fibres.',
     metadata: [
@@ -28,7 +32,8 @@ const SPECIMENS = [
     category: 'Protistology',
     name: 'Paramecium',
     latinName: 'Paramecium caudatum — Ciliophora',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=85&sat=-100',
+    imgId: 'spm-002-img-7d4b2e',
+    imgQuery: 'paramecium ciliophora protozoan colorful microscopy biology science',
     description:
       'Paramecium caudatum is a ciliated protozoan of remarkable complexity for a single-celled organism. Its pellicle — a flexible but firm outer covering — maintains cell shape while permitting locomotion via coordinated metachronal waves of cilia. The organism exhibits primitive sensory behaviour, responding to chemical gradients and physical obstacles.',
     metadata: [
@@ -49,7 +54,8 @@ const SPECIMENS = [
     category: 'Human Cytology',
     name: 'Stratified Squamous Epithelium',
     latinName: 'Homo sapiens — Buccal Mucosa',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=900&q=85&sat=-100',
+    imgId: 'spm-003-img-5e9c3a',
+    imgQuery: 'stratified squamous epithelium human tissue colorful histology H&E stain',
     description:
       'The stratified squamous epithelium of the buccal mucosa provides a protective lining for the oral cavity. Multiple cell layers — from the proliferative basal stratum to the flattened superficial cells — demonstrate the principle of cellular differentiation in response to mechanical stress. This tissue type is non-keratinised, distinguishing it from the epidermis.',
     metadata: [
@@ -70,8 +76,13 @@ const SPECIMENS = [
 const CATEGORY_FILTERS = ['All', 'Plant Histology', 'Protistology', 'Human Cytology'];
 
 export default function Specimens() {
+  const pageRef = useRef(null);
+  useEffect(() => {
+    if (pageRef.current) ImageHelper.loadImages(strkImgConfig, pageRef.current);
+  }, []);
+
   return (
-    <div className="min-h-screen bg-parchment pt-16">
+    <div className="min-h-screen bg-parchment pt-16" ref={pageRef}>
 
       {/* Page header */}
       <section className="relative overflow-hidden py-20 px-6 md:px-10 border-b border-mist/60">

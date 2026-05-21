@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Search, SlidersHorizontal } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import Lightbox from '../components/Lightbox';
 
 const SLIDES = [
@@ -8,7 +10,8 @@ const SLIDES = [
     id: 'SLD-001',
     title: 'Diatom Frustule',
     latinName: 'Pinnularia viridis',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85&sat=-100',
+    imgId: 'sld-001-img-2f8b4c',
+    imgQuery: 'diatom frustule pinnularia colorful microscopy algae silica',
     magnification: '400×',
     stain: 'Unstained',
     collector: 'Dr. E. Haeckel',
@@ -22,7 +25,8 @@ const SLIDES = [
     id: 'SLD-002',
     title: 'Onion Root Tip — Mitosis',
     latinName: 'Allium cepa — Meristematic Zone',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=85&sat=-100',
+    imgId: 'sld-002-img-6a1d9e',
+    imgQuery: 'onion root tip mitosis cell division colorful microscopy plant biology',
     magnification: '400×',
     stain: 'Acetocarmine',
     collector: 'Prof. R. Virchow',
@@ -36,7 +40,8 @@ const SLIDES = [
     id: 'SLD-003',
     title: 'Cardiac Muscle Fibres',
     latinName: 'Homo sapiens — Myocardium',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=85&sat=-100',
+    imgId: 'sld-003-img-3c7f2a',
+    imgQuery: 'cardiac muscle fibres myocardium colorful H&E histology human tissue',
     magnification: '200×',
     stain: 'H&E',
     collector: 'Dr. W. Harvey',
@@ -50,7 +55,8 @@ const SLIDES = [
     id: 'SLD-004',
     title: 'Spirogyra — Conjugation',
     latinName: 'Spirogyra sp. — Sexual Reproduction',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85&sat=-100&flip=h',
+    imgId: 'sld-004-img-8e5b1d',
+    imgQuery: 'spirogyra conjugation green algae colorful microscopy freshwater filament',
     magnification: '100×',
     stain: 'Iodine',
     collector: 'Dr. A. Fleming',
@@ -64,7 +70,8 @@ const SLIDES = [
     id: 'SLD-005',
     title: 'Compact Bone — Osteon',
     latinName: 'Homo sapiens — Femur Cross-Section',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=85&sat=-100&flip=v',
+    imgId: 'sld-005-img-4d2c9f',
+    imgQuery: 'compact bone osteon haversian canal colorful microscopy human anatomy',
     magnification: '100×',
     stain: 'Ground Section',
     collector: 'Prof. J. Hunter',
@@ -78,7 +85,8 @@ const SLIDES = [
     id: 'SLD-006',
     title: 'Stomata — Epidermis',
     latinName: 'Tradescantia zebrina — Abaxial Surface',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=85&sat=-100&flip=h',
+    imgId: 'sld-006-img-7a3e5b',
+    imgQuery: 'stomata guard cells plant epidermis colorful microscopy leaf surface',
     magnification: '200×',
     stain: 'Neutral Red',
     collector: 'Dr. S. Brown',
@@ -92,7 +100,8 @@ const SLIDES = [
     id: 'SLD-007',
     title: 'Amoeba — Pseudopodia',
     latinName: 'Amoeba proteus — Active Locomotion',
-    image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=85&sat=-100&con=15',
+    imgId: 'sld-007-img-1b6f4d',
+    imgQuery: 'amoeba pseudopodia protozoan colorful microscopy freshwater biology',
     magnification: '400×',
     stain: 'Phase Contrast',
     collector: 'Dr. C. Darwin',
@@ -106,7 +115,8 @@ const SLIDES = [
     id: 'SLD-008',
     title: 'Liver Parenchyma',
     latinName: 'Homo sapiens — Hepatic Lobule',
-    image: 'https://images.unsplash.com/photo-1559757175-5700dde675bc?w=800&q=85&sat=-100&con=10',
+    imgId: 'sld-008-img-9c2a7e',
+    imgQuery: 'liver hepatic lobule parenchyma colorful H&E histology human tissue',
     magnification: '100×',
     stain: 'H&E',
     collector: 'Prof. M. Malpighi',
@@ -120,7 +130,8 @@ const SLIDES = [
     id: 'SLD-009',
     title: 'Pollen Grains — Apertures',
     latinName: 'Lilium longiflorum — Anther',
-    image: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=85&sat=-100&con=15',
+    imgId: 'sld-009-img-5f8d3c',
+    imgQuery: 'pollen grains lily anther colorful microscopy plant reproduction',
     magnification: '200×',
     stain: 'Fuchsin',
     collector: 'Dr. N. Grew',
@@ -144,6 +155,11 @@ export default function Gallery() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [search, setSearch]                 = useState('');
   const [lightboxIdx, setLightboxIdx]       = useState(null);
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    if (pageRef.current) ImageHelper.loadImages(strkImgConfig, pageRef.current);
+  }, []);
 
   const filtered = SLIDES.filter(s => {
     const matchCat  = activeCategory === 'All' || s.category === activeCategory;
@@ -159,7 +175,7 @@ export default function Gallery() {
   const nextSlide = () => setLightboxIdx(i => (i + 1) % filtered.length);
 
   return (
-    <div className="min-h-screen bg-parchment pt-16">
+    <div className="min-h-screen bg-parchment pt-16" ref={pageRef}>
 
       {/* Page header */}
       <section className="relative overflow-hidden py-20 px-6 md:px-10 border-b border-mist/60">
@@ -257,7 +273,11 @@ export default function Gallery() {
                       slide.aspect === 'wide' ? 'aspect-[4/3]' : 'aspect-square'
                     }`}>
                       <img
-                        src={slide.image}
+                        data-strk-img-id={slide.imgId}
+                        data-strk-img={slide.imgQuery}
+                        data-strk-img-ratio={slide.aspect === 'tall' ? '3x4' : slide.aspect === 'wide' ? '4x3' : '1x1'}
+                        data-strk-img-width="800"
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                         alt={slide.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"

@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Microscope, Calendar, User, Tag } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export default function Lightbox({ slide, onClose, onPrev, onNext }) {
+  const lightboxRef = useRef(null);
+
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape')     onClose();
@@ -16,6 +20,12 @@ export default function Lightbox({ slide, onClose, onPrev, onNext }) {
       document.body.style.overflow = '';
     };
   }, [onClose, onPrev, onNext]);
+
+  useEffect(() => {
+    if (lightboxRef.current && slide) {
+      ImageHelper.loadImages(strkImgConfig, lightboxRef.current);
+    }
+  }, [slide]);
 
   if (!slide) return null;
 
@@ -38,6 +48,7 @@ export default function Lightbox({ slide, onClose, onPrev, onNext }) {
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           className="relative w-full max-w-6xl bg-parchment/95 backdrop-blur-xl border border-mist/60 rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
           onClick={(e) => e.stopPropagation()}
+          ref={lightboxRef}
         >
           {/* Close button */}
           <button
@@ -51,7 +62,11 @@ export default function Lightbox({ slide, onClose, onPrev, onNext }) {
           {/* Image panel */}
           <div className="relative flex-1 min-h-[300px] md:min-h-[500px] bg-ink/5">
             <img
-              src={slide.image}
+              data-strk-img-id={`lightbox-${slide.imgId}`}
+              data-strk-img={slide.imgQuery}
+              data-strk-img-ratio="4x3"
+              data-strk-img-width="1200"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt={slide.title}
               className="w-full h-full object-cover"
             />

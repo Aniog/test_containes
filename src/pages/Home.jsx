@@ -2,6 +2,8 @@ import { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, ChevronDown, Microscope, BookOpen, Grid3X3, FlaskConical } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const FEATURE_CARDS = [
   {
@@ -36,6 +38,11 @@ const STATS = [
 
 export default function Home() {
   const heroRef = useRef(null);
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    if (pageRef.current) ImageHelper.loadImages(strkImgConfig, pageRef.current);
+  }, []);
 
   useEffect(() => {
     const el = heroRef.current;
@@ -58,16 +65,23 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-parchment">
+    <div className="relative min-h-screen bg-parchment" ref={pageRef}>
 
       {/* ── HERO ─────────────────────────────────────────────── */}
       <section className="relative h-screen overflow-hidden flex items-center justify-center">
 
         {/* Background micrograph */}
         <div className="absolute inset-0 overflow-hidden">
+          {/* Hidden text anchors for image query interpolation */}
+          <span id="hero-img-subject" className="sr-only">radiolarian diatom microscopy</span>
+          <span id="hero-img-context" className="sr-only">colorful microscope biology science</span>
           <img
             ref={heroRef}
-            src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=90&sat=-100&con=20"
+            data-strk-img-id="home-hero-bg-4a7f2c"
+            data-strk-img="[hero-img-subject] [hero-img-context]"
+            data-strk-img-ratio="16x9"
+            data-strk-img-width="1800"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt="Radiolarian diatom micrograph"
             className="w-full h-full object-cover scale-105 transition-transform duration-700 ease-out"
           />
@@ -281,8 +295,14 @@ export default function Home() {
               className="relative"
             >
               <div className="relative rounded-2xl overflow-hidden border border-mist/60 shadow-2xl aspect-[4/3]">
+                <span id="home-specimen-title" className="sr-only">Radiolaria Polycystinea marine organism</span>
+                <span id="home-specimen-ctx" className="sr-only">colorful microscopy protist biology</span>
                 <img
-                  src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=85&sat=-100"
+                  data-strk-img-id="home-specimen-img-9b3e1d"
+                  data-strk-img="[home-specimen-title] [home-specimen-ctx]"
+                  data-strk-img-ratio="4x3"
+                  data-strk-img-width="900"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   alt="Radiolarian specimen under microscope"
                   className="w-full h-full object-cover"
                 />
