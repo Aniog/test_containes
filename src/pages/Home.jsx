@@ -50,9 +50,9 @@ export default function Home() {
         {/* Background micrograph */}
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=90&sat=-100&con=30"
+            src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=90"
             alt="Radiolarian micrograph"
-            className="w-full h-full object-cover img-bw"
+            className="w-full h-full object-cover"
           />
           {/* Gradient vignette */}
           <div className="absolute inset-0 bg-gradient-to-b from-parchment/30 via-transparent to-parchment/80" />
@@ -225,9 +225,9 @@ export default function Home() {
               className="relative rounded-2xl overflow-hidden aspect-[4/3]"
             >
               <img
-                src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=900&q=85&sat=-100&con=25"
+                src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=900&q=85"
                 alt="Plant histology cross section"
-                className="w-full h-full object-cover img-bw"
+                className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/40 to-transparent" />
               <div className="absolute bottom-4 left-4">

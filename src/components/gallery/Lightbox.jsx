@@ -47,7 +47,7 @@ export default function Lightbox({ slide, onClose, onPrev, onNext, hasPrev, hasN
             <img
               src={slide.imageUrl}
               alt={slide.title}
-              className="w-full h-full object-cover img-bw"
+              className="w-full h-full object-cover"
             />
             {/* Gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-ink/30 to-transparent" />

@@ -25,10 +25,10 @@ export default function Specimens() {
         {/* Decorative background image */}
         <div className="absolute inset-0 opacity-8">
           <img
-            src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1400&q=60&sat=-100"
+            src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1400&q=60"
             alt=""
             aria-hidden="true"
-            className="w-full h-full object-cover img-bw"
+            className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-parchment/90" />
         </div>

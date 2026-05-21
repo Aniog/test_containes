@@ -25,7 +25,7 @@ export default function SlideCard({ slide, onClick }) {
       <img
         src={slide.thumbUrl}
         alt={slide.title}
-        className="w-full h-full object-cover img-bw transition-transform duration-700 group-hover:scale-105"
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         style={{ minHeight: 'inherit' }}
       />
 
