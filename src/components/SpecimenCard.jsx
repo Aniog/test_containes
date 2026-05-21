@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Info } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export default function SpecimenCard({ specimen, reverse = false }) {
   const [tooltip, setTooltip] = useState(null);
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (cardRef.current) ImageHelper.loadImages(strkImgConfig, cardRef.current);
+  }, [specimen.imgId]);
 
   return (
     <motion.article
@@ -11,6 +18,7 @@ export default function SpecimenCard({ specimen, reverse = false }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.7 }}
+      ref={cardRef}
       className={`grid md:grid-cols-2 gap-10 md:gap-16 items-center ${reverse ? 'md:[&>*:first-child]:order-2' : ''}`}
     >
       {/* Image panel */}
