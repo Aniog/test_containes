@@ -25,7 +25,7 @@ const facts = [
   {
     id: 'fact-img-d3',
     titleId: 'fact-title-d3',
-    title: 'Viruses Outnumber Stars',
+    title: 'Viral Particles Under Electron Microscope',
     body: 'There are an estimated 10³¹ viruses on Earth — more than all the stars in the observable universe combined. They play crucial roles in evolution and ecosystem balance.',
   },
   {
@@ -97,7 +97,7 @@ export default function FactsSection() {
               {/* Text */}
               <div className="p-6 flex flex-col justify-center">
                 <h4 id={fact.titleId} className="text-[#f0f9ff] font-bold text-lg mb-3">
-                  {fact.title}
+                  {fact.id === 'fact-img-d3' ? 'Viruses Outnumber Stars' : fact.title}
                 </h4>
                 <p className="text-[#94a3b8] text-sm leading-relaxed">{fact.body}</p>
               </div>
