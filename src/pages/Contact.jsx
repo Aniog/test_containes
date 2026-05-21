@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle, FlaskConical, BookOpen, Microscope, Mail, User, MessageSquare, ChevronDown } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const INQUIRY_TYPES = [
   'Specimen Identification',
@@ -19,6 +21,11 @@ export default function Contact() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading]     = useState(false);
+  const pageRef = useRef(null);
+
+  useEffect(() => {
+    if (pageRef.current) ImageHelper.loadImages(strkImgConfig, pageRef.current);
+  }, []);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -35,7 +42,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-parchment pt-16 relative overflow-hidden">
+    <div className="min-h-screen bg-parchment pt-16 relative overflow-hidden" ref={pageRef}>
 
       {/* Watermark micrometer scale */}
       <div
@@ -144,6 +151,30 @@ export default function Contact() {
                   Select "Research Collaboration" in the enquiry type field.
                 </p>
               </div>
+            </div>
+
+            {/* Sidebar image strip */}
+            <div className="border-t border-mist/60 pt-8 space-y-3">
+              <p className="section-label mb-4">Recent Submissions</p>
+              {[
+                { id: 'contact-img-a-7c3f1e', query: 'colorful microscopy slide preparation laboratory biology science', label: 'Slide Preparation' },
+                { id: 'contact-img-b-2a8d4b', query: 'colorful biology laboratory research scientist microscope', label: 'Lab Research' },
+                { id: 'contact-img-c-5f1c9a', query: 'colorful diatom algae microscopy science colorful biology', label: 'Diatom Archive' },
+              ].map(({ id, query, label }) => (
+                <div key={id} className="group relative rounded-xl overflow-hidden aspect-[16/7] border border-mist/60">
+                  <img
+                    data-strk-img-id={id}
+                    data-strk-img={query}
+                    data-strk-img-ratio="16x9"
+                    data-strk-img-width="500"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    alt={label}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
+                  <span className="absolute bottom-2 left-3 font-sans text-xs text-white/80">{label}</span>
+                </div>
+              ))}
             </div>
           </motion.aside>
 
@@ -354,6 +385,30 @@ export default function Contact() {
           </motion.div>
         </div>
       </div>
+
+      {/* ── CLOSING BANNER ───────────────────────────────────── */}
+      <section className="relative overflow-hidden mt-8">
+        <div className="relative h-64 md:h-80">
+          <span id="contact-banner-ctx" className="sr-only">colorful science biology microscopy research laboratory education</span>
+          <img
+            data-strk-img-id="contact-banner-img-9d2e7f"
+            data-strk-img="[contact-banner-ctx]"
+            data-strk-img-ratio="16x9"
+            data-strk-img-width="1600"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            alt="Science research banner"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent" />
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 text-center px-6">
+            <p className="font-mono text-xs text-white/50 tracking-widest mb-2">MICROCOSMOS ARCHIVE — EST. 1962</p>
+            <p className="font-serif text-xl md:text-2xl font-semibold text-white italic">
+              "The universe is under no obligation to make sense to you."
+            </p>
+            <p className="font-sans text-xs text-white/50 mt-2">— Neil deGrasse Tyson</p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

@@ -86,7 +86,22 @@ export default function Specimens() {
 
       {/* Page header */}
       <section className="relative overflow-hidden py-20 px-6 md:px-10 border-b border-mist/60">
-        <div className="max-w-7xl mx-auto">
+        {/* Subtle hero background image */}
+        <div className="absolute inset-0 overflow-hidden">
+          <span id="spm-hero-ctx" className="sr-only">colorful microscopy biology science specimens collection</span>
+          <img
+            data-strk-img-id="spm-hero-bg-3b7d1e"
+            data-strk-img="[spm-hero-ctx]"
+            data-strk-img-ratio="16x9"
+            data-strk-img-width="1600"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            alt=""
+            aria-hidden="true"
+            className="w-full h-full object-cover opacity-10"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-parchment/60 via-parchment/80 to-parchment" />
+        </div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -149,15 +164,31 @@ export default function Specimens() {
             <p className="section-label mb-6">Taxonomic Reference</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { kingdom: 'Plantae',   count: '124 slides', desc: 'Vascular & non-vascular plants' },
-                { kingdom: 'Protista',  count: '87 slides',  desc: 'Unicellular eukaryotes' },
-                { kingdom: 'Animalia',  count: '96 slides',  desc: 'Human & animal histology' },
-                { kingdom: 'Fungi',     count: '33 slides',  desc: 'Mycelial & reproductive structures' },
-              ].map(({ kingdom, count, desc }) => (
-                <div key={kingdom} className="bg-white/30 border border-mist/60 rounded-xl p-5">
-                  <div className="font-serif text-lg font-semibold text-ink mb-1">{kingdom}</div>
-                  <div className="font-mono text-xs text-graphite mb-2">{count}</div>
-                  <div className="font-sans text-xs text-charcoal">{desc}</div>
+                { kingdom: 'Plantae',   count: '124 slides', desc: 'Vascular & non-vascular plants',    imgId: 'tax-plantae-4a2c8f',  imgQuery: 'colorful plant cells leaf microscopy biology green' },
+                { kingdom: 'Protista',  count: '87 slides',  desc: 'Unicellular eukaryotes',            imgId: 'tax-protista-7b5e1d', imgQuery: 'colorful protist protozoa microscopy biology science' },
+                { kingdom: 'Animalia',  count: '96 slides',  desc: 'Human & animal histology',          imgId: 'tax-animalia-2d9c3a', imgQuery: 'colorful animal tissue histology H&E microscopy' },
+                { kingdom: 'Fungi',     count: '33 slides',  desc: 'Mycelial & reproductive structures', imgId: 'tax-fungi-6f1b8e',    imgQuery: 'colorful fungi spores mycelium microscopy biology' },
+              ].map(({ kingdom, count, desc, imgId, imgQuery }) => (
+                <div key={kingdom} className="group bg-white/30 border border-mist/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300">
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      data-strk-img-id={imgId}
+                      data-strk-img={imgQuery}
+                      data-strk-img-ratio="4x3"
+                      data-strk-img-width="400"
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      alt={kingdom}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/50 to-transparent" />
+                    <div className="absolute bottom-2 left-3">
+                      <div className="font-serif text-base font-semibold text-white">{kingdom}</div>
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <div className="font-mono text-xs text-graphite mb-1">{count}</div>
+                    <div className="font-sans text-xs text-charcoal">{desc}</div>
+                  </div>
                 </div>
               ))}
             </div>

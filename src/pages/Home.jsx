@@ -246,6 +246,96 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── MICROSCOPY SHOWCASE STRIP ────────────────────────── */}
+      <section className="relative z-10 py-20 px-6 md:px-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <p className="section-label mb-3">From the Archive</p>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-ink leading-tight">
+              A Glimpse Through<br />
+              <span className="italic font-normal">the Eyepiece</span>
+            </h2>
+          </motion.div>
+
+          {/* 4-column image mosaic */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { id: 'showcase-a-1f3d', query: 'colorful fluorescent microscopy cell biology science', ratio: '3x4', label: 'Fluorescence', sub: 'Confocal Imaging' },
+              { id: 'showcase-b-8c2e', query: 'colorful pollen grain electron microscopy science', ratio: '3x4', label: 'Pollen SEM', sub: 'Scanning Electron' },
+              { id: 'showcase-c-5a7b', query: 'colorful plant cell chloroplast microscopy biology', ratio: '3x4', label: 'Chloroplasts', sub: 'Light Microscopy' },
+              { id: 'showcase-d-2d9f', query: 'colorful blood cells red white microscopy science', ratio: '3x4', label: 'Blood Smear', sub: 'Giemsa Stain' },
+            ].map(({ id, query, ratio, label, sub }, i) => (
+              <motion.div
+                key={id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                className="group relative rounded-2xl overflow-hidden border border-mist/60 aspect-[3/4]"
+              >
+                <img
+                  data-strk-img-id={id}
+                  data-strk-img={query}
+                  data-strk-img-ratio={ratio}
+                  data-strk-img-width="500"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  alt={label}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-transparent" />
+                <div className="absolute bottom-4 left-4">
+                  <p className="font-serif text-sm font-semibold text-white leading-tight">{label}</p>
+                  <p className="font-sans text-xs text-white/60 mt-0.5">{sub}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── LAB ENVIRONMENT BANNER ───────────────────────────── */}
+      <section className="relative z-10 overflow-hidden">
+        <div className="relative h-72 md:h-96">
+          <span id="lab-banner-ctx" className="sr-only">biology laboratory microscope science research colorful</span>
+          <img
+            data-strk-img-id="home-lab-banner-6e4c2a"
+            data-strk-img="[lab-banner-ctx]"
+            data-strk-img-ratio="16x9"
+            data-strk-img-width="1600"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            alt="Biology laboratory environment"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/50 to-transparent" />
+          <div className="absolute inset-0 flex items-center px-8 md:px-16">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="max-w-lg"
+            >
+              <p className="section-label text-white/60 mb-3">Our Mission</p>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-white leading-tight mb-4">
+                Science begins with<br />
+                <span className="italic font-normal">careful observation.</span>
+              </h2>
+              <p className="font-sans text-sm text-white/70 leading-relaxed">
+                Every prepared slide in this archive represents hours of meticulous technique —
+                from fixation and sectioning to staining and mounting. We preserve that craft
+                for the next generation of biologists.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* ── FEATURED SPECIMEN ────────────────────────────────── */}
       <section className="relative z-10 py-24 px-6 md:px-10 bg-ink/5">
         <div className="max-w-7xl mx-auto">
@@ -328,6 +418,26 @@ export default function Home() {
               <div className="absolute -top-3 -right-3 bg-ink text-white text-xs font-mono px-3 py-1.5 rounded-full">
                 Specimen #R-0042
               </div>
+
+              {/* Second inset image */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="mt-4 rounded-xl overflow-hidden border border-mist/60 shadow-lg aspect-[16/7]"
+              >
+                <span id="home-specimen2-ctx" className="sr-only">radiolarian silica skeleton colorful microscopy marine biology</span>
+                <img
+                  data-strk-img-id="home-specimen2-img-c4f8a1"
+                  data-strk-img="[home-specimen2-ctx]"
+                  data-strk-img-ratio="16x9"
+                  data-strk-img-width="900"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  alt="Radiolarian silica skeleton detail"
+                  className="w-full h-full object-cover"
+                />
+              </motion.div>
             </motion.div>
           </div>
         </div>
