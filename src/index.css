@@ -1,76 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
+  color-scheme: light;
+  color: #1A1A1A;
+  background-color: #F2F0E9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  padding: 0;
+  background-color: #F2F0E9;
+  color: #1A1A1A;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Paper grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #E0DED7;
+}
+::-webkit-scrollbar-thumb {
+  background: #9E9E9E;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B6B6B;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* Glass utility classes */
+@layer components {
+  .glass-card {
+    @apply bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-lg;
   }
 
-  a:hover {
-    color: #747bff;
+  .glass-btn {
+    @apply bg-white/25 backdrop-blur-sm border border-white/40 rounded-full px-6 py-3 font-sans font-medium hover:bg-white/40 transition-all duration-300;
+    color: #1A1A1A;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .glass-btn-dark {
+    @apply backdrop-blur-sm border border-white/10 rounded-full px-6 py-3 font-sans font-medium text-white hover:opacity-90 transition-all duration-300;
+    background-color: rgba(26, 26, 26, 0.85);
+  }
+
+  .section-label {
+    @apply text-xs font-sans font-medium tracking-widest uppercase;
+    color: #6B6B6B;
+  }
+
+  .serif-heading {
+    @apply font-serif;
+    color: #1A1A1A;
+  }
+
+  .metadata-text {
+    @apply font-mono text-xs tracking-wide;
+    color: #6B6B6B;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
