@@ -12,7 +12,7 @@
     "visitor_email": {
       "type": "string",
       "format": "email",
-      "description": "Email address of the visitor (optional)"
+      "description": "Email address of the visitor, used to group all game entries from the same person"
     },
     "game_name": {
       "type": "string",
@@ -56,9 +56,30 @@
       "type": "boolean",
       "default": true,
       "description": "Whether the visitor would recommend this game to others"
+    },
+    "screenshots": {
+      "type": "array",
+      "description": "Screenshots or photos related to this game uploaded by the visitor",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "minLength": 1 },
+          "size": { "type": "integer", "minimum": 0 },
+          "storageKey": { "type": "string" },
+          "storage": { "type": "string" },
+          "mimeType": { "type": "string" },
+          "width": { "type": "integer", "minimum": 0 },
+          "height": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp"]
     }
   },
-  "required": ["visitor_name", "game_name", "platform", "reason", "last_play_date"],
+  "required": ["visitor_name", "visitor_email", "game_name", "platform", "reason", "last_play_date"],
   "x-security": {
     "create": { "allow": ["*"] },
     "read": { "allow": ["*"] }
