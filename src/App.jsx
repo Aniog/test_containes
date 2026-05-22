@@ -1,15 +1,32 @@
-import './App.css'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
+import Navbar from '@/components/Navbar';
+import Home from '@/pages/Home';
+import Specimens from '@/pages/Specimens';
+import Gallery from '@/pages/Gallery';
+import Contact from '@/pages/Contact';
+import './App.css';
 
-function App() {
+function AnimatedRoutes() {
+  const location = useLocation();
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Home />} />
+        <Route path="/specimens" element={<Specimens />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </AnimatePresence>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Navbar />
+      <AnimatedRoutes />
+    </BrowserRouter>
+  );
+}
+
