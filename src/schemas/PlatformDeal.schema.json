@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Platform Deals",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic", "Nintendo", "PlayStation", "Xbox"],
+      "description": "Platform where the deal is available"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price in USD"
+    },
+    "sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sale price in USD"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "deal_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the deal on the platform"
+    },
+    "cover_image": {
+      "type": "object",
+      "description": "Game cover image for the deal",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the deal expires"
+    },
+    "is_free": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is free (e.g. Epic free games)"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the deal is currently active"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the deal is featured"
+    }
+  },
+  "required": ["game_title", "platform", "discount_percent"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

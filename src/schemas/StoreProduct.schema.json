@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Store Products",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Game description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["PC", "PlayStation", "Xbox", "Nintendo Switch", "Multi-Platform"],
+      "description": "Gaming platform"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Game publisher"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "cover_image": {
+      "type": "object",
+      "description": "Game cover image",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Game tags"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average rating out of 5"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock (digital keys)"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the game is featured on the homepage"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the product is available for purchase"
+    }
+  },
+  "required": ["title", "price", "platform"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
