@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reviews",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Reviewer's display name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Reviewer's email address"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating from 1 to 5"
+    },
+    "comment": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Review comment text"
+    },
+    "fruit": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Optional: name of the fruit being reviewed"
+    }
+  },
+  "required": ["name", "email", "rating", "comment"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}

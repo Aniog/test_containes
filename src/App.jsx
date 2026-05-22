@@ -5,6 +5,7 @@ import Hero from '@/components/home/Hero';
 import Categories from '@/components/home/Categories';
 import FruitGrid from '@/components/home/FruitGrid';
 import Features from '@/components/home/Features';
+import ReviewSection from '@/components/reviews/ReviewSection';
 import CartDrawer from '@/components/store/CartDrawer';
 import CheckoutModal from '@/components/store/CheckoutModal';
 import { CartProvider } from '@/context/CartContext';
@@ -21,6 +22,7 @@ const AppInner = () => {
       <Categories />
       <FruitGrid />
       <Features />
+      <ReviewSection />
       <Footer />
       <CartDrawer onCheckout={() => setCheckoutOpen(true)} />
       <CheckoutModal isOpen={checkoutOpen} onClose={() => setCheckoutOpen(false)} />
