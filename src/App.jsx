@@ -6,6 +6,7 @@ import Features from './components/wiki/Features';
 import QuickStart from './components/wiki/QuickStart';
 import Footer from './components/wiki/Footer';
 import HowItWorksPage from './pages/HowItWorksPage';
+import KnowledgePage from './pages/KnowledgePage';
 
 function HomePage() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/knowledge" element={<KnowledgePage />} />
           </Routes>
         </main>
         <Footer />

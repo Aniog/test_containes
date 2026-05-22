@@ -5,6 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 const navLinks = [
   { label: '功能特性', href: '#features', page: '/' },
   { label: '工作原理', href: '/how-it-works', page: '/how-it-works' },
+  { label: '知识库', href: '/knowledge', page: '/knowledge' },
   { label: '快速开始', href: '#quickstart', page: '/' },
 ];
 
@@ -54,13 +55,13 @@ export default function Navbar() {
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = link.href === '/how-it-works' && location.pathname === '/how-it-works';
+              const isActive = link.href.startsWith('/') && location.pathname === link.href;
               return (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 ${isActive ? 'text-blue-700' : 'text-slate-600 hover:text-slate-900'}`}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 ${isActive ? 'text-emerald-700' : 'text-slate-600 hover:text-slate-900'}`}
                 >
                   {link.label}
                 </a>
