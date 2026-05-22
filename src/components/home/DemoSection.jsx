@@ -105,17 +105,17 @@ export default function DemoSection() {
   };
 
   return (
-    <section id="demo" className="py-24 bg-[#0d0f18]">
+    <section id="demo" className="py-24 bg-slate-50">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+          <div className="inline-flex items-center gap-2 bg-cyan-50 border border-cyan-200 text-cyan-700 text-sm font-medium px-4 py-1.5 rounded-full mb-4">
             在线演示
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             看看转换效果
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-slate-600 text-lg max-w-xl mx-auto">
             选择不同的示例，查看 HTML 到 Markdown 的实时转换结果。
           </p>
         </div>
@@ -128,8 +128,8 @@ export default function DemoSection() {
               onClick={() => setActiveTab(i)}
               className={`px-5 py-2 rounded-xl text-sm font-medium transition-all ${
                 activeTab === i
-                  ? 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(124,58,237,0.3)]'
-                  : 'bg-[#1a1d27] border border-[#2e3347] text-slate-400 hover:text-slate-200 hover:border-violet-500/40'
+                  ? 'bg-gradient-to-r from-violet-600 to-cyan-500 text-white shadow-md'
+                  : 'bg-white border border-slate-200 text-slate-600 hover:text-slate-900 hover:border-violet-300'
               }`}
             >
               {ex.label}
@@ -138,25 +138,25 @@ export default function DemoSection() {
         </div>
 
         {/* Code Panel */}
-        <div className="bg-[#1a1d27] border border-[#2e3347] rounded-2xl overflow-hidden shadow-[0_0_40px_rgba(124,58,237,0.1)]">
+        <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
           {/* Panel header */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-[#2e3347] bg-[#22263a]">
+          <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200 bg-slate-100">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-red-500/70" />
-              <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
-              <div className="w-3 h-3 rounded-full bg-green-500/70" />
+              <div className="w-3 h-3 rounded-full bg-red-400" />
+              <div className="w-3 h-3 rounded-full bg-yellow-400" />
+              <div className="w-3 h-3 rounded-full bg-green-400" />
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xs text-slate-500 font-mono">{examples[activeTab].label}</span>
             </div>
             <button
               onClick={handleCopy}
-              className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition bg-[#1a1d27] border border-[#2e3347] px-3 py-1.5 rounded-lg"
+              className="flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-900 transition bg-white border border-slate-200 px-3 py-1.5 rounded-lg"
             >
               {copied ? (
                 <>
-                  <Check className="w-3.5 h-3.5 text-green-400" />
-                  <span className="text-green-400">已复制</span>
+                  <Check className="w-3.5 h-3.5 text-green-600" />
+                  <span className="text-green-600">已复制</span>
                 </>
               ) : (
                 <>
@@ -168,7 +168,7 @@ export default function DemoSection() {
           </div>
 
           {/* Split code view */}
-          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-[#2e3347]">
+          <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
             {/* HTML */}
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
@@ -177,7 +177,7 @@ export default function DemoSection() {
                   HTML 输入
                 </span>
               </div>
-              <pre className="text-xs font-mono text-slate-400 leading-relaxed overflow-x-auto whitespace-pre-wrap">
+              <pre className="text-xs font-mono text-slate-600 leading-relaxed overflow-x-auto whitespace-pre-wrap">
                 {examples[activeTab].html}
               </pre>
             </div>
@@ -185,12 +185,12 @@ export default function DemoSection() {
             {/* Markdown */}
             <div className="p-6">
               <div className="flex items-center gap-2 mb-4">
-                <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                <span className="w-2 h-2 rounded-full bg-cyan-500" />
                 <span className="text-xs text-slate-500 font-mono font-semibold uppercase tracking-wider">
                   Markdown 输出
                 </span>
               </div>
-              <pre className="text-xs font-mono text-cyan-300 leading-relaxed overflow-x-auto whitespace-pre-wrap">
+              <pre className="text-xs font-mono text-violet-700 leading-relaxed overflow-x-auto whitespace-pre-wrap">
                 {examples[activeTab].markdown}
               </pre>
             </div>
@@ -201,7 +201,7 @@ export default function DemoSection() {
         </div>
 
         {/* Bottom note */}
-        <p className="text-center text-slate-500 text-sm mt-6">
+        <p className="text-center text-slate-400 text-sm mt-6">
           以上为示例效果。实际使用时，扩展将自动处理当前网页的 HTML 内容。
         </p>
       </div>

@@ -1,26 +1,26 @@
 # Design System — HTML to Markdown Chrome Extension Website
 
 ## Brand Identity
-A developer-focused tool website with a clean, modern aesthetic. Dark-themed with vibrant accent colors to convey technical precision and productivity.
+A developer-focused tool website with a clean, modern aesthetic. Light-themed with vibrant accent colors to convey technical precision and productivity.
 
 ## Color Palette
 
 ### Primary Colors
-- Background (dark): `#0f1117` — `bg-[#0f1117]`
-- Surface (card): `#1a1d27` — `bg-[#1a1d27]`
-- Surface elevated: `#22263a` — `bg-[#22263a]`
-- Border: `#2e3347` — `border-[#2e3347]`
+- Background: `#f8fafc` — `bg-slate-50`
+- Surface (card): `#ffffff` — `bg-white`
+- Surface elevated: `#f1f5f9` — `bg-slate-100`
+- Border: `#e2e8f0` — `border-slate-200`
 
 ### Accent Colors
-- Primary accent (purple): `#7c3aed` — `bg-violet-700`, `text-violet-400`
-- Secondary accent (cyan): `#06b6d4` — `text-cyan-400`, `bg-cyan-500`
+- Primary accent (purple): `#7c3aed` — `bg-violet-600`, `text-violet-600`
+- Secondary accent (cyan): `#0891b2` — `text-cyan-600`, `bg-cyan-500`
 - Gradient: `from-violet-600 to-cyan-500`
 
 ### Text Colors
-- Heading: `#f1f5f9` — `text-slate-100`
-- Body: `#94a3b8` — `text-slate-400`
-- Muted: `#64748b` — `text-slate-500`
-- Accent text: `#a78bfa` — `text-violet-400`
+- Heading: `#0f172a` — `text-slate-900`
+- Body: `#475569` — `text-slate-600`
+- Muted: `#94a3b8` — `text-slate-400`
+- Accent text: `#7c3aed` — `text-violet-600`
 
 ## Typography
 

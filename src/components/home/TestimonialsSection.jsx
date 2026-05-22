@@ -69,17 +69,17 @@ function StarRating({ count }) {
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="py-24 bg-[#0d0f18]">
+    <section id="testimonials" className="py-24 bg-slate-50">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-sm font-medium px-4 py-1.5 rounded-full mb-4">
+          <div className="inline-flex items-center gap-2 bg-yellow-50 border border-yellow-200 text-yellow-700 text-sm font-medium px-4 py-1.5 rounded-full mb-4">
             用户评价
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-100 mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
             开发者们都在用
           </h2>
-          <p className="text-slate-400 text-lg max-w-xl mx-auto">
+          <p className="text-slate-600 text-lg max-w-xl mx-auto">
             超过 50,000 名用户信赖 HTML2MD，在 Chrome 商店获得 4.9 星好评。
           </p>
         </div>
@@ -89,13 +89,13 @@ export default function TestimonialsSection() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="bg-[#1a1d27] border border-[#2e3347] rounded-2xl p-6 hover:border-violet-500/30 transition-all duration-300"
+              className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-violet-300 hover:shadow-md transition-all duration-300"
             >
               {/* Rating */}
               <StarRating count={t.rating} />
 
               {/* Content */}
-              <p className="text-slate-300 text-sm leading-relaxed mt-4 mb-5">
+              <p className="text-slate-700 text-sm leading-relaxed mt-4 mb-5">
                 "{t.content}"
               </p>
 
@@ -107,7 +107,7 @@ export default function TestimonialsSection() {
                   {t.avatar}
                 </div>
                 <div>
-                  <div className="text-slate-100 text-sm font-semibold">{t.name}</div>
+                  <div className="text-slate-900 text-sm font-semibold">{t.name}</div>
                   <div className="text-slate-500 text-xs">{t.role}</div>
                 </div>
               </div>
@@ -116,28 +116,28 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Overall rating */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 bg-[#1a1d27] border border-[#2e3347] rounded-2xl p-8">
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
           <div className="text-center">
-            <div className="text-5xl font-extrabold text-slate-100">4.9</div>
+            <div className="text-5xl font-extrabold text-slate-900">4.9</div>
             <StarRating count={5} />
             <div className="text-slate-500 text-sm mt-1">Chrome 商店评分</div>
           </div>
-          <div className="hidden sm:block w-px h-16 bg-[#2e3347]" />
+          <div className="hidden sm:block w-px h-16 bg-slate-200" />
           <div className="grid grid-cols-2 gap-6 text-center">
             <div>
-              <div className="text-2xl font-bold text-slate-100">50,000+</div>
+              <div className="text-2xl font-bold text-slate-900">50,000+</div>
               <div className="text-slate-500 text-sm">活跃用户</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-slate-100">2,000+</div>
+              <div className="text-2xl font-bold text-slate-900">2,000+</div>
               <div className="text-slate-500 text-sm">五星好评</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-slate-100">100+</div>
+              <div className="text-2xl font-bold text-slate-900">100+</div>
               <div className="text-slate-500 text-sm">国家和地区</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-slate-100">99.9%</div>
+              <div className="text-2xl font-bold text-slate-900">99.9%</div>
               <div className="text-slate-500 text-sm">用户满意度</div>
             </div>
           </div>
