@@ -1,76 +1,118 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-parchment: #F2F0E9;
+    --color-ink: #1A1A1A;
+    --color-charcoal: #3D3D3D;
+    --color-graphite: #6B6B6B;
+    --color-silver: #A8A8A8;
+    --color-ash: #D4D2CB;
+    --color-bone: #E8E6DF;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #F2F0E9;
+    color: #1A1A1A;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    color: #1A1A1A;
+    line-height: 1.2;
+  }
+
+  p {
+    color: #3D3D3D;
+    line-height: 1.7;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    font-family: 'Inter', system-ui, sans-serif;
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/20 backdrop-blur-md border border-white/30 rounded-2xl shadow-glass;
+  }
+
+  .glass-card-strong {
+    @apply bg-white/30 backdrop-blur-lg border border-white/40 rounded-2xl shadow-glass-lg;
+  }
+
+  .glass-btn {
+    @apply bg-white/25 backdrop-blur-sm border border-white/40 text-ink
+           hover:bg-white/45 active:bg-white/55
+           rounded-full px-8 py-3 font-inter font-medium tracking-wide
+           transition-all duration-300 cursor-pointer inline-flex items-center gap-2;
+  }
+
+  .glass-btn-dark {
+    @apply bg-ink/85 backdrop-blur-sm border border-ink/20 text-parchment
+           hover:bg-ink active:bg-black
+           rounded-full px-8 py-3 font-inter font-medium tracking-wide
+           transition-all duration-300 cursor-pointer inline-flex items-center gap-2;
+  }
+
+  .glass-nav {
+    @apply bg-parchment/75 backdrop-blur-lg border-b border-ash/60 shadow-glass;
+  }
+
+  .section-label {
+    @apply font-inter text-xs text-graphite tracking-widest uppercase;
+  }
+
+  .data-label {
+    @apply font-mono text-xs text-graphite tracking-wider uppercase;
+  }
+
+  .input-underline {
+    @apply bg-transparent border-0 border-b border-charcoal/40 rounded-none
+           px-0 py-3 text-ink font-inter text-base w-full
+           focus:outline-none focus:border-ink focus:ring-0
+           placeholder:text-silver transition-colors duration-200;
+  }
+
+  .divider {
+    @apply border-t border-ash;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grayscale-img {
+    filter: grayscale(100%) contrast(1.1);
+  }
+
+  .sepia-img {
+    filter: sepia(80%) contrast(1.05) brightness(0.92);
+  }
+}
