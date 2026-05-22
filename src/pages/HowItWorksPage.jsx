@@ -71,12 +71,12 @@ const vsItems = [
 ];
 
 const colorMap = {
-  indigo: { bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-200', num: 'text-violet-500' },
-  violet: { bg: 'bg-purple-50', text: 'text-purple-600', border: 'border-purple-200', num: 'text-purple-400' },
-  purple: { bg: 'bg-violet-50', text: 'text-violet-700', border: 'border-violet-200', num: 'text-violet-500' },
+  indigo: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', num: 'text-blue-500' },
+  violet: { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-200', num: 'text-sky-400' },
+  purple: { bg: 'bg-blue-50', text: 'text-blue-700', border: 'border-blue-200', num: 'text-blue-500' },
   sky: { bg: 'bg-sky-50', text: 'text-sky-600', border: 'border-sky-200', num: 'text-sky-400' },
   emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'border-emerald-200', num: 'text-emerald-400' },
-  amber: { bg: 'bg-violet-50', text: 'text-violet-600', border: 'border-violet-200', num: 'text-violet-400' },
+  amber: { bg: 'bg-blue-50', text: 'text-blue-600', border: 'border-blue-200', num: 'text-blue-400' },
 };
 
 export default function HowItWorksPage() {
@@ -90,13 +90,13 @@ export default function HowItWorksPage() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-violet-50 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
-            <Layers className="w-3.5 h-3.5 text-violet-600" />
-            <span className="text-violet-700 text-sm font-medium">工作原理</span>
+          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-1.5 mb-6">
+            <Layers className="w-3.5 h-3.5 text-blue-600" />
+            <span className="text-blue-700 text-sm font-medium">工作原理</span>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
             LLM Wiki 如何
-            <span className="bg-gradient-to-r from-violet-600 via-purple-500 to-violet-700 bg-clip-text text-transparent"> 构建知识库</span>
+            <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-blue-700 bg-clip-text text-transparent"> 构建知识库</span>
           </h1>
           <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
             从文档到结构化知识，LLM Wiki 通过六个核心步骤，将零散信息转化为持续生长的个人知识图谱。
@@ -164,9 +164,9 @@ export default function HowItWorksPage() {
             <div className="grid grid-cols-3 bg-slate-50 border-b border-slate-200">
               <div className="px-6 py-4 text-slate-500 text-sm font-medium"></div>
               <div className="px-6 py-4 text-slate-600 text-sm font-semibold border-l border-slate-200">传统 RAG</div>
-              <div className="px-6 py-4 text-violet-700 text-sm font-semibold border-l border-slate-200 flex items-center gap-2">
+              <div className="px-6 py-4 text-blue-700 text-sm font-semibold border-l border-slate-200 flex items-center gap-2">
                 LLM Wiki
-                <span className="bg-violet-50 text-violet-700 border border-violet-200 text-xs px-2 py-0.5 rounded-full">推荐</span>
+                <span className="bg-blue-50 text-blue-700 border border-blue-200 text-xs px-2 py-0.5 rounded-full">推荐</span>
               </div>
             </div>
             {vsItems.map((row, i) => (
@@ -174,7 +174,7 @@ export default function HowItWorksPage() {
                 <div className="px-6 py-4 text-slate-700 text-sm font-medium">{row.label}</div>
                 <div className="px-6 py-4 text-slate-400 text-sm border-l border-slate-100">{row.rag}</div>
                 <div className="px-6 py-4 text-slate-700 text-sm border-l border-slate-200 flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-500 flex-shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
                   {row.wiki}
                 </div>
               </div>
@@ -185,7 +185,7 @@ export default function HowItWorksPage() {
         {/* Incremental update */}
         <div className="bg-white border border-slate-200 rounded-2xl p-8 mb-16">
           <div className="flex items-start gap-4 mb-6">
-            <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+            <div className="w-10 h-10 bg-sky-50 text-sky-600 rounded-xl flex items-center justify-center flex-shrink-0">
               <RefreshCw className="w-5 h-5" />
             </div>
             <div>
@@ -216,7 +216,7 @@ export default function HowItWorksPage() {
             href="https://github.com/nashsu/llm_wiki/releases"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 bg-violet-600 hover:bg-violet-500 text-white rounded-xl px-8 py-3.5 font-semibold transition-all shadow-lg shadow-violet-500/25 hover:shadow-violet-500/40 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-8 py-3.5 font-semibold transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 hover:-translate-y-0.5"
           >
             立即体验 LLM Wiki
             <ArrowRight className="w-4 h-4" />

@@ -45,7 +45,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-purple-600 flex items-center justify-center shadow-lg shadow-violet-500/30">
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-600 to-sky-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
               <BookOpen className="w-4 h-4 text-white" />
             </div>
             <span className="text-slate-900 font-bold text-lg tracking-tight">LLM Wiki</span>
@@ -60,7 +60,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 ${isActive ? 'text-violet-700' : 'text-slate-600 hover:text-slate-900'}`}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-slate-100 ${isActive ? 'text-blue-700' : 'text-slate-600 hover:text-slate-900'}`}
                 >
                   {link.label}
                 </a>
@@ -83,7 +83,7 @@ export default function Navbar() {
               href="https://github.com/nashsu/llm_wiki/releases"
               target="_blank"
               rel="noreferrer"
-              className="bg-violet-600 hover:bg-violet-500 text-white rounded-xl px-4 py-2 text-sm font-semibold transition-all shadow-lg shadow-violet-500/20"
+              className="bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-4 py-2 text-sm font-semibold transition-all shadow-lg shadow-blue-500/20"
             >
               立即下载
             </a>
@@ -127,7 +127,7 @@ export default function Navbar() {
                 href="https://github.com/nashsu/llm_wiki/releases"
                 target="_blank"
                 rel="noreferrer"
-                className="bg-violet-600 hover:bg-violet-500 text-white rounded-xl px-4 py-2.5 text-sm font-semibold transition-all text-center"
+                className="bg-blue-600 hover:bg-blue-500 text-white rounded-xl px-4 py-2.5 text-sm font-semibold transition-all text-center"
               >
                 立即下载
               </a>
