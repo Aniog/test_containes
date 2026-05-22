@@ -1,9 +1,16 @@
-import { useState } from 'react';
-import { Plus, Trash2, Star, ChevronDown, Check, Gamepad2, Send, X } from 'lucide-react';
-import { DataClient } from '@strikingly/sdk';
-import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+import { useState, useRef } from 'react';
+import { Plus, Trash2, Star, ChevronDown, Check, Gamepad2, Send, X, ImagePlus, Image as ImageIcon } from 'lucide-react';
+import { DataClient, API } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY, SITE_ID, REQUEST_DOMAIN, S3_DOMAIN } from '@/config.jsx';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+function buildPublicUrl(storageKey) {
+  if (!storageKey) return '';
+  const base = (S3_DOMAIN || '').replace(/\/+$/, '');
+  const path = storageKey.replace(/^\/+/, '');
+  return `${base}/${path}`;
+}
 
 const PLATFORMS = [
   'PC', 'PlayStation 5', 'PlayStation 4',
@@ -24,6 +31,8 @@ const EMPTY_GAME = {
   rating: 0,
   genre: '',
   would_recommend: true,
+  // screenshots: array of { file (File obj), preview (data URL), uploaded (result obj | null), uploading (bool), error (str) }
+  screenshots: [],
 };
 
 function StarRating({ value, onChange }) {
@@ -81,8 +90,154 @@ function SelectField({ label, value, onChange, options, placeholder, required })
   );
 }
 
+// ── Image uploader for a single game entry ──────────────────────────────────
+function ImageUploader({ screenshots, onAdd, onRemove }) {
+  const inputRef = useRef(null);
+
+  const handleFiles = async (files) => {
+    const accepted = Array.from(files).filter((f) => f.type.startsWith('image/'));
+    if (!accepted.length) return;
+
+    // Add placeholders immediately so the user sees progress
+    const placeholders = accepted.map((file) => ({
+      file,
+      preview: URL.createObjectURL(file),
+      uploaded: null,
+      uploading: true,
+      error: '',
+    }));
+    onAdd(placeholders);
+
+    // Upload each file
+    const results = await Promise.all(
+      accepted.map(async (file, i) => {
+        try {
+          const result = await API.uploadImage(SITE_ID, REQUEST_DOMAIN, file);
+          console.log('Image upload result:', result);
+          return { index: i, uploaded: result, error: '' };
+        } catch (err) {
+          console.error('Image upload error:', err);
+          return { index: i, uploaded: null, error: err.message || 'Upload failed' };
+        }
+      })
+    );
+
+    // Patch placeholders with upload results
+    onAdd(
+      placeholders.map((p, i) => ({
+        ...p,
+        uploading: false,
+        uploaded: results[i].uploaded,
+        error: results[i].error,
+      })),
+      true // replace the placeholders
+    );
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    handleFiles(e.dataTransfer.files);
+  };
+
+  return (
+    <div className="md:col-span-2">
+      <label className="block text-sm font-medium text-gray-300 mb-2">
+        Screenshots / Photos
+        <span className="ml-2 text-xs text-gray-500 font-normal">optional · JPG, PNG, GIF, WebP · max 5 MB each</span>
+      </label>
+
+      {/* Drop zone */}
+      <div
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
+        onClick={() => inputRef.current?.click()}
+        className="flex flex-col items-center justify-center gap-2 border-2 border-dashed border-[#2a2a3a] hover:border-violet-500/50 rounded-xl py-6 cursor-pointer transition-colors group"
+      >
+        <ImagePlus className="w-7 h-7 text-gray-600 group-hover:text-violet-400 transition-colors" />
+        <p className="text-sm text-gray-500 group-hover:text-gray-300 transition-colors">
+          Click or drag images here
+        </p>
+        <input
+          ref={inputRef}
+          type="file"
+          accept="image/*"
+          multiple
+          className="hidden"
+          onChange={(e) => handleFiles(e.target.files)}
+        />
+      </div>
+
+      {/* Thumbnails */}
+      {screenshots.length > 0 && (
+        <div className="mt-3 grid grid-cols-3 sm:grid-cols-4 gap-2">
+          {screenshots.map((s, idx) => {
+            const publicUrl = s.uploaded?.storageKey
+              ? buildPublicUrl(s.uploaded.storageKey)
+              : s.preview;
+            return (
+              <div key={idx} className="relative group rounded-lg overflow-hidden aspect-square bg-[#1e1e2a] border border-[#2a2a3a]">
+                <img
+                  src={publicUrl}
+                  alt={`screenshot-${idx + 1}`}
+                  className="w-full h-full object-cover"
+                />
+                {/* Uploading spinner */}
+                {s.uploading && (
+                  <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  </div>
+                )}
+                {/* Error overlay */}
+                {s.error && (
+                  <div className="absolute inset-0 bg-red-900/70 flex items-center justify-center p-1">
+                    <p className="text-red-300 text-xs text-center leading-tight">{s.error}</p>
+                  </div>
+                )}
+                {/* Remove button */}
+                {!s.uploading && (
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); onRemove(idx); }}
+                    className="absolute top-1 right-1 w-5 h-5 bg-black/70 hover:bg-red-600 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <X className="w-3 h-3 text-white" />
+                  </button>
+                )}
+                {/* Success tick */}
+                {!s.uploading && !s.error && s.uploaded && (
+                  <div className="absolute bottom-1 right-1 w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 text-white" />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function GameEntryCard({ game, index, onChange, onRemove, canRemove, errors }) {
   const fieldError = (field) => errors?.[field];
+
+  // screenshots helpers
+  const handleAddScreenshots = (newItems, replace = false) => {
+    if (replace) {
+      // replace the last N placeholders (the ones currently uploading)
+      onChange('screenshots', [
+        ...game.screenshots.filter((s) => !s.uploading),
+        ...newItems,
+      ]);
+    } else {
+      onChange('screenshots', [...game.screenshots, ...newItems]);
+    }
+  };
+
+  const handleRemoveScreenshot = (idx) => {
+    const updated = game.screenshots.filter((_, i) => i !== idx);
+    onChange('screenshots', updated);
+  };
 
   return (
     <div className="bg-[#16161d] border border-[#2a2a3a] rounded-xl p-5 md:p-6 relative">
@@ -216,6 +371,13 @@ function GameEntryCard({ game, index, onChange, onRemove, canRemove, errors }) {
             ))}
           </div>
         </div>
+
+        {/* Image Upload */}
+        <ImageUploader
+          screenshots={game.screenshots}
+          onAdd={handleAddScreenshots}
+          onRemove={handleRemoveScreenshot}
+        />
       </div>
     </div>
   );
@@ -233,6 +395,7 @@ function validateGame(game) {
 export default function FavoriteGames() {
   const [visitorName, setVisitorName] = useState('');
   const [visitorEmail, setVisitorEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [games, setGames] = useState([{ ...EMPTY_GAME }]);
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [globalError, setGlobalError] = useState('');
@@ -244,7 +407,7 @@ export default function FavoriteGames() {
   };
 
   const addGame = () => {
-    setGames((prev) => [...prev, { ...EMPTY_GAME }]);
+    setGames((prev) => [...prev, { ...EMPTY_GAME, screenshots: [] }]);
     setFieldErrors((prev) => [...prev, {}]);
   };
 
@@ -256,31 +419,51 @@ export default function FavoriteGames() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setGlobalError('');
+    setEmailError('');
 
-    if (!visitorName.trim()) {
-      setGlobalError('Please enter your name.');
+    let hasTopError = false;
+    if (!visitorName.trim()) { setGlobalError('Please enter your name.'); hasTopError = true; }
+    if (!visitorEmail.trim()) { setEmailError('Email is required.'); hasTopError = true; }
+    else if (!/^\S+@\S+\.\S+$/.test(visitorEmail)) { setEmailError('Please enter a valid email address.'); hasTopError = true; }
+    if (hasTopError) return;
+
+    const allErrors = games.map(validateGame);
+    const hasGameErrors = allErrors.some((e) => Object.keys(e).length > 0);
+    if (hasGameErrors) {
+      setFieldErrors(allErrors);
+      setGlobalError('Please fix the errors in the game entries above.');
       return;
     }
 
-    // Validate all game entries
-    const allErrors = games.map(validateGame);
-    const hasErrors = allErrors.some((e) => Object.keys(e).length > 0);
-    if (hasErrors) {
-      setFieldErrors(allErrors);
-      setGlobalError('Please fix the errors above before submitting.');
+    // Block submit if any image is still uploading
+    const anyUploading = games.some((g) => g.screenshots.some((s) => s.uploading));
+    if (anyUploading) {
+      setGlobalError('Please wait for all images to finish uploading.');
       return;
     }
 
     setStatus('submitting');
 
     try {
-      // Submit each game as a separate record
       const results = await Promise.all(
-        games.map((game) =>
-          client.from('FavoriteGame').insert({
+        games.map((game) => {
+          // Build screenshots payload from successfully uploaded images
+          const screenshots = game.screenshots
+            .filter((s) => s.uploaded && !s.error)
+            .map((s) => ({
+              filename: s.uploaded.filename || s.file?.name || '',
+              size: s.uploaded.size || 0,
+              storageKey: s.uploaded.storageKey || '',
+              storage: s.uploaded.storage || 's3',
+              mimeType: s.uploaded.mimeType || s.file?.type || '',
+              width: s.uploaded.width || 0,
+              height: s.uploaded.height || 0,
+            }));
+
+          return client.from('FavoriteGame').insert({
             data: {
               visitor_name: visitorName.trim(),
-              ...(visitorEmail.trim() && { visitor_email: visitorEmail.trim() }),
+              visitor_email: visitorEmail.trim(),
               game_name: game.game_name.trim(),
               platform: game.platform,
               ...(game.play_time_hours !== '' && { play_time_hours: Number(game.play_time_hours) }),
@@ -289,9 +472,10 @@ export default function FavoriteGames() {
               ...(game.rating > 0 && { rating: game.rating }),
               ...(game.genre && { genre: game.genre }),
               would_recommend: game.would_recommend,
+              ...(screenshots.length > 0 && { screenshots }),
             },
-          }).select().single()
-        )
+          }).select().single();
+        })
       );
 
       const failed = results.find((r) => r.data?.success === false || r.error);
@@ -311,7 +495,8 @@ export default function FavoriteGames() {
   const handleReset = () => {
     setVisitorName('');
     setVisitorEmail('');
-    setGames([{ ...EMPTY_GAME }]);
+    setEmailError('');
+    setGames([{ ...EMPTY_GAME, screenshots: [] }]);
     setFieldErrors([{}]);
     setGlobalError('');
     setStatus('idle');
@@ -325,10 +510,12 @@ export default function FavoriteGames() {
             <Check className="w-10 h-10 text-green-400" />
           </div>
           <h2 className="text-2xl font-bold text-white mb-3">Thanks, {visitorName}! 🎮</h2>
-          <p className="text-gray-400 mb-2">
+          <p className="text-gray-400 mb-1">
             We've saved your {games.length} favorite {games.length === 1 ? 'game' : 'games'}.
           </p>
-          <p className="text-gray-500 text-sm mb-8">Your picks help us curate better content for the GameVault community.</p>
+          <p className="text-gray-500 text-sm mb-8">
+            A confirmation has been linked to <span className="text-gray-300">{visitorEmail}</span>.
+          </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={handleReset}
@@ -359,12 +546,12 @@ export default function FavoriteGames() {
           <h1 className="text-3xl md:text-4xl font-bold text-white">Favorite Games</h1>
         </div>
         <p className="text-gray-400">
-          Share the games you love with the GameVault community. You can add multiple games at once!
+          Share the games you love with the GameVault community. Add multiple games in one go!
         </p>
       </div>
 
       <form onSubmit={handleSubmit} noValidate>
-        {/* Visitor Info */}
+        {/* ── Section 1: About You ── */}
         <div className="bg-[#16161d] border border-[#2a2a3a] rounded-xl p-5 md:p-6 mb-6">
           <h2 className="text-white font-semibold mb-4 flex items-center gap-2">
             <span className="w-6 h-6 bg-cyan-500/20 border border-cyan-500/30 rounded text-cyan-400 text-xs flex items-center justify-center font-bold">1</span>
@@ -385,20 +572,22 @@ export default function FavoriteGames() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1.5">
-                Email <span className="text-gray-500 font-normal">(optional)</span>
+                Email <span className="text-red-400">*</span>
+                <span className="ml-1.5 text-xs text-gray-500 font-normal">used to group your game entries</span>
               </label>
               <input
                 type="email"
                 value={visitorEmail}
-                onChange={(e) => setVisitorEmail(e.target.value)}
+                onChange={(e) => { setVisitorEmail(e.target.value); setEmailError(''); }}
                 placeholder="you@example.com"
-                className="w-full bg-[#1e1e2a] border border-[#2a2a3a] rounded-lg px-4 py-2.5 text-white placeholder-gray-500 outline-none focus:border-violet-500 transition-colors text-sm"
+                className={`w-full bg-[#1e1e2a] border rounded-lg px-4 py-2.5 text-white placeholder-gray-500 outline-none focus:border-violet-500 transition-colors text-sm ${emailError ? 'border-red-500' : 'border-[#2a2a3a]'}`}
               />
+              {emailError && <p className="text-red-400 text-xs mt-1">{emailError}</p>}
             </div>
           </div>
         </div>
 
-        {/* Games Section */}
+        {/* ── Section 2: Games ── */}
         <div className="mb-4">
           <h2 className="text-white font-semibold mb-4 flex items-center gap-2">
             <span className="w-6 h-6 bg-cyan-500/20 border border-cyan-500/30 rounded text-cyan-400 text-xs flex items-center justify-center font-bold">2</span>
