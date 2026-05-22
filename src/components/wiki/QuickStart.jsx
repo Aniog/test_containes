@@ -24,12 +24,12 @@ export default function QuickStart() {
           {steps.map((step) => {
             const Icon = step.icon;
             return (
-              <div key={step.step} className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-amber-300 hover:shadow-md transition-all hover:-translate-y-0.5 group">
+              <div key={step.step} className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-violet-300 hover:shadow-md transition-all hover:-translate-y-0.5 group">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 bg-amber-50 text-amber-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <div className="w-9 h-9 bg-violet-50 text-violet-700 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-amber-600 font-mono text-xs font-bold">{step.step}</span>
+                  <span className="text-violet-600 font-mono text-xs font-bold">{step.step}</span>
                 </div>
                 <h3 className="text-slate-900 font-semibold mb-1.5">{step.title}</h3>
                 <p className="text-slate-500 text-sm leading-relaxed">{step.desc}</p>

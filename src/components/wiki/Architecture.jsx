@@ -39,8 +39,8 @@ export default function Architecture() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-purple-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-amber-600 text-sm font-medium">架构设计</span>
+          <div className="inline-flex items-center gap-2 bg-violet-500/10 border border-purple-500/20 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-violet-600 text-sm font-medium">架构设计</span>
           </div>
           <h2 className="text-3xl md:text-5xl font-bold text-slate-100 mb-4">
             三层架构
@@ -90,15 +90,15 @@ export default function Architecture() {
             <div className="text-slate-400 leading-relaxed whitespace-pre space-y-0.5">
               {[
                 { text: 'my-wiki/', color: 'text-slate-300' },
-                { text: '├── purpose.md              ', color: 'text-slate-400', comment: '# 目标、关键问题、研究范围', commentColor: 'text-amber-600' },
-                { text: '├── schema.md               ', color: 'text-slate-400', comment: '# Wiki 结构规则、页面类型', commentColor: 'text-amber-600' },
+                { text: '├── purpose.md              ', color: 'text-slate-400', comment: '# 目标、关键问题、研究范围', commentColor: 'text-violet-600' },
+                { text: '├── schema.md               ', color: 'text-slate-400', comment: '# Wiki 结构规则、页面类型', commentColor: 'text-violet-600' },
                 { text: '├── raw/', color: 'text-slate-400' },
                 { text: '│   ├── sources/            ', color: 'text-slate-400', comment: '# 上传的文档（不可变）', commentColor: 'text-slate-500' },
                 { text: '│   └── assets/             ', color: 'text-slate-400', comment: '# 本地图片', commentColor: 'text-slate-500' },
                 { text: '├── wiki/', color: 'text-slate-400' },
-                { text: '│   ├── index.md            ', color: 'text-slate-400', comment: '# 内容目录', commentColor: 'text-orange-500' },
-                { text: '│   ├── log.md              ', color: 'text-slate-400', comment: '# 操作历史', commentColor: 'text-orange-500' },
-                { text: '│   ├── overview.md         ', color: 'text-slate-400', comment: '# 全局摘要（自动更新）', commentColor: 'text-orange-500' },
+                { text: '│   ├── index.md            ', color: 'text-slate-400', comment: '# 内容目录', commentColor: 'text-purple-500' },
+                { text: '│   ├── log.md              ', color: 'text-slate-400', comment: '# 操作历史', commentColor: 'text-purple-500' },
+                { text: '│   ├── overview.md         ', color: 'text-slate-400', comment: '# 全局摘要（自动更新）', commentColor: 'text-purple-500' },
                 { text: '│   ├── entities/           ', color: 'text-slate-400', comment: '# 人物、组织、产品', commentColor: 'text-slate-500' },
                 { text: '│   ├── concepts/           ', color: 'text-slate-400', comment: '# 理论、方法、技术', commentColor: 'text-slate-500' },
                 { text: '│   ├── sources/            ', color: 'text-slate-400', comment: '# 来源摘要', commentColor: 'text-slate-500' },

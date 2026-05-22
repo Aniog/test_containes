@@ -40,12 +40,12 @@ const features = [
 ];
 
 const colorMap = {
-  indigo: { bg: 'bg-amber-50', text: 'text-amber-700', border: 'hover:border-amber-300' },
-  violet: { bg: 'bg-orange-50', text: 'text-orange-600', border: 'hover:border-orange-300' },
-  purple: { bg: 'bg-amber-50', text: 'text-amber-700', border: 'hover:border-amber-300' },
+  indigo: { bg: 'bg-violet-50', text: 'text-violet-700', border: 'hover:border-violet-300' },
+  violet: { bg: 'bg-purple-50', text: 'text-purple-600', border: 'hover:border-purple-300' },
+  purple: { bg: 'bg-violet-50', text: 'text-violet-700', border: 'hover:border-violet-300' },
   emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', border: 'hover:border-emerald-300' },
   sky: { bg: 'bg-sky-50', text: 'text-sky-600', border: 'hover:border-sky-300' },
-  amber: { bg: 'bg-stone-50', text: 'text-stone-600', border: 'hover:border-stone-300' },
+  amber: { bg: 'bg-fuchsia-50', text: 'text-fuchsia-600', border: 'hover:border-fuchsia-300' },
 };
 
 export default function Features() {
@@ -55,7 +55,7 @@ export default function Features() {
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">
             超越传统 RAG 的
-            <span className="bg-gradient-to-r from-amber-600 to-orange-500 bg-clip-text text-transparent"> 知识管理</span>
+            <span className="bg-gradient-to-r from-violet-600 to-purple-500 bg-clip-text text-transparent"> 知识管理</span>
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto">
             知识一次编译，持续更新，构建真正属于你的智能知识库。
