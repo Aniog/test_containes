@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pizza Menu Items",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the pizza or menu item"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Description of the item including toppings and ingredients"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Classic", "Specialty", "Vegetarian", "Vegan", "Sides", "Drinks", "Desserts"],
+      "description": "Category of the menu item"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Price in USD"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["Small", "Medium", "Large", "Extra Large"],
+      "description": "Available size for this item"
+    },
+    "is_available": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the item is currently available"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this item on the homepage"
+    },
+    "image": {
+      "type": "object",
+      "description": "Product image",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "allergens": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gluten", "Dairy", "Eggs", "Nuts", "Soy", "Shellfish"]
+      },
+      "uniqueItems": true,
+      "description": "List of allergens present in this item"
+    }
+  },
+  "required": ["name", "category", "price"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
