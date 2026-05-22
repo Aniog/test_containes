@@ -24,7 +24,7 @@ export default function SpecimenCard({ specimen, reverse = false, index = 0 }) {
             src={specimen.imagePlaceholder}
             alt={specimen.name}
             className="w-full h-full object-cover"
-            style={{ filter: 'grayscale(100%) contrast(1.1)' }}
+            style={{ filter: 'contrast(1.05)' }}
             data-strk-img-id={`specimen-img-${specimen.id}`}
             data-strk-img={`[spec-desc-${specimen.id}] [spec-name-${specimen.id}] microscopy histology`}
             data-strk-img-ratio="4x3"

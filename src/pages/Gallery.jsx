@@ -260,7 +260,7 @@ function SlideCard({ slide, index, onClick, onImageLoad }) {
             src={slide.src}
             alt={slide.title}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            style={{ filter: 'grayscale(100%) contrast(1.1)' }}
+            style={{ filter: 'contrast(1.05)' }}
             data-strk-img-id={`gallery-img-${slide.id}`}
             data-strk-img={`[gallery-title-${slide.id}] [gallery-cat-${slide.id}] microscopy biology`}
             data-strk-img-ratio="4x3"

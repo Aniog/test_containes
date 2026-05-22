@@ -56,7 +56,7 @@ export default function Home() {
           style={{
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            filter: 'grayscale(100%) contrast(1.15)',
+            filter: 'contrast(1.05)',
           }}
         />
 
