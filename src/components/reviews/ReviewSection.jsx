@@ -45,19 +45,10 @@ const ReviewSection = () => {
   return (
     <section id="reviews" className="bg-gray-50 py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <p className="text-xs font-bold tracking-widest text-green-700 uppercase mb-2">Customer Reviews</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">
-            What Our Customers Say
-          </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Real feedback from real fruit lovers. Share your own experience below.
-          </p>
-
-          {/* Summary bar */}
-          {total > 0 && (
-            <div className="inline-flex items-center gap-3 mt-6 bg-white rounded-2xl px-6 py-3 shadow-sm border border-gray-100">
+        {/* Summary bar */}
+        {total > 0 && (
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex items-center gap-3 bg-white rounded-2xl px-6 py-3 shadow-sm border border-gray-100">
               <span className="text-3xl font-extrabold text-gray-900">{avg}</span>
               <div className="flex flex-col items-start gap-1">
                 <div className="flex gap-0.5">
@@ -71,8 +62,8 @@ const ReviewSection = () => {
                 <span className="text-xs text-gray-500">{total} review{total !== 1 ? 's' : ''}</span>
               </div>
             </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {/* Two-column layout on desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
