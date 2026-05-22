@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Gamepad2, Menu, X, Search, ShoppingCart, Flame, Newspaper, Tag, Store } from 'lucide-react';
+import { Gamepad2, Menu, X, Search, ShoppingCart, Flame, Newspaper, Tag, Store, Heart } from 'lucide-react';
 
 const navLinks = [
   { to: '/', label: 'Home', icon: Flame },
   { to: '/news', label: 'News', icon: Newspaper },
   { to: '/deals', label: 'Deals', icon: Tag },
   { to: '/store', label: 'Store', icon: Store },
+  { to: '/favorite-games', label: 'Favorites', icon: Heart },
 ];
 
 export default function Navbar() {

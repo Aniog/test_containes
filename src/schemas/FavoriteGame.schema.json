@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the visitor submitting the form"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the visitor (optional)"
+    },
+    "game_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the favorite game"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["PC", "PlayStation 5", "PlayStation 4", "Xbox Series X/S", "Xbox One", "Nintendo Switch", "Mobile", "Other"],
+      "description": "Platform the game is played on"
+    },
+    "play_time_hours": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total hours played"
+    },
+    "last_play_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the game was last played"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Why the visitor likes this game"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Personal rating out of 5 stars"
+    },
+    "genre": {
+      "type": "string",
+      "enum": ["Action", "RPG", "Action RPG", "FPS", "Strategy", "Sports", "Racing", "Horror", "Adventure", "Puzzle", "Simulation", "Fighting", "Other"],
+      "description": "Genre of the game"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the visitor would recommend this game to others"
+    }
+  },
+  "required": ["visitor_name", "game_name", "platform", "reason", "last_play_date"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}
