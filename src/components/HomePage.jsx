@@ -5,13 +5,57 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { ChefHat, Clock, Star, MapPin, Phone, Mail } from 'lucide-react'
+import { useCart } from '@/contexts/CartContext'
+import CartSidebar from './CartSidebar'
 
 export default function HomePage() {
   const containerRef = useRef(null)
+  const { addItem } = useCart()
 
   useEffect(() => {
     ImageHelper.loadImages(strkImgConfig, containerRef.current)
   }, [])
+
+  // Featured burger data
+  const featuredBurgers = [
+    {
+      id: 'classic-craft',
+      name: 'Classic Craft Burger',
+      description: 'Grass-fed beef patty, aged cheddar, crispy lettuce, tomato, red onion, and our signature craft sauce on a brioche bun.',
+      price: 14.99,
+      badge: 'Popular',
+      badgeColor: 'bg-green-500',
+      image: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1506917569358-61aa733ea432'
+    },
+    {
+      id: 'bbq-bacon-deluxe',
+      name: 'BBQ Bacon Deluxe',
+      description: 'Double beef patty, crispy bacon, smoked cheddar, onion rings, and tangy BBQ sauce on a toasted sesame bun.',
+      price: 17.99,
+      badge: 'New',
+      badgeColor: 'bg-blue-500',
+      image: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1636497514856-5ea6d78dd018'
+    },
+    {
+      id: 'veggie-craft',
+      name: 'Veggie Craft Burger',
+      description: 'House-made black bean and quinoa patty, avocado, sprouts, tomato, and herb aioli on a whole grain bun.',
+      price: 13.99,
+      badge: 'Vegetarian',
+      badgeColor: 'bg-green-600',
+      image: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1669465815782-6528e82126df'
+    }
+  ]
+
+  const handleAddToCart = (burger) => {
+    addItem({
+      id: burger.id,
+      name: burger.name,
+      description: burger.description,
+      price: burger.price,
+      image: burger.image
+    })
+  }
 
   return (
     <div className="min-h-screen bg-white" ref={containerRef}>
@@ -121,89 +165,35 @@ export default function HomePage() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Classic Craft Burger */}
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="aspect-w-16 aspect-h-12 bg-gray-200">
-                <img
-                  alt="Classic Craft Burger"
-                  className="w-full h-48 object-cover"
-                  data-strk-img-id="classic-burger-1a2b3c"
-                  data-strk-img="[classic-description] [classic-title]"
-                  data-strk-img-ratio="4x3"
-                  data-strk-img-width="600"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 id="classic-title" className="text-xl font-semibold text-burger-dark">Classic Craft Burger</h3>
-                  <Badge className="bg-burger-orange text-white">Popular</Badge>
+            {featuredBurgers.map((burger) => (
+              <Card key={burger.id} className="overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="aspect-w-16 aspect-h-12 bg-gray-200">
+                  <img
+                    alt={burger.name}
+                    className="w-full h-48 object-cover"
+                    src={burger.image}
+                  />
                 </div>
-                <p id="classic-description" className="text-gray-600 mb-4">
-                  Grass-fed beef patty, aged cheddar, crispy lettuce, tomato, red onion, and our signature craft sauce on a brioche bun.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-burger-orange">$14.99</span>
-                  <Button className="bg-burger-orange hover:bg-orange-600">Add to Cart</Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* BBQ Bacon Deluxe */}
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="aspect-w-16 aspect-h-12 bg-gray-200">
-                <img
-                  alt="BBQ Bacon Deluxe Burger"
-                  className="w-full h-48 object-cover"
-                  data-strk-img-id="bbq-burger-4d5e6f"
-                  data-strk-img="[bbq-description] [bbq-title]"
-                  data-strk-img-ratio="4x3"
-                  data-strk-img-width="600"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 id="bbq-title" className="text-xl font-semibold text-burger-dark">BBQ Bacon Deluxe</h3>
-                  <Badge variant="secondary">New</Badge>
-                </div>
-                <p id="bbq-description" className="text-gray-600 mb-4">
-                  Double beef patty, crispy bacon, smoked cheddar, onion rings, and tangy BBQ sauce on a toasted sesame bun.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-burger-orange">$17.99</span>
-                  <Button className="bg-burger-orange hover:bg-orange-600">Add to Cart</Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Veggie Craft Burger */}
-            <Card className="overflow-hidden hover:shadow-xl transition-shadow">
-              <div className="aspect-w-16 aspect-h-12 bg-gray-200">
-                <img
-                  alt="Veggie Craft Burger"
-                  className="w-full h-48 object-cover"
-                  data-strk-img-id="veggie-burger-7g8h9i"
-                  data-strk-img="[veggie-description] [veggie-title]"
-                  data-strk-img-ratio="4x3"
-                  data-strk-img-width="600"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                />
-              </div>
-              <CardContent className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 id="veggie-title" className="text-xl font-semibold text-burger-dark">Veggie Craft Burger</h3>
-                  <Badge className="bg-green-500 text-white">Vegetarian</Badge>
-                </div>
-                <p id="veggie-description" className="text-gray-600 mb-4">
-                  House-made black bean and quinoa patty, avocado, sprouts, tomato, and herb aioli on a whole grain bun.
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-burger-orange">$13.99</span>
-                  <Button className="bg-burger-orange hover:bg-orange-600">Add to Cart</Button>
-                </div>
-              </CardContent>
-            </Card>
+                <CardContent className="p-6">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="text-xl font-semibold text-burger-dark">{burger.name}</h3>
+                    <Badge className={`${burger.badgeColor} text-white`}>{burger.badge}</Badge>
+                  </div>
+                  <p className="text-gray-600 mb-4">
+                    {burger.description}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-2xl font-bold text-burger-orange">${burger.price.toFixed(2)}</span>
+                    <Button 
+                      onClick={() => handleAddToCart(burger)}
+                      className="bg-burger-orange hover:bg-orange-600"
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
 
           <div className="text-center mt-12">
@@ -354,6 +344,9 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+
+      {/* Cart Sidebar */}
+      <CartSidebar />
     </div>
   )
 }
