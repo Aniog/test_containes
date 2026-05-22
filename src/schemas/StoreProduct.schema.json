@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Store Products",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly slug"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Game description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "sale_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Sale price in USD (if on sale)"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover image URL"
+    },
+    "screenshots": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "Screenshot URLs"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["pc", "playstation", "xbox", "nintendo", "multi"],
+      "description": "Platform availability"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game genre"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game developer"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game publisher"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Release date"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average rating out of 5"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of reviews"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Game tags"
+    },
+    "in_stock": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the product is available"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this product is featured"
+    },
+    "age_rating": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Age rating (e.g. E, T, M, 18+)"
+    }
+  },
+  "required": ["title", "price", "platform"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] }
+  }
+}
