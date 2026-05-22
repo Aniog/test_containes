@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { ShoppingCart, Star } from 'lucide-react';
+import { toast } from 'sonner';
+import { useCart } from '@/context/CartContext';
 
 const fruits = [
   { id: 1, name: 'Strawberries', emoji: '🍓', price: 3.99, unit: '250g', rating: 4.9, reviews: 128, badge: 'Best Seller', category: 'Berries' },
@@ -53,8 +55,17 @@ const FruitCard = ({ fruit, onAdd }) => (
   </div>
 );
 
-const FruitGrid = ({ onAddToCart }) => {
+const FruitGrid = () => {
   const [activeFilter, setActiveFilter] = useState('All');
+  const { addItem } = useCart();
+
+  const handleAdd = (fruit) => {
+    addItem(fruit);
+    toast.success(`${fruit.name} added to cart!`, {
+      description: `$${fruit.price.toFixed(2)} per ${fruit.unit}`,
+      duration: 2000,
+    });
+  };
   const categories = ['All', ...Array.from(new Set(fruits.map((f) => f.category)))];
 
   const filtered = activeFilter === 'All' ? fruits : fruits.filter((f) => f.category === activeFilter);
@@ -91,7 +102,7 @@ const FruitGrid = ({ onAddToCart }) => {
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {filtered.map((fruit) => (
-            <FruitCard key={fruit.id} fruit={fruit} onAdd={onAddToCart} />
+            <FruitCard key={fruit.id} fruit={fruit} onAdd={handleAdd} />
           ))}
         </div>
       </div>

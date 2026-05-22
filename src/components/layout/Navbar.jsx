@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { ShoppingCart, Menu, X, Leaf } from 'lucide-react';
+import { useCart } from '@/context/CartContext';
 
-const Navbar = ({ cartCount = 0 }) => {
+const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { totalItems, setIsOpen } = useCart();
 
   const links = ['Shop', 'Categories', 'About', 'Contact'];
 
@@ -34,12 +36,13 @@ const Navbar = ({ cartCount = 0 }) => {
           <div className="flex items-center gap-3">
             <button
               aria-label="Shopping cart"
+              onClick={() => setIsOpen(true)}
               className="relative bg-green-50 hover:bg-green-100 text-green-700 rounded-full p-2 transition-colors"
             >
               <ShoppingCart className="w-5 h-5" />
-              {cartCount > 0 && (
+              {totalItems > 0 && (
                 <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs font-bold rounded-full w-4 h-4 flex items-center justify-center">
-                  {cartCount}
+                  {totalItems > 9 ? '9+' : totalItems}
                 </span>
               )}
             </button>
