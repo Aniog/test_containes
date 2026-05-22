@@ -182,7 +182,7 @@ const Footer = () => {
 
           <div className="border-t border-stone-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-stone-500 text-xs">
-              © 2024 庆巷家居用品有限公司 版权所有
+              © 2026 庆巷家居用品有限公司 版权所有
             </p>
             <p className="text-stone-500 text-xs">
               苏ICP备XXXXXXXX号 | 营业执照：91320500XXXXXXXXXX
