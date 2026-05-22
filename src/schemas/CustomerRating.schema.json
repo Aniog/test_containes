@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Customer Ratings",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "integer",
+      "description": "ID of the PizzaMenuItem being rated",
+      "x-foreignKey": "PizzaMenuItem.id"
+    },
+    "product_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Snapshot of the product name at time of rating"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating from 1 to 5"
+    },
+    "suggestion": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Customer suggestion or comment about the product"
+    },
+    "reviewer_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Optional name of the reviewer"
+    },
+    "reviewer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Optional email of the reviewer"
+    }
+  },
+  "required": ["product_id", "product_name", "rating"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}
