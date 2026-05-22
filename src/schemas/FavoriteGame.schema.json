@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FavoriteGame",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the visitor submitting the form"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the visitor — used to group all their game submissions"
+    },
+    "game_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the favorite game"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["Steam", "Epic Games", "Nintendo", "PlayStation", "Xbox", "Mobile", "Other"],
+      "description": "Platform the game is played on"
+    },
+    "play_time_hours": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total hours played"
+    },
+    "last_play_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the game was last played"
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Why the visitor likes this game"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Personal rating out of 10"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Genre of the game (e.g. RPG, FPS, Strategy)"
+    },
+    "would_recommend": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the visitor would recommend this game to others"
+    },
+    "screenshots": {
+      "type": "array",
+      "description": "Screenshots or images uploaded by the visitor for this game",
+      "items": {
+        "type": "object",
+        "properties": {
+          "filename": { "type": "string", "minLength": 1 },
+          "size": { "type": "integer", "minimum": 0 },
+          "storageKey": { "type": "string" },
+          "storage": { "type": "string" },
+          "mimeType": { "type": "string" },
+          "width": { "type": "integer", "minimum": 0 },
+          "height": { "type": "integer", "minimum": 0 }
+        }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".gif", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp"]
+    }
+  },
+  "required": ["visitor_name", "visitor_email", "game_name", "platform", "reason"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}
