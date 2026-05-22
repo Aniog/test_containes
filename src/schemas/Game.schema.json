@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Games",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Game title"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly slug"
+    },
+    "developer": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game developer/studio"
+    },
+    "publisher": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Game publisher"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["steam", "epic", "nintendo", "playstation", "xbox", "multi"],
+      "description": "Primary platform"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Primary genre"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Genre tags"
+    },
+    "description": {
+      "type": "string",
+      "description": "Game description"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Cover/box art image URL"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 0,
+      "description": "Discount percentage"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average user rating out of 5"
+    },
+    "release_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Game release date"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured on homepage"
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": false,
+      "description": "Newly released game"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 100,
+      "description": "Available stock (for digital keys)"
+    }
+  },
+  "required": ["title", "platform", "price"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
