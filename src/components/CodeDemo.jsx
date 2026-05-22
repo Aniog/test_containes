@@ -139,22 +139,22 @@ export default function CodeDemo() {
   };
 
   return (
-    <section className="py-24 lg:py-32 relative bg-[#0d0d14]">
+    <section className="py-24 lg:py-32 relative bg-white">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-200 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-200 to-transparent" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-violet-600/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-violet-300 text-sm font-medium">实际演示</span>
+          <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-violet-700 text-sm font-medium">实际演示</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             看 CodeAgent 如何工作
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             一条自然语言指令，CodeAgent 自动分析、规划并执行——实时查看代码变化。
           </p>
         </div>
@@ -168,7 +168,7 @@ export default function CodeDemo() {
               className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                 activeDemo.id === demo.id
                   ? 'bg-violet-600 text-white shadow-lg shadow-violet-500/25'
-                  : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/10'
+                  : 'bg-gray-100 text-gray-500 hover:text-gray-900 hover:bg-gray-200 border border-gray-200'
               }`}
             >
               {demo.label}
@@ -179,24 +179,24 @@ export default function CodeDemo() {
         {/* Main Demo Area */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: Agent Steps */}
-          <div className="bg-[#111118] border border-white/10 rounded-2xl p-6">
-            <div className="text-slate-500 text-xs font-mono mb-4">AGENT 执行步骤</div>
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+            <div className="text-gray-400 text-xs font-mono mb-4">AGENT 执行步骤</div>
 
             {/* Prompt */}
-            <div className="bg-[#0d1117] border border-violet-500/20 rounded-xl p-4 mb-6">
-              <div className="text-violet-400 text-xs font-mono mb-1">用户指令</div>
-              <div className="text-slate-300 text-sm font-mono">{activeDemo.prompt}</div>
+            <div className="bg-white border border-violet-200 rounded-xl p-4 mb-6">
+              <div className="text-violet-600 text-xs font-mono mb-1">用户指令</div>
+              <div className="text-gray-700 text-sm font-mono">{activeDemo.prompt}</div>
             </div>
 
             {/* Steps */}
             <div className="space-y-3">
               {activeDemo.steps.map((step, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <div className="w-6 h-6 rounded-full bg-violet-600/20 border border-violet-500/30 flex items-center justify-center shrink-0">
-                    <span className="text-violet-400 text-xs font-bold">{i + 1}</span>
+                  <div className="w-6 h-6 rounded-full bg-violet-100 border border-violet-200 flex items-center justify-center shrink-0">
+                    <span className="text-violet-600 text-xs font-bold">{i + 1}</span>
                   </div>
-                  <span className="text-slate-400 text-sm">{step}</span>
-                  <span className="ml-auto text-emerald-400 text-xs">✓</span>
+                  <span className="text-gray-600 text-sm">{step}</span>
+                  <span className="ml-auto text-emerald-500 text-xs">✓</span>
                 </div>
               ))}
             </div>
@@ -214,19 +214,19 @@ export default function CodeDemo() {
           {/* Right: Code Panels */}
           <div className="lg:col-span-2 code-block overflow-hidden">
             {/* Header */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-[#21262d] bg-[#161b22]">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-200 bg-gray-100">
               <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
               <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
               <div className="w-3 h-3 rounded-full bg-[#28c840]" />
               <div className="ml-3 flex gap-4">
                 <span
-                  className={`text-xs font-mono cursor-pointer transition-colors ${!showAfter ? 'text-white' : 'text-slate-500 hover:text-slate-300'}`}
+                  className={`text-xs font-mono cursor-pointer transition-colors ${!showAfter ? 'text-gray-800' : 'text-gray-400 hover:text-gray-600'}`}
                   onClick={() => setShowAfter(false)}
                 >
                   原始代码
                 </span>
                 <span
-                  className={`text-xs font-mono cursor-pointer transition-colors ${showAfter ? 'text-emerald-400' : 'text-slate-500 hover:text-slate-300'}`}
+                  className={`text-xs font-mono cursor-pointer transition-colors ${showAfter ? 'text-emerald-600' : 'text-gray-400 hover:text-gray-600'}`}
                   onClick={() => setShowAfter(true)}
                 >
                   优化后 ✨
@@ -235,8 +235,8 @@ export default function CodeDemo() {
             </div>
 
             {/* Code Content */}
-            <div className="p-6 overflow-auto min-h-[320px]">
-              <pre className="text-xs font-mono leading-6 text-slate-300 whitespace-pre-wrap">
+            <div className="p-6 overflow-auto min-h-[320px] bg-gray-50">
+              <pre className="text-xs font-mono leading-6 text-gray-700 whitespace-pre-wrap">
                 {showAfter ? activeDemo.after : activeDemo.before}
               </pre>
             </div>

@@ -78,22 +78,22 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-24 lg:py-32 relative">
+    <section id="features" className="py-24 lg:py-32 relative bg-gray-50">
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-600/5 blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-100/80 blur-[100px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-violet-600/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-violet-300 text-sm font-medium">核心功能</span>
+          <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-violet-700 text-sm font-medium">核心功能</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             不只是代码补全
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             CodeAgent 是一个真正的 AI 编程 Agent，能够理解、规划并自主完成复杂的开发任务。
           </p>
         </div>
@@ -105,14 +105,14 @@ export default function Features() {
             return (
               <div
                 key={feature.title}
-                className={`group bg-[#111118] border border-white/8 rounded-2xl p-6 hover:border-white/20 hover:bg-[#16161f] transition-all duration-300 cursor-default`}
+                className="group bg-white border border-gray-200 rounded-2xl p-6 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-100 transition-all duration-300 cursor-default"
                 style={{ animationDelay: `${index * 50}ms` }}
               >
                 <div className={`w-10 h-10 rounded-xl ${feature.bg} border ${feature.border} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <Icon className={`w-5 h-5 ${feature.color}`} />
                 </div>
-                <h3 className="text-white font-semibold text-base mb-2">{feature.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-gray-900 font-semibold text-base mb-2">{feature.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
               </div>
             );
           })}
@@ -120,9 +120,9 @@ export default function Features() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-12">
-          <p className="text-slate-500 text-sm">
+          <p className="text-gray-400 text-sm">
             还有更多功能持续更新中 ·{' '}
-            <a href="#" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="#" className="text-violet-600 hover:text-violet-500 transition-colors">
               查看完整功能列表 →
             </a>
           </p>

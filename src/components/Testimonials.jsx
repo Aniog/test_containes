@@ -75,23 +75,23 @@ function StarRating({ count }) {
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 lg:py-32 relative bg-[#0d0d14]">
+    <section id="testimonials" className="py-24 lg:py-32 relative bg-white">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/30 to-transparent" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-violet-600/5 blur-[100px]" />
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-200 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-200 to-transparent" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] rounded-full bg-violet-50 blur-[100px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-violet-600/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-violet-300 text-sm font-medium">用户评价</span>
+          <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-violet-700 text-sm font-medium">用户评价</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             开发者们都在说什么
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             来自全球顶级科技公司的工程师，分享他们使用 CodeAgent 的真实体验。
           </p>
         </div>
@@ -101,11 +101,11 @@ export default function Testimonials() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="break-inside-avoid bg-[#111118] border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:shadow-black/40"
+              className="break-inside-avoid bg-gray-50 border border-gray-200 rounded-2xl p-6 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-100 transition-all duration-300"
             >
               <StarRating count={t.stars} />
 
-              <p className="text-slate-300 text-sm leading-relaxed mt-4 mb-6">
+              <p className="text-gray-600 text-sm leading-relaxed mt-4 mb-6">
                 "{t.content}"
               </p>
 
@@ -114,8 +114,8 @@ export default function Testimonials() {
                   <span className="text-white text-xs font-bold">{t.avatar}</span>
                 </div>
                 <div>
-                  <div className="text-white text-sm font-semibold">{t.name}</div>
-                  <div className="text-slate-500 text-xs">
+                  <div className="text-gray-900 text-sm font-semibold">{t.name}</div>
+                  <div className="text-gray-400 text-xs">
                     {t.role} · {t.company}
                   </div>
                 </div>
@@ -132,10 +132,10 @@ export default function Testimonials() {
             { value: '40%', label: '效率提升', sub: '平均节省时间' },
             { value: '99.9%', label: '服务可用性', sub: 'SLA 保障' },
           ].map((stat) => (
-            <div key={stat.label} className="text-center bg-[#111118] border border-white/10 rounded-2xl p-6">
+            <div key={stat.label} className="text-center bg-gray-50 border border-gray-200 rounded-2xl p-6">
               <div className="text-3xl font-bold gradient-text-accent mb-1">{stat.value}</div>
-              <div className="text-white text-sm font-semibold mb-1">{stat.label}</div>
-              <div className="text-slate-500 text-xs">{stat.sub}</div>
+              <div className="text-gray-900 text-sm font-semibold mb-1">{stat.label}</div>
+              <div className="text-gray-400 text-xs">{stat.sub}</div>
             </div>
           ))}
         </div>

@@ -46,21 +46,21 @@ const integrations = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 lg:py-32 relative">
+    <section id="how-it-works" className="py-24 lg:py-32 relative bg-gray-50">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-purple-600/5 blur-[100px]" />
+        <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-purple-100/80 blur-[100px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-violet-600/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-violet-300 text-sm font-medium">工作原理</span>
+          <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-violet-700 text-sm font-medium">工作原理</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             三步完成复杂任务
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             从描述到交付，CodeAgent 处理所有中间步骤。你只需要告诉它目标，它负责实现。
           </p>
         </div>
@@ -71,30 +71,27 @@ export default function HowItWorks() {
             const Icon = step.icon;
             return (
               <div key={step.number} className="relative">
-                {/* Connector line */}
                 {index < steps.length - 1 && (
                   <div className="hidden lg:block absolute top-12 left-full w-full z-10">
                     <div className="flex items-center justify-center w-8 -ml-4">
-                      <ArrowRight className="w-5 h-5 text-slate-700" />
+                      <ArrowRight className="w-5 h-5 text-gray-300" />
                     </div>
                   </div>
                 )}
 
-                <div className={`bg-[#111118] border border-white/10 rounded-2xl p-8 h-full hover:border-white/20 transition-all duration-300 hover:shadow-xl hover:${step.glow}`}>
-                  {/* Step number */}
+                <div className="bg-white border border-gray-200 rounded-2xl p-8 h-full hover:border-gray-300 hover:shadow-lg hover:shadow-gray-100 transition-all duration-300">
                   <div className="flex items-center justify-between mb-6">
                     <div className={`w-12 h-12 rounded-2xl ${step.bg} border ${step.border} flex items-center justify-center`}>
                       <Icon className={`w-6 h-6 ${step.color}`} />
                     </div>
-                    <span className="text-5xl font-black text-white/5 font-mono">{step.number}</span>
+                    <span className="text-5xl font-black text-gray-100 font-mono">{step.number}</span>
                   </div>
 
-                  <h3 className="text-white font-bold text-xl mb-3">{step.title}</h3>
-                  <p className="text-slate-400 text-sm leading-relaxed mb-6">{step.description}</p>
+                  <h3 className="text-gray-900 font-bold text-xl mb-3">{step.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-6">{step.description}</p>
 
-                  {/* Example */}
                   <div className={`${step.bg} border ${step.border} rounded-xl p-3`}>
-                    <div className="text-slate-500 text-xs mb-1 font-mono">示例</div>
+                    <div className="text-gray-400 text-xs mb-1 font-mono">示例</div>
                     <div className={`${step.color} text-sm font-mono`}>{step.example}</div>
                   </div>
                 </div>
@@ -105,12 +102,12 @@ export default function HowItWorks() {
 
         {/* Integrations */}
         <div className="text-center">
-          <p className="text-slate-500 text-sm mb-6">无缝集成你喜爱的工具</p>
+          <p className="text-gray-400 text-sm mb-6">无缝集成你喜爱的工具</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {integrations.map((tool) => (
               <div
                 key={tool}
-                className="bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-slate-400 text-sm font-medium hover:border-white/20 hover:text-white transition-all duration-200"
+                className="bg-white border border-gray-200 rounded-xl px-4 py-2 text-gray-500 text-sm font-medium hover:border-gray-300 hover:text-gray-900 transition-all duration-200"
               >
                 {tool}
               </div>

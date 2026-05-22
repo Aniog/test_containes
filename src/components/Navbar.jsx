@@ -22,7 +22,7 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#0a0a0f]/90 backdrop-blur-xl border-b border-white/10'
+          ? 'bg-white/90 backdrop-blur-xl border-b border-gray-200 shadow-sm'
           : 'bg-transparent'
       }`}
     >
@@ -33,8 +33,8 @@ export default function Navbar() {
             <div className="w-8 h-8 rounded-lg bg-violet-600 flex items-center justify-center group-hover:bg-violet-500 transition-colors">
               <Zap className="w-4 h-4 text-white" />
             </div>
-            <span className="text-white font-bold text-lg tracking-tight">
-              Code<span className="text-violet-400">Agent</span>
+            <span className="text-gray-900 font-bold text-lg tracking-tight">
+              Code<span className="text-violet-600">Agent</span>
             </span>
           </a>
 
@@ -44,7 +44,7 @@ export default function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="text-slate-400 hover:text-white text-sm font-medium transition-colors duration-200"
+                className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -55,7 +55,7 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a
               href="#"
-              className="text-slate-400 hover:text-white text-sm font-medium transition-colors px-4 py-2"
+              className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors px-4 py-2"
             >
               登录
             </a>
@@ -69,7 +69,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden text-slate-400 hover:text-white transition-colors p-1"
+            className="md:hidden text-gray-500 hover:text-gray-900 transition-colors p-1"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -80,20 +80,20 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0a0a0f]/95 backdrop-blur-xl border-b border-white/10">
+        <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-slate-300 hover:text-white text-base font-medium transition-colors py-1"
+                className="text-gray-600 hover:text-gray-900 text-base font-medium transition-colors py-1"
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <div className="flex flex-col gap-3 pt-2 border-t border-white/10">
-              <a href="#" className="text-slate-400 hover:text-white text-sm font-medium transition-colors">
+            <div className="flex flex-col gap-3 pt-2 border-t border-gray-200">
+              <a href="#" className="text-gray-500 hover:text-gray-900 text-sm font-medium transition-colors">
                 登录
               </a>
               <a

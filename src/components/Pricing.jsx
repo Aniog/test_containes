@@ -17,7 +17,7 @@ const plans = [
       '社区支持',
     ],
     cta: '免费开始',
-    ctaStyle: 'border border-white/20 hover:border-white/40 text-white hover:bg-white/5',
+    ctaStyle: 'border border-gray-300 hover:border-gray-400 text-gray-700 hover:bg-gray-50',
     popular: false,
   },
   {
@@ -61,28 +61,28 @@ const plans = [
       '无限 API 调用',
     ],
     cta: '联系销售团队',
-    ctaStyle: 'border border-emerald-500/40 hover:border-emerald-500/60 text-emerald-400 hover:bg-emerald-500/10',
+    ctaStyle: 'border border-emerald-400 hover:border-emerald-500 text-emerald-600 hover:bg-emerald-50',
     popular: false,
   },
 ];
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-24 lg:py-32 relative">
+    <section id="pricing" className="py-24 lg:py-32 relative bg-gray-50">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-600/5 blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-violet-100/60 blur-[100px]" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-violet-600/10 border border-violet-500/20 rounded-full px-4 py-1.5 mb-6">
-            <span className="text-violet-300 text-sm font-medium">定价方案</span>
+          <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
+            <span className="text-violet-700 text-sm font-medium">定价方案</span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             简单透明的定价
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             从免费版开始，随着需求增长随时升级。所有方案均包含核心 AI 功能，无隐藏费用。
           </p>
         </div>
@@ -94,10 +94,10 @@ export default function Pricing() {
             return (
               <div
                 key={plan.name}
-                className={`relative bg-[#111118] rounded-2xl p-8 transition-all duration-300 ${
+                className={`relative bg-white rounded-2xl p-8 transition-all duration-300 ${
                   plan.popular
-                    ? 'border border-violet-500/40 shadow-2xl shadow-violet-500/10 scale-105'
-                    : 'border border-white/10 hover:border-white/20'
+                    ? 'border border-violet-300 shadow-xl shadow-violet-100 scale-105'
+                    : 'border border-gray-200 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-100'
                 }`}
               >
                 {/* Popular Badge */}
@@ -114,20 +114,20 @@ export default function Pricing() {
                   <div className={`w-10 h-10 rounded-xl ${plan.iconBg} flex items-center justify-center mb-4`}>
                     <Icon className={`w-5 h-5 ${plan.iconColor}`} />
                   </div>
-                  <div className="text-white font-bold text-xl mb-1">{plan.name}</div>
-                  <div className="text-slate-500 text-sm">{plan.description}</div>
+                  <div className="text-gray-900 font-bold text-xl mb-1">{plan.name}</div>
+                  <div className="text-gray-400 text-sm">{plan.description}</div>
                 </div>
 
                 {/* Price */}
                 <div className="mb-8">
                   <div className="flex items-end gap-1">
-                    <span className="text-4xl font-black text-white">{plan.price}</span>
+                    <span className="text-4xl font-black text-gray-900">{plan.price}</span>
                     {plan.period && (
-                      <span className="text-slate-500 text-sm mb-1.5">{plan.period}</span>
+                      <span className="text-gray-400 text-sm mb-1.5">{plan.period}</span>
                     )}
                   </div>
                   {plan.popular && (
-                    <div className="text-slate-500 text-xs mt-1">按年付费可节省 20%</div>
+                    <div className="text-gray-400 text-xs mt-1">按年付费可节省 20%</div>
                   )}
                 </div>
 
@@ -144,8 +144,8 @@ export default function Pricing() {
                 <div className="space-y-3">
                   {plan.features.map((feature) => (
                     <div key={feature} className="flex items-start gap-3">
-                      <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                      <span className="text-slate-400 text-sm">{feature}</span>
+                      <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                      <span className="text-gray-500 text-sm">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -156,13 +156,13 @@ export default function Pricing() {
 
         {/* FAQ Note */}
         <div className="text-center mt-12">
-          <p className="text-slate-500 text-sm">
+          <p className="text-gray-400 text-sm">
             有疑问？查看{' '}
-            <a href="#" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="#" className="text-violet-600 hover:text-violet-500 transition-colors">
               常见问题
             </a>
             {' '}或{' '}
-            <a href="#" className="text-violet-400 hover:text-violet-300 transition-colors">
+            <a href="#" className="text-violet-600 hover:text-violet-500 transition-colors">
               联系我们
             </a>
           </p>
