@@ -1,18 +1,41 @@
+import { Link } from 'react-router-dom';
 import { Mountain, Instagram, Twitter, Youtube } from 'lucide-react';
+
+const FOOTER_LINKS = [
+  { label: 'Geography', href: '/geography' },
+  { label: 'Equipment', href: '/equipment' },
+  { label: 'Teams', href: '/teams' },
+  { label: 'Safety', href: '/safety' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Contact', href: '/contact' },
+];
 
 const Footer = () => {
   return (
     <footer className="bg-slate-900 border-t border-slate-800 py-12">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2 text-white font-black text-xl">
-            <Mountain className="w-6 h-6 text-amber-500" />
-            <span>SummitQuest</span>
+        <div className="flex flex-col md:flex-row items-start justify-between gap-8">
+          <div>
+            <Link to="/" className="flex items-center gap-2 text-white font-black text-xl mb-3">
+              <Mountain className="w-6 h-6 text-amber-500" />
+              <span>SummitQuest</span>
+            </Link>
+            <p className="text-slate-500 text-sm max-w-xs leading-relaxed">
+              Dedicated to the art and science of mountain climbing. Always respect the mountain.
+            </p>
           </div>
 
-          <p className="text-slate-500 text-sm text-center">
-            Dedicated to the art and science of mountain climbing. Always respect the mountain.
-          </p>
+          <div className="flex flex-wrap gap-x-8 gap-y-2">
+            {FOOTER_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-slate-400 hover:text-amber-400 text-sm transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
           <div className="flex items-center gap-4">
             {[Instagram, Twitter, Youtube].map((Icon, i) => (

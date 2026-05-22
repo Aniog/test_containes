@@ -60,7 +60,7 @@ const GALLERY_ITEMS = [
   },
 ];
 
-const GallerySection = () => {
+const GallerySection = ({ hideHeader = false }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -71,6 +71,7 @@ const GallerySection = () => {
     <section id="gallery" ref={containerRef} className="bg-slate-950 py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}
+        {!hideHeader && (
         <div className="text-center mb-12">
           <span className="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
             Gallery
@@ -82,6 +83,7 @@ const GallerySection = () => {
             A glimpse into the breathtaking beauty and raw challenge of high-altitude climbing.
           </p>
         </div>
+        )}
 
         {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[200px]">

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
@@ -44,18 +45,18 @@ const HeroSection = () => {
           that push human limits to the top of the world.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#geography"
+          <Link
+            to="/geography"
             className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-8 py-4 rounded-xl text-base transition-colors"
           >
             Explore Now
-          </a>
-          <a
-            href="#teams"
+          </Link>
+          <Link
+            to="/teams"
             className="border border-slate-600 hover:border-amber-500 text-white px-8 py-4 rounded-xl text-base transition-colors"
           >
             Meet the Teams
-          </a>
+          </Link>
         </div>
 
         {/* Stats bar */}

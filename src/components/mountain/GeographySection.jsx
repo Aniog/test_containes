@@ -68,7 +68,7 @@ const difficultyColor = {
   Moderate: 'bg-yellow-500/20 text-yellow-400',
 };
 
-const GeographySection = () => {
+const GeographySection = ({ hideHeader = false }) => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -79,6 +79,7 @@ const GeographySection = () => {
     <section id="geography" ref={containerRef} className="bg-slate-950 py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}
+        {!hideHeader && (
         <div className="text-center mb-16">
           <span className="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
             Geography
@@ -91,6 +92,7 @@ const GeographySection = () => {
             and the raw power of our planet's geology.
           </p>
         </div>
+        )}
 
         {/* Mountain cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">

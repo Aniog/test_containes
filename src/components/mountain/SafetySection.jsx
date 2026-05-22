@@ -43,11 +43,12 @@ const ALTITUDE_ZONES = [
   { range: '8,000m+', label: 'Death Zone', risk: 'Extreme', color: 'bg-red-700' },
 ];
 
-const SafetySection = () => {
+const SafetySection = ({ hideHeader = false }) => {
   return (
     <section id="safety" className="bg-slate-900 py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}
+        {!hideHeader && (
         <div className="text-center mb-16">
           <span className="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
             Safety
@@ -60,6 +61,7 @@ const SafetySection = () => {
             protocols is what separates successful expeditions from tragedies.
           </p>
         </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           {/* Safety tips */}

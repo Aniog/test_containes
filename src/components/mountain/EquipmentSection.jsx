@@ -148,7 +148,7 @@ const CATEGORIES = [
   },
 ];
 
-const EquipmentSection = () => {
+const EquipmentSection = ({ hideHeader = false }) => {
   const [activeCategory, setActiveCategory] = useState('clothing');
   const category = CATEGORIES.find((c) => c.id === activeCategory);
 
@@ -156,6 +156,7 @@ const EquipmentSection = () => {
     <section id="equipment" className="bg-slate-900 py-20 md:py-28">
       <div className="max-w-6xl mx-auto px-4 md:px-8">
         {/* Header */}
+        {!hideHeader && (
         <div className="text-center mb-12">
           <span className="inline-block bg-amber-500/20 text-amber-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-widest mb-4">
             Equipment
@@ -168,6 +169,7 @@ const EquipmentSection = () => {
             most hostile environments on Earth.
           </p>
         </div>
+        )}
 
         {/* Category tabs */}
         <div className="flex flex-wrap gap-3 justify-center mb-10">

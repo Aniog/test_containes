@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Climbing Event Registrations",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this registration",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the registrant"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the registrant"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the registrant"
+    },
+    "event": {
+      "type": "string",
+      "enum": [
+        "Everest Base Camp Trek",
+        "K2 Expedition",
+        "Aconcagua Summit",
+        "Denali Expedition",
+        "Alpine Skills Workshop",
+        "Ice Climbing Clinic"
+      ],
+      "description": "The climbing event the registrant is interested in"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": ["Beginner", "Intermediate", "Advanced", "Expert"],
+      "description": "Self-reported climbing experience level"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Additional message or questions from the registrant"
+    },
+    "newsletter": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the registrant wants to receive newsletter updates"
+    }
+  },
+  "required": ["name", "email", "event", "experience_level"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
