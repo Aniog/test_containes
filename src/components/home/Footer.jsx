@@ -23,9 +23,9 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-50 border-t border-slate-200">
+    <footer className="bg-slate-100 border-t border-slate-300">
       {/* CTA Banner */}
-      <div className="border-b border-slate-200">
+      <div className="border-b border-slate-300">
         <div className="max-w-6xl mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">
@@ -68,21 +68,21 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <a
                 href="#"
-                className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-violet-300 transition"
+                className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-300 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-violet-300 transition"
                 aria-label="GitHub"
               >
                 <Github className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-violet-300 transition"
+                className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-300 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-violet-300 transition"
                 aria-label="Twitter"
               >
                 <Twitter className="w-4 h-4" />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-violet-300 transition"
+                className="w-9 h-9 rounded-lg bg-slate-50 border border-slate-300 flex items-center justify-center text-slate-500 hover:text-slate-900 hover:border-violet-300 transition"
                 aria-label="Chrome Store"
               >
                 <Chrome className="w-4 h-4" />
@@ -111,7 +111,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 pt-6 border-t border-slate-300 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-400 text-sm">
             © 2026 HTML2MD. 基于 MIT 协议开源。
           </p>

@@ -69,7 +69,7 @@ function StarRating({ count }) {
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="py-24 bg-slate-50">
+    <section id="testimonials" className="py-24 bg-slate-200">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -89,7 +89,7 @@ export default function TestimonialsSection() {
           {testimonials.map((t) => (
             <div
               key={t.name}
-              className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-violet-300 hover:shadow-md transition-all duration-300"
+              className="bg-slate-50 border border-slate-300 rounded-2xl p-6 hover:border-violet-300 hover:shadow-md transition-all duration-300"
             >
               {/* Rating */}
               <StarRating count={t.rating} />
@@ -116,13 +116,13 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Overall rating */}
-        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 bg-white border border-slate-200 rounded-2xl p-8 shadow-sm">
+        <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6 bg-slate-50 border border-slate-300 rounded-2xl p-8 shadow-sm">
           <div className="text-center">
             <div className="text-5xl font-extrabold text-slate-900">4.9</div>
             <StarRating count={5} />
             <div className="text-slate-500 text-sm mt-1">Chrome 商店评分</div>
           </div>
-          <div className="hidden sm:block w-px h-16 bg-slate-200" />
+          <div className="hidden sm:block w-px h-16 bg-slate-300" />
           <div className="grid grid-cols-2 gap-6 text-center">
             <div>
               <div className="text-2xl font-bold text-slate-900">50,000+</div>

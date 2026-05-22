@@ -78,7 +78,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="py-24 bg-white">
+    <section id="features" className="py-24 bg-slate-100">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
@@ -103,7 +103,7 @@ export default function FeaturesSection() {
             return (
               <div
                 key={feature.title}
-                className="bg-white border border-slate-200 rounded-2xl p-6 hover:border-violet-300 hover:shadow-md transition-all duration-300 group"
+                className="bg-slate-50 border border-slate-300 rounded-2xl p-6 hover:border-violet-300 hover:shadow-md transition-all duration-300 group"
               >
                 <div
                   className={`w-10 h-10 rounded-xl ${feature.bg} border ${feature.border} flex items-center justify-center mb-4`}

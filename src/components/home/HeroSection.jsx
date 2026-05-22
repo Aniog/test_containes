@@ -8,7 +8,7 @@ const stats = [
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-50">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-100">
       {/* Grid background */}
       <div
         className="absolute inset-0 opacity-30"
@@ -58,7 +58,7 @@ export default function HeroSection() {
           </a>
           <a
             href="#demo"
-            className="flex items-center gap-2 border border-slate-300 text-slate-700 font-semibold px-8 py-3.5 rounded-xl hover:bg-slate-100 transition"
+            className="flex items-center gap-2 border border-slate-400 text-slate-700 font-semibold px-8 py-3.5 rounded-xl hover:bg-slate-200 transition"
           >
             查看演示
           </a>
@@ -76,19 +76,19 @@ export default function HeroSection() {
 
         {/* Preview mockup */}
         <div className="mt-20 relative max-w-4xl mx-auto">
-          <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(124,58,237,0.12)]">
+          <div className="bg-slate-50 border border-slate-300 rounded-2xl overflow-hidden shadow-[0_4px_40px_rgba(124,58,237,0.15)]">
             {/* Window chrome */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-200 bg-slate-100">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-300 bg-slate-200">
               <div className="w-3 h-3 rounded-full bg-red-400" />
               <div className="w-3 h-3 rounded-full bg-yellow-400" />
               <div className="w-3 h-3 rounded-full bg-green-400" />
-              <div className="flex-1 mx-4 bg-white border border-slate-200 rounded-md px-3 py-1 text-xs text-slate-400 text-left">
+              <div className="flex-1 mx-4 bg-white border border-slate-300 rounded-md px-3 py-1 text-xs text-slate-400 text-left">
                 https://example.com/article
               </div>
             </div>
 
             {/* Split view */}
-            <div className="grid grid-cols-2 divide-x divide-slate-200">
+            <div className="grid grid-cols-2 divide-x divide-slate-300">
               {/* HTML side */}
               <div className="p-5">
                 <div className="text-xs text-slate-400 font-mono mb-3 flex items-center gap-2">
@@ -105,7 +105,7 @@ export default function HeroSection() {
                     <span className="text-slate-500">{'<'}</span>
                     <span className="text-red-400">{'h1'}</span>
                     <span className="text-slate-500">{'>'}</span>
-                    <span className="text-slate-300">{'Getting Started'}</span>
+                    <span className="text-slate-600">{'Getting Started'}</span>
                     <span className="text-slate-500">{'</'}</span>
                     <span className="text-red-400">{'h1'}</span>
                     <span className="text-slate-500">{'>'}</span>
@@ -114,11 +114,11 @@ export default function HeroSection() {
                     <span className="text-slate-500">{'<'}</span>
                     <span className="text-red-400">{'p'}</span>
                     <span className="text-slate-500">{'>'}</span>
-                    <span className="text-slate-300">{'This is a '}</span>
+                    <span className="text-slate-600">{'This is a '}</span>
                     <span className="text-slate-500">{'<'}</span>
                     <span className="text-red-400">{'strong'}</span>
                     <span className="text-slate-500">{'>'}</span>
-                    <span className="text-slate-300">{'guide'}</span>
+                    <span className="text-slate-600">{'guide'}</span>
                     <span className="text-slate-500">{'</'}</span>
                     <span className="text-red-400">{'strong'}</span>
                     <span className="text-slate-500">{'>'}</span>
@@ -135,7 +135,7 @@ export default function HeroSection() {
                     <span className="text-slate-500">{'<'}</span>
                     <span className="text-red-400">{'li'}</span>
                     <span className="text-slate-500">{'>'}</span>
-                    <span className="text-slate-300">{'Install extension'}</span>
+                    <span className="text-slate-600">{'Install extension'}</span>
                     <span className="text-slate-500">{'</'}</span>
                     <span className="text-red-400">{'li'}</span>
                     <span className="text-slate-500">{'>'}</span>
@@ -144,7 +144,7 @@ export default function HeroSection() {
                     <span className="text-slate-500">{'<'}</span>
                     <span className="text-red-400">{'li'}</span>
                     <span className="text-slate-500">{'>'}</span>
-                    <span className="text-slate-300">{'Click convert'}</span>
+                    <span className="text-slate-600">{'Click convert'}</span>
                     <span className="text-slate-500">{'</'}</span>
                     <span className="text-red-400">{'li'}</span>
                     <span className="text-slate-500">{'>'}</span>
