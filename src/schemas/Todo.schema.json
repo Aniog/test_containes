@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Todos",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The description of the task"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the task is completed"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who owns this todo",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["title"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
