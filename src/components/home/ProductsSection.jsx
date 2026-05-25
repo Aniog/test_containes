@@ -8,6 +8,8 @@ const categories = [
     id: 'bedroom',
     title: '卧室寝具',
     desc: '柔软亲肤的床品套件，让每一夜都是甜蜜的梦乡',
+    imgHint: 'soft white cotton duvet pillow bedding set cozy bedroom',
+    imgId: 'product-img-bedroom-p2q3r4',
     tag: '热销',
     tagColor: 'bg-rose-100 text-rose-700',
   },
@@ -15,6 +17,8 @@ const categories = [
     id: 'kitchen',
     title: '厨房用品',
     desc: '精致实用的厨具餐具，让烹饪成为一种享受',
+    imgHint: 'kitchen cookware pots pans cooking utensils ceramic bowls plates',
+    imgId: 'product-img-kitchen-s5t6u7',
     tag: '新品',
     tagColor: 'bg-green-100 text-green-700',
   },
@@ -22,6 +26,8 @@ const categories = [
     id: 'living',
     title: '客厅装饰',
     desc: '温馨雅致的装饰摆件，为客厅增添家的温度',
+    imgHint: 'living room home decor vase candle cushion sofa warm interior',
+    imgId: 'product-img-living-v8w9x0',
     tag: '精选',
     tagColor: 'bg-amber-100 text-amber-700',
   },
@@ -29,6 +35,8 @@ const categories = [
     id: 'bathroom',
     title: '浴室用品',
     desc: '舒适柔软的浴室套件，打造专属的放松空间',
+    imgHint: 'bathroom towels soap dispenser toothbrush holder white bathroom accessories',
+    imgId: 'product-img-bathroom-y1z2a3',
     tag: '热销',
     tagColor: 'bg-blue-100 text-blue-700',
   },
@@ -36,6 +44,8 @@ const categories = [
     id: 'storage',
     title: '收纳整理',
     desc: '简洁美观的收纳方案，让家井然有序、清爽宜人',
+    imgHint: 'home storage baskets wicker boxes organized shelves closet tidy',
+    imgId: 'product-img-storage-b4c5d6',
     tag: '实用',
     tagColor: 'bg-purple-100 text-purple-700',
   },
@@ -43,6 +53,8 @@ const categories = [
     id: 'outdoor',
     title: '户外阳台',
     desc: '精心设计的户外家居，让阳台成为第二个客厅',
+    imgHint: 'balcony outdoor furniture chair table potted plants terrace garden',
+    imgId: 'product-img-outdoor-e7f8g9',
     tag: '新品',
     tagColor: 'bg-teal-100 text-teal-700',
   },
@@ -82,12 +94,13 @@ const ProductsSection = () => {
             >
               {/* Image */}
               <div className="relative overflow-hidden aspect-[4/3]">
+                <span id={`product-hint-${cat.id}`} className="hidden">{cat.imgHint}</span>
                 <img
                   id={`product-title-${cat.id}`}
                   alt={cat.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  data-strk-img-id={`product-img-${cat.id}-7g8h9i`}
-                  data-strk-img={`[product-desc-${cat.id}] [product-title-${cat.id}] [products-title]`}
+                  data-strk-img-id={cat.imgId}
+                  data-strk-img={`[product-hint-${cat.id}] [product-desc-${cat.id}]`}
                   data-strk-img-ratio="4x3"
                   data-strk-img-width="500"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
