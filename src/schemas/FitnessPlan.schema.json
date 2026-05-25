@@ -1,0 +1,38 @@
+{
+  "name": "Fitness Plan",
+  "type": "object",
+  "properties": {
+    "plan_name": {
+      "type": "string",
+      "description": "Name of the fitness plan"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the plan"
+    },
+    "training_days": {
+      "type": "array",
+      "description": "List of training days, each containing exercises",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day_name": { "type": "string" },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise_name": { "type": "string" },
+                "sets": { "type": "integer" },
+                "reps": { "type": "integer" }
+              },
+              "required": ["exercise_name", "sets", "reps"]
+            }
+          }
+        },
+        "required": ["day_name", "exercises"]
+      }
+    }
+  },
+  "required": ["plan_name", "training_days"]
+}
