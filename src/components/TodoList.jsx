@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Plus, ListTodo, CheckCircle2, Circle } from 'lucide-react';
 import TodoItem from './TodoItem';
 import { fetchTodos, createTodo, updateTodo, deleteTodo, clearCompletedTodos } from '@/api/todos';
-import { User } from '@strikingly/sdk';
+import { User } from '@/lib/user';
 import { toast } from 'sonner';
 
 const TodoList = () => {
