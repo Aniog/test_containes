@@ -20,6 +20,13 @@ export default defineConfig({
     cors: true,
     hmr: {
       overlay: false
+    },
+    proxy: {
+      '/api': {
+        target: 'https://www.uat.strikingly.com',
+        changeOrigin: true,
+        secure: false
+      }
     }
   }
 })

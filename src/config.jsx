@@ -1,4 +1,4 @@
-export const STRK_PROJECT_URL = 'https://www.uat.strikingly.com/api/v1/sites/57962/form_entities'
+export const STRK_PROJECT_URL = '/api/v1/sites/57962/form_entities'
 export const STRK_PROJECT_ANON_KEY = 'xx'
 export const SITE_ID = '57962'
 export const REQUEST_DOMAIN = 'https://www.uat.strikingly.com'
