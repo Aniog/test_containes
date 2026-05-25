@@ -718,11 +718,19 @@ function resolveExprValue(node, subs) {
       return a ? resolveExprValue(node.right, subs) : a
     }
   }
-  if (node.type === 'BinaryExpression' && node.operator === '+') {
+  if (node.type === 'BinaryExpression') {
     const a = resolveExprValue(node.left, subs)
     const b = resolveExprValue(node.right, subs)
     if (a === undefined || b === undefined) return undefined
-    return a + b
+    if (node.operator === '+') return a + b
+    if (node.operator === '===') return a === b
+    if (node.operator === '!==') return a !== b
+    if (node.operator === '==') return a == b
+    if (node.operator === '!=') return a != b
+    if (node.operator === '<') return a < b
+    if (node.operator === '<=') return a <= b
+    if (node.operator === '>') return a > b
+    if (node.operator === '>=') return a >= b
   }
   if (node.type === 'ArrayExpression') {
     const out = []
@@ -815,6 +823,14 @@ function resolveExprValue(node, subs) {
         if (method === 'toLowerCase') return s.toLowerCase()
         if (method === 'toUpperCase') return s.toUpperCase()
         if (method === 'trim') return s.trim()
+        if (method === 'slice' || method === 'substring' || method === 'substr') {
+          if (node.arguments.length > 2) return undefined
+          const a0 = node.arguments[0] ? resolveExprValue(node.arguments[0], subs) : undefined
+          const a1 = node.arguments[1] ? resolveExprValue(node.arguments[1], subs) : undefined
+          if (a0 !== undefined && typeof a0 !== 'number') return undefined
+          if (a1 !== undefined && typeof a1 !== 'number') return undefined
+          return s[method](a0, a1)
+        }
         if (method === 'replace') {
           const a = resolveExprValue(node.arguments?.[0], subs)
           const b = resolveExprValue(node.arguments?.[1], subs)
@@ -1015,6 +1031,36 @@ const _SHAPE_PRESERVING_METHODS = new Set([
   'filter', 'slice', 'sort', 'reverse', 'toSorted', 'toReversed', 'concat',
 ])
 
+function callbackExpression(callback) {
+  if (!callback) return null
+  if (callback.type !== 'ArrowFunctionExpression' && callback.type !== 'FunctionExpression') return null
+  if (callback.body.type !== 'BlockStatement') return callback.body
+  for (const stmt of callback.body.body || []) {
+    if (stmt.type === 'ReturnStatement' && stmt.argument) return stmt.argument
+  }
+  return null
+}
+
+// Evaluate ordinary `items.filter((item) => predicate)` calls when all
+// values referenced by `predicate` are available in the current expansion
+// context. If runtime-only state is still involved, return null and let the
+// caller keep a conservative superset.
+function resolveFilteredItems(items, callback, subs) {
+  const expression = callbackExpression(callback)
+  const shape = paramShapeOf(callback?.params?.[0])
+  if (!expression || !shape) return null
+  const idxParam = callback.params?.[1]
+  const indexName = idxParam?.type === 'Identifier' ? idxParam.name : null
+  const filtered = []
+  for (let idx = 0; idx < items.length; idx++) {
+    const itemSubs = subsFromMapItem(shape, items[idx], indexName, idx)
+    const keep = resolveExprValue(expression, [...subs, ...itemSubs])
+    if (typeof keep !== 'boolean') return null
+    if (keep) filtered.push(items[idx])
+  }
+  return filtered
+}
+
 // Try to resolve `node` (typically the init of a `const X = ...` declaration)
 // back to a registered items array. Used to make patterns like
 //   const filtered = items.filter(...)
@@ -1060,6 +1106,10 @@ function resolveItemsAlias(node, parentRegistry, additions, depth = 0, subs = nu
       return resolveChunkedReduceValue(base, node, subs || [])
     }
 
+    if (method === 'filter') {
+      return resolveFilteredItems(base, node.arguments?.[0], subs || []) || base
+    }
+
     // `.slice(start?, end?)` with numeric literals — return an actual sub-array
     // so `const featured = animals.slice(0, 6)` registers six items, not all.
     if (method === 'slice') {
@@ -1072,8 +1122,8 @@ function resolveItemsAlias(node, parentRegistry, additions, depth = 0, subs = nu
       return base.slice(start, end)
     }
 
-    // filter / sort / reverse / … — still approximate as the full base array
-    // (predicate / comparator not evaluated statically).
+    // Sort/reverse-style ordering does not affect which image slots exist.
+    // Preserve the base set; filter was handled above when resolvable.
     return base
   }
 
@@ -1156,6 +1206,35 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
       if (!d || !d.id || !d.init) continue
       const localSubs = valueSubs.length ? [...subs, ...valueSubs] : subs
 
+      if (d.id.type === 'ArrayPattern') {
+        const arr =
+          resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, localSubs) ||
+          resolveExprValue(d.init, localSubs)
+        if (!Array.isArray(arr)) continue
+        let offset = 0
+        for (const el of d.id.elements || []) {
+          if (!el) {
+            offset++
+            continue
+          }
+          if (el.type === 'RestElement' && el.argument?.type === 'Identifier') {
+            addValueSub(el.argument.name, arr.slice(offset))
+            break
+          }
+          if (el.type === 'Identifier') {
+            addValueSub(el.name, arr[offset])
+          } else if (
+            el.type === 'AssignmentPattern' &&
+            el.left?.type === 'Identifier'
+          ) {
+            const fallback = resolveExprValue(el.right, localSubs)
+            addValueSub(el.left.name, arr[offset] === undefined ? fallback : arr[offset])
+          }
+          offset++
+        }
+        continue
+      }
+
       if (d.id.type === 'ObjectPattern') {
         const obj = resolveExprValue(d.init, localSubs)
         if (!obj || typeof obj !== 'object') continue
@@ -1208,6 +1287,28 @@ function expandItemAliasBranch(testName, items, branchNode, subs, phase, regMap,
   for (const item of items) {
     visit(branchNode, [...subs, { paramName: testName, item }], phase, regMap, itemAliases)
   }
+}
+
+function hasSubstitution(subs, name) {
+  for (let i = subs.length - 1; i >= 0; i--) {
+    if (subs[i].paramName === name) return true
+  }
+  return false
+}
+
+function subtreeReferencesIdentifier(node, name) {
+  if (!node || typeof node !== 'object') return false
+  if (node.type === 'Identifier' && node.name === name) return true
+  for (const key in node) {
+    if (NON_TRAVERSAL_KEYS.has(key)) continue
+    const value = node[key]
+    if (Array.isArray(value)) {
+      if (value.some(child => subtreeReferencesIdentifier(child, name))) return true
+    } else if (value && typeof value === 'object' && subtreeReferencesIdentifier(value, name)) {
+      return true
+    }
+  }
+  return false
 }
 
 // Keys on AST nodes we should not recurse into.
@@ -1520,8 +1621,65 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
   // Guard against recursive component calls during a single expansion chain
   // (e.g. <Foo/> rendering <Foo/> would otherwise visit forever).
   const inlineStack = new Set()
-  const idTextMap = {}
+  const idTextRecords = new Map()
   const entries = []
+
+  function recordIdText(id, text, subs) {
+    const bindings = []
+    const names = new Set()
+    for (let i = subs.length - 1; i >= 0; i--) {
+      if (names.has(subs[i].paramName)) continue
+      names.add(subs[i].paramName)
+      bindings.push(subs[i])
+    }
+    const records = idTextRecords.get(id) || []
+    records.push({ bindings, text })
+    idTextRecords.set(id, records)
+  }
+
+  function isSameStaticValue(a, b) {
+    if (Object.is(a, b)) return true
+    if (Array.isArray(a) || Array.isArray(b)) {
+      if (!Array.isArray(a) || !Array.isArray(b) || a.length !== b.length) return false
+      return a.every((value, index) => isSameStaticValue(value, b[index]))
+    }
+    if (a && b && typeof a === 'object' && typeof b === 'object') {
+      const aKeys = Object.keys(a)
+      const bKeys = Object.keys(b)
+      if (aKeys.length !== bKeys.length) return false
+      return aKeys.every(key => Object.prototype.hasOwnProperty.call(b, key) && isSameStaticValue(a[key], b[key]))
+    }
+    return false
+  }
+
+  function lookupIdText(id, subs) {
+    const records = idTextRecords.get(id) || []
+    let best = null
+    let bestScore = -1
+    for (const record of records) {
+      let matches = true
+      for (const binding of record.bindings) {
+        let value
+        let found = false
+        for (let i = subs.length - 1; i >= 0; i--) {
+          if (subs[i].paramName === binding.paramName) {
+            value = subs[i].item
+            found = true
+            break
+          }
+        }
+        if (!found || !isSameStaticValue(value, binding.item)) {
+          matches = false
+          break
+        }
+      }
+      if (matches && record.bindings.length > bestScore) {
+        best = record.text
+        bestScore = record.bindings.length
+      }
+    }
+    return best || ''
+  }
 
   // Collect the visible text inside a JSXElement under the given subs.
   // Handles JSXText and `{expr}` containers whose expr resolves statically.
@@ -1566,8 +1724,8 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
     return parts.join(' ')
   }
 
-  const resolveQuery = raw =>
-    raw ? raw.replace(/\[([^\]]+)\]/g, (_, id) => idTextMap[id] || '').trim() : ''
+  const resolveQuery = (raw, subs) =>
+    raw ? raw.replace(/\[([^\]]+)\]/g, (_, id) => lookupIdText(id, subs)).trim() : ''
 
   // Pick a fallback query for when the full assembled query returns 0 hits.
   //
@@ -1591,11 +1749,11 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
   //
   // Returns null if neither strategy produces a fallback distinct from the
   // original query.
-  function resolveFallbackQuery(raw, fullQuery) {
+  function resolveFallbackQuery(raw, fullQuery, subs) {
     if (!raw) return null
     const ms = [...raw.matchAll(/\[([^\]]+)\]/g)]
     for (let i = ms.length - 1; i >= 0; i--) {
-      const t = (idTextMap[ms[i][1]] || '').trim()
+      const t = lookupIdText(ms[i][1], subs).trim()
       if (t && t !== fullQuery) return t
     }
     if (ms.length === 0) return deriveLiteralFallback(fullQuery)
@@ -1605,10 +1763,11 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
   // Generic walker that:
   //   - extends the array registry on each BlockStatement entry to pick up
   //     function-body locals like `const filtered = items.filter(...)`;
-  //   - expands `const current = arr.find(...)` + `{current && <img …>}` for
-  //     every item in `arr` (tab / carousel detail panels);
+  //   - expands `const current = arr.find(...)` across guarded branches and
+  //     return trees for every item in `arr` (tab panels / route details);
   //   - expands `arr.map((p) => body)` once per item (with subs);
-  //   - processes JSXElement nodes (phase 1 builds idTextMap, phase 2 emits entries);
+  //   - processes JSXElement nodes (phase 1 records contextual id text,
+  //     phase 2 emits entries);
   //   - recurses into all other child nodes.
   //
   // `regMap` is the array registry visible in the current lexical scope. It
@@ -1616,15 +1775,20 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
   // on each new BlockStatement so siblings don't see each other's locals.
   // `itemAliases` maps a variable name to the full source array for `.find()`
   // bindings in the current block (see extendRegistryWithBlock).
-  function visit(node, subs, phase, regMap, itemAliases) {
+  function visit(node, subs, phase, regMap, itemAliases, blockContext = null) {
     if (!node || typeof node !== 'object' || typeof node.type !== 'string') return
     if (!itemAliases) itemAliases = new Map()
 
     if (node.type === 'BlockStatement') {
-      const scope = extendRegistryWithBlock(regMap, node, subs)
-      regMap = scope.regMap
-      itemAliases = scope.itemAliases
-      if (scope.valueSubs.length) subs = [...subs, ...scope.valueSubs]
+      const parentRegMap = regMap
+      const entrySubs = subs
+      const scope = extendRegistryWithBlock(parentRegMap, node, entrySubs)
+      const scopedSubs = scope.valueSubs.length ? [...entrySubs, ...scope.valueSubs] : entrySubs
+      const nextBlockContext = { node, parentRegMap, entrySubs }
+      for (const stmt of node.body || []) {
+        visit(stmt, scopedSubs, phase, scope.regMap, scope.itemAliases, nextBlockContext)
+      }
+      return
     }
 
     if (
@@ -1655,6 +1819,32 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
         subs, phase, regMap, itemAliases, visit,
       )
       return
+    }
+
+    if (node.type === 'ReturnStatement' && node.argument) {
+      for (const [name, items] of itemAliases) {
+        if (hasSubstitution(subs, name) || !subtreeReferencesIdentifier(node.argument, name)) continue
+        for (const item of items) {
+          const candidateBaseSubs = blockContext
+            ? [...blockContext.entrySubs, { paramName: name, item }]
+            : [...subs, { paramName: name, item }]
+          if (blockContext) {
+            const candidateScope = extendRegistryWithBlock(
+              blockContext.parentRegMap, blockContext.node, candidateBaseSubs,
+            )
+            const candidateSubs = candidateScope.valueSubs.length
+              ? [...candidateBaseSubs, ...candidateScope.valueSubs]
+              : candidateBaseSubs
+            visit(
+              node.argument, candidateSubs, phase,
+              candidateScope.regMap, candidateScope.itemAliases, blockContext,
+            )
+          } else {
+            visit(node.argument, candidateBaseSubs, phase, regMap, itemAliases, blockContext)
+          }
+        }
+        return
+      }
     }
 
     const mapCtx = matchMapCall(node, regMap, subs)
@@ -1696,18 +1886,18 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
           const idVal = resolveAttrString(idAttr, subs)
           if (typeof idVal === 'string' && idVal) {
             const text = collectText(node, subs)
-            if (text) idTextMap[idVal] = text
+            if (text) recordIdText(idVal, text, subs)
           }
         }
       } else {
         const imgId  = resolveAttrString(findAttr('data-strk-img-id'), subs)
         const imgRaw = resolveAttrString(findAttr('data-strk-img'), subs)
         if (typeof imgId === 'string' && imgId && typeof imgRaw === 'string') {
-          const query = resolveQuery(imgRaw)
+          const query = resolveQuery(imgRaw, subs)
           entries.push({
             imgId,
             query,
-            fallbackQuery: resolveFallbackQuery(imgRaw, query),
+            fallbackQuery: resolveFallbackQuery(imgRaw, query, subs),
             ratio: resolveAttrString(findAttr('data-strk-img-ratio'), subs) || '16x9',
             width: resolveAttrString(findAttr('data-strk-img-width'), subs) || '800',
             kind:  'img',
@@ -1717,11 +1907,11 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
         const bgId  = resolveAttrString(findAttr('data-strk-bg-id'), subs)
         const bgRaw = resolveAttrString(findAttr('data-strk-bg'), subs)
         if (typeof bgId === 'string' && bgId && typeof bgRaw === 'string') {
-          const query = resolveQuery(bgRaw)
+          const query = resolveQuery(bgRaw, subs)
           entries.push({
             imgId: bgId,
             query,
-            fallbackQuery: resolveFallbackQuery(bgRaw, query),
+            fallbackQuery: resolveFallbackQuery(bgRaw, query, subs),
             ratio: resolveAttrString(findAttr('data-strk-bg-ratio'), subs) || '16x9',
             width: resolveAttrString(findAttr('data-strk-bg-width'), subs) || '1600',
             kind:  'bg',
