@@ -1,14 +1,15 @@
 import './App.css'
+import { Toaster } from 'sonner'
+import Todos from './components/Todos.jsx'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
+    <div className="min-h-screen bg-gray-100 flex py-10 justify-center">
+      <div className="w-full max-w-xl px-4">
+        <Todos />
       </div>
-    </main>
+      <Toaster position="bottom-center" />
+    </div>
   )
 }
 
