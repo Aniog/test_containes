@@ -1,15 +1,21 @@
-import './App.css'
+import HeroSection from './components/pizza/HeroSection';
+import AboutSection from './components/pizza/AboutSection';
+import MenuSection from './components/pizza/MenuSection';
+import FeaturesSection from './components/pizza/FeaturesSection';
+import ContactSection from './components/pizza/ContactSection';
+import Footer from './components/pizza/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="bg-[#FFF8F0]">
+      <HeroSection />
+      <AboutSection />
+      <MenuSection />
+      <FeaturesSection />
+      <ContactSection />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
