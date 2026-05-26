@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Todo Items",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "The title or description of the todo item"
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the todo item is completed or not"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the todo item was created"
+    },
+    "completed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the todo item was marked as completed"
+    }
+  },
+  "required": ["title"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
