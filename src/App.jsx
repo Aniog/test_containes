@@ -1,15 +1,23 @@
-import './App.css'
+import Navbar from './components/bikes/Navbar';
+import HeroSection from './components/bikes/HeroSection';
+import BikeCategories from './components/bikes/BikeCategories';
+import FeaturedBikes from './components/bikes/FeaturedBikes';
+import WhyBikes from './components/bikes/WhyBikes';
+import Testimonials from './components/bikes/Testimonials';
+import Footer from './components/bikes/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="bg-[#111111] min-h-screen">
+      <Navbar />
+      <HeroSection />
+      <BikeCategories />
+      <FeaturedBikes />
+      <WhyBikes />
+      <Testimonials />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
