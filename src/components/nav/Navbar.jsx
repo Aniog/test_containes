@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useTheme, themes } from '@/context/ThemeContext';
 
 const navLinks = [
   { label: 'Tricks', href: '#tricks' },
@@ -10,13 +12,40 @@ const navLinks = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16">
+      {/* Theme switcher bar */}
+      <div className="border-b border-zinc-800 px-6 md:px-12 py-1.5 flex items-center gap-1.5">
+        <span className="text-zinc-600 text-xs font-bold uppercase tracking-widest mr-2 hidden sm:block">
+          Theme:
+        </span>
+        {Object.values(themes).map((t) => (
+          <NavLink
+            key={t.key}
+            to={t.path}
+            title={t.name}
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-widest transition-all border ${
+              theme.key === t.key
+                ? 'border-zinc-500 text-zinc-100 bg-zinc-800'
+                : 'border-transparent text-zinc-500 hover:text-zinc-300'
+            }`}
+          >
+            <span
+              className="w-2.5 h-2.5 rounded-full shrink-0"
+              style={{ backgroundColor: t.color }}
+            />
+            <span className="hidden sm:inline">{t.name}</span>
+          </NavLink>
+        ))}
+      </div>
+
+      {/* Main nav row */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-14">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2">
-          <span className="font-display text-3xl text-skate-yellow tracking-widest leading-none">
+          <span className="font-display text-3xl tracking-widest leading-none accent-text">
             SKATE
           </span>
           <span className="hidden sm:block text-zinc-500 text-xs font-bold uppercase tracking-widest mt-1">
@@ -30,7 +59,7 @@ const Navbar = () => {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="text-zinc-400 hover:text-skate-yellow text-sm font-bold uppercase tracking-widest transition-colors"
+                className="text-zinc-400 hover-accent-text text-sm font-bold uppercase tracking-widest transition-colors"
               >
                 {link.label}
               </a>
@@ -41,12 +70,12 @@ const Navbar = () => {
         {/* CTA */}
         <a
           href="#community"
-          className="hidden md:inline-flex items-center bg-skate-yellow text-zinc-950 font-bold uppercase tracking-widest text-sm px-5 py-2 rounded-full hover:bg-yellow-300 transition"
+          className="hidden md:inline-flex items-center accent-bg accent-text-on font-bold uppercase tracking-widest text-sm px-5 py-2 rounded-full hover-accent-bg transition"
         >
           Join the Crew
         </a>
 
-        {/* Mobile menu toggle */}
+        {/* Mobile toggle */}
         <button
           className="md:hidden text-zinc-100 p-1"
           onClick={() => setOpen(!open)}
@@ -64,7 +93,7 @@ const Navbar = () => {
               key={link.label}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="text-zinc-300 hover:text-skate-yellow font-bold uppercase tracking-widest text-sm transition-colors"
+              className="text-zinc-300 hover-accent-text font-bold uppercase tracking-widest text-sm transition-colors"
             >
               {link.label}
             </a>
@@ -72,7 +101,7 @@ const Navbar = () => {
           <a
             href="#community"
             onClick={() => setOpen(false)}
-            className="inline-flex items-center justify-center bg-skate-yellow text-zinc-950 font-bold uppercase tracking-widest text-sm px-5 py-2 rounded-full hover:bg-yellow-300 transition mt-2"
+            className="inline-flex items-center justify-center accent-bg accent-text-on font-bold uppercase tracking-widest text-sm px-5 py-2 rounded-full transition mt-2"
           >
             Join the Crew
           </a>
@@ -83,3 +112,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

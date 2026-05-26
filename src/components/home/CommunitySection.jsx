@@ -37,7 +37,7 @@ const riders = [
 ];
 
 const RiderCard = ({ rider, sectionTitleId }) => (
-  <div className="bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700 hover:border-skate-yellow/40 transition-all group">
+  <div className="bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-700 hover-accent-border transition-all group">
     <div className="relative h-56 overflow-hidden">
       <img
         alt={rider.name}
@@ -51,7 +51,7 @@ const RiderCard = ({ rider, sectionTitleId }) => (
       <div className="absolute inset-0 bg-gradient-to-t from-zinc-800 via-transparent to-transparent" />
       <span
         id={`${rider.id}-specialty`}
-        className="absolute top-3 right-3 bg-skate-yellow text-zinc-950 text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full"
+        className="absolute top-3 right-3 accent-bg accent-text-on text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full"
       >
         {rider.specialty}
       </span>
@@ -64,7 +64,7 @@ const RiderCard = ({ rider, sectionTitleId }) => (
         <MapPin className="w-3 h-3" />
         {rider.location}
       </div>
-      <p className="text-zinc-400 text-sm italic leading-relaxed border-l-4 border-skate-yellow/50 pl-3">
+      <p className="text-zinc-400 text-sm italic leading-relaxed border-l-4 accent-border-l pl-3">
         "{rider.quote}"
       </p>
     </div>
@@ -83,7 +83,7 @@ const CommunitySection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-16">
-          <span className="text-skate-yellow text-xs font-bold uppercase tracking-widest">
+          <span className="accent-text text-xs font-bold uppercase tracking-widest">
             Real Skaters. Real Stories.
           </span>
           <h2
@@ -91,7 +91,7 @@ const CommunitySection = () => {
             className="font-display text-5xl md:text-7xl text-zinc-100 uppercase mt-2 leading-none"
           >
             The<br />
-            <span className="text-skate-yellow">Community</span>
+            <span className="accent-text">Community</span>
           </h2>
           <p className="text-zinc-400 text-base mt-4 max-w-lg">
             Join thousands of skaters worldwide. Share clips, find spots, and grow together.
@@ -105,7 +105,7 @@ const CommunitySection = () => {
               key={stat.label}
               className="bg-zinc-900 rounded-2xl p-6 border border-zinc-800 flex items-center gap-4"
             >
-              <div className="text-skate-yellow">{stat.icon}</div>
+              <div className="accent-text">{stat.icon}</div>
               <div>
                 <div className="font-display text-3xl text-zinc-100">{stat.value}</div>
                 <div className="text-zinc-500 text-xs font-bold uppercase tracking-widest">{stat.label}</div>
@@ -128,7 +128,7 @@ const CommunitySection = () => {
         >
           <div>
             <h3 className="font-display text-4xl md:text-5xl text-zinc-100 uppercase leading-tight">
-              Ready to <span className="text-skate-yellow">Ride?</span>
+              Ready to <span className="accent-text">Ride?</span>
             </h3>
             <p className="text-zinc-400 mt-3 max-w-md">
               Create your free account, log your sessions, discover new spots, and connect with skaters near you.
@@ -137,13 +137,13 @@ const CommunitySection = () => {
           <div className="flex flex-col sm:flex-row gap-4 shrink-0">
             <a
               href="#"
-              className="bg-skate-yellow text-zinc-950 font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-yellow-300 transition text-sm text-center"
+              className="accent-bg accent-text-on font-bold uppercase tracking-widest px-8 py-4 rounded-full hover-accent-bg transition text-sm text-center"
             >
               Sign Up Free
             </a>
             <a
               href="#"
-              className="flex items-center justify-center gap-2 border-2 border-zinc-700 text-zinc-100 font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:border-skate-yellow hover:text-skate-yellow transition text-sm"
+              className="flex items-center justify-center gap-2 border-2 border-zinc-700 text-zinc-100 font-bold uppercase tracking-widest px-8 py-4 rounded-full hover-accent-border hover-accent-text transition text-sm"
             >
               <Instagram className="w-4 h-4" />
               Follow Us

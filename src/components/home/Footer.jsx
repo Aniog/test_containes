@@ -14,20 +14,20 @@ const Footer = () => (
       <div className="grid grid-cols-2 md:grid-cols-5 gap-10 mb-12">
         {/* Brand */}
         <div className="col-span-2 md:col-span-1">
-          <span className="font-display text-4xl text-skate-yellow tracking-widest leading-none block mb-2">
+          <span className="font-display text-4xl accent-text tracking-widest leading-none block mb-2">
             SKATE
           </span>
           <p className="text-zinc-500 text-sm leading-relaxed">
             The global home for skateboarders. Learn, gear up, and connect.
           </p>
           <div className="flex gap-4 mt-5">
-            <a href="#" className="text-zinc-500 hover:text-skate-yellow transition" aria-label="Instagram">
+            <a href="#" className="text-zinc-500 hover:accent-text transition" aria-label="Instagram">
               <Instagram className="w-5 h-5" />
             </a>
-            <a href="#" className="text-zinc-500 hover:text-skate-yellow transition" aria-label="YouTube">
+            <a href="#" className="text-zinc-500 hover:accent-text transition" aria-label="YouTube">
               <Youtube className="w-5 h-5" />
             </a>
-            <a href="#" className="text-zinc-500 hover:text-skate-yellow transition" aria-label="Twitter">
+            <a href="#" className="text-zinc-500 hover:accent-text transition" aria-label="Twitter">
               <Twitter className="w-5 h-5" />
             </a>
           </div>
@@ -44,7 +44,7 @@ const Footer = () => (
                 <li key={link}>
                   <a
                     href="#"
-                    className="text-zinc-500 hover:text-skate-yellow text-sm transition-colors"
+                    className="text-zinc-500 hover:accent-text text-sm transition-colors"
                   >
                     {link}
                   </a>
@@ -71,11 +71,11 @@ const Footer = () => (
             <input
               type="email"
               placeholder="your@email.com"
-              className="bg-zinc-800 border border-zinc-700 text-zinc-100 placeholder-zinc-500 text-sm px-4 py-2 rounded-full focus:outline-none focus:border-skate-yellow transition flex-1 md:w-64"
+              className="bg-zinc-800 border border-zinc-700 text-zinc-100 placeholder-zinc-500 text-sm px-4 py-2 rounded-full focus:outline-none focus:accent-border transition flex-1 md:w-64"
             />
             <button
               type="submit"
-              className="bg-skate-yellow text-zinc-950 font-bold uppercase tracking-widest text-xs px-5 py-2 rounded-full hover:bg-yellow-300 transition whitespace-nowrap"
+              className="accent-bg accent-text-on font-bold uppercase tracking-widest text-xs px-5 py-2 rounded-full hover-accent-bg transition whitespace-nowrap"
             >
               Subscribe
             </button>

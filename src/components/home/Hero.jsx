@@ -32,7 +32,8 @@ const Hero = () => {
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 text-center">
         <span
           id="hero-subtitle"
-          className="inline-block text-skate-yellow text-xs font-bold uppercase tracking-widest mb-6 border border-skate-yellow/40 px-4 py-1 rounded-full"
+          className="inline-block accent-text text-xs font-bold uppercase tracking-widest mb-6 border accent-border px-4 py-1 rounded-full border-opacity-40"
+          style={{ borderColor: 'var(--accent)', opacity: 1 }}
         >
           Street. Park. Vert. All of it.
         </span>
@@ -42,7 +43,7 @@ const Hero = () => {
           className="font-display text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] text-zinc-100 leading-none uppercase mb-6"
         >
           Skate<br />
-          <span className="text-skate-yellow">Or Die</span>
+          <span className="accent-text">Or Die</span>
         </h1>
 
         <p className="text-zinc-300 text-lg md:text-xl max-w-xl mx-auto mb-10 font-body">
@@ -52,13 +53,13 @@ const Hero = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#tricks"
-            className="bg-skate-yellow text-zinc-950 font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:bg-yellow-300 transition text-sm"
+            className="accent-bg accent-text-on font-bold uppercase tracking-widest px-8 py-4 rounded-full hover-accent-bg transition text-sm"
           >
             Learn Tricks
           </a>
           <a
             href="#community"
-            className="border-2 border-zinc-600 text-zinc-100 font-bold uppercase tracking-widest px-8 py-4 rounded-full hover:border-skate-yellow hover:text-skate-yellow transition text-sm"
+            className="border-2 border-zinc-600 text-zinc-100 font-bold uppercase tracking-widest px-8 py-4 rounded-full hover-accent-border hover-accent-text transition text-sm"
           >
             Join the Crew
           </a>
@@ -75,3 +76,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
