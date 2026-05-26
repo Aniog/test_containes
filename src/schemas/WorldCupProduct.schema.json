@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World Cup Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Original price before discount"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["jersey", "ball", "scarf", "hat", "trophy", "flag", "accessory", "collectible"],
+      "description": "Product category"
+    },
+    "team": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "National team name (e.g. Brazil, Germany)"
+    },
+    "badge": {
+      "type": "string",
+      "enum": ["new", "sale", "hot", "limited", ""],
+      "description": "Promotional badge label"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock quantity"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Product image URL or storage key"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this product is featured on the homepage"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
