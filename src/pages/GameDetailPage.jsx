@@ -60,7 +60,7 @@ export default function GameDetailPage() {
                 className="w-full aspect-[3/4] object-cover"
               />
               {hasDiscount && (
-                <div className="absolute top-3 right-3 bg-amber-500 text-white text-sm font-black px-3 py-1 rounded-xl">
+                <div className="absolute top-3 right-3 bg-gray-700 text-white text-sm font-black px-3 py-1 rounded-xl">
                   -{d.discount_percent}%
                 </div>
               )}
@@ -73,7 +73,7 @@ export default function GameDetailPage() {
                   <div className="flex items-baseline gap-3">
                     <span className="text-3xl font-black text-slate-900">${price?.toFixed(2)}</span>
                     <span className="text-slate-400 line-through text-lg">${d.price?.toFixed(2)}</span>
-                    <span className="text-amber-600 text-sm font-bold">Save ${(d.price - price).toFixed(2)}</span>
+                    <span className="text-gray-500 text-sm font-bold">Save ${(d.price - price).toFixed(2)}</span>
                   </div>
                 ) : (
                   <span className="text-3xl font-black text-slate-900">${d.price?.toFixed(2)}</span>
@@ -100,7 +100,7 @@ export default function GameDetailPage() {
             <div>
               <div className="flex flex-wrap gap-2 mb-3">
                 {d.genre && (
-                  <span className="bg-violet-50 text-violet-700 text-xs font-semibold px-3 py-1 rounded-full border border-violet-200">
+                  <span className="bg-gray-100 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full border border-gray-300">
                     {d.genre}
                   </span>
                 )}
@@ -125,21 +125,21 @@ export default function GameDetailPage() {
               )}
               {d.release_date && (
                 <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center">
-                  <Clock className="w-5 h-5 text-violet-600 mx-auto mb-1" />
+                  <Clock className="w-5 h-5 text-gray-500 mx-auto mb-1" />
                   <div className="text-slate-900 font-bold text-sm">{new Date(d.release_date).getFullYear()}</div>
                   <div className="text-slate-500 text-xs">Released</div>
                 </div>
               )}
               {d.developer && (
                 <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center">
-                  <Users className="w-5 h-5 text-purple-400 mx-auto mb-1" />
+                  <Users className="w-5 h-5 text-gray-400 mx-auto mb-1" />
                   <div className="text-slate-900 font-bold text-xs line-clamp-1">{d.developer}</div>
                   <div className="text-slate-500 text-xs">Developer</div>
                 </div>
               )}
               {d.genre && (
                 <div className="bg-slate-50 rounded-xl p-4 border border-slate-200 text-center">
-                  <Award className="w-5 h-5 text-violet-600 mx-auto mb-1" />
+                  <Award className="w-5 h-5 text-gray-500 mx-auto mb-1" />
                   <div className="text-slate-900 font-bold text-sm">{d.genre}</div>
                   <div className="text-slate-500 text-xs">Genre</div>
                 </div>
