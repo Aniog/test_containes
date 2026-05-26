@@ -44,22 +44,22 @@ export default function ArticlesPage() {
         {/* Header */}
         <div className="py-10">
           <div className="flex items-center gap-3 mb-2">
-            <BookOpen className="w-7 h-7 text-purple-400" />
-            <h1 className="text-4xl font-black text-white">News & Articles</h1>
+            <BookOpen className="w-7 h-7 text-sky-600" />
+            <h1 className="text-4xl font-black text-slate-900">News & Articles</h1>
           </div>
-          <p className="text-gray-400">Latest gaming news, reviews, guides, and more</p>
+          <p className="text-slate-500">Latest gaming news, reviews, guides, and more</p>
         </div>
 
         {/* Search */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search articles..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-gray-900 border border-gray-700 rounded-xl pl-10 pr-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 text-sm"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 text-sm shadow-sm"
             />
           </div>
           {(search || category !== 'All') && (
@@ -76,7 +76,7 @@ export default function ArticlesPage() {
               key={c}
               onClick={() => setCategory(c)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                category === c ? 'bg-indigo-600 text-white' : 'bg-gray-900 text-gray-400 border border-gray-700 hover:text-white hover:border-gray-500'
+                category === c ? 'bg-sky-600 text-white' : 'bg-white text-slate-600 border border-slate-300 hover:text-slate-900 hover:border-slate-400'
               }`}
             >
               {c}
@@ -89,7 +89,7 @@ export default function ArticlesPage() {
         ) : articles.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">📰</div>
-            <p className="text-gray-400 text-lg font-medium">No articles found</p>
+            <p className="text-slate-600 text-lg font-medium">No articles found</p>
             <Button className="mt-4" onClick={clearFilters}>Clear Filters</Button>
           </div>
         ) : (
@@ -102,7 +102,7 @@ export default function ArticlesPage() {
             )}
 
             {/* Article Grid */}
-            <p className="text-gray-500 text-sm mb-5">{regularArticles.length} article{regularArticles.length !== 1 ? 's' : ''}</p>
+            <p className="text-slate-500 text-sm mb-5">{regularArticles.length} article{regularArticles.length !== 1 ? 's' : ''}</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
               {regularArticles.map(article => <ArticleCard key={article.id} article={article} />)}
             </div>

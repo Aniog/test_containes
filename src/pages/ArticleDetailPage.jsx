@@ -38,8 +38,8 @@ export default function ArticleDetailPage() {
     <div className="pt-20 min-h-screen flex items-center justify-center">
       <div className="text-center">
         <div className="text-5xl mb-4">📰</div>
-        <p className="text-gray-400 text-lg">Article not found</p>
-        <Link to="/articles" className="mt-4 inline-block text-indigo-400 hover:text-indigo-300">Back to Articles</Link>
+        <p className="text-slate-500 text-lg">Article not found</p>
+        <Link to="/articles" className="mt-4 inline-block text-sky-600 hover:text-sky-500">Back to Articles</Link>
       </div>
     </div>
   )
@@ -50,7 +50,7 @@ export default function ArticleDetailPage() {
   return (
     <div className="min-h-screen pt-20 pb-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link to="/articles" className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors py-6 text-sm">
+        <Link to="/articles" className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 transition-colors py-6 text-sm">
           <ArrowLeft className="w-4 h-4" /> Back to Articles
         </Link>
 
@@ -68,16 +68,16 @@ export default function ArticleDetailPage() {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-black text-white leading-tight mb-4">{d.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-black text-slate-900 leading-tight mb-4">{d.title}</h1>
 
         {/* Author + Meta */}
-        <div className="flex flex-wrap items-center gap-5 text-gray-500 text-sm mb-8 pb-8 border-b border-gray-800">
+        <div className="flex flex-wrap items-center gap-5 text-slate-500 text-sm mb-8 pb-8 border-b border-slate-200">
           {d.author && (
             <span className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-indigo-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              <div className="w-7 h-7 bg-sky-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
                 {d.author[0]}
               </div>
-              <span className="text-gray-300">{d.author}</span>
+              <span className="text-slate-700">{d.author}</span>
             </span>
           )}
           {publishedDate && <span className="flex items-center gap-1"><Tag className="w-3.5 h-3.5" />{publishedDate}</span>}
@@ -86,7 +86,7 @@ export default function ArticleDetailPage() {
 
         {/* Excerpt */}
         {d.excerpt && (
-          <p className="text-gray-300 text-lg leading-relaxed mb-8 font-medium border-l-4 border-indigo-500 pl-5">
+          <p className="text-slate-600 text-lg leading-relaxed mb-8 font-medium border-l-4 border-sky-500 pl-5">
             {d.excerpt}
           </p>
         )}
@@ -94,18 +94,18 @@ export default function ArticleDetailPage() {
         {/* Content */}
         {d.content && (
           <div
-            className="prose prose-invert prose-lg max-w-none text-gray-300 leading-relaxed space-y-4 [&_p]:text-gray-300 [&_h2]:text-white [&_h3]:text-white [&_strong]:text-white [&_a]:text-indigo-400"
+            className="prose prose-slate prose-lg max-w-none text-slate-700 leading-relaxed space-y-4 [&_p]:text-slate-700 [&_h2]:text-slate-900 [&_h3]:text-slate-900 [&_strong]:text-slate-900 [&_a]:text-sky-600"
             dangerouslySetInnerHTML={{ __html: d.content }}
           />
         )}
 
         {/* Tags */}
         {d.tags?.length > 0 && (
-          <div className="mt-10 pt-8 border-t border-gray-800">
-            <p className="text-gray-500 text-sm mb-3">Tags</p>
+          <div className="mt-10 pt-8 border-t border-slate-200">
+            <p className="text-slate-500 text-sm mb-3">Tags</p>
             <div className="flex flex-wrap gap-2">
               {d.tags.map(tag => (
-                <span key={tag} className="bg-gray-800 text-gray-400 text-sm px-3 py-1 rounded-full hover:text-white transition-colors">
+                <span key={tag} className="bg-slate-100 text-slate-600 text-sm px-3 py-1 rounded-full hover:text-slate-900 transition-colors">
                   #{tag}
                 </span>
               ))}

@@ -3,12 +3,12 @@ import { cn } from '../../lib/utils'
 
 export function Badge({ children, variant = 'default', className }) {
   const variants = {
-    default: 'bg-indigo-600 text-white',
-    secondary: 'bg-gray-700 text-gray-200',
-    success: 'bg-green-600 text-white',
+    default: 'bg-violet-600 text-white',
+    secondary: 'bg-slate-200 text-slate-700',
+    success: 'bg-emerald-600 text-white',
     danger: 'bg-red-600 text-white',
-    warning: 'bg-yellow-500 text-black',
-    outline: 'border border-gray-500 text-gray-300',
+    warning: 'bg-amber-400 text-amber-900',
+    outline: 'border border-slate-300 text-slate-600',
     steam: 'bg-[#1b2838] text-[#c7d5e0] border border-[#4c6b22]',
     epic: 'bg-[#2d2d2d] text-white border border-[#0078f2]',
     nintendo: 'bg-[#e4000f] text-white',

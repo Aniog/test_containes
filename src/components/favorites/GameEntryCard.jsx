@@ -8,9 +8,9 @@ const GENRES = ['Action', 'RPG', 'Strategy', 'Shooter', 'Adventure', 'Racing', '
 const PLAY_STATUSES = ['Currently Playing', 'Completed', 'On Hold', 'Dropped', 'Plan to Play']
 
 const PLAY_STATUS_COLORS = {
-  'Currently Playing': 'text-green-400 bg-green-400/10 border-green-500/40',
+  'Currently Playing': 'text-emerald-600 bg-emerald-50 border-emerald-300',
   'Completed':         'text-blue-400 bg-blue-400/10 border-blue-500/40',
-  'On Hold':           'text-yellow-400 bg-yellow-400/10 border-yellow-500/40',
+  'On Hold':           'text-amber-600 bg-amber-50 border-amber-300',
   'Dropped':           'text-red-400 bg-red-400/10 border-red-500/40',
   'Plan to Play':      'text-purple-400 bg-purple-400/10 border-purple-500/40',
 }
@@ -21,9 +21,9 @@ const PLATFORM_COLORS = {
   'Nintendo Switch': 'bg-[#e4000f] text-white border-[#e4000f]',
   PlayStation: 'bg-[#003087] text-white border-[#003087]',
   Xbox: 'bg-[#107c10] text-white border-[#107c10]',
-  PC: 'bg-gray-700 text-white border-gray-500',
+  PC: 'bg-slate-700 text-white border-slate-500',
   Mobile: 'bg-purple-700 text-white border-purple-500',
-  Other: 'bg-gray-800 text-gray-300 border-gray-600',
+  Other: 'bg-slate-200 text-slate-700 border-slate-300',
 }
 
 export function createEmptyGame() {
@@ -58,7 +58,7 @@ function StarPicker({ value, onChange }) {
           <Star
             className={cn(
               'w-6 h-6 transition-colors',
-              n <= (hovered || value) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-600'
+              n <= (hovered || value) ? 'text-amber-500 fill-amber-500' : 'text-slate-300'
             )}
           />
         </button>
@@ -78,13 +78,13 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
 
   return (
     <div className={cn(
-      'bg-gray-900 border rounded-2xl overflow-hidden transition-all duration-200',
-      Object.keys(errors).length > 0 ? 'border-red-500/60' : 'border-gray-700 hover:border-gray-600'
+      'bg-white border rounded-2xl overflow-hidden transition-all duration-200 shadow-sm',
+      Object.keys(errors).length > 0 ? 'border-red-400' : 'border-slate-200 hover:border-rose-300'
     )}>
       {/* Card Header */}
-      <div className="flex items-center justify-between px-5 py-4 bg-gray-800/50">
+      <div className="flex items-center justify-between px-5 py-4 bg-slate-50">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-indigo-600/20 border border-indigo-500/40 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-rose-50 border border-rose-200 rounded-lg flex items-center justify-center">
             <Gamepad2 className="w-4 h-4 text-indigo-400" />
           </div>
           <div>
@@ -110,7 +110,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             <button
               type="button"
               onClick={onRemove}
-              className="p-1.5 text-gray-500 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-all"
+              className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all"
               title="Remove this game"
             >
               <Trash2 className="w-4 h-4" />
@@ -119,7 +119,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
           <button
             type="button"
             onClick={() => setExpanded(e => !e)}
-            className="p-1.5 text-gray-500 hover:text-white hover:bg-gray-700 rounded-lg transition-all"
+            className="p-1.5 text-slate-400 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all"
           >
             {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
@@ -132,7 +132,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
           {/* Row 1: Game Name + Platform */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
                 Game Name <span className="text-red-400">*</span>
               </label>
               <input
@@ -141,28 +141,28 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 onChange={e => set('game_name', e.target.value)}
                 placeholder="e.g. Elden Ring"
                 className={cn(
-                  'w-full bg-gray-800 border rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:ring-1 transition-colors',
+                  'w-full bg-white border rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 transition-colors',
                   hasError('game_name')
                     ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
-                    : 'border-gray-700 focus:border-indigo-500 focus:ring-indigo-500/30'
+                    : 'border-slate-300 focus:border-rose-500 focus:ring-rose-500/20'
                 )}
               />
               {hasError('game_name') && <p className="text-red-400 text-xs mt-1">{errors.game_name}</p>}
             </div>
 
             <div>
-              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
                 Platform <span className="text-red-400">*</span>
               </label>
               <select
                 value={game.platform}
                 onChange={e => set('platform', e.target.value)}
                 className={cn(
-                  'w-full bg-gray-800 border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 transition-colors',
-                  game.platform ? 'text-white' : 'text-gray-500',
+                  'w-full bg-white border rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-1 transition-colors',
+                  game.platform ? 'text-slate-900' : 'text-slate-400',
                   hasError('platform')
                     ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
-                    : 'border-gray-700 focus:border-indigo-500 focus:ring-indigo-500/30'
+                    : 'border-slate-300 focus:border-rose-500 focus:ring-rose-500/20'
                 )}
               >
                 <option value="" disabled>Select platform…</option>
@@ -175,15 +175,15 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
           {/* Row 2: Play Status + Genre */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
                 Play Status
               </label>
               <select
                 value={game.play_status}
                 onChange={e => set('play_status', e.target.value)}
                 className={cn(
-                  'w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors',
-                  game.play_status ? 'text-white' : 'text-gray-500'
+                  'w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors',
+                  game.play_status ? 'text-slate-900' : 'text-slate-400'
                 )}
               >
                 <option value="">Select status…</option>
@@ -192,13 +192,13 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
             </div>
 
             <div>
-              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">Genre</label>
+              <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">Genre</label>
               <select
                 value={game.genre}
                 onChange={e => set('genre', e.target.value)}
                 className={cn(
-                  'w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors',
-                  game.genre ? 'text-white' : 'text-gray-500'
+                  'w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors',
+                  game.genre ? 'text-slate-900' : 'text-slate-400'
                 )}
               >
                 <option value="">Select genre…</option>
@@ -210,7 +210,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
           {/* Row 3: Play Time + Last Played */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
                 Play Time (hours)
               </label>
               <input
@@ -220,12 +220,12 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 value={game.play_time_hours}
                 onChange={e => set('play_time_hours', e.target.value)}
                 placeholder="e.g. 120"
-                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+              <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
                 Last Played Date
               </label>
               <input
@@ -233,14 +233,14 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 value={game.last_played_date}
                 max={new Date().toISOString().split('T')[0]}
                 onChange={e => set('last_played_date', e.target.value)}
-                className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors [color-scheme:dark]"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors"
               />
             </div>
           </div>
 
           {/* Row 4: Personal Rating */}
           <div>
-            <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-2">
+            <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-2">
               Personal Rating
             </label>
             <StarPicker value={game.personal_rating} onChange={v => set('personal_rating', v)} />
@@ -248,7 +248,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
 
           {/* Row 5: Reason */}
           <div>
-            <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider mb-1.5">
+            <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
               Why Do You Love This Game?
             </label>
             <textarea
@@ -257,9 +257,9 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
               placeholder="Tell us what makes this game special to you…"
               rows={3}
               maxLength={1000}
-              className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-white placeholder-gray-500 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500/30 transition-colors resize-none"
+              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors resize-none"
             />
-            <p className="text-gray-600 text-xs mt-1 text-right">{game.reason.length}/1000</p>
+            <p className="text-slate-400 text-xs mt-1 text-right">{game.reason.length}/1000</p>
           </div>
 
           {/* Row 6: Would Recommend */}
@@ -269,7 +269,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
               onClick={() => set('would_recommend', !game.would_recommend)}
               className={cn(
                 'relative w-11 h-6 rounded-full transition-colors duration-200 focus:outline-none flex-shrink-0',
-                game.would_recommend ? 'bg-indigo-600' : 'bg-gray-700'
+                game.would_recommend ? 'bg-rose-500' : 'bg-slate-300'
               )}
             >
               <span className={cn(
@@ -283,7 +283,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
           </div>
 
           {/* Row 7: Image Upload */}
-          <div className="border-t border-gray-800 pt-5">
+          <div className="border-t border-slate-200 pt-5">
             <ImageUploader
               images={game.game_images}
               onChange={imgs => set('game_images', imgs)}

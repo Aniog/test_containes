@@ -19,16 +19,16 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center group-hover:bg-indigo-500 transition-colors">
+              <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center group-hover:bg-violet-500 transition-colors">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-white font-bold text-lg tracking-tight">
-                Level<span className="text-indigo-400">Up</span>
+              <span className="text-slate-900 font-bold text-lg tracking-tight">
+                Level<span className="text-violet-600">Up</span>
               </span>
             </Link>
 
@@ -40,8 +40,8 @@ export default function Navbar() {
                   to={to}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     location.pathname === to
-                      ? 'bg-indigo-600/20 text-indigo-400'
-                      : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                      ? 'bg-violet-50 text-violet-700'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   {label}
@@ -53,17 +53,17 @@ export default function Navbar() {
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setIsOpen(true)}
-                className="relative p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
+                className="relative p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all"
               >
                 <ShoppingCart className="w-5 h-5" />
                 {count > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-indigo-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-violet-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
                     {count}
                   </span>
                 )}
               </button>
               <button
-                className="md:hidden p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-all"
+                className="md:hidden p-2 text-slate-500 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-all"
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
                 {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -74,7 +74,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-gray-800 bg-gray-950 px-4 py-3 space-y-1">
+          <div className="md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1">
             {navLinks.map(({ to, label, icon: Icon }) => (
               <Link
                 key={to}
@@ -82,8 +82,8 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                   location.pathname === to
-                    ? 'bg-indigo-600/20 text-indigo-400'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                    ? 'bg-violet-50 text-violet-700'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >
                 <Icon className="w-4 h-4" />

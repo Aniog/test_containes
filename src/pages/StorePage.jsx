@@ -65,27 +65,27 @@ export default function StorePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="py-10">
-          <h1 className="text-4xl font-black text-white mb-2">Game Store</h1>
-          <p className="text-gray-400">Browse and buy the best games across all platforms</p>
+          <h1 className="text-4xl font-black text-slate-900 mb-2">Game Store</h1>
+          <p className="text-slate-500">Browse and buy the best games across all platforms</p>
         </div>
 
         {/* Search + Filter Bar */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="Search games..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-gray-900 border border-gray-700 rounded-xl pl-10 pr-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 text-sm"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-violet-500 text-sm shadow-sm"
             />
           </div>
           <div className="flex gap-2">
             <select
               value={sort}
               onChange={e => setSort(e.target.value)}
-              className="bg-gray-900 border border-gray-700 rounded-xl px-3 py-2.5 text-white text-sm focus:outline-none focus:border-indigo-500"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-700 text-sm focus:outline-none focus:border-violet-500 shadow-sm"
             >
               {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
@@ -103,16 +103,16 @@ export default function StorePage() {
 
         {/* Filters Panel */}
         {showFilters && (
-          <div className="bg-gray-900 border border-gray-700 rounded-xl p-5 mb-6 space-y-4">
+          <div className="bg-white border border-slate-200 rounded-xl p-5 mb-6 space-y-4 shadow-sm">
             <div>
-              <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Genre</p>
+              <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">Genre</p>
               <div className="flex flex-wrap gap-2">
                 {GENRES.map(g => (
                   <button
                     key={g}
                     onClick={() => setGenre(g)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      genre === g ? 'bg-indigo-600 text-white' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700'
+                      genre === g ? 'bg-violet-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
                     }`}
                   >
                     {g}
@@ -121,14 +121,14 @@ export default function StorePage() {
               </div>
             </div>
             <div>
-              <p className="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Platform</p>
+              <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider mb-2">Platform</p>
               <div className="flex flex-wrap gap-2">
                 {PLATFORMS.map(p => (
                   <button
                     key={p}
                     onClick={() => setPlatform(p)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      platform === p ? 'bg-indigo-600 text-white' : 'bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700'
+                      platform === p ? 'bg-violet-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
                     }`}
                   >
                     {p}
@@ -140,7 +140,7 @@ export default function StorePage() {
         )}
 
         {/* Results count */}
-        <p className="text-gray-500 text-sm mb-5">
+        <p className="text-slate-500 text-sm mb-5">
           {loading ? 'Loading...' : `${sortedGames.length} game${sortedGames.length !== 1 ? 's' : ''} found`}
         </p>
 
@@ -150,8 +150,8 @@ export default function StorePage() {
         ) : sortedGames.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">🎮</div>
-            <p className="text-gray-400 text-lg font-medium">No games found</p>
-            <p className="text-gray-600 text-sm mt-1">Try adjusting your filters</p>
+            <p className="text-slate-600 text-lg font-medium">No games found</p>
+            <p className="text-slate-400 text-sm mt-1">Try adjusting your filters</p>
             <Button className="mt-4" onClick={clearFilters}>Clear Filters</Button>
           </div>
         ) : (

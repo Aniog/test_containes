@@ -47,22 +47,21 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-gray-950 via-indigo-950/30 to-gray-950 pt-24 pb-20">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-indigo-900/20 via-transparent to-transparent" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&q=30')] bg-cover bg-center opacity-5" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-slate-50 pt-24 pb-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-violet-100/60 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-indigo-600/20 border border-indigo-500/30 rounded-full px-4 py-1.5 mb-6">
-              <Zap className="w-4 h-4 text-indigo-400" />
-              <span className="text-indigo-300 text-sm font-medium">Your Ultimate Gaming Hub</span>
+            <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
+              <Zap className="w-4 h-4 text-violet-600" />
+              <span className="text-violet-700 text-sm font-medium">Your Ultimate Gaming Hub</span>
             </div>
-            <h1 className="text-5xl md:text-7xl font-black text-white leading-tight mb-6">
+            <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6">
               Level Up Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">
                 Gaming Experience
               </span>
             </h1>
-            <p className="text-gray-400 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
+            <p className="text-slate-500 text-lg md:text-xl leading-relaxed mb-8 max-w-2xl">
               Discover the best game deals across Steam, Epic, PlayStation, Xbox, and Nintendo. 
               Stay updated with the latest gaming news, reviews, and buy games directly from our store.
             </p>
@@ -85,10 +84,10 @@ export default function HomePage() {
       </section>
 
       {/* Platform Badges */}
-      <section className="bg-gray-900/50 border-y border-gray-800 py-6">
+      <section className="bg-white border-y border-slate-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-            <span className="text-gray-500 text-sm font-medium">Deals from:</span>
+            <span className="text-slate-400 text-sm font-medium">Deals from:</span>
             {PLATFORM_LOGOS.map(p => (
               <Link
                 key={p.name}
@@ -104,7 +103,7 @@ export default function HomePage() {
       </section>
 
       {/* Stats */}
-      <section className="py-12 bg-gray-950">
+      <section className="py-12 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
@@ -113,10 +112,10 @@ export default function HomePage() {
               { label: 'Platforms', value: '5', icon: '🕹️' },
               { label: 'Happy Gamers', value: '50K+', icon: '⭐' },
             ].map(stat => (
-              <div key={stat.label} className="bg-gray-900 rounded-xl p-5 border border-gray-800 text-center">
+              <div key={stat.label} className="bg-white rounded-xl p-5 border border-slate-200 shadow-sm text-center">
                 <div className="text-3xl mb-2">{stat.icon}</div>
-                <div className="text-2xl font-black text-white">{stat.value}</div>
-                <div className="text-gray-500 text-sm mt-1">{stat.label}</div>
+                <div className="text-2xl font-black text-slate-900">{stat.value}</div>
+                <div className="text-slate-500 text-sm mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -129,10 +128,10 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="w-5 h-5 text-indigo-400" />
-                <span className="text-indigo-400 text-sm font-medium uppercase tracking-wider">Featured</span>
+                <TrendingUp className="w-5 h-5 text-violet-600" />
+                <span className="text-violet-600 text-sm font-medium uppercase tracking-wider">Featured</span>
               </div>
-              <h2 className="text-white text-3xl font-black">Top Games</h2>
+              <h2 className="text-slate-900 text-3xl font-black">Top Games</h2>
             </div>
             <Link to="/store">
               <Button variant="outline" size="sm">
@@ -148,15 +147,15 @@ export default function HomePage() {
 
       {/* Hot Deals */}
       {hotDeals.length > 0 && (
-        <section className="py-16 bg-gray-900/30">
+        <section className="py-16 bg-slate-50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex items-center justify-between mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <Tag className="w-5 h-5 text-green-400" />
-                  <span className="text-green-400 text-sm font-medium uppercase tracking-wider">Limited Time</span>
+                  <Tag className="w-5 h-5 text-emerald-600" />
+                  <span className="text-emerald-600 text-sm font-medium uppercase tracking-wider">Limited Time</span>
                 </div>
-                <h2 className="text-white text-3xl font-black">Hot Deals</h2>
+                <h2 className="text-slate-900 text-3xl font-black">Hot Deals</h2>
               </div>
               <Link to="/deals">
                 <Button variant="outline" size="sm">
@@ -177,10 +176,10 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <BookOpen className="w-5 h-5 text-purple-400" />
-                <span className="text-purple-400 text-sm font-medium uppercase tracking-wider">Latest</span>
+                <BookOpen className="w-5 h-5 text-sky-600" />
+                <span className="text-sky-600 text-sm font-medium uppercase tracking-wider">Latest</span>
               </div>
-              <h2 className="text-white text-3xl font-black">News & Articles</h2>
+              <h2 className="text-slate-900 text-3xl font-black">News & Articles</h2>
             </div>
             <Link to="/articles">
               <Button variant="outline" size="sm">

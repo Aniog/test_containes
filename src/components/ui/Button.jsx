@@ -3,12 +3,12 @@ import { cn } from '../../lib/utils'
 
 export function Button({ children, variant = 'primary', size = 'md', className, disabled, onClick, type = 'button' }) {
   const variants = {
-    primary: 'bg-indigo-600 hover:bg-indigo-500 text-white',
-    secondary: 'bg-gray-700 hover:bg-gray-600 text-white',
-    outline: 'border border-gray-500 hover:border-indigo-400 text-gray-200 hover:text-white bg-transparent',
-    ghost: 'text-gray-300 hover:text-white hover:bg-gray-700 bg-transparent',
+    primary: 'bg-violet-600 hover:bg-violet-500 text-white shadow-sm',
+    secondary: 'bg-slate-200 hover:bg-slate-300 text-slate-800',
+    outline: 'border border-slate-300 hover:border-violet-400 text-slate-700 hover:text-violet-700 bg-white',
+    ghost: 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 bg-transparent',
     danger: 'bg-red-600 hover:bg-red-500 text-white',
-    success: 'bg-green-600 hover:bg-green-500 text-white',
+    success: 'bg-emerald-600 hover:bg-emerald-500 text-white',
   }
   const sizes = {
     sm: 'px-3 py-1.5 text-sm',

@@ -59,9 +59,9 @@ export default function ImageUploader({ images, onChange }) {
 
   return (
     <div className="space-y-3">
-      <label className="block text-gray-300 text-xs font-semibold uppercase tracking-wider">
+      <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider">
         Game Screenshots / Images
-        <span className="ml-1.5 text-gray-600 font-normal normal-case">
+        <span className="ml-1.5 text-slate-400 font-normal normal-case">
           (optional · up to 5 MB each · {ALLOWED_EXT_LABEL})
         </span>
       </label>
@@ -78,15 +78,15 @@ export default function ImageUploader({ images, onChange }) {
         className={cn(
           'flex flex-col items-center justify-center gap-2 border-2 border-dashed rounded-xl py-6 px-4 cursor-pointer transition-all duration-200 select-none',
           dragOver
-            ? 'border-indigo-400 bg-indigo-500/10'
-            : 'border-gray-700 hover:border-indigo-500/60 hover:bg-indigo-500/5'
+            ? 'border-rose-400 bg-rose-50'
+            : 'border-slate-300 hover:border-rose-400 hover:bg-rose-50/50'
         )}
       >
-        <ImagePlus className={cn('w-7 h-7 transition-colors', dragOver ? 'text-indigo-400' : 'text-gray-500')} />
-        <p className="text-sm text-gray-400">
-          <span className="text-indigo-400 font-medium">Click to upload</span> or drag &amp; drop images
+        <ImagePlus className={cn('w-7 h-7 transition-colors', dragOver ? 'text-rose-500' : 'text-slate-400')} />
+        <p className="text-sm text-slate-500">
+          <span className="text-rose-500 font-medium">Click to upload</span> or drag &amp; drop images
         </p>
-        <p className="text-xs text-gray-600">Multiple files allowed</p>
+        <p className="text-xs text-slate-400">Multiple files allowed</p>
       </div>
 
       <input
@@ -110,7 +110,7 @@ export default function ImageUploader({ images, onChange }) {
       {images.length > 0 && (
         <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
           {images.map(img => (
-            <div key={img.id} className="relative group aspect-square rounded-lg overflow-hidden bg-gray-800 border border-gray-700">
+            <div key={img.id} className="relative group aspect-square rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
               <img
                 src={img.previewUrl}
                 alt={img.filename}
@@ -137,7 +137,7 @@ export default function ImageUploader({ images, onChange }) {
       )}
 
       {images.length > 0 && (
-        <p className="text-gray-600 text-xs">{images.length} image{images.length !== 1 ? 's' : ''} selected</p>
+        <p className="text-slate-400 text-xs">{images.length} image{images.length !== 1 ? 's' : ''} selected</p>
       )}
     </div>
   )

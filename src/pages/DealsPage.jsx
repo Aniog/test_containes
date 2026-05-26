@@ -63,15 +63,15 @@ export default function DealsPage() {
         {/* Header */}
         <div className="py-10">
           <div className="flex items-center gap-3 mb-2">
-            <Tag className="w-7 h-7 text-green-400" />
-            <h1 className="text-4xl font-black text-white">Game Deals</h1>
+            <Tag className="w-7 h-7 text-emerald-600" />
+            <h1 className="text-4xl font-black text-slate-900">Game Deals</h1>
           </div>
-          <p className="text-gray-400">Best discounts across all major gaming platforms</p>
+          <p className="text-slate-500">Best discounts across all major gaming platforms</p>
           {deals.length > 0 && (
-            <div className="mt-4 inline-flex items-center gap-2 bg-green-900/30 border border-green-700/40 rounded-xl px-4 py-2">
-              <span className="text-green-400 font-bold">{deals.length} active deals</span>
-              <span className="text-gray-500">·</span>
-              <span className="text-gray-400 text-sm">Up to ${totalSavings.toFixed(0)} in savings</span>
+            <div className="mt-4 inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-xl px-4 py-2">
+              <span className="text-emerald-700 font-bold">{deals.length} active deals</span>
+              <span className="text-slate-400">·</span>
+              <span className="text-slate-500 text-sm">Up to ${totalSavings.toFixed(0)} in savings</span>
             </div>
           )}
         </div>
@@ -85,9 +85,9 @@ export default function DealsPage() {
               className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${
                 platform === p
                   ? p === 'All'
-                    ? 'bg-indigo-600 text-white border-indigo-600'
+                    ? 'bg-emerald-600 text-white border-emerald-600'
                     : `${PLATFORM_STYLES[p]} border`
-                  : 'bg-gray-900 text-gray-400 border-gray-700 hover:text-white hover:border-gray-500'
+                  : 'bg-white text-slate-600 border-slate-300 hover:text-slate-900 hover:border-slate-400'
               }`}
             >
               {p}
@@ -102,21 +102,21 @@ export default function DealsPage() {
               key={g}
               onClick={() => setGenre(g)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                genre === g ? 'bg-indigo-600 text-white' : 'bg-gray-800 text-gray-500 hover:text-white hover:bg-gray-700'
+                genre === g ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
               }`}
             >
               {g}
             </button>
           ))}
           {hasFilters && (
-            <button onClick={clearFilters} className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-800 text-red-400 hover:bg-gray-700 transition-all">
+            <button onClick={clearFilters} className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-100 text-red-500 hover:bg-slate-200 transition-all">
               <X className="w-3 h-3" /> Clear
             </button>
           )}
         </div>
 
         {/* Results */}
-        <p className="text-gray-500 text-sm mb-5">
+        <p className="text-slate-500 text-sm mb-5">
           {loading ? 'Loading...' : `${deals.length} deal${deals.length !== 1 ? 's' : ''} found`}
         </p>
 
@@ -125,8 +125,8 @@ export default function DealsPage() {
         ) : deals.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-5xl mb-4">🏷️</div>
-            <p className="text-gray-400 text-lg font-medium">No deals found</p>
-            <p className="text-gray-600 text-sm mt-1">Try a different platform or genre</p>
+            <p className="text-slate-600 text-lg font-medium">No deals found</p>
+            <p className="text-slate-400 text-sm mt-1">Try a different platform or genre</p>
             <Button className="mt-4" onClick={clearFilters}>Clear Filters</Button>
           </div>
         ) : (
