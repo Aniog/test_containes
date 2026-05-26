@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
   return (
-    <main className="min-h-screen bg-teal-50 py-12 flex justify-center items-start">
+    <main className="min-h-screen bg-indigo-50 py-12 flex justify-center items-start">
       <TodoApp />
     </main>
   )
