@@ -13,8 +13,8 @@ export default function HeroSection() {
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
-        data-strk-bg-id="hero-bg-mc099"
-        data-strk-bg="fluorescent microscopy cell biology colorful glowing neon"
+        data-strk-bg-id="hero-bg-mc101"
+        data-strk-bg="bioluminescent deep sea ocean glowing blue plankton underwater"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
