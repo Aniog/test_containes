@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Travel Arrangements",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the traveler"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the traveler"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the traveler"
+    },
+    "from_city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Departure city or airport"
+    },
+    "to_city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Destination city or airport"
+    },
+    "departure_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of departure"
+    },
+    "return_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of return (leave empty for one-way)"
+    },
+    "travelers": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 20,
+      "default": 1,
+      "description": "Number of travelers"
+    },
+    "travel_class": {
+      "type": "string",
+      "enum": ["economy", "business", "first"],
+      "default": "economy",
+      "description": "Preferred travel class"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Special requests or additional notes"
+    }
+  },
+  "required": ["name", "email", "from_city", "to_city", "departure_date", "travelers", "travel_class"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
