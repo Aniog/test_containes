@@ -1,4 +1,5 @@
 import { DataClient } from '@strikingly/sdk'
+import { v4 as uuidv4 } from 'uuid'
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
@@ -33,6 +34,7 @@ export async function createTodo(title) {
     .from('TodoItem')
     .insert({
       data: {
+        id: uuidv4(),
         title,
         completed: false,
       },
