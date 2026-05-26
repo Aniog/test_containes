@@ -21,7 +21,7 @@ export default function GameCard({ game }) {
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {hasDiscount && (
-          <div className="absolute top-2 right-2 bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+          <div className="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
             -{d.discount_percent}%
           </div>
         )}

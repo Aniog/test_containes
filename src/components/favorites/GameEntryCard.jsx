@@ -8,7 +8,7 @@ const GENRES = ['Action', 'RPG', 'Strategy', 'Shooter', 'Adventure', 'Racing', '
 const PLAY_STATUSES = ['Currently Playing', 'Completed', 'On Hold', 'Dropped', 'Plan to Play']
 
 const PLAY_STATUS_COLORS = {
-  'Currently Playing': 'text-emerald-600 bg-emerald-50 border-emerald-300',
+  'Currently Playing': 'text-violet-600 bg-violet-50 border-violet-300',
   'Completed':         'text-blue-400 bg-blue-400/10 border-blue-500/40',
   'On Hold':           'text-amber-600 bg-amber-50 border-amber-300',
   'Dropped':           'text-red-400 bg-red-400/10 border-red-500/40',
@@ -79,12 +79,12 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
   return (
     <div className={cn(
       'bg-white border rounded-2xl overflow-hidden transition-all duration-200 shadow-sm',
-      Object.keys(errors).length > 0 ? 'border-red-400' : 'border-slate-200 hover:border-rose-300'
+      Object.keys(errors).length > 0 ? 'border-red-400' : 'border-slate-200 hover:border-violet-300'
     )}>
       {/* Card Header */}
       <div className="flex items-center justify-between px-5 py-4 bg-slate-50">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-rose-50 border border-rose-200 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-violet-50 border border-violet-200 rounded-lg flex items-center justify-center">
             <Gamepad2 className="w-4 h-4 text-indigo-400" />
           </div>
           <div>
@@ -144,7 +144,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                   'w-full bg-white border rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 transition-colors',
                   hasError('game_name')
                     ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
-                    : 'border-slate-300 focus:border-rose-500 focus:ring-rose-500/20'
+                    : 'border-slate-300 focus:border-violet-500 focus:ring-violet-500/20'
                 )}
               />
               {hasError('game_name') && <p className="text-red-400 text-xs mt-1">{errors.game_name}</p>}
@@ -162,7 +162,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                   game.platform ? 'text-slate-900' : 'text-slate-400',
                   hasError('platform')
                     ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
-                    : 'border-slate-300 focus:border-rose-500 focus:ring-rose-500/20'
+                    : 'border-slate-300 focus:border-violet-500 focus:ring-violet-500/20'
                 )}
               >
                 <option value="" disabled>Select platform…</option>
@@ -182,7 +182,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 value={game.play_status}
                 onChange={e => set('play_status', e.target.value)}
                 className={cn(
-                  'w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors',
+                  'w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20 transition-colors',
                   game.play_status ? 'text-slate-900' : 'text-slate-400'
                 )}
               >
@@ -197,7 +197,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 value={game.genre}
                 onChange={e => set('genre', e.target.value)}
                 className={cn(
-                  'w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors',
+                  'w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20 transition-colors',
                   game.genre ? 'text-slate-900' : 'text-slate-400'
                 )}
               >
@@ -220,7 +220,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 value={game.play_time_hours}
                 onChange={e => set('play_time_hours', e.target.value)}
                 placeholder="e.g. 120"
-                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20 transition-colors"
               />
             </div>
 
@@ -233,7 +233,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
                 value={game.last_played_date}
                 max={new Date().toISOString().split('T')[0]}
                 onChange={e => set('last_played_date', e.target.value)}
-                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors"
+                className="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-slate-900 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20 transition-colors"
               />
             </div>
           </div>
@@ -257,7 +257,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
               placeholder="Tell us what makes this game special to you…"
               rows={3}
               maxLength={1000}
-              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-rose-500 focus:ring-1 focus:ring-rose-500/20 transition-colors resize-none"
+              className="w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:border-violet-500 focus:ring-1 focus:ring-violet-500/20 transition-colors resize-none"
             />
             <p className="text-slate-400 text-xs mt-1 text-right">{game.reason.length}/1000</p>
           </div>
@@ -269,7 +269,7 @@ export default function GameEntryCard({ game, index, onChange, onRemove, canRemo
               onClick={() => set('would_recommend', !game.would_recommend)}
               className={cn(
                 'relative w-11 h-6 rounded-full transition-colors duration-200 focus:outline-none flex-shrink-0',
-                game.would_recommend ? 'bg-rose-500' : 'bg-slate-300'
+                game.would_recommend ? 'bg-violet-500' : 'bg-slate-300'
               )}
             >
               <span className={cn(

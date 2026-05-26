@@ -9,14 +9,14 @@ export default function DealCard({ deal }) {
   const expiresIn = d.expires_at ? formatDistanceToNow(new Date(d.expires_at), { addSuffix: true }) : null
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-emerald-400/60 hover:shadow-md transition-all duration-300 group flex flex-col">
+    <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-violet-400/60 hover:shadow-md transition-all duration-300 group flex flex-col">
       <div className="relative overflow-hidden">
         <img
           src={d.cover_image || 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&q=80'}
           alt={d.game_title}
           className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute top-2 right-2 bg-emerald-500 text-white text-sm font-black px-3 py-1 rounded-xl shadow-lg">
+        <div className="absolute top-2 right-2 bg-violet-500 text-white text-sm font-black px-3 py-1 rounded-xl shadow-lg">
           -{d.discount_percent}%
         </div>
         <div className="absolute top-2 left-2">
@@ -40,9 +40,9 @@ export default function DealCard({ deal }) {
 
         <div className="mt-auto space-y-3">
           <div className="flex items-baseline gap-2">
-            <span className="text-emerald-600 font-black text-xl">${d.deal_price?.toFixed(2)}</span>
+            <span className="text-violet-600 font-black text-xl">${d.deal_price?.toFixed(2)}</span>
             <span className="text-slate-400 text-sm line-through">${d.original_price?.toFixed(2)}</span>
-            <span className="text-emerald-600 text-xs font-medium">Save ${savings}</span>
+            <span className="text-violet-600 text-xs font-medium">Save ${savings}</span>
           </div>
 
           {expiresIn && (
@@ -57,7 +57,7 @@ export default function DealCard({ deal }) {
               href={d.deal_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-medium py-2 rounded-lg transition-colors"
+              className="flex items-center justify-center gap-2 w-full bg-violet-600 hover:bg-violet-500 text-white text-sm font-medium py-2 rounded-lg transition-colors"
             >
               <ExternalLink className="w-3.5 h-3.5" />
               Get Deal

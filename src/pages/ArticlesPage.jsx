@@ -44,7 +44,7 @@ export default function ArticlesPage() {
         {/* Header */}
         <div className="py-10">
           <div className="flex items-center gap-3 mb-2">
-            <BookOpen className="w-7 h-7 text-sky-600" />
+            <BookOpen className="w-7 h-7 text-violet-600" />
             <h1 className="text-4xl font-black text-slate-900">News & Articles</h1>
           </div>
           <p className="text-slate-500">Latest gaming news, reviews, guides, and more</p>
@@ -59,7 +59,7 @@ export default function ArticlesPage() {
               placeholder="Search articles..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 text-sm shadow-sm"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-violet-500 text-sm shadow-sm"
             />
           </div>
           {(search || category !== 'All') && (
@@ -76,7 +76,7 @@ export default function ArticlesPage() {
               key={c}
               onClick={() => setCategory(c)}
               className={`px-4 py-2 rounded-xl text-sm font-medium transition-all ${
-                category === c ? 'bg-sky-600 text-white' : 'bg-white text-slate-600 border border-slate-300 hover:text-slate-900 hover:border-slate-400'
+                category === c ? 'bg-violet-600 text-white' : 'bg-white text-slate-600 border border-slate-300 hover:text-slate-900 hover:border-slate-400'
               }`}
             >
               {c}

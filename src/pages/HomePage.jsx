@@ -152,8 +152,8 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <Tag className="w-5 h-5 text-emerald-600" />
-                  <span className="text-emerald-600 text-sm font-medium uppercase tracking-wider">Limited Time</span>
+                  <Tag className="w-5 h-5 text-violet-600" />
+                  <span className="text-violet-600 text-sm font-medium uppercase tracking-wider">Limited Time</span>
                 </div>
                 <h2 className="text-slate-900 text-3xl font-black">Hot Deals</h2>
               </div>
@@ -176,8 +176,8 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <BookOpen className="w-5 h-5 text-sky-600" />
-                <span className="text-sky-600 text-sm font-medium uppercase tracking-wider">Latest</span>
+                <BookOpen className="w-5 h-5 text-violet-600" />
+                <span className="text-violet-600 text-sm font-medium uppercase tracking-wider">Latest</span>
               </div>
               <h2 className="text-slate-900 text-3xl font-black">News & Articles</h2>
             </div>
