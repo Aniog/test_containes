@@ -78,13 +78,13 @@ export default function ImageUploader({ images, onChange }) {
         className={cn(
           'flex flex-col items-center justify-center gap-2 border-2 border-dashed rounded-xl py-6 px-4 cursor-pointer transition-all duration-200 select-none',
           dragOver
-            ? 'border-violet-400 bg-violet-50'
-            : 'border-slate-300 hover:border-violet-400 hover:bg-violet-50/50'
+            ? 'border-rose-400 bg-rose-50'
+            : 'border-slate-300 hover:border-rose-400 hover:bg-rose-50/50'
         )}
       >
-        <ImagePlus className={cn('w-7 h-7 transition-colors', dragOver ? 'text-violet-500' : 'text-slate-400')} />
+        <ImagePlus className={cn('w-7 h-7 transition-colors', dragOver ? 'text-rose-500' : 'text-slate-400')} />
         <p className="text-sm text-slate-500">
-          <span className="text-violet-500 font-medium">Click to upload</span> or drag &amp; drop images
+          <span className="text-rose-500 font-medium">Click to upload</span> or drag &amp; drop images
         </p>
         <p className="text-xs text-slate-400">Multiple files allowed</p>
       </div>

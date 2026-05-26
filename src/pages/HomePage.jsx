@@ -47,17 +47,17 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-violet-50 via-white to-slate-50 pt-24 pb-20">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-violet-100/60 via-transparent to-transparent" />
+      <section className="relative overflow-hidden bg-gradient-to-br from-rose-50 via-white to-slate-50 pt-24 pb-20">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rose-100/60 via-transparent to-transparent" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 bg-violet-100 border border-violet-200 rounded-full px-4 py-1.5 mb-6">
-              <Zap className="w-4 h-4 text-violet-600" />
-              <span className="text-violet-700 text-sm font-medium">Your Ultimate Gaming Hub</span>
+            <div className="inline-flex items-center gap-2 bg-rose-100 border border-rose-200 rounded-full px-4 py-1.5 mb-6">
+              <Zap className="w-4 h-4 text-rose-600" />
+              <span className="text-rose-700 text-sm font-medium">Your Ultimate Gaming Hub</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-tight mb-6">
               Level Up Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-purple-500">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-rose-600 to-purple-500">
                 Gaming Experience
               </span>
             </h1>
@@ -128,8 +128,8 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="w-5 h-5 text-violet-600" />
-                <span className="text-violet-600 text-sm font-medium uppercase tracking-wider">Featured</span>
+                <TrendingUp className="w-5 h-5 text-rose-600" />
+                <span className="text-rose-600 text-sm font-medium uppercase tracking-wider">Featured</span>
               </div>
               <h2 className="text-slate-900 text-3xl font-black">Top Games</h2>
             </div>
@@ -152,8 +152,8 @@ export default function HomePage() {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <div className="flex items-center gap-2 mb-1">
-                  <Tag className="w-5 h-5 text-violet-600" />
-                  <span className="text-violet-600 text-sm font-medium uppercase tracking-wider">Limited Time</span>
+                  <Tag className="w-5 h-5 text-rose-600" />
+                  <span className="text-rose-600 text-sm font-medium uppercase tracking-wider">Limited Time</span>
                 </div>
                 <h2 className="text-slate-900 text-3xl font-black">Hot Deals</h2>
               </div>
@@ -176,8 +176,8 @@ export default function HomePage() {
           <div className="flex items-center justify-between mb-8">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <BookOpen className="w-5 h-5 text-violet-600" />
-                <span className="text-violet-600 text-sm font-medium uppercase tracking-wider">Latest</span>
+                <BookOpen className="w-5 h-5 text-rose-600" />
+                <span className="text-rose-600 text-sm font-medium uppercase tracking-wider">Latest</span>
               </div>
               <h2 className="text-slate-900 text-3xl font-black">News & Articles</h2>
             </div>

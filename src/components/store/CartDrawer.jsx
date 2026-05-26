@@ -14,7 +14,7 @@ export default function CartDrawer() {
       <div className="fixed right-0 top-0 h-full w-full max-w-sm bg-white border-l border-slate-200 z-50 flex flex-col shadow-2xl">
         <div className="flex items-center justify-between p-5 border-b border-slate-200">
           <div className="flex items-center gap-2">
-            <ShoppingCart className="w-5 h-5 text-violet-600" />
+            <ShoppingCart className="w-5 h-5 text-rose-600" />
             <h2 className="text-slate-900 font-bold text-lg">Cart ({count})</h2>
           </div>
           <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-700 p-1 rounded transition-colors">
@@ -48,7 +48,7 @@ export default function CartDrawer() {
                       ))}
                     </div>
                     <div className="flex items-center justify-between mt-2">
-                      <span className="text-violet-600 font-bold">${price?.toFixed(2)}</span>
+                      <span className="text-rose-600 font-bold">${price?.toFixed(2)}</span>
                       <button
                         onClick={() => removeFromCart(item.id)}
                         className="text-slate-400 hover:text-red-500 transition-colors p-1"

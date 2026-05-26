@@ -63,13 +63,13 @@ export default function DealsPage() {
         {/* Header */}
         <div className="py-10">
           <div className="flex items-center gap-3 mb-2">
-            <Tag className="w-7 h-7 text-violet-600" />
+            <Tag className="w-7 h-7 text-rose-600" />
             <h1 className="text-4xl font-black text-slate-900">Game Deals</h1>
           </div>
           <p className="text-slate-500">Best discounts across all major gaming platforms</p>
           {deals.length > 0 && (
-            <div className="mt-4 inline-flex items-center gap-2 bg-violet-50 border border-violet-200 rounded-xl px-4 py-2">
-              <span className="text-violet-700 font-bold">{deals.length} active deals</span>
+            <div className="mt-4 inline-flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-xl px-4 py-2">
+              <span className="text-rose-700 font-bold">{deals.length} active deals</span>
               <span className="text-slate-400">·</span>
               <span className="text-slate-500 text-sm">Up to ${totalSavings.toFixed(0)} in savings</span>
             </div>
@@ -85,7 +85,7 @@ export default function DealsPage() {
               className={`px-4 py-2 rounded-xl text-sm font-semibold border transition-all ${
                 platform === p
                   ? p === 'All'
-                    ? 'bg-violet-600 text-white border-violet-600'
+                    ? 'bg-rose-600 text-white border-rose-600'
                     : `${PLATFORM_STYLES[p]} border`
                   : 'bg-white text-slate-600 border-slate-300 hover:text-slate-900 hover:border-slate-400'
               }`}
@@ -102,7 +102,7 @@ export default function DealsPage() {
               key={g}
               onClick={() => setGenre(g)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                genre === g ? 'bg-violet-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+                genre === g ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
               }`}
             >
               {g}

@@ -34,7 +34,7 @@ export default function ArticleCard({ article, featured = false }) {
                 <Badge key={p} variant="secondary">{p}</Badge>
               ))}
             </div>
-            <h2 className="text-white font-bold text-xl leading-tight group-hover:text-violet-300 transition-colors line-clamp-2">
+            <h2 className="text-white font-bold text-xl leading-tight group-hover:text-rose-300 transition-colors line-clamp-2">
               {d.title}
             </h2>
             <div className="flex items-center gap-4 mt-3 text-slate-300 text-sm">
@@ -50,7 +50,7 @@ export default function ArticleCard({ article, featured = false }) {
 
   return (
     <Link to={`/articles/${article.id}`} className="group block">
-      <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-violet-400/60 hover:shadow-md transition-all duration-300 flex flex-col h-full">
+      <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-rose-400/60 hover:shadow-md transition-all duration-300 flex flex-col h-full">
         <div className="relative overflow-hidden">
           <img
             src={d.cover_image || 'https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&q=80'}
@@ -62,7 +62,7 @@ export default function ArticleCard({ article, featured = false }) {
           </div>
         </div>
         <div className="p-4 flex flex-col flex-1">
-          <h3 className="text-slate-900 font-semibold text-sm leading-tight group-hover:text-violet-600 transition-colors line-clamp-2 mb-2">
+          <h3 className="text-slate-900 font-semibold text-sm leading-tight group-hover:text-rose-600 transition-colors line-clamp-2 mb-2">
             {d.title}
           </h3>
           <p className="text-slate-500 text-xs line-clamp-3 mb-3 flex-1">{d.excerpt}</p>

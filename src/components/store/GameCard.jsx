@@ -13,7 +13,7 @@ export default function GameCard({ game }) {
   const hasDiscount = d.discount_percent > 0
 
   return (
-    <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-violet-400/60 hover:shadow-md transition-all duration-300 group flex flex-col">
+    <div className="bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-rose-400/60 hover:shadow-md transition-all duration-300 group flex flex-col">
       <Link to={`/store/${game.id}`} className="block relative overflow-hidden">
         <img
           src={d.cover_image || 'https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&q=80'}
@@ -21,12 +21,12 @@ export default function GameCard({ game }) {
           className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
         />
         {hasDiscount && (
-          <div className="absolute top-2 right-2 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
+          <div className="absolute top-2 right-2 bg-rose-500 text-white text-xs font-bold px-2 py-1 rounded-lg">
             -{d.discount_percent}%
           </div>
         )}
         {d.featured && (
-          <div className="absolute top-2 left-2 bg-violet-600 text-white text-xs font-bold px-2 py-1 rounded-lg">
+          <div className="absolute top-2 left-2 bg-rose-600 text-white text-xs font-bold px-2 py-1 rounded-lg">
             Featured
           </div>
         )}
@@ -41,7 +41,7 @@ export default function GameCard({ game }) {
         </div>
 
         <Link to={`/store/${game.id}`}>
-          <h3 className="text-slate-900 font-semibold text-sm leading-tight hover:text-violet-600 transition-colors line-clamp-2 mb-1">
+          <h3 className="text-slate-900 font-semibold text-sm leading-tight hover:text-rose-600 transition-colors line-clamp-2 mb-1">
             {d.title}
           </h3>
         </Link>
@@ -49,7 +49,7 @@ export default function GameCard({ game }) {
         {d.rating && (
           <div className="flex items-center gap-1 mb-2">
             <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500" />
-            <span className="text-amber-600 text-xs font-medium">{d.rating.toFixed(1)}</span>
+            <span className="text-rose-600 text-xs font-medium">{d.rating.toFixed(1)}</span>
             <span className="text-slate-400 text-xs">/ 5</span>
           </div>
         )}

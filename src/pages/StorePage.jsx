@@ -78,14 +78,14 @@ export default function StorePage() {
               placeholder="Search games..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-violet-500 text-sm shadow-sm"
+              className="w-full bg-white border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-rose-500 text-sm shadow-sm"
             />
           </div>
           <div className="flex gap-2">
             <select
               value={sort}
               onChange={e => setSort(e.target.value)}
-              className="bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-700 text-sm focus:outline-none focus:border-violet-500 shadow-sm"
+              className="bg-white border border-slate-300 rounded-xl px-3 py-2.5 text-slate-700 text-sm focus:outline-none focus:border-rose-500 shadow-sm"
             >
               {SORT_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
             </select>
@@ -112,7 +112,7 @@ export default function StorePage() {
                     key={g}
                     onClick={() => setGenre(g)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      genre === g ? 'bg-violet-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+                      genre === g ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
                     }`}
                   >
                     {g}
@@ -128,7 +128,7 @@ export default function StorePage() {
                     key={p}
                     onClick={() => setPlatform(p)}
                     className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                      platform === p ? 'bg-violet-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
+                      platform === p ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-600 hover:text-slate-900 hover:bg-slate-200'
                     }`}
                   >
                     {p}

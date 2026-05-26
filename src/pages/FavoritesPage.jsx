@@ -24,8 +24,8 @@ function validate(visitorName, visitorEmail, games) {
 function SuccessScreen({ count, onReset }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center px-4">
-      <div className="w-20 h-20 bg-violet-50 border border-violet-200 rounded-full flex items-center justify-center mb-6">
-        <CheckCircle className="w-10 h-10 text-violet-500" />
+      <div className="w-20 h-20 bg-rose-50 border border-rose-200 rounded-full flex items-center justify-center mb-6">
+        <CheckCircle className="w-10 h-10 text-rose-500" />
       </div>
       <h2 className="text-3xl font-black text-slate-900 mb-3">Thanks for sharing!</h2>
       <p className="text-slate-500 text-lg mb-2">
@@ -128,8 +128,8 @@ export default function FavoritesPage() {
 
         {/* Page Header */}
         <div className="py-10 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-violet-50 border border-violet-200 rounded-2xl mb-5">
-            <Heart className="w-8 h-8 text-violet-500" />
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-rose-50 border border-rose-200 rounded-2xl mb-5">
+            <Heart className="w-8 h-8 text-rose-500" />
           </div>
           <h1 className="text-4xl font-black text-slate-900 mb-3">Share Your Favorite Games</h1>
           <p className="text-slate-500 text-lg max-w-xl mx-auto">
@@ -141,7 +141,7 @@ export default function FavoritesPage() {
           {/* Visitor Info */}
           <div className="bg-white border border-slate-200 rounded-2xl p-6 mb-6 shadow-sm">
             <div className="flex items-center gap-2 mb-1">
-              <div className="w-1 h-5 bg-violet-500 rounded-full" />
+              <div className="w-1 h-5 bg-rose-500 rounded-full" />
               <h2 className="text-slate-900 font-bold text-base">Your Info</h2>
             </div>
             <p className="text-slate-400 text-xs mb-5 pl-3">
@@ -164,7 +164,7 @@ export default function FavoritesPage() {
                     'w-full bg-white border rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 transition-colors',
                     topErrors.visitor_name
                       ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
-                      : 'border-slate-300 focus:border-violet-500 focus:ring-violet-500/20'
+                      : 'border-slate-300 focus:border-rose-500 focus:ring-rose-500/20'
                   )}
                 />
                 {topErrors.visitor_name && (
@@ -177,7 +177,7 @@ export default function FavoritesPage() {
               <div data-error={topErrors.visitor_email ? true : undefined}>
                 <label className="block text-slate-600 text-xs font-semibold uppercase tracking-wider mb-1.5">
                   Email <span className="text-red-400">*</span>
-                  <span className="ml-1.5 text-violet-500 font-normal normal-case text-[10px]">— groups your submissions</span>
+                  <span className="ml-1.5 text-rose-500 font-normal normal-case text-[10px]">— groups your submissions</span>
                 </label>
                 <input
                   type="email"
@@ -191,7 +191,7 @@ export default function FavoritesPage() {
                     'w-full bg-white border rounded-xl px-4 py-2.5 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-1 transition-colors',
                     topErrors.visitor_email
                       ? 'border-red-500 focus:border-red-400 focus:ring-red-400/30'
-                      : 'border-slate-300 focus:border-violet-500 focus:ring-violet-500/20'
+                      : 'border-slate-300 focus:border-rose-500 focus:ring-rose-500/20'
                   )}
                 />
                 {topErrors.visitor_email && (
@@ -207,10 +207,10 @@ export default function FavoritesPage() {
           <div className="space-y-4 mb-6">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Gamepad2 className="w-5 h-5 text-violet-500" />
+                <Gamepad2 className="w-5 h-5 text-rose-500" />
                 <h2 className="text-slate-900 font-bold text-base">
                   Your Favorite Games
-                  <span className="ml-2 text-violet-500 text-sm font-normal">({games.length})</span>
+                  <span className="ml-2 text-rose-500 text-sm font-normal">({games.length})</span>
                 </h2>
               </div>
             </div>
@@ -232,7 +232,7 @@ export default function FavoritesPage() {
           <button
             type="button"
             onClick={addGame}
-            className="w-full w-full border-2 border-dashed border-slate-300 hover:border-violet-400 hover:bg-violet-50/50 rounded-2xl py-4 flex items-center justify-center gap-2 text-slate-400 hover:text-violet-500 transition-all duration-200 mb-8 group"
+            className="w-full w-full border-2 border-dashed border-slate-300 hover:border-rose-400 hover:bg-rose-50/50 rounded-2xl py-4 flex items-center justify-center gap-2 text-slate-400 hover:text-rose-500 transition-all duration-200 mb-8 group"
           >
             <Plus className="w-5 h-5 group-hover:scale-110 transition-transform" />
             <span className="font-medium">Add Another Game</span>

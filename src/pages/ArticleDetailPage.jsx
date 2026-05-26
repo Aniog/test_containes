@@ -39,7 +39,7 @@ export default function ArticleDetailPage() {
       <div className="text-center">
         <div className="text-5xl mb-4">📰</div>
         <p className="text-slate-500 text-lg">Article not found</p>
-        <Link to="/articles" className="mt-4 inline-block text-violet-600 hover:text-violet-500">Back to Articles</Link>
+        <Link to="/articles" className="mt-4 inline-block text-rose-600 hover:text-rose-500">Back to Articles</Link>
       </div>
     </div>
   )
@@ -74,7 +74,7 @@ export default function ArticleDetailPage() {
         <div className="flex flex-wrap items-center gap-5 text-slate-500 text-sm mb-8 pb-8 border-b border-slate-200">
           {d.author && (
             <span className="flex items-center gap-2">
-              <div className="w-7 h-7 bg-violet-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+              <div className="w-7 h-7 bg-rose-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
                 {d.author[0]}
               </div>
               <span className="text-slate-700">{d.author}</span>
@@ -86,7 +86,7 @@ export default function ArticleDetailPage() {
 
         {/* Excerpt */}
         {d.excerpt && (
-          <p className="text-slate-600 text-lg leading-relaxed mb-8 font-medium border-l-4 border-violet-500 pl-5">
+          <p className="text-slate-600 text-lg leading-relaxed mb-8 font-medium border-l-4 border-rose-500 pl-5">
             {d.excerpt}
           </p>
         )}
@@ -94,7 +94,7 @@ export default function ArticleDetailPage() {
         {/* Content */}
         {d.content && (
           <div
-            className="prose prose-slate prose-lg max-w-none text-slate-700 leading-relaxed space-y-4 [&_p]:text-slate-700 [&_h2]:text-slate-900 [&_h3]:text-slate-900 [&_strong]:text-slate-900 [&_a]:text-violet-600"
+            className="prose prose-slate prose-lg max-w-none text-slate-700 leading-relaxed space-y-4 [&_p]:text-slate-700 [&_h2]:text-slate-900 [&_h3]:text-slate-900 [&_strong]:text-slate-900 [&_a]:text-rose-600"
             dangerouslySetInnerHTML={{ __html: d.content }}
           />
         )}

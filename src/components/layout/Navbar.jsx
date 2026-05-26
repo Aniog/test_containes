@@ -24,11 +24,11 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center group-hover:bg-violet-500 transition-colors">
+              <div className="w-8 h-8 bg-rose-600 rounded-lg flex items-center justify-center group-hover:bg-rose-500 transition-colors">
                 <Zap className="w-5 h-5 text-white" />
               </div>
               <span className="text-slate-900 font-bold text-lg tracking-tight">
-                Level<span className="text-violet-600">Up</span>
+                Level<span className="text-rose-600">Up</span>
               </span>
             </Link>
 
@@ -40,7 +40,7 @@ export default function Navbar() {
                   to={to}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     location.pathname === to
-                      ? 'bg-violet-50 text-violet-700'
+                      ? 'bg-rose-50 text-rose-700'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
@@ -57,7 +57,7 @@ export default function Navbar() {
               >
                 <ShoppingCart className="w-5 h-5" />
                 {count > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-violet-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-rose-600 text-white text-xs rounded-full flex items-center justify-center font-bold">
                     {count}
                   </span>
                 )}
@@ -82,7 +82,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
                   location.pathname === to
-                    ? 'bg-violet-50 text-violet-700'
+                    ? 'bg-rose-50 text-rose-700'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                 }`}
               >

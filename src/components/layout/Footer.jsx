@@ -9,10 +9,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-rose-600 rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="text-slate-900 font-bold text-lg">Level<span className="text-violet-600">Up</span></span>
+              <span className="text-slate-900 font-bold text-lg">Level<span className="text-rose-600">Up</span></span>
             </Link>
             <p className="text-slate-500 text-sm leading-relaxed">
               Your ultimate destination for game deals, news, reviews, and the best gaming store.

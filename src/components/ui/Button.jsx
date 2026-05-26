@@ -3,9 +3,9 @@ import { cn } from '../../lib/utils'
 
 export function Button({ children, variant = 'primary', size = 'md', className, disabled, onClick, type = 'button' }) {
   const variants = {
-    primary: 'bg-violet-600 hover:bg-violet-500 text-white shadow-sm',
+    primary: 'bg-rose-600 hover:bg-rose-500 text-white shadow-sm',
     secondary: 'bg-slate-200 hover:bg-slate-300 text-slate-800',
-    outline: 'border border-slate-300 hover:border-violet-400 text-slate-700 hover:text-violet-700 bg-white',
+    outline: 'border border-slate-300 hover:border-rose-400 text-slate-700 hover:text-rose-700 bg-white',
     ghost: 'text-slate-600 hover:text-slate-900 hover:bg-slate-100 bg-transparent',
     danger: 'bg-red-600 hover:bg-red-500 text-white',
     success: 'bg-emerald-600 hover:bg-emerald-500 text-white',

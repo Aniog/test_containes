@@ -3,7 +3,7 @@ import { cn } from '../../lib/utils'
 
 export function Badge({ children, variant = 'default', className }) {
   const variants = {
-    default: 'bg-violet-600 text-white',
+    default: 'bg-rose-600 text-white',
     secondary: 'bg-slate-200 text-slate-700',
     success: 'bg-emerald-600 text-white',
     danger: 'bg-red-600 text-white',
