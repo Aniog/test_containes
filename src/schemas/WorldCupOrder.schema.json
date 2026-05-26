@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "World Cup Orders",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Customer full name"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer email address"
+    },
+    "customer_phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Customer phone number"
+    },
+    "shipping_address": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Full shipping address"
+    },
+    "items": {
+      "type": "array",
+      "description": "List of ordered items",
+      "items": {
+        "type": "object",
+        "properties": {
+          "product_id": { "type": "string" },
+          "product_name": { "type": "string" },
+          "quantity": { "type": "integer", "minimum": 1 },
+          "price": { "type": "number", "minimum": 0 },
+          "size": { "type": "string" }
+        }
+      }
+    },
+    "total_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total order amount in USD"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "shipped", "delivered", "cancelled"],
+      "default": "pending",
+      "description": "Order status"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["credit_card", "paypal", "alipay", "wechat_pay"],
+      "description": "Payment method used"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Order notes"
+    }
+  },
+  "required": ["customer_name", "customer_email", "items", "total_amount"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
