@@ -124,42 +124,43 @@ export default function TodoApp() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 mt-10 bg-white rounded-xl shadow-md text-slate-800">
-      <h1 className="text-3xl font-bold mb-6 text-center text-slate-800">Todo List</h1>
-      
+    <div className="w-full max-w-lg mx-auto p-8 bg-white rounded-[32px] text-teal-900 border-[3px] border-teal-100/50">
+      <h1 className="text-4xl font-extrabold mb-8 text-center tracking-tight text-teal-600">
+        My ToDo
+      </h1>
+
       {error && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <div className="bg-rose-50 text-rose-500 px-4 py-3 rounded-2xl mb-6 text-sm font-medium text-center">
           {error}
         </div>
       )}
 
-      <form onSubmit={handleCreate} className="flex gap-2 mb-6">
+      <form onSubmit={handleCreate} className="flex gap-3 mb-8">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="What needs to be done?"
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white text-gray-900"
+          placeholder="What's on your mind?"
+          className="flex-1 px-6 py-4 rounded-2xl bg-teal-50/50 text-teal-800 placeholder-teal-300 focus:outline-none focus:ring-2 focus:ring-teal-200 focus:bg-white transition-all duration-300 font-medium text-lg"
           disabled={status === 'submitting'}
         />
         <button
           type="submit"
           disabled={!inputValue.trim() || status === 'submitting'}
-          className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 flex items-center gap-2"
+          className="px-6 py-4 bg-teal-400 text-white font-bold rounded-2xl hover:bg-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-200 focus:ring-offset-2 disabled:opacity-50 flex items-center justify-center transition-all duration-300 transform active:scale-95"
         >
-          <Plus size={20} />
-          Add
+          <Plus size={24} strokeWidth={3} />
         </button>
       </form>
 
       {status === 'loading' ? (
-        <div className="text-center py-10 text-gray-500">Loading...</div>
+        <div className="text-center py-12 text-teal-300 font-medium">Loading your tasks...</div>
       ) : items.length === 0 ? (
-        <div className="text-center py-10 text-gray-500 border border-dashed border-gray-300 rounded-lg bg-gray-50">
-          No todo items yet. Add one above!
+        <div className="text-center py-12 text-teal-300 font-medium bg-teal-50/30 rounded-3xl border-2 border-dashed border-teal-100">
+          Nothing to do yet. Add a task above!
         </div>
       ) : (
-        <ul className="space-y-3">
+        <ul className="space-y-4">
           {items.map((item) => {
             const fields = getSchemaData(item);
             const isCompleted = fields.completed;
@@ -167,23 +168,25 @@ export default function TodoApp() {
             return (
               <li
                 key={item.id}
-                className={`flex items-center justify-between p-4 border rounded-lg transition-colors ${
-                  isCompleted ? 'bg-gray-50 border-gray-200' : 'bg-white border-gray-200 hover:border-blue-300'
+                className={`group flex items-center justify-between p-5 rounded-2xl transition-all duration-300 ${
+                  isCompleted 
+                    ? 'bg-teal-50/50 opacity-70' 
+                    : 'bg-white border-2 border-teal-50 hover:border-teal-100 hover:shadow-sm'
                 }`}
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-4 flex-1">
                   <button
                     type="button"
                     onClick={() => handleToggleStatus(item)}
-                    className={`focus:outline-none p-1 rounded-full ${
-                      isCompleted ? 'text-green-500 hover:text-green-600' : 'text-gray-400 hover:text-gray-600'
+                    className={`focus:outline-none transition-colors duration-300 focus:ring-2 focus:ring-teal-200 rounded-full ${
+                      isCompleted ? 'text-teal-400 hover:text-teal-500' : 'text-teal-200 hover:text-teal-400'
                     }`}
                   >
-                    {isCompleted ? <CheckCircle size={24} /> : <Circle size={24} />}
+                    {isCompleted ? <CheckCircle size={28} strokeWidth={2.5} /> : <Circle size={28} strokeWidth={2.5} />}
                   </button>
                   <span
-                    className={`text-lg transition-all ${
-                      isCompleted ? 'line-through text-gray-400' : 'text-gray-700'
+                    className={`text-lg font-medium transition-all duration-300 ${
+                      isCompleted ? 'line-through text-teal-300' : 'text-teal-800'
                     }`}
                   >
                     {fields.title}
@@ -192,10 +195,10 @@ export default function TodoApp() {
                 <button
                   type="button"
                   onClick={() => handleDelete(item.id)}
-                  className="p-2 text-red-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors focus:outline-none"
+                  className="p-2 text-rose-300 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-rose-200 opacity-0 group-hover:opacity-100"
                   title="Delete item"
                 >
-                  <Trash2 size={20} />
+                  <Trash2 size={22} strokeWidth={2.5} />
                 </button>
               </li>
             );
@@ -204,13 +207,13 @@ export default function TodoApp() {
       )}
 
       {items.some(item => getSchemaData(item).completed) && (
-        <div className="mt-8 flex justify-end pt-4 border-t border-gray-200">
+        <div className="mt-8 flex justify-end">
           <button
             onClick={handleClearCompleted}
             disabled={status === 'clearing'}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-600 hover:bg-red-50 rounded-lg transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-rose-400 hover:text-rose-500 hover:bg-rose-50 rounded-xl transition-all duration-300 disabled:opacity-50"
           >
-            <Trash size={16} />
+            <Trash size={18} strokeWidth={2.5} />
             {status === 'clearing' ? 'Clearing...' : 'Clear Completed'}
           </button>
         </div>
