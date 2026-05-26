@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "whatsapp": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "WhatsApp number of the inquirer"
+    },
+    "request_type": {
+      "type": "string",
+      "enum": ["Mold Sourcing", "Custom Mold Making", "Quotation Comparison", "Sampling Support", "Production Follow-up", "Delivery Support", "Other"],
+      "description": "Type of request"
+    },
+    "product_type": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Type of product requiring the mold"
+    },
+    "material": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Material for the mold or product"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated quantity or production volume"
+    },
+    "target_country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target country for delivery or market"
+    },
+    "project_details": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Detailed description of the project requirements"
+    },
+    "attachment": {
+      "type": "object",
+      "description": "Uploaded file attachment (drawing, photo, or sample reference)",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "file",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".gif", ".webp", ".pdf", ".doc", ".docx", ".dwg", ".dxf", ".step", ".stp", ".iges", ".igs"],
+      "x-maxFileSize": 20971520,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/gif", "image/webp", "application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"]
+    }
+  },
+  "required": ["name", "email"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
