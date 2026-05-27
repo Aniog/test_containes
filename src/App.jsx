@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { DataClient } from '@strikingly/sdk'
+import { useState, useEffect, useRef } from 'react'
+import { DataClient, ImageHelper } from '@strikingly/sdk'
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from './config.jsx'
+import strkImgConfig from './strk-img-config.json'
 import './App.css'
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
@@ -8,6 +9,7 @@ const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 const MEETING_DATE = 'Monday, 1 June 2026'
 
 function App() {
+  const containerRef = useRef(null)
   const [values, setValues] = useState({
     name: '',
     email: '',
@@ -17,6 +19,12 @@ function App() {
   })
   const [status, setStatus] = useState('idle') // idle | submitting | success | error
   const [errorMsg, setErrorMsg] = useState('')
+
+  useEffect(() => {
+    if (containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    }
+  }, [status])
 
   const onChange = (e) => {
     const { name, value } = e.target
@@ -72,8 +80,26 @@ function App() {
 
   if (status === 'success') {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-10 max-w-md w-full text-center">
+      <div
+        ref={containerRef}
+        className="relative min-h-screen flex items-center justify-center px-4"
+      >
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          data-strk-bg-id="success-bg-a3f9c1"
+          data-strk-bg="[bg-context] [meeting-date-label]"
+          data-strk-bg-ratio="16x9"
+          data-strk-bg-width="1600"
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+
+        {/* Hidden context for image query */}
+        <span id="bg-context" className="hidden">formal ceremony solemn occasion grand hall</span>
+        <span id="meeting-date-label" className="hidden">{MEETING_DATE}</span>
+
+        <div className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-10 max-w-md w-full text-center">
           <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
