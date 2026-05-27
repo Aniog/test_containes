@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Plus, Trash2, Check, X } from 'lucide-react'
 import { fetchTodos, createTodo, updateTodo, deleteTodo, deleteCompletedTodos } from './api/todos'
-import { Toaster, toast } from 'sonner'
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -18,7 +16,6 @@ function App() {
       const data = await fetchTodos()
       setTodos(data)
     } catch (error) {
-      toast.error('Failed to load todos')
       console.error(error)
     } finally {
       setLoading(false)
@@ -34,9 +31,7 @@ function App() {
       const newTodo = await createTodo(newTodoTitle.trim())
       setTodos([newTodo, ...todos])
       setNewTodoTitle('')
-      toast.success('Todo added successfully')
     } catch (error) {
-      toast.error('Failed to add todo')
       console.error(error)
     } finally {
       setSubmitting(false)
@@ -51,9 +46,7 @@ function App() {
         completed: !fields.completed
       })
       setTodos(todos.map(t => t.id === todo.id ? updated : t))
-      toast.success(fields.completed ? 'Marked as incomplete' : 'Marked as complete')
     } catch (error) {
-      toast.error('Failed to update todo')
       console.error(error)
     }
   }
@@ -62,120 +55,91 @@ function App() {
     try {
       await deleteTodo(id)
       setTodos(todos.filter(t => t.id !== id))
-      toast.success('Todo deleted')
     } catch (error) {
-      toast.error('Failed to delete todo')
       console.error(error)
     }
   }
 
   const handleClearCompleted = async () => {
-    const completedCount = todos.filter(t => (t.data || {}).completed).length
-    if (completedCount === 0) return
-
     try {
       await deleteCompletedTodos()
       setTodos(todos.filter(t => !(t.data || {}).completed))
-      toast.success(`Cleared ${completedCount} completed todo${completedCount > 1 ? 's' : ''}`)
     } catch (error) {
-      toast.error('Failed to clear completed todos')
       console.error(error)
     }
   }
 
   const completedCount = todos.filter(t => (t.data || {}).completed).length
-  const activeCount = todos.length - completedCount
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-          <div className="mb-8">
-            <h1 className="text-3xl font-semibold text-gray-900 mb-2">Todo</h1>
-            <p className="text-gray-500">
-              {activeCount} active, {completedCount} completed
-            </p>
-          </div>
+    <div className="min-h-screen bg-white flex items-start justify-center pt-20 px-4">
+      <div className="w-full max-w-md">
+        <h1 className="text-2xl font-light text-gray-900 mb-8 tracking-tight">todos</h1>
 
-          <form onSubmit={handleAddTodo} className="mb-6">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={newTodoTitle}
-                onChange={(e) => setNewTodoTitle(e.target.value)}
-                placeholder="What needs to be done?"
-                className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900"
-                disabled={submitting}
-              />
-              <button
-                type="submit"
-                disabled={submitting || !newTodoTitle.trim()}
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 font-medium transition-colors"
-              >
-                <Plus className="w-4 h-4" />
-                Add
-              </button>
-            </div>
-          </form>
+        <form onSubmit={handleAddTodo} className="mb-8">
+          <input
+            type="text"
+            value={newTodoTitle}
+            onChange={(e) => setNewTodoTitle(e.target.value)}
+            placeholder="What needs to be done?"
+            className="w-full px-0 py-3 text-lg border-0 border-b border-gray-200 focus:outline-none focus:border-gray-400 placeholder:text-gray-400 bg-transparent"
+            disabled={submitting}
+          />
+        </form>
 
-          {loading ? (
-            <div className="text-center py-12 text-gray-500">Loading...</div>
-          ) : todos.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              No todos yet. Add one above!
-            </div>
-          ) : (
-            <>
-              <ul className="space-y-2 mb-6">
-                {todos.map((todo) => {
-                  const fields = todo.data || {}
-                  return (
-                    <li
-                      key={todo.id}
-                      className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 group"
-                    >
-                      <button
-                        onClick={() => handleToggleComplete(todo)}
-                        className={`w-6 h-6 rounded-full border-2 flex items-center justify-center flex-shrink-0 transition-colors ${
-                          fields.completed
-                            ? 'bg-green-500 border-green-500'
-                            : 'border-gray-300 hover:border-gray-400'
-                        }`}
-                      >
-                        {fields.completed && <Check className="w-4 h-4 text-white" />}
-                      </button>
-                      <span
-                        className={`flex-1 text-gray-900 ${
-                          fields.completed ? 'line-through text-gray-400' : ''
-                        }`}
-                      >
-                        {fields.title}
-                      </span>
-                      <button
-                        onClick={() => handleDeleteTodo(todo.id)}
-                        className="p-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-all"
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </li>
-                  )
-                })}
-              </ul>
-
-              {completedCount > 0 && (
-                <button
-                  onClick={handleClearCompleted}
-                  className="w-full py-3 text-gray-600 hover:text-gray-900 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2"
+        {loading ? (
+          <div className="text-sm text-gray-400 py-8">Loading...</div>
+        ) : todos.length === 0 ? (
+          <div className="text-sm text-gray-400 py-8">No tasks yet</div>
+        ) : (
+          <ul className="space-y-px mb-8">
+            {todos.map((todo) => {
+              const fields = todo.data || {}
+              return (
+                <li
+                  key={todo.id}
+                  className="group flex items-center py-3 border-b border-gray-100"
                 >
-                  <X className="w-4 h-4" />
-                  Clear {completedCount} completed task{completedCount > 1 ? 's' : ''}
-                </button>
-              )}
-            </>
-          )}
-        </div>
+                  <button
+                    onClick={() => handleToggleComplete(todo)}
+                    className="mr-4 w-4 h-4 flex-shrink-0"
+                  >
+                    <div className={`w-4 h-4 rounded-full border transition-all ${
+                      fields.completed
+                        ? 'bg-gray-900 border-gray-900'
+                        : 'border-gray-300 group-hover:border-gray-400'
+                    }`}>
+                      {fields.completed && (
+                        <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 10l4 4L19 6" />
+                        </svg>
+                      )}
+                    </div>
+                  </button>
+                  <span className={`flex-1 text-[15px] transition-all ${fields.completed ? 'text-gray-400 line-through' : 'text-gray-900'}`}>
+                    {fields.title}
+                  </span>
+                  <button
+                    onClick={() => handleDeleteTodo(todo.id)}
+                    className="ml-4 text-gray-300 hover:text-gray-600 opacity-0 group-hover:opacity-100 transition-all text-lg leading-none pb-1"
+                  >
+                    ×
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        )}
+
+        {completedCount > 0 && (
+          <button
+            onClick={handleClearCompleted}
+            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            Clear completed ({completedCount})
+          </button>
+        )}
       </div>
-      <Toaster position="top-center" />
     </div>
   )
 }
