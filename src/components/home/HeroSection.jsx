@@ -30,7 +30,7 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm text-white rounded-full px-4 py-2 text-sm mb-6">
             <Sparkles className="w-4 h-4 text-[#C4A882]" />
-            <span>2024 年度家居品质之选</span>
+            <span>2026 年度家居品质之选</span>
           </div>
 
           {/* Main Heading */}

@@ -80,7 +80,7 @@ const Footer = () => {
       <div className="border-t border-white/10">
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-white/40 text-xs">
-            © 2024 由妮可家居用品有限公司 · 沪ICP备XXXXXXXX号
+            © 2026 由妮可家居用品有限公司 · 沪ICP备XXXXXXXX号
           </p>
           <p className="text-white/40 text-xs flex items-center gap-1">
             用
