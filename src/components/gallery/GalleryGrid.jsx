@@ -33,7 +33,10 @@ const GalleryGrid = () => {
           <div
             key={item.id}
             className={`relative overflow-hidden rounded-2xl group cursor-pointer ${item.span}`}
-            onClick={() => setLightbox(item)}
+            onClick={(e) => {
+              const img = e.currentTarget.querySelector('img');
+              setLightbox({ ...item, src: img?.src || '' });
+            }}
           >
             <img
               alt={item.title}
@@ -84,11 +87,7 @@ const GalleryGrid = () => {
               <img
                 alt={lightbox.title}
                 className="w-full h-full object-cover"
-                data-strk-img-id={`${lightbox.imgId}-lb`}
-                data-strk-img={`[lb-title] microscopy scientific`}
-                data-strk-img-ratio="16x9"
-                data-strk-img-width="1200"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                src={lightbox.src || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"}
               />
             </div>
             <div className="p-6">
