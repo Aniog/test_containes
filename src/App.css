@@ -1,48 +1,179 @@
+/* Global styles for MicroCosmos */
 #root {
   min-height: 100vh;
   padding: 0;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-}
-
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
-}
-
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
-}
-
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
 
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #059669;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #047857;
+}
+
+/* Loading animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Hover effects for images */
+.image-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #059669, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #059669, #047857);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #047857, #065f46);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+}
+
+/* Microscope animation */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(5, 150, 105, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(5, 150, 105, 0.6);
+  }
+}
+
+.microscope-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Network visualization */
+@keyframes network-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.network-node {
+  animation: network-pulse 3s infinite;
+}
+
+/* Responsive image containers */
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.image-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+  z-index: 1;
+}
+
+.image-container:hover::before {
+  transform: translateX(100%);
+}
+
+/* Section transitions */
+.section-enter {
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.section-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 3rem;
+    line-height: 1.1;
+  }
+  
+  .section-padding {
+    padding: 3rem 1rem;
+  }
+  
+  .grid-responsive {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none;
+  }
+  
+  body {
+    background: white;
+    color: black;
   }
 }
