@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Moments",
+  "type": "object",
+  "properties": {
+    "content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "The moment content text"
+    },
+    "author_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "Display name of the author"
+    },
+    "likes": {
+      "type": "integer",
+      "default": 0,
+      "minimum": 0,
+      "description": "Number of likes"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the moment was created"
+    }
+  },
+  "required": ["content", "author_name"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

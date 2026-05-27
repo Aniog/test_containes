@@ -1,20 +1,22 @@
 import { useState, useEffect } from 'react'
-import { fetchTodos, createTodo, updateTodo, deleteTodo, deleteCompletedTodos } from './api/todos'
+import { Heart, Send, User, Clock } from 'lucide-react'
+import { fetchMoments, createMoment, likeMoment, deleteMoment } from './api/moments'
 
 function App() {
-  const [todos, setTodos] = useState([])
-  const [newTodoTitle, setNewTodoTitle] = useState('')
+  const [moments, setMoments] = useState([])
+  const [content, setContent] = useState('')
+  const [authorName, setAuthorName] = useState('')
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
 
   useEffect(() => {
-    loadTodos()
+    loadMoments()
   }, [])
 
-  const loadTodos = async () => {
+  const loadMoments = async () => {
     try {
-      const data = await fetchTodos()
-      setTodos(data)
+      const data = await fetchMoments()
+      setMoments(data)
     } catch (error) {
       console.error(error)
     } finally {
@@ -22,15 +24,15 @@ function App() {
     }
   }
 
-  const handleAddTodo = async (e) => {
+  const handlePost = async (e) => {
     e.preventDefault()
-    if (!newTodoTitle.trim()) return
+    if (!content.trim() || !authorName.trim()) return
 
     setSubmitting(true)
     try {
-      const newTodo = await createTodo(newTodoTitle.trim())
-      setTodos([newTodo, ...todos])
-      setNewTodoTitle('')
+      const newMoment = await createMoment(content.trim(), authorName.trim())
+      setMoments([newMoment, ...moments])
+      setContent('')
     } catch (error) {
       console.error(error)
     } finally {
@@ -38,113 +40,139 @@ function App() {
     }
   }
 
-  const handleToggleComplete = async (todo) => {
-    const fields = todo.data || {}
+  const handleLike = async (moment) => {
+    const fields = moment.data || {}
     try {
-      const updated = await updateTodo(todo.id, {
-        ...fields,
-        completed: !fields.completed
-      })
-      setTodos(todos.map(t => t.id === todo.id ? updated : t))
+      const updated = await likeMoment(moment.id, fields.likes || 0)
+      setMoments(moments.map(m => m.id === moment.id ? updated : m))
     } catch (error) {
       console.error(error)
     }
   }
 
-  const handleDeleteTodo = async (id) => {
+  const handleDelete = async (id) => {
     try {
-      await deleteTodo(id)
-      setTodos(todos.filter(t => t.id !== id))
+      await deleteMoment(id)
+      setMoments(moments.filter(m => m.id !== id))
     } catch (error) {
       console.error(error)
     }
   }
 
-  const handleClearCompleted = async () => {
-    try {
-      await deleteCompletedTodos()
-      setTodos(todos.filter(t => !(t.data || {}).completed))
-    } catch (error) {
-      console.error(error)
-    }
+  const formatTime = (dateString) => {
+    const date = new Date(dateString)
+    const now = new Date()
+    const diff = Math.floor((now - date) / 1000 / 60)
+    
+    if (diff < 1) return '刚刚'
+    if (diff < 60) return `${diff}分钟前`
+    if (diff < 1440) return `${Math.floor(diff / 60)}小时前`
+    return `${Math.floor(diff / 1440)}天前`
   }
-
-  const completedCount = todos.filter(t => (t.data || {}).completed).length
 
   return (
-    <div className="min-h-screen bg-[#f0f7f4] flex items-start justify-center pt-20 px-4">
-      <div className="w-full max-w-md">
-        <div className="mb-8">
-          <h1 className="text-3xl font-light text-[#2d5a4a] tracking-tight">清新清单</h1>
-          <p className="text-sm text-[#6b8f7e] mt-1">简单记录每一天</p>
+    <div className="min-h-screen bg-[#f5f9f7]">
+      {/* Header */}
+      <div className="bg-white border-b border-[#d4e8df]">
+        <div className="max-w-2xl mx-auto px-4 py-5 flex items-center gap-3">
+          <div className="w-9 h-9 rounded-full bg-[#7fb89a] flex items-center justify-center">
+            <Heart className="w-5 h-5 text-white" />
+          </div>
+          <div>
+            <h1 className="text-xl font-medium text-[#2d5a4a]">清新圈</h1>
+            <p className="text-xs text-[#6b8f7e]">分享你的美好时刻</p>
+          </div>
         </div>
+      </div>
 
-        <form onSubmit={handleAddTodo} className="mb-8">
-          <div className="relative">
+      <div className="max-w-2xl mx-auto px-4 py-8">
+        {/* Post Form */}
+        <div className="bg-white rounded-2xl border border-[#d4e8df] p-6 mb-8">
+          <div className="flex items-center gap-2 mb-4 text-[#6b8f7e]">
+            <User className="w-4 h-4" />
+            <span className="text-sm">分享此刻</span>
+          </div>
+          
+          <form onSubmit={handlePost}>
             <input
               type="text"
-              value={newTodoTitle}
-              onChange={(e) => setNewTodoTitle(e.target.value)}
-              placeholder="添加新任务..."
-              className="w-full px-4 py-3.5 text-[15px] bg-white border border-[#d4e8df] rounded-xl focus:outline-none focus:border-[#7fb89a] placeholder:text-[#a8c5b5] transition-colors"
+              value={authorName}
+              onChange={(e) => setAuthorName(e.target.value)}
+              placeholder="你的名字"
+              className="w-full mb-3 px-4 py-2.5 text-sm bg-[#f5f9f7] border border-[#d4e8df] rounded-xl focus:outline-none focus:border-[#7fb89a] placeholder:text-[#a8c5b5]"
               disabled={submitting}
             />
-          </div>
-        </form>
+            <textarea
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+              placeholder="分享你的想法..."
+              rows={3}
+              className="w-full px-4 py-3 text-[15px] bg-[#f5f9f7] border border-[#d4e8df] rounded-xl focus:outline-none focus:border-[#7fb89a] placeholder:text-[#a8c5b5] resize-none"
+              disabled={submitting}
+            />
+            <div className="flex justify-end mt-3">
+              <button
+                type="submit"
+                disabled={submitting || !content.trim() || !authorName.trim()}
+                className="flex items-center gap-2 px-6 py-2.5 bg-[#7fb89a] text-white rounded-xl hover:bg-[#6da88a] disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm font-medium"
+              >
+                <Send className="w-4 h-4" />
+                发布
+              </button>
+            </div>
+          </form>
+        </div>
 
+        {/* Moments Feed */}
         {loading ? (
-          <div className="text-sm text-[#6b8f7e] py-8 text-center">加载中...</div>
-        ) : todos.length === 0 ? (
-          <div className="text-sm text-[#6b8f7e] py-8 text-center">暂无任务，添加一个吧</div>
+          <div className="text-center py-12 text-[#6b8f7e]">加载中...</div>
+        ) : moments.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="text-[#6b8f7e] mb-2">还没有动态</div>
+            <p className="text-sm text-[#a8c5b5]">成为第一个分享的人吧</p>
+          </div>
         ) : (
-          <div className="bg-white rounded-2xl border border-[#d4e8df] overflow-hidden mb-6">
-            <ul>
-              {todos.map((todo, index) => {
-                const fields = todo.data || {}
-                return (
-                  <li
-                    key={todo.id}
-                    className={`group flex items-center px-4 py-4 ${index !== todos.length - 1 ? 'border-b border-[#e8f0eb]' : ''}`}
-                  >
-                    <button
-                      onClick={() => handleToggleComplete(todo)}
-                      className="mr-3.5 w-5 h-5 flex-shrink-0"
-                    >
-                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all ${
-                        fields.completed
-                          ? 'bg-[#7fb89a] border-[#7fb89a]'
-                          : 'border-[#b8d4c7] group-hover:border-[#7fb89a]'
-                      }`}>
-                        {fields.completed && (
-                          <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 10l4 4L19 6" />
-                          </svg>
-                        )}
+          <div className="space-y-4">
+            {moments.map((moment) => {
+              const fields = moment.data || {}
+              return (
+                <div key={moment.id} className="bg-white rounded-2xl border border-[#d4e8df] p-6 group">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-[#e8f0eb] flex items-center justify-center">
+                        <User className="w-5 h-5 text-[#7fb89a]" />
                       </div>
-                    </button>
-                    <span className={`flex-1 text-[15px] transition-all ${fields.completed ? 'text-[#a8c5b5] line-through' : 'text-[#2d5a4a]'}`}>
-                      {fields.title}
-                    </span>
+                      <div>
+                        <div className="font-medium text-[#2d5a4a]">{fields.author_name}</div>
+                        <div className="flex items-center gap-1 text-xs text-[#a8c5b5]">
+                          <Clock className="w-3 h-3" />
+                          {formatTime(fields.created_at)}
+                        </div>
+                      </div>
+                    </div>
                     <button
-                      onClick={() => handleDeleteTodo(todo.id)}
-                      className="ml-3 text-[#c5d9cf] hover:text-[#7fb89a] opacity-0 group-hover:opacity-100 transition-all text-xl leading-none"
+                      onClick={() => handleDelete(moment.id)}
+                      className="text-[#c5d9cf] hover:text-[#7fb89a] opacity-0 group-hover:opacity-100 transition-all"
                     >
                       ×
                     </button>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        )}
+                  </div>
 
-        {completedCount > 0 && (
-          <button
-            onClick={handleClearCompleted}
-            className="text-xs text-[#6b8f7e] hover:text-[#2d5a4a] transition-colors px-3 py-1.5 rounded-lg hover:bg-white/60"
-          >
-            清除已完成 ({completedCount})
-          </button>
+                  <p className="text-[#2d5a4a] text-[15px] leading-relaxed mb-5 pl-1">
+                    {fields.content}
+                  </p>
+
+                  <button
+                    onClick={() => handleLike(moment)}
+                    className="flex items-center gap-2 px-4 py-2 rounded-xl hover:bg-[#f5f9f7] transition-colors text-sm text-[#6b8f7e] hover:text-[#2d5a4a]"
+                  >
+                    <Heart className="w-4 h-4" />
+                    <span>{fields.likes || 0}</span>
+                  </button>
+                </div>
+              )
+            })}
+          </div>
         )}
       </div>
     </div>
