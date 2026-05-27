@@ -114,7 +114,7 @@ const TodoApp = () => {
                 placeholder="搜索待办事项..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-300 focus:border-sky-300 placeholder-slate-400"
+                className="w-full pl-10 pr-4 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 placeholder-slate-400"
               />
             </div>
 
@@ -124,7 +124,7 @@ const TodoApp = () => {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-300 text-sm"
+                className="px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
               >
                 <option value="all">全部</option>
                 <option value="active">进行中</option>
@@ -133,7 +133,7 @@ const TodoApp = () => {
               <select
                 value={filterPriority}
                 onChange={(e) => setFilterPriority(e.target.value)}
-                className="px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-300 text-sm"
+                className="px-3 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
               >
                 <option value="all">所有优先级</option>
                 <option value="high">高优先级</option>
@@ -145,7 +145,7 @@ const TodoApp = () => {
             {/* 添加按钮 */}
             <button
               onClick={() => setShowForm(true)}
-              className="flex items-center gap-2 px-6 py-2 bg-sky-500 hover:bg-sky-600 text-white rounded-lg transition-colors duration-200 font-medium"
+              className="flex items-center gap-2 px-6 py-2 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg transition-colors duration-200 font-medium"
             >
               <Plus className="w-4 h-4" />
               添加任务
@@ -180,7 +180,7 @@ const TodoApp = () => {
                     setFilterStatus('all');
                     setFilterPriority('all');
                   }}
-                  className="text-sky-500 hover:text-sky-600 text-sm"
+                  className="text-cyan-500 hover:text-cyan-600 text-sm"
                 >
                   清除筛选条件
                 </button>

@@ -32,7 +32,7 @@ const TodoItem = ({ todo, onToggle, onDelete, onUpdate }) => {
       case 'high':
         return 'text-red-600 bg-red-100';
       case 'medium':
-        return 'text-yellow-600 bg-yellow-100';
+        return 'text-amber-600 bg-amber-100';
       case 'low':
         return 'text-slate-600 bg-slate-100';
       default:
@@ -66,7 +66,7 @@ const TodoItem = ({ todo, onToggle, onDelete, onUpdate }) => {
 
   return (
     <div className={`bg-white rounded-xl shadow-sm border transition-all duration-200 hover:shadow-md ${
-      todo.completed ? 'border-green-200 bg-green-50/30' : 'border-slate-100'
+      todo.completed ? 'border-emerald-200 bg-emerald-50/30' : 'border-slate-100'
     }`}>
       <div className="p-6">
         {isEditing ? (
