@@ -16,7 +16,7 @@ const HeroSection = () => {
       <div
         className="absolute inset-0 z-0"
         data-strk-bg-id="hero-bg-a1b2c3"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg="microscope microscopic world cells organisms colorful close up"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
