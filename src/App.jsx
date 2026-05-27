@@ -149,8 +149,8 @@ function App() {
                 </label>
                 <div className="flex gap-3">
                   {[
-                    { value: 'attending', label: 'Yes, I'll attend' },
-                    { value: 'not_attending', label: 'No, I can't make it' },
+                    { value: 'attending', label: "Yes, I'll attend" },
+                    { value: 'not_attending', label: "No, I can't make it" },
                   ].map((opt) => (
                     <label
                       key={opt.value}
