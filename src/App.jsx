@@ -122,17 +122,35 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-lg">
+    <div
+      ref={containerRef}
+      className="relative min-h-screen flex items-center justify-center px-4 py-12"
+    >
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        data-strk-bg-id="form-bg-7d2e4b"
+        data-strk-bg="[bg-context] [meeting-date-label]"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+      />
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/55" />
+
+      {/* Hidden context for image query */}
+      <span id="bg-context" className="hidden">formal ceremony solemn occasion grand hall</span>
+      <span id="meeting-date-label" className="hidden">{MEETING_DATE}</span>
+
+      <div className="relative z-10 w-full max-w-lg">
         {/* Header */}
         <div className="text-center mb-8">
-          <p className="text-sm font-medium text-indigo-600 uppercase tracking-widest mb-2">Meeting</p>
-          <h1 className="text-3xl font-bold text-slate-800">{MEETING_DATE}</h1>
-          <p className="text-slate-500 mt-2">Please fill in your details below so we can arrange everything.</p>
+          <p className="text-sm font-medium text-amber-300 uppercase tracking-widest mb-2">Meeting</p>
+          <h1 className="text-3xl font-bold text-white">{MEETING_DATE}</h1>
+          <p className="text-slate-300 mt-2">Please fill in your details below so we can arrange everything.</p>
         </div>
 
         {/* Form card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
+        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-8">
           <form onSubmit={onSubmit} noValidate>
             <div className="space-y-5">
 
