@@ -87,7 +87,7 @@ function App() {
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          data-strk-bg-id="success-bg-a3f9c1"
+          data-strk-bg-id="success-bg-c8e1f3"
           data-strk-bg="[bg-context] [meeting-date-label]"
           data-strk-bg-ratio="16x9"
           data-strk-bg-width="1600"
@@ -96,8 +96,8 @@ function App() {
         <div className="absolute inset-0 bg-black/60" />
 
         {/* Hidden context for image query */}
-        <span id="bg-context" className="hidden">formal ceremony solemn occasion grand hall</span>
-        <span id="meeting-date-label" className="hidden">{MEETING_DATE}</span>
+        <span id="bg-context" className="hidden">dark stone wall texture close-up abstract pattern</span>
+        <span id="meeting-date-label" className="hidden">dark background</span>
 
         <div className="relative z-10 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-white/20 p-10 max-w-md w-full text-center">
           <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -129,7 +129,7 @@ function App() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        data-strk-bg-id="form-bg-7d2e4b"
+        data-strk-bg-id="form-bg-9a5c2d"
         data-strk-bg="[bg-context] [meeting-date-label]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
@@ -138,8 +138,8 @@ function App() {
       <div className="absolute inset-0 bg-black/55" />
 
       {/* Hidden context for image query */}
-      <span id="bg-context" className="hidden">formal ceremony solemn occasion grand hall</span>
-      <span id="meeting-date-label" className="hidden">{MEETING_DATE}</span>
+      <span id="bg-context" className="hidden">dark stone wall texture close-up abstract pattern</span>
+      <span id="meeting-date-label" className="hidden">dark background</span>
 
       <div className="relative z-10 w-full max-w-lg">
         {/* Header */}
