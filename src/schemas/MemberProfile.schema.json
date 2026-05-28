@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Member Profiles",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the Users table",
+      "x-foreignKey": "users.id"
+    },
+    "name_zh": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "中文姓名"
+    },
+    "name_en": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "English name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number"
+    },
+    "graduation_year": {
+      "type": "integer",
+      "minimum": 1963,
+      "maximum": 2030,
+      "description": "Year of graduation from CUHK"
+    },
+    "department": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Department or faculty at CUHK"
+    },
+    "degree": {
+      "type": "string",
+      "enum": ["bachelor", "master", "phd", "other"],
+      "description": "Degree type"
+    },
+    "current_city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Current city of residence"
+    },
+    "current_company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Current employer"
+    },
+    "current_position": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Current job title"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short personal bio"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"],
+      "default": "pending",
+      "description": "Membership application status"
+    },
+    "membership_type": {
+      "type": "string",
+      "enum": ["regular", "lifetime"],
+      "default": "regular",
+      "description": "Type of membership"
+    },
+    "fee_paid": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether membership fee has been paid"
+    },
+    "fee_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Amount of membership fee paid (HKD)"
+    },
+    "fee_paid_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when fee was paid"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when membership was approved"
+    },
+    "admin_notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Admin notes about this member"
+    },
+    "avatar_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Profile photo URL"
+    }
+  },
+  "required": ["user_id", "name_zh", "email", "graduation_year", "department", "degree"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user", "guest"] },
+    "read": { "allow": ["owner", "user"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

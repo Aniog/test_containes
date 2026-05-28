@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fee Payments",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the paying user",
+      "x-foreignKey": "users.id"
+    },
+    "payment_type": {
+      "type": "string",
+      "enum": ["membership", "event"],
+      "description": "Type of payment"
+    },
+    "reference_id": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "ID of the related record (member profile ID or event registration ID)"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Payment amount (HKD)"
+    },
+    "currency": {
+      "type": "string",
+      "default": "HKD",
+      "maxLength": 10,
+      "description": "Currency code"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["fps", "bank_transfer", "cash", "other"],
+      "description": "Payment method"
+    },
+    "payment_reference": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Payment reference or transaction ID"
+    },
+    "proof_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of payment proof"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "rejected"],
+      "default": "pending",
+      "description": "Payment verification status"
+    },
+    "admin_notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Admin notes on this payment"
+    },
+    "confirmed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when payment was confirmed"
+    }
+  },
+  "required": ["user_id", "payment_type", "amount", "payment_method"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
