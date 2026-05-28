@@ -3,7 +3,7 @@
 ## Colors
 - Background: `bg-slate-50` (light page background)
 - Card background: `bg-white`
-- Primary accent: `bg-purple-600`, `text-purple-600`, `hover:bg-purple-700`
+- Primary accent: `bg-green-600`, `text-green-600`, `hover:bg-green-700`
 - Danger/Delete: `text-red-500`, `hover:text-red-600`
 - Success/Complete: `text-emerald-600`
 - Text primary: `text-slate-900`
@@ -24,7 +24,7 @@
 ## Borders & Shadows
 - Cards: `rounded-xl shadow-sm border border-slate-200`
 - Buttons: `rounded-lg`
-- Inputs: `rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:border-purple-500`
+- Inputs: `rounded-lg border border-slate-300 focus:ring-2 focus:ring-green-500 focus:border-green-500`
 
 ## Layout
 - Max content width: `max-w-2xl mx-auto`
