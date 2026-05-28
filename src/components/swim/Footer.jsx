@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { Waves } from 'lucide-react';
 
 export default function Footer() {
@@ -10,10 +11,10 @@ export default function Footer() {
             <span className="text-white font-extrabold text-lg">SwimGear</span>
           </div>
           <nav className="flex flex-wrap justify-center gap-6 text-sm">
-            <a href="#products" className="hover:text-white transition">Products</a>
-            <a href="#features" className="hover:text-white transition">Features</a>
-            <a href="#brands" className="hover:text-white transition">Brands</a>
-            <a href="#contact" className="hover:text-white transition">Contact</a>
+            <Link to="/" className="hover:text-white transition">Home</Link>
+            <Link to="/products" className="hover:text-white transition">Products</Link>
+            <Link to="/about" className="hover:text-white transition">About</Link>
+            <Link to="/contact" className="hover:text-white transition">Contact</Link>
           </nav>
           <p className="text-sky-400 text-sm">
             © {new Date().getFullYear()} SwimGear. All rights reserved.

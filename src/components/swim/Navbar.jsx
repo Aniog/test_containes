@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Waves } from 'lucide-react';
 
 const links = [
-  { label: 'Products', href: '#products' },
-  { label: 'Features', href: '#features' },
-  { label: 'Brands', href: '#brands' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', to: '/' },
+  { label: 'Products', to: '/products' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 export default function Navbar() {
@@ -14,28 +15,34 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-sky-100">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center gap-2 text-sky-700 font-extrabold text-xl">
+        <Link to="/" className="flex items-center gap-2 text-sky-700 font-extrabold text-xl">
           <Waves className="w-6 h-6 text-cyan-500" />
           SwimGear
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.label}>
-              <a href={l.href} className="text-slate-600 hover:text-sky-700 font-medium transition">
+              <NavLink
+                to={l.to}
+                end={l.to === '/'}
+                className={({ isActive }) =>
+                  `font-medium transition ${isActive ? 'text-sky-700' : 'text-slate-600 hover:text-sky-700'}`
+                }
+              >
                 {l.label}
-              </a>
+              </NavLink>
             </li>
           ))}
         </ul>
 
-        <a
-          href="#products"
+        <Link
+          to="/products"
           className="hidden md:inline-flex bg-sky-700 hover:bg-sky-800 text-white rounded-full px-6 py-2 font-semibold text-sm transition"
         >
           Shop Now
-        </a>
+        </Link>
 
         {/* Mobile toggle */}
         <button
@@ -53,23 +60,26 @@ export default function Navbar() {
           <ul className="flex flex-col gap-4 pt-4">
             {links.map((l) => (
               <li key={l.label}>
-                <a
-                  href={l.href}
-                  className="text-slate-600 hover:text-sky-700 font-medium transition block"
+                <NavLink
+                  to={l.to}
+                  end={l.to === '/'}
+                  className={({ isActive }) =>
+                    `font-medium transition block ${isActive ? 'text-sky-700' : 'text-slate-600 hover:text-sky-700'}`
+                  }
                   onClick={() => setOpen(false)}
                 >
                   {l.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
-          <a
-            href="#products"
+          <Link
+            to="/products"
             className="mt-4 inline-flex bg-sky-700 text-white rounded-full px-6 py-2 font-semibold text-sm"
             onClick={() => setOpen(false)}
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       )}
     </nav>

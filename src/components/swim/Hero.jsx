@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -119,18 +120,18 @@ export default function Hero() {
           Dive in with confidence.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#products"
+          <Link
+            to="/products"
             className="bg-white text-sky-700 hover:bg-cyan-50 rounded-full px-8 py-3.5 font-semibold text-base transition shadow-lg"
           >
             Explore Products
-          </a>
-          <a
-            href="#features"
+          </Link>
+          <Link
+            to="/about"
             className="border-2 border-white text-white hover:bg-white hover:text-sky-700 rounded-full px-8 py-3.5 font-semibold text-base transition"
           >
             Learn More
-          </a>
+          </Link>
         </div>
       </div>
 
