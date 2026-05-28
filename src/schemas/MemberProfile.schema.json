@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Member Profiles",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "用户唯一ID（客户端生成的UUID）"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "用户邮箱，用于登录"
+    },
+    "password_hash": {
+      "type": "string",
+      "minLength": 1,
+      "description": "密码的SHA-256哈希值"
+    },
+    "role": {
+      "type": "string",
+      "enum": ["user", "admin"],
+      "default": "user",
+      "description": "用户角色"
+    },
+    "real_name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "description": "真实姓名"
+    },
+    "student_id": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "学号"
+    },
+    "graduation_year": {
+      "type": "integer",
+      "minimum": 1960,
+      "maximum": 2030,
+      "description": "毕业年份"
+    },
+    "department": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "所在院系/专业"
+    },
+    "degree": {
+      "type": "string",
+      "enum": ["本科", "硕士", "博士", "其他"],
+      "description": "学位类型"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "联系电话"
+    },
+    "wechat": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "微信号"
+    },
+    "current_city": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "现居城市"
+    },
+    "current_company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "现任职单位"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "个人简介"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"],
+      "default": "pending",
+      "description": "审核状态：pending待审核，approved已通过，rejected已拒绝"
+    },
+    "membership_paid": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否已缴纳会费"
+    },
+    "membership_paid_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "缴费时间"
+    },
+    "membership_expires_at": {
+      "type": "string",
+      "format": "date",
+      "description": "会员有效期至"
+    },
+    "admin_note": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "管理员备注"
+    },
+    "avatar_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "头像URL"
+    },
+    "payment_type": {
+      "type": "string",
+      "enum": ["annual", "lifetime"],
+      "description": "会费类型：annual年费，lifetime终身"
+    },
+    "payment_method": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "付款方式：wechat_pay/alipay/bank_transfer/fps/payme/other"
+    },
+    "payment_ref": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "付款参考号或说明"
+    },
+    "payment_amount": {
+      "type": "number",
+      "description": "实际缴费金额（港币）"
+    },
+    "payment_pending": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否有待确认的缴费申请"
+    }
+  },
+  "required": ["user_id", "email", "password_hash", "real_name", "graduation_year", "department", "degree"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

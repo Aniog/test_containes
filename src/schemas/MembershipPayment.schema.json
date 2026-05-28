@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Membership Payments",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "user_name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "用户姓名（快照）"
+    },
+    "user_email": {
+      "type": "string",
+      "format": "email",
+      "description": "用户邮箱（快照）"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "缴费金额（港币）"
+    },
+    "payment_type": {
+      "type": "string",
+      "enum": ["annual", "lifetime"],
+      "description": "会费类型：annual年费，lifetime终身会员"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["wechat_pay", "alipay", "bank_transfer", "fps", "payme", "other"],
+      "description": "支付方式"
+    },
+    "transaction_ref": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "交易参考号/转账截图说明"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "rejected"],
+      "default": "pending",
+      "description": "缴费状态"
+    },
+    "valid_from": {
+      "type": "string",
+      "format": "date",
+      "description": "会员有效期开始"
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date",
+      "description": "会员有效期结束"
+    },
+    "admin_note": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "管理员备注"
+    }
+  },
+  "required": ["user_id", "user_name", "user_email", "amount", "payment_type", "payment_method"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

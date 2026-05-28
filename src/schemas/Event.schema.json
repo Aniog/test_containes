@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Events",
+  "type": "object",
+  "properties": {
+    "organizer_user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "发布者用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "活动标题"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "活动详情描述"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "活动日期时间"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "活动地点"
+    },
+    "max_participants": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "最大参与人数（0表示不限）"
+    },
+    "is_paid": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否收费活动"
+    },
+    "fee": {
+      "type": "number",
+      "minimum": 0,
+      "description": "活动费用（港币）"
+    },
+    "fee_description": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "费用说明"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "cancelled", "completed"],
+      "default": "published",
+      "description": "活动状态"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["聚会联谊", "学术讲座", "职业发展", "文化活动", "体育运动", "公益志愿", "其他"],
+      "description": "活动类别"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "活动封面图片URL"
+    },
+    "registration_deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "报名截止时间"
+    }
+  },
+  "required": ["organizer_user_id", "title", "event_date", "location", "category"],
+  "x-security": {
+    "x-ownerColumn": "organizer_user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event Registrations",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "活动ID"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "报名用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "user_name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "报名者姓名（快照）"
+    },
+    "user_email": {
+      "type": "string",
+      "format": "email",
+      "description": "报名者邮箱（快照）"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": ["free", "pending", "paid", "refunded"],
+      "default": "free",
+      "description": "付款状态"
+    },
+    "payment_amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "实际支付金额"
+    },
+    "payment_note": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "付款备注/转账信息"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["registered", "cancelled", "attended"],
+      "default": "registered",
+      "description": "报名状态"
+    },
+    "remarks": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "备注信息"
+    }
+  },
+  "required": ["event_id", "user_id", "user_name", "user_email"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
