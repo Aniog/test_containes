@@ -13,7 +13,7 @@ const TodoItem = ({ item, onToggle, onDelete }) => {
           "flex-shrink-0 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all",
           fields.completed
             ? "bg-emerald-500 border-emerald-500"
-            : "border-slate-300 hover:border-indigo-400"
+            : "border-slate-300 hover:border-purple-400"
         )}
         aria-label={fields.completed ? "Mark as incomplete" : "Mark as complete"}
       >

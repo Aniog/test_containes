@@ -186,7 +186,7 @@ const TodoPage = () => {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-3 mb-8">
-          <CheckSquare className="w-8 h-8 text-indigo-600" />
+          <CheckSquare className="w-8 h-8 text-purple-600" />
           <h1 className="text-3xl font-bold text-slate-900">Todo App</h1>
         </div>
 
@@ -205,7 +205,7 @@ const TodoPage = () => {
           {/* Loading */}
           {status === 'loading' && (
             <div className="flex justify-center py-8">
-              <div className="w-8 h-8 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
+              <div className="w-8 h-8 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin" />
             </div>
           )}
 
