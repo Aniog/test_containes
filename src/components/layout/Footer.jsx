@@ -55,6 +55,8 @@ const Footer = () => {
                 { to: '/science', label: 'Science' },
                 { to: '/gallery', label: 'Gallery' },
                 { to: '/about', label: 'About' },
+                { to: '/contact', label: 'Contact' },
+                { to: '/subscribe', label: 'Subscribe' },
               ].map(({ to, label }) => (
                 <li key={to}>
                   <Link to={to} className="text-[#94a3b8] text-sm hover:text-cosmos-teal transition">

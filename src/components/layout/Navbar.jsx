@@ -8,6 +8,8 @@ const navLinks = [
   { to: '/science', label: 'Science' },
   { to: '/gallery', label: 'Gallery' },
   { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+  { to: '/subscribe', label: 'Subscribe' },
 ];
 
 const Navbar = () => {

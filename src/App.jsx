@@ -5,6 +5,8 @@ import Explore from './pages/Explore';
 import Science from './pages/Science';
 import Gallery from './pages/Gallery';
 import About from './pages/About';
+import Contact from './pages/Contact';
+import Subscribe from './pages/Subscribe';
 import './App.css';
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
           <Route path="/science" element={<Science />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/subscribe" element={<Subscribe />} />
         </Routes>
       </Layout>
     </BrowserRouter>

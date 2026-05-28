@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Newsletter Subscriptions",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the subscriber"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the subscriber"
+    },
+    "role": {
+      "type": "string",
+      "enum": ["student", "researcher", "educator", "enthusiast", "professional", "other"],
+      "description": "The subscriber's background or role"
+    },
+    "institution": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "School, university, or organization name (optional)"
+    },
+    "interests": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["bacteria", "fungi", "plankton", "viruses", "protozoa", "archaea", "climate", "medicine", "biotechnology"]
+      },
+      "uniqueItems": true,
+      "description": "Topics the subscriber is interested in"
+    },
+    "newsletter_frequency": {
+      "type": "string",
+      "enum": ["weekly", "monthly", "quarterly"],
+      "description": "Preferred newsletter frequency"
+    },
+    "agree_terms": {
+      "type": "boolean",
+      "description": "Whether the subscriber agreed to the terms and privacy policy"
+    }
+  },
+  "required": ["name", "email", "role", "agree_terms"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
