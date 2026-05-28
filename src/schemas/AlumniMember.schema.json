@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alumni Members",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "关联的用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "student_id": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "学号"
+    },
+    "chinese_name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "中文姓名"
+    },
+    "english_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "英文姓名"
+    },
+    "graduation_year": {
+      "type": "integer",
+      "minimum": 1950,
+      "maximum": 2030,
+      "description": "毕业年份"
+    },
+    "faculty": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "学院"
+    },
+    "major": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "专业"
+    },
+    "degree": {
+      "type": "string",
+      "enum": ["bachelor", "master", "phd", "other"],
+      "description": "学位类型"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "联系电话"
+    },
+    "wechat": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "微信号"
+    },
+    "current_city": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "现居城市"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "工作单位"
+    },
+    "position": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "职位"
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "行业"
+    },
+    "graduation_certificate": {
+      "type": "object",
+      "description": "毕业证书照片",
+      "properties": {
+        "filename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageKey": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".pdf"],
+      "x-maxFileSize": 10485760,
+      "x-mimeTypes": ["image/jpeg", "image/png", "application/pdf"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "suspended"],
+      "default": "pending",
+      "description": "审核状态"
+    },
+    "membership_fee_paid": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否已缴费"
+    },
+    "membership_fee_amount": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "minimum": 0,
+      "description": "会费金额"
+    },
+    "membership_expiry": {
+      "type": "string",
+      "format": "date",
+      "description": "会员到期日期"
+    },
+    "admin_notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "管理员备注"
+    }
+  },
+  "required": ["user_id", "chinese_name", "student_id", "graduation_year", "faculty", "major"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] }
+  }
+}

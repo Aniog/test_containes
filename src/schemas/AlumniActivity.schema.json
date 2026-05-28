@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alumni Activities",
+  "type": "object",
+  "properties": {
+    "organizer_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "活动组织者用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "活动标题"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "活动详细描述"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["networking", "academic", "social", "career", "sports", "cultural", "charity", "other"],
+      "description": "活动类别"
+    },
+    "start_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "活动开始时间"
+    },
+    "end_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "活动结束时间"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "活动地点"
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "详细地址"
+    },
+    "max_participants": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "最大参与人数"
+    },
+    "registration_deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "报名截止时间"
+    },
+    "fee_required": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否收费"
+    },
+    "fee_amount": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "minimum": 0,
+      "description": "活动费用"
+    },
+    "fee_description": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "费用说明"
+    },
+    "cover_image": {
+      "type": "object",
+      "description": "活动封面图片",
+      "properties": {
+        "filename": {
+          "type": "string",
+          "minLength": 1
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "storageKey": {
+          "type": "string"
+        },
+        "storage": {
+          "type": "string"
+        },
+        "mimeType": {
+          "type": "string"
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "cancelled", "completed"],
+      "default": "draft",
+      "description": "活动状态"
+    },
+    "requires_approval": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否需要审核参与者"
+    },
+    "contact_info": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "联系方式"
+    },
+    "special_requirements": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "特殊要求或注意事项"
+    }
+  },
+  "required": ["organizer_id", "title", "description", "start_time", "location"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "organizer_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
