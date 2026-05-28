@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const FooterSection = () => (
   <footer className="bg-gray-900 text-gray-400 py-12 px-6">
     <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
@@ -12,14 +14,18 @@ const FooterSection = () => (
       </div>
 
       <nav className="flex gap-6 text-sm">
-        {['Dishes', 'Regions', 'Ingredients'].map((label) => (
-          <a
+        {[
+          { label: 'Dishes', to: '/dishes' },
+          { label: 'Regions', to: '/regions' },
+          { label: 'Ingredients', to: '/ingredients' },
+        ].map(({ label, to }) => (
+          <Link
             key={label}
-            href={`#${label.toLowerCase()}`}
+            to={to}
             className="hover:text-orange-400 transition-colors duration-200"
           >
             {label}
-          </a>
+          </Link>
         ))}
       </nav>
 

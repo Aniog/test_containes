@@ -1,24 +1,22 @@
-import Navbar from './components/sections/Navbar';
-import HeroSection from './components/sections/HeroSection';
-import DishesSection from './components/sections/DishesSection';
-import RegionsSection from './components/sections/RegionsSection';
-import IngredientsSection from './components/sections/IngredientsSection';
-import FooterSection from './components/sections/FooterSection';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './pages/Home';
+import Dishes from './pages/Dishes';
+import Regions from './pages/Regions';
+import Ingredients from './pages/Ingredients';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#FDF6EC]" style={{ fontFamily: "'Inter', sans-serif" }}>
-      <Navbar />
-      <HeroSection />
-      <DishesSection />
-      <div id="regions">
-        <RegionsSection />
-      </div>
-      <div id="ingredients">
-        <IngredientsSection />
-      </div>
-      <FooterSection />
-    </div>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/dishes" element={<Dishes />} />
+          <Route path="/regions" element={<Regions />} />
+          <Route path="/ingredients" element={<Ingredients />} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
