@@ -13,11 +13,14 @@ const FooterSection = () => (
         <p className="text-sm text-gray-500">Celebrating the flavors of a great culinary tradition.</p>
       </div>
 
-      <nav className="flex gap-6 text-sm">
+      <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
         {[
           { label: 'Dishes', to: '/dishes' },
+          { label: 'Drinks', to: '/drinks' },
           { label: 'Regions', to: '/regions' },
           { label: 'Ingredients', to: '/ingredients' },
+          { label: 'Festivals', to: '/festivals' },
+          { label: 'History', to: '/history' },
         ].map(({ label, to }) => (
           <Link
             key={label}

@@ -1,3 +1,5 @@
+import PageHeader from '@/components/PageHeader';
+
 const ingredientGroups = [
   {
     id: 'ing-group-chiles',
@@ -151,19 +153,11 @@ const ingredientGroups = [
 
 const Ingredients = () => (
   <div>
-    {/* Page Header */}
-    <div className="pt-32 pb-16 px-6 bg-gray-900 text-center">
-      <p className="text-orange-400 uppercase tracking-widest text-sm font-semibold mb-3">Building Blocks</p>
-      <h1
-        className="text-white text-5xl md:text-6xl font-bold mb-4"
-        style={{ fontFamily: "'Playfair Display', serif" }}
-      >
-        Key Ingredients
-      </h1>
-      <p className="text-gray-400 text-lg max-w-xl mx-auto">
-        The ingredients of Mexican cuisine tell a story of ancient civilizations, trade routes, and a deep connection to the land.
-      </p>
-    </div>
+    <PageHeader
+      label="Building Blocks"
+      title="Key Ingredients"
+      subtitle="The ingredients of Mexican cuisine tell a story of ancient civilizations, trade routes, and a deep connection to the land."
+    />
 
     {/* Ingredient Groups */}
     <div className="py-16 px-6 bg-[#FDF6EC]">

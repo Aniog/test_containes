@@ -4,8 +4,11 @@ import { Link, useLocation } from 'react-router-dom';
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
   { label: 'Dishes', to: '/dishes' },
+  { label: 'Drinks', to: '/drinks' },
   { label: 'Regions', to: '/regions' },
   { label: 'Ingredients', to: '/ingredients' },
+  { label: 'Festivals', to: '/festivals' },
+  { label: 'History', to: '/history' },
 ];
 
 const Navbar = () => {
@@ -41,7 +44,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden md:flex gap-8 text-sm font-medium">
+        <div className="hidden md:flex gap-5 text-sm font-medium">
           {NAV_LINKS.map(({ label, to }) => {
             const active = location.pathname === to;
             return (

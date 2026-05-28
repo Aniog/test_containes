@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import PageHeader from '@/components/PageHeader';
 
 const regions = [
   {
@@ -86,20 +87,11 @@ const Regions = () => {
 
   return (
     <div ref={containerRef}>
-      {/* Page Header */}
-      <div className="pt-32 pb-16 px-6 bg-gray-900 text-center">
-        <p className="text-orange-400 uppercase tracking-widest text-sm font-semibold mb-3">Across the Country</p>
-        <h1
-          id="regions-page-title"
-          className="text-white text-5xl md:text-6xl font-bold mb-4"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-        >
-          Regional Flavors
-        </h1>
-        <p className="text-gray-400 text-lg max-w-xl mx-auto">
-          Mexico's 32 states each carry a distinct culinary identity shaped by geography, history, and indigenous heritage.
-        </p>
-      </div>
+      <PageHeader
+        label="Across the Country"
+        title="Regional Flavors"
+        subtitle="Mexico's 32 states each carry a distinct culinary identity shaped by geography, history, and indigenous heritage."
+      />
 
       {/* Regions Grid */}
       <div className="py-16 px-6 bg-[#FDF6EC]">
