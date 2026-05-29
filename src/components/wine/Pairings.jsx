@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 
@@ -105,7 +106,7 @@ const Pairings = () => {
                 Let our sommeliers guide you through a curated tasting experience tailored to your palate.
               </p>
               <a
-                href="#contact"
+                href="/contact"
                 className="inline-block bg-wine-primary hover:bg-wine-hover text-wine-cream px-8 py-3 rounded-full font-semibold tracking-wide transition-all duration-300"
               >
                 Reserve Your Spot

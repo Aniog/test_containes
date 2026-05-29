@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 
@@ -31,18 +32,18 @@ const Hero = () => {
           Discover exceptional wines crafted from the world's most celebrated vineyards. Each bottle tells a story of terroir, tradition, and passion.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#collection"
+          <Link
+            to="/collection"
             className="bg-wine-primary hover:bg-wine-hover text-wine-cream px-8 py-4 rounded-full font-semibold tracking-wide transition-all duration-300 text-base"
           >
             Explore Collection
-          </a>
-          <a
-            href="#story"
+          </Link>
+          <Link
+            to="/#story"
             className="border border-wine-gold text-wine-gold hover:bg-wine-gold/10 px-8 py-4 rounded-full font-semibold tracking-wide transition-all duration-300 text-base"
           >
             Our Story
-          </a>
+          </Link>
         </div>
       </div>
 

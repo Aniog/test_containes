@@ -1,24 +1,29 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/wine/Navbar';
-import Hero from './components/wine/Hero';
-import Story from './components/wine/Story';
-import Collection from './components/wine/Collection';
-import Regions from './components/wine/Regions';
-import Pairings from './components/wine/Pairings';
-import Contact from './components/wine/Contact';
 import Footer from './components/wine/Footer';
+import Home from './pages/Home';
+import CollectionPage from './pages/CollectionPage';
+import RegionsPage from './pages/RegionsPage';
+import PairingsPage from './pages/PairingsPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
-    <div className="bg-wine-deep min-h-screen">
-      <Navbar />
-      <Hero />
-      <Story />
-      <Collection />
-      <Regions />
-      <Pairings />
-      <Contact />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="bg-wine-deep min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/collection" element={<CollectionPage />} />
+            <Route path="/regions" element={<RegionsPage />} />
+            <Route path="/pairings" element={<PairingsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
