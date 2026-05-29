@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sightings",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the submitting user",
+      "x-foreignKey": "users.id"
+    },
+    "submitter_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Name of the person submitting the sighting"
+    },
+    "submitter_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email of the submitter"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Title or brief summary of the sighting"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Detailed description of the sighting"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Location where the sighting occurred"
+    },
+    "sighting_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the sighting"
+    },
+    "era_estimate": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated era or time period"
+    },
+    "anomaly_type": {
+      "type": "string",
+      "enum": ["Temporal Rift", "Artifact", "Entity", "Structure", "Event", "Other"],
+      "description": "Type of anomaly observed"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Pending", "Under Review", "Verified", "Dismissed"],
+      "default": "Pending",
+      "description": "Review status of the sighting"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": ["Low", "Moderate", "High", "Critical"],
+      "default": "Low",
+      "description": "Assessed risk level"
+    }
+  },
+  "required": ["title", "description", "submitter_name", "submitter_email"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}

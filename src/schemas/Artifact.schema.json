@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Artifacts",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the artifact"
+    },
+    "catalog_id": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Unique catalog identifier, e.g. TTA-1887-001"
+    },
+    "era": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Historical era or century of origin"
+    },
+    "year": {
+      "type": "integer",
+      "description": "Approximate year of origin (negative for BCE)"
+    },
+    "dimension": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Origin dimension or timeline designation"
+    },
+    "timeline_stability": {
+      "type": "string",
+      "enum": ["Stable", "Moderate", "Critical", "Unknown"],
+      "description": "Timeline stability risk level"
+    },
+    "historical_significance": {
+      "type": "string",
+      "enum": ["Low", "Medium", "High", "Classified"],
+      "description": "Historical significance rating"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Relic", "Document", "Technology", "Biological", "Anomaly", "Recording", "Weapon", "Artifact"],
+      "description": "Category of the artifact"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Full description of the artifact"
+    },
+    "curator_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Internal curator notes and observations"
+    },
+    "recovery_location": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Location where artifact was recovered"
+    },
+    "recovery_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the artifact was recovered"
+    },
+    "recovered_by": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Agent or team who recovered the artifact"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary image URL"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Searchable tags"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this artifact is featured on the homepage"
+    },
+    "access_level": {
+      "type": "string",
+      "enum": ["Observer", "Researcher", "Chronologist"],
+      "default": "Observer",
+      "description": "Minimum clearance level required to view full details"
+    }
+  },
+  "required": ["name", "era", "timeline_stability", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["user"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}
