@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { ArrowRight } from 'lucide-react';
 
-const bikes = [
+export const bikes = [
   {
     id: 'trail-x1',
     name: 'Trail X1',
@@ -62,10 +63,9 @@ const categoryColors = {
   'Cross-Country': 'bg-red-100 text-red-800',
 };
 
-const BikeCard = ({ bike }) => {
+export const BikeCard = ({ bike }) => {
   return (
     <div className="bg-[#16213e] rounded-2xl overflow-hidden border border-white/10 hover:border-[#e94560]/50 transition-all hover:shadow-2xl hover:-translate-y-1 group">
-      {/* Image */}
       <div className="relative h-52 bg-[#0f3460] overflow-hidden">
         <img
           alt={bike.name}
@@ -82,8 +82,6 @@ const BikeCard = ({ bike }) => {
           </span>
         )}
       </div>
-
-      {/* Content */}
       <div className="p-6">
         <div className="flex items-start justify-between mb-3">
           <div>
@@ -107,8 +105,9 @@ const BikeCard = ({ bike }) => {
   );
 };
 
-const BikeShowcase = () => {
+const BikeShowcase = ({ preview = false }) => {
   const containerRef = useRef(null);
+  const displayedBikes = preview ? bikes.slice(0, 3) : bikes;
 
   useEffect(() => {
     ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -117,7 +116,6 @@ const BikeShowcase = () => {
   return (
     <section id="bikes" ref={containerRef} className="py-20 md:py-28 bg-[#1a1a2e]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <span className="text-[#e94560] text-sm font-semibold uppercase tracking-widest">
             Our Collection
@@ -130,21 +128,21 @@ const BikeShowcase = () => {
           </p>
         </div>
 
-        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {bikes.map((bike) => (
+          {displayedBikes.map((bike) => (
             <BikeCard key={bike.id} bike={bike} />
           ))}
         </div>
 
-        {/* CTA */}
         <div className="text-center mt-14">
-          <a
-            href="#"
-            className="inline-flex items-center gap-2 bg-[#e94560] hover:bg-[#c73652] text-white font-semibold px-10 py-4 rounded-xl transition-colors text-base"
-          >
-            View Full Catalog <ArrowRight className="w-5 h-5" />
-          </a>
+          {preview ? (
+            <Link
+              to="/bikes"
+              className="inline-flex items-center gap-2 bg-[#e94560] hover:bg-[#c73652] text-white font-semibold px-10 py-4 rounded-xl transition-colors text-base"
+            >
+              View Full Catalog <ArrowRight className="w-5 h-5" />
+            </Link>
+          ) : null}
         </div>
       </div>
     </section>

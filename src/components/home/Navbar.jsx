@@ -1,12 +1,12 @@
 import { useState } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, Bike } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Bikes', href: '#bikes' },
-  { label: 'Features', href: '#features' },
-  { label: 'Stats', href: '#stats' },
-  { label: 'About', href: '#about' },
-  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Home', to: '/' },
+  { label: 'Bikes', to: '/bikes' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
 ];
 
 const Navbar = () => {
@@ -17,32 +17,35 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2 text-white font-black text-xl tracking-tight">
+          <Link to="/" className="flex items-center gap-2 text-white font-black text-xl tracking-tight">
             <Bike className="w-7 h-7 text-[#e94560]" />
             <span>VELOX</span>
-          </a>
+          </Link>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <NavLink
                 key={link.label}
-                href={link.href}
-                className="text-gray-300 hover:text-white text-sm font-medium transition-colors"
+                to={link.to}
+                end={link.to === '/'}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${isActive ? 'text-white' : 'text-gray-400 hover:text-white'}`
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
           </div>
 
           {/* CTA */}
           <div className="hidden md:block">
-            <a
-              href="#bikes"
+            <Link
+              to="/bikes"
               className="bg-[#e94560] hover:bg-[#c73652] text-white font-semibold px-5 py-2 rounded-xl text-sm transition-colors"
             >
               Shop Now
-            </a>
+            </Link>
           </div>
 
           {/* Mobile toggle */}
@@ -60,22 +63,25 @@ const Navbar = () => {
       {open && (
         <div className="md:hidden bg-[#16213e] border-t border-white/10 px-4 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.label}
-              href={link.href}
+              to={link.to}
+              end={link.to === '/'}
               onClick={() => setOpen(false)}
-              className="text-gray-200 hover:text-white font-medium text-base transition-colors"
+              className={({ isActive }) =>
+                `font-medium text-base transition-colors ${isActive ? 'text-white' : 'text-gray-300 hover:text-white'}`
+              }
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
-          <a
-            href="#bikes"
+          <Link
+            to="/bikes"
             onClick={() => setOpen(false)}
             className="bg-[#e94560] hover:bg-[#c73652] text-white font-semibold px-5 py-2 rounded-xl text-sm text-center transition-colors"
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       )}
     </nav>
