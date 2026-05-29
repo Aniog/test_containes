@@ -34,31 +34,34 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <Mountain className="w-7 h-7 text-amber-peak group-hover:text-white transition-colors" />
-          <span className="font-playfair font-bold text-xl text-white tracking-wide">
-            Summit
-          </span>
-        </Link>
+        {/* Logo + Links grouped on the left */}
+        <div className="flex items-center">
+          {/* Logo */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <Mountain className="w-7 h-7 text-amber-peak group-hover:text-white transition-colors" />
+            <span className="font-playfair font-bold text-xl text-white tracking-wide">
+              Summit
+            </span>
+          </Link>
 
-        {/* Desktop Links */}
-        <ul className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
-            <li key={link.path}>
-              <Link
-                to={link.path}
-                className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  location.pathname === link.path
-                    ? 'text-white bg-slate-peak'
-                    : 'text-glacier hover:text-white hover:bg-slate-peak/60'
-                }`}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+          {/* Desktop Links */}
+          <ul className="hidden md:flex items-center gap-1 ml-8">
+            {navLinks.map((link) => (
+              <li key={link.path}>
+                <Link
+                  to={link.path}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    location.pathname === link.path
+                      ? 'text-white bg-slate-peak'
+                      : 'text-glacier hover:text-white hover:bg-slate-peak/60'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         {/* Mobile Hamburger */}
         <button
