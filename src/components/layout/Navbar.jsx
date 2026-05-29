@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-peak shadow-lg' : 'bg-peak/90 backdrop-blur-sm'
+        scrolled ? 'bg-gray-700 shadow-lg' : 'bg-gray-700/90 backdrop-blur-sm'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
@@ -52,8 +52,8 @@ const Navbar = () => {
                   to={link.path}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     location.pathname === link.path
-                      ? 'text-white bg-slate-peak'
-                      : 'text-glacier hover:text-white hover:bg-slate-peak/60'
+                      ? 'text-white bg-gray-500'
+                      : 'text-gray-200 hover:text-white hover:bg-gray-500/70'
                   }`}
                 >
                   {link.label}
@@ -65,7 +65,7 @@ const Navbar = () => {
 
         {/* Mobile Hamburger */}
         <button
-          className="md:hidden text-white p-2 rounded-lg hover:bg-slate-peak transition-colors"
+          className="md:hidden text-white p-2 rounded-lg hover:bg-gray-500 transition-colors"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -75,7 +75,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-peak border-t border-slate-peak/50">
+        <div className="md:hidden bg-gray-700 border-t border-gray-500/50">
           <ul className="flex flex-col py-2">
             {navLinks.map((link) => (
               <li key={link.path}>
@@ -83,8 +83,8 @@ const Navbar = () => {
                   to={link.path}
                   className={`block px-6 py-3 text-sm font-medium transition-colors ${
                     location.pathname === link.path
-                      ? 'text-white bg-slate-peak'
-                      : 'text-glacier hover:text-white hover:bg-slate-peak/60'
+                      ? 'text-white bg-gray-500'
+                      : 'text-gray-200 hover:text-white hover:bg-gray-500/70'
                   }`}
                 >
                   {link.label}
