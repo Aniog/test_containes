@@ -25,7 +25,7 @@ export default function LoginPage() {
       navigate('/profile')
     } catch (err) {
       console.error('Login error:', err)
-      setError('邮箱或密码错误，请重试')
+      setError(err.message || '邮箱或密码错误，请重试')
     } finally {
       setLoading(false)
     }
