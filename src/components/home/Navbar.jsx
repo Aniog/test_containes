@@ -4,6 +4,7 @@ import { Menu, X, Bike } from 'lucide-react';
 const navLinks = [
   { label: 'Bikes', href: '#bikes' },
   { label: 'Features', href: '#features' },
+  { label: 'Stats', href: '#stats' },
   { label: 'About', href: '#about' },
   { label: 'Testimonials', href: '#testimonials' },
 ];
