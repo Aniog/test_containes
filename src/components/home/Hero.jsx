@@ -33,8 +33,8 @@ export default function Hero() {
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/70 via-black/40 to-space-black" />
 
       {/* Animated orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-700/20 rounded-full blur-3xl animate-pulse-slow z-10" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-violet-600/15 rounded-full blur-3xl animate-pulse-slow z-10" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-green-700/20 rounded-full blur-3xl animate-pulse-slow z-10" />
+      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-emerald-600/15 rounded-full blur-3xl animate-pulse-slow z-10" style={{ animationDelay: '2s' }} />
 
       {/* Content */}
       <div className="relative z-20 text-center px-6 md:px-12 max-w-5xl mx-auto">
@@ -50,7 +50,7 @@ export default function Hero() {
         <h1
           id="hero-title"
           className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold text-mist leading-tight mb-6"
-          style={{ textShadow: '0 0 60px rgba(124,58,237,0.4)' }}
+          style={{ textShadow: '0 0 60px rgba(22,163,74,0.4)' }}
         >
           Beyond This
           <br />
@@ -73,7 +73,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
           <a
             href="#destinations"
-            className="font-cinzel text-sm font-semibold px-10 py-4 rounded-full bg-gradient-to-r from-purple-700 to-violet-600 text-white hover:from-purple-600 hover:to-violet-500 transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.5)] hover:shadow-[0_0_50px_rgba(124,58,237,0.7)] tracking-widest w-full sm:w-auto"
+            className="font-cinzel text-sm font-semibold px-10 py-4 rounded-full bg-gradient-to-r from-green-700 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-500 transition-all duration-300 shadow-[0_0_30px_rgba(22,163,74,0.5)] hover:shadow-[0_0_50px_rgba(22,163,74,0.7)] tracking-widest w-full sm:w-auto"
           >
             Explore Destinations
           </a>

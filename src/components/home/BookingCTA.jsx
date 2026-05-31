@@ -23,10 +23,10 @@ export default function BookingCTA() {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-br from-purple-900/40 via-void-dark/80 to-space-black/90" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-br from-green-900/40 via-void-dark/80 to-space-black/90" />
 
       {/* Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-700/20 rounded-full blur-3xl pointer-events-none z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-green-700/20 rounded-full blur-3xl pointer-events-none z-10" />
 
       <div className="max-w-4xl mx-auto relative z-20 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/40 bg-gold/10 mb-8">
@@ -39,7 +39,7 @@ export default function BookingCTA() {
         <h2
           id="cta-title"
           className="font-cinzel text-4xl md:text-6xl font-bold text-mist mb-6 leading-tight"
-          style={{ textShadow: '0 0 40px rgba(124,58,237,0.4)' }}
+          style={{ textShadow: '0 0 40px rgba(22,163,74,0.4)' }}
         >
           Your Portal Awaits
         </h2>
@@ -53,7 +53,7 @@ export default function BookingCTA() {
         </p>
 
         {/* Form */}
-        <div className="bg-space-black/60 backdrop-blur-md border border-purple-900/40 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto">
+        <div className="bg-space-black/60 backdrop-blur-md border border-green-900/40 rounded-2xl p-8 md:p-10 max-w-2xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="font-inter text-xs text-gray-400 tracking-wider uppercase block mb-2">
@@ -62,7 +62,7 @@ export default function BookingCTA() {
               <input
                 type="text"
                 placeholder="Your name"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist placeholder-gray-600 focus:outline-none focus:border-purple-600 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist placeholder-gray-600 focus:outline-none focus:border-green-600 transition-colors"
               />
             </div>
             <div>
@@ -72,7 +72,7 @@ export default function BookingCTA() {
               <input
                 type="email"
                 placeholder="you@example.com"
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist placeholder-gray-600 focus:outline-none focus:border-purple-600 transition-colors"
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist placeholder-gray-600 focus:outline-none focus:border-green-600 transition-colors"
               />
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function BookingCTA() {
             <label className="font-inter text-xs text-gray-400 tracking-wider uppercase block mb-2">
               Preferred Destination
             </label>
-            <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist focus:outline-none focus:border-purple-600 transition-colors appearance-none cursor-pointer">
+            <select className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist focus:outline-none focus:border-green-600 transition-colors appearance-none cursor-pointer">
               <option value="" className="bg-space-black">Select a reality...</option>
               <option value="steampunk" className="bg-space-black">Steampunk Albion — The Brass Empire</option>
               <option value="megacity" className="bg-space-black">Neon Megacity IX — The Infinite Horizon</option>
@@ -97,13 +97,13 @@ export default function BookingCTA() {
             <textarea
               rows={3}
               placeholder="Tell us about your dream experience..."
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist placeholder-gray-600 focus:outline-none focus:border-purple-600 transition-colors resize-none"
+              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 font-inter text-sm text-mist placeholder-gray-600 focus:outline-none focus:border-green-600 transition-colors resize-none"
             />
           </div>
 
           <button
             type="button"
-            className="w-full font-cinzel text-sm font-semibold py-4 rounded-full bg-gradient-to-r from-purple-700 to-violet-600 text-white hover:from-purple-600 hover:to-violet-500 transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_50px_rgba(124,58,237,0.6)] tracking-widest"
+            className="w-full font-cinzel text-sm font-semibold py-4 rounded-full bg-gradient-to-r from-green-700 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-500 transition-all duration-300 shadow-[0_0_30px_rgba(22,163,74,0.4)] hover:shadow-[0_0_50px_rgba(22,163,74,0.6)] tracking-widest"
           >
             Request My Portal
           </button>

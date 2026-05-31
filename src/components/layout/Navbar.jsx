@@ -22,14 +22,14 @@ export default function Navbar() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-space-black/95 backdrop-blur-md border-b border-purple-900/40 shadow-[0_4px_30px_rgba(107,33,168,0.2)]'
+          ? 'bg-space-black/95 backdrop-blur-md border-b border-green-900/40 shadow-[0_4px_30px_rgba(22,101,52,0.3)]'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-20">
         {/* Logo */}
         <a href="#" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-700 to-violet-500 flex items-center justify-center shadow-[0_0_20px_rgba(124,58,237,0.5)] group-hover:shadow-[0_0_30px_rgba(124,58,237,0.8)] transition-all">
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-700 to-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(22,163,74,0.5)] group-hover:shadow-[0_0_30px_rgba(22,163,74,0.8)] transition-all">
             <Compass className="w-5 h-5 text-white" />
           </div>
           <span className="font-cinzel text-xl font-bold text-mist tracking-widest">
@@ -54,7 +54,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <a
             href="#book"
-            className="font-cinzel text-sm font-semibold px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-700 to-violet-600 text-white hover:from-purple-600 hover:to-violet-500 transition-all duration-300 shadow-[0_0_20px_rgba(124,58,237,0.4)] hover:shadow-[0_0_30px_rgba(124,58,237,0.6)] tracking-wider"
+            className="font-cinzel text-sm font-semibold px-6 py-2.5 rounded-full bg-gradient-to-r from-green-700 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-500 transition-all duration-300 shadow-[0_0_20px_rgba(22,163,74,0.4)] hover:shadow-[0_0_30px_rgba(22,163,74,0.6)] tracking-wider"
           >
             Book a Portal
           </a>
@@ -72,7 +72,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-space-black/98 backdrop-blur-md border-t border-purple-900/40 px-6 py-6 flex flex-col gap-5">
+        <div className="md:hidden bg-space-black/98 backdrop-blur-md border-t border-green-900/40 px-6 py-6 flex flex-col gap-5">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -86,7 +86,7 @@ export default function Navbar() {
           <a
             href="#book"
             onClick={() => setMenuOpen(false)}
-            className="font-cinzel text-sm font-semibold px-6 py-3 rounded-full bg-gradient-to-r from-purple-700 to-violet-600 text-white text-center tracking-wider mt-2"
+            className="font-cinzel text-sm font-semibold px-6 py-3 rounded-full bg-gradient-to-r from-green-700 to-emerald-600 text-white text-center tracking-wider mt-2"
           >
             Book a Portal
           </a>
