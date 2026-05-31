@@ -19,7 +19,7 @@ const testimonials = [
     rating: 5,
     quote:
       'As someone who builds the future for a living, I was skeptical. But Megacity IX made everything I\'ve ever imagined look primitive. The neural art gallery alone was worth the entire journey.',
-    accentColor: 'text-cyan-400',
+    accentColor: 'text-rose-400',
   },
   {
     id: 3,
@@ -29,7 +29,7 @@ const testimonials = [
     rating: 5,
     quote:
       'Witnessing the first great civilization — not through artifacts, but in living, breathing reality — was the most profound experience of my professional and personal life. I wept at the crystal temples.',
-    accentColor: 'text-cyan-400',
+    accentColor: 'text-rose-400',
   },
   {
     id: 4,
@@ -57,14 +57,14 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="py-28 px-6 md:px-12 lg:px-24 bg-space-black relative overflow-hidden">
       {/* Decorative orbs */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-teal-900/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-900/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-pink-900/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-rose-900/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-teal-700/40 bg-teal-900/20 mb-6">
-            <span className="font-inter text-xs font-semibold text-teal-300 tracking-[0.2em] uppercase">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-pink-700/40 bg-pink-900/20 mb-6">
+            <span className="font-inter text-xs font-semibold text-pink-300 tracking-[0.2em] uppercase">
               Traveler Accounts
             </span>
           </div>
@@ -77,17 +77,17 @@ export default function Testimonials() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-teal-700/60 to-transparent mb-16" />
+        <div className="h-px bg-gradient-to-r from-transparent via-pink-700/60 to-transparent mb-16" />
 
         {/* Testimonials grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="p-8 rounded-2xl border border-teal-900/40 bg-void-dark hover:border-teal-700/60 transition-all duration-300 group relative"
+              className="p-8 rounded-2xl border border-pink-900/40 bg-void-dark hover:border-pink-700/60 transition-all duration-300 group relative"
             >
               {/* Quote icon */}
-              <Quote className="w-8 h-8 text-teal-700/40 mb-4" />
+              <Quote className="w-8 h-8 text-pink-700/40 mb-4" />
 
               {/* Quote text */}
               <p className="font-inter text-gray-300 leading-relaxed text-base mb-6 italic">

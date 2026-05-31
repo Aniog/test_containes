@@ -6,9 +6,9 @@ const features = [
     title: 'Quantum Safety Protocol',
     description:
       'Our proprietary QSP-9 technology ensures a 99.8% safe return rate. Every traveler is equipped with a personal reality anchor and emergency recall beacon.',
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-900/20',
-    border: 'border-cyan-700/30',
+    color: 'text-rose-400',
+    bg: 'bg-rose-900/20',
+    border: 'border-rose-700/30',
   },
   {
     icon: Gem,
@@ -24,18 +24,18 @@ const features = [
     title: 'Temporal Precision',
     description:
       'Arrive and depart at the exact moment you choose. Our chrono-navigation team ensures you never miss a moment — or return a second late.',
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-900/20',
-    border: 'border-cyan-700/30',
+    color: 'text-rose-400',
+    bg: 'bg-rose-900/20',
+    border: 'border-rose-700/30',
   },
   {
     icon: Headphones,
     title: '24/7 Reality Concierge',
     description:
       'Our interdimensional concierge team is available across all timelines. Whether you need a reservation or an emergency extraction, we are always reachable.',
-    color: 'text-cyan-400',
-    bg: 'bg-cyan-900/20',
-    border: 'border-cyan-700/30',
+    color: 'text-rose-400',
+    bg: 'bg-rose-900/20',
+    border: 'border-rose-700/30',
   },
   {
     icon: Map,
@@ -61,7 +61,7 @@ export default function Features() {
   return (
     <section id="experiences" className="py-28 px-6 md:px-12 lg:px-24 bg-void-dark relative overflow-hidden">
       {/* Background glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-teal-900/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-pink-900/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
