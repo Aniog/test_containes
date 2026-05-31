@@ -127,8 +127,8 @@ export default function MilitaryPage({ selectedKingdom }) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#e8e4d9]">Military</h1>
-          <p className="text-[#9a95a8] text-sm mt-1">
+          <h1 className="text-2xl font-bold text-[#f0ecff]">Military</h1>
+          <p className="text-[#9890b8] text-sm mt-1">
             {selectedKingdom ? `Armed forces of ${getSchemaData(selectedKingdom).name}` : 'Manage military forces'}
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function MilitaryPage({ selectedKingdom }) {
         <Card>
           <CardContent className="py-10 text-center">
             <p className="text-3xl mb-2">⚔️</p>
-            <p className="text-[#9a95a8]">Select a kingdom to manage its military forces</p>
+            <p className="text-[#9890b8]">Select a kingdom to manage its military forces</p>
           </CardContent>
         </Card>
       )}
@@ -153,7 +153,7 @@ export default function MilitaryPage({ selectedKingdom }) {
           : 0
         return (
           <div className="space-y-4">
-            <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Armed Forces Overview</h2>
+            <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Armed Forces Overview</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <StatCard icon="⚔️" label="Total Troops" value={(md.total_troops || 0).toLocaleString()} color="red" />
               <StatCard icon="💪" label="Military Strength" value={md.military_strength || 0} color="amber" />
@@ -166,7 +166,7 @@ export default function MilitaryPage({ selectedKingdom }) {
               <Card>
                 <CardContent className="p-5">
                   <div className="flex items-center justify-between mb-4">
-                    <p className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Troop Composition</p>
+                    <p className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Troop Composition</p>
                     <div className="flex gap-2">
                       <Button size="sm" variant="secondary" onClick={() => openEdit(activeMilitary)}>
                         <Pencil className="w-3 h-3" />
@@ -184,25 +184,25 @@ export default function MilitaryPage({ selectedKingdom }) {
                     ].map(t => (
                       <div key={t.label}>
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="text-[#e8e4d9]">{t.label}</span>
-                          <span className="text-[#9a95a8]">{t.value.toLocaleString()}</span>
+                          <span className="text-[#f0ecff]">{t.label}</span>
+                          <span className="text-[#9890b8]">{t.value.toLocaleString()}</span>
                         </div>
-                        <div className="h-2 bg-[#0d0f1a] rounded-full overflow-hidden border border-[#2a2f52]">
+                        <div className="h-2 bg-[#09080e] rounded-full overflow-hidden border border-[#2e2650]">
                           <div
-                            className="h-full bg-[#c9a84c] rounded-full"
+                            className="h-full bg-[#f0b830] rounded-full"
                             style={{ width: `${Math.min(100, (t.value / t.total) * 100)}%` }}
                           />
                         </div>
                       </div>
                     ))}
                     <div className="grid grid-cols-2 gap-3 mt-3">
-                      <div className="bg-[#0d0f1a] rounded-lg p-3 text-center">
-                        <p className="text-[#c9a84c] font-bold">{md.siege_weapons || 0}</p>
-                        <p className="text-xs text-[#9a95a8]">🏰 Siege Weapons</p>
+                      <div className="bg-[#09080e] rounded-lg p-3 text-center">
+                        <p className="text-[#f0b830] font-bold">{md.siege_weapons || 0}</p>
+                        <p className="text-xs text-[#9890b8]">🏰 Siege Weapons</p>
                       </div>
-                      <div className="bg-[#0d0f1a] rounded-lg p-3 text-center">
-                        <p className="text-[#c9a84c] font-bold">{md.navy_ships || 0}</p>
-                        <p className="text-xs text-[#9a95a8]">⚓ Naval Ships</p>
+                      <div className="bg-[#09080e] rounded-lg p-3 text-center">
+                        <p className="text-[#f0b830] font-bold">{md.navy_ships || 0}</p>
+                        <p className="text-xs text-[#9890b8]">⚓ Naval Ships</p>
                       </div>
                     </div>
                   </div>
@@ -212,34 +212,34 @@ export default function MilitaryPage({ selectedKingdom }) {
               {/* Command & doctrine */}
               <Card>
                 <CardContent className="p-5 space-y-4">
-                  <p className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Command & Doctrine</p>
+                  <p className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Command & Doctrine</p>
                   {md.general_name && (
-                    <div className="bg-[#0d0f1a] rounded-lg p-3 flex items-center gap-3">
+                    <div className="bg-[#09080e] rounded-lg p-3 flex items-center gap-3">
                       <span className="text-2xl">🎖️</span>
                       <div>
-                        <p className="text-xs text-[#9a95a8]">Commanding General</p>
-                        <p className="text-[#e8e4d9] font-semibold">{md.general_name}</p>
+                        <p className="text-xs text-[#9890b8]">Commanding General</p>
+                        <p className="text-[#f0ecff] font-semibold">{md.general_name}</p>
                       </div>
                     </div>
                   )}
-                  <div className="bg-[#0d0f1a] rounded-lg p-3 flex items-center gap-3">
+                  <div className="bg-[#09080e] rounded-lg p-3 flex items-center gap-3">
                     <span className="text-2xl">{doctrineIcon[md.military_doctrine] || '⚔️'}</span>
                     <div>
-                      <p className="text-xs text-[#9a95a8]">Military Doctrine</p>
-                      <p className="text-[#e8e4d9] font-semibold capitalize">{md.military_doctrine}</p>
+                      <p className="text-xs text-[#9890b8]">Military Doctrine</p>
+                      <p className="text-[#f0ecff] font-semibold capitalize">{md.military_doctrine}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
                     <Badge variant={trainingColor[md.training_level] || 'muted'} className="capitalize">
                       {md.training_level}
                     </Badge>
-                    <span className="text-xs text-[#9a95a8]">Training Level</span>
+                    <span className="text-xs text-[#9890b8]">Training Level</span>
                   </div>
                   <ProgressBar label="Morale" value={md.morale || 0} max={100} color="green" />
                   <ProgressBar label="Military Strength" value={md.military_strength || 0} max={1000} color="amber" />
-                  <div className="bg-[#0d0f1a] rounded-lg p-3">
-                    <p className="text-xs text-[#9a95a8]">Monthly Upkeep</p>
-                    <p className="text-[#c94c4c] font-bold">-{(md.upkeep_cost || 0).toLocaleString()} 🪙</p>
+                  <div className="bg-[#09080e] rounded-lg p-3">
+                    <p className="text-xs text-[#9890b8]">Monthly Upkeep</p>
+                    <p className="text-[#f04040] font-bold">-{(md.upkeep_cost || 0).toLocaleString()} 🪙</p>
                   </div>
                 </CardContent>
               </Card>
@@ -251,7 +251,7 @@ export default function MilitaryPage({ selectedKingdom }) {
       {/* All militaries */}
       {militaries.length > 0 && (
         <div>
-          <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold mb-4">All Military Forces</h2>
+          <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold mb-4">All Military Forces</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {militaries.map(m => {
               const md = getSchemaData(m)
@@ -262,10 +262,10 @@ export default function MilitaryPage({ selectedKingdom }) {
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">{doctrineIcon[md.military_doctrine] || '⚔️'}</span>
                         <div>
-                          <p className="text-[#e8e4d9] font-semibold">
+                          <p className="text-[#f0ecff] font-semibold">
                             {md.general_name || 'Unknown General'} · Kingdom #{md.kingdom_id}
                           </p>
-                          <p className="text-xs text-[#9a95a8] capitalize">
+                          <p className="text-xs text-[#9890b8] capitalize">
                             {md.training_level} · {(md.total_troops || 0).toLocaleString()} troops
                           </p>
                         </div>
@@ -305,10 +305,10 @@ export default function MilitaryPage({ selectedKingdom }) {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <Select label="Training Level" value={form.training_level} onChange={f('training_level')}>
-              {TRAINING.map(t => <option key={t} value={t} className="bg-[#0d0f1a] capitalize">{t}</option>)}
+              {TRAINING.map(t => <option key={t} value={t} className="bg-[#09080e] capitalize">{t}</option>)}
             </Select>
             <Select label="Military Doctrine" value={form.military_doctrine} onChange={f('military_doctrine')}>
-              {DOCTRINES.map(d => <option key={d} value={d} className="bg-[#0d0f1a] capitalize">{doctrineIcon[d]} {d}</option>)}
+              {DOCTRINES.map(d => <option key={d} value={d} className="bg-[#09080e] capitalize">{doctrineIcon[d]} {d}</option>)}
             </Select>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -321,7 +321,7 @@ export default function MilitaryPage({ selectedKingdom }) {
             <Input label="Wars Lost" type="number" min="0" value={form.wars_lost} onChange={f('wars_lost')} />
           </div>
 
-          {error && <p className="text-[#c94c4c] text-sm">{error}</p>}
+          {error && <p className="text-[#f04040] text-sm">{error}</p>}
           <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={saving} className="flex-1">
               {saving ? 'Saving...' : editTarget ? 'Save Changes' : 'Raise Army'}

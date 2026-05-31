@@ -129,8 +129,8 @@ export default function GovernmentPage({ selectedKingdom }) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#e8e4d9]">Government</h1>
-          <p className="text-[#9a95a8] text-sm mt-1">
+          <h1 className="text-2xl font-bold text-[#f0ecff]">Government</h1>
+          <p className="text-[#9890b8] text-sm mt-1">
             {selectedKingdom ? `Managing government of ${getSchemaData(selectedKingdom).name}` : 'Manage kingdom governments'}
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function GovernmentPage({ selectedKingdom }) {
         <Card>
           <CardContent className="py-10 text-center">
             <p className="text-3xl mb-2">🏛️</p>
-            <p className="text-[#9a95a8]">Select a kingdom from the Dashboard to manage its government</p>
+            <p className="text-[#9890b8]">Select a kingdom from the Dashboard to manage its government</p>
           </CardContent>
         </Card>
       )}
@@ -153,7 +153,7 @@ export default function GovernmentPage({ selectedKingdom }) {
         const gd = getSchemaData(activeGov)
         return (
           <div className="space-y-4">
-            <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Active Government</h2>
+            <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Active Government</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <StatCard icon="⚖️" label="Stability" value={`${gd.stability || 0}%`} color="green" />
               <StatCard icon="💰" label="Tax Rate" value={`${gd.tax_rate || 0}%`} color="gold" />
@@ -167,8 +167,8 @@ export default function GovernmentPage({ selectedKingdom }) {
                   <div className="flex items-center gap-3">
                     <span className="text-3xl">{govTypeIcon[gd.type] || '🏛️'}</span>
                     <div>
-                      <p className="text-[#e8e4d9] font-bold text-lg">{gd.ruler_title} {gd.ruler_name}</p>
-                      <p className="text-[#9a95a8] text-sm capitalize">{gd.type} · {gd.succession_law?.replace('_', ' ')} succession</p>
+                      <p className="text-[#f0ecff] font-bold text-lg">{gd.ruler_title} {gd.ruler_name}</p>
+                      <p className="text-[#9890b8] text-sm capitalize">{gd.type} · {gd.succession_law?.replace('_', ' ')} succession</p>
                     </div>
                   </div>
                   <div className="flex gap-2">
@@ -189,19 +189,19 @@ export default function GovernmentPage({ selectedKingdom }) {
                 </div>
 
                 <div className="flex gap-4 text-sm">
-                  <div className="bg-[#0d0f1a] rounded-lg p-3 flex-1 text-center">
-                    <p className="text-[#c9a84c] font-bold">{gd.council_members || 0}</p>
-                    <p className="text-[#9a95a8] text-xs">Council Members</p>
+                  <div className="bg-[#09080e] rounded-lg p-3 flex-1 text-center">
+                    <p className="text-[#f0b830] font-bold">{gd.council_members || 0}</p>
+                    <p className="text-[#9890b8] text-xs">Council Members</p>
                   </div>
                 </div>
 
                 {gd.laws && gd.laws.length > 0 && (
                   <div className="mt-4">
-                    <p className="text-xs text-[#9a95a8] uppercase tracking-widest mb-2">Enacted Laws</p>
+                    <p className="text-xs text-[#9890b8] uppercase tracking-widest mb-2">Enacted Laws</p>
                     <div className="space-y-1">
                       {gd.laws.map((law, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm text-[#e8e4d9] bg-[#0d0f1a] rounded-lg px-3 py-2">
-                          <ScrollText className="w-3 h-3 text-[#c9a84c] flex-shrink-0" />
+                        <div key={i} className="flex items-center gap-2 text-sm text-[#f0ecff] bg-[#09080e] rounded-lg px-3 py-2">
+                          <ScrollText className="w-3 h-3 text-[#f0b830] flex-shrink-0" />
                           {law}
                         </div>
                       ))}
@@ -217,7 +217,7 @@ export default function GovernmentPage({ selectedKingdom }) {
       {/* All governments */}
       {govs.length > 0 && (
         <div>
-          <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold mb-4">All Governments</h2>
+          <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold mb-4">All Governments</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {govs.map(g => {
               const gd = getSchemaData(g)
@@ -228,8 +228,8 @@ export default function GovernmentPage({ selectedKingdom }) {
                       <div className="flex items-center gap-3">
                         <span className="text-2xl">{govTypeIcon[gd.type] || '🏛️'}</span>
                         <div>
-                          <p className="text-[#e8e4d9] font-semibold">{gd.ruler_title} {gd.ruler_name}</p>
-                          <p className="text-xs text-[#9a95a8] capitalize">{gd.type} · Kingdom #{gd.kingdom_id}</p>
+                          <p className="text-[#f0ecff] font-semibold">{gd.ruler_title} {gd.ruler_name}</p>
+                          <p className="text-xs text-[#9890b8] capitalize">{gd.type} · Kingdom #{gd.kingdom_id}</p>
                         </div>
                       </div>
                       <div className="flex gap-2">
@@ -259,10 +259,10 @@ export default function GovernmentPage({ selectedKingdom }) {
 
           <div className="grid grid-cols-2 gap-4">
             <Select label="Government Type" value={form.type} onChange={f('type')}>
-              {GOV_TYPES.map(t => <option key={t} value={t} className="bg-[#0d0f1a] capitalize">{govTypeIcon[t]} {t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
+              {GOV_TYPES.map(t => <option key={t} value={t} className="bg-[#09080e] capitalize">{govTypeIcon[t]} {t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
             </Select>
             <Select label="Succession Law" value={form.succession_law} onChange={f('succession_law')}>
-              {SUCCESSION.map(s => <option key={s} value={s} className="bg-[#0d0f1a] capitalize">{s.replace('_', ' ')}</option>)}
+              {SUCCESSION.map(s => <option key={s} value={s} className="bg-[#09080e] capitalize">{s.replace('_', ' ')}</option>)}
             </Select>
           </div>
 
@@ -279,29 +279,29 @@ export default function GovernmentPage({ selectedKingdom }) {
 
           {/* Laws */}
           <div>
-            <p className="text-xs text-[#9a95a8] uppercase tracking-widest font-medium mb-2">Laws & Edicts</p>
+            <p className="text-xs text-[#9890b8] uppercase tracking-widest font-medium mb-2">Laws & Edicts</p>
             <div className="flex gap-2 mb-2">
               <input
                 value={newLaw}
                 onChange={e => setNewLaw(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), addLaw())}
                 placeholder="Enter a law or edict..."
-                className="flex-1 bg-[#0d0f1a] border border-[#2a2f52] rounded-lg px-3 py-2 text-sm text-[#e8e4d9] placeholder-[#5c5870] focus:outline-none focus:border-[#c9a84c]"
+                className="flex-1 bg-[#09080e] border border-[#2e2650] rounded-lg px-3 py-2 text-sm text-[#f0ecff] placeholder-[#5a5278] focus:outline-none focus:border-[#f0b830]"
               />
               <Button type="button" size="sm" variant="secondary" onClick={addLaw}>Add</Button>
             </div>
             {form.laws?.map((law, i) => (
-              <div key={i} className="flex items-center gap-2 text-sm text-[#e8e4d9] bg-[#0d0f1a] rounded-lg px-3 py-2 mb-1">
-                <ScrollText className="w-3 h-3 text-[#c9a84c] flex-shrink-0" />
+              <div key={i} className="flex items-center gap-2 text-sm text-[#f0ecff] bg-[#09080e] rounded-lg px-3 py-2 mb-1">
+                <ScrollText className="w-3 h-3 text-[#f0b830] flex-shrink-0" />
                 <span className="flex-1">{law}</span>
-                <button type="button" onClick={() => removeLaw(i)} className="text-[#5c5870] hover:text-[#c94c4c]">
+                <button type="button" onClick={() => removeLaw(i)} className="text-[#5a5278] hover:text-[#f04040]">
                   <X className="w-3 h-3" />
                 </button>
               </div>
             ))}
           </div>
 
-          {error && <p className="text-[#c94c4c] text-sm">{error}</p>}
+          {error && <p className="text-[#f04040] text-sm">{error}</p>}
 
           <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={saving} className="flex-1">

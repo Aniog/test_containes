@@ -15,13 +15,13 @@ export function Modal({ open, onClose, title, children, size = 'md' }) {
         onClick={onClose}
       />
       <div
-        className={`relative w-full ${sizes[size]} bg-[#131629] border border-[#2a2f52] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto`}
+        className={`relative w-full ${sizes[size]} bg-[#100e1a] border border-[#2e2650] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto`}
       >
-        <div className="flex items-center justify-between p-6 border-b border-[#2a2f52]">
-          <h2 className="text-[#e8e4d9] font-bold text-lg">{title}</h2>
+        <div className="flex items-center justify-between p-6 border-b border-[#2e2650]">
+          <h2 className="text-[#f0ecff] font-bold text-lg">{title}</h2>
           <button
             onClick={onClose}
-            className="text-[#5c5870] hover:text-[#e8e4d9] transition-colors text-xl leading-none"
+            className="text-[#5a5278] hover:text-[#f0ecff] transition-colors text-xl leading-none"
           >
             ✕
           </button>

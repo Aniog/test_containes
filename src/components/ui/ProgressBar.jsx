@@ -2,11 +2,11 @@ export function ProgressBar({ value = 0, max = 100, color = 'gold', label, showV
   const pct = Math.min(100, Math.max(0, (value / max) * 100))
 
   const colors = {
-    gold: 'bg-[#c9a84c]',
-    purple: 'bg-[#7c5cbf]',
-    green: 'bg-[#4caf7d]',
-    red: 'bg-[#c94c4c]',
-    amber: 'bg-[#c9844c]',
+    gold: 'bg-[#f0b830]',
+    purple: 'bg-[#8b5cf6]',
+    green: 'bg-[#34d399]',
+    red: 'bg-[#f04040]',
+    amber: 'bg-[#f09030]',
     blue: 'bg-blue-500',
   }
 
@@ -14,15 +14,15 @@ export function ProgressBar({ value = 0, max = 100, color = 'gold', label, showV
     <div className="flex flex-col gap-1">
       {(label || showValue) && (
         <div className="flex justify-between items-center">
-          {label && <span className="text-xs text-[#9a95a8]">{label}</span>}
+          {label && <span className="text-xs text-[#9890b8]">{label}</span>}
           {showValue && (
-            <span className="text-xs text-[#e8e4d9] font-medium">
+            <span className="text-xs text-[#f0ecff] font-medium">
               {value}/{max}
             </span>
           )}
         </div>
       )}
-      <div className="h-2 bg-[#0d0f1a] rounded-full overflow-hidden border border-[#2a2f52]">
+      <div className="h-2 bg-[#09080e] rounded-full overflow-hidden border border-[#2e2650]">
         <div
           className={`h-full rounded-full transition-all duration-500 ${colors[color] || colors.gold}`}
           style={{ width: `${pct}%` }}

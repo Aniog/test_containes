@@ -136,8 +136,8 @@ export default function DiplomacyPage({ selectedKingdom }) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#e8e4d9]">Diplomacy</h1>
-          <p className="text-[#9a95a8] text-sm mt-1">
+          <h1 className="text-2xl font-bold text-[#f0ecff]">Diplomacy</h1>
+          <p className="text-[#9890b8] text-sm mt-1">
             {selectedKingdom ? `Foreign relations of ${getSchemaData(selectedKingdom).name}` : 'Manage diplomatic relations'}
           </p>
         </div>
@@ -150,7 +150,7 @@ export default function DiplomacyPage({ selectedKingdom }) {
         <Card>
           <CardContent className="py-10 text-center">
             <p className="text-3xl mb-2">🤝</p>
-            <p className="text-[#9a95a8]">Select a kingdom to manage its diplomatic relations</p>
+            <p className="text-[#9890b8]">Select a kingdom to manage its diplomatic relations</p>
           </CardContent>
         </Card>
       )}
@@ -173,8 +173,8 @@ export default function DiplomacyPage({ selectedKingdom }) {
                 onClick={() => setFilter(type)}
                 className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   filter === type
-                    ? 'bg-[#c9a84c] text-[#0d0f1a]'
-                    : 'bg-[#1a1e35] text-[#9a95a8] border border-[#2a2f52] hover:text-[#e8e4d9]'
+                    ? 'bg-[#f0b830] text-[#09080e]'
+                    : 'bg-[#181230] text-[#9890b8] border border-[#2e2650] hover:text-[#f0ecff]'
                 }`}
               >
                 {type === 'all' ? '🌍 All' : `${relationIcon[type]} ${type.replace('_', ' ')}`}
@@ -184,13 +184,13 @@ export default function DiplomacyPage({ selectedKingdom }) {
 
           {/* Relations list */}
           {loading ? (
-            <div className="text-center py-12 text-[#9a95a8]">Loading relations...</div>
+            <div className="text-center py-12 text-[#9890b8]">Loading relations...</div>
           ) : filtered.length === 0 ? (
             <Card>
               <CardContent className="py-12 text-center">
                 <p className="text-4xl mb-3">🕊️</p>
-                <p className="text-[#e8e4d9] font-semibold">No diplomatic relations</p>
-                <p className="text-[#9a95a8] text-sm mt-1 mb-4">Forge alliances and shape the political landscape</p>
+                <p className="text-[#f0ecff] font-semibold">No diplomatic relations</p>
+                <p className="text-[#9890b8] text-sm mt-1 mb-4">Forge alliances and shape the political landscape</p>
                 <Button onClick={openCreate}><Plus className="w-4 h-4" /> New Relation</Button>
               </CardContent>
             </Card>
@@ -199,16 +199,16 @@ export default function DiplomacyPage({ selectedKingdom }) {
               {filtered.map(a => {
                 const ad = getSchemaData(a)
                 return (
-                  <Card key={a.id} className="hover:border-[#2a2f52]/80 transition-all">
+                  <Card key={a.id} className="hover:border-[#2e2650]/80 transition-all">
                     <CardContent className="p-5">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-[#0d0f1a] rounded-lg flex items-center justify-center text-xl border border-[#2a2f52]">
+                          <div className="w-10 h-10 bg-[#09080e] rounded-lg flex items-center justify-center text-xl border border-[#2e2650]">
                             {relationIcon[ad.relation_type] || '🤝'}
                           </div>
                           <div>
-                            <p className="text-[#e8e4d9] font-semibold">{ad.partner_kingdom_name}</p>
-                            <p className="text-xs text-[#9a95a8] capitalize">{ad.relation_type?.replace('_', ' ')}</p>
+                            <p className="text-[#f0ecff] font-semibold">{ad.partner_kingdom_name}</p>
+                            <p className="text-xs text-[#9890b8] capitalize">{ad.relation_type?.replace('_', ' ')}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-2">
@@ -233,7 +233,7 @@ export default function DiplomacyPage({ selectedKingdom }) {
                       </div>
 
                       {ad.terms && (
-                        <p className="text-xs text-[#5c5870] mt-3 italic border-l-2 border-[#2a2f52] pl-3">
+                        <p className="text-xs text-[#5a5278] mt-3 italic border-l-2 border-[#2e2650] pl-3">
                           {ad.terms}
                         </p>
                       )}
@@ -268,13 +268,13 @@ export default function DiplomacyPage({ selectedKingdom }) {
           <div className="grid grid-cols-2 gap-4">
             <Select label="Relation Type" value={form.relation_type} onChange={f('relation_type')}>
               {RELATION_TYPES.map(r => (
-                <option key={r} value={r} className="bg-[#0d0f1a] capitalize">
+                <option key={r} value={r} className="bg-[#09080e] capitalize">
                   {relationIcon[r]} {r.replace('_', ' ')}
                 </option>
               ))}
             </Select>
             <Select label="Status" value={form.status} onChange={f('status')}>
-              {STATUSES.map(s => <option key={s} value={s} className="bg-[#0d0f1a] capitalize">{s}</option>)}
+              {STATUSES.map(s => <option key={s} value={s} className="bg-[#09080e] capitalize">{s}</option>)}
             </Select>
           </div>
           <div className="grid grid-cols-3 gap-4">
@@ -288,16 +288,16 @@ export default function DiplomacyPage({ selectedKingdom }) {
               id="mutual_defense"
               checked={form.mutual_defense === true || form.mutual_defense === 'true'}
               onChange={e => setForm(prev => ({ ...prev, mutual_defense: e.target.checked }))}
-              className="w-4 h-4 accent-[#c9a84c]"
+              className="w-4 h-4 accent-[#f0b830]"
             />
-            <label htmlFor="mutual_defense" className="text-sm text-[#e8e4d9]">
+            <label htmlFor="mutual_defense" className="text-sm text-[#f0ecff]">
               🛡️ Mutual Defense Pact
             </label>
           </div>
           <Textarea label="Terms & Conditions" value={form.terms} onChange={f('terms')} rows={3} placeholder="Describe the terms of this agreement..." />
           <Textarea label="Diplomatic Notes" value={form.notes} onChange={f('notes')} rows={2} placeholder="Historical notes and context..." />
 
-          {error && <p className="text-[#c94c4c] text-sm">{error}</p>}
+          {error && <p className="text-[#f04040] text-sm">{error}</p>}
           <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={saving} className="flex-1">
               {saving ? 'Saving...' : editTarget ? 'Save Changes' : 'Forge Relation'}

@@ -19,7 +19,7 @@ const terrainEmoji = {
 }
 
 const defaultForm = {
-  name: '', motto: '', description: '', banner_color: '#c9a84c',
+  name: '', motto: '', description: '', banner_color: '#f0b830',
   emblem: '⚔️', terrain: 'plains', population: 10000, territory: 100,
   prestige: 50, age: 1, status: 'rising',
 }
@@ -135,8 +135,8 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#e8e4d9]">Kingdoms</h1>
-          <p className="text-[#9a95a8] text-sm mt-1">Create and manage your fantasy realms</p>
+          <h1 className="text-2xl font-bold text-[#f0ecff]">Kingdoms</h1>
+          <p className="text-[#9890b8] text-sm mt-1">Create and manage your fantasy realms</p>
         </div>
         <Button onClick={openCreate}>
           <Plus className="w-4 h-4" /> New Kingdom
@@ -144,13 +144,13 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
       </div>
 
       {loading ? (
-        <div className="text-center py-16 text-[#9a95a8]">Loading kingdoms...</div>
+        <div className="text-center py-16 text-[#9890b8]">Loading kingdoms...</div>
       ) : kingdoms.length === 0 ? (
         <Card>
           <CardContent className="py-16 text-center">
             <p className="text-5xl mb-4">🏰</p>
-            <p className="text-[#e8e4d9] font-semibold text-lg">No kingdoms yet</p>
-            <p className="text-[#9a95a8] text-sm mt-2 mb-6">Forge your first realm and begin your legend</p>
+            <p className="text-[#f0ecff] font-semibold text-lg">No kingdoms yet</p>
+            <p className="text-[#9890b8] text-sm mt-2 mb-6">Forge your first realm and begin your legend</p>
             <Button onClick={openCreate}><Plus className="w-4 h-4" /> Create Kingdom</Button>
           </CardContent>
         </Card>
@@ -162,21 +162,21 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
             return (
               <Card
                 key={k.id}
-                className={`transition-all ${isActive ? 'border-[#c9a84c] shadow-lg shadow-[#c9a84c]/10' : 'hover:border-[#2a2f52]/80'}`}
+                className={`transition-all ${isActive ? 'border-[#f0b830] shadow-lg shadow-[#f0b830]/10' : 'hover:border-[#2e2650]/80'}`}
               >
                 <CardContent className="p-5">
                   {/* Header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
                       <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl border border-[#2a2f52]"
-                        style={{ backgroundColor: (kd.banner_color || '#c9a84c') + '22' }}
+                        className="w-12 h-12 rounded-xl flex items-center justify-center text-2xl border border-[#2e2650]"
+                        style={{ backgroundColor: (kd.banner_color || '#f0b830') + '22' }}
                       >
                         {kd.emblem || terrainEmoji[kd.terrain] || '🏰'}
                       </div>
                       <div>
-                        <p className="text-[#e8e4d9] font-bold">{kd.name}</p>
-                        <p className="text-xs text-[#9a95a8] capitalize">{kd.terrain} realm</p>
+                        <p className="text-[#f0ecff] font-bold">{kd.name}</p>
+                        <p className="text-xs text-[#9890b8] capitalize">{kd.terrain} realm</p>
                       </div>
                     </div>
                     <Badge variant={statusVariant[kd.status] || 'muted'} className="capitalize">
@@ -185,7 +185,7 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
                   </div>
 
                   {kd.motto && (
-                    <p className="text-xs text-[#5c5870] italic mb-4 border-l-2 border-[#2a2f52] pl-3">
+                    <p className="text-xs text-[#5a5278] italic mb-4 border-l-2 border-[#2e2650] pl-3">
                       "{kd.motto}"
                     </p>
                   )}
@@ -198,9 +198,9 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
                       { label: 'Prestige', value: kd.prestige || 0 },
                       { label: 'Age', value: `${kd.age || 0}y` },
                     ].map(s => (
-                      <div key={s.label} className="text-center bg-[#0d0f1a] rounded-lg p-2">
-                        <p className="text-[#c9a84c] font-bold text-xs">{s.value}</p>
-                        <p className="text-[#5c5870] text-xs">{s.label}</p>
+                      <div key={s.label} className="text-center bg-[#09080e] rounded-lg p-2">
+                        <p className="text-[#f0b830] font-bold text-xs">{s.value}</p>
+                        <p className="text-[#5a5278] text-xs">{s.label}</p>
                       </div>
                     ))}
                   </div>
@@ -247,10 +247,10 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
 
           <div className="grid grid-cols-2 gap-4">
             <Select label="Terrain" value={form.terrain} onChange={f('terrain')}>
-              {TERRAINS.map(t => <option key={t} value={t} className="bg-[#0d0f1a] capitalize">{terrainEmoji[t]} {t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
+              {TERRAINS.map(t => <option key={t} value={t} className="bg-[#09080e] capitalize">{terrainEmoji[t]} {t.charAt(0).toUpperCase() + t.slice(1)}</option>)}
             </Select>
             <Select label="Status" value={form.status} onChange={f('status')}>
-              {STATUSES.map(s => <option key={s} value={s} className="bg-[#0d0f1a] capitalize">{s.replace('_', ' ')}</option>)}
+              {STATUSES.map(s => <option key={s} value={s} className="bg-[#09080e] capitalize">{s.replace('_', ' ')}</option>)}
             </Select>
           </div>
 
@@ -266,7 +266,7 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
 
           {/* Emblem picker */}
           <div>
-            <p className="text-xs text-[#9a95a8] uppercase tracking-widest font-medium mb-2">Emblem</p>
+            <p className="text-xs text-[#9890b8] uppercase tracking-widest font-medium mb-2">Emblem</p>
             <div className="flex flex-wrap gap-2">
               {EMBLEMS.map(e => (
                 <button
@@ -275,8 +275,8 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
                   onClick={() => setForm(prev => ({ ...prev, emblem: e }))}
                   className={`w-10 h-10 rounded-lg text-xl flex items-center justify-center border transition-all ${
                     form.emblem === e
-                      ? 'border-[#c9a84c] bg-[#c9a84c]/20'
-                      : 'border-[#2a2f52] bg-[#0d0f1a] hover:border-[#c9a84c]/50'
+                      ? 'border-[#f0b830] bg-[#f0b830]/20'
+                      : 'border-[#2e2650] bg-[#09080e] hover:border-[#f0b830]/50'
                   }`}
                 >
                   {e}
@@ -288,23 +288,23 @@ export default function KingdomsPage({ selectedKingdom, onSelectKingdom }) {
           {/* Banner color */}
           <div className="flex items-center gap-3">
             <div>
-              <p className="text-xs text-[#9a95a8] uppercase tracking-widest font-medium mb-1">Banner Color</p>
+              <p className="text-xs text-[#9890b8] uppercase tracking-widest font-medium mb-1">Banner Color</p>
               <input
                 type="color"
                 value={form.banner_color}
                 onChange={f('banner_color')}
-                className="w-12 h-10 rounded-lg border border-[#2a2f52] bg-[#0d0f1a] cursor-pointer"
+                className="w-12 h-10 rounded-lg border border-[#2e2650] bg-[#09080e] cursor-pointer"
               />
             </div>
             <div
-              className="flex-1 h-10 rounded-lg border border-[#2a2f52] flex items-center justify-center text-sm font-medium"
+              className="flex-1 h-10 rounded-lg border border-[#2e2650] flex items-center justify-center text-sm font-medium"
               style={{ backgroundColor: form.banner_color + '33', borderColor: form.banner_color + '66', color: form.banner_color }}
             >
               {form.emblem} {form.name || 'Kingdom Preview'}
             </div>
           </div>
 
-          {error && <p className="text-[#c94c4c] text-sm">{error}</p>}
+          {error && <p className="text-[#f04040] text-sm">{error}</p>}
 
           <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={saving} className="flex-1">

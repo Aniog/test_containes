@@ -126,8 +126,8 @@ export default function EconomyPage({ selectedKingdom }) {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#e8e4d9]">Economy</h1>
-          <p className="text-[#9a95a8] text-sm mt-1">
+          <h1 className="text-2xl font-bold text-[#f0ecff]">Economy</h1>
+          <p className="text-[#9890b8] text-sm mt-1">
             {selectedKingdom ? `Treasury of ${getSchemaData(selectedKingdom).name}` : 'Manage kingdom economies'}
           </p>
         </div>
@@ -140,7 +140,7 @@ export default function EconomyPage({ selectedKingdom }) {
         <Card>
           <CardContent className="py-10 text-center">
             <p className="text-3xl mb-2">💰</p>
-            <p className="text-[#9a95a8]">Select a kingdom to manage its economy</p>
+            <p className="text-[#9890b8]">Select a kingdom to manage its economy</p>
           </CardContent>
         </Card>
       )}
@@ -150,7 +150,7 @@ export default function EconomyPage({ selectedKingdom }) {
         const netIncome = (ed.income || 0) - (ed.expenses || 0)
         return (
           <div className="space-y-4">
-            <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Treasury Overview</h2>
+            <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Treasury Overview</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <StatCard icon="🏦" label="Treasury" value={`${(ed.treasury || 0).toLocaleString()} 🪙`} color="gold" />
               <StatCard
@@ -167,7 +167,7 @@ export default function EconomyPage({ selectedKingdom }) {
               <Card>
                 <CardContent className="p-5 space-y-4">
                   <div className="flex items-center justify-between">
-                    <p className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Financial Health</p>
+                    <p className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Financial Health</p>
                     <div className="flex gap-2">
                       <Button size="sm" variant="secondary" onClick={() => openEdit(activeEconomy)}>
                         <Pencil className="w-3 h-3" />
@@ -180,21 +180,21 @@ export default function EconomyPage({ selectedKingdom }) {
                   <ProgressBar label="Prosperity Index" value={ed.prosperity || 0} max={100} color="gold" />
                   <ProgressBar label="Inflation" value={ed.inflation || 0} max={100} color="red" />
                   <div className="grid grid-cols-2 gap-3 mt-2">
-                    <div className="bg-[#0d0f1a] rounded-lg p-3">
-                      <p className="text-xs text-[#9a95a8]">Monthly Income</p>
-                      <p className="text-[#4caf7d] font-bold">+{(ed.income || 0).toLocaleString()} 🪙</p>
+                    <div className="bg-[#09080e] rounded-lg p-3">
+                      <p className="text-xs text-[#9890b8]">Monthly Income</p>
+                      <p className="text-[#34d399] font-bold">+{(ed.income || 0).toLocaleString()} 🪙</p>
                     </div>
-                    <div className="bg-[#0d0f1a] rounded-lg p-3">
-                      <p className="text-xs text-[#9a95a8]">Monthly Expenses</p>
-                      <p className="text-[#c94c4c] font-bold">-{(ed.expenses || 0).toLocaleString()} 🪙</p>
+                    <div className="bg-[#09080e] rounded-lg p-3">
+                      <p className="text-xs text-[#9890b8]">Monthly Expenses</p>
+                      <p className="text-[#f04040] font-bold">-{(ed.expenses || 0).toLocaleString()} 🪙</p>
                     </div>
-                    <div className="bg-[#0d0f1a] rounded-lg p-3">
-                      <p className="text-xs text-[#9a95a8]">GDP</p>
-                      <p className="text-[#e8e4d9] font-bold">{(ed.gdp || 0).toLocaleString()} 🪙</p>
+                    <div className="bg-[#09080e] rounded-lg p-3">
+                      <p className="text-xs text-[#9890b8]">GDP</p>
+                      <p className="text-[#f0ecff] font-bold">{(ed.gdp || 0).toLocaleString()} 🪙</p>
                     </div>
-                    <div className="bg-[#0d0f1a] rounded-lg p-3">
-                      <p className="text-xs text-[#9a95a8]">Debt</p>
-                      <p className="text-[#c9844c] font-bold">{(ed.debt || 0).toLocaleString()} 🪙</p>
+                    <div className="bg-[#09080e] rounded-lg p-3">
+                      <p className="text-xs text-[#9890b8]">Debt</p>
+                      <p className="text-[#f09030] font-bold">{(ed.debt || 0).toLocaleString()} 🪙</p>
                     </div>
                   </div>
                 </CardContent>
@@ -202,32 +202,32 @@ export default function EconomyPage({ selectedKingdom }) {
 
               <Card>
                 <CardContent className="p-5 space-y-4">
-                  <p className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold">Resources & Policy</p>
+                  <p className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold">Resources & Policy</p>
                   <div className="space-y-3">
-                    <div className="flex items-center justify-between bg-[#0d0f1a] rounded-lg p-3">
+                    <div className="flex items-center justify-between bg-[#09080e] rounded-lg p-3">
                       <div>
-                        <p className="text-xs text-[#9a95a8]">Primary Resource</p>
-                        <p className="text-[#e8e4d9] font-semibold capitalize">
+                        <p className="text-xs text-[#9890b8]">Primary Resource</p>
+                        <p className="text-[#f0ecff] font-semibold capitalize">
                           {resourceEmoji[ed.primary_resource]} {ed.primary_resource}
                         </p>
                       </div>
                       <Badge variant="gold">Primary</Badge>
                     </div>
                     {ed.secondary_resource && ed.secondary_resource !== 'none' && (
-                      <div className="flex items-center justify-between bg-[#0d0f1a] rounded-lg p-3">
+                      <div className="flex items-center justify-between bg-[#09080e] rounded-lg p-3">
                         <div>
-                          <p className="text-xs text-[#9a95a8]">Secondary Resource</p>
-                          <p className="text-[#e8e4d9] font-semibold capitalize">
+                          <p className="text-xs text-[#9890b8]">Secondary Resource</p>
+                          <p className="text-[#f0ecff] font-semibold capitalize">
                             {resourceEmoji[ed.secondary_resource]} {ed.secondary_resource}
                           </p>
                         </div>
                         <Badge variant="muted">Secondary</Badge>
                       </div>
                     )}
-                    <div className="flex items-center justify-between bg-[#0d0f1a] rounded-lg p-3">
+                    <div className="flex items-center justify-between bg-[#09080e] rounded-lg p-3">
                       <div>
-                        <p className="text-xs text-[#9a95a8]">Economic Policy</p>
-                        <p className="text-[#e8e4d9] font-semibold capitalize">
+                        <p className="text-xs text-[#9890b8]">Economic Policy</p>
+                        <p className="text-[#f0ecff] font-semibold capitalize">
                           {ed.economic_policy?.replace('_', ' ')}
                         </p>
                       </div>
@@ -244,7 +244,7 @@ export default function EconomyPage({ selectedKingdom }) {
       {/* All economies list */}
       {economies.length > 0 && (
         <div>
-          <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold mb-4">All Economies</h2>
+          <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold mb-4">All Economies</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {economies.map(ec => {
               const ed = getSchemaData(ec)
@@ -254,15 +254,15 @@ export default function EconomyPage({ selectedKingdom }) {
                   <CardContent className="p-4">
                     <div className="flex items-center justify-between">
                       <div>
-                        <p className="text-[#e8e4d9] font-semibold">
+                        <p className="text-[#f0ecff] font-semibold">
                           {resourceEmoji[ed.primary_resource]} Kingdom #{ed.kingdom_id}
                         </p>
-                        <p className="text-xs text-[#9a95a8] capitalize">
+                        <p className="text-xs text-[#9890b8] capitalize">
                           {ed.economic_policy?.replace('_', ' ')} · Treasury: {(ed.treasury || 0).toLocaleString()} 🪙
                         </p>
                       </div>
                       <div className="flex items-center gap-3">
-                        <span className={`text-sm font-bold ${net >= 0 ? 'text-[#4caf7d]' : 'text-[#c94c4c]'}`}>
+                        <span className={`text-sm font-bold ${net >= 0 ? 'text-[#34d399]' : 'text-[#f04040]'}`}>
                           {net >= 0 ? '+' : ''}{net}/mo
                         </span>
                         <Button size="sm" variant="secondary" onClick={() => openEdit(ec)}>
@@ -294,15 +294,15 @@ export default function EconomyPage({ selectedKingdom }) {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <Select label="Primary Resource" value={form.primary_resource} onChange={f('primary_resource')}>
-              {RESOURCES.map(r => <option key={r} value={r} className="bg-[#0d0f1a] capitalize">{resourceEmoji[r]} {r}</option>)}
+              {RESOURCES.map(r => <option key={r} value={r} className="bg-[#09080e] capitalize">{resourceEmoji[r]} {r}</option>)}
             </Select>
             <Select label="Secondary Resource" value={form.secondary_resource} onChange={f('secondary_resource')}>
-              <option value="none" className="bg-[#0d0f1a]">— None</option>
-              {RESOURCES.map(r => <option key={r} value={r} className="bg-[#0d0f1a] capitalize">{resourceEmoji[r]} {r}</option>)}
+              <option value="none" className="bg-[#09080e]">— None</option>
+              {RESOURCES.map(r => <option key={r} value={r} className="bg-[#09080e] capitalize">{resourceEmoji[r]} {r}</option>)}
             </Select>
           </div>
           <Select label="Economic Policy" value={form.economic_policy} onChange={f('economic_policy')}>
-            {POLICIES.map(p => <option key={p} value={p} className="bg-[#0d0f1a] capitalize">{p.replace('_', ' ')}</option>)}
+            {POLICIES.map(p => <option key={p} value={p} className="bg-[#09080e] capitalize">{p.replace('_', ' ')}</option>)}
           </Select>
           <div className="grid grid-cols-2 gap-4">
             <Input label="GDP" type="number" min="0" value={form.gdp} onChange={f('gdp')} />
@@ -313,7 +313,7 @@ export default function EconomyPage({ selectedKingdom }) {
             <Input label="Prosperity (0-100)" type="number" min="0" max="100" value={form.prosperity} onChange={f('prosperity')} />
           </div>
 
-          {error && <p className="text-[#c94c4c] text-sm">{error}</p>}
+          {error && <p className="text-[#f04040] text-sm">{error}</p>}
           <div className="flex gap-3 pt-2">
             <Button type="submit" disabled={saving} className="flex-1">
               {saving ? 'Saving...' : editTarget ? 'Save Changes' : 'Setup Economy'}

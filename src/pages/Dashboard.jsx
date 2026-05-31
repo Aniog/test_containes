@@ -52,12 +52,12 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-[#e8e4d9]">
+          <h1 className="text-2xl font-bold text-[#f0ecff]">
             {selectedKingdom
               ? `Welcome back, ${getSchemaData(selectedKingdom).ruler_title || 'Ruler'}`
               : 'Realm Forge Dashboard'}
           </h1>
-          <p className="text-[#9a95a8] text-sm mt-1">
+          <p className="text-[#9890b8] text-sm mt-1">
             {selectedKingdom
               ? `Managing the realm of ${getSchemaData(selectedKingdom).name || selectedKingdom.data?.name}`
               : 'Build and manage your fantasy kingdoms'}
@@ -87,7 +87,7 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
                 <span className="text-2xl">{terrainEmoji[kd.terrain] || '🏰'}</span>
                 <div>
                   <CardTitle>{kd.name}</CardTitle>
-                  <p className="text-xs text-[#9a95a8] mt-0.5">{kd.motto || 'No motto set'}</p>
+                  <p className="text-xs text-[#9890b8] mt-0.5">{kd.motto || 'No motto set'}</p>
                 </div>
                 <Badge variant={statusVariant[kd.status] || 'muted'} className="ml-auto capitalize">
                   {kd.status?.replace('_', ' ')}
@@ -96,21 +96,21 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div className="text-center p-3 bg-[#0d0f1a] rounded-lg">
-                  <p className="text-[#c9a84c] font-bold text-lg">{(kd.population || 0).toLocaleString()}</p>
-                  <p className="text-xs text-[#9a95a8]">Population</p>
+                <div className="text-center p-3 bg-[#09080e] rounded-lg">
+                  <p className="text-[#f0b830] font-bold text-lg">{(kd.population || 0).toLocaleString()}</p>
+                  <p className="text-xs text-[#9890b8]">Population</p>
                 </div>
-                <div className="text-center p-3 bg-[#0d0f1a] rounded-lg">
-                  <p className="text-[#c9a84c] font-bold text-lg">{kd.territory || 0}</p>
-                  <p className="text-xs text-[#9a95a8]">Territory (leagues)</p>
+                <div className="text-center p-3 bg-[#09080e] rounded-lg">
+                  <p className="text-[#f0b830] font-bold text-lg">{kd.territory || 0}</p>
+                  <p className="text-xs text-[#9890b8]">Territory (leagues)</p>
                 </div>
-                <div className="text-center p-3 bg-[#0d0f1a] rounded-lg">
-                  <p className="text-[#c9a84c] font-bold text-lg">{kd.prestige || 0}</p>
-                  <p className="text-xs text-[#9a95a8]">Prestige</p>
+                <div className="text-center p-3 bg-[#09080e] rounded-lg">
+                  <p className="text-[#f0b830] font-bold text-lg">{kd.prestige || 0}</p>
+                  <p className="text-xs text-[#9890b8]">Prestige</p>
                 </div>
-                <div className="text-center p-3 bg-[#0d0f1a] rounded-lg">
-                  <p className="text-[#c9a84c] font-bold text-lg">{kd.age || 0}</p>
-                  <p className="text-xs text-[#9a95a8]">Years Old</p>
+                <div className="text-center p-3 bg-[#09080e] rounded-lg">
+                  <p className="text-[#f0b830] font-bold text-lg">{kd.age || 0}</p>
+                  <p className="text-xs text-[#9890b8]">Years Old</p>
                 </div>
               </div>
               <div className="flex gap-3 mt-4">
@@ -134,17 +134,17 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
 
       {/* All Kingdoms */}
       <div>
-        <h2 className="text-xs text-[#c9a84c] uppercase tracking-widest font-semibold mb-4">
+        <h2 className="text-xs text-[#f0b830] uppercase tracking-widest font-semibold mb-4">
           All Kingdoms
         </h2>
         {loading ? (
-          <div className="text-center py-12 text-[#9a95a8]">Loading realms...</div>
+          <div className="text-center py-12 text-[#9890b8]">Loading realms...</div>
         ) : kingdoms.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
               <p className="text-4xl mb-3">🏰</p>
-              <p className="text-[#e8e4d9] font-semibold">No kingdoms yet</p>
-              <p className="text-[#9a95a8] text-sm mt-1 mb-4">Create your first kingdom to begin your reign</p>
+              <p className="text-[#f0ecff] font-semibold">No kingdoms yet</p>
+              <p className="text-[#9890b8] text-sm mt-1 mb-4">Create your first kingdom to begin your reign</p>
               <Button onClick={() => navigate('/kingdoms')}>
                 <Crown className="w-4 h-4" /> Create Kingdom
               </Button>
@@ -158,7 +158,7 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
               return (
                 <Card
                   key={k.id}
-                  className={`cursor-pointer transition-all hover:border-[#c9a84c]/50 ${isSelected ? 'border-[#c9a84c]' : ''}`}
+                  className={`cursor-pointer transition-all hover:border-[#f0b830]/50 ${isSelected ? 'border-[#f0b830]' : ''}`}
                   onClick={() => onSelectKingdom(k)}
                 >
                   <CardContent className="p-5">
@@ -166,8 +166,8 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
                       <div className="flex items-center gap-2">
                         <span className="text-2xl">{terrainEmoji[kd.terrain] || '🏰'}</span>
                         <div>
-                          <p className="text-[#e8e4d9] font-semibold">{kd.name}</p>
-                          <p className="text-xs text-[#9a95a8] capitalize">{kd.terrain}</p>
+                          <p className="text-[#f0ecff] font-semibold">{kd.name}</p>
+                          <p className="text-xs text-[#9890b8] capitalize">{kd.terrain}</p>
                         </div>
                       </div>
                       <Badge variant={statusVariant[kd.status] || 'muted'} className="capitalize">
@@ -175,25 +175,25 @@ export default function Dashboard({ selectedKingdom, onSelectKingdom }) {
                       </Badge>
                     </div>
                     {kd.motto && (
-                      <p className="text-xs text-[#5c5870] italic mb-3">"{kd.motto}"</p>
+                      <p className="text-xs text-[#5a5278] italic mb-3">"{kd.motto}"</p>
                     )}
                     <div className="grid grid-cols-3 gap-2 text-center">
                       <div>
-                        <p className="text-[#c9a84c] font-bold text-sm">{(kd.population || 0).toLocaleString()}</p>
-                        <p className="text-xs text-[#5c5870]">Pop.</p>
+                        <p className="text-[#f0b830] font-bold text-sm">{(kd.population || 0).toLocaleString()}</p>
+                        <p className="text-xs text-[#5a5278]">Pop.</p>
                       </div>
                       <div>
-                        <p className="text-[#c9a84c] font-bold text-sm">{kd.prestige || 0}</p>
-                        <p className="text-xs text-[#5c5870]">Prestige</p>
+                        <p className="text-[#f0b830] font-bold text-sm">{kd.prestige || 0}</p>
+                        <p className="text-xs text-[#5a5278]">Prestige</p>
                       </div>
                       <div>
-                        <p className="text-[#c9a84c] font-bold text-sm">{kd.territory || 0}</p>
-                        <p className="text-xs text-[#5c5870]">Territory</p>
+                        <p className="text-[#f0b830] font-bold text-sm">{kd.territory || 0}</p>
+                        <p className="text-xs text-[#5a5278]">Territory</p>
                       </div>
                     </div>
                     {isSelected && (
-                      <div className="mt-3 pt-3 border-t border-[#2a2f52]">
-                        <p className="text-xs text-[#c9a84c] text-center font-medium">✓ Active Kingdom</p>
+                      <div className="mt-3 pt-3 border-t border-[#2e2650]">
+                        <p className="text-xs text-[#f0b830] text-center font-medium">✓ Active Kingdom</p>
                       </div>
                     )}
                   </CardContent>

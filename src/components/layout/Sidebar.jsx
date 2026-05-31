@@ -22,16 +22,16 @@ const navItems = [
 
 export default function Sidebar({ selectedKingdom, onSelectKingdom }) {
   return (
-    <aside className="w-64 bg-[#0d0f1a] border-r border-[#2a2f52] flex flex-col min-h-screen flex-shrink-0">
+    <aside className="w-64 bg-[#09080e] border-r border-[#2e2650] flex flex-col min-h-screen flex-shrink-0" style={{background: 'linear-gradient(180deg, #0e0b1a 0%, #09080e 100%)'}}>
       {/* Logo */}
-      <div className="p-6 border-b border-[#2a2f52]">
+      <div className="p-6 border-b border-[#2e2650]">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-[#c9a84c]/20 rounded-lg flex items-center justify-center">
-            <Shield className="w-5 h-5 text-[#c9a84c]" />
+          <div className="w-9 h-9 bg-[#f0b830]/20 rounded-lg flex items-center justify-center ring-1 ring-[#f0b830]/30">
+            <Shield className="w-5 h-5 text-[#f0b830]" />
           </div>
           <div>
-            <h1 className="text-[#e8e4d9] font-bold text-base leading-tight">Realm Forge</h1>
-            <p className="text-[#5c5870] text-xs">Fantasy Kingdom Builder</p>
+            <h1 className="text-[#f0ecff] font-bold text-base leading-tight" style={{fontFamily: "'Cinzel', serif"}}>Realm Forge</h1>
+            <p className="text-[#5a5278] text-xs">Fantasy Kingdom Builder</p>
           </div>
         </div>
       </div>
@@ -40,13 +40,13 @@ export default function Sidebar({ selectedKingdom, onSelectKingdom }) {
       {selectedKingdom && (() => {
         const kd = getSchemaData(selectedKingdom)
         return (
-          <div className="mx-4 mt-4 p-3 bg-[#1a1e35] border border-[#2a2f52] rounded-xl">
-            <p className="text-xs text-[#9a95a8] uppercase tracking-widest mb-1">Active Kingdom</p>
+          <div className="mx-4 mt-4 p-3 bg-[#181230] border border-[#2e2650] rounded-xl">
+            <p className="text-xs text-[#9890b8] uppercase tracking-widest mb-1">Active Kingdom</p>
             <div className="flex items-center gap-2">
               <span className="text-lg">{kd.emblem || '⚔️'}</span>
               <div className="min-w-0">
-                <p className="text-[#c9a84c] font-semibold text-sm truncate">{kd.name}</p>
-                <p className="text-[#5c5870] text-xs capitalize">{kd.terrain}</p>
+                <p className="text-[#f0b830] font-semibold text-sm truncate">{kd.name}</p>
+                <p className="text-[#5a5278] text-xs capitalize">{kd.terrain}</p>
               </div>
             </div>
           </div>
@@ -63,8 +63,8 @@ export default function Sidebar({ selectedKingdom, onSelectKingdom }) {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150 group ${
                 isActive
-                  ? 'bg-[#1a1e35] text-[#c9a84c] border-l-2 border-[#c9a84c] pl-[10px]'
-                  : 'text-[#9a95a8] hover:text-[#e8e4d9] hover:bg-[#131629]'
+                  ? 'bg-[#181230] text-[#f0b830] border-l-2 border-[#f0b830] pl-[10px]'
+                  : 'text-[#9890b8] hover:text-[#f0ecff] hover:bg-[#100e1a]'
               }`
             }
           >
@@ -75,8 +75,8 @@ export default function Sidebar({ selectedKingdom, onSelectKingdom }) {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-[#2a2f52]">
-        <p className="text-xs text-[#5c5870] text-center">
+      <div className="p-4 border-t border-[#2e2650]">
+        <p className="text-xs text-[#5a5278] text-center">
           May your reign be eternal
         </p>
       </div>
