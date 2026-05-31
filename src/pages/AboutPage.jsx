@@ -7,9 +7,9 @@ const AboutPage = () => {
       {/* Header */}
       <section className="relative pt-32 pb-16 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f1629] to-[#080c18]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[#c084fc]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[#4ade80]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="relative max-w-3xl mx-auto text-center">
-          <span className="text-[#c084fc] text-sm tracking-widest uppercase font-medium">
+          <span className="text-[#4ade80] text-sm tracking-widest uppercase font-medium">
             Our Story
           </span>
           <h1
@@ -29,7 +29,7 @@ const AboutPage = () => {
         <div className="max-w-3xl mx-auto space-y-12">
           <div>
             <h2
-              className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
+              className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Our Mission
@@ -53,7 +53,7 @@ const AboutPage = () => {
 
           <div className="bg-[#0f1629] border border-slate-700/50 rounded-2xl p-8">
             <h2
-              className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
+              className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Curatorial Standards
@@ -70,7 +70,7 @@ const AboutPage = () => {
                 "Have at least one documented (fictional) incident of misuse or unintended consequence",
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-3 text-slate-300 text-sm">
-                  <span className="text-[#c084fc] mt-0.5 flex-shrink-0">✦</span>
+                  <span className="text-[#4ade80] mt-0.5 flex-shrink-0">✦</span>
                   {item}
                 </li>
               ))}
@@ -79,7 +79,7 @@ const AboutPage = () => {
 
           <div>
             <h2
-              className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
+              className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               The Curatorial Board
@@ -108,7 +108,7 @@ const AboutPage = () => {
             </p>
             <Link
               to="/museum"
-              className="inline-flex items-center gap-2 bg-[#c084fc] text-[#080c18] font-bold px-8 py-4 rounded-xl hover:bg-[#e9d5ff] transition-colors"
+              className="inline-flex items-center gap-2 bg-[#4ade80] text-[#080c18] font-bold px-8 py-4 rounded-xl hover:bg-[#86efac] transition-colors"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Enter the Museum

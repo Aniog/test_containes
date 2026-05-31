@@ -130,7 +130,7 @@ export const inventions = [
       { label: "Privacy Rating", value: "Retroactively: 0/10" },
     ],
     color: "from-purple-900/40 to-violet-900/40",
-    accentColor: "#c084fc",
+    accentColor: "#4ade80",
     icon: "🌙",
     imgId: "dream-recorder-hero-7a1d4f",
     titleId: "dream-recorder-title",

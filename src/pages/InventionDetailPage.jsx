@@ -41,7 +41,7 @@ const InventionDetailPage = () => {
           </p>
           <Link
             to="/museum"
-            className="bg-[#c084fc] text-[#080c18] font-bold px-6 py-3 rounded-lg hover:bg-[#e9d5ff] transition-colors"
+            className="bg-[#4ade80] text-[#080c18] font-bold px-6 py-3 rounded-lg hover:bg-[#86efac] transition-colors"
           >
             Return to Museum
           </Link>
@@ -145,7 +145,7 @@ const InventionDetailPage = () => {
               {/* Description */}
               <div className="mb-8">
                 <h2
-                  className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
+                  className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
                   style={{ fontFamily: "Cinzel, serif" }}
                 >
                   Overview
@@ -162,7 +162,7 @@ const InventionDetailPage = () => {
               {invention.longDescription && (
                 <div className="mb-8">
                   <h2
-                    className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
+                    className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
                     style={{ fontFamily: "Cinzel, serif" }}
                   >
                     Curator's Notes
@@ -184,9 +184,9 @@ const InventionDetailPage = () => {
                 {/* Specs Card */}
                 <div className="bg-[#0f1629] border border-slate-700/50 rounded-2xl p-6 mb-6">
                   <div className="flex items-center gap-2 mb-5">
-                    <Zap className="w-4 h-4 text-[#c084fc]" />
+                    <Zap className="w-4 h-4 text-[#4ade80]" />
                     <h3
-                      className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase"
+                      className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase"
                       style={{ fontFamily: "Cinzel, serif" }}
                     >
                       Technical Specifications
@@ -246,11 +246,11 @@ const InventionDetailPage = () => {
                 <Link
                   key={inv.id}
                   to={`/museum/${inv.id}`}
-                  className="group bg-[#0f1629] border border-slate-700/50 rounded-xl p-5 hover:border-[#c084fc]/40 hover:bg-[#141d35] transition-all"
+                  className="group bg-[#0f1629] border border-slate-700/50 rounded-xl p-5 hover:border-[#4ade80]/40 hover:bg-[#141d35] transition-all"
                 >
                   <div className="text-3xl mb-3">{inv.icon}</div>
                   <h3
-                    className="text-white font-semibold group-hover:text-[#c084fc] transition-colors mb-1"
+                    className="text-white font-semibold group-hover:text-[#4ade80] transition-colors mb-1"
                     style={{ fontFamily: "Cinzel, serif" }}
                   >
                     {inv.name}
