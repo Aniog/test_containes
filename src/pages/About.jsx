@@ -85,7 +85,7 @@ export default function About() {
                   </div>
                 </div>
                 <div className="absolute left-4 md:left-1/2 top-5 w-2 h-2 rounded-full bg-nebula-violet -translate-x-1/2"
-                  style={{ boxShadow: '0 0 8px rgba(124,58,237,0.8)' }} />
+                  style={{ boxShadow: '0 0 8px rgba(5,150,105,0.8)' }} />
                 <div className="flex-1 hidden md:block" />
               </div>
             ))}
@@ -101,7 +101,7 @@ export default function About() {
           </p>
           <button
             onClick={() => navigate('/submit')}
-            className="px-8 py-4 bg-nebula-violet hover:bg-nebula-violet/80 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.3)] font-inter"
+            className="px-8 py-4 bg-nebula-violet hover:bg-nebula-violet/80 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(5,150,105,0.3)] font-inter"
           >
             Submit Your Memory
           </button>

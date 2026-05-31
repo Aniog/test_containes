@@ -7,15 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        'cosmos-black': '#050810',
-        'cosmos-dark': '#0a0f1e',
-        'cosmos-navy': '#0d1530',
-        'cosmos-blue': '#1a2a5e',
-        'nebula-purple': '#6b21a8',
-        'nebula-violet': '#7c3aed',
-        'nebula-pink': '#c026d3',
+        'cosmos-black': '#030d06',
+        'cosmos-dark': '#061410',
+        'cosmos-navy': '#0a1f14',
+        'cosmos-blue': '#0f3320',
+        'nebula-purple': '#166534',
+        'nebula-violet': '#059669',
+        'nebula-pink': '#84cc16',
         'stardust-gold': '#f59e0b',
-        'stardust-cyan': '#06b6d4',
+        'stardust-cyan': '#34d399',
         'memory-white': '#e2e8f0',
         'memory-muted': '#94a3b8',
       },
@@ -40,8 +40,8 @@ export default {
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         pulseGlow: {
-          '0%, 100%': { opacity: '0.6', boxShadow: '0 0 10px rgba(124,58,237,0.2)' },
-          '50%': { opacity: '1', boxShadow: '0 0 30px rgba(124,58,237,0.5)' },
+          '0%, 100%': { opacity: '0.6', boxShadow: '0 0 10px rgba(5,150,105,0.2)' },
+          '50%': { opacity: '1', boxShadow: '0 0 30px rgba(5,150,105,0.5)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
@@ -53,8 +53,8 @@ export default {
         },
       },
       backgroundImage: {
-        'cosmos-gradient': 'linear-gradient(135deg, #050810 0%, #0d1530 50%, #050810 100%)',
-        'nebula-gradient': 'linear-gradient(135deg, #6b21a8 0%, #7c3aed 50%, #c026d3 100%)',
+        'cosmos-gradient': 'linear-gradient(135deg, #030d06 0%, #0a1f14 50%, #030d06 100%)',
+        'nebula-gradient': 'linear-gradient(135deg, #166534 0%, #059669 50%, #84cc16 100%)',
         'gold-gradient': 'linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%)',
       },
     },

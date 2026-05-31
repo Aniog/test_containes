@@ -5,7 +5,7 @@ export const ERAS = [
   { id: 'industrial', label: 'Industrial Era', range: '1760–1900 CE', color: '#f97316' },
   { id: 'modern', label: 'Modern Age', range: '1900–2000 CE', color: '#8b5cf6' },
   { id: 'digital', label: 'Digital Age', range: '2000–2050 CE', color: '#ec4899' },
-  { id: 'migration', label: 'Migration Era', range: '2050–2100 CE', color: '#7c3aed' },
+  { id: 'migration', label: 'Migration Era', range: '2050–2100 CE', color: '#059669' },
 ];
 
 export const EMOTIONS = [
@@ -16,7 +16,7 @@ export const EMOTIONS = [
   { id: 'hope', label: 'Hope', color: '#10b981', icon: '✧' },
   { id: 'nostalgia', label: 'Nostalgia', color: '#f97316', icon: '◉' },
   { id: 'fear', label: 'Fear', color: '#94a3b8', icon: '△' },
-  { id: 'pride', label: 'Pride', color: '#c026d3', icon: '★' },
+  { id: 'pride', label: 'Pride', color: '#84cc16', icon: '★' },
 ];
 
 export const LIFE_EVENTS = [

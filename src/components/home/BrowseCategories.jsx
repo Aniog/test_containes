@@ -6,7 +6,7 @@ export default function BrowseCategories() {
 
   return (
     <section className="py-24 bg-cosmos-navy relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(124,58,237,0.06)_0%,transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(5,150,105,0.06)_0%,transparent_60%)]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
         {/* Eras */}

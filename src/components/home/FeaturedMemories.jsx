@@ -56,7 +56,7 @@ function MemoryCard({ memory, index, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="group relative bg-cosmos-dark border border-cosmos-blue/40 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:border-nebula-violet/60 hover:shadow-[0_0_40px_rgba(124,58,237,0.15)] hover:-translate-y-1"
+      className="group relative bg-cosmos-dark border border-cosmos-blue/40 rounded-xl p-6 cursor-pointer transition-all duration-300 hover:border-nebula-violet/60 hover:shadow-[0_0_40px_rgba(5,150,105,0.15)] hover:-translate-y-1"
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {/* Emotion color accent */}

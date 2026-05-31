@@ -34,7 +34,7 @@ export default function Navigation() {
           <div className="w-7 h-7 relative">
             <div className="absolute inset-0 rounded-full bg-nebula-violet/20 group-hover:bg-nebula-violet/30 transition-colors" />
             <div className="absolute inset-1 rounded-full bg-nebula-violet/40" />
-            <div className="absolute inset-2 rounded-full bg-nebula-violet" style={{ boxShadow: '0 0 10px rgba(124,58,237,0.8)' }} />
+            <div className="absolute inset-2 rounded-full bg-nebula-violet" style={{ boxShadow: '0 0 10px rgba(5,150,105,0.8)' }} />
           </div>
           <span className="font-cinzel text-sm font-semibold text-memory-white tracking-wider">
             Memory<span className="text-stardust-gold">Archive</span>

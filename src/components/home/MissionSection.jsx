@@ -47,7 +47,7 @@ export default function MissionSection() {
             },
             {
               icon: '★',
-              color: '#c026d3',
+              color: '#84cc16',
               title: 'Humanly Curated',
               desc: 'Our team of 12,000 archivists ensures every memory is treated with the dignity it deserves.',
             },

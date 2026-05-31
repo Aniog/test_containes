@@ -45,11 +45,11 @@ export default function ConstellationCanvas() {
 
     const pickColor = (i) => {
       const colors = [
-        'rgba(124,58,237,', // violet
-        'rgba(6,182,212,',  // cyan
-        'rgba(245,158,11,', // gold
-        'rgba(192,38,211,', // pink
-        'rgba(16,185,129,', // green
+        'rgba(5,150,105,',   // emerald
+        'rgba(52,211,153,',  // mint
+        'rgba(245,158,11,',  // gold
+        'rgba(132,204,22,',  // lime
+        'rgba(16,185,129,',  // green
       ];
       return colors[i % colors.length];
     };
@@ -104,7 +104,7 @@ export default function ConstellationCanvas() {
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(124,58,237,${alpha})`;
+            ctx.strokeStyle = `rgba(5,150,105,${alpha})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }

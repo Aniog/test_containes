@@ -32,7 +32,7 @@ export default function MemoryViewer() {
         {/* Decorative glow */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-48 blur-3xl opacity-20 pointer-events-none"
-          style={{ backgroundColor: emotion?.color || '#7c3aed' }}
+          style={{ backgroundColor: emotion?.color || '#059669' }}
         />
 
         <div className="relative max-w-4xl mx-auto px-4 md:px-8 py-16">
@@ -109,7 +109,7 @@ export default function MemoryViewer() {
             {/* Opening quote decoration */}
             <div
               className="text-6xl font-cinzel leading-none mb-4 opacity-30"
-              style={{ color: emotion?.color || '#7c3aed' }}
+              style={{ color: emotion?.color || '#059669' }}
             >
               "
             </div>

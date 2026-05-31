@@ -27,7 +27,7 @@ export default function HomeHero() {
 
         {/* Main title */}
         <h1 className="font-cinzel text-5xl md:text-7xl lg:text-8xl font-bold text-memory-white mb-6 leading-tight animate-fade-in-up"
-          style={{ animationDelay: '0.1s', textShadow: '0 0 60px rgba(124,58,237,0.4)' }}>
+          style={{ animationDelay: '0.1s', textShadow: '0 0 60px rgba(5,150,105,0.4)' }}>
           Every Memory
           <br />
           <span className="bg-gradient-to-r from-nebula-violet via-stardust-cyan to-nebula-pink bg-clip-text text-transparent">
@@ -46,7 +46,7 @@ export default function HomeHero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
           <button
             onClick={() => navigate('/explore')}
-            className="px-8 py-4 bg-nebula-violet hover:bg-nebula-violet/80 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.4)] hover:shadow-[0_0_50px_rgba(124,58,237,0.6)] font-inter text-sm tracking-wide"
+            className="px-8 py-4 bg-nebula-violet hover:bg-nebula-violet/80 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(5,150,105,0.4)] hover:shadow-[0_0_50px_rgba(5,150,105,0.6)] font-inter text-sm tracking-wide"
           >
             Explore the Archive
           </button>
@@ -68,7 +68,7 @@ export default function HomeHero() {
           ].map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="font-cinzel text-2xl md:text-3xl font-bold text-memory-white mb-1"
-                style={{ textShadow: '0 0 20px rgba(124,58,237,0.5)' }}>
+                style={{ textShadow: '0 0 20px rgba(5,150,105,0.5)' }}>
                 {stat.value}
               </div>
               <div className="text-xs text-memory-muted tracking-widest uppercase font-inter">

@@ -230,7 +230,7 @@ function MemoryCard({ memory, onClick }) {
   return (
     <div
       onClick={onClick}
-      className="group bg-cosmos-dark border border-cosmos-blue/40 rounded-xl p-5 cursor-pointer transition-all duration-300 hover:border-nebula-violet/60 hover:shadow-[0_0_30px_rgba(124,58,237,0.12)] hover:-translate-y-0.5 relative overflow-hidden"
+      className="group bg-cosmos-dark border border-cosmos-blue/40 rounded-xl p-5 cursor-pointer transition-all duration-300 hover:border-nebula-violet/60 hover:shadow-[0_0_30px_rgba(5,150,105,0.12)] hover:-translate-y-0.5 relative overflow-hidden"
     >
       {/* Emotion dot */}
       <div

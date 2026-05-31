@@ -11,7 +11,7 @@ export default function Footer() {
               <div className="w-6 h-6 relative">
                 <div className="absolute inset-0 rounded-full bg-nebula-violet/20" />
                 <div className="absolute inset-1 rounded-full bg-nebula-violet/40" />
-                <div className="absolute inset-2 rounded-full bg-nebula-violet" style={{ boxShadow: '0 0 8px rgba(124,58,237,0.8)' }} />
+                <div className="absolute inset-2 rounded-full bg-nebula-violet" style={{ boxShadow: '0 0 8px rgba(5,150,105,0.8)' }} />
               </div>
               <span className="font-cinzel text-sm font-semibold text-memory-white tracking-wider">
                 Memory<span className="text-stardust-gold">Archive</span>

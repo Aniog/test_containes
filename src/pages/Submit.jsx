@@ -32,7 +32,7 @@ export default function Submit() {
       <div className="min-h-screen bg-cosmos-black flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="w-16 h-16 rounded-full bg-nebula-violet/20 border border-nebula-violet/40 flex items-center justify-center mx-auto mb-6"
-            style={{ boxShadow: '0 0 40px rgba(124,58,237,0.3)' }}>
+            style={{ boxShadow: '0 0 40px rgba(5,150,105,0.3)' }}>
             <span className="text-2xl text-nebula-violet">✦</span>
           </div>
           <h2 className="font-cinzel text-3xl text-memory-white mb-4">Memory Received</h2>
@@ -119,7 +119,7 @@ export default function Submit() {
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full py-4 bg-nebula-violet hover:bg-nebula-violet/80 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(124,58,237,0.3)] hover:shadow-[0_0_50px_rgba(124,58,237,0.5)] font-inter tracking-wide"
+              className="w-full py-4 bg-nebula-violet hover:bg-nebula-violet/80 text-white font-semibold rounded-full transition-all duration-300 shadow-[0_0_30px_rgba(5,150,105,0.3)] hover:shadow-[0_0_50px_rgba(5,150,105,0.5)] font-inter tracking-wide"
             >
               Preserve This Memory
             </button>
