@@ -31,10 +31,10 @@ const MuseumPage = () => {
       {/* Page Header */}
       <section className="relative pt-32 pb-16 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f1629] to-[#080c18]" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#4ade80]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#c084fc]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto text-center">
-          <span className="text-[#4ade80] text-sm tracking-widest uppercase font-medium">
+          <span className="text-[#c084fc] text-sm tracking-widest uppercase font-medium">
             The Collection
           </span>
           <h1
@@ -42,7 +42,7 @@ const MuseumPage = () => {
             style={{ fontFamily: "Cinzel, serif" }}
           >
             The Museum of{" "}
-            <span className="text-[#4ade80]">Impossible Inventions</span>
+            <span className="text-[#c084fc]">Impossible Inventions</span>
           </h1>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg">
             Browse our complete collection of {inventions.length} exhibits spanning
@@ -62,7 +62,7 @@ const MuseumPage = () => {
               placeholder="Search inventions, inventors..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-[#0f1629] border border-slate-700/50 rounded-lg pl-10 pr-4 py-2.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#4ade80]/50 transition-colors"
+              className="w-full bg-[#0f1629] border border-slate-700/50 rounded-lg pl-10 pr-4 py-2.5 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-[#c084fc]/50 transition-colors"
             />
           </div>
 
@@ -75,8 +75,8 @@ const MuseumPage = () => {
                 onClick={() => setActiveCategory(cat)}
                 className={`text-xs px-3 py-1.5 rounded-full border transition-all ${
                   activeCategory === cat
-                    ? "bg-[#4ade80] text-[#080c18] border-[#4ade80] font-semibold"
-                    : "bg-transparent text-slate-400 border-slate-700/50 hover:border-[#4ade80]/40 hover:text-white"
+                    ? "bg-[#c084fc] text-[#080c18] border-[#c084fc] font-semibold"
+                    : "bg-transparent text-slate-400 border-slate-700/50 hover:border-[#c084fc]/40 hover:text-white"
                 }`}
               >
                 {cat}

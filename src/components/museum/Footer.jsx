@@ -10,7 +10,7 @@ const Footer = () => {
             <div className="flex items-center gap-3 mb-4">
               <span className="text-2xl">⚗️</span>
               <span
-                className="text-[#4ade80] font-bold text-lg tracking-widest uppercase"
+                className="text-[#c084fc] font-bold text-lg tracking-widest uppercase"
                 style={{ fontFamily: "Cinzel, serif" }}
               >
                 Fictum
@@ -25,7 +25,7 @@ const Footer = () => {
           {/* Navigation */}
           <div>
             <h4
-              className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
+              className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Explore
@@ -51,12 +51,12 @@ const Footer = () => {
           {/* Quote */}
           <div>
             <h4
-              className="text-[#4ade80] text-sm font-semibold tracking-widest uppercase mb-4"
+              className="text-[#c084fc] text-sm font-semibold tracking-widest uppercase mb-4"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Curator's Note
             </h4>
-            <blockquote className="text-slate-400 text-sm italic leading-relaxed border-l-2 border-[#4ade80]/40 pl-4">
+            <blockquote className="text-slate-400 text-sm italic leading-relaxed border-l-2 border-[#c084fc]/40 pl-4">
               "Every impossible invention was once just an idea that hadn't found
               the right universe yet."
             </blockquote>

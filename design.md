@@ -12,8 +12,8 @@ A dark, immersive museum aesthetic evoking wonder, mystery, and retro-futurism. 
 - Elevated surface: `bg-[#1a2340]`
 
 ### Accent Colors
-- Green primary: `text-[#4ade80]`, `border-[#4ade80]` — used for headings, highlights, badges
-- Green muted: `text-[#16a34a]`
+- Green primary: `text-[#c084fc]`, `border-[#c084fc]` — used for headings, highlights, badges
+- Green muted: `text-[#9333ea]`
 - Cyan glow: `text-[#00d4ff]`, `shadow-[#00d4ff]` — used for interactive elements, glows
 - Purple accent: `text-[#9b59b6]` — used for tags, secondary accents
 
@@ -25,7 +25,7 @@ A dark, immersive museum aesthetic evoking wonder, mystery, and retro-futurism. 
 
 ### Borders
 - Default: `border-slate-700/50`
-- Accent: `border-[#4ade80]/40`
+- Accent: `border-[#c084fc]/40`
 - Glow: `border-[#00d4ff]/30`
 
 ## Typography
@@ -53,25 +53,25 @@ A dark, immersive museum aesthetic evoking wonder, mystery, and retro-futurism. 
 - Rounded: `rounded-2xl`
 - Border: `border border-slate-700/50`
 - Background: `bg-[#0f1629]`
-- Hover: `hover:border-[#4ade80]/50 hover:bg-[#141d35]`
+- Hover: `hover:border-[#c084fc]/50 hover:bg-[#141d35]`
 - Transition: `transition-all duration-300`
 
 ### Buttons
-- Primary: `bg-[#4ade80] text-[#080c18] font-semibold px-6 py-3 rounded-lg hover:bg-[#86efac] transition-colors`
-- Secondary: `border border-[#4ade80]/60 text-[#4ade80] px-6 py-3 rounded-lg hover:bg-[#4ade80]/10 transition-colors`
+- Primary: `bg-[#c084fc] text-[#080c18] font-semibold px-6 py-3 rounded-lg hover:bg-[#e9d5ff] transition-colors`
+- Secondary: `border border-[#c084fc]/60 text-[#c084fc] px-6 py-3 rounded-lg hover:bg-[#c084fc]/10 transition-colors`
 - Ghost: `text-slate-300 hover:text-white transition-colors`
 
 ### Badges / Tags
-- Category badge: `bg-[#4ade80]/15 text-[#4ade80] text-xs px-3 py-1 rounded-full border border-[#4ade80]/30`
+- Category badge: `bg-[#c084fc]/15 text-[#c084fc] text-xs px-3 py-1 rounded-full border border-[#c084fc]/30`
 - Status badge: `bg-[#00d4ff]/10 text-[#00d4ff] text-xs px-3 py-1 rounded-full border border-[#00d4ff]/20`
 
 ### Glow Effects
-- Subtle glow: `shadow-lg shadow-[#4ade80]/10`
+- Subtle glow: `shadow-lg shadow-[#c084fc]/10`
 - Cyan glow: `shadow-lg shadow-[#00d4ff]/20`
 
 ## Do's
 - Use Cinzel font for all display headings
-- Use green (#4ade80) as the primary accent color
+- Use green (#c084fc) as the primary accent color
 - Add subtle glow/shadow effects to cards and hero elements
 - Use dark navy backgrounds throughout
 - Keep text contrast high — always white or slate-300 on dark backgrounds

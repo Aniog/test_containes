@@ -19,7 +19,7 @@ const InventionCard = ({ invention, large = false }) => {
   return (
     <Link
       to={`/museum/${invention.id}`}
-      className={`group block bg-[#0f1629] border border-slate-700/50 rounded-2xl overflow-hidden hover:border-[#4ade80]/50 hover:bg-[#141d35] transition-all duration-300 hover:shadow-xl hover:shadow-[#4ade80]/5 ${
+      className={`group block bg-[#0f1629] border border-slate-700/50 rounded-2xl overflow-hidden hover:border-[#c084fc]/50 hover:bg-[#141d35] transition-all duration-300 hover:shadow-xl hover:shadow-[#c084fc]/5 ${
         large ? "md:col-span-2" : ""
       }`}
     >
@@ -69,13 +69,13 @@ const InventionCard = ({ invention, large = false }) => {
 
         <div className="flex items-start justify-between gap-3 mb-2">
           <h3
-            className="text-white font-bold text-xl group-hover:text-[#4ade80] transition-colors leading-tight"
+            className="text-white font-bold text-xl group-hover:text-[#c084fc] transition-colors leading-tight"
             style={{ fontFamily: "Cinzel, serif" }}
           >
             {invention.name}
           </h3>
           <ArrowRight
-            className="w-5 h-5 text-slate-600 group-hover:text-[#4ade80] group-hover:translate-x-1 transition-all flex-shrink-0 mt-1"
+            className="w-5 h-5 text-slate-600 group-hover:text-[#c084fc] group-hover:translate-x-1 transition-all flex-shrink-0 mt-1"
           />
         </div>
 
