@@ -24,7 +24,7 @@ const Navbar = () => {
             <span className="text-2xl">⚗️</span>
             <div>
               <span
-                className="text-[#d4a843] font-bold text-lg tracking-widest uppercase"
+                className="text-[#4ade80] font-bold text-lg tracking-widest uppercase"
                 style={{ fontFamily: "Cinzel, serif" }}
               >
                 Fictum
@@ -43,7 +43,7 @@ const Navbar = () => {
                 to={link.to}
                 className={`text-sm tracking-wider uppercase transition-colors duration-200 ${
                   isActive(link.to)
-                    ? "text-[#d4a843]"
+                    ? "text-[#4ade80]"
                     : "text-slate-400 hover:text-white"
                 }`}
                 style={{ fontFamily: "Cinzel, serif" }}
@@ -53,7 +53,7 @@ const Navbar = () => {
             ))}
             <Link
               to="/museum"
-              className="bg-[#d4a843] text-[#080c18] text-sm font-bold px-4 py-2 rounded-lg hover:bg-[#e8bc55] transition-colors tracking-wider uppercase"
+              className="bg-[#4ade80] text-[#080c18] text-sm font-bold px-4 py-2 rounded-lg hover:bg-[#86efac] transition-colors tracking-wider uppercase"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Enter Museum
@@ -80,7 +80,7 @@ const Navbar = () => {
               to={link.to}
               onClick={() => setMenuOpen(false)}
               className={`text-sm tracking-wider uppercase py-2 transition-colors ${
-                isActive(link.to) ? "text-[#d4a843]" : "text-slate-300 hover:text-white"
+                isActive(link.to) ? "text-[#4ade80]" : "text-slate-300 hover:text-white"
               }`}
               style={{ fontFamily: "Cinzel, serif" }}
             >
@@ -90,7 +90,7 @@ const Navbar = () => {
           <Link
             to="/museum"
             onClick={() => setMenuOpen(false)}
-            className="bg-[#d4a843] text-[#080c18] text-sm font-bold px-4 py-3 rounded-lg text-center tracking-wider uppercase"
+            className="bg-[#4ade80] text-[#080c18] text-sm font-bold px-4 py-3 rounded-lg text-center tracking-wider uppercase"
             style={{ fontFamily: "Cinzel, serif" }}
           >
             Enter Museum

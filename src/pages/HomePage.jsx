@@ -36,14 +36,14 @@ const HomePage = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#080c18]/70 via-[#080c18]/50 to-[#080c18]" />
 
         {/* Decorative orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4a843]/5 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#4ade80]/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#00d4ff]/5 rounded-full blur-3xl pointer-events-none" />
 
         {/* Content */}
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-[#d4a843]/10 border border-[#d4a843]/30 rounded-full px-4 py-2 mb-8">
-            <Sparkles className="w-4 h-4 text-[#d4a843]" />
-            <span className="text-[#d4a843] text-sm tracking-widest uppercase font-medium">
+          <div className="inline-flex items-center gap-2 bg-[#4ade80]/10 border border-[#4ade80]/30 rounded-full px-4 py-2 mb-8">
+            <Sparkles className="w-4 h-4 text-[#4ade80]" />
+            <span className="text-[#4ade80] text-sm tracking-widest uppercase font-medium">
               Welcome to the Museum
             </span>
           </div>
@@ -54,7 +54,7 @@ const HomePage = () => {
             style={{ fontFamily: "Cinzel, serif" }}
           >
             Inventions That{" "}
-            <span className="text-[#d4a843]">Never Were</span>
+            <span className="text-[#4ade80]">Never Were</span>
           </h1>
 
           <p
@@ -69,7 +69,7 @@ const HomePage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/museum"
-              className="inline-flex items-center gap-2 bg-[#d4a843] text-[#080c18] font-bold px-8 py-4 rounded-xl hover:bg-[#e8bc55] transition-colors text-lg tracking-wide"
+              className="inline-flex items-center gap-2 bg-[#4ade80] text-[#080c18] font-bold px-8 py-4 rounded-xl hover:bg-[#86efac] transition-colors text-lg tracking-wide"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               Enter the Museum
@@ -77,7 +77,7 @@ const HomePage = () => {
             </Link>
             <Link
               to="/about"
-              className="inline-flex items-center gap-2 border border-[#d4a843]/50 text-[#d4a843] font-semibold px-8 py-4 rounded-xl hover:bg-[#d4a843]/10 transition-colors text-lg"
+              className="inline-flex items-center gap-2 border border-[#4ade80]/50 text-[#4ade80] font-semibold px-8 py-4 rounded-xl hover:bg-[#4ade80]/10 transition-colors text-lg"
             >
               Our Story
             </Link>
@@ -98,7 +98,7 @@ const HomePage = () => {
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
                 <div
-                  className="text-4xl font-bold text-[#d4a843] mb-1"
+                  className="text-4xl font-bold text-[#4ade80] mb-1"
                   style={{ fontFamily: "Cinzel, serif" }}
                 >
                   {stat.value}
@@ -114,7 +114,7 @@ const HomePage = () => {
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
-            <span className="text-[#d4a843] text-sm tracking-widest uppercase font-medium">
+            <span className="text-[#4ade80] text-sm tracking-widest uppercase font-medium">
               Featured Exhibits
             </span>
             <h2
@@ -142,7 +142,7 @@ const HomePage = () => {
           <div className="text-center mt-12">
             <Link
               to="/museum"
-              className="inline-flex items-center gap-2 border border-[#d4a843]/50 text-[#d4a843] font-semibold px-8 py-4 rounded-xl hover:bg-[#d4a843]/10 transition-colors"
+              className="inline-flex items-center gap-2 border border-[#4ade80]/50 text-[#4ade80] font-semibold px-8 py-4 rounded-xl hover:bg-[#4ade80]/10 transition-colors"
               style={{ fontFamily: "Cinzel, serif" }}
             >
               View All Exhibits
@@ -155,7 +155,7 @@ const HomePage = () => {
       {/* Quote Section */}
       <section className="py-20 px-4 bg-[#0f1629] border-y border-slate-700/40">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="text-6xl text-[#d4a843]/30 mb-6" style={{ fontFamily: "Georgia, serif" }}>"</div>
+          <div className="text-6xl text-[#4ade80]/30 mb-6" style={{ fontFamily: "Georgia, serif" }}>"</div>
           <blockquote
             className="text-2xl md:text-3xl text-white font-light leading-relaxed mb-6"
             style={{ fontFamily: "Cinzel, serif" }}
@@ -183,7 +183,7 @@ const HomePage = () => {
           </p>
           <Link
             to="/museum"
-            className="inline-flex items-center gap-2 bg-[#d4a843] text-[#080c18] font-bold px-10 py-4 rounded-xl hover:bg-[#e8bc55] transition-colors text-lg"
+            className="inline-flex items-center gap-2 bg-[#4ade80] text-[#080c18] font-bold px-10 py-4 rounded-xl hover:bg-[#86efac] transition-colors text-lg"
             style={{ fontFamily: "Cinzel, serif" }}
           >
             Enter the Museum
