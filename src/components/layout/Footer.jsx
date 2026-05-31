@@ -8,14 +8,14 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer id="about" className="bg-space-black border-t border-pink-900/30 pt-16 pb-8 px-6 md:px-12 lg:px-24">
+    <footer id="about" className="bg-space-black border-t border-green-900/30 pt-16 pb-8 px-6 md:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto">
         {/* Top section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-5">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-pink-700 to-rose-500 flex items-center justify-center shadow-[0_0_20px_rgba(219,39,119,0.4)]">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-green-700 to-emerald-500 flex items-center justify-center shadow-[0_0_20px_rgba(22,163,74,0.4)]">
                 <Compass className="w-5 h-5 text-white" />
               </div>
               <span className="font-cinzel text-xl font-bold text-mist tracking-widest">
@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-gradient-to-r from-transparent via-pink-900/60 to-transparent mb-8" />
+        <div className="h-px bg-gradient-to-r from-transparent via-green-900/60 to-transparent mb-8" />
 
         {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
