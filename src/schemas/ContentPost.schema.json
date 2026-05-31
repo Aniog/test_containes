@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Content Posts",
+  "type": "object",
+  "properties": {
+    "celebrity_id": {
+      "type": "integer",
+      "description": "Reference to the virtual celebrity"
+    },
+    "celebrity_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Snapshot of celebrity name"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Post title or headline"
+    },
+    "content": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Full post content or caption"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["instagram", "tiktok", "youtube", "twitter", "twitch", "spotify", "discord", "linkedin"],
+      "description": "Target platform for this post"
+    },
+    "content_type": {
+      "type": "string",
+      "enum": ["photo", "video", "reel", "story", "tweet", "blog", "podcast", "stream"],
+      "description": "Type of content"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["idea", "draft", "scheduled", "published", "archived"],
+      "default": "idea",
+      "description": "Current status of the post"
+    },
+    "scheduled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Scheduled publish date and time"
+    },
+    "hashtags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 30,
+      "description": "Hashtags for the post"
+    },
+    "likes": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Simulated like count"
+    },
+    "comments": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Simulated comment count"
+    },
+    "shares": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Simulated share count"
+    },
+    "ai_generated": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this content was AI-generated"
+    }
+  },
+  "required": ["celebrity_id", "title", "platform", "content_type", "status"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

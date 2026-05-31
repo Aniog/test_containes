@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Virtual Celebrities",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Stage name of the virtual celebrity"
+    },
+    "tagline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Short tagline or catchphrase for the celebrity"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "active", "paused", "archived"],
+      "default": "draft",
+      "description": "Current operational status of the virtual celebrity"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["influencer", "musician", "gamer", "fitness", "fashion", "tech", "lifestyle", "comedian", "educator", "other"],
+      "description": "Primary category or niche of the celebrity"
+    },
+    "avatar_style": {
+      "type": "string",
+      "enum": ["anime", "realistic", "cartoon", "cyberpunk", "fantasy", "minimalist"],
+      "description": "Visual style of the avatar"
+    },
+    "gender_presentation": {
+      "type": "string",
+      "enum": ["feminine", "masculine", "androgynous", "non-binary", "undefined"],
+      "description": "Gender presentation of the virtual celebrity"
+    },
+    "age_range": {
+      "type": "string",
+      "enum": ["teen", "young-adult", "adult", "mature", "ageless"],
+      "description": "Apparent age range of the celebrity"
+    },
+    "primary_color": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Primary brand color (hex code)"
+    },
+    "secondary_color": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Secondary brand color (hex code)"
+    },
+    "personality_traits": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 10,
+      "description": "List of personality traits (e.g. bubbly, mysterious, witty)"
+    },
+    "core_values": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 6,
+      "description": "Core values the celebrity embodies"
+    },
+    "communication_tone": {
+      "type": "string",
+      "enum": ["casual", "professional", "playful", "inspirational", "edgy", "intellectual", "empathetic"],
+      "description": "Primary communication tone"
+    },
+    "language_style": {
+      "type": "string",
+      "enum": ["formal", "informal", "slang-heavy", "poetic", "technical", "conversational"],
+      "description": "Language style used in content"
+    },
+    "backstory": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Narrative backstory and origin of the celebrity"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short public bio for the celebrity"
+    },
+    "target_audience": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Description of the target audience"
+    },
+    "primary_platforms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["instagram", "tiktok", "youtube", "twitter", "twitch", "spotify", "discord", "linkedin"]
+      },
+      "description": "Primary social media platforms"
+    },
+    "content_themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "description": "Main content themes and topics"
+    },
+    "posting_frequency": {
+      "type": "string",
+      "enum": ["multiple-daily", "daily", "3-4x-week", "weekly", "bi-weekly"],
+      "description": "Target posting frequency"
+    },
+    "monetization_strategy": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["brand-deals", "merchandise", "subscriptions", "nft", "live-events", "courses", "affiliate"]
+      },
+      "description": "Monetization strategies"
+    },
+    "follower_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Simulated follower count"
+    },
+    "engagement_rate": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "default": 0,
+      "description": "Engagement rate percentage"
+    },
+    "total_posts": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Total number of posts published"
+    },
+    "avatar_prompt": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "AI image generation prompt for the avatar"
+    }
+  },
+  "required": ["name", "status", "category"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
