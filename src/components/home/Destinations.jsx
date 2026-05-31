@@ -49,10 +49,10 @@ const destinations = [
     era: '12,000 BCE',
     duration: '10 or 21 nights',
     climate: 'Tropical, lush',
-    accentColor: 'from-green-700 to-emerald-600',
-    borderColor: 'border-green-700/40',
-    glowColor: 'rgba(22,163,74,0.3)',
-    badgeColor: 'bg-green-900/40 text-green-300 border-green-700/40',
+    accentColor: 'from-purple-700 to-violet-600',
+    borderColor: 'border-purple-700/40',
+    glowColor: 'rgba(124,58,237,0.3)',
+    badgeColor: 'bg-purple-900/40 text-purple-300 border-purple-700/40',
     icon: Clock,
     description:
       'Witness the dawn of human civilization in a world untouched by modern industry. Vast crystal temples, megafauna safaris, and ancient wisdom ceremonies guided by the world\'s first philosophers.',
@@ -175,8 +175,8 @@ export default function Destinations() {
     <section id="destinations" ref={containerRef} className="py-28 px-6 md:px-12 lg:px-24 bg-space-black">
       {/* Section header */}
       <div className="text-center mb-16">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-green-700/40 bg-green-900/20 mb-6">
-          <span className="font-inter text-xs font-semibold text-green-300 tracking-[0.2em] uppercase">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-700/40 bg-purple-900/20 mb-6">
+          <span className="font-inter text-xs font-semibold text-purple-300 tracking-[0.2em] uppercase">
             Curated Realities
           </span>
         </div>
@@ -190,7 +190,7 @@ export default function Destinations() {
       </div>
 
       {/* Divider */}
-      <div className="h-px bg-gradient-to-r from-transparent via-green-700/60 to-transparent mb-16" />
+      <div className="h-px bg-gradient-to-r from-transparent via-purple-700/60 to-transparent mb-16" />
 
       {/* Cards grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
