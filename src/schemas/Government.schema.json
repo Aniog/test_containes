@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governments",
+  "type": "object",
+  "properties": {
+    "kingdom_id": {
+      "type": "integer",
+      "description": "Reference to the kingdom this government belongs to"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["monarchy", "republic", "oligarchy", "theocracy", "empire", "federation", "dictatorship"],
+      "description": "Type of government"
+    },
+    "ruler_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the current ruler"
+    },
+    "ruler_title": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Title of the ruler (e.g. King, Emperor, Chancellor)"
+    },
+    "stability": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Government stability rating 0-100"
+    },
+    "corruption": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Corruption level 0-100"
+    },
+    "laws": {
+      "type": "array",
+      "items": { "type": "string", "maxLength": 200 },
+      "maxItems": 20,
+      "description": "List of enacted laws or edicts"
+    },
+    "council_members": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 50,
+      "description": "Number of council members"
+    },
+    "succession_law": {
+      "type": "string",
+      "enum": ["primogeniture", "elective", "seniority", "appointment", "conquest"],
+      "description": "Law governing succession"
+    },
+    "tax_rate": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Tax rate percentage"
+    },
+    "approval_rating": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Public approval rating 0-100"
+    }
+  },
+  "required": ["kingdom_id", "type", "ruler_name", "ruler_title"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["user", "guest"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["user", "guest"] },
+    "delete": { "allow": ["user", "guest"] }
+  }
+}

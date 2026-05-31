@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Economies",
+  "type": "object",
+  "properties": {
+    "kingdom_id": {
+      "type": "integer",
+      "description": "Reference to the kingdom this economy belongs to"
+    },
+    "treasury": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Current treasury gold amount"
+    },
+    "income": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monthly income in gold"
+    },
+    "expenses": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monthly expenses in gold"
+    },
+    "trade_routes": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of active trade routes"
+    },
+    "primary_resource": {
+      "type": "string",
+      "enum": ["grain", "iron", "timber", "stone", "gold", "spices", "silk", "horses", "fish", "coal"],
+      "description": "Primary resource produced"
+    },
+    "secondary_resource": {
+      "type": "string",
+      "enum": ["grain", "iron", "timber", "stone", "gold", "spices", "silk", "horses", "fish", "coal", "none"],
+      "description": "Secondary resource produced"
+    },
+    "economic_policy": {
+      "type": "string",
+      "enum": ["free_trade", "mercantilism", "protectionism", "isolationism", "expansionist"],
+      "description": "Current economic policy"
+    },
+    "gdp": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Gross domestic product estimate"
+    },
+    "debt": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total kingdom debt"
+    },
+    "inflation": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Inflation rate percentage"
+    },
+    "prosperity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Overall prosperity index 0-100"
+    }
+  },
+  "required": ["kingdom_id", "primary_resource", "economic_policy"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["user", "guest"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["user", "guest"] },
+    "delete": { "allow": ["user", "guest"] }
+  }
+}

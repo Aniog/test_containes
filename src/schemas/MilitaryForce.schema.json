@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Military Forces",
+  "type": "object",
+  "properties": {
+    "kingdom_id": {
+      "type": "integer",
+      "description": "Reference to the kingdom this military belongs to"
+    },
+    "total_troops": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total number of troops"
+    },
+    "infantry": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of infantry units"
+    },
+    "cavalry": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of cavalry units"
+    },
+    "archers": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of archer units"
+    },
+    "siege_weapons": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of siege weapons"
+    },
+    "navy_ships": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of naval vessels"
+    },
+    "military_strength": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000,
+      "description": "Overall military strength rating"
+    },
+    "morale": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Troop morale 0-100"
+    },
+    "training_level": {
+      "type": "string",
+      "enum": ["conscript", "levied", "trained", "professional", "elite"],
+      "description": "Overall training level of forces"
+    },
+    "military_doctrine": {
+      "type": "string",
+      "enum": ["defensive", "offensive", "balanced", "guerrilla", "naval"],
+      "description": "Primary military doctrine"
+    },
+    "general_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the commanding general"
+    },
+    "wars_won": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of wars won"
+    },
+    "wars_lost": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of wars lost"
+    },
+    "upkeep_cost": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Monthly military upkeep cost in gold"
+    }
+  },
+  "required": ["kingdom_id", "training_level", "military_doctrine"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["user", "guest"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["user", "guest"] },
+    "delete": { "allow": ["user", "guest"] }
+  }
+}

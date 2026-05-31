@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Diplomatic Alliances",
+  "type": "object",
+  "properties": {
+    "kingdom_id": {
+      "type": "integer",
+      "description": "The kingdom initiating or holding this diplomatic relation"
+    },
+    "partner_kingdom_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the partner kingdom"
+    },
+    "relation_type": {
+      "type": "string",
+      "enum": ["alliance", "non_aggression", "trade_agreement", "vassal", "tributary", "rivalry", "war", "neutral"],
+      "description": "Type of diplomatic relationship"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "pending", "broken", "expired"],
+      "description": "Current status of the agreement"
+    },
+    "trust_level": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Trust level with this partner 0-100"
+    },
+    "established_year": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Year the relationship was established"
+    },
+    "terms": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Terms and conditions of the agreement"
+    },
+    "mutual_defense": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether mutual defense is included"
+    },
+    "trade_bonus": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Trade bonus percentage from this relationship"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Diplomatic notes and history"
+    }
+  },
+  "required": ["kingdom_id", "partner_kingdom_name", "relation_type", "status"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["user", "guest"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["user", "guest"] },
+    "delete": { "allow": ["user", "guest"] }
+  }
+}

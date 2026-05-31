@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kingdoms",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the kingdom"
+    },
+    "motto": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Kingdom motto or slogan"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Lore and description of the kingdom"
+    },
+    "banner_color": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Primary banner color hex code"
+    },
+    "emblem": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Emblem symbol identifier"
+    },
+    "terrain": {
+      "type": "string",
+      "enum": ["plains", "mountains", "forest", "desert", "coastal", "tundra", "swamp"],
+      "description": "Primary terrain type of the kingdom"
+    },
+    "population": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total population of the kingdom"
+    },
+    "territory": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Territory size in square leagues"
+    },
+    "prestige": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000,
+      "description": "Kingdom prestige score"
+    },
+    "age": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Age of the kingdom in years"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["rising", "stable", "declining", "at_war", "prosperous"],
+      "description": "Current status of the kingdom"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Owner user ID",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "terrain", "status"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user", "guest"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
