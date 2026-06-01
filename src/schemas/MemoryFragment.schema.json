@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Memory Fragments",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 120,
+      "description": "Short title of the memory"
+    },
+    "story": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 5000,
+      "description": "The full narrative of the memory"
+    },
+    "author_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the person who submitted the memory"
+    },
+    "author_location": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City and country of origin"
+    },
+    "era": {
+      "type": "string",
+      "enum": ["1900s", "1910s", "1920s", "1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"],
+      "description": "Decade in which the memory occurred"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2099,
+      "description": "Specific year of the memory"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": ["joy", "love", "nostalgia", "grief", "wonder", "fear", "hope", "pride", "longing", "peace"],
+      "description": "Primary emotion associated with the memory"
+    },
+    "life_event": {
+      "type": "string",
+      "enum": ["childhood", "first_love", "family", "loss", "achievement", "travel", "friendship", "nature", "celebration", "everyday"],
+      "description": "Category of life event"
+    },
+    "region": {
+      "type": "string",
+      "enum": ["Africa", "Asia", "Europe", "North America", "South America", "Oceania", "Middle East", "Antarctica"],
+      "description": "Geographic region"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "maxItems": 8,
+      "description": "Free-form tags for the memory"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this memory is featured on the homepage"
+    },
+    "views": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of times this memory has been viewed"
+    }
+  },
+  "required": ["title", "story", "era", "emotion", "life_event", "region"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
