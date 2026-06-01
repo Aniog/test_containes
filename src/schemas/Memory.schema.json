@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Memories",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Short title of the memory"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Full narrative description of the memory"
+    },
+    "contributor_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the person who contributed this memory"
+    },
+    "contributor_origin": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City or country of origin of the contributor"
+    },
+    "era": {
+      "type": "string",
+      "enum": ["Ancient", "Medieval", "Industrial", "Modern", "Digital", "Near Future"],
+      "description": "Historical era this memory belongs to"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": -3000,
+      "maximum": 2100,
+      "description": "Approximate year of the memory"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Geographic location where the memory took place"
+    },
+    "continent": {
+      "type": "string",
+      "enum": ["Africa", "Antarctica", "Asia", "Europe", "North America", "Oceania", "South America"],
+      "description": "Continent where the memory took place"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": ["Joy", "Love", "Nostalgia", "Wonder", "Grief", "Hope", "Fear", "Peace"],
+      "description": "Primary emotion associated with this memory"
+    },
+    "life_event": {
+      "type": "string",
+      "enum": ["Birth", "Childhood", "First Love", "Marriage", "Loss", "Achievement", "Travel", "War", "Discovery", "Farewell", "Reunion", "Daily Life"],
+      "description": "Type of life event this memory captures"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "maxItems": 10,
+      "description": "Free-form tags for additional categorization"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this memory is featured on the homepage"
+    },
+    "view_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of times this memory has been viewed"
+    }
+  },
+  "required": ["title", "description", "era", "emotion", "life_event"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
