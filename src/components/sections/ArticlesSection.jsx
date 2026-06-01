@@ -73,15 +73,17 @@ export default function ArticlesSection() {
     }
   }, [loading, activeFilter]);
 
+  const PINNED_ID = 1992;
+
   const sorted = [...articles].sort((a, b) => {
-    if (a.data?.featured && !b.data?.featured) return -1;
-    if (!a.data?.featured && b.data?.featured) return 1;
-    return 0;
+    if (a.id === PINNED_ID) return -1;
+    if (b.id === PINNED_ID) return 1;
+    return new Date(b.data?.published_at) - new Date(a.data?.published_at);
   });
 
   const filtered = activeFilter === 'all'
     ? sorted
-    : sorted.filter((a) => a.data?.platform === activeFilter || (activeFilter === 'all' && a.data?.platform === 'all'));
+    : sorted.filter((a) => a.data?.platform === activeFilter);
 
   return (
     <section id="articles" className="py-20 px-4 md:px-8 bg-[#1b2838]" ref={containerRef}>
@@ -157,7 +159,7 @@ export default function ArticlesSection() {
                     <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded ${catMeta.color}`}>
                       {catMeta.label}
                     </span>
-                    {d.featured && (
+                    {article.id === PINNED_ID && (
                       <span className="absolute top-3 right-3 flex items-center gap-1 bg-yellow-500 text-black text-xs font-black px-2 py-1 rounded shadow-lg">
                         📌 Pinned
                       </span>
