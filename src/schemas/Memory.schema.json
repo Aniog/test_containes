@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Memories",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Title of the memory"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Full description of the memory"
+    },
+    "contributor_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the person who contributed this memory"
+    },
+    "contributor_location": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City and country of the contributor"
+    },
+    "era": {
+      "type": "string",
+      "enum": ["1900s", "1920s", "1940s", "1960s", "1980s", "2000s", "2010s", "2020s", "2030s", "2040s", "2050s"],
+      "description": "Decade era of the memory"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2100,
+      "description": "Specific year of the memory"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": ["joy", "grief", "wonder", "love", "fear", "nostalgia", "hope", "longing", "pride", "peace"],
+      "description": "Primary emotion associated with this memory"
+    },
+    "life_event": {
+      "type": "string",
+      "enum": ["birth", "childhood", "first love", "marriage", "loss", "migration", "discovery", "reunion", "farewell", "achievement", "ordinary moment"],
+      "description": "Life event category"
+    },
+    "region": {
+      "type": "string",
+      "enum": ["Africa", "Asia", "Europe", "North America", "South America", "Oceania", "Middle East", "Antarctica"],
+      "description": "Geographic region"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional descriptive tags"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this memory is featured on the homepage"
+    },
+    "view_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of times this memory has been viewed"
+    }
+  },
+  "required": ["title", "description", "contributor_name", "era", "emotion", "life_event", "region"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
