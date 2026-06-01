@@ -73,9 +73,15 @@ export default function ArticlesSection() {
     }
   }, [loading, activeFilter]);
 
+  const sorted = [...articles].sort((a, b) => {
+    if (a.data?.featured && !b.data?.featured) return -1;
+    if (!a.data?.featured && b.data?.featured) return 1;
+    return 0;
+  });
+
   const filtered = activeFilter === 'all'
-    ? articles
-    : articles.filter((a) => a.data?.platform === activeFilter || (activeFilter === 'all' && a.data?.platform === 'all'));
+    ? sorted
+    : sorted.filter((a) => a.data?.platform === activeFilter || (activeFilter === 'all' && a.data?.platform === 'all'));
 
   return (
     <section id="articles" className="py-20 px-4 md:px-8 bg-[#1b2838]" ref={containerRef}>
@@ -151,6 +157,11 @@ export default function ArticlesSection() {
                     <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded ${catMeta.color}`}>
                       {catMeta.label}
                     </span>
+                    {d.featured && (
+                      <span className="absolute top-3 right-3 flex items-center gap-1 bg-yellow-500 text-black text-xs font-black px-2 py-1 rounded shadow-lg">
+                        📌 Pinned
+                      </span>
+                    )}
                   </div>
 
                   <div className="p-5 flex flex-col flex-1">
