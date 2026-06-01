@@ -12,6 +12,7 @@ export default {
         'earth': '#a07850',
         'sky-nature': '#90c2e7',
         'cream': '#f8f5f0',
+        'warm-stone': '#c4a882',
       },
       fontFamily: {
         serif: ['"Playfair Display"', 'Georgia', 'serif'],
