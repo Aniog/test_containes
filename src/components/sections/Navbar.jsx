@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { Menu, X, Gamepad2 } from 'lucide-react';
 
 const navLinks = [
+  { label: 'Deals', href: '#deals' },
   { label: 'Featured', href: '#featured' },
   { label: 'Top Sellers', href: '#top-sellers' },
   { label: 'Genres', href: '#genres' },
+  { label: 'Articles', href: '#articles' },
   { label: 'Reviews', href: '#reviews' },
   { label: 'News', href: '#news' },
 ];

@@ -5,6 +5,8 @@ import TopSellers from './components/sections/TopSellers';
 import Genres from './components/sections/Genres';
 import Reviews from './components/sections/Reviews';
 import News from './components/sections/News';
+import ArticlesSection from './components/sections/ArticlesSection';
+import DealsSection from './components/sections/DealsSection';
 import Footer from './components/sections/Footer';
 
 function App() {
@@ -13,9 +15,11 @@ function App() {
       <Navbar />
       <main className="pt-16">
         <Hero />
+        <DealsSection />
         <FeaturedGames />
         <TopSellers />
         <Genres />
+        <ArticlesSection />
         <Reviews />
         <News />
       </main>
