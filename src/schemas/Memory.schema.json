@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Memories",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Short title of the memory"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Full narrative description of the memory"
+    },
+    "contributor_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the person who contributed this memory"
+    },
+    "contributor_age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150,
+      "description": "Age of the contributor at time of submission"
+    },
+    "era": {
+      "type": "string",
+      "enum": ["1900s", "1910s", "1920s", "1930s", "1940s", "1950s", "1960s", "1970s", "1980s", "1990s", "2000s", "2010s", "2020s"],
+      "description": "Decade era when the memory occurred"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": 1900,
+      "maximum": 2100,
+      "description": "Specific year the memory occurred"
+    },
+    "location_country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the memory took place"
+    },
+    "location_city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City or region where the memory took place"
+    },
+    "location_continent": {
+      "type": "string",
+      "enum": ["Africa", "Antarctica", "Asia", "Europe", "North America", "Oceania", "South America"],
+      "description": "Continent where the memory took place"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": ["Joy", "Love", "Nostalgia", "Wonder", "Grief", "Hope", "Fear", "Pride", "Gratitude", "Longing"],
+      "description": "Primary emotion associated with this memory"
+    },
+    "life_event": {
+      "type": "string",
+      "enum": ["Birth", "Childhood", "First Love", "Education", "Career", "Marriage", "Parenthood", "Loss", "Travel", "Achievement", "Friendship", "Home", "Nature", "War & Peace", "Discovery"],
+      "description": "Life event category this memory belongs to"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "maxLength": 50
+      },
+      "maxItems": 10,
+      "description": "Free-form tags for additional categorization"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this memory is featured on the homepage constellation"
+    },
+    "constellation_x": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "X position percentage on the constellation map (0-100)"
+    },
+    "constellation_y": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Y position percentage on the constellation map (0-100)"
+    },
+    "view_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of times this memory has been viewed"
+    }
+  },
+  "required": ["title", "description", "era", "emotion", "life_event"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
