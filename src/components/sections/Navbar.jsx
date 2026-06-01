@@ -1,45 +1,53 @@
 import { useState } from 'react';
 import { Menu, X, Gamepad2 } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { label: 'Deals', href: '#deals' },
-  { label: 'Featured', href: '#featured' },
-  { label: 'Top Sellers', href: '#top-sellers' },
-  { label: 'Genres', href: '#genres' },
-  { label: 'Articles', href: '#articles' },
-  { label: 'Reviews', href: '#reviews' },
-  { label: 'News', href: '#news' },
+  { label: 'Home', to: '/' },
+  { label: 'Deals', to: '/deals' },
+  { label: 'Articles', to: '/articles' },
+  { label: 'Reviews', to: '/reviews' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  const isActive = (to) =>
+    to === '/' ? pathname === '/' : pathname.startsWith(to);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1b2838]/95 backdrop-blur border-b border-[#2a475e]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
-        <a href="#" className="flex items-center gap-2 text-white font-black text-xl tracking-tight">
+        <Link to="/" className="flex items-center gap-2 text-white font-black text-xl tracking-tight">
           <Gamepad2 className="w-7 h-7 text-[#1a9fff]" />
           <span>SteamVault</span>
-        </a>
+        </Link>
 
         <ul className="hidden md:flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
-                className="text-[#c6d4df] hover:text-white text-sm font-medium transition"
+              <Link
+                to={link.to}
+                className={`text-sm font-medium transition ${
+                  isActive(link.to)
+                    ? 'text-white border-b-2 border-[#1a9fff] pb-0.5'
+                    : 'text-[#c6d4df] hover:text-white'
+                }`}
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         <a
-          href="#"
+          href="https://store.steampowered.com/"
+          target="_blank"
+          rel="noreferrer"
           className="hidden md:inline-flex bg-[#1a9fff] hover:bg-[#1b8fe0] text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
         >
-          Install Steam
+          Visit Steam
         </a>
 
         <button
@@ -56,21 +64,25 @@ export default function Navbar() {
           <ul className="flex flex-col gap-3 pt-3">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="block text-[#c6d4df] hover:text-white text-sm font-medium transition"
+                <Link
+                  to={link.to}
+                  className={`block text-sm font-medium transition ${
+                    isActive(link.to) ? 'text-white' : 'text-[#c6d4df] hover:text-white'
+                  }`}
                   onClick={() => setOpen(false)}
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
           <a
-            href="#"
+            href="https://store.steampowered.com/"
+            target="_blank"
+            rel="noreferrer"
             className="mt-4 block text-center bg-[#1a9fff] hover:bg-[#1b8fe0] text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
           >
-            Install Steam
+            Visit Steam
           </a>
         </div>
       )}
