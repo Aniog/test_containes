@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Trip Signups",
+  "type": "object",
+  "properties": {
+    "student_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the student"
+    },
+    "student_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "Student ID number"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Student email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number"
+    },
+    "trip_date": {
+      "type": "string",
+      "enum": ["06/07", "06/08", "06/09"],
+      "description": "Selected trip date (MM/DD)"
+    },
+    "emergency_contact_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Emergency contact full name"
+    },
+    "emergency_contact_phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Emergency contact phone number"
+    },
+    "dietary_requirements": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Any dietary requirements or allergies"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Additional notes or special requests"
+    }
+  },
+  "required": ["student_name", "email", "trip_date"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
