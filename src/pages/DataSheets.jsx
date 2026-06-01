@@ -133,11 +133,13 @@ function SectionHeader({ icon: Icon, label, subtitle }) {
   );
 }
 
-function ExpandableRow({ obj }) {
+function ExpandableRow({ obj, index }) {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <tr
+      <motion.tr
+        variants={fadeUp}
+        custom={index}
         className="cursor-pointer hover:bg-white/[0.03] transition-colors"
         onClick={() => setOpen((v) => !v)}
       >
@@ -151,7 +153,7 @@ function ExpandableRow({ obj }) {
             ? <ChevronDown size={12} className="text-violet-400 mx-auto" />
             : <ChevronRight size={12} className="text-slate-600 mx-auto" />}
         </td>
-      </tr>
+      </motion.tr>
       {open && (
         <tr>
           <td colSpan={6} className={`${BORDER} bg-white/[0.015]`}>
@@ -230,12 +232,7 @@ export default function DataSheets() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-16">
 
         {/* ── Cosmic Objects Table ── */}
-        <motion.section
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05 } } }}
-        >
+        <section>
           <SectionHeader icon={Database} label="Cosmic Object Catalog" subtitle="Select row to expand full parameters" />
           <div className="overflow-x-auto">
             <table className="w-full border-collapse">
@@ -255,22 +252,18 @@ export default function DataSheets() {
                   ))}
                 </tr>
               </thead>
-              <tbody>
+              <motion.tbody
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.05 } } }}
+                initial="hidden"
+                animate="visible"
+              >
                 {cosmicObjects.map((obj, i) => (
-                  <motion.tr
-                    key={obj.id}
-                    variants={fadeUp}
-                    custom={i}
-                    className="contents"
-                    style={{ display: 'contents' }}
-                  >
-                    <ExpandableRow obj={obj} />
-                  </motion.tr>
+                  <ExpandableRow key={obj.id} obj={obj} index={i} />
                 ))}
-              </tbody>
+              </motion.tbody>
             </table>
           </div>
-        </motion.section>
+        </section>
 
         {/* ── Physical Constants ── */}
         <motion.section
