@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Deals from './pages/Deals';
 import Articles from './pages/Articles';
 import ReviewsPage from './pages/ReviewsPage';
+import PlatformPage from './pages/PlatformPage';
 
 function App() {
   return (
@@ -17,6 +18,11 @@ function App() {
             <Route path="/deals" element={<Deals />} />
             <Route path="/articles" element={<Articles />} />
             <Route path="/reviews" element={<ReviewsPage />} />
+            <Route path="/steam" element={<PlatformPage platformKey="steam" />} />
+            <Route path="/playstation" element={<PlatformPage platformKey="playstation" />} />
+            <Route path="/xbox" element={<PlatformPage platformKey="xbox" />} />
+            <Route path="/epic" element={<PlatformPage platformKey="epic" />} />
+            <Route path="/nintendo" element={<PlatformPage platformKey="nintendo" />} />
           </Routes>
         </main>
         <Footer />
