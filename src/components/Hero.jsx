@@ -14,8 +14,8 @@ const Hero = () => {
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
-        data-strk-bg-id="hero-bg-mc001"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg-id="hero-bg-mc001b"
+        data-strk-bg="microscopic snowflake ice crystal macro photography"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
