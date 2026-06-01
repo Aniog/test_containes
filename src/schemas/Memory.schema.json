@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Memories",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Short title of the memory"
+    },
+    "excerpt": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "A brief excerpt or quote from the memory"
+    },
+    "full_text": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Full text of the memory recording"
+    },
+    "contributor_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name or alias of the person who contributed this memory"
+    },
+    "contributor_age": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 150,
+      "description": "Age of the contributor at time of recording"
+    },
+    "era": {
+      "type": "string",
+      "enum": ["Ancient", "Medieval", "Industrial", "Modern", "Digital", "Pre-Migration"],
+      "description": "Historical era of the memory"
+    },
+    "year": {
+      "type": "integer",
+      "minimum": -3000,
+      "maximum": 2100,
+      "description": "Approximate year of the memory"
+    },
+    "location_country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the memory took place"
+    },
+    "location_city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City where the memory took place"
+    },
+    "location_region": {
+      "type": "string",
+      "enum": ["Africa", "Asia", "Europe", "North America", "South America", "Oceania", "Middle East", "Antarctica"],
+      "description": "World region of the memory"
+    },
+    "emotion": {
+      "type": "string",
+      "enum": ["Joy", "Grief", "Love", "Fear", "Wonder", "Nostalgia", "Hope", "Longing", "Pride", "Serenity"],
+      "description": "Primary emotion of the memory"
+    },
+    "life_event": {
+      "type": "string",
+      "enum": ["Birth", "Childhood", "First Love", "Marriage", "Loss", "Achievement", "Migration", "War", "Discovery", "Farewell"],
+      "description": "Life event category of the memory"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional descriptive tags"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this memory is featured on the homepage"
+    },
+    "view_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of times this memory has been viewed"
+    }
+  },
+  "required": ["title", "excerpt", "contributor_name", "era", "emotion", "life_event"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
