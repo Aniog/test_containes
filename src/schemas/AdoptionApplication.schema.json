@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Adoption Applications",
+  "type": "object",
+  "properties": {
+    "applicant_name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Full name of the applicant"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Applicant email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Applicant phone number"
+    },
+    "monster_id": {
+      "type": "integer",
+      "description": "ID of the monster being applied for"
+    },
+    "monster_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the monster"
+    },
+    "monster_type": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Type/species of the monster"
+    },
+    "living_situation": {
+      "type": "string",
+      "enum": ["apartment", "house_small", "house_large", "rural", "other"],
+      "description": "Applicant's living situation"
+    },
+    "has_children": {
+      "type": "boolean",
+      "description": "Whether the applicant has children"
+    },
+    "has_pets": {
+      "type": "boolean",
+      "description": "Whether the applicant has other pets"
+    },
+    "experience_level": {
+      "type": "string",
+      "enum": ["none", "some", "experienced", "expert"],
+      "description": "Experience with magical creatures"
+    },
+    "motivation": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Why the applicant wants to adopt this monster"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "reviewing", "approved", "rejected"],
+      "default": "pending",
+      "description": "Application status"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the application",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["applicant_name", "email", "monster_id", "monster_name", "monster_type", "motivation"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
