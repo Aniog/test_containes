@@ -2,6 +2,9 @@ import { useState, useRef, useEffect } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 
+const FALLBACK_SRC = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 21 9'%3E%3Crect width='21' height='9' fill='%231a1a1a'/%3E%3C/svg%3E";
+const handleImgError = (e) => { e.currentTarget.src = FALLBACK_SRC; };
+
 const films = [
   {
     id: 'nocturne-city',
@@ -105,6 +108,7 @@ function FilmItem({ film, index }) {
           data-strk-img-width="1920"
           className="w-full h-full object-cover"
           loading="eager"
+          onError={handleImgError}
         />
         <div className="absolute inset-0 bg-cinema-black/60" />
         <div className="absolute bottom-12 left-12 right-12">
@@ -154,6 +158,7 @@ function FilmItem({ film, index }) {
                 data-strk-img-width="1400"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                 loading={index < 2 ? 'eager' : 'lazy'}
+                onError={handleImgError}
               />
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-r from-cinema-black/50 via-transparent to-transparent" />

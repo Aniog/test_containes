@@ -2,6 +2,9 @@ import { useRef, useEffect } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 
+const FALLBACK_SRC = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
+const handleImgError = (e) => { e.currentTarget.src = FALLBACK_SRC; };
+
 const featuredStory = {
   id: 'bts-featured',
   title: 'Chasing the Perfect Frame',
@@ -110,6 +113,7 @@ export default function BehindTheScenes() {
             data-strk-img-width="1920"
             className="w-full h-full object-cover"
             loading="eager"
+            onError={handleImgError}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-cinema-black via-cinema-black/20 to-transparent" />
         </div>
@@ -155,6 +159,7 @@ export default function BehindTheScenes() {
                 data-strk-img-width="900"
                 className="w-full h-full object-cover"
                 loading="eager"
+                onError={handleImgError}
               />
               <div className="absolute inset-0 bg-cinema-black/20" />
             </div>
@@ -196,6 +201,7 @@ export default function BehindTheScenes() {
                   data-strk-img-width="600"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
+                  onError={handleImgError}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-cinema-black/70 via-transparent to-transparent" />
                 <span className="absolute top-4 left-4 font-body text-gold text-[10px] tracking-[0.35em] uppercase bg-cinema-black/60 px-2 py-1">
@@ -252,6 +258,7 @@ export default function BehindTheScenes() {
               data-strk-img-width="900"
               className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
+              onError={handleImgError}
             />
             <div className="absolute inset-0 bg-cinema-black/30 group-hover:bg-cinema-black/10 transition-all duration-500" />
             <p id={behindMoments[0].titleId} className="absolute bottom-3 left-4 font-body text-cinema-white/70 text-[10px] tracking-[0.2em] uppercase">
@@ -271,6 +278,7 @@ export default function BehindTheScenes() {
                 data-strk-img-width="600"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 loading="lazy"
+                onError={handleImgError}
               />
               <div className="absolute inset-0 bg-cinema-black/30 group-hover:bg-cinema-black/10 transition-all duration-500" />
               <p id={moment.titleId} className="absolute bottom-3 left-3 font-body text-cinema-white/70 text-[10px] tracking-[0.15em] uppercase leading-tight">
