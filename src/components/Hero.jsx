@@ -14,8 +14,8 @@ const Hero = () => {
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
-        data-strk-bg-id="hero-bg-mc001f"
-        data-strk-bg="dark black background cancer cell electron microscope glowing"
+        data-strk-bg-id="hero-bg-mc001g"
+        data-strk-bg="dark black neuron nerve cell network glowing blue microscopy"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
