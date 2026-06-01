@@ -11,7 +11,7 @@ const stats = [
 
 const closeups = [
   { id: 'cu1', titleId: 'closeup-cu1-title', descId: 'closeup-cu1-desc', imgId: 'closeup-img-cu1-a1b2c3', title: 'Mitochondria', desc: 'Powerhouse of the cell under transmission electron microscope' },
-  { id: 'cu2', titleId: 'closeup-cu2-title', descId: 'closeup-cu2-desc', imgId: 'closeup-img-cu2-d4e5f6', title: 'Virus Particle', desc: 'Bacteriophage virus attaching to bacterial cell wall' },
+  { id: 'cu2', titleId: 'closeup-cu2-title', descId: 'closeup-cu2-desc', imgId: 'closeup-img-cu2-r9s8t7', title: 'Virus Particle', desc: 'Microscopic virus structure under electron microscope' },
   { id: 'cu3', titleId: 'closeup-cu3-title', descId: 'closeup-cu3-desc', imgId: 'closeup-img-cu3-g7h8i9', title: 'Nano Crystal', desc: 'Quantum dot nanocrystal fluorescence under UV light' },
   { id: 'cu4', titleId: 'closeup-cu4-title', descId: 'closeup-cu4-desc', imgId: 'closeup-img-cu4-j1k2l3', title: 'Spore Surface', desc: 'Fern spore surface texture at 5000x magnification' },
   { id: 'cu5', titleId: 'closeup-cu5-title', descId: 'closeup-cu5-desc', imgId: 'closeup-img-cu5-m4n5o6', title: 'Muscle Fiber', desc: 'Striated skeletal muscle fiber cross-section' },
