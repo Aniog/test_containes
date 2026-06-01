@@ -53,7 +53,7 @@ export default function Home() {
           data-strk-bg="[home-hero-subtitle] [home-hero-title]"
           data-strk-bg-ratio="16x9"
           data-strk-bg-width="1920"
-          style={{ filter: 'grayscale(100%) contrast(1.15) brightness(0.55)' }}
+          style={{ filter: 'brightness(0.55)' }}
         />
 
         {/* Gradient overlay for readability */}
@@ -219,7 +219,6 @@ export default function Home() {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   alt="Scientific microscopy specimen"
                   className="w-full h-full object-cover"
-                  style={{ filter: 'grayscale(100%) contrast(1.1)' }}
                 />
               </div>
               <span id="home-intro-img-title" className="sr-only">Scientific microscopy laboratory specimen slide</span>
@@ -318,7 +317,6 @@ export default function Home() {
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt="Radiolarian specimen under microscope"
               className="w-full h-full object-cover opacity-80"
-              style={{ filter: 'grayscale(100%) contrast(1.2)' }}
             />
             <span id="home-featured-title" className="sr-only">Radiolarian marine organism microscopy specimen</span>
             <span id="home-featured-desc" className="sr-only">Single-celled marine organism silica skeleton geometric lattice high magnification</span>

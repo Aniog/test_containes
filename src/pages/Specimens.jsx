@@ -12,7 +12,7 @@ const specimens = [
     latinName: 'Zea mays — Monocot Stem',
     description:
       'The vascular bundle of maize exhibits a characteristic scattered arrangement of xylem and phloem, enclosed within a sclerenchymatous bundle sheath. This section reveals the intricate hydraulic architecture responsible for nutrient translocation.',
-    imageUrl: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&q=80',
     magnification: '100×',
     terms: [
       { label: 'Xylem', definition: 'Water-conducting vascular tissue composed of tracheids and vessel elements, responsible for upward transport of water and dissolved minerals.' },
@@ -32,7 +32,7 @@ const specimens = [
     latinName: 'Tradescantia sp. — Leaf Epidermis',
     description:
       'The abaxial epidermis of Tradescantia reveals paired guard cells flanking the stomatal pore, surrounded by subsidiary cells. The chloroplast distribution within guard cells is clearly visible under this preparation.',
-    imageUrl: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=80',
     magnification: '400×',
     terms: [
       { label: 'Guard Cells', definition: 'Specialized epidermal cells that flank the stomatal pore and regulate its opening and closing through changes in turgor pressure.' },
@@ -52,7 +52,7 @@ const specimens = [
     latinName: 'Ciliophora — Freshwater Ciliate',
     description:
       'A slipper-shaped ciliate of remarkable complexity, Paramecium caudatum displays a macronucleus, micronucleus, contractile vacuoles, and a dense covering of cilia arranged in precise longitudinal rows. A model organism for cell biology.',
-    imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=80',
     magnification: '400×',
     terms: [
       { label: 'Macronucleus', definition: 'The larger of two nuclei in ciliates; controls vegetative functions including metabolism, growth, and gene expression.' },
@@ -72,7 +72,7 @@ const specimens = [
     latinName: 'Bacillariophyta — Mixed Species',
     description:
       'A diverse assemblage of diatoms from a freshwater sample, showcasing the extraordinary geometric diversity of siliceous frustules. Each species exhibits a unique pattern of striae, punctae, and raphe systems etched into their glass-like cell walls.',
-    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=80',
     magnification: '200×',
     terms: [
       { label: 'Frustule', definition: 'The rigid, siliceous cell wall of a diatom, composed of two overlapping halves (valves) with intricate geometric ornamentation.' },
@@ -92,7 +92,7 @@ const specimens = [
     latinName: 'Homo sapiens — Peripheral Blood',
     description:
       'A Wright-Giemsa stained peripheral blood smear revealing the full complement of formed elements: biconcave erythrocytes, polymorphonuclear neutrophils with characteristic multi-lobed nuclei, and the occasional lymphocyte and monocyte.',
-    imageUrl: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80',
     magnification: '1000×',
     terms: [
       { label: 'Erythrocyte', definition: 'Red blood cell; a biconcave, anucleate disc containing haemoglobin, responsible for oxygen transport throughout the body.' },
@@ -112,7 +112,7 @@ const specimens = [
     latinName: 'Homo sapiens — Oesophageal Mucosa',
     description:
       'The non-keratinised stratified squamous epithelium of the oesophagus demonstrates the characteristic layered organisation from basal columnar cells through to flattened superficial squames, providing a resilient protective lining.',
-    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80',
     magnification: '200×',
     terms: [
       { label: 'Stratum Basale', definition: 'The deepest layer of stratified epithelium containing mitotically active stem cells that continuously replenish the overlying layers.' },

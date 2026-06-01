@@ -16,7 +16,7 @@ const slides = [
     stain: 'Safranin / Fast Green',
     collector: 'Dr. A. Müller',
     date: '14 March 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=1200&q=90',
     notes: 'Exceptional clarity of the bundle sheath cells. The lignified secondary walls of the xylem vessels stain intensely with safranin, providing excellent contrast against the green-stained phloem.',
     tags: ['Monocot', 'Vascular', 'Xylem', 'Phloem', 'Transverse Section'],
     size: 'large',
@@ -31,7 +31,7 @@ const slides = [
     stain: 'Neutral Red',
     collector: 'Prof. L. Chen',
     date: '02 April 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?w=800&q=90',
     notes: 'Guard cell chloroplasts are clearly visible. The subsidiary cells show characteristic shape. Stomatal aperture approximately 8μm at time of preparation.',
     tags: ['Epidermis', 'Stomata', 'Guard Cells', 'Surface Peel'],
     size: 'small',
@@ -46,7 +46,7 @@ const slides = [
     stain: 'Wet Mount (Unstained)',
     collector: 'Dr. R. Okafor',
     date: '19 January 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800&q=90',
     notes: 'Live specimen exhibiting active ciliary motion. Contractile vacuoles observed pulsating at approximately 6-second intervals. Macronucleus clearly visible as a dense, elongated structure.',
     tags: ['Ciliate', 'Freshwater', 'Protozoa', 'Live Specimen'],
     size: 'small',
@@ -61,7 +61,7 @@ const slides = [
     stain: 'Acid-cleaned, Unstained',
     collector: 'Dr. S. Patel',
     date: '07 June 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=1200&q=90',
     notes: 'Remarkable diversity of frustule morphology. At least 12 distinct species identified. The acid-cleaning process has removed all organic matter, leaving only the siliceous frustules with their intricate ornamentation.',
     tags: ['Diatom', 'Siliceous', 'Frustule', 'Freshwater', 'Diversity'],
     size: 'large',
@@ -76,7 +76,7 @@ const slides = [
     stain: 'Wright-Giemsa',
     collector: 'Dr. M. Torres',
     date: '28 February 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=90',
     notes: 'Normal differential count. Erythrocytes show characteristic central pallor. One neutrophil with 4-lobed nucleus visible. Platelet distribution appears normal. No abnormal cells detected.',
     tags: ['Blood', 'Erythrocyte', 'Neutrophil', 'Haematology', 'Clinical'],
     size: 'medium',
@@ -91,7 +91,7 @@ const slides = [
     stain: 'Haematoxylin & Eosin',
     collector: 'Prof. K. Yamamoto',
     date: '11 May 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=90',
     notes: 'Well-preserved stratified squamous epithelium. The transition from columnar basal cells to flattened superficial squames is clearly delineated. Basement membrane intact throughout.',
     tags: ['Epithelium', 'Stratified', 'Squamous', 'Histopathology'],
     size: 'medium',
@@ -106,7 +106,7 @@ const slides = [
     stain: 'Safranin / Alcian Blue',
     collector: 'Dr. A. Müller',
     date: '03 September 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=90',
     notes: 'Excellent demonstration of the Casparian strip within the endodermis. The pericycle is clearly visible as a single layer of cells. Primary xylem shows characteristic star-shaped arrangement.',
     tags: ['Root', 'Endodermis', 'Casparian Strip', 'Dicot'],
     size: 'small',
@@ -121,7 +121,7 @@ const slides = [
     stain: 'Unstained',
     collector: 'Prof. L. Chen',
     date: '22 July 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&q=90',
     notes: 'Characteristic helical chloroplasts with pyrenoids clearly visible. Conjugation tubes observed between adjacent filaments, indicating sexual reproduction. Cell walls show typical cellulosic composition.',
     tags: ['Green Algae', 'Filamentous', 'Chloroplast', 'Conjugation'],
     size: 'large',
@@ -136,7 +136,7 @@ const slides = [
     stain: 'Haematoxylin & Eosin',
     collector: 'Dr. M. Torres',
     date: '16 October 2024',
-    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=90&sat=-100',
+    imageUrl: 'https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=800&q=90',
     notes: 'Intercalated discs clearly visible as dark transverse bands. Branching of cardiomyocytes evident. Central nuclei with prominent nucleoli. Striations well-preserved in this preparation.',
     tags: ['Cardiac', 'Muscle', 'Intercalated Disc', 'Myocardium'],
     size: 'small',
@@ -284,7 +284,7 @@ export default function Gallery() {
                         src={slide.imageUrl}
                         alt={slide.title}
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        style={{ filter: 'grayscale(100%) contrast(1.15)' }}
+                        
                       />
 
                       {/* Hover overlay */}
