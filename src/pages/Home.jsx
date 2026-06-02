@@ -54,16 +54,16 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[90vh]">
           {/* Left: text */}
           <div className="flex flex-col justify-end p-8 md:p-16 pb-16 border-r border-nf-black relative z-10">
-            <p className="font-mono text-xs tracking-widest-xl uppercase text-nf-red mb-6">
+            <p className="font-mono text-xs tracking-widest-xl uppercase text-nf-yellow mb-6">
               SS_2026 // COLLECTION FOUR
             </p>
             <h1
-              className="font-mono font-bold uppercase text-nf-black leading-none mb-8"
+              className="font-mono font-bold uppercase text-nf-yellow leading-none mb-8"
               style={{ fontSize: 'clamp(3rem, 8vw, 7rem)', letterSpacing: '-0.02em' }}
             >
               NEO-<br />FORM
             </h1>
-            <p className="font-mono text-sm text-nf-muted max-w-xs mb-10 leading-relaxed">
+            <p className="font-mono text-sm text-nf-yellow max-w-xs mb-10 leading-relaxed">
               Avant-garde fashion collective. Deconstructed forms. Radical silhouettes. Tokyo × Berlin.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -75,7 +75,7 @@ export default function Home() {
               </Link>
               <Link
                 to="/lookbook"
-                className="inline-flex items-center gap-3 font-mono text-xs tracking-widest-lg uppercase border border-nf-black text-nf-black px-6 py-3 hover:border-nf-red hover:text-nf-red transition-colors duration-200"
+                className="inline-flex items-center gap-3 font-mono text-xs tracking-widest-lg uppercase border border-nf-yellow text-nf-yellow px-6 py-3 hover:border-nf-red hover:text-nf-red transition-colors duration-200"
               >
                 Lookbook
               </Link>
