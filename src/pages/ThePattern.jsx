@@ -148,16 +148,16 @@ export default function ThePattern() {
       {/* Hero header */}
       <section className="pt-40 pb-20 px-8 md:px-16 max-w-[1440px] mx-auto">
         <div className="max-w-[640px]">
-          <p className="font-sans text-xs tracking-widest uppercase text-sage mb-4">
+          <p className="font-sans text-xs tracking-widest uppercase text-neo-red mb-4">
             The Pattern
           </p>
-          <h1 className="font-serif text-6xl md:text-8xl font-light text-ink leading-none tracking-tight">
+          <h1 className="font-serif text-6xl md:text-8xl font-light text-neo-red leading-none tracking-tight">
             φ
           </h1>
-          <h2 className="font-serif text-3xl md:text-5xl font-light text-ink leading-tight mt-2">
+          <h2 className="font-serif text-3xl md:text-5xl font-light text-neo-red leading-tight mt-2">
             Nature's hidden geometry
           </h2>
-          <p className="font-sans text-sm text-muted-ink leading-relaxed mt-6 max-w-[420px]">
+          <p className="font-sans text-sm text-neo-red leading-relaxed mt-6 max-w-[420px]">
             Every leaf, every seed, every spiral follows the same irrational number.
             Scroll to witness the golden ratio encoded in living matter.
           </p>
