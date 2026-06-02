@@ -18,6 +18,10 @@ export default defineConfig({
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
+    watch: {
+      usePolling: true,
+      interval: 300,
+    },
     hmr: {
       overlay: false
     }
