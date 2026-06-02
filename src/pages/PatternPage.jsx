@@ -138,14 +138,14 @@ export default function PatternPage() {
       {/* Hero */}
       <section className="max-w-[1440px] mx-auto px-8 md:px-16 pt-24 pb-16">
         <div className="max-w-2xl">
-          <p className="font-sans text-xs tracking-[0.3em] uppercase text-[#7A9E7E] mb-6">
+          <p className="font-sans text-xs tracking-[0.3em] uppercase text-neo-red mb-6">
             The Pattern
           </p>
-          <h1 className="font-serif text-6xl md:text-8xl font-light text-[#3D5C3A] leading-none mb-8">
+          <h1 className="font-serif text-6xl md:text-8xl font-light text-neo-red leading-none mb-8">
             Growth<br />
-            <em className="not-italic text-[#7A9E7E]">in spiral</em>
+            <em className="not-italic text-neo-red">in spiral</em>
           </h1>
-          <p className="font-sans text-sm text-[#8B7355] leading-relaxed max-w-md">
+          <p className="font-sans text-sm text-neo-red leading-relaxed max-w-md">
             Phyllotaxis — from the Greek <em>phyllon</em> (leaf) and <em>taxis</em> (arrangement).
             The mathematical order hidden in every petal, seed, and spine.
           </p>

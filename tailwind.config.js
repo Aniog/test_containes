@@ -15,6 +15,7 @@ export default {
         'bark': '#8B7355',
         'parchment': '#E8E0D0',
         'charcoal': '#2C2C2C',
+        'neo-red': '#EB1B1A',
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
