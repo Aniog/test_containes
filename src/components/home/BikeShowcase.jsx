@@ -142,7 +142,14 @@ const BikeShowcase = ({ preview = false }) => {
             >
               View Full Catalog <ArrowRight className="w-5 h-5" />
             </Link>
-          ) : null}
+          ) : (
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-[#e94560] hover:bg-[#c73652] text-white font-semibold px-10 py-4 rounded-xl transition-colors text-base"
+            >
+              Get in Touch <ArrowRight className="w-5 h-5" />
+            </Link>
+          )}
         </div>
       </div>
     </section>
