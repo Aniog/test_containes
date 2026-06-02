@@ -1,76 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
+  color-scheme: light;
+  color: #1a1a1a;
+  background-color: #c8c4bc;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #c8c4bc;
+  color: #1a1a1a;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* E-ink paper texture background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' x='0' y='0' fill='%23b8b4ac' opacity='0.4'/%3E%3Crect width='1' height='1' x='2' y='2' fill='%23b8b4ac' opacity='0.4'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dithered progress bar track */
+.eink-track {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='1' height='1' x='0' y='0' fill='%23888' opacity='0.5'/%3E%3Crect width='1' height='1' x='2' y='2' fill='%23888' opacity='0.5'/%3E%3C/svg%3E");
+  background-color: #d0ccc4;
+}
+
+/* Mini bar chart blocks */
+.bar-block {
+  display: inline-block;
   background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  margin-right: 2px;
+  vertical-align: bottom;
 }
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
