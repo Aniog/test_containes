@@ -17,6 +17,7 @@ export default {
         'charcoal': '#2C2C2C',
         'neo-red': '#EB1B1A',
         'neo-green': '#4DDB1A',
+        'neo-white': '#fefefe',
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
