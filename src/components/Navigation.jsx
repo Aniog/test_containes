@@ -34,10 +34,10 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex flex-col leading-none group">
-          <span className="font-serif text-xl md:text-2xl font-bold text-white tracking-wide group-hover:text-ochre-pale transition-colors duration-300" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+          <span className="font-serif text-xl md:text-2xl font-bold tracking-wide transition-colors duration-300" style={{ color: '#d96b35', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
             Serengeti
           </span>
-          <span className="font-serif-display text-xs md:text-sm font-light text-ochre-pale tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
+          <span className="font-serif-display text-xs md:text-sm font-light tracking-[0.3em] uppercase" style={{ color: '#d96b35', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}>
             Pulse
           </span>
         </NavLink>
@@ -51,12 +51,10 @@ export default function Navigation() {
                 end={path === '/'}
                 className={({ isActive }) =>
                   `nav-link font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
-                    isActive
-                      ? 'text-ochre-pale active'
-                      : 'text-white hover:text-ochre-pale'
+                    isActive ? 'active' : ''
                   }`
                 }
-                style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}
+                style={{ color: '#d96b35', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}
               >
                 {label}
               </NavLink>
@@ -66,10 +64,10 @@ export default function Navigation() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-white p-1"
+          className="md:hidden p-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
-          style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}
+          style={{ color: '#d96b35', textShadow: '0 1px 6px rgba(0,0,0,0.8)' }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
