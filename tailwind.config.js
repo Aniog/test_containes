@@ -15,6 +15,7 @@ export default {
         'muted-ink': '#5A5A54',
         divider: '#D8D0C0',
         'neo-red': '#EB1B1A',
+        'neo-green': '#4DDB1A',
       },
       fontFamily: {
         serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
