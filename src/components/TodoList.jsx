@@ -22,9 +22,9 @@ export default function TodoList({ todos, loading, filter, onToggle, onDelete })
 
     return (
       <div className="flex flex-col items-center justify-center py-10 text-center">
-        <ClipboardList className="w-10 h-10 text-slate-300 mb-3" />
-        <p className="text-slate-500 font-medium">{msg.text}</p>
-        <p className="text-slate-400 text-sm mt-1">{msg.sub}</p>
+        <ClipboardList className="w-10 h-10 text-green-300 mb-3" />
+        <p className="text-green-700 font-medium">{msg.text}</p>
+        <p className="text-green-400 text-sm mt-1">{msg.sub}</p>
       </div>
     )
   }

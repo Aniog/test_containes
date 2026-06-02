@@ -149,18 +149,18 @@ export default function TodoPage() {
   const completedCount = todos.filter((t) => t.data?.completed).length
 
   return (
-    <div className="min-h-screen bg-slate-50 py-10 px-4">
+    <div className="min-h-screen bg-green-50 py-10 px-4">
       <div className="max-w-lg mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-slate-800 tracking-tight">My Todos</h1>
-          <p className="text-slate-500 mt-1 text-sm">Stay organized, get things done</p>
+          <h1 className="text-4xl font-bold text-green-900 tracking-tight">My Todos</h1>
+          <p className="text-green-600 mt-1 text-sm">Stay organized, get things done</p>
         </div>
 
         {/* Main Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-sm border border-green-200 overflow-hidden">
           {/* Input */}
-          <div className="p-5 border-b border-slate-100">
+          <div className="p-5 border-b border-green-100">
             <TodoInput onAdd={addTodo} />
           </div>
 
@@ -180,8 +180,8 @@ export default function TodoPage() {
                   onClick={() => setFilter(f)}
                   className={`px-3 py-1.5 rounded-lg text-xs font-medium capitalize transition-colors ${
                     filter === f
-                      ? 'bg-indigo-600 text-white'
-                      : 'text-slate-500 hover:text-slate-700 hover:bg-slate-100'
+                      ? 'bg-green-600 text-white'
+                      : 'text-green-700 hover:text-green-900 hover:bg-green-100'
                   }`}
                 >
                   {f}

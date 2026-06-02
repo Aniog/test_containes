@@ -7,8 +7,8 @@ export default function TodoItem({ todo, onToggle, onDelete }) {
   return (
     <li className={`flex items-center gap-3 p-3 rounded-lg border transition-all group ${
       completed
-        ? 'bg-slate-50 border-slate-100'
-        : 'bg-white border-slate-100 hover:border-slate-200 hover:bg-slate-50'
+        ? 'bg-green-50 border-green-100'
+        : 'bg-white border-green-100 hover:border-green-200 hover:bg-green-50'
     }`}>
       {/* Checkbox */}
       <button
@@ -16,8 +16,8 @@ export default function TodoItem({ todo, onToggle, onDelete }) {
         aria-label={completed ? 'Mark as incomplete' : 'Mark as complete'}
         className={`flex-shrink-0 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-colors ${
           completed
-            ? 'bg-indigo-600 border-indigo-600'
-            : 'border-slate-300 hover:border-indigo-400'
+            ? 'bg-green-600 border-green-600'
+            : 'border-green-300 hover:border-green-500'
         }`}
       >
         {completed && <Check className="w-3 h-3 text-white" strokeWidth={3} />}
@@ -26,7 +26,7 @@ export default function TodoItem({ todo, onToggle, onDelete }) {
       {/* Title */}
       <span
         className={`flex-1 text-sm leading-relaxed transition-colors ${
-          completed ? 'line-through text-slate-400' : 'text-slate-700'
+          completed ? 'line-through text-green-300' : 'text-green-900'
         }`}
       >
         {fields.title}

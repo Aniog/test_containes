@@ -1,16 +1,15 @@
 # Design System
 
 ## Color Palette
-- Background: `bg-slate-50` (page), `bg-white` (cards)
-- Primary accent: `bg-indigo-600` hover `bg-indigo-700` (buttons, checkboxes)
+- Background: `bg-green-50` (page), `bg-white` (cards)
+- Primary accent: `bg-green-600` hover `bg-green-700` (buttons, checkboxes)
 - Danger: `bg-red-500` hover `bg-red-600` (delete actions)
-- Warning/Clear: `bg-amber-500` hover `bg-amber-600` (clear completed)
-- Text primary: `text-slate-800`
-- Text secondary: `text-slate-500`
-- Text muted: `text-slate-400`
-- Completed text: `line-through text-slate-400`
-- Border: `border-slate-200`
-- Focus ring: `ring-indigo-500`
+- Text primary: `text-green-900`
+- Text secondary: `text-green-700`
+- Text muted: `text-green-400`
+- Completed text: `line-through text-green-300`
+- Border: `border-green-200`
+- Focus ring: `ring-green-500`
 
 ## Typography
 - Font: Inter (Google Fonts)
