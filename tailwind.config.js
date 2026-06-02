@@ -16,6 +16,7 @@ export default {
         'parchment': '#E8E0D0',
         'charcoal': '#2C2C2C',
         'neo-red': '#EB1B1A',
+        'neo-green': '#4DDB1A',
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
