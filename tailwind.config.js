@@ -15,6 +15,7 @@ export default {
         'nf-red': '#FF2D00',
         'nf-muted': '#6B6B6B',
         'nf-gray': '#E8E8E8',
+        'nf-yellow': '#939323',
       },
       letterSpacing: {
         'widest-xl': '0.3em',
