@@ -2,38 +2,20 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 import { PUZZLE_TYPES } from '@/data/puzzles';
 
-// Returns the standard 3x3 box index for a cell
 const getBoxIndex = (row, col) => Math.floor(row / 3) * 3 + Math.floor(col / 3);
-
-// Check if two cells are in the same standard 3x3 box
 const sameBox = (r1, c1, r2, c2) => getBoxIndex(r1, c1) === getBoxIndex(r2, c2);
-
-// Check if a cell is on either main diagonal
 const isOnDiagonal = (row, col) => row === col || row + col === 8;
 
-// Region color palette for irregular sudoku
 const REGION_COLORS = [
-  'bg-blue-900/40',
-  'bg-purple-900/40',
-  'bg-emerald-900/40',
-  'bg-amber-900/40',
-  'bg-rose-900/40',
-  'bg-cyan-900/40',
-  'bg-indigo-900/40',
-  'bg-teal-900/40',
-  'bg-orange-900/40',
-];
-
-const REGION_BORDER_COLORS = [
-  'border-blue-500',
-  'border-purple-500',
-  'border-emerald-500',
-  'border-amber-500',
-  'border-rose-500',
-  'border-cyan-500',
-  'border-indigo-500',
-  'border-teal-500',
-  'border-orange-500',
+  'bg-blue-900/50',
+  'bg-purple-900/50',
+  'bg-emerald-900/50',
+  'bg-amber-900/50',
+  'bg-rose-900/50',
+  'bg-cyan-900/50',
+  'bg-indigo-900/50',
+  'bg-teal-900/50',
+  'bg-orange-900/50',
 ];
 
 const SudokuBoard = ({
@@ -56,16 +38,12 @@ const SudokuBoard = ({
     const [sr, sc] = selectedCell;
     if (r === sr || c === sc) return true;
     if (sameBox(r, c, sr, sc)) return true;
-    if (puzzleType === PUZZLE_TYPES.DIAGONAL) {
-      if (isOnDiagonal(sr, sc) && isOnDiagonal(r, c)) return true;
-    }
-    if (puzzleType === PUZZLE_TYPES.IRREGULAR && regionMap) {
-      if (regionMap[r][c] === regionMap[sr][sc]) return true;
-    }
+    if (puzzleType === PUZZLE_TYPES.DIAGONAL && isOnDiagonal(sr, sc) && isOnDiagonal(r, c)) return true;
+    if (puzzleType === PUZZLE_TYPES.IRREGULAR && regionMap && regionMap[r][c] === regionMap[sr][sc]) return true;
     if (puzzleType === PUZZLE_TYPES.WINDOW && windowCells) {
-      const selWindow = windowCells.findIndex(w => w.some(([wr, wc]) => wr === sr && wc === sc));
-      const curWindow = windowCells.findIndex(w => w.some(([wr, wc]) => wr === r && wc === c));
-      if (selWindow !== -1 && selWindow === curWindow) return true;
+      const selWin = windowCells.findIndex(w => w.some(([wr, wc]) => wr === sr && wc === sc));
+      const curWin = windowCells.findIndex(w => w.some(([wr, wc]) => wr === r && wc === c));
+      if (selWin !== -1 && selWin === curWin) return true;
     }
     return false;
   };
@@ -79,37 +57,30 @@ const SudokuBoard = ({
   };
 
   const isConflict = (r, c) => conflicts && conflicts.some(([cr, cc]) => cr === r && cc === c);
-
   const isGiven = (r, c) => puzzle[r][c] !== 0;
-
   const isDiagonalCell = (r, c) => puzzleType === PUZZLE_TYPES.DIAGONAL && isOnDiagonal(r, c);
+  const isWindowCell = (r, c) =>
+    puzzleType === PUZZLE_TYPES.WINDOW && windowCells &&
+    windowCells.some(w => w.some(([wr, wc]) => wr === r && wc === c));
 
-  const isWindowCell = (r, c) => {
-    if (puzzleType !== PUZZLE_TYPES.WINDOW || !windowCells) return false;
-    return windowCells.some(w => w.some(([wr, wc]) => wr === r && wc === c));
+  // Build inline border style for clean box separation
+  const getCellStyle = (r, c) => {
+    const style = {};
+    if (puzzleType === PUZZLE_TYPES.IRREGULAR && regionMap) {
+      const myRegion = regionMap[r][c];
+      style.borderTop    = r > 0 && regionMap[r-1][c] !== myRegion ? '2px solid #94a3b8' : '1px solid #334155';
+      style.borderBottom = r < 8 && regionMap[r+1][c] !== myRegion ? '2px solid #94a3b8' : '1px solid #334155';
+      style.borderLeft   = c > 0 && regionMap[r][c-1] !== myRegion ? '2px solid #94a3b8' : '1px solid #334155';
+      style.borderRight  = c < 8 && regionMap[r][c+1] !== myRegion ? '2px solid #94a3b8' : '1px solid #334155';
+    } else {
+      style.borderTop    = r % 3 === 0 ? '2px solid #94a3b8' : '1px solid #334155';
+      style.borderLeft   = c % 3 === 0 ? '2px solid #94a3b8' : '1px solid #334155';
+      style.borderBottom = r === 8 ? '2px solid #94a3b8' : '1px solid #334155';
+      style.borderRight  = c === 8 ? '2px solid #94a3b8' : '1px solid #334155';
+    }
+    return style;
   };
 
-  // Determine thick borders for box separation
-  const getBoxBorders = (r, c) => {
-    const borders = [];
-    if (r % 3 === 0 && r !== 0) borders.push('border-t-2 border-t-slate-300');
-    if (c % 3 === 0 && c !== 0) borders.push('border-l-2 border-l-slate-300');
-    return borders.join(' ');
-  };
-
-  // For irregular: determine which borders to thicken based on region boundaries
-  const getIrregularBorders = (r, c) => {
-    if (!regionMap) return '';
-    const myRegion = regionMap[r][c];
-    const borders = [];
-    if (r > 0 && regionMap[r-1][c] !== myRegion) borders.push('border-t-[3px] border-t-slate-200');
-    if (r < 8 && regionMap[r+1][c] !== myRegion) borders.push('border-b-[3px] border-b-slate-200');
-    if (c > 0 && regionMap[r][c-1] !== myRegion) borders.push('border-l-[3px] border-l-slate-200');
-    if (c < 8 && regionMap[r][c+1] !== myRegion) borders.push('border-r-[3px] border-r-slate-200');
-    return borders.join(' ');
-  };
-
-  // Check if a consecutive pair exists between two cells
   const hasConsecutivePair = (r1, c1, r2, c2) => {
     if (!consecutivePairs) return false;
     return consecutivePairs.some(
@@ -118,28 +89,24 @@ const SudokuBoard = ({
     );
   };
 
-  const getCellValue = (r, c) => {
-    if (puzzle[r][c] !== 0) return puzzle[r][c];
-    return userGrid[r][c] || 0;
-  };
-
+  const getCellValue = (r, c) => puzzle[r][c] !== 0 ? puzzle[r][c] : (userGrid[r][c] || 0);
   const getCellNotes = (r, c) => notes[r][c] || new Set();
 
   return (
     <div className="relative inline-block">
-      {/* Diagonal overlay lines */}
+      {/* Diagonal overlay */}
       {puzzleType === PUZZLE_TYPES.DIAGONAL && (
         <div className="absolute inset-0 pointer-events-none z-0">
-          <svg className="w-full h-full opacity-20" viewBox="0 0 9 9" preserveAspectRatio="none">
-            <line x1="0" y1="0" x2="9" y2="9" stroke="#60a5fa" strokeWidth="0.15"/>
-            <line x1="9" y1="0" x2="0" y2="9" stroke="#60a5fa" strokeWidth="0.15"/>
+          <svg className="w-full h-full opacity-15" viewBox="0 0 9 9" preserveAspectRatio="none">
+            <line x1="0" y1="0" x2="9" y2="9" stroke="#60a5fa" strokeWidth="0.2"/>
+            <line x1="9" y1="0" x2="0" y2="9" stroke="#60a5fa" strokeWidth="0.2"/>
           </svg>
         </div>
       )}
 
       <div
-        className="grid border-2 border-slate-300 relative z-10"
-        style={{ gridTemplateColumns: 'repeat(9, 1fr)' }}
+        className="grid relative z-10"
+        style={{ gridTemplateColumns: 'repeat(9, 1fr)', display: 'grid' }}
       >
         {Array.from({ length: 9 }, (_, r) =>
           Array.from({ length: 9 }, (_, c) => {
@@ -154,40 +121,41 @@ const SudokuBoard = ({
             const windowCell = isWindowCell(r, c);
             const regionIdx = regionMap ? regionMap[r][c] : -1;
 
+            let bg = 'bg-slate-850';
+            if (puzzleType === PUZZLE_TYPES.IRREGULAR && regionIdx >= 0) bg = REGION_COLORS[regionIdx % 9];
+            if (diagonal && !selected) bg = 'bg-blue-950/70';
+            if (windowCell && !selected) bg = 'bg-indigo-950/70';
+            if (highlighted && !selected) bg = 'bg-slate-700';
+            if (sameNum && !selected) bg = 'bg-blue-900/70';
+            if (conflict && !selected) bg = 'bg-red-900/60';
+            if (selected) bg = 'bg-blue-500';
+
             return (
               <div
                 key={`${r}-${c}`}
                 className={cn(
-                  'relative w-9 h-9 sm:w-10 sm:h-10 border border-slate-600 flex items-center justify-center cursor-pointer select-none transition-colors duration-100',
-                  // Box borders
-                  puzzleType !== PUZZLE_TYPES.IRREGULAR && getBoxBorders(r, c),
-                  // Irregular region borders
-                  puzzleType === PUZZLE_TYPES.IRREGULAR && getIrregularBorders(r, c),
-                  // Background states (order matters - most specific last)
-                  diagonal && !selected && 'bg-blue-950/60',
-                  windowCell && !selected && 'bg-indigo-950/60',
-                  puzzleType === PUZZLE_TYPES.IRREGULAR && regionIdx >= 0 && !selected && REGION_COLORS[regionIdx % 9],
-                  highlighted && !selected && 'bg-slate-700',
-                  sameNum && !selected && 'bg-blue-900/60',
-                  conflict && !selected && 'bg-red-900/50',
-                  selected && 'bg-blue-600',
+                  'relative flex items-center justify-center cursor-pointer select-none transition-colors duration-100',
+                  'w-9 h-9 sm:w-10 sm:h-10',
+                  bg,
                   given && !selected && 'cursor-default',
                 )}
+                style={getCellStyle(r, c)}
                 onClick={() => onCellClick(r, c)}
               >
                 {value !== 0 ? (
                   <span className={cn(
                     'text-base sm:text-lg font-bold leading-none',
-                    given ? 'text-slate-100' : conflict ? 'text-red-300' : 'text-blue-300',
-                    selected && 'text-white',
+                    selected ? 'text-white' :
+                    conflict ? 'text-red-300' :
+                    given ? 'text-slate-100' : 'text-blue-300',
                   )}>
                     {value}
                   </span>
                 ) : cellNotes.size > 0 ? (
-                  <div className="grid grid-cols-3 gap-0 w-full h-full p-0.5">
+                  <div className="grid grid-cols-3 w-full h-full p-0.5">
                     {[1,2,3,4,5,6,7,8,9].map(n => (
                       <span key={n} className={cn(
-                        'text-[7px] leading-none flex items-center justify-center',
+                        'text-[6px] leading-none flex items-center justify-center',
                         cellNotes.has(n) ? 'text-slate-300' : 'text-transparent',
                       )}>
                         {n}
@@ -196,13 +164,13 @@ const SudokuBoard = ({
                   </div>
                 ) : null}
 
-                {/* Consecutive pair markers */}
+                {/* Consecutive pair dots */}
                 {puzzleType === PUZZLE_TYPES.CONSECUTIVE && (
                   <>
-                    {hasConsecutivePair(r, c, r, c+1) && (
+                    {c < 8 && hasConsecutivePair(r, c, r, c + 1) && (
                       <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2 h-2 rounded-full bg-amber-400 z-20 border border-slate-900" />
                     )}
-                    {hasConsecutivePair(r, c, r+1, c) && (
+                    {r < 8 && hasConsecutivePair(r, c, r + 1, c) && (
                       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 rounded-full bg-amber-400 z-20 border border-slate-900" />
                     )}
                   </>
