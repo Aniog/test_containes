@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Articles', to: '/articles' },
   { label: 'Reviews', to: '/reviews' },
+  { label: 'Favorites', to: '/favorites' },
 ];
 
 export default function Navbar() {

@@ -6,6 +6,7 @@ import Deals from './pages/Deals';
 import Articles from './pages/Articles';
 import ReviewsPage from './pages/ReviewsPage';
 import PlatformPage from './pages/PlatformPage';
+import FavoriteGames from './pages/FavoriteGames';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/xbox" element={<PlatformPage platformKey="xbox" />} />
             <Route path="/epic" element={<PlatformPage platformKey="epic" />} />
             <Route path="/nintendo" element={<PlatformPage platformKey="nintendo" />} />
+            <Route path="/favorites" element={<FavoriteGames />} />
           </Routes>
         </main>
         <Footer />

@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Favorite Games",
+  "type": "object",
+  "properties": {
+    "visitor_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the visitor submitting their favorite games"
+    },
+    "visitor_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Optional email address of the visitor"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the submission was made"
+    },
+    "games": {
+      "type": "array",
+      "description": "List of the visitor's favorite games",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "game_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "Name of the game"
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["steam", "playstation", "xbox", "epic", "nintendo", "pc", "mobile", "other"],
+            "description": "Platform the game is played on"
+          },
+          "play_time_hours": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Total hours played"
+          },
+          "last_played_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date the game was last played"
+          },
+          "rating": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5,
+            "description": "Personal rating from 1 to 5 stars"
+          },
+          "genre": {
+            "type": "string",
+            "maxLength": 50,
+            "description": "Genre of the game (e.g. RPG, FPS, Strategy)"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 1000,
+            "description": "Why the visitor loves this game"
+          }
+        },
+        "required": ["game_name", "platform"]
+      }
+    }
+  },
+  "required": ["visitor_name", "games"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}
