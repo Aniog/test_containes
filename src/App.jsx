@@ -1,15 +1,21 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navigation from './components/Navigation';
+import GreatMigration from './pages/GreatMigration';
+import SpeciesArchive from './pages/SpeciesArchive';
+import DustAndLight from './pages/DustAndLight';
+import './index.css';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <BrowserRouter>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<GreatMigration />} />
+        <Route path="/species" element={<SpeciesArchive />} />
+        <Route path="/dust-and-light" element={<DustAndLight />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
