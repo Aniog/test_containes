@@ -20,15 +20,15 @@ export default function TopSellers() {
   }, []);
 
   return (
-    <section id="top-sellers" className="py-20 px-4 md:px-8 bg-[#f0ebe0]" ref={containerRef}>
+    <section id="top-sellers" className="py-20 px-4 md:px-8 bg-[#1b2838]" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 flex items-start justify-between flex-wrap gap-4">
           <div>
-            <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Charts</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-2">Top Sellers</h2>
-            <p className="text-[#8a7a6a] mt-2">The most purchased games on Steam right now.</p>
+            <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Charts</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Top Sellers</h2>
+            <p className="text-[#8f98a0] mt-2">The most purchased games on Steam right now.</p>
           </div>
-          <div className="flex items-center gap-2 text-[#e8650a] text-sm font-medium">
+          <div className="flex items-center gap-2 text-[#1a9fff] text-sm font-medium">
             <TrendingUp className="w-4 h-4" />
             Updated daily
           </div>
@@ -38,7 +38,7 @@ export default function TopSellers() {
           {topSellers.map((game) => (
             <div
               key={game.id}
-              className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden hover:border-[#e8650a] transition-all duration-300 group cursor-pointer flex gap-0 shadow-sm hover:shadow-md"
+              className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer flex gap-0"
             >
               <div className="relative w-28 flex-shrink-0 overflow-hidden">
                 <img
@@ -48,17 +48,17 @@ export default function TopSellers() {
                   data-strk-img-ratio="3x4"
                   data-strk-img-width="200"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-[#f0ebe0]"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-[#1b2838]"
                 />
-                <div className="absolute top-2 left-2 w-7 h-7 bg-white/90 rounded-full flex items-center justify-center shadow-sm">
-                  <span className="text-[#e8650a] text-xs font-black">#{game.rank}</span>
+                <div className="absolute top-2 left-2 w-7 h-7 bg-[#0f1923]/90 rounded-full flex items-center justify-center shadow-sm">
+                  <span className="text-[#1a9fff] text-xs font-black">#{game.rank}</span>
                 </div>
               </div>
               <div className="p-4 flex flex-col justify-between flex-1">
                 <div>
-                  <span className="text-[#e8650a] text-xs font-medium uppercase tracking-wide">{game.genre}</span>
-                  <h3 id={game.titleId} className="text-[#1a1a1a] font-semibold text-sm mt-0.5 mb-1">{game.title}</h3>
-                  <p id={game.descId} className="text-[#8a7a6a] text-xs leading-relaxed line-clamp-2">{game.desc}</p>
+                  <span className="text-[#1a9fff] text-xs font-medium uppercase tracking-wide">{game.genre}</span>
+                  <h3 id={game.titleId} className="text-white font-semibold text-sm mt-0.5 mb-1">{game.title}</h3>
+                  <p id={game.descId} className="text-[#8f98a0] text-xs leading-relaxed line-clamp-2">{game.desc}</p>
                 </div>
                 <div className="flex items-center gap-2 mt-3">
                   {game.discount && (
@@ -66,7 +66,7 @@ export default function TopSellers() {
                       {game.discount}
                     </span>
                   )}
-                  <span className={`font-bold text-sm ${game.price === 'Free' ? 'text-green-600' : 'text-[#e8650a]'}`}>
+                  <span className={`font-bold text-sm ${game.price === 'Free' ? 'text-green-400' : 'text-[#1a9fff]'}`}>
                     {game.price}
                   </span>
                 </div>

@@ -65,19 +65,19 @@ function GameCard({ game, index, total, onChange, onRemove }) {
   const platform = PLATFORMS.find((p) => p.value === game.platform);
 
   return (
-    <div className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden shadow-sm">
+    <div className="bg-white border border-[#bfdbfe] rounded-xl overflow-hidden shadow-sm">
       {/* Card header */}
       <div
-        className="flex items-center justify-between px-5 py-4 cursor-pointer select-none bg-[#faf7f2] border-b border-[#e8ddd0]"
+        className="flex items-center justify-between px-5 py-4 cursor-pointer select-none bg-[#f0f7ff] border-b border-[#bfdbfe]"
         onClick={() => setExpanded((v) => !v)}
       >
         <div className="flex items-center gap-3">
-          <span className="w-7 h-7 rounded-full bg-[#e8650a] text-white text-xs font-black flex items-center justify-center flex-shrink-0">
+          <span className="w-7 h-7 rounded-full bg-[#2563eb] text-white text-xs font-black flex items-center justify-center flex-shrink-0">
             {index + 1}
           </span>
           <div>
             <p className="text-[#1a1a1a] font-semibold text-sm">
-              {game.game_name || <span className="text-[#8a7a6a] font-normal italic">Untitled game</span>}
+              {game.game_name || <span className="text-[#6b8fc0] font-normal italic">Untitled game</span>}
             </p>
             {platform && (
               <span className={`text-xs font-medium px-2 py-0.5 rounded mt-0.5 inline-block ${platform.color}`}>
@@ -91,15 +91,15 @@ function GameCard({ game, index, total, onChange, onRemove }) {
             <button
               type="button"
               onClick={(e) => { e.stopPropagation(); onRemove(); }}
-              className="p-1.5 rounded-lg text-[#8a7a6a] hover:text-red-600 hover:bg-red-50 transition"
+              className="p-1.5 rounded-lg text-[#6b8fc0] hover:text-red-600 hover:bg-red-50 transition"
               aria-label="Remove game"
             >
               <Trash2 className="w-4 h-4" />
             </button>
           )}
           {expanded
-            ? <ChevronUp className="w-4 h-4 text-[#8a7a6a]" />
-            : <ChevronDown className="w-4 h-4 text-[#8a7a6a]" />}
+            ? <ChevronUp className="w-4 h-4 text-[#6b8fc0]" />
+            : <ChevronDown className="w-4 h-4 text-[#6b8fc0]" />}
         </div>
       </div>
 
@@ -108,7 +108,7 @@ function GameCard({ game, index, total, onChange, onRemove }) {
         <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Game name */}
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
               Game Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -116,19 +116,19 @@ function GameCard({ game, index, total, onChange, onRemove }) {
               value={game.game_name}
               onChange={(e) => onChange('game_name', e.target.value)}
               placeholder="e.g. Elden Ring"
-              className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm placeholder-[#b0a090] focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition"
             />
           </div>
 
           {/* Platform */}
           <div>
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
               Platform <span className="text-red-500">*</span>
             </label>
             <select
               value={game.platform}
               onChange={(e) => onChange('platform', e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition appearance-none"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition appearance-none"
             >
               <option value="">Select platform…</option>
               {PLATFORMS.map((p) => (
@@ -139,13 +139,13 @@ function GameCard({ game, index, total, onChange, onRemove }) {
 
           {/* Genre */}
           <div>
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
               Genre
             </label>
             <select
               value={game.genre}
               onChange={(e) => onChange('genre', e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition appearance-none"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition appearance-none"
             >
               <option value="">Select genre…</option>
               {GENRES.map((g) => (
@@ -156,7 +156,7 @@ function GameCard({ game, index, total, onChange, onRemove }) {
 
           {/* Play time */}
           <div>
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
               Total Play Time (hours)
             </label>
             <input
@@ -166,26 +166,26 @@ function GameCard({ game, index, total, onChange, onRemove }) {
               value={game.play_time_hours}
               onChange={(e) => onChange('play_time_hours', e.target.value)}
               placeholder="e.g. 120"
-              className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm placeholder-[#b0a090] focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition"
             />
           </div>
 
           {/* Last played date */}
           <div>
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
               Last Played Date
             </label>
             <input
               type="date"
               value={game.last_played_date}
               onChange={(e) => onChange('last_played_date', e.target.value)}
-              className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition"
             />
           </div>
 
           {/* Rating */}
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-2">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-2">
               Your Rating
             </label>
             <StarPicker value={game.rating} onChange={(v) => onChange('rating', v)} />
@@ -193,7 +193,7 @@ function GameCard({ game, index, total, onChange, onRemove }) {
 
           {/* Reason */}
           <div className="md:col-span-2">
-            <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+            <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
               Why Do You Love This Game?
             </label>
             <textarea
@@ -201,7 +201,7 @@ function GameCard({ game, index, total, onChange, onRemove }) {
               value={game.reason}
               onChange={(e) => onChange('reason', e.target.value)}
               placeholder="Tell us what makes this game special to you…"
-              className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm placeholder-[#b0a090] focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition resize-none"
+              className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition resize-none"
             />
           </div>
         </div>
@@ -292,22 +292,22 @@ export default function FavoriteGames() {
 
   if (status === 'success') {
     return (
-      <div className="min-h-screen bg-[#faf7f2] flex items-center justify-center px-4 py-20">
+      <div className="min-h-screen bg-[#f0f7ff] flex items-center justify-center px-4 py-20">
         <div className="max-w-md w-full text-center">
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-10 h-10 text-green-600" />
+          <div className="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-blue-600" />
           </div>
           <h2 className="text-2xl font-black text-[#1a1a1a] mb-3">Thanks, {visitorName}!</h2>
-          <p className="text-[#8a7a6a] mb-2">
+          <p className="text-[#4a6a8a] mb-2">
             Your {games.length} favorite game{games.length > 1 ? 's have' : ' has'} been saved.
           </p>
-          <p className="text-[#8a7a6a] text-sm mb-8">
+          <p className="text-[#6b8fc0] text-sm mb-8">
             We love hearing what games people are passionate about!
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button
               onClick={handleReset}
-              className="bg-[#e8650a] hover:bg-[#c9540a] text-white font-semibold px-6 py-3 rounded-lg transition"
+              className="bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold px-6 py-3 rounded-lg transition"
             >
               Submit Another List
             </button>
@@ -318,16 +318,16 @@ export default function FavoriteGames() {
   }
 
   return (
-    <div className="min-h-screen bg-[#faf7f2]">
+    <div className="min-h-screen bg-[#f0f7ff]">
       {/* Page hero */}
-      <div className="bg-[#2c1f14] py-16 px-4">
+      <div className="bg-[#1e3a5f] py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="w-14 h-14 bg-[#e8650a]/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
-            <Gamepad2 className="w-7 h-7 text-[#e8650a]" />
+          <div className="w-14 h-14 bg-[#2563eb]/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
+            <Gamepad2 className="w-7 h-7 text-[#60a5fa]" />
           </div>
-          <span className="text-[#e8650a] text-xs font-semibold uppercase tracking-widest">Community</span>
+          <span className="text-[#60a5fa] text-xs font-semibold uppercase tracking-widest">Community</span>
           <h1 className="text-3xl md:text-4xl font-black text-white mt-2 mb-3">Share Your Favorite Games</h1>
-          <p className="text-[#d4c4b0] max-w-xl mx-auto text-sm leading-relaxed">
+          <p className="text-[#93c5fd] max-w-xl mx-auto text-sm leading-relaxed">
             Tell us which games you love most. Add as many as you like — each one gets its own card with platform, play time, rating, and your personal take.
           </p>
         </div>
@@ -337,14 +337,14 @@ export default function FavoriteGames() {
       <form onSubmit={handleSubmit} className="max-w-3xl mx-auto px-4 py-12">
 
         {/* Visitor info */}
-        <div className="bg-white border border-[#e8ddd0] rounded-xl p-6 mb-8 shadow-sm">
+        <div className="bg-white border border-[#bfdbfe] rounded-xl p-6 mb-8 shadow-sm">
           <h2 className="text-base font-bold text-[#1a1a1a] mb-5 flex items-center gap-2">
-            <span className="w-6 h-6 rounded-full bg-[#e8650a] text-white text-xs font-black flex items-center justify-center">1</span>
+            <span className="w-6 h-6 rounded-full bg-[#2563eb] text-white text-xs font-black flex items-center justify-center">1</span>
             About You
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
+              <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
                 Your Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -352,19 +352,19 @@ export default function FavoriteGames() {
                 value={visitorName}
                 onChange={(e) => setVisitorName(e.target.value)}
                 placeholder="e.g. Alex Chen"
-                className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm placeholder-[#b0a090] focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition"
+                className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-[#4a3f35] uppercase tracking-wide mb-1.5">
-                Email <span className="text-[#b0a090] font-normal normal-case">(optional)</span>
+              <label className="block text-xs font-semibold text-[#1e3a5f] uppercase tracking-wide mb-1.5">
+                Email <span className="text-[#93c5fd] font-normal normal-case">(optional)</span>
               </label>
               <input
                 type="email"
                 value={visitorEmail}
                 onChange={(e) => setVisitorEmail(e.target.value)}
                 placeholder="you@example.com"
-                className="w-full px-3 py-2.5 rounded-lg border border-[#e8ddd0] bg-[#faf7f2] text-[#1a1a1a] text-sm placeholder-[#b0a090] focus:outline-none focus:border-[#e8650a] focus:ring-1 focus:ring-[#e8650a] transition"
+                className="w-full px-3 py-2.5 rounded-lg border border-[#bfdbfe] bg-[#f0f7ff] text-[#1a1a1a] text-sm placeholder-[#93c5fd] focus:outline-none focus:border-[#2563eb] focus:ring-1 focus:ring-[#2563eb] transition"
               />
             </div>
           </div>
@@ -373,9 +373,9 @@ export default function FavoriteGames() {
         {/* Games section header */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-base font-bold text-[#1a1a1a] flex items-center gap-2">
-            <span className="w-6 h-6 rounded-full bg-[#e8650a] text-white text-xs font-black flex items-center justify-center">2</span>
+            <span className="w-6 h-6 rounded-full bg-[#2563eb] text-white text-xs font-black flex items-center justify-center">2</span>
             Your Favorite Games
-            <span className="ml-1 text-xs font-normal text-[#8a7a6a] bg-[#f0ebe0] px-2 py-0.5 rounded-full">
+            <span className="ml-1 text-xs font-normal text-[#6b8fc0] bg-[#e8f2ff] px-2 py-0.5 rounded-full">
               {games.length} game{games.length !== 1 ? 's' : ''}
             </span>
           </h2>
@@ -399,7 +399,7 @@ export default function FavoriteGames() {
         <button
           type="button"
           onClick={addGame}
-          className="w-full py-3 rounded-xl border-2 border-dashed border-[#e8ddd0] text-[#8a7a6a] hover:border-[#e8650a] hover:text-[#e8650a] hover:bg-[#fff8f4] transition flex items-center justify-center gap-2 text-sm font-medium mb-8"
+          className="w-full py-3 rounded-xl border-2 border-dashed border-[#bfdbfe] text-[#6b8fc0] hover:border-[#2563eb] hover:text-[#2563eb] hover:bg-[#eff6ff] transition flex items-center justify-center gap-2 text-sm font-medium mb-8"
         >
           <Plus className="w-4 h-4" />
           Add Another Game
@@ -416,7 +416,7 @@ export default function FavoriteGames() {
         <button
           type="submit"
           disabled={status === 'submitting'}
-          className="w-full bg-[#e8650a] hover:bg-[#c9540a] disabled:opacity-60 text-white font-bold py-4 rounded-xl transition text-base flex items-center justify-center gap-2"
+          className="w-full bg-[#2563eb] hover:bg-[#1d4ed8] disabled:opacity-60 text-white font-bold py-4 rounded-xl transition text-base flex items-center justify-center gap-2"
         >
           {status === 'submitting' ? (
             <>
@@ -431,7 +431,7 @@ export default function FavoriteGames() {
           )}
         </button>
 
-        <p className="text-center text-[#8a7a6a] text-xs mt-4">
+        <p className="text-center text-[#6b8fc0] text-xs mt-4">
           Fields marked <span className="text-red-500">*</span> are required. All other fields are optional.
         </p>
       </form>
