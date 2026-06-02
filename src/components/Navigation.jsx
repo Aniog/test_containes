@@ -28,16 +28,16 @@ export default function Navigation() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? 'bg-earth-dark/95 backdrop-blur-md border-b border-burnt-orange/20 py-3'
-          : 'bg-transparent py-6'
+          : 'bg-black/40 backdrop-blur-sm py-6'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex flex-col leading-none group">
-          <span className="font-serif text-xl md:text-2xl font-bold text-savanna-cream tracking-wide group-hover:text-ochre-pale transition-colors duration-300">
+          <span className="font-serif text-xl md:text-2xl font-bold text-white tracking-wide group-hover:text-ochre-pale transition-colors duration-300" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
             Serengeti
           </span>
-          <span className="font-serif-display text-xs md:text-sm font-light text-burnt-orange-light tracking-[0.3em] uppercase">
+          <span className="font-serif-display text-xs md:text-sm font-light text-ochre-pale tracking-[0.3em] uppercase" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.5)' }}>
             Pulse
           </span>
         </NavLink>
@@ -52,10 +52,11 @@ export default function Navigation() {
                 className={({ isActive }) =>
                   `nav-link font-sans text-xs tracking-[0.2em] uppercase transition-colors duration-300 ${
                     isActive
-                      ? 'text-burnt-orange-light active'
-                      : 'text-savanna-warm hover:text-savanna-cream'
+                      ? 'text-ochre-pale active'
+                      : 'text-white hover:text-ochre-pale'
                   }`
                 }
+                style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}
               >
                 {label}
               </NavLink>
@@ -65,9 +66,10 @@ export default function Navigation() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden text-savanna-cream p-1"
+          className="md:hidden text-white p-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
+          style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}
         >
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
