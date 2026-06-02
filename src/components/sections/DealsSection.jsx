@@ -12,46 +12,36 @@ const PLATFORM_CONFIG = {
     label: 'Steam',
     icon: '🎮',
     accent: '#1a9fff',
-    bg: 'bg-[#1b2838]',
-    border: 'border-[#2a475e]',
-    badge: 'bg-[#1b2838] text-[#66c0f4] border border-[#2a475e]',
-    activeBg: 'bg-[#1a9fff]',
+    badge: 'bg-blue-100 text-blue-700 border border-blue-200',
+    border: 'border-[#e8ddd0]',
   },
   epic: {
     label: 'Epic Games',
     icon: '⚡',
-    accent: '#ffffff',
-    bg: 'bg-[#2d2d2d]',
-    border: 'border-[#444]',
-    badge: 'bg-[#2d2d2d] text-white border border-[#555]',
-    activeBg: 'bg-[#333]',
+    accent: '#333',
+    badge: 'bg-gray-100 text-gray-700 border border-gray-200',
+    border: 'border-[#e8ddd0]',
   },
   nintendo: {
     label: 'Nintendo',
     icon: '🎯',
-    accent: '#ff4444',
-    bg: 'bg-red-950/50',
-    border: 'border-red-800/40',
-    badge: 'bg-red-900/50 text-red-300 border border-red-700/50',
-    activeBg: 'bg-red-600',
+    accent: '#e60012',
+    badge: 'bg-red-100 text-red-700 border border-red-200',
+    border: 'border-[#e8ddd0]',
   },
   playstation: {
     label: 'PlayStation',
     icon: '🎮',
     accent: '#0070d1',
-    bg: 'bg-blue-950/50',
-    border: 'border-blue-800/40',
-    badge: 'bg-blue-900/50 text-blue-300 border border-blue-700/50',
-    activeBg: 'bg-blue-600',
+    badge: 'bg-blue-100 text-blue-700 border border-blue-200',
+    border: 'border-[#e8ddd0]',
   },
   xbox: {
     label: 'Xbox',
     icon: '🟢',
     accent: '#107c10',
-    bg: 'bg-green-950/50',
-    border: 'border-green-800/40',
-    badge: 'bg-green-900/50 text-green-300 border border-green-700/50',
-    activeBg: 'bg-green-600',
+    badge: 'bg-green-100 text-green-700 border border-green-200',
+    border: 'border-[#e8ddd0]',
   },
 };
 
@@ -79,9 +69,9 @@ function StarRating({ rating }) {
   return (
     <div className="flex items-center gap-0.5">
       {[1, 2, 3, 4, 5].map((i) => (
-        <Star key={i} className={`w-3 h-3 ${i <= Math.round(rating) ? 'text-yellow-400 fill-yellow-400' : 'text-[#2a475e]'}`} />
+        <Star key={i} className={`w-3 h-3 ${i <= Math.round(rating) ? 'text-yellow-500 fill-yellow-500' : 'text-[#d4c4b0]'}`} />
       ))}
-      <span className="text-[#8f98a0] text-xs ml-1">{rating?.toFixed(1)}</span>
+      <span className="text-[#8a7a6a] text-xs ml-1">{rating?.toFixed(1)}</span>
     </div>
   );
 }
@@ -116,16 +106,16 @@ export default function DealsSection() {
     : deals.filter((d) => d.data?.platform === activeFilter);
 
   return (
-    <section id="deals" className="py-20 px-4 md:px-8 bg-[#0f1923]" ref={containerRef}>
+    <section id="deals" className="py-20 px-4 md:px-8 bg-[#faf7f2]" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-1">
-            <Flame className="w-5 h-5 text-orange-400" />
-            <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Hot Deals</span>
+            <Flame className="w-5 h-5 text-[#e8650a]" />
+            <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Hot Deals</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-1">Game Discounts Across All Stores</h2>
-          <p className="text-[#8f98a0] mt-2 max-w-xl">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-1">Game Discounts Across All Stores</h2>
+          <p className="text-[#8a7a6a] mt-2 max-w-xl">
             The best deals right now on Steam, Epic Games, Nintendo, PlayStation, and Xbox stores.
           </p>
         </div>
@@ -141,8 +131,8 @@ export default function DealsSection() {
                 onClick={() => setActiveFilter(key)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
                   isActive
-                    ? 'bg-[#1a9fff] border-[#1a9fff] text-white'
-                    : 'border-[#2a475e] text-[#8f98a0] hover:text-white hover:border-[#1a9fff]'
+                    ? 'bg-[#e8650a] border-[#e8650a] text-white'
+                    : 'border-[#e8ddd0] text-[#8a7a6a] hover:text-[#1a1a1a] hover:border-[#e8650a]'
                 }`}
               >
                 {key === 'all' ? 'All Stores' : cfg.label}
@@ -155,18 +145,18 @@ export default function DealsSection() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {[...Array(8)].map((_, i) => (
-              <div key={i} className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden animate-pulse">
-                <div className="h-40 bg-[#2a475e]" />
+              <div key={i} className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden animate-pulse">
+                <div className="h-40 bg-[#f0ebe0]" />
                 <div className="p-4 space-y-3">
-                  <div className="h-3 bg-[#2a475e] rounded w-1/3" />
-                  <div className="h-4 bg-[#2a475e] rounded w-3/4" />
-                  <div className="h-3 bg-[#2a475e] rounded w-1/2" />
+                  <div className="h-3 bg-[#e8ddd0] rounded w-1/3" />
+                  <div className="h-4 bg-[#e8ddd0] rounded w-3/4" />
+                  <div className="h-3 bg-[#e8ddd0] rounded w-1/2" />
                 </div>
               </div>
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-16 text-[#8f98a0]">No deals found for this platform.</div>
+          <div className="text-center py-16 text-[#8a7a6a]">No deals found for this platform.</div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filtered.map((deal, index) => {
@@ -178,7 +168,7 @@ export default function DealsSection() {
               return (
                 <div
                   key={deal.id}
-                  className={`bg-[#16202d] border rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer ${cfg.border}`}
+                  className={`bg-white border rounded-xl overflow-hidden hover:border-[#e8650a] transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md ${cfg.border}`}
                 >
                   {/* Game image */}
                   <div className="relative overflow-hidden">
@@ -189,10 +179,10 @@ export default function DealsSection() {
                       data-strk-img-ratio="3x2"
                       data-strk-img-width="400"
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#1b2838]"
+                      className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#f0ebe0]"
                     />
                     {/* Discount badge */}
-                    <div className="absolute top-2 right-2 bg-green-500 text-white text-sm font-black px-2 py-1 rounded-lg shadow-lg">
+                    <div className="absolute top-2 right-2 bg-green-600 text-white text-sm font-black px-2 py-1 rounded-lg shadow-lg">
                       -{d.discount_percent}%
                     </div>
                     {/* Free badge */}
@@ -210,14 +200,14 @@ export default function DealsSection() {
                         {cfg.label}
                       </span>
                       {d.genre && (
-                        <span className="flex items-center gap-1 text-[#8f98a0] text-xs">
+                        <span className="flex items-center gap-1 text-[#8a7a6a] text-xs">
                           <Tag className="w-3 h-3" />{d.genre}
                         </span>
                       )}
                     </div>
 
                     {/* Title */}
-                    <h3 id={meta.titleId} className="text-white font-semibold text-sm mb-2 line-clamp-2 group-hover:text-[#66c0f4] transition">
+                    <h3 id={meta.titleId} className="text-[#1a1a1a] font-semibold text-sm mb-2 line-clamp-2 group-hover:text-[#e8650a] transition">
                       {d.game_title}
                     </h3>
 
@@ -227,16 +217,16 @@ export default function DealsSection() {
                     {/* Price block */}
                     <div className="flex items-end justify-between">
                       <div>
-                        <div className="text-[#8f98a0] text-xs line-through">${d.original_price?.toFixed(2)}</div>
-                        <div className={`text-lg font-black ${d.is_free ? 'text-yellow-400' : 'text-green-400'}`}>
+                        <div className="text-[#8a7a6a] text-xs line-through">${d.original_price?.toFixed(2)}</div>
+                        <div className={`text-lg font-black ${d.is_free ? 'text-yellow-600' : 'text-green-600'}`}>
                           {d.is_free ? 'FREE' : `$${d.sale_price?.toFixed(2)}`}
                         </div>
                         {!d.is_free && (
-                          <div className="text-green-500 text-xs font-medium">Save ${savings.toFixed(2)}</div>
+                          <div className="text-green-600 text-xs font-medium">Save ${savings.toFixed(2)}</div>
                         )}
                       </div>
                       {d.sale_end_date && (
-                        <div className="flex items-center gap-1 text-[#8f98a0] text-xs">
+                        <div className="flex items-center gap-1 text-[#8a7a6a] text-xs">
                           <Clock className="w-3 h-3" />
                           <span>Ends {d.sale_end_date}</span>
                         </div>

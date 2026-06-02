@@ -47,15 +47,15 @@ export default function News() {
   }, []);
 
   return (
-    <section id="news" className="py-20 px-4 md:px-8 bg-[#0f1923]" ref={containerRef}>
+    <section id="news" className="py-20 px-4 md:px-8 bg-[#f0ebe0]" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 flex items-start justify-between flex-wrap gap-4">
           <div>
-            <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Latest</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Steam News</h2>
-            <p className="text-[#8f98a0] mt-2">Stay up to date with the latest from the Steam universe.</p>
+            <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Latest</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-2">Steam News</h2>
+            <p className="text-[#8a7a6a] mt-2">Stay up to date with the latest from the Steam universe.</p>
           </div>
-          <a href="#" className="flex items-center gap-1.5 text-[#1a9fff] hover:text-[#66c0f4] text-sm font-medium transition">
+          <a href="#" className="flex items-center gap-1.5 text-[#e8650a] hover:text-[#c9540a] text-sm font-medium transition">
             View all news <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -64,7 +64,7 @@ export default function News() {
           {newsItems.map((item) => (
             <article
               key={item.id}
-              className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer"
+              className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden hover:border-[#e8650a] transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -74,24 +74,24 @@ export default function News() {
                   data-strk-img-ratio="16x9"
                   data-strk-img-width="600"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                  className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#1b2838]"
+                  className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#f0ebe0]"
                 />
                 <span className={`absolute top-3 left-3 ${item.categoryColor} text-white text-xs font-semibold px-2.5 py-1 rounded`}>
                   {item.category}
                 </span>
               </div>
               <div className="p-5">
-                <div className="flex items-center gap-1.5 text-[#8f98a0] text-xs mb-2">
+                <div className="flex items-center gap-1.5 text-[#8a7a6a] text-xs mb-2">
                   <Calendar className="w-3.5 h-3.5" />
                   {item.date}
                 </div>
-                <h3 id={item.titleId} className="text-white font-semibold text-base mb-2 group-hover:text-[#66c0f4] transition">
+                <h3 id={item.titleId} className="text-[#1a1a1a] font-semibold text-base mb-2 group-hover:text-[#e8650a] transition">
                   {item.title}
                 </h3>
-                <p id={item.descId} className="text-[#8f98a0] text-sm leading-relaxed line-clamp-3">
+                <p id={item.descId} className="text-[#8a7a6a] text-sm leading-relaxed line-clamp-3">
                   {item.desc}
                 </p>
-                <div className="mt-4 flex items-center gap-1 text-[#1a9fff] text-sm font-medium group-hover:gap-2 transition-all">
+                <div className="mt-4 flex items-center gap-1 text-[#e8650a] text-sm font-medium group-hover:gap-2 transition-all">
                   Read more <ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>

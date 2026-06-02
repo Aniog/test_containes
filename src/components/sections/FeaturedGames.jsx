@@ -64,7 +64,7 @@ function StarRating({ rating }) {
       {[1, 2, 3, 4, 5].map((i) => (
         <Star
           key={i}
-          className={`w-3.5 h-3.5 ${i <= Math.floor(rating) ? 'text-yellow-400 fill-yellow-400' : 'text-[#2a475e]'}`}
+          className={`w-3.5 h-3.5 ${i <= Math.floor(rating) ? 'text-yellow-500 fill-yellow-500' : 'text-[#d4c4b0]'}`}
         />
       ))}
     </div>
@@ -79,12 +79,12 @@ export default function FeaturedGames() {
   }, []);
 
   return (
-    <section id="featured" className="py-20 px-4 md:px-8 bg-[#0f1923]" ref={containerRef}>
+    <section id="featured" className="py-20 px-4 md:px-8 bg-[#faf7f2]" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-          <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Handpicked</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Featured Games</h2>
-          <p className="text-[#8f98a0] mt-2 max-w-xl">
+          <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Handpicked</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-2">Featured Games</h2>
+          <p className="text-[#8a7a6a] mt-2 max-w-xl">
             Our curated selection of must-play titles across every genre.
           </p>
         </div>
@@ -93,7 +93,7 @@ export default function FeaturedGames() {
           {featuredGames.map((game) => (
             <div
               key={game.id}
-              className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer shadow-lg shadow-black/40"
+              className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden hover:border-[#e8650a] transition-all duration-300 group cursor-pointer shadow-sm hover:shadow-md"
             >
               <div className="relative overflow-hidden">
                 <img
@@ -103,19 +103,19 @@ export default function FeaturedGames() {
                   data-strk-img-ratio="3x2"
                   data-strk-img-width="600"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                  className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#1b2838]"
+                  className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#f0ebe0]"
                 />
                 <span className={`absolute top-2 left-2 ${game.badgeColor} text-white text-xs font-semibold px-2 py-0.5 rounded`}>
                   {game.badge}
                 </span>
               </div>
               <div className="p-4">
-                <span className="text-[#66c0f4] text-xs font-medium uppercase tracking-wide">{game.genre}</span>
-                <h3 id={game.titleId} className="text-white font-semibold text-base mt-1 mb-1">{game.title}</h3>
-                <p id={game.descId} className="text-[#8f98a0] text-xs leading-relaxed mb-3 line-clamp-2">{game.desc}</p>
+                <span className="text-[#e8650a] text-xs font-medium uppercase tracking-wide">{game.genre}</span>
+                <h3 id={game.titleId} className="text-[#1a1a1a] font-semibold text-base mt-1 mb-1">{game.title}</h3>
+                <p id={game.descId} className="text-[#8a7a6a] text-xs leading-relaxed mb-3 line-clamp-2">{game.desc}</p>
                 <div className="flex items-center justify-between">
                   <StarRating rating={game.rating} />
-                  <span className="text-[#1a9fff] font-bold text-sm">{game.price}</span>
+                  <span className="text-[#e8650a] font-bold text-sm">{game.price}</span>
                 </div>
               </div>
             </div>

@@ -16,12 +16,12 @@ export default function Genres() {
   const [active, setActive] = useState(null);
 
   return (
-    <section id="genres" className="py-20 px-4 md:px-8 bg-[#0f1923]">
+    <section id="genres" className="py-20 px-4 md:px-8 bg-[#faf7f2]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 text-center">
-          <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Explore</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Browse by Genre</h2>
-          <p className="text-[#8f98a0] mt-2 max-w-xl mx-auto">
+          <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Explore</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-2">Browse by Genre</h2>
+          <p className="text-[#8a7a6a] mt-2 max-w-xl mx-auto">
             Whatever you're into, Steam has thousands of titles waiting for you.
           </p>
         </div>
@@ -33,11 +33,11 @@ export default function Genres() {
               <button
                 key={genre.id}
                 onClick={() => setActive(active === genre.id ? null : genre.id)}
-                className={`border rounded-xl p-6 flex flex-col items-center gap-3 transition-all duration-300 cursor-pointer ${genre.bg} ${active === genre.id ? 'scale-105 shadow-lg' : ''}`}
+                className={`border rounded-xl p-6 flex flex-col items-center gap-3 transition-all duration-300 cursor-pointer ${genre.bg} ${active === genre.id ? 'scale-105 shadow-md' : ''}`}
               >
                 <Icon className={`w-8 h-8 ${genre.color}`} />
-                <span className="text-white font-semibold text-sm">{genre.label}</span>
-                <span className="text-[#8f98a0] text-xs">{genre.count} games</span>
+                <span className="text-[#1a1a1a] font-semibold text-sm">{genre.label}</span>
+                <span className="text-[#8a7a6a] text-xs">{genre.count} games</span>
               </button>
             );
           })}

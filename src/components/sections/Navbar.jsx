@@ -33,10 +33,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#1b2838]/95 backdrop-blur border-b border-[#2a475e]">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#2c1f14]/95 backdrop-blur border-b border-[#4a3020]">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
-        <Link to="/" className="flex items-center gap-2 text-white font-black text-xl tracking-tight">
-          <Gamepad2 className="w-7 h-7 text-[#1a9fff]" />
+        <Link to="/" className="flex items-center gap-2 text-[#f0ebe0] font-black text-xl tracking-tight">
+          <Gamepad2 className="w-7 h-7 text-[#e8650a]" />
           <span>SteamVault</span>
         </Link>
 
@@ -48,8 +48,8 @@ export default function Navbar() {
                 to={link.to}
                 className={`text-sm font-medium transition ${
                   isActive(link.to)
-                    ? 'text-white border-b-2 border-[#1a9fff] pb-0.5'
-                    : 'text-[#c6d4df] hover:text-white'
+                    ? 'text-[#f0ebe0] border-b-2 border-[#e8650a] pb-0.5'
+                    : 'text-[#c4b49e] hover:text-[#f0ebe0]'
                 }`}
               >
                 {link.label}
@@ -63,8 +63,8 @@ export default function Navbar() {
               onClick={() => setPlatformsOpen((v) => !v)}
               className={`flex items-center gap-1 text-sm font-medium transition ${
                 isPlatformActive
-                  ? 'text-white border-b-2 border-[#1a9fff] pb-0.5'
-                  : 'text-[#c6d4df] hover:text-white'
+                  ? 'text-[#f0ebe0] border-b-2 border-[#e8650a] pb-0.5'
+                  : 'text-[#c4b49e] hover:text-[#f0ebe0]'
               }`}
             >
               Platforms
@@ -72,7 +72,7 @@ export default function Navbar() {
             </button>
 
             {platformsOpen && (
-              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl overflow-hidden shadow-2xl border border-[#2a475e] bg-[#0f1923]">
+              <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-56 rounded-xl overflow-hidden shadow-2xl border border-[#4a3020] bg-[#2c1f14]">
                 {PLATFORM_ORDER.map((key) => {
                   const p = PLATFORMS[key];
                   const active = pathname === `/${key}`;
@@ -88,7 +88,7 @@ export default function Navbar() {
                         className="w-2.5 h-2.5 rounded-full flex-shrink-0"
                         style={{ backgroundColor: p.navDot }}
                       />
-                      <span className="text-sm font-medium" style={{ color: active ? p.accent : '#c6d4df' }}>
+                      <span className="text-sm font-medium" style={{ color: active ? p.accent : '#c4b49e' }}>
                         {p.name}
                       </span>
                     </Link>
@@ -103,13 +103,13 @@ export default function Navbar() {
           href="https://store.steampowered.com/"
           target="_blank"
           rel="noreferrer"
-          className="hidden md:inline-flex bg-[#1a9fff] hover:bg-[#1b8fe0] text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
+          className="hidden md:inline-flex bg-[#e8650a] hover:bg-[#c9540a] text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
         >
           Visit Steam
         </a>
 
         <button
-          className="md:hidden text-[#c6d4df] hover:text-white"
+          className="md:hidden text-[#c4b49e] hover:text-[#f0ebe0]"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -119,14 +119,14 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="md:hidden bg-[#1b2838] border-t border-[#2a475e] px-4 pb-4">
+        <div className="md:hidden bg-[#2c1f14] border-t border-[#4a3020] px-4 pb-4">
           <ul className="flex flex-col gap-3 pt-3">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <Link
                   to={link.to}
                   className={`block text-sm font-medium transition ${
-                    isActive(link.to) ? 'text-white' : 'text-[#c6d4df] hover:text-white'
+                    isActive(link.to) ? 'text-[#f0ebe0]' : 'text-[#c4b49e] hover:text-[#f0ebe0]'
                   }`}
                   onClick={() => setOpen(false)}
                 >
@@ -140,14 +140,14 @@ export default function Navbar() {
               <button
                 onClick={() => setMobilePlatformsOpen((v) => !v)}
                 className={`flex items-center gap-1 text-sm font-medium transition w-full text-left ${
-                  isPlatformActive ? 'text-white' : 'text-[#c6d4df] hover:text-white'
+                  isPlatformActive ? 'text-[#f0ebe0]' : 'text-[#c4b49e] hover:text-[#f0ebe0]'
                 }`}
               >
                 Platforms
                 <ChevronDown className={`w-3.5 h-3.5 ml-1 transition-transform ${mobilePlatformsOpen ? 'rotate-180' : ''}`} />
               </button>
               {mobilePlatformsOpen && (
-                <ul className="mt-2 ml-3 flex flex-col gap-2 border-l border-[#2a475e] pl-3">
+                <ul className="mt-2 ml-3 flex flex-col gap-2 border-l border-[#4a3020] pl-3">
                   {PLATFORM_ORDER.map((key) => {
                     const p = PLATFORMS[key];
                     return (
@@ -155,7 +155,7 @@ export default function Navbar() {
                         <Link
                           to={`/${key}`}
                           className="flex items-center gap-2 text-sm font-medium transition"
-                          style={{ color: pathname === `/${key}` ? p.accent : '#c6d4df' }}
+                          style={{ color: pathname === `/${key}` ? p.accent : '#c4b49e' }}
                           onClick={() => { setOpen(false); setMobilePlatformsOpen(false); }}
                         >
                           <span className="w-2 h-2 rounded-full" style={{ backgroundColor: p.navDot }} />
@@ -173,7 +173,7 @@ export default function Navbar() {
             href="https://store.steampowered.com/"
             target="_blank"
             rel="noreferrer"
-            className="mt-4 block text-center bg-[#1a9fff] hover:bg-[#1b8fe0] text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
+            className="mt-4 block text-center bg-[#e8650a] hover:bg-[#c9540a] text-white text-sm font-semibold px-5 py-2 rounded-lg transition"
           >
             Visit Steam
           </a>

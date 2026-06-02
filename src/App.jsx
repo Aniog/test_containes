@@ -10,7 +10,7 @@ import PlatformPage from './pages/PlatformPage';
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-[#0f1923] min-h-screen flex flex-col">
+      <div className="bg-[#faf7f2] min-h-screen flex flex-col">
         <Navbar />
         <main className="pt-16 flex-1">
           <Routes>

@@ -8,12 +8,12 @@ import { Calendar, User, Tag, ArrowRight, ChevronRight } from 'lucide-react';
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const PLATFORM_META = {
-  steam:       { label: 'Steam',       color: 'bg-[#1b2838] text-[#66c0f4] border-[#2a475e]' },
-  epic:        { label: 'Epic Games',  color: 'bg-[#2d2d2d] text-white border-[#444]' },
-  nintendo:    { label: 'Nintendo',    color: 'bg-red-900/40 text-red-300 border-red-700/40' },
-  playstation: { label: 'PlayStation', color: 'bg-blue-900/40 text-blue-300 border-blue-700/40' },
-  xbox:        { label: 'Xbox',        color: 'bg-green-900/40 text-green-300 border-green-700/40' },
-  all:         { label: 'All Platforms', color: 'bg-purple-900/40 text-purple-300 border-purple-700/40' },
+  steam:       { label: 'Steam',       color: 'bg-blue-100 text-blue-700 border-blue-200' },
+  epic:        { label: 'Epic Games',  color: 'bg-gray-100 text-gray-700 border-gray-200' },
+  nintendo:    { label: 'Nintendo',    color: 'bg-red-100 text-red-700 border-red-200' },
+  playstation: { label: 'PlayStation', color: 'bg-blue-100 text-blue-700 border-blue-200' },
+  xbox:        { label: 'Xbox',        color: 'bg-green-100 text-green-700 border-green-200' },
+  all:         { label: 'All Platforms', color: 'bg-purple-100 text-purple-700 border-purple-200' },
 };
 
 const CATEGORY_META = {
@@ -86,18 +86,18 @@ export default function ArticlesSection() {
     : sorted.filter((a) => a.data?.platform === activeFilter);
 
   return (
-    <section id="articles" className="py-20 px-4 md:px-8 bg-[#1b2838]" ref={containerRef}>
+    <section id="articles" className="py-20 px-4 md:px-8 bg-[#f0ebe0]" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Blog & Articles</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Gaming News & Guides</h2>
-            <p className="text-[#8f98a0] mt-2 max-w-xl">
+            <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Blog & Articles</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-2">Gaming News & Guides</h2>
+            <p className="text-[#8a7a6a] mt-2 max-w-xl">
               In-depth articles, reviews, and guides covering all major gaming platforms.
             </p>
           </div>
-          <a href="#" className="flex items-center gap-1.5 text-[#1a9fff] hover:text-[#66c0f4] text-sm font-medium transition shrink-0">
+          <a href="#" className="flex items-center gap-1.5 text-[#e8650a] hover:text-[#c9540a] text-sm font-medium transition shrink-0">
             View all articles <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -110,8 +110,8 @@ export default function ArticlesSection() {
               onClick={() => setActiveFilter(f.key)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
                 activeFilter === f.key
-                  ? 'bg-[#1a9fff] border-[#1a9fff] text-white'
-                  : 'border-[#2a475e] text-[#8f98a0] hover:text-white hover:border-[#1a9fff]'
+                  ? 'bg-[#e8650a] border-[#e8650a] text-white'
+                  : 'border-[#e8ddd0] text-[#8a7a6a] hover:text-[#1a1a1a] hover:border-[#e8650a]'
               }`}
             >
               {f.label}
@@ -123,12 +123,12 @@ export default function ArticlesSection() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden animate-pulse">
-                <div className="h-44 bg-[#2a475e]" />
+              <div key={i} className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden animate-pulse">
+                <div className="h-44 bg-[#f0ebe0]" />
                 <div className="p-5 space-y-3">
-                  <div className="h-3 bg-[#2a475e] rounded w-1/3" />
-                  <div className="h-4 bg-[#2a475e] rounded w-3/4" />
-                  <div className="h-3 bg-[#2a475e] rounded w-full" />
+                  <div className="h-3 bg-[#e8ddd0] rounded w-1/3" />
+                  <div className="h-4 bg-[#e8ddd0] rounded w-3/4" />
+                  <div className="h-3 bg-[#e8ddd0] rounded w-full" />
                 </div>
               </div>
             ))}
@@ -144,7 +144,7 @@ export default function ArticlesSection() {
               return (
                 <article
                   key={article.id}
-                  className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer flex flex-col"
+                  className="bg-white border border-[#e8ddd0] rounded-xl overflow-hidden hover:border-[#e8650a] transition-all duration-300 group cursor-pointer flex flex-col shadow-sm hover:shadow-md"
                 >
                   <div className="relative overflow-hidden">
                     <img
@@ -154,7 +154,7 @@ export default function ArticlesSection() {
                       data-strk-img-ratio="16x9"
                       data-strk-img-width="600"
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#0f1923]"
+                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#f0ebe0]"
                     />
                     <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded ${catMeta.color}`}>
                       {catMeta.label}
@@ -172,15 +172,15 @@ export default function ArticlesSection() {
                       {platMeta.label}
                     </span>
 
-                    <h3 id={meta.titleId} className="text-white font-semibold text-base mb-2 group-hover:text-[#66c0f4] transition line-clamp-2">
+                    <h3 id={meta.titleId} className="text-[#1a1a1a] font-semibold text-base mb-2 group-hover:text-[#e8650a] transition line-clamp-2">
                       {d.title}
                     </h3>
-                    <p id={meta.descId} className="text-[#8f98a0] text-sm leading-relaxed line-clamp-3 flex-1">
+                    <p id={meta.descId} className="text-[#8a7a6a] text-sm leading-relaxed line-clamp-3 flex-1">
                       {d.excerpt}
                     </p>
 
-                    <div className="mt-4 pt-4 border-t border-[#2a475e] flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-[#8f98a0] text-xs">
+                    <div className="mt-4 pt-4 border-t border-[#e8ddd0] flex items-center justify-between">
+                      <div className="flex items-center gap-3 text-[#8a7a6a] text-xs">
                         {d.author && (
                           <span className="flex items-center gap-1">
                             <User className="w-3 h-3" /> {d.author}
@@ -192,13 +192,13 @@ export default function ArticlesSection() {
                           </span>
                         )}
                       </div>
-                      <ChevronRight className="w-4 h-4 text-[#1a9fff] group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-4 h-4 text-[#e8650a] group-hover:translate-x-1 transition-transform" />
                     </div>
 
                     {d.tags?.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-1">
                         {d.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="flex items-center gap-1 text-[#8f98a0] text-xs bg-[#0f1923] px-2 py-0.5 rounded">
+                          <span key={tag} className="flex items-center gap-1 text-[#8a7a6a] text-xs bg-[#f0ebe0] px-2 py-0.5 rounded">
                             <Tag className="w-2.5 h-2.5" />{tag}
                           </span>
                         ))}
