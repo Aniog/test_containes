@@ -1,39 +1,42 @@
 # Design System
 
 ## Visual Style
-Clean, minimal, and modern productivity app aesthetic. Light background with soft shadows and subtle accents.
+Dark, bold, and immersive productivity app. Deep charcoal backgrounds with vibrant amber accents and strong typographic hierarchy.
 
 ## Colors
-- Background: `bg-slate-50` (page), `bg-white` (cards)
-- Primary accent: `bg-indigo-600` hover `bg-indigo-700` (buttons, checkboxes)
-- Danger: `bg-red-500` hover `bg-red-600`
-- Muted text: `text-slate-400`
-- Body text: `text-slate-700`
-- Headings: `text-slate-900`
-- Completed text: `line-through text-slate-400`
-- Border: `border-slate-200`
+- Page background: `bg-zinc-950`
+- Card background: `bg-zinc-900`
+- Surface/input: `bg-zinc-800`
+- Border: `border-zinc-700`
+- Primary accent: `bg-amber-400` hover `bg-amber-300` text `text-zinc-900`
+- Danger: `text-rose-400` hover `text-rose-300`
+- Muted text: `text-zinc-500`
+- Body text: `text-zinc-300`
+- Headings: `text-white`
+- Completed text: `line-through text-zinc-600`
+- Active filter: `bg-amber-400 text-zinc-900`
 
 ## Typography
 - Font: Inter (Google Fonts)
-- Page title: `text-3xl font-bold text-slate-900`
-- Section labels: `text-sm font-medium text-slate-500 uppercase tracking-wide`
-- Body: `text-sm text-slate-700`
-- Placeholder: `placeholder-slate-400`
+- Page title: `text-4xl font-black text-white tracking-tight`
+- Section labels: `text-xs font-semibold text-zinc-500 uppercase tracking-widest`
+- Body: `text-sm text-zinc-300`
+- Placeholder: `placeholder-zinc-600`
 
 ## Spacing & Layout
-- Page: `max-w-lg mx-auto px-4 py-10`
-- Card: `bg-white rounded-2xl shadow-sm border border-slate-200 p-6`
-- Input: `rounded-xl border border-slate-200 px-4 py-3`
-- Button: `rounded-xl px-4 py-2 font-medium text-sm`
-- List item: `flex items-center gap-3 py-3 border-b border-slate-100 last:border-0`
+- Page: `max-w-lg mx-auto px-4 py-12`
+- Card: `bg-zinc-900 rounded-2xl border border-zinc-800 p-6`
+- Input: `bg-zinc-800 rounded-xl border border-zinc-700 px-4 py-3 text-white`
+- Button: `rounded-xl px-4 py-3 font-semibold text-sm`
+- List item: `flex items-center gap-3 py-3.5 border-b border-zinc-800 last:border-0`
 
 ## Do's
-- Use rounded-xl or rounded-2xl for cards and inputs
-- Use shadow-sm for cards
-- Use indigo-600 as the primary action color
-- Keep spacing generous and consistent
+- Use amber-400 as the single primary accent color
+- Keep backgrounds layered: zinc-950 → zinc-900 → zinc-800
+- Use font-black or font-bold for headings to create strong hierarchy
+- Use rounded-xl consistently
 
 ## Don'ts
-- No dark backgrounds on the main page
-- No hard borders or sharp corners
-- No low-contrast text on white backgrounds
+- No light backgrounds
+- No low-contrast text on dark surfaces
+- No more than one accent color

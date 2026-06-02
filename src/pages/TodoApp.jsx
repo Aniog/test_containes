@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { CheckCheck, Loader2 } from 'lucide-react'
+import { Loader2 } from 'lucide-react'
 import TodoInput from '../components/todo/TodoInput.jsx'
 import TodoList from '../components/todo/TodoList.jsx'
 import TodoFilter from '../components/todo/TodoFilter.jsx'
@@ -107,31 +107,50 @@ const TodoApp = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 px-4 py-10">
+    <div className="min-h-screen bg-zinc-950 px-4 py-12">
       <div className="max-w-lg mx-auto">
+
         {/* Header */}
-        <div className="mb-8 text-center">
-          <div className="inline-flex items-center justify-center w-12 h-12 bg-indigo-600 rounded-2xl mb-4 shadow-md">
-            <CheckCheck className="w-6 h-6 text-white" />
-          </div>
-          <h1 className="text-3xl font-bold text-slate-900">My Tasks</h1>
-          <p className="text-sm text-slate-500 mt-1">
+        <div className="mb-8">
+          <p className="text-xs font-semibold text-amber-400 uppercase tracking-widest mb-2">
+            My Workspace
+          </p>
+          <h1 className="text-4xl font-black text-white tracking-tight leading-none">
+            Task List
+          </h1>
+          <p className="text-sm text-zinc-500 mt-2">
             {counts.active === 0 && counts.all > 0
-              ? 'All tasks completed!'
+              ? '✓ All tasks completed'
               : counts.active === 1
               ? '1 task remaining'
               : `${counts.active} tasks remaining`}
           </p>
         </div>
 
+        {/* Progress bar */}
+        {counts.all > 0 && (
+          <div className="mb-6">
+            <div className="h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-amber-400 rounded-full transition-all duration-500"
+                style={{ width: `${Math.round((counts.completed / counts.all) * 100)}%` }}
+              />
+            </div>
+            <p className="text-xs text-zinc-600 mt-1.5 text-right">
+              {Math.round((counts.completed / counts.all) * 100)}% complete
+            </p>
+          </div>
+        )}
+
         {/* Main Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 space-y-5">
+        <div className="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 space-y-5">
+
           {/* Input */}
           <TodoInput onAdd={handleAdd} disabled={busy || loading} />
 
           {/* Error */}
           {error && (
-            <div className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-3">
+            <div className="text-sm text-rose-400 bg-rose-950 border border-rose-800 rounded-xl px-4 py-3">
               {error}
             </div>
           )}
@@ -143,8 +162,8 @@ const TodoApp = () => {
 
           {/* List */}
           {loading ? (
-            <div className="flex items-center justify-center py-12 text-slate-400">
-              <Loader2 className="w-6 h-6 animate-spin mr-2" />
+            <div className="flex items-center justify-center py-12 text-zinc-600">
+              <Loader2 className="w-5 h-5 animate-spin mr-2" />
               <span className="text-sm">Loading tasks...</span>
             </div>
           ) : (
@@ -158,15 +177,15 @@ const TodoApp = () => {
 
           {/* Footer */}
           {counts.completed > 0 && (
-            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
-              <span className="text-xs text-slate-400">
-                {counts.completed} completed task{counts.completed !== 1 ? 's' : ''}
+            <div className="pt-3 border-t border-zinc-800 flex items-center justify-between">
+              <span className="text-xs text-zinc-600">
+                {counts.completed} completed
               </span>
               <button
                 type="button"
                 onClick={handleClearCompleted}
                 disabled={busy}
-                className="text-xs text-red-500 hover:text-red-600 font-medium transition disabled:opacity-50 disabled:cursor-not-allowed hover:underline"
+                className="text-xs text-rose-400 hover:text-rose-300 font-semibold transition disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Clear completed
               </button>
