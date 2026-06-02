@@ -17,6 +17,7 @@ export default {
         'neo-border': '#E8E8E0',
         'neo-yellow': '#FBC41A',
         'neo-red': '#EB1B1A',
+        'neo-green': '#4DDB1A',
       },
       letterSpacing: {
         'widest-2': '0.2em',

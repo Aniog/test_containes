@@ -61,17 +61,17 @@ const Home = () => {
           {/* Massive display text */}
           <div className="px-4 md:px-6 pt-12 pb-0 overflow-hidden">
             <h1
-              className="font-mono font-bold text-neo-red leading-none tracking-tighter select-none"
+              className="font-mono font-bold text-neo-green leading-none tracking-tighter select-none"
               style={{ fontSize: 'clamp(4rem, 14vw, 14rem)' }}
             >
               NEO-
             </h1>
             <h1
-              className="font-mono font-bold text-neo-red leading-none tracking-tighter select-none -mt-4 md:-mt-8"
+              className="font-mono font-bold text-neo-green leading-none tracking-tighter select-none -mt-4 md:-mt-8"
               style={{ fontSize: 'clamp(4rem, 14vw, 14rem)' }}
             >
               FORM
-              <span className="cursor-blink text-neo-red">_</span>
+              <span className="cursor-blink text-neo-green">_</span>
             </h1>
           </div>
 
