@@ -15,6 +15,7 @@ export default {
         'neo-off': '#F5F5F0',
         'neo-dim': '#1A1A1A',
         'neo-border': '#E8E8E0',
+        'neo-yellow': '#FBC41A',
       },
       letterSpacing: {
         'widest-2': '0.2em',
