@@ -7,21 +7,22 @@ import { Calendar, User, Tag, ArrowRight, ChevronRight } from 'lucide-react';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
+// Option 1 — Dark Steam Blue
 const PLATFORM_META = {
-  steam:       { label: 'Steam',         color: 'bg-blue-900/40 text-blue-300 border-blue-700/40' },
-  epic:        { label: 'Epic Games',    color: 'bg-gray-700/40 text-gray-300 border-gray-600/40' },
-  nintendo:    { label: 'Nintendo',      color: 'bg-red-900/40 text-red-300 border-red-700/40' },
-  playstation: { label: 'PlayStation',   color: 'bg-indigo-900/40 text-indigo-300 border-indigo-700/40' },
-  xbox:        { label: 'Xbox',          color: 'bg-green-900/40 text-green-300 border-green-700/40' },
-  all:         { label: 'All Platforms', color: 'bg-purple-900/40 text-purple-300 border-purple-700/40' },
+  steam:       { label: 'Steam',         color: 'bg-[#1b2838] text-[#66c0f4] border-[#2a475e]' },
+  epic:        { label: 'Epic Games',    color: 'bg-[#2d2d2d] text-[#aaa] border-[#444]' },
+  nintendo:    { label: 'Nintendo',      color: 'bg-red-900/50 text-red-300 border-red-700/50' },
+  playstation: { label: 'PlayStation',   color: 'bg-blue-900/50 text-blue-300 border-blue-700/50' },
+  xbox:        { label: 'Xbox',          color: 'bg-green-900/50 text-green-300 border-green-700/50' },
+  all:         { label: 'All Platforms', color: 'bg-[#1b2838] text-[#8f98a0] border-[#2a475e]' },
 };
 
 const CATEGORY_META = {
   news:    { label: 'News',    color: 'bg-[#1a9fff] text-white' },
-  blog:    { label: 'Blog',    color: 'bg-purple-600 text-white' },
-  article: { label: 'Article', color: 'bg-teal-600 text-white' },
-  review:  { label: 'Review',  color: 'bg-yellow-600 text-white' },
-  guide:   { label: 'Guide',   color: 'bg-orange-600 text-white' },
+  blog:    { label: 'Blog',    color: 'bg-purple-500 text-white' },
+  article: { label: 'Article', color: 'bg-teal-500 text-white' },
+  review:  { label: 'Review',  color: 'bg-yellow-500 text-black' },
+  guide:   { label: 'Guide',   color: 'bg-orange-500 text-white' },
 };
 
 const FILTERS = [
@@ -86,18 +87,18 @@ export default function ArticlesSection() {
     : sorted.filter((a) => a.data?.platform === activeFilter);
 
   return (
-    <section id="articles" className="py-20 px-4 md:px-8 bg-[#111827]" ref={containerRef}>
+    <section id="articles" className="py-20 px-4 md:px-8 bg-[#0f1923]" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <span className="text-[#f59e0b] text-sm font-semibold uppercase tracking-widest">Blog & Articles</span>
+            <span className="text-[#1a9fff] text-sm font-semibold uppercase tracking-widest">Blog & Articles</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Gaming News & Guides</h2>
-            <p className="text-[#9ca3af] mt-2 max-w-xl">
+            <p className="text-[#8f98a0] mt-2 max-w-xl">
               In-depth articles, reviews, and guides covering all major gaming platforms.
             </p>
           </div>
-          <a href="#" className="flex items-center gap-1.5 text-[#f59e0b] hover:text-[#fbbf24] text-sm font-medium transition shrink-0">
+          <a href="#" className="flex items-center gap-1.5 text-[#1a9fff] hover:text-[#66c0f4] text-sm font-medium transition shrink-0">
             View all articles <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -110,8 +111,8 @@ export default function ArticlesSection() {
               onClick={() => setActiveFilter(f.key)}
               className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
                 activeFilter === f.key
-                  ? 'bg-[#f59e0b] border-[#f59e0b] text-black font-semibold'
-                  : 'border-[#374151] text-[#9ca3af] hover:text-white hover:border-[#f59e0b]'
+                  ? 'bg-[#1a9fff] border-[#1a9fff] text-white'
+                  : 'border-[#2a475e] text-[#8f98a0] hover:text-white hover:border-[#1a9fff]'
               }`}
             >
               {f.label}
@@ -123,12 +124,12 @@ export default function ArticlesSection() {
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-[#1f2937] border border-[#374151] rounded-xl overflow-hidden animate-pulse">
-                <div className="h-44 bg-[#374151]" />
+              <div key={i} className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden animate-pulse">
+                <div className="h-44 bg-[#2a475e]" />
                 <div className="p-5 space-y-3">
-                  <div className="h-3 bg-[#374151] rounded w-1/3" />
-                  <div className="h-4 bg-[#374151] rounded w-3/4" />
-                  <div className="h-3 bg-[#374151] rounded w-full" />
+                  <div className="h-3 bg-[#2a475e] rounded w-1/3" />
+                  <div className="h-4 bg-[#2a475e] rounded w-3/4" />
+                  <div className="h-3 bg-[#2a475e] rounded w-full" />
                 </div>
               </div>
             ))}
@@ -144,7 +145,7 @@ export default function ArticlesSection() {
               return (
                 <article
                   key={article.id}
-                  className="bg-[#1f2937] border border-[#374151] rounded-xl overflow-hidden hover:border-[#f59e0b] transition-all duration-300 group cursor-pointer flex flex-col"
+                  className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer flex flex-col"
                 >
                   <div className="relative overflow-hidden">
                     <img
@@ -154,7 +155,7 @@ export default function ArticlesSection() {
                       data-strk-img-ratio="16x9"
                       data-strk-img-width="600"
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#374151]"
+                      className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500 bg-[#1b2838]"
                     />
                     <span className={`absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded ${catMeta.color}`}>
                       {catMeta.label}
@@ -171,15 +172,15 @@ export default function ArticlesSection() {
                       {platMeta.label}
                     </span>
 
-                    <h3 id={meta.titleId} className="text-white font-semibold text-base mb-2 group-hover:text-[#f59e0b] transition line-clamp-2">
+                    <h3 id={meta.titleId} className="text-white font-semibold text-base mb-2 group-hover:text-[#66c0f4] transition line-clamp-2">
                       {d.title}
                     </h3>
-                    <p id={meta.descId} className="text-[#9ca3af] text-sm leading-relaxed line-clamp-3 flex-1">
+                    <p id={meta.descId} className="text-[#8f98a0] text-sm leading-relaxed line-clamp-3 flex-1">
                       {d.excerpt}
                     </p>
 
-                    <div className="mt-4 pt-4 border-t border-[#374151] flex items-center justify-between">
-                      <div className="flex items-center gap-3 text-[#9ca3af] text-xs">
+                    <div className="mt-4 pt-4 border-t border-[#2a475e] flex items-center justify-between">
+                      <div className="flex items-center gap-3 text-[#8f98a0] text-xs">
                         {d.author && (
                           <span className="flex items-center gap-1">
                             <User className="w-3 h-3" /> {d.author}
@@ -191,13 +192,13 @@ export default function ArticlesSection() {
                           </span>
                         )}
                       </div>
-                      <ChevronRight className="w-4 h-4 text-[#f59e0b] group-hover:translate-x-1 transition-transform" />
+                      <ChevronRight className="w-4 h-4 text-[#1a9fff] group-hover:translate-x-1 transition-transform" />
                     </div>
 
                     {d.tags?.length > 0 && (
                       <div className="mt-3 flex flex-wrap gap-1">
                         {d.tags.slice(0, 3).map((tag) => (
-                          <span key={tag} className="flex items-center gap-1 text-[#9ca3af] text-xs bg-[#111827] px-2 py-0.5 rounded">
+                          <span key={tag} className="flex items-center gap-1 text-[#8f98a0] text-xs bg-[#0f1923] px-2 py-0.5 rounded">
                             <Tag className="w-2.5 h-2.5" />{tag}
                           </span>
                         ))}
