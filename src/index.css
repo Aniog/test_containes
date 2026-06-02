@@ -1,76 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Share Tech Mono', monospace;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
+  color-scheme: dark;
+  color: #00FFFF;
+  background-color: #000000;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+* {
+  border-radius: 0 !important;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #000000;
+  color: #00FFFF;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* CRT Scanline overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.12) 2px,
+    rgba(0, 0, 0, 0.12) 4px
+  );
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+/* CRT vignette */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9998;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 60%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #000000; }
+::-webkit-scrollbar-thumb { background: #00FFFF; box-shadow: 0 0 6px #00FFFF; }
+
+::selection { background: #00FFFF; color: #000000; }
+
+.font-pixel { font-family: 'Press Start 2P', monospace; }
+.font-mono-tech { font-family: 'Share Tech Mono', monospace; }
+
+.text-glow-cyan { text-shadow: 0 0 8px #00FFFF, 0 0 20px rgba(0,255,255,0.5); }
+.text-glow-magenta { text-shadow: 0 0 8px #FF00FF, 0 0 20px rgba(255,0,255,0.5); }
+.text-glow-green { text-shadow: 0 0 8px #00FF41, 0 0 20px rgba(0,255,65,0.5); }
+.text-glow-amber { text-shadow: 0 0 8px #FFB300, 0 0 20px rgba(255,179,0,0.5); }
+
+.border-neon-cyan {
+  border: 1px solid #00FFFF;
+  box-shadow: 0 0 8px rgba(0,255,255,0.3), inset 0 0 8px rgba(0,255,255,0.05);
+}
+.border-neon-magenta {
+  border: 1px solid #FF00FF;
+  box-shadow: 0 0 8px rgba(255,0,255,0.3), inset 0 0 8px rgba(255,0,255,0.05);
+}
+.border-neon-green {
+  border: 1px solid #00FF41;
+  box-shadow: 0 0 8px rgba(0,255,65,0.3), inset 0 0 8px rgba(0,255,65,0.05);
+}
+
+.bg-pixel-grid {
+  background-image:
+    linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.led-card {
+  background: #0A0A0A;
+  border: 1px solid #00FFFF;
+  box-shadow: 0 0 8px rgba(0,255,255,0.2), inset 0 0 8px rgba(0,255,255,0.03);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.led-card:hover {
+  box-shadow: 0 0 16px #00FFFF, 0 0 40px rgba(0,255,255,0.4), inset 0 0 16px rgba(0,255,255,0.08);
+}
+
+.led-btn {
+  background: transparent;
+  border: 1px solid #00FFFF;
+  color: #00FFFF;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 24px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  box-shadow: 0 0 8px rgba(0,255,255,0.3);
+  transition: all 0.15s ease;
 }
-
-button:hover {
-  border-color: #646cff;
+.led-btn:hover {
+  background: rgba(0,255,255,0.1);
+  box-shadow: 0 0 16px #00FFFF, 0 0 40px rgba(0,255,255,0.4);
+  color: #ffffff;
 }
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.led-btn-magenta {
+  border-color: #FF00FF;
+  color: #FF00FF;
+  box-shadow: 0 0 8px rgba(255,0,255,0.3);
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.led-btn-magenta:hover {
+  background: rgba(255,0,255,0.1);
+  box-shadow: 0 0 16px #FF00FF, 0 0 40px rgba(255,0,255,0.4);
+  color: #ffffff;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
