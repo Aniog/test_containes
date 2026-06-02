@@ -1,74 +1,176 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Space Mono', monospace;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #fff;
+  color-scheme: light;
+  color: #0A0A0A;
+  background-color: #FFFFFF;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
   color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: 0;
+  border: 1px solid #0A0A0A;
   padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-family: 'Space Mono', monospace;
+  background-color: #0A0A0A;
+  color: #FFFFFF;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.2s, color 0.2s;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: #FF2D00;
+  border-color: #FF2D00;
+  color: #FFFFFF;
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #FF2D00;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
+body {
+  margin: 0;
+  font-family: 'Space Mono', monospace;
+  background-color: #FFFFFF;
+  color: #0A0A0A;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
 
-  button {
-    background-color: #f9f9f9;
+/* Horizontal scroll snap for lookbook */
+.lookbook-strip {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  height: 100vh;
+}
+
+.lookbook-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.lookbook-frame {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  height: 100vh;
+  position: relative;
+}
+
+/* Masonry layout for Studio */
+.masonry-grid {
+  columns: 2;
+  column-gap: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    columns: 3;
+    column-gap: 0.75rem;
   }
+}
+
+@media (min-width: 1280px) {
+  .masonry-grid {
+    columns: 4;
+    column-gap: 1rem;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .masonry-item {
+    margin-bottom: 0.75rem;
+  }
+}
+
+/* Grain overlay effect */
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: multiply;
+}
+
+/* Collections asymmetric grid */
+.collections-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 0;
+}
+
+@media (max-width: 767px) {
+  .collections-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Scrollbar styling for lookbook */
+.lookbook-nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  background: #0A0A0A;
+  color: #FFFFFF;
+  border: none;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-family: 'Space Mono', monospace;
+  font-size: 1.25rem;
+  transition: background 0.2s;
+}
+
+.lookbook-nav-btn:hover {
+  background: #FF2D00;
 }
 
 @tailwind base;

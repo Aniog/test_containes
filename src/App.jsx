@@ -1,15 +1,34 @@
-import './App.css'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import Nav from '@/components/nav/Nav';
+import Home from '@/pages/Home';
+import Collections from '@/pages/Collections';
+import Lookbook from '@/pages/Lookbook';
+import Studio from '@/pages/Studio';
+import './App.css';
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const isLookbook = location.pathname === '/lookbook';
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="bg-white min-h-screen font-mono">
+      <Nav />
+      <main className={isLookbook ? 'overflow-hidden' : ''}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/collections" element={<Collections />} />
+          <Route path="/lookbook" element={<Lookbook />} />
+          <Route path="/studio" element={<Studio />} />
+        </Routes>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
+}
