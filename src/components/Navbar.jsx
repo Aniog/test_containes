@@ -7,6 +7,7 @@ const navLinks = [
   { to: '/explore', label: 'Explore' },
   { to: '/science', label: 'Science' },
   { to: '/about', label: 'About' },
+  { to: '/todos', label: 'Todos' },
 ];
 
 const Navbar = () => {

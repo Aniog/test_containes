@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Science from './pages/Science';
 import About from './pages/About';
+import TodoApp from './pages/TodoApp';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/explore" element={<Explore />} />
             <Route path="/science" element={<Science />} />
             <Route path="/about" element={<About />} />
+            <Route path="/todos" element={<TodoApp />} />
           </Routes>
         </main>
         <Footer />
