@@ -1,9 +1,23 @@
+import { Link } from 'react-router-dom';
 import { Bike, Instagram, Twitter, Facebook, Youtube } from 'lucide-react';
 
 const footerLinks = {
-  Bikes: ['Mountain', 'Road', 'Gravel', 'Urban', 'Kids'],
-  Company: ['About Us', 'Careers', 'Press', 'Contact'],
-  Support: ['FAQ', 'Shipping', 'Returns', 'Warranty', 'Service'],
+  Bikes: [
+    { label: 'Mountain', to: '/bikes' },
+    { label: 'Road', to: '/bikes' },
+    { label: 'Gravel', to: '/bikes' },
+    { label: 'Urban', to: '/bikes' },
+  ],
+  Company: [
+    { label: 'About Us', to: '/about' },
+    { label: 'Contact', to: '/contact' },
+  ],
+  Support: [
+    { label: 'FAQ', to: '/contact' },
+    { label: 'Shipping', to: '/contact' },
+    { label: 'Returns', to: '/contact' },
+    { label: 'Warranty', to: '/contact' },
+  ],
 };
 
 const socials = [
@@ -20,10 +34,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 text-white font-black text-xl mb-4">
+            <Link to="/" className="flex items-center gap-2 text-white font-black text-xl mb-4">
               <Bike className="w-7 h-7 text-[#e94560]" />
               <span>VELOX</span>
-            </div>
+            </Link>
             <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
               Premium bikes for every rider. Engineered for performance, built to last, designed to inspire.
             </p>
@@ -49,10 +63,10 @@ const Footer = () => {
               </h4>
               <ul className="space-y-2">
                 {links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    <Link to={link.to} className="text-gray-400 hover:text-white text-sm transition-colors">
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
