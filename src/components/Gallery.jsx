@@ -153,9 +153,9 @@ export default function Gallery() {
           </p>
           <h2
             id="gallery-section-title"
-            className="md:text-5xl text-cosmos-text mb-4 font-bold text-4xl"
+            className="md:text-5xl text-cosmos-text mb-4 font-bold text-7xl"
           >
-            The Microscopic Gallery - NICE
+            The Microscopic Gallery - Bella
 </h2>
           <p
             id="gallery-section-desc"
@@ -197,4 +197,5 @@ export default function Gallery() {
     </section>
   )
 }
+
 

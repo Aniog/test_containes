@@ -80,7 +80,7 @@ export default function Facts() {
                   data-strk-img={`[${fact.descId}] [${fact.titleId}] [facts-section-desc]`}
                   data-strk-img-ratio="4x3"
                   data-strk-img-width="700"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  src="https://images.unsplash.com/photo-1663362689755-b3b5e6e4b64a?fm=jpg&amp;q=60&amp;w=3000&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -108,3 +108,4 @@ export default function Facts() {
     </section>
   )
 }
+
