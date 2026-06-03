@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { ImageHelper } from '@strikingly/sdk'
+import { DataClient, User } from '@strikingly/sdk'
 import strkImgConfig from '../strk-img-config.json'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from 'lucide-react'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
 function Contact() {
   const containerRef = useRef(null)
@@ -14,6 +18,7 @@ function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState(null)
+  const [submitMessage, setSubmitMessage] = useState('')
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
@@ -27,14 +32,60 @@ function Contact() {
     }))
   }
 
+  const getErrorMessage = (response, error) => {
+    if (Array.isArray(response?.errors) && response.errors.length > 0) {
+      return response.errors.join(', ')
+    }
+    return error?.message || 'Submission failed'
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setSubmitStatus(null)
+    setSubmitMessage('')
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Step 1: Upsert the User (CRM Record)
+      const userRecord = await User.upsert({
+        email: formData.email,
+        name: formData.name,
+        phone: formData.phone || undefined,
+        role: 'guest',
+      })
+
+      if (!userRecord || !userRecord.id) {
+        throw new Error('Failed to create user profile.')
+      }
+
+      // Step 2: Insert Contact Form Submission
+      const { data: response, error: submitError } = await client
+        .from('ContactFormSubmissions')
+        .insert({
+          data: {
+            user_id: userRecord.id,
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || null,
+            subject: formData.subject,
+            message: formData.message,
+            status: 'new',
+            priority: 'medium'
+          }
+        })
+        .select()
+        .single()
+
+      if (submitError || response?.success === false) {
+        throw new Error(getErrorMessage(response, submitError))
+      }
+
+      // Success
       setIsSubmitting(false)
       setSubmitStatus('success')
+      setSubmitMessage('Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.')
+      
+      // Reset form
       setFormData({
         name: '',
         email: '',
@@ -43,9 +94,24 @@ function Contact() {
         message: ''
       })
       
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitStatus(null), 5000)
-    }, 1000)
+      // Clear success message after 10 seconds
+      setTimeout(() => {
+        setSubmitStatus(null)
+        setSubmitMessage('')
+      }, 10000)
+
+    } catch (err) {
+      console.error('Contact form submission error:', err)
+      setIsSubmitting(false)
+      setSubmitStatus('error')
+      setSubmitMessage(err.message || 'There was an error sending your message. Please try again or call us directly.')
+      
+      // Clear error message after 8 seconds
+      setTimeout(() => {
+        setSubmitStatus(null)
+        setSubmitMessage('')
+      }, 8000)
+    }
   }
 
   const contactInfo = [
@@ -165,7 +231,16 @@ function Contact() {
                 <div className="mb-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg">
                   <div className="flex items-center">
                     <MessageCircle className="w-5 h-5 mr-2" />
-                    <span>Thank you! Your message has been sent successfully. We'll get back to you soon.</span>
+                    <span>{submitMessage}</span>
+                  </div>
+                </div>
+              )}
+
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                  <div className="flex items-center">
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    <span>{submitMessage}</span>
                   </div>
                 </div>
               )}

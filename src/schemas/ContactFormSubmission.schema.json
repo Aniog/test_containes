@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Submissions",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the form"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up communication"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Phone number (optional)"
+    },
+    "subject": {
+      "type": "string",
+      "enum": ["general", "sales", "service", "warranty", "feedback"],
+      "description": "Category of the inquiry"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "The main message or inquiry from the customer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_progress", "resolved", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry for internal tracking"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "urgent"],
+      "default": "medium",
+      "description": "Priority level for internal processing"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this form",
+      "x-foreignKey": "users.id"
+    },
+    "assigned_to": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Staff member assigned to handle this inquiry"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Internal notes for staff use"
+    },
+    "resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was resolved"
+    }
+  },
+  "required": ["name", "email", "subject", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
