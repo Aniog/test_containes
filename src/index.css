@@ -1,76 +1,136 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #636972;
+  background-color: #FFFFFF;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button:hover {
-  border-color: #646cff;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4B5056;
+  line-height: 1.2;
+  margin: 0;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Focus styles */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+  border-radius: 3px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Gradient text utility */
+.ai-gradient-text {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Gradient button utility */
+.ai-gradient-btn {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+  border: none;
+  transition: opacity 0.2s ease;
+}
+
+.ai-gradient-btn:hover {
+  opacity: 0.9;
+}
+
+/* Ghost button utility */
+.ghost-btn {
+  background: transparent;
+  border: 1px solid #8159BB;
+  color: #8159BB;
+  transition: background-color 0.2s ease;
+}
+
+.ghost-btn:hover {
+  background-color: rgba(129, 89, 187, 0.08);
+}
+
+/* Card styles */
+.generator-card {
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  display: block;
+}
+
+.generator-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+/* Category tag */
+.category-tag {
+  display: inline-block;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  border-radius: 3px;
+  padding: 2px 6px;
+  line-height: 1.2;
+}
+
+/* Max content width utility */
+.max-content {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Scroll margin for hash navigation */
+.scroll-target {
+  scroll-margin-top: 80px;
+}
+
+/* Show all section expand animation */
+.collapsible-grid {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+/* Hide scrollbar for search result count */
+.result-count {
+  font-size: 13px;
+  color: #636972;
+}
+
