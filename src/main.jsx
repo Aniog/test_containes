@@ -1,14 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 
-if (import.meta.env.DEV) {
-  import("./visual-edit-runtime.js");
-}
+// The page is server-rendered in index.html
+// This entry just renders a minimal React root.
+// The HTML has all content statically rendered.
+const App = () => null
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-);
+  </React.StrictMode>
+)
