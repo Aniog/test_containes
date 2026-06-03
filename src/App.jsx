@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout';
 import Home from '@/pages/Home';
 import Explore from '@/pages/Explore';
 import Science from '@/pages/Science';
+import ScienceDetail from '@/pages/ScienceDetail';
 import About from '@/pages/About';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/science" element={<Science />} />
+          <Route path="/science/:id" element={<ScienceDetail />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </Layout>
