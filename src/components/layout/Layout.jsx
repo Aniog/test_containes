@@ -62,6 +62,16 @@ function Layout() {
                 Services
               </Link>
               <Link 
+                to="/articles" 
+                className={`transition-colors ${
+                  isActive('/articles') 
+                    ? 'text-blue-600 font-semibold' 
+                    : 'text-gray-700 hover:text-blue-600'
+                }`}
+              >
+                Articles
+              </Link>
+              <Link 
                 to="/contact" 
                 className={`transition-colors ${
                   isActive('/contact') 
@@ -102,6 +112,7 @@ function Layout() {
                 <li><Link to="/about" className="text-gray-400 hover:text-white transition-colors">About</Link></li>
                 <li><Link to="/bikes" className="text-gray-400 hover:text-white transition-colors">Bikes</Link></li>
                 <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
+                <li><Link to="/articles" className="text-gray-400 hover:text-white transition-colors">Articles</Link></li>
                 <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
