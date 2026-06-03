@@ -7,8 +7,14 @@ import TodoFilter from './TodoFilter'
 import { cn } from '@/lib/utils'
 
 const TodoApp = () => {
+  const getInitialFilter = () => {
+    const hash = window.location.hash.replace('#', '').toLowerCase()
+    if (['all', 'active', 'completed'].includes(hash)) return hash
+    return 'all'
+  }
+
   const [todos, setTodos] = useState([])
-  const [filter, setFilter] = useState('all')
+  const [filter, setFilter] = useState(getInitialFilter)
   const [loading, setLoading] = useState(true)
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState(null)
@@ -31,6 +37,22 @@ const TodoApp = () => {
   useEffect(() => {
     loadTodos()
   }, [loadTodos])
+
+  useEffect(() => {
+    const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1)
+    window.location.hash = capitalize(filter)
+  }, [filter])
+
+  useEffect(() => {
+    const onHashChange = () => {
+      const hash = window.location.hash.replace('#', '').toLowerCase()
+      if (['all', 'active', 'completed'].includes(hash)) {
+        setFilter(hash)
+      }
+    }
+    window.addEventListener('hashchange', onHashChange)
+    return () => window.removeEventListener('hashchange', onHashChange)
+  }, [])
 
   const handleAdd = async (title) => {
     setBusy(true)
