@@ -19,7 +19,28 @@ const FITNESS_TYPE_COLORS = {
   crossfit: 'bg-yellow-100 text-yellow-700',
 }
 
-const emptyExercise = () => ({ exercise_name: '', sets: 3, reps: 10 })
+const MUSCLE_GROUPS = [
+  { value: '', label: '选择肌肉群' },
+  { value: 'chest', label: '胸部' },
+  { value: 'back', label: '背部' },
+  { value: 'shoulders', label: '肩部' },
+  { value: 'arms', label: '手臂' },
+  { value: 'legs', label: '腿部' },
+  { value: 'core', label: '核心' },
+  { value: 'full_body', label: '全身' },
+]
+
+const MUSCLE_GROUP_COLORS = {
+  chest: 'bg-red-50 text-red-600',
+  back: 'bg-blue-50 text-blue-600',
+  shoulders: 'bg-orange-50 text-orange-600',
+  arms: 'bg-purple-50 text-purple-600',
+  legs: 'bg-green-50 text-green-600',
+  core: 'bg-yellow-50 text-yellow-700',
+  full_body: 'bg-gray-100 text-gray-600',
+}
+
+const emptyExercise = () => ({ exercise_name: '', sets: 3, reps: 10, exercise_date: '', muscle_group: '' })
 const emptyDay = () => ({ day_name: '', scheduled_time: '', exercises: [emptyExercise()] })
 const emptyPlan = () => ({ name: '', fitness_type: 'strength', description: '', training_days: [emptyDay()] })
 
@@ -247,6 +268,8 @@ export default function FitnessPlanner() {
                                     <th className="text-left pb-1 font-medium">动作</th>
                                     <th className="text-center pb-1 font-medium w-16">组数</th>
                                     <th className="text-center pb-1 font-medium w-20">每组次数</th>
+                                    <th className="text-center pb-1 font-medium w-24">日期</th>
+                                    <th className="text-center pb-1 font-medium w-20">肌肉群</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -255,6 +278,14 @@ export default function FitnessPlanner() {
                                       <td className="py-1.5 text-gray-800">{ex.exercise_name}</td>
                                       <td className="py-1.5 text-center text-gray-600">{ex.sets} 组</td>
                                       <td className="py-1.5 text-center text-gray-600">{ex.reps} 次</td>
+                                      <td className="py-1.5 text-center text-gray-500 text-xs">{ex.exercise_date || '—'}</td>
+                                      <td className="py-1.5 text-center">
+                                        {ex.muscle_group ? (
+                                          <span className={`text-xs px-1.5 py-0.5 rounded-full ${MUSCLE_GROUP_COLORS[ex.muscle_group] || 'bg-gray-100 text-gray-500'}`}>
+                                            {MUSCLE_GROUPS.find(m => m.value === ex.muscle_group)?.label || ex.muscle_group}
+                                          </span>
+                                        ) : <span className="text-gray-300">—</span>}
+                                      </td>
                                     </tr>
                                   ))}
                                 </tbody>
@@ -364,41 +395,60 @@ export default function FitnessPlanner() {
                       {/* Exercises */}
                       <div className="space-y-2">
                         {day.exercises.map((ex, ei) => (
-                          <div key={ei} className="flex items-center gap-2">
-                            <input
-                              type="text"
-                              value={ex.exercise_name}
-                              onChange={e => setExerciseField(di, ei, 'exercise_name', e.target.value)}
-                              placeholder="动作名称，如：深蹲"
-                              className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                            />
-                            <div className="flex items-center gap-1 shrink-0">
+                          <div key={ei} className="space-y-1.5">
+                            <div className="flex items-center gap-2">
                               <input
-                                type="number"
-                                value={ex.sets}
-                                min={1} max={20}
-                                onChange={e => setExerciseField(di, ei, 'sets', parseInt(e.target.value) || 1)}
-                                className="w-14 border border-gray-300 rounded-lg px-2 py-1.5 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                type="text"
+                                value={ex.exercise_name}
+                                onChange={e => setExerciseField(di, ei, 'exercise_name', e.target.value)}
+                                placeholder="动作名称，如：深蹲"
+                                className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                               />
-                              <span className="text-xs text-gray-400">组</span>
-                              <input
-                                type="number"
-                                value={ex.reps}
-                                min={1} max={200}
-                                onChange={e => setExerciseField(di, ei, 'reps', parseInt(e.target.value) || 1)}
-                                className="w-14 border border-gray-300 rounded-lg px-2 py-1.5 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                              />
-                              <span className="text-xs text-gray-400">次</span>
+                              <div className="flex items-center gap-1 shrink-0">
+                                <input
+                                  type="number"
+                                  value={ex.sets}
+                                  min={1} max={20}
+                                  onChange={e => setExerciseField(di, ei, 'sets', parseInt(e.target.value) || 1)}
+                                  className="w-14 border border-gray-300 rounded-lg px-2 py-1.5 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                />
+                                <span className="text-xs text-gray-400">组</span>
+                                <input
+                                  type="number"
+                                  value={ex.reps}
+                                  min={1} max={200}
+                                  onChange={e => setExerciseField(di, ei, 'reps', parseInt(e.target.value) || 1)}
+                                  className="w-14 border border-gray-300 rounded-lg px-2 py-1.5 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                />
+                                <span className="text-xs text-gray-400">次</span>
+                              </div>
+                              {day.exercises.length > 1 && (
+                                <button
+                                  type="button"
+                                  onClick={() => removeExercise(di, ei)}
+                                  className="text-red-400 hover:text-red-600 text-sm bg-transparent border-0 p-0 cursor-pointer shrink-0"
+                                >
+                                  ✕
+                                </button>
+                              )}
                             </div>
-                            {day.exercises.length > 1 && (
-                              <button
-                                type="button"
-                                onClick={() => removeExercise(di, ei)}
-                                className="text-red-400 hover:text-red-600 text-sm bg-transparent border-0 p-0 cursor-pointer shrink-0"
+                            <div className="flex items-center gap-2 pl-0">
+                              <input
+                                type="date"
+                                value={ex.exercise_date || ''}
+                                onChange={e => setExerciseField(di, ei, 'exercise_date', e.target.value)}
+                                className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                              />
+                              <select
+                                value={ex.muscle_group || ''}
+                                onChange={e => setExerciseField(di, ei, 'muscle_group', e.target.value)}
+                                className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
                               >
-                                ✕
-                              </button>
-                            )}
+                                {MUSCLE_GROUPS.map(m => (
+                                  <option key={m.value} value={m.value}>{m.label}</option>
+                                ))}
+                              </select>
+                            </div>
                           </div>
                         ))}
                         <button
