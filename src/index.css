@@ -1,76 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Lato', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #F5EDD8;
+  background-color: #1C1208;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Lato', system-ui, sans-serif;
+  background-color: #1C1208;
+  color: #F5EDD8;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  background: none;
+  font-family: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Horizontal scroll container */
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.horizontal-scroll-container::-webkit-scrollbar {
+  display: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.scroll-panel {
+  flex: 0 0 100vw;
+  scroll-snap-align: start;
+  position: relative;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Heat haze overlay */
+.heat-haze-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(194, 84, 26, 0.15) 100%);
+  pointer-events: none;
+  animation: heatHaze 8s ease-in-out infinite;
+}
+
+@keyframes heatHaze {
+  0%, 100% { opacity: 0.6; transform: scale(1); filter: blur(0px); }
+  50% { opacity: 1; transform: scale(1.005); filter: blur(0.3px); }
+}
+
+/* Parallax hero */
+.parallax-hero {
+  transform: scale(1.08);
+  animation: slowFloat 25s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes slowFloat {
+  0% { transform: scale(1.08) translateY(0px); }
+  50% { transform: scale(1.1) translateY(-16px); }
+  100% { transform: scale(1.08) translateY(0px); }
+}
+
+/* Dissolve transition */
+.dissolve-enter {
+  animation: fadeDissolve 1.4s ease-in-out forwards;
+}
+
+@keyframes fadeDissolve {
+  0% { opacity: 0; filter: blur(12px) brightness(1.3); }
+  100% { opacity: 1; filter: blur(0px) brightness(1); }
+}
+
+/* Species card hover */
+.species-card .habitat-bg {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.species-card:hover .habitat-bg {
+  opacity: 1;
+}
+
+/* Texture gallery */
+.texture-item {
+  overflow: hidden;
+  position: relative;
+}
+
+.texture-item img {
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.texture-item:hover img {
+  transform: scale(1.06);
+}
+
+/* Navigation */
+.nav-link {
+  position: relative;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #E8D5A3;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #C2541A;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #E07B39;
+}
+
+/* Scroll indicator */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(8px); }
+}
+
+.scroll-indicator {
+  animation: scrollBounce 2s ease-in-out infinite;
+}
+
+/* Pulse dot */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}

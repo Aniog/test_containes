@@ -1,15 +1,22 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Navbar from '@/components/nav/Navbar';
+import Home from '@/pages/Home';
+import SpeciesArchive from '@/pages/SpeciesArchive';
+import DustAndLight from '@/pages/DustAndLight';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
+    <BrowserRouter>
+      <div className="min-h-screen bg-charcoal-earth">
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/species" element={<SpeciesArchive />} />
+          <Route path="/dust-and-light" element={<DustAndLight />} />
+        </Routes>
       </div>
-    </main>
-  )
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
