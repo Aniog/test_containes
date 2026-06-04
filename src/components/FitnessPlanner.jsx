@@ -1,48 +1,35 @@
 import { useState, useEffect, useCallback } from 'react'
+import { Plus, Trash2, ChevronDown, ChevronUp, Dumbbell, Calendar, Clock, Save, X, Edit2 } from 'lucide-react'
 import { fetchPlans, createPlan, updatePlan, deletePlan } from '../api/fitnessPlans.js'
 
-const FITNESS_TYPES = [
-  { value: 'strength', label: '力量训练' },
-  { value: 'cardio', label: '有氧运动' },
-  { value: 'flexibility', label: '柔韧性训练' },
-  { value: 'hiit', label: 'HIIT 高强度间歇' },
-  { value: 'yoga', label: '瑜伽' },
-  { value: 'crossfit', label: 'CrossFit' },
-]
-
-const FITNESS_TYPE_COLORS = {
-  strength: 'bg-red-100 text-red-700',
-  cardio: 'bg-blue-100 text-blue-700',
-  flexibility: 'bg-green-100 text-green-700',
-  hiit: 'bg-orange-100 text-orange-700',
-  yoga: 'bg-purple-100 text-purple-700',
-  crossfit: 'bg-yellow-100 text-yellow-700',
+const FITNESS_TYPES = ['strength', 'cardio', 'flexibility', 'hiit', 'yoga', 'crossfit']
+const FITNESS_TYPE_LABELS = {
+  strength: '力量训练', cardio: '有氧运动', flexibility: '柔韧性',
+  hiit: 'HIIT', yoga: '瑜伽', crossfit: 'CrossFit',
+}
+const DAY_TYPES = ['Training', 'Rest', 'Recovery']
+const DAY_TYPE_LABELS = { Training: '训练日', Rest: '休息日', Recovery: '恢复日' }
+const FOCUS_AREAS = ['Full Body', 'Upper Body', 'Lower Body', 'Core', 'Cardio']
+const FOCUS_AREA_LABELS = {
+  'Full Body': '全身', 'Upper Body': '上肢', 'Lower Body': '下肢', 'Core': '核心', 'Cardio': '有氧',
+}
+const INTENSITIES = ['Low', 'Medium', 'High']
+const INTENSITY_LABELS = { Low: '低', Medium: '中', High: '高' }
+const INTENSITY_COLORS = {
+  Low: 'bg-green-100 text-green-700',
+  Medium: 'bg-yellow-100 text-yellow-700',
+  High: 'bg-red-100 text-red-700',
 }
 
-const MUSCLE_GROUPS = [
-  { value: '', label: '选择肌肉群' },
-  { value: 'chest', label: '胸部' },
-  { value: 'back', label: '背部' },
-  { value: 'shoulders', label: '肩部' },
-  { value: 'arms', label: '手臂' },
-  { value: 'legs', label: '腿部' },
-  { value: 'core', label: '核心' },
-  { value: 'full_body', label: '全身' },
-]
-
-const MUSCLE_GROUP_COLORS = {
-  chest: 'bg-red-50 text-red-600',
-  back: 'bg-blue-50 text-blue-600',
-  shoulders: 'bg-orange-50 text-orange-600',
-  arms: 'bg-purple-50 text-purple-600',
-  legs: 'bg-green-50 text-green-600',
-  core: 'bg-yellow-50 text-yellow-700',
-  full_body: 'bg-gray-100 text-gray-600',
-}
-
-const emptyExercise = () => ({ exercise_name: '', sets: 3, reps: 10, exercise_date: '', muscle_group: '' })
-const emptyDay = () => ({ day_name: '', scheduled_time: '', exercises: [emptyExercise()] })
-const emptyPlan = () => ({ name: '', fitness_type: 'strength', description: '', training_days: [emptyDay()] })
+const emptyExercise = () => ({ exercise_name: '', sets: 3, reps: 10, intensity: 'Medium' })
+const emptyDay = () => ({
+  training_date: new Date().toISOString().slice(0, 10),
+  training_time: '15:00',
+  day_type: 'Training',
+  focus_area: 'Full Body',
+  exercises: [emptyExercise()],
+})
+const emptyPlan = () => ({ name: '', fitness_type: 'strength', training_days: [emptyDay()] })
 
 export default function FitnessPlanner() {
   const [plans, setPlans] = useState([])
@@ -51,8 +38,7 @@ export default function FitnessPlanner() {
   const [showForm, setShowForm] = useState(false)
   const [editingPlan, setEditingPlan] = useState(null)
   const [form, setForm] = useState(emptyPlan())
-  const [submitting, setSubmitting] = useState(false)
-  const [filterType, setFilterType] = useState('all')
+  const [saving, setSaving] = useState(false)
   const [expandedPlan, setExpandedPlan] = useState(null)
 
   const loadPlans = useCallback(async () => {
@@ -61,9 +47,8 @@ export default function FitnessPlanner() {
     try {
       const rows = await fetchPlans()
       setPlans(rows)
-    } catch (err) {
-      console.error('加载计划失败:', err)
-      setError('加载失败，请刷新重试')
+    } catch (e) {
+      setError(e.message || '加载失败')
     } finally {
       setLoading(false)
     }
@@ -87,213 +72,419 @@ export default function FitnessPlanner() {
     setShowForm(false)
     setEditingPlan(null)
     setForm(emptyPlan())
+    setError(null)
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (!form.name.trim()) return
-    setSubmitting(true)
+    setSaving(true)
+    setError(null)
     try {
       if (editingPlan) {
         const updated = await updatePlan(editingPlan.id, form)
-        setPlans(prev => prev.map(p => p.id === updated.id ? updated : p))
+        setPlans((prev) => prev.map((p) => (p.id === updated.id ? updated : p)))
       } else {
         const created = await createPlan(form)
-        setPlans(prev => [created, ...prev])
+        setPlans((prev) => [created, ...prev])
       }
       closeForm()
-    } catch (err) {
-      console.error('保存失败:', err)
-      alert('保存失败: ' + err.message)
+    } catch (e) {
+      setError(e.message || '保存失败')
     } finally {
-      setSubmitting(false)
+      setSaving(false)
     }
   }
 
-  const handleDelete = async (plan) => {
-    if (!confirm(`确定删除计划「${plan.data?.name}」吗？`)) return
+  const handleDelete = async (id) => {
+    if (!window.confirm('确认删除此计划？')) return
     try {
-      await deletePlan(plan.id)
-      setPlans(prev => prev.filter(p => p.id !== plan.id))
-      if (expandedPlan === plan.id) setExpandedPlan(null)
-    } catch (err) {
-      console.error('删除失败:', err)
-      alert('删除失败: ' + err.message)
+      await deletePlan(id)
+      setPlans((prev) => prev.filter((p) => p.id !== id))
+      if (expandedPlan === id) setExpandedPlan(null)
+    } catch (e) {
+      setError(e.message || '删除失败')
     }
   }
 
-  // Form helpers
-  const setField = (key, value) => setForm(f => ({ ...f, [key]: value }))
+  const setField = (key, val) => setForm((f) => ({ ...f, [key]: val }))
 
-  const setDayField = (di, key, value) =>
-    setForm(f => {
-      const days = f.training_days.map((d, i) => i === di ? { ...d, [key]: value } : d)
-      return { ...f, training_days: days }
-    })
+  const setDay = (di, key, val) =>
+    setForm((f) => ({
+      ...f,
+      training_days: f.training_days.map((d, i) => (i === di ? { ...d, [key]: val } : d)),
+    }))
 
-  const setExerciseField = (di, ei, key, value) =>
-    setForm(f => {
-      const days = f.training_days.map((d, i) => {
-        if (i !== di) return d
-        const exercises = d.exercises.map((ex, j) => j === ei ? { ...ex, [key]: value } : ex)
-        return { ...d, exercises }
-      })
-      return { ...f, training_days: days }
-    })
+  const addDay = () => setForm((f) => ({ ...f, training_days: [...f.training_days, emptyDay()] }))
 
-  const addDay = () => setForm(f => ({ ...f, training_days: [...f.training_days, emptyDay()] }))
-  const removeDay = (di) => setForm(f => ({ ...f, training_days: f.training_days.filter((_, i) => i !== di) }))
-  const addExercise = (di) => setForm(f => {
-    const days = f.training_days.map((d, i) => i === di ? { ...d, exercises: [...d.exercises, emptyExercise()] } : d)
-    return { ...f, training_days: days }
-  })
-  const removeExercise = (di, ei) => setForm(f => {
-    const days = f.training_days.map((d, i) => {
-      if (i !== di) return d
-      return { ...d, exercises: d.exercises.filter((_, j) => j !== ei) }
-    })
-    return { ...f, training_days: days }
-  })
+  const removeDay = (di) =>
+    setForm((f) => ({ ...f, training_days: f.training_days.filter((_, i) => i !== di) }))
 
-  const filteredPlans = filterType === 'all'
-    ? plans
-    : plans.filter(p => p.data?.fitness_type === filterType)
+  const setExercise = (di, ei, key, val) =>
+    setForm((f) => ({
+      ...f,
+      training_days: f.training_days.map((d, i) =>
+        i !== di ? d : {
+          ...d,
+          exercises: d.exercises.map((ex, j) => (j === ei ? { ...ex, [key]: val } : ex)),
+        }
+      ),
+    }))
 
-  const getTypeLabel = (val) => FITNESS_TYPES.find(t => t.value === val)?.label || val
+  const addExercise = (di) =>
+    setForm((f) => ({
+      ...f,
+      training_days: f.training_days.map((d, i) =>
+        i === di ? { ...d, exercises: [...d.exercises, emptyExercise()] } : d
+      ),
+    }))
+
+  const removeExercise = (di, ei) =>
+    setForm((f) => ({
+      ...f,
+      training_days: f.training_days.map((d, i) =>
+        i === di ? { ...d, exercises: d.exercises.filter((_, j) => j !== ei) } : d
+      ),
+    }))
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800">
-      {/* Header */}
-      <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
-        <h1 className="text-xl font-bold text-gray-900">💪 健身计划系统</h1>
-        <button
-          onClick={openCreate}
-          className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
-        >
-          + 新建计划
-        </button>
+    <div className="min-h-screen bg-gray-50">
+      <header className="bg-white border-b border-gray-200 px-4 py-4">
+        <div className="max-w-3xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Dumbbell className="w-6 h-6 text-blue-600" />
+            <h1 className="text-xl font-bold text-gray-900">健身计划</h1>
+          </div>
+          <button
+            onClick={openCreate}
+            className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+          >
+            <Plus className="w-4 h-4" />
+            新建计划
+          </button>
+        </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        {/* Filter */}
-        <div className="flex gap-2 flex-wrap mb-6">
-          <button
-            onClick={() => setFilterType('all')}
-            className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${filterType === 'all' ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`}
-          >
-            全部
-          </button>
-          {FITNESS_TYPES.map(t => (
-            <button
-              key={t.value}
-              onClick={() => setFilterType(t.value)}
-              className={`px-3 py-1.5 rounded-full text-sm font-medium transition-colors ${filterType === t.value ? 'bg-blue-600 text-white' : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'}`}
-            >
-              {t.label}
-            </button>
-          ))}
-        </div>
+      <main className="max-w-3xl mx-auto px-4 py-6">
+        {error && !showForm && (
+          <div className="mb-4 bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3 rounded-lg flex items-center justify-between">
+            <span>{error}</span>
+            <button onClick={() => setError(null)}><X className="w-4 h-4" /></button>
+          </div>
+        )}
 
-        {/* Plan List */}
+        {showForm && (
+          <div className="fixed inset-0 bg-black/40 z-50 flex items-start justify-center overflow-y-auto py-8 px-4">
+            <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+                <h2 className="text-lg font-semibold text-gray-900">
+                  {editingPlan ? '编辑计划' : '新建计划'}
+                </h2>
+                <button onClick={closeForm} className="text-gray-400 hover:text-gray-600">
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="px-6 py-5 space-y-5">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">计划名称</label>
+                    <input
+                      required
+                      value={form.name}
+                      onChange={(e) => setField('name', e.target.value)}
+                      placeholder="例：夏季增肌计划"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">健身类型</label>
+                    <select
+                      value={form.fitness_type}
+                      onChange={(e) => setField('fitness_type', e.target.value)}
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                      {FITNESS_TYPES.map((t) => (
+                        <option key={t} value={t}>{FITNESS_TYPE_LABELS[t]}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-sm font-semibold text-gray-800">训练日安排</h3>
+                    <button
+                      type="button"
+                      onClick={addDay}
+                      className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-sm font-medium"
+                    >
+                      <Plus className="w-4 h-4" />
+                      添加训练日
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {form.training_days.map((day, di) => (
+                      <div key={di} className="border border-gray-200 rounded-lg p-4 bg-gray-50">
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-sm font-medium text-gray-700">第 {di + 1} 天</span>
+                          {form.training_days.length > 1 && (
+                            <button type="button" onClick={() => removeDay(di)} className="text-red-400 hover:text-red-600">
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3 mb-3">
+                          <div>
+                            <label className="flex items-center gap-1 text-xs text-gray-500 mb-1">
+                              <Calendar className="w-3 h-3" />日期
+                            </label>
+                            <input
+                              type="date"
+                              value={day.training_date}
+                              onChange={(e) => setDay(di, 'training_date', e.target.value)}
+                              className="w-full border border-gray-300 rounded-md px-2 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                          </div>
+                          <div>
+                            <label className="flex items-center gap-1 text-xs text-gray-500 mb-1">
+                              <Clock className="w-3 h-3" />时间
+                            </label>
+                            <input
+                              type="time"
+                              value={day.training_time || ''}
+                              onChange={(e) => setDay(di, 'training_time', e.target.value)}
+                              className="w-full border border-gray-300 rounded-md px-2 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500 mb-1">日类型</label>
+                            <select
+                              value={day.day_type}
+                              onChange={(e) => setDay(di, 'day_type', e.target.value)}
+                              className="w-full border border-gray-300 rounded-md px-2 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                              {DAY_TYPES.map((t) => (
+                                <option key={t} value={t}>{DAY_TYPE_LABELS[t]}</option>
+                              ))}
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-xs text-gray-500 mb-1">训练重点</label>
+                            <select
+                              value={day.focus_area}
+                              onChange={(e) => setDay(di, 'focus_area', e.target.value)}
+                              className="w-full border border-gray-300 rounded-md px-2 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            >
+                              {FOCUS_AREAS.map((a) => (
+                                <option key={a} value={a}>{FOCUS_AREA_LABELS[a]}</option>
+                              ))}
+                            </select>
+                          </div>
+                        </div>
+
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-medium text-gray-600">动作列表</span>
+                            <button
+                              type="button"
+                              onClick={() => addExercise(di)}
+                              className="flex items-center gap-1 text-blue-600 hover:text-blue-700 text-xs font-medium"
+                            >
+                              <Plus className="w-3 h-3" />
+                              添加动作
+                            </button>
+                          </div>
+
+                          <div className="space-y-2">
+                            {day.exercises.map((ex, ei) => (
+                              <div key={ei} className="bg-white border border-gray-200 rounded-md p-3">
+                                <div className="grid grid-cols-12 gap-2 items-end">
+                                  <div className="col-span-4">
+                                    <label className="block text-xs text-gray-400 mb-1">动作名称</label>
+                                    <input
+                                      required
+                                      value={ex.exercise_name}
+                                      onChange={(e) => setExercise(di, ei, 'exercise_name', e.target.value)}
+                                      placeholder="如：深蹲"
+                                      className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    />
+                                  </div>
+                                  <div className="col-span-2">
+                                    <label className="block text-xs text-gray-400 mb-1 text-center">组数</label>
+                                    <input
+                                      type="number"
+                                      min="1"
+                                      required
+                                      value={ex.sets}
+                                      onChange={(e) => setExercise(di, ei, 'sets', parseInt(e.target.value) || 1)}
+                                      className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs text-gray-900 text-center focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    />
+                                  </div>
+                                  <div className="col-span-2">
+                                    <label className="block text-xs text-gray-400 mb-1 text-center">次数</label>
+                                    <input
+                                      type="number"
+                                      min="1"
+                                      required
+                                      value={ex.reps}
+                                      onChange={(e) => setExercise(di, ei, 'reps', parseInt(e.target.value) || 1)}
+                                      className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs text-gray-900 text-center focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    />
+                                  </div>
+                                  <div className="col-span-3">
+                                    <label className="block text-xs text-gray-400 mb-1 text-center">强度</label>
+                                    <select
+                                      value={ex.intensity}
+                                      onChange={(e) => setExercise(di, ei, 'intensity', e.target.value)}
+                                      className="w-full border border-gray-300 rounded px-2 py-1.5 text-xs text-gray-900 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                                    >
+                                      {INTENSITIES.map((v) => (
+                                        <option key={v} value={v}>{INTENSITY_LABELS[v]}</option>
+                                      ))}
+                                    </select>
+                                  </div>
+                                  <div className="col-span-1 flex justify-center pb-1">
+                                    {day.exercises.length > 1 && (
+                                      <button
+                                        type="button"
+                                        onClick={() => removeExercise(di, ei)}
+                                        className="text-red-400 hover:text-red-600"
+                                      >
+                                        <X className="w-3.5 h-3.5" />
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {error && <p className="text-red-600 text-sm">{error}</p>}
+
+                <div className="flex gap-3 pt-2">
+                  <button
+                    type="button"
+                    onClick={closeForm}
+                    className="flex-1 border border-gray-300 text-gray-700 text-sm font-medium py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    取消
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={saving}
+                    className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-sm font-medium py-2 rounded-lg transition-colors flex items-center justify-center gap-2"
+                  >
+                    <Save className="w-4 h-4" />
+                    {saving ? '保存中…' : '保存计划'}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
         {loading ? (
-          <div className="text-center py-16 text-gray-400">加载中...</div>
-        ) : error ? (
-          <div className="text-center py-16 text-red-500">{error}</div>
-        ) : filteredPlans.length === 0 ? (
-          <div className="text-center py-16 text-gray-400">
-            <p className="text-4xl mb-3">🏋️</p>
-            <p>暂无计划，点击「新建计划」开始吧</p>
+          <div className="text-center py-16 text-gray-400 text-sm">加载中…</div>
+        ) : plans.length === 0 ? (
+          <div className="text-center py-16">
+            <Dumbbell className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+            <p className="text-gray-500 text-sm">还没有健身计划，点击「新建计划」开始吧</p>
           </div>
         ) : (
           <div className="space-y-3">
-            {filteredPlans.map(plan => {
+            {plans.map((plan) => {
               const d = plan.data || {}
               const isExpanded = expandedPlan === plan.id
               return (
                 <div key={plan.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-                  {/* Plan Header */}
-                  <div
-                    className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-gray-50 transition-colors"
-                    onClick={() => setExpandedPlan(isExpanded ? null : plan.id)}
-                  >
+                  <div className="px-5 py-4 flex items-center justify-between">
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className={`text-xs font-medium px-2 py-0.5 rounded-full shrink-0 ${FITNESS_TYPE_COLORS[d.fitness_type] || 'bg-gray-100 text-gray-600'}`}>
-                        {getTypeLabel(d.fitness_type)}
-                      </span>
-                      <span className="font-semibold text-gray-900 truncate">{d.name}</span>
-                      {d.description && (
-                        <span className="text-sm text-gray-400 truncate hidden sm:block">{d.description}</span>
-                      )}
+                      <button
+                        onClick={() => setExpandedPlan(isExpanded ? null : plan.id)}
+                        className="text-gray-400 hover:text-gray-600 flex-shrink-0"
+                      >
+                        {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      </button>
+                      <div className="min-w-0">
+                        <h3 className="font-semibold text-gray-900 truncate">{d.name}</h3>
+                        <div className="flex items-center gap-2 mt-0.5">
+                          <span className="text-xs bg-blue-50 text-blue-700 px-2 py-0.5 rounded-full font-medium">
+                            {FITNESS_TYPE_LABELS[d.fitness_type] || d.fitness_type}
+                          </span>
+                          <span className="text-xs text-gray-400">
+                            {(d.training_days || []).length} 个训练日
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 ml-3">
-                      <span className="text-xs text-gray-400">{(d.training_days || []).length} 个训练日</span>
-                      <button
-                        onClick={e => { e.stopPropagation(); openEdit(plan) }}
-                        className="text-xs text-blue-600 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 transition-colors"
-                      >
-                        编辑
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button onClick={() => openEdit(plan)} className="text-gray-400 hover:text-blue-600 p-1" title="编辑">
+                        <Edit2 className="w-4 h-4" />
                       </button>
-                      <button
-                        onClick={e => { e.stopPropagation(); handleDelete(plan) }}
-                        className="text-xs text-red-500 hover:text-red-700 px-2 py-1 rounded hover:bg-red-50 transition-colors"
-                      >
-                        删除
+                      <button onClick={() => handleDelete(plan.id)} className="text-gray-400 hover:text-red-600 p-1" title="删除">
+                        <Trash2 className="w-4 h-4" />
                       </button>
-                      <span className="text-gray-300 text-sm">{isExpanded ? '▲' : '▼'}</span>
                     </div>
                   </div>
 
-                  {/* Expanded Training Days */}
                   {isExpanded && (
                     <div className="border-t border-gray-100 px-5 py-4 space-y-4 bg-gray-50">
-                      {(d.training_days || []).length === 0 ? (
-                        <p className="text-sm text-gray-400">暂无训练日</p>
-                      ) : (
-                        (d.training_days || []).map((day, di) => (
-                          <div key={di} className="bg-white rounded-lg border border-gray-200 p-4">
-                            <div className="flex items-center gap-3 mb-3">
-                              <span className="font-medium text-gray-800">{day.day_name || `训练日 ${di + 1}`}</span>
-                              {day.scheduled_time && (
-                                <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full">
-                                  🕐 {day.scheduled_time}
-                                </span>
-                              )}
+                      {(d.training_days || []).map((day, di) => (
+                        <div key={di} className="bg-white rounded-lg border border-gray-200 p-4">
+                          <div className="flex items-center gap-3 mb-3 flex-wrap">
+                            <div className="flex items-center gap-1.5 text-sm text-gray-700">
+                              <Calendar className="w-4 h-4 text-gray-400" />
+                              <span className="font-medium">{day.training_date}</span>
                             </div>
-                            {(day.exercises || []).length === 0 ? (
-                              <p className="text-sm text-gray-400">暂无动作</p>
-                            ) : (
-                              <table className="w-full text-sm">
-                                <thead>
-                                  <tr className="text-gray-400 text-xs border-b border-gray-100">
-                                    <th className="text-left pb-1 font-medium">动作</th>
-                                    <th className="text-center pb-1 font-medium w-16">组数</th>
-                                    <th className="text-center pb-1 font-medium w-20">每组次数</th>
-                                    <th className="text-center pb-1 font-medium w-24">日期</th>
-                                    <th className="text-center pb-1 font-medium w-20">肌肉群</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  {(day.exercises || []).map((ex, ei) => (
-                                    <tr key={ei} className="border-b border-gray-50 last:border-0">
-                                      <td className="py-1.5 text-gray-800">{ex.exercise_name}</td>
-                                      <td className="py-1.5 text-center text-gray-600">{ex.sets} 组</td>
-                                      <td className="py-1.5 text-center text-gray-600">{ex.reps} 次</td>
-                                      <td className="py-1.5 text-center text-gray-500 text-xs">{ex.exercise_date || '—'}</td>
-                                      <td className="py-1.5 text-center">
-                                        {ex.muscle_group ? (
-                                          <span className={`text-xs px-1.5 py-0.5 rounded-full ${MUSCLE_GROUP_COLORS[ex.muscle_group] || 'bg-gray-100 text-gray-500'}`}>
-                                            {MUSCLE_GROUPS.find(m => m.value === ex.muscle_group)?.label || ex.muscle_group}
-                                          </span>
-                                        ) : <span className="text-gray-300">—</span>}
-                                      </td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
+                            {day.training_time && (
+                              <div className="flex items-center gap-1.5 text-sm text-gray-700">
+                                <Clock className="w-4 h-4 text-gray-400" />
+                                <span>{day.training_time}</span>
+                              </div>
                             )}
+                            <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full">
+                              {DAY_TYPE_LABELS[day.day_type] || day.day_type}
+                            </span>
+                            <span className="text-xs bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full">
+                              {FOCUS_AREA_LABELS[day.focus_area] || day.focus_area}
+                            </span>
                           </div>
-                        ))
-                      )}
+
+                          {(day.exercises || []).length > 0 && (
+                            <table className="w-full text-sm">
+                              <thead>
+                                <tr className="text-xs text-gray-400 border-b border-gray-100">
+                                  <th className="text-left pb-1.5 font-medium">动作</th>
+                                  <th className="text-center pb-1.5 font-medium">组数</th>
+                                  <th className="text-center pb-1.5 font-medium">次数</th>
+                                  <th className="text-center pb-1.5 font-medium">强度</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {day.exercises.map((ex, ei) => (
+                                  <tr key={ei} className="border-b border-gray-50 last:border-0">
+                                    <td className="py-1.5 text-gray-800 font-medium">{ex.exercise_name}</td>
+                                    <td className="py-1.5 text-center text-gray-700">{ex.sets}</td>
+                                    <td className="py-1.5 text-center text-gray-700">{ex.reps}</td>
+                                    <td className="py-1.5 text-center">
+                                      <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${INTENSITY_COLORS[ex.intensity] || 'bg-gray-100 text-gray-600'}`}>
+                                        {INTENSITY_LABELS[ex.intensity] || ex.intensity}
+                                      </span>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   )}
                 </div>
@@ -301,190 +492,7 @@ export default function FitnessPlanner() {
             })}
           </div>
         )}
-      </div>
-
-      {/* Modal Form */}
-      {showForm && (
-        <div className="fixed inset-0 bg-black/40 z-50 flex items-start justify-center overflow-y-auto py-8 px-4">
-          <div className="bg-white rounded-2xl w-full max-w-2xl shadow-xl">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-              <h2 className="text-lg font-bold text-gray-900">{editingPlan ? '编辑计划' : '新建计划'}</h2>
-              <button onClick={closeForm} className="text-gray-400 hover:text-gray-600 text-xl leading-none bg-transparent border-0 p-0">✕</button>
-            </div>
-
-            <form onSubmit={handleSubmit} className="px-6 py-5 space-y-5">
-              {/* Basic Info */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">计划名称 *</label>
-                  <input
-                    type="text"
-                    value={form.name}
-                    onChange={e => setField('name', e.target.value)}
-                    placeholder="如：12周增肌计划"
-                    required
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">健身类型 *</label>
-                  <select
-                    value={form.fitness_type}
-                    onChange={e => setField('fitness_type', e.target.value)}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                  >
-                    {FITNESS_TYPES.map(t => (
-                      <option key={t.value} value={t.value}>{t.label}</option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">计划描述</label>
-                <input
-                  type="text"
-                  value={form.description}
-                  onChange={e => setField('description', e.target.value)}
-                  placeholder="简单描述一下这个计划..."
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </div>
-
-              {/* Training Days */}
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-medium text-gray-700">训练日</label>
-                  <button
-                    type="button"
-                    onClick={addDay}
-                    className="text-xs text-blue-600 hover:text-blue-800 font-medium bg-transparent border-0 p-0 cursor-pointer"
-                  >
-                    + 添加训练日
-                  </button>
-                </div>
-
-                <div className="space-y-4">
-                  {form.training_days.map((day, di) => (
-                    <div key={di} className="border border-gray-200 rounded-xl p-4 bg-gray-50">
-                      <div className="flex items-center gap-3 mb-3">
-                        <input
-                          type="text"
-                          value={day.day_name}
-                          onChange={e => setDayField(di, 'day_name', e.target.value)}
-                          placeholder={`训练日 ${di + 1}，如：周一`}
-                          className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                        />
-                        <input
-                          type="time"
-                          value={day.scheduled_time}
-                          onChange={e => setDayField(di, 'scheduled_time', e.target.value)}
-                          className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                        />
-                        {form.training_days.length > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => removeDay(di)}
-                            className="text-red-400 hover:text-red-600 text-sm bg-transparent border-0 p-0 cursor-pointer shrink-0"
-                          >
-                            ✕
-                          </button>
-                        )}
-                      </div>
-
-                      {/* Exercises */}
-                      <div className="space-y-2">
-                        {day.exercises.map((ex, ei) => (
-                          <div key={ei} className="space-y-1.5">
-                            <div className="flex items-center gap-2">
-                              <input
-                                type="text"
-                                value={ex.exercise_name}
-                                onChange={e => setExerciseField(di, ei, 'exercise_name', e.target.value)}
-                                placeholder="动作名称，如：深蹲"
-                                className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                              />
-                              <div className="flex items-center gap-1 shrink-0">
-                                <input
-                                  type="number"
-                                  value={ex.sets}
-                                  min={1} max={20}
-                                  onChange={e => setExerciseField(di, ei, 'sets', parseInt(e.target.value) || 1)}
-                                  className="w-14 border border-gray-300 rounded-lg px-2 py-1.5 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                                />
-                                <span className="text-xs text-gray-400">组</span>
-                                <input
-                                  type="number"
-                                  value={ex.reps}
-                                  min={1} max={200}
-                                  onChange={e => setExerciseField(di, ei, 'reps', parseInt(e.target.value) || 1)}
-                                  className="w-14 border border-gray-300 rounded-lg px-2 py-1.5 text-sm text-gray-900 text-center focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                                />
-                                <span className="text-xs text-gray-400">次</span>
-                              </div>
-                              {day.exercises.length > 1 && (
-                                <button
-                                  type="button"
-                                  onClick={() => removeExercise(di, ei)}
-                                  className="text-red-400 hover:text-red-600 text-sm bg-transparent border-0 p-0 cursor-pointer shrink-0"
-                                >
-                                  ✕
-                                </button>
-                              )}
-                            </div>
-                            <div className="flex items-center gap-2 pl-0">
-                              <input
-                                type="date"
-                                value={ex.exercise_date || ''}
-                                onChange={e => setExerciseField(di, ei, 'exercise_date', e.target.value)}
-                                className="border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                              />
-                              <select
-                                value={ex.muscle_group || ''}
-                                onChange={e => setExerciseField(di, ei, 'muscle_group', e.target.value)}
-                                className="flex-1 border border-gray-300 rounded-lg px-3 py-1.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
-                              >
-                                {MUSCLE_GROUPS.map(m => (
-                                  <option key={m.value} value={m.value}>{m.label}</option>
-                                ))}
-                              </select>
-                            </div>
-                          </div>
-                        ))}
-                        <button
-                          type="button"
-                          onClick={() => addExercise(di)}
-                          className="text-xs text-gray-500 hover:text-gray-700 mt-1 bg-transparent border-0 p-0 cursor-pointer"
-                        >
-                          + 添加动作
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="flex justify-end gap-3 pt-2 border-t border-gray-100">
-                <button
-                  type="button"
-                  onClick={closeForm}
-                  className="px-4 py-2 text-sm text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors border-0"
-                >
-                  取消
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-5 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50 rounded-lg transition-colors border-0"
-                >
-                  {submitting ? '保存中...' : '保存计划'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+      </main>
     </div>
   )
 }
