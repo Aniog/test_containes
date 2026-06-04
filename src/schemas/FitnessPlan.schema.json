@@ -5,58 +5,78 @@
   "properties": {
     "name": {
       "type": "string",
-      "description": "Name of the fitness plan"
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "健身计划名称"
     },
     "fitness_type": {
       "type": "string",
       "enum": ["strength", "cardio", "flexibility", "hiit", "yoga", "crossfit"],
-      "description": "Type of fitness training"
+      "description": "选择健身类型"
     },
     "training_days": {
       "type": "array",
-      "description": "List of training days in the plan",
+      "description": "训练日列表",
       "items": {
         "type": "object",
         "properties": {
           "training_date": {
             "type": "string",
             "format": "date",
-            "description": "Training date"
-          },
-          "training_time": {
-            "type": "string",
-            "description": "Training time (HH:MM)"
+            "description": "选择训练日期"
           },
           "day_type": {
             "type": "string",
             "enum": ["Training", "Rest", "Recovery"],
-            "description": "Type of training day"
+            "description": "选择训练日类型"
           },
-          "focus_area": {
+          "scheduled_time": {
             "type": "string",
-            "enum": ["Full Body", "Upper Body", "Lower Body", "Core", "Cardio"],
-            "description": "Main focus area"
+            "enum": ["Morning", "Afternoon", "Evening"],
+            "description": "选择计划训练时间"
           },
           "exercises": {
             "type": "array",
-            "description": "Exercises for this training day",
+            "description": "该训练日的动作列表",
             "items": {
               "type": "object",
               "properties": {
-                "exercise_name": { "type": "string", "description": "Name of the exercise" },
-                "sets": { "type": "integer", "description": "Number of sets" },
-                "reps": { "type": "integer", "description": "Reps per set" },
+                "exercise_date": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "选择该动作的训练日期"
+                },
+                "exercise_type": {
+                  "type": "string",
+                  "enum": ["Strength", "Cardio", "Mobility", "Stretching"],
+                  "description": "选择动作类型"
+                },
+                "exercise_name": {
+                  "type": "string",
+                  "enum": ["Push-up", "Squat", "Plank", "Burpee", "Running"],
+                  "description": "选择动作名称"
+                },
                 "intensity": {
                   "type": "string",
                   "enum": ["Low", "Medium", "High"],
-                  "description": "Exercise intensity"
+                  "description": "选择训练强度"
+                },
+                "sets": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "组数"
+                },
+                "reps": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "每组重复次数"
                 }
               },
-              "required": ["exercise_name", "sets", "reps"]
+              "required": ["exercise_date", "exercise_type", "exercise_name", "intensity"]
             }
           }
         },
-        "required": ["training_date", "day_type", "focus_area", "exercises"]
+        "required": ["training_date", "day_type", "scheduled_time", "exercises"]
       }
     }
   },
