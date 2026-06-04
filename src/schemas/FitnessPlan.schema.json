@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Fitness Plans",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "健身计划名称"
+    },
+    "fitness_type": {
+      "type": "string",
+      "enum": ["strength", "cardio", "flexibility", "hiit", "yoga", "crossfit"],
+      "description": "健身类型"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "计划描述"
+    },
+    "training_days": {
+      "type": "array",
+      "description": "训练日列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day_name": {
+            "type": "string",
+            "description": "训练日名称，如 周一、Day 1"
+          },
+          "scheduled_time": {
+            "type": "string",
+            "description": "计划训练时间，如 15:00"
+          },
+          "exercises": {
+            "type": "array",
+            "description": "该训练日的动作列表",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise_name": {
+                  "type": "string",
+                  "description": "动作名称，如 深蹲"
+                },
+                "sets": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 20,
+                  "description": "组数"
+                },
+                "reps": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 200,
+                  "description": "每组重复次数"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["name", "fitness_type"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
