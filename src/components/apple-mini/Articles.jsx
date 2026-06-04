@@ -388,10 +388,10 @@ const Articles = () => {
                     {article.category}
                   </span>
                 </div>
-                <h3 id={article.titleId} className="text-lg font-bold text-gray-900 leading-snug mb-2">
+                <h3 id={article.titleId} className="text-lg font-bold text-gray-900 leading-snug mb-2 line-clamp-2">
                   {article.title}
                 </h3>
-                <p id={article.descId} className="text-gray-500 text-sm leading-relaxed flex-1">
+                <p id={article.descId} className="text-gray-500 text-sm leading-relaxed flex-1 line-clamp-3">
                   {article.desc}
                 </p>
                 <div className="flex items-center justify-between mt-4 pt-4 border-t border-gray-100">

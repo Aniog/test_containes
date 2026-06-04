@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
 
 const faqs = [
   {
@@ -65,11 +66,11 @@ const FaqItem = ({ faq }) => {
           {faq.question}
         </span>
         <span
-          className={`shrink-0 w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-transform duration-300 ${
-            open ? 'rotate-45 border-blue-500 text-blue-500' : ''
+          className={`shrink-0 w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${
+            open ? 'border-blue-500 text-blue-500 rotate-180' : 'border-gray-200 text-gray-400'
           }`}
         >
-          +
+          <ChevronDown className="w-4 h-4" />
         </span>
       </button>
       <div
