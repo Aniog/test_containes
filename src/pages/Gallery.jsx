@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { X, Microscope, Ruler, User, Calendar } from 'lucide-react';
 
 const SLIDES = [
@@ -86,108 +86,115 @@ const SLIDES = [
 ];
 
 function Lightbox({ slide, onClose }) {
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (!slide || !modalRef.current) return;
+    ImageHelper.loadImages(strkImgConfig, modalRef.current);
+  }, [slide]);
+
+  if (!slide) return null;
+
   return (
-    <AnimatePresence>
-      {slide && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.25 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+    <motion.div
+      key={`lightbox-${slide.id}`}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4"
+    >
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-ink/70 backdrop-blur-md"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <motion.div
+        ref={modalRef}
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 glass-strong rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col md:flex-row"
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-white/50 transition-colors"
+          aria-label="Close lightbox"
         >
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-ink/70 backdrop-blur-md"
-            onClick={onClose}
+          <X className="w-4 h-4 text-ink" />
+        </button>
+
+        {/* Image */}
+        <div className="md:w-3/5 bg-black/5 flex items-center justify-center p-6">
+          <img
+            data-strk-img-id={`lightbox-${slide.imgId}`}
+            data-strk-img={`[lightbox-${slide.descId}] [lightbox-${slide.titleId}]`}
+            data-strk-img-ratio="4x3"
+            data-strk-img-width="1000"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            alt={slide.title}
+            className="max-w-full max-h-[70vh] object-contain rounded-lg"
+            style={{ filter: 'grayscale(100%) contrast(1.05)' }}
           />
+        </div>
 
-          {/* Modal */}
-          <motion.div
-            initial={{ scale: 0.95, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.95, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 glass-strong rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl flex flex-col md:flex-row"
+        {/* Metadata Sidebar */}
+        <div className="md:w-2/5 p-8 flex flex-col justify-center border-l border-white/20">
+          <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-charcoal-muted mb-1">
+            Digital Slide
+          </p>
+          <h2
+            id={`lightbox-${slide.titleId}`}
+            className="font-serif text-2xl font-semibold text-ink mb-1"
           >
-            {/* Close button */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 z-20 w-9 h-9 rounded-full glass flex items-center justify-center hover:bg-white/50 transition-colors"
-              aria-label="Close lightbox"
+            {slide.title}
+          </h2>
+          <p className="font-serif italic text-sm text-charcoal mb-6">
+            {slide.category}
+          </p>
+
+          <div className="space-y-3 mb-6">
+            <div className="flex items-center gap-2.5 text-sm text-charcoal">
+              <Microscope className="w-4 h-4 text-charcoal-muted" strokeWidth={1.5} />
+              <span className="font-sans">
+                <span className="text-charcoal-muted">Magnification: </span>
+                <span className="font-medium text-ink">{slide.magnification}</span>
+              </span>
+            </div>
+            <div className="flex items-center gap-2.5 text-sm text-charcoal">
+              <User className="w-4 h-4 text-charcoal-muted" strokeWidth={1.5} />
+              <span className="font-sans">
+                <span className="text-charcoal-muted">Collector: </span>
+                <span className="font-medium text-ink">{slide.collector}</span>
+              </span>
+            </div>
+            <div className="flex items-center gap-2.5 text-sm text-charcoal">
+              <Calendar className="w-4 h-4 text-charcoal-muted" strokeWidth={1.5} />
+              <span className="font-sans">
+                <span className="text-charcoal-muted">Date: </span>
+                <span className="font-medium text-ink">{slide.date}</span>
+              </span>
+            </div>
+          </div>
+
+          <div className="border-t border-charcoal/10 pt-4">
+            <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal-muted mb-2">
+              Collector's Notes
+            </p>
+            <p
+              id={`lightbox-${slide.descId}`}
+              className="font-sans text-xs text-charcoal leading-relaxed"
             >
-              <X className="w-4 h-4 text-ink" />
-            </button>
-
-            {/* Image */}
-            <div className="md:w-3/5 bg-black/5 flex items-center justify-center p-6">
-              <img
-                data-strk-img-id={`lightbox-${slide.imgId}`}
-                data-strk-img={`[lightbox-${slide.descId}] [lightbox-${slide.titleId}]`}
-                data-strk-img-ratio="4x3"
-                data-strk-img-width="1000"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                alt={slide.title}
-                className="max-w-full max-h-[70vh] object-contain rounded-lg"
-                style={{ filter: 'grayscale(100%) contrast(1.05)' }}
-              />
-            </div>
-
-            {/* Metadata Sidebar */}
-            <div className="md:w-2/5 p-8 flex flex-col justify-center border-l border-white/20">
-              <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-charcoal-muted mb-1">
-                Digital Slide
-              </p>
-              <h2
-                id={`lightbox-${slide.titleId}`}
-                className="font-serif text-2xl font-semibold text-ink mb-1"
-              >
-                {slide.title}
-              </h2>
-              <p className="font-serif italic text-sm text-charcoal mb-6">
-                {slide.category}
-              </p>
-
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center gap-2.5 text-sm text-charcoal">
-                  <Microscope className="w-4 h-4 text-charcoal-muted" strokeWidth={1.5} />
-                  <span className="font-sans">
-                    <span className="text-charcoal-muted">Magnification: </span>
-                    <span className="font-medium text-ink">{slide.magnification}</span>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2.5 text-sm text-charcoal">
-                  <User className="w-4 h-4 text-charcoal-muted" strokeWidth={1.5} />
-                  <span className="font-sans">
-                    <span className="text-charcoal-muted">Collector: </span>
-                    <span className="font-medium text-ink">{slide.collector}</span>
-                  </span>
-                </div>
-                <div className="flex items-center gap-2.5 text-sm text-charcoal">
-                  <Calendar className="w-4 h-4 text-charcoal-muted" strokeWidth={1.5} />
-                  <span className="font-sans">
-                    <span className="text-charcoal-muted">Date: </span>
-                    <span className="font-medium text-ink">{slide.date}</span>
-                  </span>
-                </div>
-              </div>
-
-              <div className="border-t border-charcoal/10 pt-4">
-                <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-charcoal-muted mb-2">
-                  Collector's Notes
-                </p>
-                <p
-                  id={`lightbox-${slide.descId}`}
-                  className="font-sans text-xs text-charcoal leading-relaxed"
-                >
-                  {slide.notes}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+              {slide.notes}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -196,7 +203,7 @@ export default function Gallery() {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, [selected]);
 
   return (
