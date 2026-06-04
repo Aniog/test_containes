@@ -1,76 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1A1A1A;
+  background-color: #F2F0E9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #F2F0E9;
+  color: #1A1A1A;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Paper grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+#root {
+  position: relative;
+  z-index: 1;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F2F0E9;
+}
+::-webkit-scrollbar-thumb {
+  background: #A8A8A8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B6B6B;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Selection */
+::selection {
+  background: #1A1A1A;
+  color: #F2F0E9;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Glass utility classes */
+@layer components {
+  .glass-card {
+    @apply backdrop-blur-md bg-white/30 border border-white/20 rounded-2xl shadow-lg;
   }
 
-  a:hover {
-    color: #747bff;
+  .glass-btn {
+    @apply backdrop-blur-md bg-white/30 border border-white/20 rounded-full
+           font-inter font-semibold tracking-widest uppercase text-sm text-ink
+           hover:bg-white/50 transition-all duration-300 cursor-pointer;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .glass-nav {
+    @apply backdrop-blur-xl bg-white/20 border border-white/20 rounded-full shadow-xl;
+  }
+
+  .lab-input {
+    @apply bg-transparent border-0 border-b border-charcoal/40
+           focus:border-ink focus:outline-none
+           font-inter text-ink placeholder:text-silver
+           pb-2 w-full transition-colors duration-200;
+  }
+
+  .section-label {
+    @apply font-inter text-xs text-graphite tracking-widest uppercase;
+  }
+
+  .heading-display {
+    @apply font-playfair text-ink;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
