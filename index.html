@@ -1,417 +1,169 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
-    <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.">
-    <link rel="canonical" href="https://www.strikingly.com/generators">
-    <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly">
-    <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds.">
-    <meta property="og:url" content="https://www.strikingly.com/generators">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Strikingly",
-          "item": "https://www.strikingly.com/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "AI Generators",
-          "item": "https://www.strikingly.com/generators"
-        }
-      ]
-    }
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
+<head>
+<meta charset="UTF-8"/>
+<link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+<meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.">
+<link rel="canonical" href="https://www.strikingly.com/generators">
+<meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly">
+<meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds.">
+<meta property="og:url" content="https://www.strikingly.com/generators">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Strikingly","item":"https://www.strikingly.com/"},{"@type":"ListItem","position":2,"name":"AI Generators","item":"https://www.strikingly.com/generators"}]}
+</script>
+<style>
+/* ====== RESET & BASE ====== */
+*,*::before,*::after{box-sizing:border-box}
+:root{font-family:'Open Sans',sans-serif;line-height:1.5;font-weight:400;color:#636972;background-color:#FFF;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{margin:0;font-family:inherit;background-color:#FFF;color:#636972;min-height:100vh;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,h5,h6{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;text-transform:uppercase;line-height:1.2}
+/* ====== UTILITIES ====== */
+.ai-grad-text{background:linear-gradient(135deg,#7671FF,#CB0C9F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ai-grad-bg{background:linear-gradient(135deg,#7671FF,#CB0C9F)}
+.max-w{max-width:1200px;margin-inline:auto}
+.px{padding-inline:20px}
+/* ====== BUTTONS ====== */
+.btn-pri{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:9px 15px;border-radius:4px;font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;background:linear-gradient(135deg,#7671FF,#CB0C9F);color:#FFF;border:none;cursor:pointer;transition:opacity .2s,box-shadow .2s;text-decoration:none}
+.btn-pri:hover{opacity:.92;box-shadow:0 4px 14px rgba(118,113,255,.35)}
+.btn-pri:focus-visible{outline:3px solid #8159BB;outline-offset:2px}
+.btn-gho{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:9px 15px;border-radius:4px;font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:14px;text-transform:uppercase;background:transparent;color:#8159BB;border:1px solid #8159BB;cursor:pointer;transition:background .2s,color .2s;text-decoration:none}
+.btn-gho:hover{background:#8159BB;color:#FFF}
+.btn-gho:focus-visible{outline:3px solid #8159BB;outline-offset:2px}
+.btn-gho-sm{height:36px}
+/* ====== CARDS ====== */
+.card{background:#FFF;border:1px solid #C6C9CD;border-radius:3px;padding:20px;transition:box-shadow .2s,border-color .2s;text-decoration:none;color:inherit;display:block}
+.card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:#8159BB}
+/* ====== TAG ====== */
+.tag{display:inline-block;font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;padding:2px 6px;border-radius:3px;color:#8159BB;border:1px solid #8159BB;background:transparent}
+/* ====== FOCUS ====== */
+.focus-ring:focus-visible{outline:3px solid #8159BB;outline-offset:2px}
+/* ====== TOP BAR ====== */
+.tb{background:#FFF;border-bottom:1px solid #E2E4E7}
+.tb-i{display:flex;align-items:center;height:56px}
+.tb-l{display:flex;align-items:center;gap:10px;font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:22px;color:#2E2E2F;text-transform:uppercase;letter-spacing:.025em}
+/* ====== BREADCRUMB ====== */
+.bc{padding-block:10px}
+.bc ol{display:flex;align-items:center;gap:6px;list-style:none;margin:0;padding:0;font-size:13px}
+.bc a{color:#636972}
+.bc a:hover{text-decoration:underline}
+.bc-s{color:#C6C9CD}
+.bc-c{font-weight:600;color:#2E2E2F}
+/* ====== HERO ====== */
+.hero{position:relative;overflow:hidden;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(118,113,255,.06) 0%,rgba(203,12,159,.03) 50%,transparent 100%);padding-block:60px}
+.hero-g{display:flex;flex-direction:column;align-items:center;gap:40px}
+@media(min-width:768px){.hero-g{flex-direction:row}}
+.hero-l{flex:1;text-align:center}
+@media(min-width:768px){.hero-l{text-align:start}}
+.hero-r{flex:1;display:flex;justify-content:center}
+@media(min-width:768px){.hero-r{justify-content:flex-end}}
+.hero-h1a{display:block;font-size:28px;line-height:1.15;color:#2E2E2F}
+.hero-h1b{display:block;font-size:28px;line-height:1.15}
+@media(min-width:640px){.hero-h1a,.hero-h1b{font-size:40px}}
+@media(min-width:768px){.hero-h1a,.hero-h1b{font-size:48px}}
+.hero-sub{margin-top:20px;font-size:15px;line-height:1.6;color:#636972;max-width:480px}
+.hero-btns{margin-top:30px;display:flex;flex-direction:column;gap:10px}
+@media(min-width:640px){.hero-btns{flex-direction:row}}
+@media(max-width:639px){.hero-btns .btn-pri,.hero-btns .btn-gho{width:100%}}
+/* ====== SECTIONS ====== */
+.sec{padding-block:40px;background:#FFF}
+.sec-lt{padding-block:40px;background:#F4F6F8}
+.sec-ttl{font-size:26px;color:#4B5056;margin:0 0 5px}
+@media(min-width:768px){.sec-ttl{font-size:32px}}
+.sec-ttl-ctr{font-size:26px;color:#4B5056;margin:0 0 5px;text-align:center}
+@media(min-width:768px){.sec-ttl-ctr{font-size:32px}}
+.sec-sub{font-size:14px;color:#636972;margin:0 0 30px}
+/* ====== GRIDS ====== */
+.g3{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.g3{grid-template-columns:1fr 1fr 1fr}}
+.g3-sm{display:grid;grid-template-columns:1fr;gap:15px}
+@media(min-width:768px){.g3-sm{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.g3-sm{grid-template-columns:1fr 1fr 1fr}}
+/* ====== FEATURED CARD ====== */
+.fc{display:flex;flex-direction:column;justify-content:space-between;gap:12px;min-height:120px}
+.fc-n{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:16px;color:#2E2E2F;margin:0 0 6px;text-transform:uppercase}
+.fc-d{font-size:13px;color:#636972;margin:0;line-height:1.5}
+/* ====== CATEGORY BROWSE CARD ====== */
+.cc{display:flex;align-items:center;gap:15px}
+.cc-b{flex:1;min-width:0}
+.cc-n{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:14px;color:#4B5056;margin:0 0 4px;text-transform:uppercase;line-height:1.2}
+.cc-d{font-size:13px;color:#636972;margin:0;line-height:1.5}
+.cc-ar{flex-shrink:0}
+/* ====== SEARCH ====== */
+.srch-w{max-width:480px;margin-bottom:10px}
+.srch-r{position:relative}
+.srch-ic{position:absolute;inset-inline-start:12px;top:50%;transform:translateY(-50%);pointer-events:none}
+.srch-in{width:100%;height:40px;border-radius:3px;border:1px solid #C6C9CD;background:#FFF;padding-inline-start:38px;padding-inline-end:12px;font-size:14px;font-family:'Open Sans',sans-serif;color:#2E2E2F;outline:none;transition:border-color .2s}
+.srch-in:focus{border-color:#8159BB}
+.srch-cnt{font-size:12px;color:#636972;margin:8px 0 0}
+/* ====== DIRECTORY SECTION ====== */
+.cat-sec{margin-bottom:40px}
+.cat-sec h3{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:18px;color:#4B5056;margin:0 0 5px;text-transform:uppercase}
+.cat-sec-d{font-size:13px;color:#636972;margin:0 0 20px}
+.dc{display:flex;flex-direction:column;gap:10px;min-height:100px}
+.dc-n{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:15px;color:#2E2E2F;margin:0 0 4px;text-transform:uppercase;line-height:1.2}
+.dc-d{font-size:13px;color:#636972;margin:0;line-height:1.5}
+/* ====== COLLAPSIBLE ====== */
+.col-hid{max-height:0;opacity:0;overflow:hidden;transition:max-height .35s ease,opacity .35s ease}
+.col-hid.open{max-height:2000px;opacity:1}
+/* ====== HOW IT WORKS ====== */
+.how-g{display:flex;flex-direction:column;gap:30px;justify-content:center}
+@media(min-width:768px){.how-g{flex-direction:row}}
+.how-s{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px;max-width:320px;margin-inline:auto}
+.how-c{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:linear-gradient(135deg,#7671FF,#CB0C9F)}
+.how-c span{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:20px;color:#FFF;line-height:1}
+.how-t{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:15px;color:#4B5056;margin:0;text-transform:uppercase;line-height:1.2}
+.how-b{font-size:14px;color:#636972;margin:0;line-height:1.5}
+/* ====== WHY STRIKINGLY ====== */
+.why-g{display:grid;grid-template-columns:1fr;gap:30px}
+@media(min-width:768px){.why-g{grid-template-columns:1fr 1fr 1fr}}
+.why-i{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;max-width:320px;margin-inline:auto}
+.why-ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#F4F0FC}
+.why-t{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:15px;color:#4B5056;margin:0;text-transform:uppercase;line-height:1.2}
+.why-b{font-size:14px;color:#636972;margin:0;line-height:1.5}
+/* ====== FAQ ====== */
+.faq-w{max-width:800px;margin-inline:auto}
+.faq-i{border-bottom:1px solid #E2E4E7}
+.faq-btn{width:100%;display:flex;align-items:center;justify-content:space-between;padding:16px 0;background:transparent;border:none;cursor:pointer;font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:15px;color:#2E2E2F;text-transform:uppercase;text-align:start;line-height:1.3;border-radius:3px}
+.faq-btn:focus-visible{outline:3px solid #8159BB;outline-offset:2px}
+.faq-ch{flex-shrink:0;margin-inline-start:12px;transition:transform .2s}
+.faq-ch.open{transform:rotate(180deg)}
+.faq-pn{overflow:hidden;max-height:0;transition:max-height .2s ease}
+.faq-pn.open{max-height:500px}
+.faq-pb{padding-bottom:16px;font-size:14px;color:#636972;line-height:1.6;font-family:'Open Sans',sans-serif;text-transform:none}
+/* ====== CLOSING CTA ====== */
+.cls{padding-block:60px;text-align:center;background:#FFF}
+.cls-h{font-size:28px;color:#4B5056;margin:0 0 10px}
+@media(min-width:768px){.cls-h{font-size:36px}}
+.cls-s{font-size:15px;color:#636972;margin:0 0 30px}
+/* ====== FOOTER ====== */
+.ft{padding-block:40px;border-top:1px solid #E2E4E7;background:#FFF}
+.ft-g{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-bottom:30px}
+@media(min-width:768px){.ft-g{grid-template-columns:1fr 1fr 1fr 1fr}}
+.ft-c h4{font-family:'Josefin Sans',Poppins,sans-serif;font-weight:700;font-size:13px;color:#4B5056;margin:0 0 12px;text-transform:uppercase}
+.ft-c ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.ft-c a,.ft-c span{font-size:13px;color:#636972}
+.ft-c a:hover{color:#8159BB}
+.ft-b{border-top:1px solid #E2E4E7;padding-top:20px;text-align:center}
+.ft-b p{margin:0;font-size:12px;color:#636972}
+/* ====== NO RESULTS ====== */
+.no-r{padding-block:40px;text-align:center}
+.no-r p{font-size:16px;color:#4B5056;margin:0 0 10px;font-weight:600;text-transform:none;font-family:'Open Sans',sans-serif}
+</style>
+</head>
+<body>
+<!-- ====== TOP BAR ====== -->
+<header class="tb"><div class="max-w px tb-i"><a href="/" class="tb-l focus-ring" aria-label="Strikingly AI"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="6" fill="url(#tbg)"/><path d="M8 12h6v2H8zM8 16h10v2H8zM8 20h8v2H8z" fill="#fff"/><defs><linearGradient id="tbg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7671FF"/><stop offset="1" stop-color="#CB0C9F"/></linearGradient></defs></svg> strikingly AI</a></div></header>
 
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
+<!-- ====== BREADCRUMB ====== -->
+<nav aria-label="Breadcrumb" class="max-w px bc"><ol><li><a href="/">Strikingly</a></li><li class="bc-s" aria-hidden="true">/</li><li class="bc-c">AI Generators</li></ol></nav>
 
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
-
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
-
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
-
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
-
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
-
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
-
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
-
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
-
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
-
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const MAX_STRING_LENGTH = 2000;
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const extractComponentStack = (args) => {
-          for (const arg of args) {
-            if (
-              arg &&
-              typeof arg === "object" &&
-              typeof arg.componentStack === "string"
-            ) {
-              return truncate(arg.componentStack);
-            }
-
-            if (
-              typeof arg === "string" &&
-              (arg.includes("\n    at ") ||
-                arg.includes("\n at ") ||
-                arg.includes("The above error occurred"))
-            ) {
-              return truncate(arg);
-            }
-          }
-
-          return "";
-        };
-
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
-
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-
-              postToParent({
-                type: "runtime-error",
-                kind: "resource-error",
-                message: `Failed to load ${tagName.toLowerCase()} resource.`,
-                source: resourceUrl,
-                resourceTagName: tagName.toLowerCase(),
-                resourceUrl,
-              });
-              return;
-            }
-
-            const normalized = normalizeErrorLike(event.error || event.message);
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source: event.filename || normalized.source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
-            });
-          },
-          true,
-        );
-
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
-          });
-        });
-
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          const errorLike = args.find(
-            (arg) =>
-              arg instanceof Error ||
-              (arg &&
-                typeof arg === "object" &&
-                ("message" in arg || "stack" in arg)),
-          );
-          const normalized = normalizeErrorLike(errorLike || args[0]);
-
-          postToParent({
-            type: "console-error",
-            kind: "console-error",
-            name: normalized.name,
-            message:
-              normalized.message ||
-              args.map((arg) => stringifyValue(arg)).join(" "),
-            stack: normalized.stack,
-            componentStack: extractComponentStack(args),
-            args: args.map((arg) => stringifyValue(arg)),
-          });
-
-          originalConsoleError(...args);
-        };
-      })();
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+<main>
+<!-- ====== HERO ====== -->
+<section class="hero"><div class="max-w px"><div class="hero-g"><div class="hero-l"><h1><span class="hero-h1a">BUILD ANY KIND OF SITE</span><span class="hero-h1b ai-grad-text">WITH AI, IN AN INSTANT</span></h1><p class="hero-sub">Browse the right generator for what you're building, or jump straight into our AI site builder.</p><div class="hero-btns"><a href="/s/ai_site_builder" class="btn-pri">START BUILDING - IT'S FREE</a><a href="#all-generators" class="btn-gho">BROWSE GENERATORS</a></div></div><div class="hero-r"><svg width="520" height="380" viewBox="0 0 520 380" fill="none" aria-hidden="true" style="width:100%;height:auto;max-width:520px"><rect x="40" y="20" width="440" height="320" rx="8" fill="white" stroke="#D1D5DB" stroke-width="1.5"/><rect x="40" y="20" width="440" height="36" rx="8" fill="#F4F6F8"/><rect x="40" y="48" width="440" height="8" fill="#F4F6F8"/><circle cx="56" cy="38" r="5" fill="#C6C9CD"/><circle cx="72" cy="38" r="5" fill="#C6C9CD"/><circle cx="88" cy="38" r="5" fill="#C6C9CD"/><rect x="110" y="30" width="260" height="16" rx="4" fill="white" stroke="#E2E4E7" stroke-width="1"/><rect x="60" y="68" width="400" height="28" rx="3" fill="#E8DEF8"/><rect x="60" y="104" width="300" height="16" rx="3" fill="#E2E4E7"/><rect x="60" y="126" width="240" height="16" rx="3" fill="#7671FF" opacity="0.18"/><rect x="60" y="158" width="140" height="32" rx="4" fill="url(#hbg)"/><rect x="270" y="104" width="190" height="130" rx="6" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="1"/><circle cx="365" cy="155" r="24" fill="#E8DEF8" opacity="0.5"/><rect x="60" y="252" width="130" height="18" rx="2" fill="#E2E4E7"/><rect x="60" y="278" width="400" height="12" rx="2" fill="#F4F6F8"/><rect x="60" y="296" width="360" height="12" rx="2" fill="#F4F6F8"/><rect x="60" y="320" width="120" height="50" rx="4" fill="white" stroke="#E2E4E7" stroke-width="1"/><rect x="200" y="320" width="120" height="50" rx="4" fill="white" stroke="#E2E4E7" stroke-width="1"/><rect x="340" y="320" width="120" height="50" rx="4" fill="white" stroke="#E2E4E7" stroke-width="1"/><defs><linearGradient id="hbg" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#7671FF"/><stop offset="1" stop-color="#CB0C9F"/></linearGradient></defs></svg></div></div></div></section>
