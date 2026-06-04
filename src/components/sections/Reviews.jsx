@@ -49,12 +49,12 @@ const reviews = [
 
 export default function Reviews() {
   return (
-    <section id="reviews" className="py-20 px-4 md:px-8 bg-[#faf7f2]">
+    <section id="reviews" className="py-20 px-4 md:px-8 bg-[#0d0d1a]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-          <span className="text-[#e8650a] text-sm font-semibold uppercase tracking-widest">Community</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1a1a1a] mt-2">Player Reviews</h2>
-          <p className="text-[#8a7a6a] mt-2 max-w-xl">
+          <span className="text-[#a855f7] text-sm font-semibold uppercase tracking-widest">Community</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mt-2">Player Reviews</h2>
+          <p className="text-[#9d8fc0] mt-2 max-w-xl">
             Real opinions from real players. See what the community is saying.
           </p>
         </div>
@@ -63,7 +63,7 @@ export default function Reviews() {
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="bg-white border border-[#e8ddd0] rounded-xl p-6 hover:border-[#e8650a] transition-all duration-300 shadow-sm hover:shadow-md"
+              className="bg-[#1a1a35] border border-[#2d2d55] rounded-xl p-6 hover:border-[#a855f7] transition-all duration-300 shadow-sm hover:shadow-md"
             >
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
@@ -71,20 +71,20 @@ export default function Reviews() {
                     {review.avatar}
                   </div>
                   <div>
-                    <div className="text-[#1a1a1a] font-semibold text-sm">{review.user}</div>
-                    <div className="text-[#8a7a6a] text-xs">{review.hours} hrs on record</div>
+                    <div className="text-white font-semibold text-sm">{review.user}</div>
+                    <div className="text-[#9d8fc0] text-xs">{review.hours} hrs on record</div>
                   </div>
                 </div>
-                <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${review.positive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                <div className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold ${review.positive ? 'bg-purple-900/50 text-purple-300' : 'bg-red-900/50 text-red-400'}`}>
                   {review.positive ? <ThumbsUp className="w-3 h-3" /> : <ThumbsDown className="w-3 h-3" />}
                   {review.positive ? 'Recommended' : 'Not Recommended'}
                 </div>
               </div>
 
-              <div className="text-[#e8650a] text-xs font-semibold uppercase tracking-wide mb-2">{review.game}</div>
-              <p className="text-[#4a3f35] text-sm leading-relaxed mb-4">"{review.text}"</p>
+              <div className="text-[#a855f7] text-xs font-semibold uppercase tracking-wide mb-2">{review.game}</div>
+              <p className="text-[#c4b8e8] text-sm leading-relaxed mb-4">"{review.text}"</p>
 
-              <div className="flex items-center gap-2 text-[#8a7a6a] text-xs">
+              <div className="flex items-center gap-2 text-[#9d8fc0] text-xs">
                 <ThumbsUp className="w-3.5 h-3.5" />
                 <span>{review.helpful.toLocaleString()} people found this helpful</span>
               </div>

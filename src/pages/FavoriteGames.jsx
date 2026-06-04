@@ -9,9 +9,9 @@ const PLATFORMS = [
   { value: 'steam',       label: 'Steam',        color: 'bg-blue-100 text-blue-700' },
   { value: 'playstation', label: 'PlayStation',   color: 'bg-indigo-100 text-indigo-700' },
   { value: 'xbox',        label: 'Xbox',          color: 'bg-green-100 text-green-700' },
-  { value: 'epic',        label: 'Epic Games',    color: 'bg-gray-100 text-gray-700' },
+  { value: 'epic',        label: 'Epic Games',    color: 'bg-slate-100 text-slate-700' },
   { value: 'nintendo',    label: 'Nintendo',      color: 'bg-red-100 text-red-700' },
-  { value: 'pc',          label: 'PC (Other)',    color: 'bg-orange-100 text-orange-700' },
+  { value: 'pc',          label: 'PC (Other)',    color: 'bg-sky-100 text-sky-700' },
   { value: 'mobile',      label: 'Mobile',        color: 'bg-purple-100 text-purple-700' },
   { value: 'other',       label: 'Other',         color: 'bg-stone-100 text-stone-700' },
 ];
@@ -49,13 +49,13 @@ function StarPicker({ value, onChange }) {
           <Star
             className={`w-6 h-6 transition-colors ${
               n <= (hovered || value)
-                ? 'text-yellow-500 fill-yellow-500'
-                : 'text-[#d4c4b0]'
+                ? 'text-sky-500 fill-sky-500'
+                : 'text-slate-200'
             }`}
           />
         </button>
       ))}
-      <span className="ml-2 text-sm text-[#8a7a6a]">{value} / 5</span>
+      <span className="ml-2 text-sm text-slate-400">{value} / 5</span>
     </div>
   );
 }
