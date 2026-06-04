@@ -37,7 +37,7 @@ export default function Lightbox({ slide, onClose }) {
         className="fixed inset-0 z-[100] flex items-center justify-center p-4"
         onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
       >
-        <div className="absolute inset-0 bg-ink-DEFAULT/70 backdrop-blur-xl" />
+        <div className="absolute inset-0 bg-ink/70 backdrop-blur-xl" />
 
         <motion.div
           ref={lightboxRef}
@@ -53,7 +53,7 @@ export default function Lightbox({ slide, onClose }) {
                        hover:bg-white/40 transition-colors"
             aria-label="Close lightbox"
           >
-            <X className="w-5 h-5 text-ink-DEFAULT" />
+            <X className="w-5 h-5 text-ink" />
           </button>
 
           {/* Image Panel */}
@@ -76,7 +76,7 @@ export default function Lightbox({ slide, onClose }) {
             </p>
             <h2
               id={`lightbox-title-${slide.id}`}
-              className="font-serif text-xl md:text-2xl font-bold text-ink-DEFAULT mb-1"
+              className="font-serif text-xl md:text-2xl font-bold text-ink mb-1"
             >
               {slide.title}
             </h2>
@@ -94,7 +94,7 @@ export default function Lightbox({ slide, onClose }) {
               <MetadataRow icon={Calendar} label="Date" value={slide.date} />
             </div>
 
-            <div className="w-full h-px bg-ink-DEFAULT/10 my-6" />
+            <div className="w-full h-px bg-ink/10 my-6" />
 
             <div>
               <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-faint mb-2">
@@ -128,7 +128,7 @@ function MetadataRow({ icon: Icon, label, value }) {
         <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-faint">
           {label}
         </p>
-        <p className="font-sans text-sm text-ink-DEFAULT font-medium">
+        <p className="font-sans text-sm text-ink font-medium">
           {value}
         </p>
       </div>

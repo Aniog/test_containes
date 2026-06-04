@@ -153,12 +153,12 @@ export default function Gallery() {
   return (
     <div ref={containerRef}>
       {/* Page Header */}
-      <section className="border-b border-ink-DEFAULT/10 py-16 px-6">
+      <section className="border-b border-ink/10 py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-ink-faint mb-3">
             Digital Slide Archive
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink-DEFAULT mb-4">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink mb-4">
             Interactive Gallery
           </h1>
           <p className="font-sans text-sm text-ink-muted max-w-2xl leading-relaxed mb-8">
@@ -175,8 +175,8 @@ export default function Gallery() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full pl-10 pr-4 py-3 bg-white/30 backdrop-blur-md border border-white/20 rounded-lg
-                         font-sans text-sm text-ink-DEFAULT placeholder-ink-faint/50
-                         focus:outline-none focus:border-ink-DEFAULT/40 transition-colors"
+                         font-sans text-sm text-ink placeholder-ink-faint/50
+                         focus:outline-none focus:border-ink/40 transition-colors"
             />
           </div>
         </div>
@@ -205,10 +205,10 @@ export default function Gallery() {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink-DEFAULT/60 to-transparent 
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent 
                                 opacity-0 group-hover:opacity-100 transition-opacity duration-500
                                 flex items-end p-4">
-                  <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-parchment-DEFAULT">
+                  <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-parchment">
                     Click to examine
                   </p>
                 </div>
@@ -219,7 +219,7 @@ export default function Gallery() {
                 </p>
                 <h3
                   id={slide.titleId}
-                  className="font-serif text-base font-semibold text-ink-DEFAULT leading-snug"
+                  className="font-serif text-base font-semibold text-ink leading-snug"
                 >
                   {slide.title}
                 </h3>

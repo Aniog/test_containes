@@ -49,12 +49,12 @@ export default function Contact() {
   return (
     <div className="paper-texture">
       {/* Page Header */}
-      <section className="border-b border-ink-DEFAULT/10 py-16 px-6">
+      <section className="border-b border-ink/10 py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-ink-faint mb-3">
             Laboratory Communication
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink-DEFAULT mb-4">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink mb-4">
             Lab Notes & Feedback
           </h1>
           <p className="font-sans text-sm text-ink-muted max-w-2xl leading-relaxed">
@@ -71,20 +71,20 @@ export default function Contact() {
         <div className="relative">
           {/* Watermark */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-[0.03]">
-            <FlaskConical className="w-96 h-96 text-ink-DEFAULT" />
+            <FlaskConical className="w-96 h-96 text-ink" />
           </div>
 
           <div className="relative glass-card p-8 md:p-12">
             {/* Lab Report Header */}
-            <div className="flex items-center gap-4 mb-10 pb-8 border-b border-ink-DEFAULT/10">
-              <div className="w-12 h-12 rounded-full bg-ink-DEFAULT flex items-center justify-center">
-                <Microscope className="w-6 h-6 text-parchment-DEFAULT" />
+            <div className="flex items-center gap-4 mb-10 pb-8 border-b border-ink/10">
+              <div className="w-12 h-12 rounded-full bg-ink flex items-center justify-center">
+                <Microscope className="w-6 h-6 text-parchment" />
               </div>
               <div>
                 <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink-faint">
                   MicroCosmos Laboratory
                 </p>
-                <p className="font-serif text-lg font-semibold text-ink-DEFAULT">
+                <p className="font-serif text-lg font-semibold text-ink">
                   Observation Report &mdash; Form LR-01
                 </p>
               </div>
@@ -184,14 +184,14 @@ export default function Contact() {
               </div>
 
               {/* Submit */}
-              <div className="flex items-center justify-between pt-4 border-t border-ink-DEFAULT/10">
+              <div className="flex items-center justify-between pt-4 border-t border-ink/10">
                 <p className="font-mono text-[10px] tracking-[0.15em] uppercase text-ink-faint">
                   All fields marked * are required
                 </p>
                 <button
                   type="submit"
                   disabled={status === 'submitting'}
-                  className="glass-btn inline-flex items-center gap-2 text-ink-DEFAULT disabled:opacity-50"
+                  className="glass-btn inline-flex items-center gap-2 text-ink disabled:opacity-50"
                 >
                   {status === 'submitting' ? (
                     <>
@@ -214,11 +214,11 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="mt-8 p-4 rounded-lg bg-ink-DEFAULT/5 border border-ink-DEFAULT/10 flex items-start gap-3"
+                  className="mt-8 p-4 rounded-lg bg-ink/5 border border-ink/10 flex items-start gap-3"
                 >
-                  <CheckCircle className="w-5 h-5 text-ink-DEFAULT shrink-0 mt-0.5" />
+                  <CheckCircle className="w-5 h-5 text-ink shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-sans text-sm font-medium text-ink-DEFAULT">
+                    <p className="font-sans text-sm font-medium text-ink">
                       Report Submitted Successfully
                     </p>
                     <p className="font-sans text-xs text-ink-muted mt-1">
@@ -234,10 +234,10 @@ export default function Contact() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="mt-8 p-4 rounded-lg bg-ink-DEFAULT/5 border border-ink-DEFAULT/10 flex items-start gap-3"
+                  className="mt-8 p-4 rounded-lg bg-ink/5 border border-ink/10 flex items-start gap-3"
                 >
-                  <AlertCircle className="w-5 h-5 text-ink-DEFAULT shrink-0 mt-0.5" />
-                  <p className="font-sans text-sm text-ink-DEFAULT">{error}</p>
+                  <AlertCircle className="w-5 h-5 text-ink shrink-0 mt-0.5" />
+                  <p className="font-sans text-sm text-ink">{error}</p>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -246,7 +246,7 @@ export default function Contact() {
       </section>
 
       {/* Protocol Note */}
-      <section className="border-t border-ink-DEFAULT/10 py-12 px-6">
+      <section className="border-t border-ink/10 py-12 px-6">
         <div className="max-w-3xl mx-auto">
           <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink-faint mb-3 text-center">
             Submission Protocol

@@ -16,7 +16,7 @@ export default function SpecimenCard({ specimen }) {
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-parchment-DEFAULT/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-parchment/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
 
       <div className="p-6">
@@ -25,7 +25,7 @@ export default function SpecimenCard({ specimen }) {
         </p>
         <h3
           id={specimen.titleId}
-          className="font-serif text-lg font-semibold text-ink-DEFAULT mb-2"
+          className="font-serif text-lg font-semibold text-ink mb-2"
         >
           {specimen.title}
         </h3>
@@ -44,7 +44,7 @@ export default function SpecimenCard({ specimen }) {
                   setShowTooltip(showTooltip === term.word ? null : term.word)
                 }
                 className="inline-flex items-center gap-1 px-2 py-1 rounded text-[11px] font-mono text-ink-muted 
-                           border border-ink-faint/20 hover:border-ink-DEFAULT/40 hover:text-ink-DEFAULT 
+                           border border-ink-faint/20 hover:border-ink/40 hover:text-ink 
                            transition-colors cursor-help"
               >
                 {term.word}
@@ -52,7 +52,7 @@ export default function SpecimenCard({ specimen }) {
               </button>
               {showTooltip === term.word && (
                 <div className="absolute bottom-full left-0 mb-2 z-30 tooltip-glass w-56">
-                  <p className="text-xs text-ink-DEFAULT">{term.definition}</p>
+                  <p className="text-xs text-ink">{term.definition}</p>
                 </div>
               )}
             </div>

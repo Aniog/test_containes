@@ -106,12 +106,12 @@ export default function Specimens() {
   return (
     <div ref={containerRef}>
       {/* Page Header */}
-      <section className="border-b border-ink-DEFAULT/10 py-16 px-6">
+      <section className="border-b border-ink/10 py-16 px-6">
         <div className="max-w-7xl mx-auto">
           <p className="font-mono text-xs tracking-[0.3em] uppercase text-ink-faint mb-3">
             Specimen Archive
           </p>
-          <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink-DEFAULT mb-4">
+          <h1 className="font-serif text-4xl md:text-5xl font-bold text-ink mb-4">
             The Specimen Hub
           </h1>
           <p className="font-sans text-sm text-ink-muted max-w-2xl leading-relaxed">
@@ -137,7 +137,7 @@ export default function Specimens() {
       </section>
 
       {/* Technique Note */}
-      <section className="border-t border-ink-DEFAULT/10 py-12 px-6">
+      <section className="border-t border-ink/10 py-12 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-ink-faint mb-2">
             Technical Note
