@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ImageHelper, DataClient } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 import { PLATFORMS } from '@/lib/platformConfig';
+import { slugify } from '@/lib/utils';
 import { Star, Clock, Tag, Flame, ChevronDown } from 'lucide-react';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
@@ -122,7 +124,7 @@ function PlatformHero({ theme, containerRef }) {
   );
 }
 
-function PlatformDeals({ theme, deals, loading }) {
+function PlatformDeals({ theme, deals, loading, onGameClick }) {
   if (loading) {
     return (
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
@@ -163,6 +165,7 @@ function PlatformDeals({ theme, deals, loading }) {
           <div
             key={deal.id}
             className="rounded-xl overflow-hidden transition-all duration-300 group cursor-pointer"
+            onClick={() => onGameClick(d.game_title)}
             style={{
               backgroundColor: theme.cardBg,
               border: `1px solid ${theme.cardBorder}`,
@@ -270,6 +273,7 @@ function PlatformDeals({ theme, deals, loading }) {
 export default function PlatformPage({ platformKey }) {
   const theme = PLATFORMS[platformKey];
   const containerRef = useRef(null);
+  const navigate = useNavigate();
   const [deals, setDeals] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -315,7 +319,12 @@ export default function PlatformPage({ platformKey }) {
             Hand-picked deals updated daily from the {theme.name} store.
           </p>
 
-          <PlatformDeals theme={theme} deals={deals} loading={loading} />
+          <PlatformDeals
+            theme={theme}
+            deals={deals}
+            loading={loading}
+            onGameClick={(title) => navigate(`/${platformKey}/${slugify(title)}`)}
+          />
         </div>
       </section>
     </div>

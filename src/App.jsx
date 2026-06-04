@@ -7,6 +7,7 @@ import Articles from './pages/Articles';
 import ArticleDetail from './pages/ArticleDetail';
 import ReviewsPage from './pages/ReviewsPage';
 import PlatformPage from './pages/PlatformPage';
+import GameDetail from './pages/GameDetail';
 import FavoriteGames from './pages/FavoriteGames';
 
 function App() {
@@ -22,10 +23,15 @@ function App() {
             <Route path="/articles/:id" element={<ArticleDetail />} />
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/steam" element={<PlatformPage platformKey="steam" />} />
+            <Route path="/steam/:slug" element={<GameDetail platformKey="steam" />} />
             <Route path="/playstation" element={<PlatformPage platformKey="playstation" />} />
+            <Route path="/playstation/:slug" element={<GameDetail platformKey="playstation" />} />
             <Route path="/xbox" element={<PlatformPage platformKey="xbox" />} />
+            <Route path="/xbox/:slug" element={<GameDetail platformKey="xbox" />} />
             <Route path="/epic" element={<PlatformPage platformKey="epic" />} />
+            <Route path="/epic/:slug" element={<GameDetail platformKey="epic" />} />
             <Route path="/nintendo" element={<PlatformPage platformKey="nintendo" />} />
+            <Route path="/nintendo/:slug" element={<GameDetail platformKey="nintendo" />} />
             <Route path="/favorites" element={<FavoriteGames />} />
           </Routes>
         </main>
