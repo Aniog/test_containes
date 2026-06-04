@@ -9,9 +9,8 @@ const categories = [
     id: 'bacteria',
     title: 'Bacteria',
     desc: 'Single-celled prokaryotes found in every habitat on Earth, from deep ocean vents to the human gut.',
-    color: 'text-emerald-400',
-    borderColor: 'border-emerald-400/20',
-    bgColor: 'bg-emerald-400/5',
+    color: '#3DBFA8',
+    bg: '#E8F7F4',
     titleId: 'feat-bacteria-title',
     descId: 'feat-bacteria-desc',
     imgId: 'feat-bacteria-img-d4e5f6',
@@ -20,9 +19,8 @@ const categories = [
     id: 'viruses',
     title: 'Viruses',
     desc: 'Nanoscale entities that blur the line between living and non-living, reshaping ecosystems and evolution.',
-    color: 'text-violet-400',
-    borderColor: 'border-violet-400/20',
-    bgColor: 'bg-violet-400/5',
+    color: '#5BA4CF',
+    bg: '#EAF4FB',
     titleId: 'feat-viruses-title',
     descId: 'feat-viruses-desc',
     imgId: 'feat-viruses-img-g7h8i9',
@@ -31,9 +29,8 @@ const categories = [
     id: 'fungi',
     title: 'Fungi',
     desc: 'The great decomposers and connectors — fungi form vast underground networks that link entire forests.',
-    color: 'text-amber-400',
-    borderColor: 'border-amber-400/20',
-    bgColor: 'bg-amber-400/5',
+    color: '#FF8B64',
+    bg: '#FFF0EB',
     titleId: 'feat-fungi-title',
     descId: 'feat-fungi-desc',
     imgId: 'feat-fungi-img-j1k2l3',
@@ -48,30 +45,33 @@ const HomeFeatured = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 bg-[#050d1a]">
+    <section ref={containerRef} className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-14">
-          <span className="text-xs font-semibold text-[#00e5ff] uppercase tracking-widest">
-            Featured Kingdoms
-          </span>
-          <h2 id="featured-section-title" className="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">
-            Meet the Microorganisms
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
-            From ancient bacteria to shape-shifting viruses, explore the major kingdoms of microscopic life.
-          </p>
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10">
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#3DBFA8] mb-2 block">
+              Featured Kingdoms
+            </span>
+            <h2 id="featured-section-title" className="text-3xl md:text-4xl font-bold text-[#2C3E50]">
+              Meet the Microbes
+            </h2>
+          </div>
+          <Link
+            to="/explore"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#3DBFA8] hover:text-[#2CA898] transition-colors"
+          >
+            View all organisms <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {categories.map((cat) => (
-            <div
+            <Link
               key={cat.id}
-              className={`card-hover rounded-2xl border ${cat.borderColor} ${cat.bgColor} bg-[#0a1628] overflow-hidden group`}
+              to="/explore"
+              className="group bg-white border border-[#D9EDE8] rounded-xl overflow-hidden hover:border-[#3DBFA8] transition-colors"
             >
-              {/* Image */}
-              <div className="relative h-48 overflow-hidden">
+              <div className="relative overflow-hidden">
                 <img
                   alt={cat.title}
                   data-strk-img-id={cat.imgId}
@@ -79,37 +79,31 @@ const HomeFeatured = () => {
                   data-strk-img-ratio="3x2"
                   data-strk-img-width="600"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-44 object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a1628] via-transparent to-transparent" />
+                <span
+                  className="absolute top-3 left-3 text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-md"
+                  style={{ background: cat.bg, color: cat.color }}
+                >
+                  {cat.title}
+                </span>
               </div>
-
-              {/* Content */}
-              <div className="p-6">
-                <h3 id={cat.titleId} className={`text-xl font-bold mb-2 ${cat.color}`}>
+              <div className="p-5">
+                <h3 id={cat.titleId} className="text-base font-bold text-[#2C3E50] mb-2">
                   {cat.title}
                 </h3>
-                <p id={cat.descId} className="text-slate-400 text-sm leading-relaxed mb-4">
+                <p id={cat.descId} className="text-sm text-[#7F8C8D] leading-relaxed">
                   {cat.desc}
                 </p>
-                <Link
-                  to="/explore"
-                  className={`inline-flex items-center gap-1 text-sm font-semibold ${cat.color} hover:gap-2 transition-all`}
+                <div
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-semibold"
+                  style={{ color: cat.color }}
                 >
-                  Learn more <ArrowRight className="w-4 h-4" />
-                </Link>
+                  Explore <ArrowRight className="w-3 h-3" />
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
-        </div>
-
-        <div className="text-center mt-12">
-          <Link
-            to="/explore"
-            className="inline-flex items-center gap-2 border border-[#00e5ff]/40 text-[#00e5ff] font-semibold px-8 py-3 rounded-full hover:bg-[#00e5ff]/10 transition-all"
-          >
-            Explore All Kingdoms <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
       </div>
     </section>
@@ -117,3 +111,4 @@ const HomeFeatured = () => {
 };
 
 export default HomeFeatured;
+

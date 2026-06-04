@@ -3,29 +3,29 @@ import { Microscope, Twitter, Instagram, Youtube, Mail } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-[#050d1a] border-t border-[#00e5ff]/10 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+    <footer className="bg-white border-t border-[#D9EDE8] mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-14">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-[#00e5ff]/10 border border-[#00e5ff]/30 flex items-center justify-center">
-                <Microscope className="w-4 h-4 text-[#00e5ff]" />
+              <div className="w-8 h-8 rounded-lg bg-[#3DBFA8] flex items-center justify-center">
+                <Microscope className="w-4 h-4 text-white" />
               </div>
-              <span className="text-lg font-black text-white">
-                Micro<span className="text-[#00e5ff]">Cosmos</span>
+              <span className="text-base font-black text-[#2C3E50]">
+                Micro<span className="text-[#3DBFA8]">Cosmos</span>
               </span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-[#7F8C8D] text-sm leading-relaxed max-w-xs">
               Exploring the invisible universe beneath our feet — where life is stranger, more beautiful, and more vital than we ever imagined.
             </p>
-            <div className="flex items-center gap-4 mt-6">
+            <div className="flex items-center gap-3 mt-5">
               {[Twitter, Instagram, Youtube, Mail].map((Icon, i) => (
                 <button
                   key={i}
-                  className="w-9 h-9 rounded-full bg-[#0a1628] border border-[#00e5ff]/10 flex items-center justify-center text-slate-400 hover:text-[#00e5ff] hover:border-[#00e5ff]/40 transition-all"
+                  className="w-8 h-8 rounded-lg bg-[#F5FAF8] border border-[#D9EDE8] flex items-center justify-center text-[#7F8C8D] hover:text-[#3DBFA8] hover:border-[#3DBFA8] transition-colors"
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                 </button>
               ))}
             </div>
@@ -33,8 +33,8 @@ const Footer = () => {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Explore</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs font-bold text-[#2C3E50] uppercase tracking-widest mb-4">Explore</h4>
+            <ul className="space-y-2.5">
               {[
                 { to: '/', label: 'Home' },
                 { to: '/explore', label: 'Microorganisms' },
@@ -42,10 +42,7 @@ const Footer = () => {
                 { to: '/about', label: 'About Us' },
               ].map((link) => (
                 <li key={link.to}>
-                  <NavLink
-                    to={link.to}
-                    className="text-sm text-slate-400 hover:text-[#00e5ff] transition-colors"
-                  >
+                  <NavLink to={link.to} className="text-sm text-[#7F8C8D] hover:text-[#3DBFA8] transition-colors">
                     {link.label}
                   </NavLink>
                 </li>
@@ -55,14 +52,11 @@ const Footer = () => {
 
           {/* Topics */}
           <div>
-            <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-widest mb-4">Topics</h4>
-            <ul className="space-y-3">
+            <h4 className="text-xs font-bold text-[#2C3E50] uppercase tracking-widest mb-4">Topics</h4>
+            <ul className="space-y-2.5">
               {['Bacteria', 'Viruses', 'Fungi', 'Protozoa', 'Archaea', 'Algae'].map((topic) => (
                 <li key={topic}>
-                  <NavLink
-                    to="/explore"
-                    className="text-sm text-slate-400 hover:text-[#00e5ff] transition-colors"
-                  >
+                  <NavLink to="/explore" className="text-sm text-[#7F8C8D] hover:text-[#3DBFA8] transition-colors">
                     {topic}
                   </NavLink>
                 </li>
@@ -71,13 +65,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-[#00e5ff]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-600">
-            © 2026 MicroCosmos. All rights reserved.
-          </p>
-          <p className="text-xs text-slate-600">
-            Dedicated to science education and the wonder of the microscopic world.
-          </p>
+        <div className="mt-10 pt-6 border-t border-[#D9EDE8] flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-xs text-[#B2CFC8]">© 2026 MicroCosmos. All rights reserved.</p>
+          <p className="text-xs text-[#B2CFC8]">Dedicated to science education and the wonder of the microscopic world.</p>
         </div>
       </div>
     </footer>
@@ -85,3 +75,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
