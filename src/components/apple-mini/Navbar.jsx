@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const navLinks = [
   { href: '#features',    label: 'Features' },
@@ -12,11 +12,24 @@ const navLinks = [
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  // Ref so IntersectionObserver callbacks can read the latest scroll state
+  // without stale closure issues
+  const scrolledRef = useRef(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    const handleScroll = () => {
+      const atTop = window.scrollY <= 20;
+      scrolledRef.current = !atTop;
+      setScrolled(!atTop);
+      // Clear active highlight when back at the top
+      if (atTop) setActiveSection('');
+    };
+
+    // Run immediately on mount so initial state is always correct
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
@@ -28,7 +41,12 @@ const Navbar = () => {
       if (!el) return;
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
+          // Only activate a section when the user has actually scrolled down;
+          // prevents the observer from re-setting activeSection after the
+          // scroll handler has already cleared it at the top of the page.
+          if (entry.isIntersecting && scrolledRef.current) {
+            setActiveSection(id);
+          }
         },
         { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
       );
