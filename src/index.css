@@ -1,76 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Lora', Georgia, serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #C4CFC9;
+  background-color: #1A2421;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #1A2421;
+  color: #C4CFC9;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: #C4CFC9;
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+a:hover {
+  color: #DEE5E1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: 'Lora', Georgia, serif;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Momentum smooth scroll for the forest feel */
+html {
+  scroll-behavior: smooth;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Firefox custom scrollbar - mossy */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2A3A2F #141D1A;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Webkit custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+::-webkit-scrollbar-track {
+  background: #141D1A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2A3A2F;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3D4A3F;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(42, 58, 47, 0.6);
+  color: #DEE5E1;
+}
+
+/* Fog overlay animation */
+@keyframes fog-drift {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.7; }
+}
+
+.fog-overlay {
+  animation: fog-drift 8s ease-in-out infinite;
+}
+
+/* Image hover reveal */
+.masonry-img-wrapper:hover .fog-overlay-img {
+  opacity: 0;
+}
+
+.fog-overlay-img {
+  transition: opacity 1.2s ease;
+}
+
+/* Momentum scroll container */
+.momentum-scroll {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
