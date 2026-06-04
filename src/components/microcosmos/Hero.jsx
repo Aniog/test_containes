@@ -14,8 +14,8 @@ const Hero = () => {
       {/* Background */}
       <div
         className="absolute inset-0 z-0"
-        data-strk-bg-id="hero-bg-mc001"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg-id="hero-bg-mc002"
+        data-strk-bg="world under the microscope microscopic organisms cells bacteria"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
