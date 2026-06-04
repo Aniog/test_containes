@@ -47,8 +47,8 @@ const Navbar = () => {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-xl font-bold text-gray-900 tracking-tight">
-            ⌘ APPLE <span className="text-blue-600">mini</span>
+          <span className={`text-xl font-bold tracking-tight transition-colors duration-300 ${scrolled ? 'text-gray-900' : 'text-white'}`}>
+            ⌘ APPLE <span className="text-blue-400">mini</span>
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -59,10 +59,14 @@ const Navbar = () => {
               <a
                 key={href}
                 href={href}
-                className={`transition-colors relative pb-0.5 ${
+                className={`transition-colors duration-300 relative pb-0.5 ${
                   isActive
-                    ? 'text-blue-600 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-600 after:rounded-full'
-                    : 'text-gray-500 hover:text-gray-900'
+                    ? scrolled
+                      ? 'text-blue-600 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-600 after:rounded-full'
+                      : 'text-white font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-white after:rounded-full'
+                    : scrolled
+                      ? 'text-gray-500 hover:text-gray-900'
+                      : 'text-white/70 hover:text-white'
                 }`}
               >
                 {label}
