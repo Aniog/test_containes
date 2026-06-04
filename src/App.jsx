@@ -4,6 +4,7 @@ import Footer from './components/sections/Footer';
 import Home from './pages/Home';
 import Deals from './pages/Deals';
 import Articles from './pages/Articles';
+import ArticleDetail from './pages/ArticleDetail';
 import ReviewsPage from './pages/ReviewsPage';
 import PlatformPage from './pages/PlatformPage';
 import FavoriteGames from './pages/FavoriteGames';
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/deals" element={<Deals />} />
             <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:id" element={<ArticleDetail />} />
             <Route path="/reviews" element={<ReviewsPage />} />
             <Route path="/steam" element={<PlatformPage platformKey="steam" />} />
             <Route path="/playstation" element={<PlatformPage platformKey="playstation" />} />

@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import { DataClient } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
@@ -54,6 +55,7 @@ function getFallbackImgMeta(id, index) {
 
 export default function ArticlesSection() {
   const containerRef = useRef(null);
+  const navigate = useNavigate();
   const [articles, setArticles] = useState([]);
   const [activeFilter, setActiveFilter] = useState('all');
   const [loading, setLoading] = useState(true);
@@ -145,6 +147,7 @@ export default function ArticlesSection() {
               return (
                 <article
                   key={article.id}
+                  onClick={() => navigate(`/articles/${article.id}`)}
                   className="bg-[#16202d] border border-[#2a475e] rounded-xl overflow-hidden hover:border-[#1a9fff] transition-all duration-300 group cursor-pointer flex flex-col"
                 >
                   <div className="relative overflow-hidden">
