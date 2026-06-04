@@ -1,12 +1,42 @@
 import { useState, useEffect } from 'react';
 
+const navLinks = [
+  { href: '#features',    label: 'Features' },
+  { href: '#performance', label: 'Performance' },
+  { href: '#gallery',     label: 'Gallery' },
+  { href: '#articles',    label: 'Articles' },
+  { href: '#specs',       label: 'Specs' },
+  { href: '#faq',         label: 'FAQ' },
+];
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sectionIds = navLinks.map((l) => l.href.slice(1));
+    const observers = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   return (
@@ -21,13 +51,24 @@ const Navbar = () => {
             ⌘ APPLE <span className="text-blue-600">mini</span>
           </span>
         </div>
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-          <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
-          <a href="#performance" className="hover:text-gray-900 transition-colors">Performance</a>
-          <a href="#gallery" className="hover:text-gray-900 transition-colors">Gallery</a>
-          <a href="#articles" className="hover:text-gray-900 transition-colors">Articles</a>
-          <a href="#specs" className="hover:text-gray-900 transition-colors">Specs</a>
-          <a href="#faq" className="hover:text-gray-900 transition-colors">FAQ</a>
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          {navLinks.map(({ href, label }) => {
+            const id = href.slice(1);
+            const isActive = activeSection === id;
+            return (
+              <a
+                key={href}
+                href={href}
+                className={`transition-colors relative pb-0.5 ${
+                  isActive
+                    ? 'text-blue-600 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-blue-600 after:rounded-full'
+                    : 'text-gray-500 hover:text-gray-900'
+                }`}
+              >
+                {label}
+              </a>
+            );
+          })}
         </div>
         <a
           href="#buy"

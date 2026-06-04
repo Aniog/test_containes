@@ -5,7 +5,7 @@ import strkImgConfig from '@/strk-img-config.json';
 const stats = [
   { value: '3×', label: 'Faster CPU', sub: 'vs previous gen' },
   { value: '10×', label: 'Faster GPU', sub: 'for graphics tasks' },
-  { value: '38h', label: 'Battery Life', sub: 'on a single charge' },
+  { value: '18W', label: 'Typical Power Draw', sub: 'ultra-efficient operation' },
   { value: '16GB', label: 'Unified Memory', sub: 'base configuration' },
 ];
 
