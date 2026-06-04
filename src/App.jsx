@@ -1,20 +1,24 @@
-import BakeryNav from './components/bakery/BakeryNav';
-import BakeryHero from './components/bakery/BakeryHero';
-import BakeryMenu from './components/bakery/BakeryMenu';
-import BakeryArticles from './components/bakery/BakeryArticles';
-import BakeryAbout from './components/bakery/BakeryAbout';
-import BakeryFooter from './components/bakery/BakeryFooter';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './Layout';
+import Home from './pages/Home';
+import Menu from './pages/Menu';
+import Articles from './pages/Articles';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
   return (
-    <div className="min-h-screen bg-cream font-sans">
-      <BakeryNav />
-      <BakeryHero />
-      <BakeryMenu />
-      <BakeryArticles />
-      <BakeryAbout />
-      <BakeryFooter />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="articles" element={<Articles />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 

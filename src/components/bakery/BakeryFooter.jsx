@@ -1,4 +1,13 @@
+import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
+
+const footerLinks = [
+  { label: 'Home', to: '/' },
+  { label: 'Menu', to: '/menu' },
+  { label: 'Articles', to: '/articles' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+];
 
 const BakeryFooter = () => {
   return (
@@ -7,8 +16,10 @@ const BakeryFooter = () => {
         {/* Brand */}
         <div className="lg:col-span-1">
           <div className="flex items-center gap-2 mb-4">
-            <span className="text-2xl font-playfair font-bold text-warm-white">La Maison</span>
-            <span className="text-amber text-xl">✦</span>
+            <Link to="/" className="flex items-center gap-2">
+              <span className="text-2xl font-playfair font-bold text-warm-white">La Maison</span>
+              <span className="text-amber text-xl">✦</span>
+            </Link>
           </div>
           <p className="text-warm-white/70 text-sm leading-relaxed mb-5">
             Artisan baked goods crafted with love, local ingredients, and time-honored
@@ -36,14 +47,11 @@ const BakeryFooter = () => {
         <div>
           <h4 className="font-playfair font-semibold text-lg mb-4 text-warm-white">Quick Links</h4>
           <ul className="flex flex-col gap-2 text-sm text-warm-white/70">
-            {['Home', 'Menu', 'Articles', 'About', 'Contact'].map((link) => (
-              <li key={link}>
-                <a
-                  href={`#${link.toLowerCase()}`}
-                  className="hover:text-amber-light transition-colors"
-                >
-                  {link}
-                </a>
+            {footerLinks.map((link) => (
+              <li key={link.to}>
+                <Link to={link.to} className="hover:text-amber-light transition-colors">
+                  {link.label}
+                </Link>
               </li>
             ))}
           </ul>
