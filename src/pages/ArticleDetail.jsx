@@ -40,9 +40,9 @@ export default function ArticleDetail() {
         .from('Blog Articles')
         .select('*')
         .eq('id', Number(id))
-        .single();
+        .limit(1);
 
-      const row = response?.data ?? null;
+      const row = response?.data?.list?.[0] ?? null;
       if (!row) {
         setNotFound(true);
       } else {
