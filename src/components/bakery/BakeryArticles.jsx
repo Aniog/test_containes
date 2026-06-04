@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { Calendar, Clock, X } from 'lucide-react';
+import { themes } from '@/lib/themes';
+
+const t = themes.pastel;
 
 const articles = [
   {
@@ -160,26 +163,25 @@ const BakeryArticles = () => {
   }, []);
 
   return (
-    <section id="articles" className="bg-warm-white py-20 px-6 md:px-12">
+    <section id="articles" style={{ backgroundColor: t.lavender }} className="py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-amber font-playfair italic text-lg mb-2">From Our Kitchen</p>
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-brown-dark mb-4">
+          <p className="font-playfair italic text-lg mb-2" style={{ color: t.accent }}>From Our Kitchen</p>
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4" style={{ color: t.heading }}>
             Stories & Recipes
           </h2>
-          <p className="text-brown-light max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto" style={{ color: t.muted }}>
             We love sharing the craft behind our bakes — tips, techniques, and the
             stories that make each loaf and pastry special.
           </p>
         </div>
 
-        {/* Articles grid */}
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article) => (
             <article
               key={article.id}
-              className="bg-cream rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group cursor-pointer"
+              style={{ backgroundColor: '#FFFFFF' }}
               onClick={() => setSelectedArticle(article)}
             >
               <div className="relative overflow-hidden h-52">
@@ -192,13 +194,16 @@ const BakeryArticles = () => {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-sage text-warm-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span
+                  className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: t.accent }}
+                >
                   {article.category}
                 </span>
               </div>
 
               <div className="p-6">
-                <div className="flex items-center gap-4 text-brown-light text-xs mb-3">
+                <div className="flex items-center gap-4 text-xs mb-3" style={{ color: t.muted }}>
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5" />
                     {article.date}
@@ -211,17 +216,19 @@ const BakeryArticles = () => {
 
                 <h3
                   id={article.titleId}
-                  className="text-xl font-playfair font-semibold text-brown-dark mb-3 leading-snug group-hover:text-amber transition-colors"
+                  className="text-xl font-playfair font-semibold mb-3 leading-snug"
+                  style={{ color: t.heading }}
                 >
                   {article.title}
                 </h3>
 
-                <p id={article.descId} className="text-brown-light text-sm leading-relaxed line-clamp-3">
+                <p id={article.descId} className="text-sm leading-relaxed line-clamp-3" style={{ color: t.muted }}>
                   {article.excerpt}
                 </p>
 
                 <button
-                  className="mt-4 text-amber text-sm font-semibold hover:underline bg-transparent border-none p-0"
+                  className="mt-4 text-sm font-semibold hover:underline bg-transparent border-none p-0"
+                  style={{ color: t.accent }}
                   onClick={(e) => { e.stopPropagation(); setSelectedArticle(article); }}
                 >
                   Read More →

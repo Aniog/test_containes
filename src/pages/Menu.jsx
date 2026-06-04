@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { themes } from '@/lib/themes';
+
+const t = themes.moody;
 
 const menuCategories = [
   {
@@ -42,33 +45,34 @@ const Menu = () => {
   return (
     <div ref={containerRef}>
       {/* Page hero */}
-      <div className="bg-brown-dark py-20 px-6 text-center">
-        <p className="text-amber-light font-playfair italic text-lg mb-2">Fresh Every Morning</p>
-        <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-4" style={{ color: '#FFFDF8' }}>
+      <div style={{ backgroundColor: t.bg }} className="py-20 px-6 text-center">
+        <p className="font-playfair italic text-lg mb-2" style={{ color: t.gold }}>Fresh Every Morning</p>
+        <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-4" style={{ color: t.cream }}>
           Our Menu
         </h1>
-        <p className="max-w-xl mx-auto text-sm md:text-base" style={{ color: 'rgba(255,253,248,0.75)' }}>
+        <p className="max-w-xl mx-auto text-sm md:text-base" style={{ color: t.muted }}>
           Everything is made from scratch daily. We use locally sourced flour, seasonal
           produce, and traditional techniques passed down through generations.
         </p>
       </div>
 
       {/* Categories */}
-      <div className="bg-cream py-16 px-6 md:px-12">
+      <div style={{ backgroundColor: t.surface }} className="py-16 px-6 md:px-12">
         <div className="max-w-6xl mx-auto flex flex-col gap-16">
           {menuCategories.map((cat) => (
             <section key={cat.id}>
               <div className="flex items-center gap-4 mb-8">
-                <h2 className="text-2xl md:text-3xl font-playfair font-bold text-brown-dark">
+                <h2 className="text-2xl md:text-3xl font-playfair font-bold" style={{ color: t.cream }}>
                   {cat.label}
                 </h2>
-                <div className="flex-1 h-px bg-amber/30" />
+                <div className="flex-1 h-px" style={{ backgroundColor: t.gold, opacity: 0.3 }} />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {cat.items.map((item) => (
                   <article
                     key={item.id}
-                    className="bg-warm-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group"
+                    className="rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-shadow group"
+                    style={{ backgroundColor: t.card }}
                   >
                     <div className="relative overflow-hidden h-48">
                       <img
@@ -80,18 +84,21 @@ const Menu = () => {
                         src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
-                      <span className="absolute top-3 left-3 bg-amber text-warm-white text-xs font-semibold px-3 py-1 rounded-full">
+                      <span
+                        className="absolute top-3 left-3 text-xs font-semibold px-3 py-1 rounded-full"
+                        style={{ backgroundColor: t.gold, color: t.bg }}
+                      >
                         {item.tag}
                       </span>
                     </div>
                     <div className="p-5">
                       <div className="flex items-start justify-between mb-1">
-                        <h3 id={item.titleId} className="text-lg font-playfair font-semibold text-brown-dark">
+                        <h3 id={item.titleId} className="text-lg font-playfair font-semibold" style={{ color: t.cream }}>
                           {item.title}
                         </h3>
-                        <span className="text-amber font-bold ml-2 shrink-0">{item.price}</span>
+                        <span className="font-bold ml-2 shrink-0" style={{ color: t.gold }}>{item.price}</span>
                       </div>
-                      <p id={item.descId} className="text-brown-light text-sm leading-relaxed">
+                      <p id={item.descId} className="text-sm leading-relaxed" style={{ color: t.muted }}>
                         {item.desc}
                       </p>
                     </div>

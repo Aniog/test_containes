@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { themes } from '@/lib/themes';
+
+const t = themes.pastel;
 
 const menuItems = [
   {
@@ -73,26 +76,25 @@ const BakeryMenu = () => {
   }, []);
 
   return (
-    <section id="menu" className="bg-cream py-20 px-6 md:px-12">
+    <section id="menu" style={{ backgroundColor: t.bg }} className="py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-amber font-playfair italic text-lg mb-2">Fresh Daily</p>
-          <h2 className="text-3xl md:text-4xl font-playfair font-bold text-brown-dark mb-4">
+          <p className="font-playfair italic text-lg mb-2" style={{ color: t.accent }}>Fresh Daily</p>
+          <h2 className="text-3xl md:text-4xl font-playfair font-bold mb-4" style={{ color: t.heading }}>
             Our Specialties
           </h2>
-          <p className="text-brown-light max-w-xl mx-auto">
+          <p className="max-w-xl mx-auto" style={{ color: t.muted }}>
             Every item is made from scratch each morning. We use locally sourced flour,
             seasonal produce, and traditional techniques passed down through generations.
           </p>
         </div>
 
-        {/* Grid */}
         <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {menuItems.map((item) => (
             <article
               key={item.id}
-              className="bg-warm-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group"
+              className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group"
+              style={{ backgroundColor: '#FFFFFF' }}
             >
               <div className="relative overflow-hidden h-52">
                 <img
@@ -104,18 +106,21 @@ const BakeryMenu = () => {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-amber text-warm-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span
+                  className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: t.accent }}
+                >
                   {item.tag}
                 </span>
               </div>
               <div className="p-6">
                 <div className="flex items-start justify-between mb-2">
-                  <h3 id={item.titleId} className="text-xl font-playfair font-semibold text-brown-dark">
+                  <h3 id={item.titleId} className="text-xl font-playfair font-semibold" style={{ color: t.heading }}>
                     {item.title}
                   </h3>
-                  <span className="text-amber font-bold text-lg ml-2 shrink-0">{item.price}</span>
+                  <span className="font-bold text-lg ml-2 shrink-0" style={{ color: t.accent }}>{item.price}</span>
                 </div>
-                <p id={item.descId} className="text-brown-light text-sm leading-relaxed">
+                <p id={item.descId} className="text-sm leading-relaxed" style={{ color: t.muted }}>
                   {item.desc}
                 </p>
               </div>
@@ -126,7 +131,8 @@ const BakeryMenu = () => {
         <div className="text-center mt-12">
           <a
             href="#contact"
-            className="inline-block border-2 border-amber text-amber rounded-full px-8 py-3 font-semibold hover:bg-amber hover:text-warm-white transition-colors"
+            className="inline-block border-2 rounded-full px-8 py-3 font-semibold transition-colors"
+            style={{ borderColor: t.accent, color: t.accent }}
           >
             View Full Menu
           </a>

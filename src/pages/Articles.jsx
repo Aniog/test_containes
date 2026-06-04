@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { Calendar, Clock, X } from 'lucide-react';
+import { themes } from '@/lib/themes';
+
+const t = themes.natural;
 
 const articles = [
   {
@@ -191,24 +194,25 @@ const Articles = () => {
   return (
     <div ref={containerRef}>
       {/* Page hero */}
-      <div className="bg-brown-dark py-20 px-6 text-center">
-        <p className="text-amber-light font-playfair italic text-lg mb-2">From Our Kitchen</p>
-        <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-4" style={{ color: '#FFFDF8' }}>
+      <div style={{ backgroundColor: t.sage }} className="py-20 px-6 text-center">
+        <p className="font-playfair italic text-lg mb-2 opacity-80" style={{ color: t.sageLight }}>From Our Kitchen</p>
+        <h1 className="text-4xl md:text-5xl font-playfair font-bold mb-4 text-white">
           Stories & Recipes
         </h1>
-        <p className="max-w-xl mx-auto text-sm md:text-base" style={{ color: 'rgba(255,253,248,0.75)' }}>
+        <p className="max-w-xl mx-auto text-sm md:text-base text-white/80">
           Tips, techniques, and the stories behind our bakes — written by the people
           who make them every morning.
         </p>
       </div>
 
       {/* Grid */}
-      <div className="bg-cream py-16 px-6 md:px-12">
+      <div style={{ backgroundColor: t.bg }} className="py-16 px-6 md:px-12">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {articles.map((article) => (
             <article
               key={article.id}
-              className="bg-warm-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow group cursor-pointer"
+              style={{ backgroundColor: t.card, border: `1px solid ${t.sageLight}40` }}
               onClick={() => setSelected(article)}
             >
               <div className="relative overflow-hidden h-52">
@@ -221,23 +225,27 @@ const Articles = () => {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <span className="absolute top-3 left-3 bg-sage text-warm-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span
+                  className="absolute top-3 left-3 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                  style={{ backgroundColor: t.terra }}
+                >
                   {article.category}
                 </span>
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-4 text-brown-light text-xs mb-3">
+                <div className="flex items-center gap-4 text-xs mb-3" style={{ color: t.muted }}>
                   <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{article.date}</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" />{article.readTime}</span>
                 </div>
-                <h3 id={article.titleId} className="text-xl font-playfair font-semibold text-brown-dark mb-3 leading-snug group-hover:text-amber transition-colors">
+                <h3 id={article.titleId} className="text-xl font-playfair font-semibold mb-3 leading-snug" style={{ color: t.text }}>
                   {article.title}
                 </h3>
-                <p id={article.descId} className="text-brown-light text-sm leading-relaxed line-clamp-3">
+                <p id={article.descId} className="text-sm leading-relaxed line-clamp-3" style={{ color: t.muted }}>
                   {article.excerpt}
                 </p>
                 <button
-                  className="mt-4 text-amber text-sm font-semibold hover:underline bg-transparent border-none p-0"
+                  className="mt-4 text-sm font-semibold hover:underline bg-transparent border-none p-0"
+                  style={{ color: t.terra }}
                   onClick={(e) => { e.stopPropagation(); setSelected(article); }}
                 >
                   Read More →

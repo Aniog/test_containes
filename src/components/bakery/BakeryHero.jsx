@@ -19,14 +19,14 @@ const BakeryHero = () => {
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-brown-dark/60" />
+      {/* Overlay – soft pink/lavender gradient */}
+      <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(180,80,120,0.55) 0%, rgba(120,90,160,0.50) 100%)' }} />
 
       <div className="relative z-10 text-center px-6 max-w-4xl mx-auto" style={{color: 'inherit'}}>
         <p
           id="hero-eyebrow"
           className="font-playfair italic text-lg md:text-xl mb-4 tracking-widest uppercase"
-          style={{color: '#F2C07E'}}
+          style={{color: '#F9D0E0'}}
         >
           Artisan Baked Goods
         </p>
@@ -36,7 +36,7 @@ const BakeryHero = () => {
           style={{color: '#FFFDF8'}}
         >
           Baked with Love,<br />
-          <span className="italic" style={{color: '#F2C07E'}}>Every Single Day</span>
+          <span className="italic" style={{color: '#F9D0E0'}}>Every Single Day</span>
         </h1>
         <p
           id="hero-subtitle"
@@ -49,15 +49,15 @@ const BakeryHero = () => {
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#menu"
-            className="bg-amber rounded-full px-8 py-4 font-semibold text-base hover:bg-amber-light transition-colors"
-            style={{color: '#FFFDF8'}}
+            className="rounded-full px-8 py-4 font-semibold text-base transition-colors"
+            style={{ background: '#C9728A', color: '#FFFDF8' }}
           >
             Explore Our Menu
           </a>
           <a
             href="#about"
-            className="border-2 border-warm-white rounded-full px-8 py-4 font-semibold text-base hover:bg-warm-white hover:text-brown-dark transition-colors"
-            style={{color: '#FFFDF8'}}
+            className="border-2 rounded-full px-8 py-4 font-semibold text-base transition-colors"
+            style={{ borderColor: '#F9D0E0', color: '#FFFDF8' }}
           >
             Our Story
           </a>
