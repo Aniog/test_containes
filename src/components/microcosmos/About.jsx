@@ -25,9 +25,9 @@ const About = () => {
             <span className="text-xs font-medium uppercase tracking-widest text-[#00d4ff] mb-4 block">
               About MicroCosmos
             </span>
-            <h2 id="about-title" className="text-4xl md:text-5xl font-black text-[#e2f0fb] mb-6 leading-tight">
+            <h2 id="about-title" className="md:text-5xl font-black text-[#e2f0fb] mb-6 leading-tight text-2xl text-left" style={{ color: "rgb(229, 95, 62)" }}>
               A Universe Too Small to See
-            </h2>
+</h2>
             <p id="about-desc" className="text-[#7fb3cc] text-lg leading-relaxed mb-6">
               The microcosmos is a world teeming with life, structure, and beauty — invisible to the naked eye yet fundamental to all existence. From the intricate lattice of a snowflake crystal to the alien elegance of a diatom, microscopic life is endlessly fascinating.
             </p>
@@ -74,3 +74,4 @@ const About = () => {
 };
 
 export default About;
+
