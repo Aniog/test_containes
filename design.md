@@ -1,74 +1,79 @@
-# MicroCosmos Design System
+# MicroCosmos Design System — Flat Edition
 
 ## Brand Identity
-MicroCosmos is a science-forward website exploring the hidden world of microorganisms. The visual style blends deep-space darkness with bioluminescent accents — evoking the mysterious, glowing beauty of microscopic life.
+MicroCosmos uses a bold flat design language: solid colors, hard edges, no shadows, no gradients, no blur. The aesthetic is clean, geometric, and high-contrast — inspired by Swiss graphic design and modern editorial layouts.
 
 ## Color Palette
-- **Background (deep):** `#050d1a` — near-black deep navy (bg-[#050d1a])
-- **Background (surface):** `#0a1628` — dark navy card surface (bg-[#0a1628])
-- **Background (elevated):** `#0f2040` — slightly lighter navy for hover/elevated states (bg-[#0f2040])
-- **Primary accent:** `#00e5ff` — electric cyan / bioluminescent teal (text-[#00e5ff], border-[#00e5ff])
-- **Secondary accent:** `#7c3aed` — deep violet / purple (text-violet-600)
-- **Tertiary accent:** `#10b981` — emerald green (text-emerald-400)
-- **Text primary:** `#e2e8f0` — light slate (text-slate-200)
-- **Text secondary:** `#94a3b8` — muted slate (text-slate-400)
-- **Text muted:** `#475569` — dimmed slate (text-slate-600)
-- **Border:** `rgba(0,229,255,0.15)` — subtle cyan border (border-[#00e5ff]/20)
+- **Background:** `#F5F4F0` — warm off-white (bg-[#F5F4F0])
+- **White surface:** `#FFFFFF` — pure white cards (bg-white)
+- **Black:** `#0A0A0A` — near-black for text and borders (text-[#0A0A0A])
+- **Primary blue:** `#1A56FF` — bold flat blue (bg-[#1A56FF], text-[#1A56FF])
+- **Green:** `#00C875` — flat green accent (bg-[#00C875], text-[#00C875])
+- **Red:** `#FF2D55` — flat red/pink accent (bg-[#FF2D55], text-[#FF2D55])
+- **Yellow:** `#FFD600` — flat yellow accent (bg-[#FFD600])
+- **Purple:** `#7B2FFF` — flat purple accent (bg-[#7B2FFF], text-[#7B2FFF])
+- **Text primary:** `#0A0A0A` (text-[#0A0A0A])
+- **Text secondary:** `#555555` (text-[#555555])
+- **Border:** `#0A0A0A` — solid black borders (border-[#0A0A0A])
+- **Border light:** `#E0E0E0` — light gray dividers (border-[#E0E0E0])
 
 ## Typography
-- **Font family:** Inter (Google Fonts) — clean, scientific, modern
-- **Display headings (h1):** `text-5xl md:text-7xl font-black tracking-tight`
-- **Section headings (h2):** `text-3xl md:text-4xl font-bold tracking-tight`
-- **Card headings (h3):** `text-xl font-semibold`
-- **Body text:** `text-base font-normal leading-relaxed`
-- **Caption / label:** `text-sm text-slate-400 uppercase tracking-widest`
+- **Font family:** Inter (Google Fonts)
+- **Display headings (h1):** `text-5xl md:text-7xl font-black tracking-tight text-[#0A0A0A]`
+- **Section headings (h2):** `text-3xl md:text-4xl font-black text-[#0A0A0A]`
+- **Card headings (h3):** `text-lg font-bold text-[#0A0A0A]`
+- **Body text:** `text-base font-normal leading-relaxed text-[#555555]`
+- **Label / tag:** `text-xs font-bold uppercase tracking-widest`
 
 ## Spacing & Layout
 - Max content width: `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`
-- Section vertical padding: `py-20 md:py-28`
-- Card padding: `p-6 md:p-8`
-- Grid gaps: `gap-6 md:gap-8`
+- Section vertical padding: `py-20 md:py-24`
+- Card padding: `p-6`
+- Grid gaps: `gap-4 md:gap-6`
 
 ## Components
 
 ### Navigation
-- Fixed top bar, dark background with blur: `fixed top-0 w-full bg-[#050d1a]/90 backdrop-blur-md border-b border-[#00e5ff]/10 z-50`
-- Logo: bold cyan text with icon
-- Nav links: `text-slate-400 hover:text-[#00e5ff] transition-colors`
-- Active link: `text-[#00e5ff]`
-- Mobile: hamburger menu with slide-down panel
+- Fixed top bar, white background, solid bottom border: `fixed top-0 w-full bg-white border-b-2 border-[#0A0A0A] z-50`
+- Logo: bold black text
+- Nav links: `text-[#555555] hover:text-[#0A0A0A] font-medium transition-colors`
+- Active link: `text-[#0A0A0A] font-bold`
+- Mobile: hamburger menu
 
 ### Buttons
-- **Primary:** `bg-[#00e5ff] text-[#050d1a] font-semibold px-6 py-3 rounded-full hover:bg-cyan-300 transition-all`
-- **Secondary (outline):** `border border-[#00e5ff]/50 text-[#00e5ff] px-6 py-3 rounded-full hover:bg-[#00e5ff]/10 transition-all`
-- **Ghost:** `text-slate-400 hover:text-[#00e5ff] transition-colors`
+- **Primary:** `bg-[#1A56FF] text-white font-bold px-6 py-3 border-2 border-[#0A0A0A] hover:bg-[#0A0A0A] transition-colors`
+- **Secondary:** `bg-white text-[#0A0A0A] font-bold px-6 py-3 border-2 border-[#0A0A0A] hover:bg-[#F5F4F0] transition-colors`
+- **Accent:** `bg-[#FFD600] text-[#0A0A0A] font-bold px-6 py-3 border-2 border-[#0A0A0A] hover:bg-[#0A0A0A] hover:text-white transition-colors`
+- No rounded corners on buttons — use `rounded-none` or `rounded-sm`
 
 ### Cards
-- Background: `bg-[#0a1628] border border-[#00e5ff]/10 rounded-2xl`
-- Hover: `hover:border-[#00e5ff]/40 hover:bg-[#0f2040] transition-all duration-300`
-- Shadow: `shadow-lg shadow-black/40`
+- Background: `bg-white border-2 border-[#0A0A0A]`
+- Hover: `hover:bg-[#F5F4F0] transition-colors`
+- No shadows, no rounded corners (use `rounded-none`)
+- Flat color top accent bar for category color
 
 ### Hero Section
-- Full-viewport height: `min-h-screen`
-- Gradient overlay on background image
-- Animated glow effects using `animate-pulse` on accent elements
+- Full-viewport height with solid color background block
+- Bold oversized typography
+- No gradients, no glow — use solid color shapes
 
 ### Badges / Tags
-- `bg-[#00e5ff]/10 text-[#00e5ff] text-xs font-semibold px-3 py-1 rounded-full border border-[#00e5ff]/20`
+- `bg-[#1A56FF] text-white text-xs font-bold px-3 py-1` — no border-radius
+- Category-specific solid color fills
 
 ### Dividers
-- `border-t border-[#00e5ff]/10`
+- `border-t-2 border-[#0A0A0A]` — bold black dividers
 
 ## Do's
-- Use cyan (#00e5ff) as the primary interactive color
-- Keep backgrounds very dark to make content pop
-- Use subtle glows and gradients to suggest bioluminescence
-- Use uppercase tracking-widest for category labels
-- Maintain generous whitespace between sections
+- Use solid, flat colors only — no gradients, no shadows
+- Use bold black borders (2px) on all cards and interactive elements
+- Keep backgrounds light (white or off-white)
+- Use uppercase bold labels for categories
+- Use geometric, rectangular shapes
 
 ## Don'ts
-- Never use white backgrounds — always dark navy
-- Don't use red or orange (off-brand)
-- Don't use light text on light backgrounds
-- Don't use more than 3 accent colors per page
-- Avoid overly decorative fonts — keep it clean and scientific
+- No box-shadow of any kind
+- No backdrop-blur or filter effects
+- No gradient backgrounds
+- No rounded-full or rounded-2xl — keep corners sharp or very slightly rounded
+- No glow effects or text-shadow
