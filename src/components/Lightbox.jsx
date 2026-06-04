@@ -8,9 +8,12 @@ export default function Lightbox({ slide, slides, onClose, onPrev, onNext }) {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    if (modalRef.current) {
-      return ImageHelper.loadImages(strkImgConfig, modalRef.current);
-    }
+    if (!modalRef.current) return;
+    // Small delay ensures the motion.div animation frame has committed the ref
+    const id = requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, modalRef.current);
+    });
+    return () => cancelAnimationFrame(id);
   }, [slide]);
 
   useEffect(() => {
@@ -69,16 +72,17 @@ export default function Lightbox({ slide, slides, onClose, onPrev, onNext }) {
           </button>
 
           {/* Image panel */}
-          <div className="relative flex-1 min-h-[300px] md:min-h-0 bg-ink/40 flex items-center justify-center">
+          <div className="relative flex-1 min-h-[300px] md:min-h-0 bg-ink/20 flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-white/5 animate-pulse" />
             <img
-              data-strk-img-id={`lightbox-${slide.id}-img`}
-              data-strk-img={`[lightbox-${slide.id}-notes] [lightbox-${slide.id}-title]`}
+              data-strk-img-id={slide.lbImgId}
+              data-strk-img={`[${slide.lbNotesId}] [${slide.lbTitleId}]`}
               data-strk-img-ratio="4x3"
               data-strk-img-width="1200"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src={slide.preloadedUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"}
               alt={slide.title}
-              className="w-full h-full object-contain max-h-[60vh] md:max-h-[80vh]"
-              style={{ filter: 'grayscale(100%) contrast(1.1)' }}
+              className="relative z-10 w-full h-full object-contain max-h-[60vh] md:max-h-[80vh]"
+              style={{ filter: 'grayscale(100%) contrast(1.15) brightness(0.95)' }}
             />
 
             {/* Magnification badge */}
@@ -126,7 +130,7 @@ export default function Lightbox({ slide, slides, onClose, onPrev, onNext }) {
               <p className="font-inter text-xs tracking-widest uppercase text-white/50 mb-1">
                 Common Name
               </p>
-              <h2 id={`lightbox-${slide.id}-title`} className="font-playfair text-xl font-semibold text-parchment leading-snug">
+              <h2 id={slide.lbTitleId} className="font-playfair text-xl font-semibold text-parchment leading-snug">
                 {slide.title}
               </h2>
             </div>
@@ -162,7 +166,7 @@ export default function Lightbox({ slide, slides, onClose, onPrev, onNext }) {
                   Collector's Notes
                 </p>
               </div>
-              <p id={`lightbox-${slide.id}-notes`} className="font-inter text-xs text-parchment/70 leading-relaxed">
+              <p id={slide.lbNotesId} className="font-inter text-xs text-parchment/70 leading-relaxed">
                 {slide.notes}
               </p>
             </div>

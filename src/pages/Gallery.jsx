@@ -30,17 +30,22 @@ export default function Gallery() {
     }
   }, [activeCategory, searchQuery]);
 
+  const selectSlide = useCallback((slide) => {
+    const imgEl = document.querySelector(`[data-strk-img-id="${slide.imgId}"]`);
+    setSelectedSlide({ ...slide, preloadedUrl: imgEl?.src || null });
+  }, []);
+
   const handlePrev = useCallback(() => {
     if (!selectedSlide) return;
     const idx = filtered.findIndex((s) => s.id === selectedSlide.id);
-    setSelectedSlide(filtered[(idx - 1 + filtered.length) % filtered.length]);
-  }, [selectedSlide, filtered]);
+    selectSlide(filtered[(idx - 1 + filtered.length) % filtered.length]);
+  }, [selectedSlide, filtered, selectSlide]);
 
   const handleNext = useCallback(() => {
     if (!selectedSlide) return;
     const idx = filtered.findIndex((s) => s.id === selectedSlide.id);
-    setSelectedSlide(filtered[(idx + 1) % filtered.length]);
-  }, [selectedSlide, filtered]);
+    selectSlide(filtered[(idx + 1) % filtered.length]);
+  }, [selectedSlide, filtered, selectSlide]);
 
   return (
     <div className="min-h-screen bg-parchment pt-24">
@@ -125,7 +130,10 @@ export default function Gallery() {
                   className="break-inside-avoid mb-4"
                 >
                   <button
-                    onClick={() => setSelectedSlide(slide)}
+                    onClick={() => {
+                      const imgEl = document.querySelector(`[data-strk-img-id="${slide.imgId}"]`);
+                      setSelectedSlide({ ...slide, preloadedUrl: imgEl?.src || null });
+                    }}
                     className="group relative w-full overflow-hidden rounded-2xl border border-ash
                       shadow-md hover:shadow-xl transition-all duration-300 block text-left"
                     aria-label={`Open ${slide.title}`}

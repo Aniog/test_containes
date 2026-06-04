@@ -31,12 +31,12 @@ export default function Navbar() {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500
+        className={`fixed top-4 left-0 right-0 mx-auto z-50 transition-all duration-500
           ${scrolled
             ? 'backdrop-blur-xl bg-white/25 border border-white/25 shadow-2xl'
             : 'backdrop-blur-md bg-white/15 border border-white/15 shadow-lg'
           } rounded-full px-4 py-2.5`}
-        style={{ width: 'min(92vw, 780px)' }}
+        style={{ width: 'min(92vw, 820px)' }}
       >
         <div className="flex items-center justify-between gap-4">
           {/* Logo */}
@@ -95,7 +95,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.25 }}
-            className="fixed top-20 left-1/2 -translate-x-1/2 z-40 w-[min(88vw,340px)]
+            className="fixed top-20 left-0 right-0 mx-auto z-40 w-[min(88vw,340px)]
               backdrop-blur-xl bg-white/40 border border-white/30 rounded-2xl shadow-2xl
               overflow-hidden"
           >

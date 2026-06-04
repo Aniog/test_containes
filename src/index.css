@@ -62,32 +62,50 @@ body::before {
 /* Glass utility classes */
 @layer components {
   .glass-card {
-    @apply backdrop-blur-md bg-white/30 border border-white/20 rounded-2xl shadow-lg;
+    @apply backdrop-blur-md rounded-2xl shadow-lg;
+    background: rgba(255, 255, 255, 0.30);
+    border: 1px solid rgba(255, 255, 255, 0.20);
   }
 
   .glass-btn {
-    @apply backdrop-blur-md bg-white/30 border border-white/20 rounded-full
-           font-inter font-semibold tracking-widest uppercase text-sm text-ink
+    @apply backdrop-blur-md rounded-full font-semibold tracking-widest uppercase text-sm
            hover:bg-white/50 transition-all duration-300 cursor-pointer;
+    background: rgba(255, 255, 255, 0.30);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    color: #1A1A1A;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .glass-nav {
-    @apply backdrop-blur-xl bg-white/20 border border-white/20 rounded-full shadow-xl;
+    @apply backdrop-blur-xl rounded-full shadow-xl;
+    background: rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.20);
   }
 
   .lab-input {
-    @apply bg-transparent border-0 border-b border-charcoal/40
-           focus:border-ink focus:outline-none
-           font-inter text-ink placeholder:text-silver
-           pb-2 w-full transition-colors duration-200;
+    @apply bg-transparent border-0 focus:outline-none pb-2 w-full transition-colors duration-200;
+    border-bottom: 1px solid rgba(61, 61, 61, 0.40);
+    color: #1A1A1A;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .lab-input:focus {
+    border-bottom-color: #1A1A1A;
+  }
+
+  .lab-input::placeholder {
+    color: #A8A8A8;
   }
 
   .section-label {
-    @apply font-inter text-xs text-graphite tracking-widest uppercase;
+    @apply text-xs tracking-widest uppercase;
+    color: #6B6B6B;
+    font-family: 'Inter', system-ui, sans-serif;
   }
 
   .heading-display {
-    @apply font-playfair text-ink;
+    color: #1A1A1A;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 

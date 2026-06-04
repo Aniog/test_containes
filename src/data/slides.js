@@ -14,6 +14,9 @@ const slides = [
     imgId: 'gallery-ph001-img-3a1b2c',
     titleId: 'gallery-ph001-title',
     descId: 'gallery-ph001-desc',
+    lbImgId: 'lb-ph001-img-3a1b2c',
+    lbTitleId: 'lb-ph001-title',
+    lbNotesId: 'lb-ph001-notes',
   },
   {
     id: 'ph-002',
@@ -28,6 +31,9 @@ const slides = [
     imgId: 'gallery-ph002-img-4b2c3d',
     titleId: 'gallery-ph002-title',
     descId: 'gallery-ph002-desc',
+    lbImgId: 'lb-ph002-img-4b2c3d',
+    lbTitleId: 'lb-ph002-title',
+    lbNotesId: 'lb-ph002-notes',
   },
   {
     id: 'ph-003',
@@ -42,6 +48,9 @@ const slides = [
     imgId: 'gallery-ph003-img-5c3d4e',
     titleId: 'gallery-ph003-title',
     descId: 'gallery-ph003-desc',
+    lbImgId: 'lb-ph003-img-5c3d4e',
+    lbTitleId: 'lb-ph003-title',
+    lbNotesId: 'lb-ph003-notes',
   },
   {
     id: 'ph-004',
@@ -56,6 +65,9 @@ const slides = [
     imgId: 'gallery-ph004-img-6d4e5f',
     titleId: 'gallery-ph004-title',
     descId: 'gallery-ph004-desc',
+    lbImgId: 'lb-ph004-img-6d4e5f',
+    lbTitleId: 'lb-ph004-title',
+    lbNotesId: 'lb-ph004-notes',
   },
   {
     id: 'ph-005',
@@ -70,6 +82,9 @@ const slides = [
     imgId: 'gallery-ph005-img-7e5f6a',
     titleId: 'gallery-ph005-title',
     descId: 'gallery-ph005-desc',
+    lbImgId: 'lb-ph005-img-7e5f6a',
+    lbTitleId: 'lb-ph005-title',
+    lbNotesId: 'lb-ph005-notes',
   },
   {
     id: 'ph-006',
@@ -84,6 +99,9 @@ const slides = [
     imgId: 'gallery-ph006-img-8f6a7b',
     titleId: 'gallery-ph006-title',
     descId: 'gallery-ph006-desc',
+    lbImgId: 'lb-ph006-img-8f6a7b',
+    lbTitleId: 'lb-ph006-title',
+    lbNotesId: 'lb-ph006-notes',
   },
   {
     id: 'ph-007',
@@ -98,6 +116,9 @@ const slides = [
     imgId: 'gallery-ph007-img-9a7b8c',
     titleId: 'gallery-ph007-title',
     descId: 'gallery-ph007-desc',
+    lbImgId: 'lb-ph007-img-9a7b8c',
+    lbTitleId: 'lb-ph007-title',
+    lbNotesId: 'lb-ph007-notes',
   },
   {
     id: 'ph-008',
@@ -112,6 +133,9 @@ const slides = [
     imgId: 'gallery-ph008-img-1b8c9d',
     titleId: 'gallery-ph008-title',
     descId: 'gallery-ph008-desc',
+    lbImgId: 'lb-ph008-img-1b8c9d',
+    lbTitleId: 'lb-ph008-title',
+    lbNotesId: 'lb-ph008-notes',
   },
 
   // ── Protists ──
@@ -128,6 +152,9 @@ const slides = [
     imgId: 'gallery-pr001-img-2c9d1e',
     titleId: 'gallery-pr001-title',
     descId: 'gallery-pr001-desc',
+    lbImgId: 'lb-pr001-img-2c9d1e',
+    lbTitleId: 'lb-pr001-title',
+    lbNotesId: 'lb-pr001-notes',
   },
   {
     id: 'pr-002',
@@ -142,6 +169,9 @@ const slides = [
     imgId: 'gallery-pr002-img-3d1e2f',
     titleId: 'gallery-pr002-title',
     descId: 'gallery-pr002-desc',
+    lbImgId: 'lb-pr002-img-3d1e2f',
+    lbTitleId: 'lb-pr002-title',
+    lbNotesId: 'lb-pr002-notes',
   },
   {
     id: 'pr-003',
@@ -156,6 +186,9 @@ const slides = [
     imgId: 'gallery-pr003-img-4e2f3a',
     titleId: 'gallery-pr003-title',
     descId: 'gallery-pr003-desc',
+    lbImgId: 'lb-pr003-img-4e2f3a',
+    lbTitleId: 'lb-pr003-title',
+    lbNotesId: 'lb-pr003-notes',
   },
   {
     id: 'pr-004',
@@ -170,6 +203,9 @@ const slides = [
     imgId: 'gallery-pr004-img-5f3a4b',
     titleId: 'gallery-pr004-title',
     descId: 'gallery-pr004-desc',
+    lbImgId: 'lb-pr004-img-5f3a4b',
+    lbTitleId: 'lb-pr004-title',
+    lbNotesId: 'lb-pr004-notes',
   },
   {
     id: 'pr-005',
@@ -184,6 +220,9 @@ const slides = [
     imgId: 'gallery-pr005-img-6a4b5c',
     titleId: 'gallery-pr005-title',
     descId: 'gallery-pr005-desc',
+    lbImgId: 'lb-pr005-img-6a4b5c',
+    lbTitleId: 'lb-pr005-title',
+    lbNotesId: 'lb-pr005-notes',
   },
   {
     id: 'pr-006',
@@ -198,6 +237,9 @@ const slides = [
     imgId: 'gallery-pr006-img-7b5c6d',
     titleId: 'gallery-pr006-title',
     descId: 'gallery-pr006-desc',
+    lbImgId: 'lb-pr006-img-7b5c6d',
+    lbTitleId: 'lb-pr006-title',
+    lbNotesId: 'lb-pr006-notes',
   },
   {
     id: 'pr-007',
@@ -212,6 +254,9 @@ const slides = [
     imgId: 'gallery-pr007-img-8c6d7e',
     titleId: 'gallery-pr007-title',
     descId: 'gallery-pr007-desc',
+    lbImgId: 'lb-pr007-img-8c6d7e',
+    lbTitleId: 'lb-pr007-title',
+    lbNotesId: 'lb-pr007-notes',
   },
   {
     id: 'pr-008',
@@ -226,6 +271,9 @@ const slides = [
     imgId: 'gallery-pr008-img-9d7e8f',
     titleId: 'gallery-pr008-title',
     descId: 'gallery-pr008-desc',
+    lbImgId: 'lb-pr008-img-9d7e8f',
+    lbTitleId: 'lb-pr008-title',
+    lbNotesId: 'lb-pr008-notes',
   },
 
   // ── Human Cytology ──
@@ -242,6 +290,9 @@ const slides = [
     imgId: 'gallery-hc001-img-1e8f9a',
     titleId: 'gallery-hc001-title',
     descId: 'gallery-hc001-desc',
+    lbImgId: 'lb-hc001-img-1e8f9a',
+    lbTitleId: 'lb-hc001-title',
+    lbNotesId: 'lb-hc001-notes',
   },
   {
     id: 'hc-002',
@@ -256,6 +307,9 @@ const slides = [
     imgId: 'gallery-hc002-img-2f9a1b',
     titleId: 'gallery-hc002-title',
     descId: 'gallery-hc002-desc',
+    lbImgId: 'lb-hc002-img-2f9a1b',
+    lbTitleId: 'lb-hc002-title',
+    lbNotesId: 'lb-hc002-notes',
   },
   {
     id: 'hc-003',
@@ -270,6 +324,9 @@ const slides = [
     imgId: 'gallery-hc003-img-3a1b2c',
     titleId: 'gallery-hc003-title',
     descId: 'gallery-hc003-desc',
+    lbImgId: 'lb-hc003-img-3a1b2c',
+    lbTitleId: 'lb-hc003-title',
+    lbNotesId: 'lb-hc003-notes',
   },
   {
     id: 'hc-004',
@@ -284,6 +341,9 @@ const slides = [
     imgId: 'gallery-hc004-img-4b2c3d',
     titleId: 'gallery-hc004-title',
     descId: 'gallery-hc004-desc',
+    lbImgId: 'lb-hc004-img-4b2c3d',
+    lbTitleId: 'lb-hc004-title',
+    lbNotesId: 'lb-hc004-notes',
   },
   {
     id: 'hc-005',
@@ -298,6 +358,9 @@ const slides = [
     imgId: 'gallery-hc005-img-5c3d4e',
     titleId: 'gallery-hc005-title',
     descId: 'gallery-hc005-desc',
+    lbImgId: 'lb-hc005-img-5c3d4e',
+    lbTitleId: 'lb-hc005-title',
+    lbNotesId: 'lb-hc005-notes',
   },
   {
     id: 'hc-006',
@@ -312,6 +375,9 @@ const slides = [
     imgId: 'gallery-hc006-img-6d4e5f',
     titleId: 'gallery-hc006-title',
     descId: 'gallery-hc006-desc',
+    lbImgId: 'lb-hc006-img-6d4e5f',
+    lbTitleId: 'lb-hc006-title',
+    lbNotesId: 'lb-hc006-notes',
   },
   {
     id: 'hc-007',
@@ -326,6 +392,9 @@ const slides = [
     imgId: 'gallery-hc007-img-7e5f6a',
     titleId: 'gallery-hc007-title',
     descId: 'gallery-hc007-desc',
+    lbImgId: 'lb-hc007-img-7e5f6a',
+    lbTitleId: 'lb-hc007-title',
+    lbNotesId: 'lb-hc007-notes',
   },
   {
     id: 'hc-008',
@@ -340,6 +409,9 @@ const slides = [
     imgId: 'gallery-hc008-img-8f6a7b',
     titleId: 'gallery-hc008-title',
     descId: 'gallery-hc008-desc',
+    lbImgId: 'lb-hc008-img-8f6a7b',
+    lbTitleId: 'lb-hc008-title',
+    lbNotesId: 'lb-hc008-notes',
   },
 ];
 
