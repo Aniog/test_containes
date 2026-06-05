@@ -35,7 +35,7 @@ export default function GameBoard({ snake, food, specialFood, gridSize, gameStat
           gridTemplateColumns: `repeat(${gridSize}, 1fr)`,
           gridTemplateRows: `repeat(${gridSize}, 1fr)`,
           gap: '1px',
-          backgroundColor: '#0d1117',
+          backgroundColor: '#e5e7eb',
         }}
       >
         {cells.map(({ key, isHead, isSnake, isFood, isSpecial }) => (
@@ -54,8 +54,8 @@ export default function GameBoard({ snake, food, specialFood, gridSize, gameStat
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(57,255,20,0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(57,255,20,0.03) 1px, transparent 1px)
+            linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px)
           `,
           backgroundSize: `${100 / gridSize}% ${100 / gridSize}%`,
         }}
@@ -70,8 +70,8 @@ function Cell({ isHead, isSnake, isFood, isSpecial }) {
       <div
         className="relative flex items-center justify-center"
         style={{
-          backgroundColor: '#39ff14',
-          boxShadow: '0 0 8px #39ff14, 0 0 16px rgba(57,255,20,0.5)',
+          backgroundColor: '#16a34a',
+          boxShadow: '0 1px 4px rgba(22,163,74,0.4)',
           borderRadius: '3px',
         }}
       >
@@ -79,7 +79,7 @@ function Cell({ isHead, isSnake, isFood, isSpecial }) {
           style={{
             width: '30%',
             height: '30%',
-            backgroundColor: '#0a0a0f',
+            backgroundColor: '#ffffff',
             borderRadius: '50%',
           }}
         />
@@ -91,10 +91,9 @@ function Cell({ isHead, isSnake, isFood, isSpecial }) {
     return (
       <div
         style={{
-          backgroundColor: '#2adb0f',
-          boxShadow: '0 0 4px rgba(57,255,20,0.4)',
+          backgroundColor: '#22c55e',
           borderRadius: '2px',
-          opacity: 0.9,
+          opacity: 0.85,
         }}
       />
     );
@@ -105,8 +104,8 @@ function Cell({ isHead, isSnake, isFood, isSpecial }) {
       <div
         className="animate-pulse flex items-center justify-center"
         style={{
-          backgroundColor: '#ffd60a',
-          boxShadow: '0 0 10px #ffd60a, 0 0 20px rgba(255,214,10,0.6)',
+          backgroundColor: '#f59e0b',
+          boxShadow: '0 1px 6px rgba(245,158,11,0.5)',
           borderRadius: '50%',
           fontSize: '70%',
         }}
@@ -119,10 +118,10 @@ function Cell({ isHead, isSnake, isFood, isSpecial }) {
   if (isFood) {
     return (
       <div
-        className="animate-pulse flex items-center justify-center"
+        className="animate-pulse"
         style={{
-          backgroundColor: '#ff2d55',
-          boxShadow: '0 0 8px #ff2d55, 0 0 16px rgba(255,45,85,0.5)',
+          backgroundColor: '#ef4444',
+          boxShadow: '0 1px 6px rgba(239,68,68,0.4)',
           borderRadius: '50%',
         }}
       />
@@ -132,7 +131,7 @@ function Cell({ isHead, isSnake, isFood, isSpecial }) {
   return (
     <div
       style={{
-        backgroundColor: '#0a0a0f',
+        backgroundColor: '#f9fafb',
       }}
     />
   );

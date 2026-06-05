@@ -29,11 +29,12 @@ function DPadButton({ icon, onPress }) {
       }}
       className="w-14 h-14 flex items-center justify-center rounded-xl active:scale-95 transition-transform"
       style={{
-        backgroundColor: '#12121a',
-        border: '1px solid #1e1e2e',
-        color: '#e0e0ff',
+        backgroundColor: '#ffffff',
+        border: '1px solid #d1fae5',
+        color: '#374151',
         touchAction: 'none',
         WebkitTapHighlightColor: 'transparent',
+        boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
       }}
     >
       {icon}
