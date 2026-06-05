@@ -1,15 +1,7 @@
-import './App.css'
+import GameBoard from './components/game/GameBoard';
 
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  return <GameBoard />;
 }
 
-export default App
+export default App;
