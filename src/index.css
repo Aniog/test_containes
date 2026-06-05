@@ -1,76 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #636972;
+  background-color: #FFFFFF;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Open Sans', system-ui, sans-serif;
+  background-color: #FFFFFF;
+  color: #636972;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* AI gradient for text */
+.ai-gradient-text {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* AI gradient for buttons */
+.ai-gradient-bg {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
 }
 
-button:hover {
-  border-color: #646cff;
+/* Hero faint purple-pink wash */
+.hero-wash {
+  background: radial-gradient(ellipse at 70% 50%, rgba(118, 113, 255, 0.06) 0%, rgba(203, 12, 159, 0.04) 40%, transparent 70%);
 }
 
-button:focus,
+/* Collapsible section animation */
+.generator-grid-collapsible {
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Card hover transition */
+.generator-card {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.generator-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+/* FAQ accordion animation */
+.faq-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
