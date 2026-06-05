@@ -1,3 +1,4 @@
+import './App.css'
 import CyclingForm from './components/form/CyclingForm.jsx'
 
 function App() {
