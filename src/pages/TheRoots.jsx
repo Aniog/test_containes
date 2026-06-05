@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+// v2
 
 const rootsImages = [
   {
@@ -134,22 +135,61 @@ export default function TheRoots() {
 
   return (
     <div className="bg-forest-deep min-h-screen" ref={containerRef}>
-      {/* Hero */}
-      <section className="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-        <p className="text-mist-grey text-xs uppercase tracking-[0.35em] font-semibold mb-6">
-          Old-Growth Photography
-        </p>
-        <h1
-          className="heading-display text-5xl md:text-7xl xl:text-8xl leading-[0.95] mb-8 max-w-3xl"
+
+      {/* Full-bleed Hero */}
+      <section className="relative w-full" style={{ height: '100svh', minHeight: '640px' }}>
+        {/* Hidden text for bg image query */}
+        <span id="roots-hero-title" className="sr-only">Ancient Forest — The Roots</span>
+        <span id="roots-hero-desc" className="sr-only">Ancient old-growth forest with massive tree trunks, mossy floor, and misty light filtering through the canopy</span>
+
+        {/* Background image */}
+        <div
+          data-strk-bg-id="roots-hero-bg-3f9c1a"
+          data-strk-bg="[roots-hero-desc] [roots-hero-title]"
+          data-strk-bg-ratio="16x9"
+          data-strk-bg-width="1920"
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundColor: '#1A2421' }}
+        />
+
+        {/* Layered fog overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-forest-deep via-forest-deep/40 to-forest-deep/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-forest-deep/60 via-transparent to-forest-deep/30" />
+
+        {/* Hero text — bottom-left anchored */}
+        <div className="absolute bottom-0 left-0 right-0 px-6 md:px-12 pb-16 md:pb-20 max-w-7xl mx-auto">
+          <p className="text-mist-grey text-xs uppercase tracking-[0.4em] font-semibold mb-5">
+            Old-Growth Photography
+          </p>
+          <h1
+            className="heading-display text-6xl md:text-8xl xl:text-[9rem] leading-[0.9] mb-6"
+            style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
+          >
+            The<br />
+            <em className="italic text-mist-grey/80">Roots</em>
+          </h1>
+          <p className="text-mist-light text-base md:text-lg max-w-lg leading-relaxed mb-10">
+            Ancient trunks. Mossy floors. The slow, heavy world beneath the canopy — where time moves in centuries, not moments.
+          </p>
+          {/* Scroll cue */}
+          <div className="flex items-center gap-4">
+            <div className="w-px h-10 bg-mist-grey/50" />
+            <span className="text-mist-grey text-[10px] uppercase tracking-[0.3em]">Explore below</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Section intro before grid */}
+      <section className="pt-20 pb-10 px-6 md:px-12 max-w-7xl mx-auto flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <h2
+          className="text-fog-white text-2xl md:text-3xl font-bold"
           style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
         >
-          The<br />
-          <em className="not-italic text-mist-grey">Roots</em>
-        </h1>
-        <p className="text-mist-light text-base md:text-lg max-w-xl leading-relaxed">
-          Ancient trunks. Mossy floors. The slow, heavy world beneath the canopy — where time moves in centuries, not moments.
+          The Collection
+        </h2>
+        <p className="text-mist-grey text-sm max-w-sm leading-relaxed">
+          Hover any image to lift the fog and reveal what lies beneath.
         </p>
-        <div className="mt-10 w-16 border-t border-mist-grey/40" />
       </section>
 
       {/* Masonry Grid */}
