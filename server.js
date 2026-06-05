@@ -14,12 +14,17 @@ async function createServer() {
     appType: 'custom',
   });
 
-  
   // Use Vite's connect instance as middleware
   app.use(vite.middlewares);
 
-  app.use('*', async (req, res, next) => {
+  // SSR handler - use {path} parameter for Express v5 compatibility
+  app.use('/{*path}', async (req, res, next) => {
     const url = req.originalUrl;
+
+    // Skip non-HTML requests
+    if (req.headers.accept && !req.headers.accept.includes('text/html')) {
+      return next();
+    }
 
     try {
       let template = fs.readFileSync(
