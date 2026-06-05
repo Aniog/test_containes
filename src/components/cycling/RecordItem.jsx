@@ -3,12 +3,6 @@ import { Trash2, Calendar, Clock, MapPin, Bike } from 'lucide-react';
 const RIDE_TYPES = ['Speed', 'Team', 'Relax'];
 const DISTANCES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const TYPE_COLORS = {
-  Speed: 'bg-orange-100 text-orange-700 border-orange-200',
-  Team: 'bg-blue-100 text-blue-700 border-blue-200',
-  Relax: 'bg-green-100 text-green-700 border-green-200',
-};
-
 const RecordItem = ({ index, record, onChange, onRemove, canRemove, errors }) => {
   const handleField = (field, value) => {
     onChange(index, { ...record, [field]: value });
@@ -65,22 +59,18 @@ const RecordItem = ({ index, record, onChange, onRemove, canRemove, errors }) =>
               <Bike className="w-3.5 h-3.5" /> Type <span className="text-red-500">*</span>
             </span>
           </label>
-          <div className="flex gap-2">
+          <select
+            value={record.type || ''}
+            onChange={(e) => handleField('type', e.target.value)}
+            className={`w-full border rounded-lg px-3 py-2 text-sm text-gray-800 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:border-transparent transition bg-white ${
+              fieldError('type') ? 'border-red-400 bg-red-50' : 'border-gray-300'
+            }`}
+          >
+            <option value="" disabled>Select a type...</option>
             {RIDE_TYPES.map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => handleField('type', t)}
-                className={`flex-1 py-2 px-2 rounded-lg text-xs font-semibold border transition ${
-                  record.type === t
-                    ? TYPE_COLORS[t] + ' ring-2 ring-offset-1 ring-current'
-                    : 'border-gray-200 text-gray-500 bg-gray-50 hover:bg-gray-100'
-                }`}
-              >
-                {t}
-              </button>
+              <option key={t} value={t}>{t}</option>
             ))}
-          </div>
+          </select>
           {fieldError('type') && <p className="text-red-500 text-xs mt-1">{fieldError('type')}</p>}
         </div>
 
