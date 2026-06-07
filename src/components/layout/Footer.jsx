@@ -1,16 +1,15 @@
 import { Compass, Instagram, Twitter, Linkedin, Mail } from 'lucide-react';
-
-const footerLinks = {
-  Destinations: ['Steampunk Albion', 'Neon Megacity IX', 'Terra Prima', 'Aqua Infinitum', 'Upcoming Realities'],
-  Company: ['About Nexus', 'Our Technology', 'Safety Standards', 'Careers', 'Press'],
-  Support: ['FAQ', 'Travel Insurance', 'Cancellation Policy', 'Contact Us', 'Emergency Recall'],
-};
+import { useLanguage } from '@/contexts/LanguageContext';
+import translations from '@/translations';
 
 export default function Footer() {
+  const { lang } = useLanguage();
+  const t = translations[lang].footer;
+  const isChinese = lang === 'zh';
+
   return (
     <footer id="about" className="bg-space-black border-t border-green-900/30 pt-16 pb-8 px-6 md:px-12 lg:px-24">
       <div className="max-w-6xl mx-auto">
-        {/* Top section */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -22,11 +21,9 @@ export default function Footer() {
                 NEXUS <span className="text-gold">VOYAGES</span>
               </span>
             </div>
-            <p className="font-inter text-sm text-gray-500 leading-relaxed max-w-xs mb-6">
-              The world's only licensed quantum portal travel agency. Certified by the
-              Interdimensional Travel Authority since 2019.
+            <p className={`text-sm text-gray-500 leading-relaxed max-w-xs mb-6 ${isChinese ? 'font-noto' : 'font-inter'}`}>
+              {t.tagline}
             </p>
-            {/* Social links */}
             <div className="flex gap-4">
               {[Instagram, Twitter, Linkedin, Mail].map((Icon, i) => (
                 <a
@@ -41,9 +38,9 @@ export default function Footer() {
           </div>
 
           {/* Links */}
-          {Object.entries(footerLinks).map(([category, links]) => (
+          {Object.entries(t.categories).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-cinzel text-sm font-semibold text-mist tracking-wider mb-4">
+              <h4 className={`text-sm font-semibold text-mist tracking-wider mb-4 ${isChinese ? 'font-noto' : 'font-cinzel'}`}>
                 {category}
               </h4>
               <ul className="space-y-2.5">
@@ -51,7 +48,7 @@ export default function Footer() {
                   <li key={link}>
                     <a
                       href="#"
-                      className="font-inter text-sm text-gray-500 hover:text-gold transition-colors duration-200"
+                      className={`text-sm text-gray-500 hover:text-gold transition-colors duration-200 ${isChinese ? 'font-noto' : 'font-inter'}`}
                     >
                       {link}
                     </a>
@@ -62,20 +59,18 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-green-900/60 to-transparent mb-8" />
 
-        {/* Bottom bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="font-inter text-xs text-gray-600">
-            © 2026 Nexus Voyages. All realities reserved.
+          <p className={`text-xs text-gray-600 ${isChinese ? 'font-noto' : 'font-inter'}`}>
+            {t.copyright}
           </p>
           <div className="flex gap-6">
-            {['Privacy Policy', 'Terms of Travel', 'Reality Disclaimer'].map((item) => (
+            {t.legal.map((item) => (
               <a
                 key={item}
                 href="#"
-                className="font-inter text-xs text-gray-600 hover:text-gray-400 transition-colors"
+                className={`text-xs text-gray-600 hover:text-gray-400 transition-colors ${isChinese ? 'font-noto' : 'font-inter'}`}
               >
                 {item}
               </a>
