@@ -9,8 +9,8 @@ export default {
       colors: {
         'space-black': '#050a0e',
         'midnight': '#0a1628',
-        'dark-teal': '#0d2137',
-        'bio-cyan': '#00d4ff',
+        'dark-purple': '#130d2a',
+        'bio-violet': '#8b5cf6',
         'emerald-glow': '#00ff88',
       },
       fontFamily: {
@@ -18,8 +18,8 @@ export default {
         body: ['Inter', 'sans-serif'],
       },
       boxShadow: {
-        'glow-cyan': '0 0 30px rgba(0,212,255,0.15)',
-        'glow-cyan-lg': '0 0 50px rgba(0,212,255,0.25)',
+        'glow-violet': '0 0 30px rgba(139,92,246,0.2)',
+        'glow-violet-lg': '0 0 50px rgba(139,92,246,0.3)',
         'glow-emerald': '0 0 30px rgba(0,255,136,0.15)',
       },
       animation: {

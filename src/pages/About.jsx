@@ -73,7 +73,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+              <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
                 Our Mission
               </span>
               <h1 id="about-hero-title" className="font-display font-bold text-4xl md:text-5xl text-slate-50 mb-6 leading-tight">
@@ -87,7 +87,7 @@ export default function About() {
               </p>
             </div>
             <div className="relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-cyan-900/40 shadow-glow-cyan">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-violet-900/40 shadow-glow-violet">
                 <img
                   data-strk-img-id="about-hero-img-1a2b3c"
                   data-strk-img="[about-hero-desc] [about-hero-title]"
@@ -107,7 +107,7 @@ export default function About() {
       <section className="py-20 px-4 md:px-8 bg-midnight/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+            <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
               What We Stand For
             </span>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-slate-50">
@@ -118,7 +118,7 @@ export default function About() {
             {teamValues.map((value) => (
               <div
                 key={value.title}
-                className="bg-midnight border border-cyan-900/40 rounded-xl p-6 hover:border-cyan-700/50 hover:shadow-glow-cyan transition-all duration-300"
+                className="bg-midnight border border-violet-900/40 rounded-xl p-6 hover:border-violet-700/50 hover:shadow-glow-violet transition-all duration-300"
               >
                 <div className="text-3xl mb-4">{value.icon}</div>
                 <h3 className="font-display font-semibold text-base text-slate-50 mb-2">{value.title}</h3>
@@ -173,7 +173,7 @@ export default function About() {
       <section className="py-20 px-4 md:px-8 bg-midnight/30">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+            <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
               History of Discovery
             </span>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-slate-50">
@@ -183,7 +183,7 @@ export default function About() {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/50 via-cyan-500/20 to-transparent" />
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-violet-500/20 to-transparent" />
 
             <div className="space-y-8">
               {timeline.map((item, index) => (
@@ -193,15 +193,15 @@ export default function About() {
                 >
                   {/* Content */}
                   <div className={`flex-1 md:w-1/2 pl-14 md:pl-0 ${index % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <div className="bg-midnight border border-cyan-900/40 rounded-xl p-5 hover:border-cyan-700/50 transition-all duration-300">
-                      <span className="text-cyan-400 font-display font-bold text-lg">{item.year}</span>
+                    <div className="bg-midnight border border-violet-900/40 rounded-xl p-5 hover:border-violet-700/50 transition-all duration-300">
+                      <span className="text-violet-400 font-display font-bold text-lg">{item.year}</span>
                       <h3 className="font-display font-semibold text-base text-slate-50 mt-1 mb-2">{item.title}</h3>
                       <p className="text-slate-400 text-sm leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
 
                   {/* Dot */}
-                  <div className="absolute left-4 md:left-1/2 top-5 w-4 h-4 rounded-full bg-cyan-500 border-2 border-space-black md:-translate-x-1/2 shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
+                  <div className="absolute left-4 md:left-1/2 top-5 w-4 h-4 rounded-full bg-violet-500 border-2 border-space-black md:-translate-x-1/2 shadow-[0_0_10px_rgba(139,92,246,0.5)]" />
                 </div>
               ))}
             </div>
@@ -221,13 +221,13 @@ export default function About() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/explore"
-              className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
+              className="bg-violet-500 hover:bg-violet-400 text-black font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
             >
               Explore Organisms
             </Link>
             <Link
               to="/gallery"
-              className="border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
+              className="border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
             >
               Browse Gallery
             </Link>

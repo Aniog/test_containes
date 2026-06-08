@@ -26,17 +26,17 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-space-black/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,212,255,0.1)]' : 'bg-transparent'
+        scrolled ? 'bg-space-black/90 backdrop-blur-md shadow-[0_1px_0_rgba(139,92,246,0.1)]' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-full bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center group-hover:bg-cyan-500/30 transition-all">
-            <div className="w-3 h-3 rounded-full bg-cyan-400 animate-pulse-slow" />
+          <div className="w-8 h-8 rounded-full bg-violet-500/20 border border-violet-500/50 flex items-center justify-center group-hover:bg-violet-500/30 transition-all">
+            <div className="w-3 h-3 rounded-full bg-violet-400 animate-pulse-slow" />
           </div>
           <span className="font-display font-bold text-lg text-slate-50 tracking-tight">
-            Micro<span className="text-cyan-400">Cosmos</span>
+            Micro<span className="text-violet-400">Cosmos</span>
           </span>
         </Link>
 
@@ -48,7 +48,7 @@ export default function Navbar() {
               to={link.path}
               className={`text-sm font-medium transition-colors duration-200 ${
                 location.pathname === link.path
-                  ? 'text-cyan-400'
+                  ? 'text-violet-400'
                   : 'text-slate-300 hover:text-white'
               }`}
             >
@@ -61,7 +61,7 @@ export default function Navbar() {
         <div className="hidden md:block">
           <Link
             to="/explore"
-            className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-sm px-5 py-2 rounded-full transition-all duration-200"
+            className="bg-violet-500 hover:bg-violet-400 text-black font-semibold text-sm px-5 py-2 rounded-full transition-all duration-200"
           >
             Start Exploring
           </Link>
@@ -83,13 +83,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-space-black/95 backdrop-blur-md border-t border-cyan-900/30 px-4 py-4 flex flex-col gap-4">
+        <div className="md:hidden bg-space-black/95 backdrop-blur-md border-t border-violet-900/30 px-4 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
               className={`text-base font-medium py-1 transition-colors ${
-                location.pathname === link.path ? 'text-cyan-400' : 'text-slate-300'
+                location.pathname === link.path ? 'text-violet-400' : 'text-slate-300'
               }`}
             >
               {link.label}
@@ -97,7 +97,7 @@ export default function Navbar() {
           ))}
           <Link
             to="/explore"
-            className="mt-2 bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-sm px-5 py-2.5 rounded-full text-center transition-all"
+            className="mt-2 bg-violet-500 hover:bg-violet-400 text-black font-semibold text-sm px-5 py-2.5 rounded-full text-center transition-all"
           >
             Start Exploring
           </Link>

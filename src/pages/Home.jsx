@@ -22,7 +22,7 @@ const featuredOrganisms = [
     title: 'Diatoms',
     desc: 'Microscopic algae with intricate glass-like shells of breathtaking symmetry.',
     tag: 'Algae',
-    tagColor: 'text-cyan-400 bg-cyan-900/30 border-cyan-900/50',
+    tagColor: 'text-violet-400 bg-violet-900/30 border-violet-900/50',
   },
   {
     id: 'mycelium',
@@ -55,10 +55,10 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-teal/30 via-space-black to-space-black" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-purple/30 via-space-black to-space-black" />
 
         {/* Animated orbs */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
 
         {/* Hero background image */}
@@ -73,8 +73,8 @@ export default function Home() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8 text-center pt-24 pb-16">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-cyan-900/30 border border-cyan-800/50 text-cyan-300 text-xs px-4 py-1.5 rounded-full mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 bg-violet-900/30 border border-violet-800/50 text-violet-300 text-xs px-4 py-1.5 rounded-full mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
             Exploring the Invisible World
           </div>
 
@@ -83,7 +83,7 @@ export default function Home() {
             className="font-display font-bold text-5xl md:text-7xl text-slate-50 leading-tight mb-6"
           >
             The World{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-emerald-400">
               Too Small
             </span>{' '}
             to See
@@ -99,13 +99,13 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/explore"
-              className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
+              className="bg-violet-500 hover:bg-violet-400 text-black font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
             >
               Start Exploring
             </Link>
             <Link
               to="/gallery"
-              className="border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
+              className="border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 font-semibold px-8 py-3.5 rounded-full transition-all duration-200 text-base"
             >
               View Gallery
             </Link>
@@ -120,12 +120,12 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-16 border-y border-cyan-900/20 bg-midnight/50">
+      <section className="py-16 border-y border-violet-900/20 bg-midnight/50">
         <div className="max-w-5xl mx-auto px-4 md:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="font-display font-bold text-3xl md:text-4xl text-cyan-400 mb-1">
+                <div className="font-display font-bold text-3xl md:text-4xl text-violet-400 mb-1">
                   {stat.value}
                 </div>
                 <div className="text-slate-400 text-sm">{stat.label}</div>
@@ -140,7 +140,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+              <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
                 What is MicroCosmos?
               </span>
               <h2 id="home-intro-title" className="font-display font-bold text-3xl md:text-4xl text-slate-50 mb-6 leading-tight">
@@ -154,7 +154,7 @@ export default function Home() {
               </p>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium transition-colors"
+                className="inline-flex items-center gap-2 text-violet-400 hover:text-violet-300 font-medium transition-colors"
               >
                 Learn more about our mission
                 <span>→</span>
@@ -162,7 +162,7 @@ export default function Home() {
             </div>
 
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden border border-cyan-900/40 shadow-glow-cyan">
+              <div className="aspect-square rounded-2xl overflow-hidden border border-violet-900/40 shadow-glow-violet">
                 <img
                   data-strk-img-id="home-intro-img-2c3d4e"
                   data-strk-img="[home-intro-desc] [home-intro-title]"
@@ -174,7 +174,7 @@ export default function Home() {
                 />
               </div>
               {/* Decorative element */}
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-cyan-500/10 border border-cyan-500/20 blur-sm" />
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-violet-500/10 border border-violet-500/20 blur-sm" />
             </div>
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function Home() {
       <section className="py-20 px-4 md:px-8 bg-midnight/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
-            <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+            <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
               Featured Organisms
             </span>
             <h2 className="font-display font-bold text-3xl md:text-4xl text-slate-50">
@@ -196,7 +196,7 @@ export default function Home() {
             {featuredOrganisms.map((org) => (
               <div
                 key={org.id}
-                className="group bg-midnight border border-cyan-900/40 rounded-xl overflow-hidden hover:border-cyan-700/50 hover:shadow-glow-cyan transition-all duration-300"
+                className="group bg-midnight border border-violet-900/40 rounded-xl overflow-hidden hover:border-violet-700/50 hover:shadow-glow-violet transition-all duration-300"
               >
                 <div className="aspect-video overflow-hidden">
                   <img
@@ -227,7 +227,7 @@ export default function Home() {
           <div className="text-center mt-10">
             <Link
               to="/explore"
-              className="border border-cyan-500/50 text-cyan-400 hover:bg-cyan-500/10 font-semibold px-8 py-3 rounded-full transition-all duration-200 inline-block"
+              className="border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 font-semibold px-8 py-3 rounded-full transition-all duration-200 inline-block"
             >
               Explore All Organisms
             </Link>
@@ -238,7 +238,7 @@ export default function Home() {
       {/* CTA Section */}
       <section className="py-24 px-4 md:px-8">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="bg-gradient-to-br from-dark-teal to-midnight border border-cyan-900/40 rounded-2xl p-10 md:p-14 shadow-glow-cyan">
+          <div className="bg-gradient-to-br from-dark-purple to-midnight border border-violet-900/40 rounded-2xl p-10 md:p-14 shadow-glow-violet">
             <h2 className="font-display font-bold text-3xl md:text-4xl text-slate-50 mb-4">
               Ready to Explore the Invisible?
             </h2>
@@ -247,7 +247,7 @@ export default function Home() {
             </p>
             <Link
               to="/gallery"
-              className="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-8 py-3.5 rounded-full transition-all duration-200 inline-block text-base"
+              className="bg-violet-500 hover:bg-violet-400 text-black font-semibold px-8 py-3.5 rounded-full transition-all duration-200 inline-block text-base"
             >
               View the Gallery
             </Link>

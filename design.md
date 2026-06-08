@@ -11,7 +11,7 @@ MicroCosmos is a science-forward website exploring the invisible world of micros
 - **Dark Teal**: `#0d2137` — secondary backgrounds, nav
 
 ### Accent Colors
-- **Bioluminescent Cyan**: `#00d4ff` — primary accent, links, highlights (`text-cyan-400`, `border-cyan-400`)
+- **Bioluminescent Cyan**: `#8b5cf6` — primary accent, links, highlights (`text-violet-400`, `border-violet-400`)
 - **Emerald Glow**: `#00ff88` — secondary accent, success states (`text-emerald-400`)
 - **Violet Pulse**: `#7c3aed` — tertiary accent, tags (`text-violet-500`)
 - **Amber Spore**: `#f59e0b` — warm accent, warnings (`text-amber-400`)
@@ -36,9 +36,9 @@ MicroCosmos is a science-forward website exploring the invisible world of micros
 - Caption/label: `text-sm text-slate-400`
 
 ## Borders & Shadows
-- Card border: `border border-cyan-900/40`
-- Glow effect: `shadow-[0_0_30px_rgba(0,212,255,0.15)]`
-- Hover glow: `hover:shadow-[0_0_40px_rgba(0,212,255,0.3)]`
+- Card border: `border border-violet-900/40`
+- Glow effect: `shadow-[0_0_30px_rgba(139,92,246,0.15)]`
+- Hover glow: `hover:shadow-[0_0_40px_rgba(139,92,246,0.3)]`
 - Rounded corners: `rounded-xl` for cards, `rounded-full` for badges/pills
 
 ## Spacing
@@ -50,21 +50,21 @@ MicroCosmos is a science-forward website exploring the invisible world of micros
 
 ### Cards
 - Dark background: `bg-midnight` or `bg-slate-900/60`
-- Subtle border: `border border-cyan-900/40`
+- Subtle border: `border border-violet-900/40`
 - Hover: scale slightly + glow `hover:scale-[1.02] transition-all`
 
 ### Buttons
-- Primary: `bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-6 py-3 rounded-full`
-- Secondary: `border border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 px-6 py-3 rounded-full`
+- Primary: `bg-violet-500 hover:bg-violet-400 text-black font-semibold px-6 py-3 rounded-full`
+- Secondary: `border border-violet-500 text-violet-400 hover:bg-violet-500/10 px-6 py-3 rounded-full`
 - Ghost: `text-slate-400 hover:text-white`
 
 ### Navigation
 - Sticky top nav with dark background + blur: `sticky top-0 bg-slate-950/80 backdrop-blur-md`
-- Active link: `text-cyan-400`
+- Active link: `text-violet-400`
 - Inactive link: `text-slate-300 hover:text-white`
 
 ### Badges/Tags
-- `bg-cyan-900/40 text-cyan-300 text-xs px-3 py-1 rounded-full`
+- `bg-violet-900/40 text-violet-300 text-xs px-3 py-1 rounded-full`
 - Category variants: cyan (bacteria), emerald (fungi), violet (protozoa), amber (viruses)
 
 ## Do's

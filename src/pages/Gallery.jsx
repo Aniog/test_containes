@@ -100,10 +100,10 @@ const categoryColors = {
   'Plants': 'text-emerald-400 bg-emerald-900/30 border-emerald-900/50',
   'Micro-animals': 'text-emerald-400 bg-emerald-900/30 border-emerald-900/50',
   'Algae': 'text-emerald-400 bg-emerald-900/30 border-emerald-900/50',
-  'Bacteria': 'text-cyan-400 bg-cyan-900/30 border-cyan-900/50',
-  'Fungi': 'text-violet-400 bg-violet-900/30 border-violet-900/50',
+  'Bacteria': 'text-violet-400 bg-violet-900/30 border-violet-900/50',
+  'Fungi': 'text-fuchsia-400 bg-fuchsia-900/30 border-fuchsia-900/50',
   'Viruses': 'text-rose-400 bg-rose-900/30 border-rose-900/50',
-  'Cell Biology': 'text-cyan-400 bg-cyan-900/30 border-cyan-900/50',
+  'Cell Biology': 'text-violet-400 bg-violet-900/30 border-violet-900/50',
 };
 
 export default function Gallery() {
@@ -119,7 +119,7 @@ export default function Gallery() {
       {/* Page Header */}
       <section className="pt-28 pb-12 px-4 md:px-8 bg-gradient-to-b from-violet-900/10 to-space-black">
         <div className="max-w-7xl mx-auto">
-          <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+          <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
             Visual Archive
           </span>
           <h1 className="font-display font-bold text-4xl md:text-5xl text-slate-50 mb-4">
@@ -138,7 +138,7 @@ export default function Gallery() {
             {galleryItems.map((item) => (
               <div
                 key={item.id}
-                className="break-inside-avoid group bg-midnight border border-cyan-900/40 rounded-xl overflow-hidden hover:border-cyan-700/50 hover:shadow-glow-cyan transition-all duration-300 cursor-pointer"
+                className="break-inside-avoid group bg-midnight border border-violet-900/40 rounded-xl overflow-hidden hover:border-violet-700/50 hover:shadow-glow-violet transition-all duration-300 cursor-pointer"
                 onClick={() => setLightboxItem(item)}
               >
                 <div className={`overflow-hidden ${item.size === 'large' ? 'aspect-[4/3]' : 'aspect-video'}`}>
@@ -178,7 +178,7 @@ export default function Gallery() {
           onClick={() => setLightboxItem(null)}
         >
           <div
-            className="bg-midnight border border-cyan-900/50 rounded-2xl max-w-2xl w-full overflow-hidden shadow-glow-cyan-lg"
+            className="bg-midnight border border-violet-900/50 rounded-2xl max-w-2xl w-full overflow-hidden shadow-glow-violet-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="aspect-[4/3] overflow-hidden">

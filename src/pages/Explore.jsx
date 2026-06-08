@@ -21,7 +21,7 @@ const organisms = [
     name: 'Escherichia coli',
     commonName: 'E. coli',
     category: 'bacteria',
-    tagColor: 'text-cyan-400 bg-cyan-900/30 border-cyan-900/50',
+    tagColor: 'text-violet-400 bg-violet-900/30 border-violet-900/50',
     size: '1–2 μm',
     habitat: 'Intestinal tract',
     desc: 'One of the most studied organisms on Earth. Most strains are harmless and essential for gut health, producing vitamin K.',
@@ -35,7 +35,7 @@ const organisms = [
     name: 'Penicillium chrysogenum',
     commonName: 'Penicillin Mold',
     category: 'fungi',
-    tagColor: 'text-violet-400 bg-violet-900/30 border-violet-900/50',
+    tagColor: 'text-fuchsia-400 bg-fuchsia-900/30 border-fuchsia-900/50',
     size: '2–4 μm spores',
     habitat: 'Soil, decaying matter',
     desc: 'The source of the world\'s first antibiotic. Alexander Fleming\'s accidental discovery of this mold changed medicine forever.',
@@ -119,7 +119,7 @@ const organisms = [
     name: 'Streptococcus thermophilus',
     commonName: 'Yogurt Bacteria',
     category: 'bacteria',
-    tagColor: 'text-cyan-400 bg-cyan-900/30 border-cyan-900/50',
+    tagColor: 'text-violet-400 bg-violet-900/30 border-violet-900/50',
     size: '0.7–0.9 μm',
     habitat: 'Dairy products',
     desc: 'A beneficial bacterium used in the production of yogurt and cheese. It converts lactose into lactic acid, creating the characteristic tangy flavor.',
@@ -157,9 +157,9 @@ export default function Explore() {
   return (
     <div ref={containerRef} className="bg-space-black text-slate-200 min-h-screen">
       {/* Page Header */}
-      <section className="pt-28 pb-12 px-4 md:px-8 bg-gradient-to-b from-dark-teal/20 to-space-black">
+      <section className="pt-28 pb-12 px-4 md:px-8 bg-gradient-to-b from-dark-purple/20 to-space-black">
         <div className="max-w-7xl mx-auto">
-          <span className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
+          <span className="text-violet-400 text-sm font-semibold uppercase tracking-widest mb-3 block">
             The Microbial World
           </span>
           <h1 className="font-display font-bold text-4xl md:text-5xl text-slate-50 mb-4">
@@ -172,7 +172,7 @@ export default function Explore() {
       </section>
 
       {/* Category Filter */}
-      <section className="px-4 md:px-8 pb-8 sticky top-16 z-30 bg-space-black/90 backdrop-blur-md border-b border-cyan-900/20 pt-4">
+      <section className="px-4 md:px-8 pb-8 sticky top-16 z-30 bg-space-black/90 backdrop-blur-md border-b border-violet-900/20 pt-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
@@ -181,8 +181,8 @@ export default function Explore() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 border ${
                   activeCategory === cat.id
-                    ? 'bg-cyan-500 text-black border-cyan-500'
-                    : 'border-cyan-900/50 text-slate-400 hover:text-slate-200 hover:border-cyan-700/50'
+                    ? 'bg-violet-500 text-black border-violet-500'
+                    : 'border-violet-900/50 text-slate-400 hover:text-slate-200 hover:border-violet-700/50'
                 }`}
               >
                 {cat.label}
@@ -199,7 +199,7 @@ export default function Explore() {
             {filtered.map((org) => (
               <div
                 key={org.id}
-                className="group bg-midnight border border-cyan-900/40 rounded-xl overflow-hidden hover:border-cyan-700/50 hover:shadow-glow-cyan transition-all duration-300 cursor-pointer"
+                className="group bg-midnight border border-violet-900/40 rounded-xl overflow-hidden hover:border-violet-700/50 hover:shadow-glow-violet transition-all duration-300 cursor-pointer"
                 onClick={() => setSelectedOrganism(org)}
               >
                 <div className="aspect-video overflow-hidden relative">
@@ -223,7 +223,7 @@ export default function Explore() {
                   <h3 id={org.titleId} className="font-display font-semibold text-base text-slate-50 mb-0.5">
                     {org.name}
                   </h3>
-                  <p className="text-cyan-400 text-xs mb-3 font-medium">{org.commonName}</p>
+                  <p className="text-violet-400 text-xs mb-3 font-medium">{org.commonName}</p>
                   <p id={org.descId} className="text-slate-400 text-sm leading-relaxed line-clamp-2">
                     {org.desc}
                   </p>
@@ -245,7 +245,7 @@ export default function Explore() {
           onClick={() => setSelectedOrganism(null)}
         >
           <div
-            className="bg-midnight border border-cyan-900/50 rounded-2xl max-w-lg w-full overflow-hidden shadow-glow-cyan-lg"
+            className="bg-midnight border border-violet-900/50 rounded-2xl max-w-lg w-full overflow-hidden shadow-glow-violet-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="aspect-video overflow-hidden">
@@ -263,7 +263,7 @@ export default function Explore() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="font-display font-bold text-xl text-slate-50">{selectedOrganism.name}</h2>
-                  <p className="text-cyan-400 text-sm font-medium">{selectedOrganism.commonName}</p>
+                  <p className="text-violet-400 text-sm font-medium">{selectedOrganism.commonName}</p>
                 </div>
                 <button
                   onClick={() => setSelectedOrganism(null)}
@@ -273,8 +273,8 @@ export default function Explore() {
                 </button>
               </div>
               <p className="text-slate-300 text-sm leading-relaxed mb-4">{selectedOrganism.desc}</p>
-              <div className="bg-cyan-900/20 border border-cyan-900/40 rounded-lg p-4">
-                <p className="text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-1">Fun Fact</p>
+              <div className="bg-violet-900/20 border border-violet-900/40 rounded-lg p-4">
+                <p className="text-violet-300 text-xs font-semibold uppercase tracking-wider mb-1">Fun Fact</p>
                 <p className="text-slate-300 text-sm">{selectedOrganism.funFact}</p>
               </div>
               <div className="mt-4 flex gap-6 text-sm">
