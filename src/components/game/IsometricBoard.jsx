@@ -4,69 +4,49 @@ import TargetRing from './TargetRing';
 const buildings = [
   {
     id: 'castle',
-    label: '城堡',
     emoji: '🏰',
-    color: '#d4b87a',
-    roofColor: '#e05a3a',
+    color: '#6600ff',
+    border: '#9944ff',
     style: { top: '20%', left: '5%', width: 140, height: 150 },
     ringSize: 100,
     zIndex: 6,
   },
   {
     id: 'church',
-    label: '教堂',
     emoji: '⛪',
-    color: '#d4c4a8',
-    roofColor: '#c87060',
+    color: '#00aadd',
+    border: '#00ccff',
     style: { top: '16%', right: '8%', width: 108, height: 118 },
     ringSize: 82,
     zIndex: 5,
   },
   {
     id: 'tent',
-    label: '营地',
     emoji: '⛺',
-    color: '#c4b488',
-    roofColor: '#8fad6a',
+    color: '#ff5500',
+    border: '#ff7733',
     style: { top: '40%', left: '32%', width: 96, height: 100 },
     ringSize: 74,
     zIndex: 7,
   },
   {
     id: 'barn',
-    label: '谷仓',
     emoji: '🏚',
-    color: '#c4a070',
-    roofColor: '#d04030',
+    color: '#00ccff',
+    border: '#44ddff',
     style: { top: '60%', left: '3%', width: 118, height: 122 },
     ringSize: 86,
     zIndex: 4,
   },
   {
     id: 'wagon',
-    label: '马车',
     emoji: '🎠',
-    color: '#c0a878',
-    roofColor: '#c83030',
+    color: '#6600ff',
+    border: '#9944ff',
     style: { top: '58%', left: '40%', width: 112, height: 116 },
     ringSize: 84,
     zIndex: 5,
   },
-];
-
-const trees = [
-  { id: 't1', style: { top: '30%', left: '28%' }, size: 28 },
-  { id: 't2', style: { top: '35%', left: '32%' }, size: 22 },
-  { id: 't3', style: { top: '55%', left: '22%' }, size: 30 },
-  { id: 't4', style: { top: '58%', left: '28%' }, size: 24 },
-  { id: 't5', style: { top: '25%', left: '55%' }, size: 26 },
-  { id: 't6', style: { top: '20%', left: '60%' }, size: 20 },
-  { id: 't7', style: { top: '48%', right: '8%' }, size: 28 },
-  { id: 't8', style: { top: '52%', right: '14%' }, size: 22 },
-  { id: 't9', style: { top: '70%', left: '18%' }, size: 32 },
-  { id: 't10', style: { top: '72%', right: '5%' }, size: 26 },
-  { id: 't11', style: { top: '15%', left: '42%' }, size: 18 },
-  { id: 't12', style: { top: '78%', left: '35%' }, size: 24 },
 ];
 
 const characters = [
@@ -80,277 +60,105 @@ const characters = [
   { id: 'c8', emoji: '🏇', style: { top: '38%', left: '22%' }, size: 22 },
 ];
 
-const haystacks = [
-  { id: 'h1', style: { top: '28%', left: '50%' } },
-  { id: 'h2', style: { top: '32%', left: '54%' } },
-];
-
-const Tree = ({ size = 26 }) => (
-  <div style={{ position: 'relative', width: size, height: size * 1.3 }}>
-    <div
-      style={{
-        width: 0,
-        height: 0,
-        borderLeft: `${size * 0.5}px solid transparent`,
-        borderRight: `${size * 0.5}px solid transparent`,
-        borderBottom: `${size * 0.8}px solid #6a9a4a`,
-        position: 'absolute',
-        top: 0,
-        left: 0,
-      }}
-    />
-    <div
-      style={{
-        width: size * 0.2,
-        height: size * 0.4,
-        background: '#7a5a3a',
-        position: 'absolute',
-        bottom: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
-        borderRadius: 2,
-      }}
-    />
-  </div>
-);
+const squarePatternSvg = `<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><rect x='1' y='1' width='34' height='34' fill='none' stroke='rgba(255,255,255,0.13)' stroke-width='1'/><rect x='5' y='5' width='26' height='26' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='1'/><rect x='9' y='9' width='18' height='18' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1'/><rect x='13' y='13' width='10' height='10' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/></svg>`;
+const patternUrl = `url("data:image/svg+xml,${encodeURIComponent(squarePatternSvg)}")`;
 
 const Building = ({ building }) => {
-  const { emoji, color, roofColor, style, ringSize, zIndex } = building;
+  const { emoji, color, border, style, ringSize, zIndex } = building;
   const w = style.width || 100;
   const h = style.height || 110;
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        ...style,
-        width: w,
-        height: h,
-        zIndex,
-      }}
-    >
-      {/* Shadow */}
+    <div style={{ position: 'absolute', ...style, width: w, height: h, zIndex }}>
       <div style={{
         position: 'absolute',
-        bottom: -6,
-        left: '10%',
-        width: '80%',
-        height: 12,
-        background: 'rgba(0,0,0,0.18)',
+        bottom: -8, left: '8%',
+        width: '84%', height: 14,
+        background: 'rgba(0,0,0,0.4)',
         borderRadius: '50%',
-        filter: 'blur(4px)',
+        filter: 'blur(6px)',
       }} />
-
-      {/* Building body */}
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          background: `linear-gradient(160deg, ${color}ee 0%, ${color}99 100%)`,
-          borderRadius: 10,
-          border: `2px solid ${color}aa`,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: Math.min(w, h) * 0.42,
-          boxShadow: `3px 5px 16px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.3)`,
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        {/* Roof accent */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '32%',
-            background: `linear-gradient(180deg, ${roofColor} 0%, ${roofColor}cc 100%)`,
-            borderRadius: '10px 10px 0 0',
-          }}
-        />
-        {/* Wall texture lines */}
+      <div style={{
+        width: '100%', height: '100%',
+        background: `linear-gradient(145deg, ${color}ee 0%, ${color}99 100%)`,
+        borderRadius: 14,
+        border: `2.5px solid ${border}`,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: Math.min(w, h) * 0.42,
+        boxShadow: `0 0 0 1px rgba(255,255,255,0.15), 4px 6px 20px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.25)`,
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
         <div style={{
           position: 'absolute',
-          top: '32%',
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(0,0,0,0.04) 10px, rgba(0,0,0,0.04) 11px)`,
+          top: 0, left: 0, right: 0,
+          height: '28%',
+          background: `linear-gradient(180deg, ${border} 0%, ${color} 100%)`,
+          borderRadius: '14px 14px 0 0',
+          opacity: 0.9,
+        }} />
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: patternUrl,
+          opacity: 0.25,
+          borderRadius: 14,
         }} />
         <span style={{
-          position: 'relative',
-          zIndex: 2,
-          filter: 'drop-shadow(1px 2px 4px rgba(0,0,0,0.35))',
+          position: 'relative', zIndex: 2,
+          filter: 'drop-shadow(0 2px 6px rgba(0,0,0,0.5))',
           lineHeight: 1,
         }}>
           {emoji}
         </span>
       </div>
-      {/* Target ring overlay */}
       <TargetRing size={ringSize} />
     </div>
   );
 };
 
-const IsometricBoard = () => {
+const GeometricBoard = () => {
   return (
-    <div
-      style={{
-        position: 'relative',
-        width: '100%',
-        flex: 1,
-        overflow: 'hidden',
-        background: 'linear-gradient(180deg, #9ed4e8 0%, #b8ddd0 28%, #c8c890 52%, #d4b896 100%)',
-      }}
-    >
-      {/* Sky gradient overlay */}
+    <div style={{
+      position: 'relative',
+      width: '100%',
+      flex: 1,
+      overflow: 'hidden',
+      background: '#5555cc',
+      backgroundImage: patternUrl,
+    }}>
+      {/* Purple block top-left */}
       <div style={{
         position: 'absolute',
-        top: 0, left: 0, right: 0,
-        height: '30%',
-        background: 'linear-gradient(180deg, #8ecce0 0%, #a8d8e8 60%, transparent 100%)',
+        top: 0, left: 0,
+        width: '58%', height: '46%',
+        background: '#6600ff',
+        clipPath: 'polygon(0 0, 100% 0, 58% 100%, 0 100%)',
         zIndex: 1,
+        backgroundImage: patternUrl,
       }} />
 
-      {/* Clouds */}
-      <div style={{ position: 'absolute', top: '3%', left: '12%', zIndex: 2 }}>
-        <div style={{
-          width: 80, height: 30,
-          background: 'rgba(255,255,255,0.75)',
-          borderRadius: 20,
-          boxShadow: '18px -6px 0 12px rgba(255,255,255,0.55), -12px 4px 0 8px rgba(255,255,255,0.45)',
-        }} />
-      </div>
-      <div style={{ position: 'absolute', top: '5%', right: '18%', zIndex: 2 }}>
-        <div style={{
-          width: 55, height: 22,
-          background: 'rgba(255,255,255,0.65)',
-          borderRadius: 15,
-          boxShadow: '12px -4px 0 8px rgba(255,255,255,0.45)',
-        }} />
-      </div>
-      <div style={{ position: 'absolute', top: '2%', right: '5%', zIndex: 2 }}>
-        <div style={{
-          width: 35, height: 16,
-          background: 'rgba(255,255,255,0.5)',
-          borderRadius: 10,
-        }} />
-      </div>
-
-      {/* Distant hills */}
+      {/* Cyan block bottom-left */}
       <div style={{
         position: 'absolute',
-        top: '10%',
-        left: '-10%',
-        width: '70%',
-        height: 80,
-        background: 'linear-gradient(180deg, #7a9e5a 0%, #8fad6a 100%)',
-        borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+        bottom: 0, left: 0,
+        width: '65%', height: '62%',
+        background: '#00ccff',
+        clipPath: 'polygon(0 28%, 72% 0, 100% 100%, 0 100%)',
         zIndex: 1,
-        opacity: 0.55,
+        backgroundImage: patternUrl,
       }} />
+
+      {/* Orange block right */}
       <div style={{
         position: 'absolute',
-        top: '8%',
-        right: '-5%',
-        width: '55%',
-        height: 70,
-        background: 'linear-gradient(180deg, #7a9e5a 0%, #8fad6a 100%)',
-        borderRadius: '50% 50% 0 0 / 100% 100% 0 0',
+        top: 0, right: 0,
+        width: '18%', height: '100%',
+        background: '#ff5500',
         zIndex: 1,
-        opacity: 0.45,
+        backgroundImage: patternUrl,
       }} />
-
-      {/* Ground terrain */}
-      <div style={{
-        position: 'absolute',
-        top: '18%',
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: 'linear-gradient(180deg, #c8c890 0%, #d4b896 35%, #c8a870 100%)',
-        zIndex: 2,
-      }} />
-
-      {/* Grass patches */}
-      <div style={{
-        position: 'absolute',
-        top: '18%',
-        left: 0,
-        right: 0,
-        height: '12%',
-        background: 'linear-gradient(180deg, #a8c47a 0%, #c8c890 100%)',
-        zIndex: 2,
-        opacity: 0.7,
-      }} />
-
-      {/* Paths */}
-      <div style={{
-        position: 'absolute',
-        top: '44%',
-        left: '28%',
-        width: '44%',
-        height: '7%',
-        background: 'rgba(196,168,120,0.55)',
-        transform: 'skewX(-18deg)',
-        zIndex: 3,
-        borderRadius: 6,
-      }} />
-      <div style={{
-        position: 'absolute',
-        top: '28%',
-        left: '18%',
-        width: '6%',
-        height: '42%',
-        background: 'rgba(196,168,120,0.45)',
-        transform: 'skewY(-8deg)',
-        zIndex: 3,
-      }} />
-
-      {/* Fence */}
-      <div style={{
-        position: 'absolute',
-        top: '66%',
-        left: '6%',
-        width: '20%',
-        height: 3,
-        background: '#8B5E3C',
-        zIndex: 4,
-        borderRadius: 2,
-      }} />
-      {[0, 14, 28, 42, 56, 70, 84, 98].map((pct) => (
-        <div key={pct} style={{
-          position: 'absolute',
-          top: '64%',
-          left: `${6 + pct * 0.2}%`,
-          width: 3,
-          height: 16,
-          background: '#8B5E3C',
-          zIndex: 4,
-          borderRadius: 1,
-        }} />
-      ))}
-
-      {/* Haystacks */}
-      {haystacks.map((h) => (
-        <div key={h.id} style={{ position: 'absolute', ...h.style, zIndex: 3 }}>
-          <div style={{
-            width: 24, height: 20,
-            background: 'radial-gradient(ellipse, #e0b840 60%, #c89820 100%)',
-            borderRadius: '50% 50% 40% 40%',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-          }} />
-        </div>
-      ))}
-
-      {/* Trees */}
-      {trees.map((t) => (
-        <div key={t.id} style={{ position: 'absolute', ...t.style, zIndex: 3 }}>
-          <Tree size={t.size} />
-        </div>
-      ))}
 
       {/* Buildings */}
       {buildings.map((b) => (
@@ -359,16 +167,13 @@ const IsometricBoard = () => {
 
       {/* Characters */}
       {characters.map((c) => (
-        <div
-          key={c.id}
-          style={{
-            position: 'absolute',
-            ...c.style,
-            fontSize: c.size,
-            zIndex: 8,
-            filter: 'drop-shadow(1px 2px 3px rgba(0,0,0,0.3))',
-          }}
-        >
+        <div key={c.id} style={{
+          position: 'absolute',
+          ...c.style,
+          fontSize: c.size,
+          zIndex: 8,
+          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.5))',
+        }}>
           {c.emoji}
         </div>
       ))}
@@ -376,4 +181,4 @@ const IsometricBoard = () => {
   );
 };
 
-export default IsometricBoard;
+export default GeometricBoard;

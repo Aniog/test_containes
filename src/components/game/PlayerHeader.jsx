@@ -15,14 +15,16 @@ const PlayerHeader = ({ name = 'Kawshar', multiplier = 10 }) => {
     >
       <div
         style={{
-          background: 'rgba(255,255,255,0.95)',
+          background: 'rgba(200,200,240,0.28)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
           borderRadius: 20,
-          border: '2px solid #d4b896',
-          padding: '8px 16px 8px 8px',
+          border: '1.5px solid rgba(255,255,255,0.35)',
+          padding: '8px 14px 8px 8px',
           display: 'flex',
           alignItems: 'center',
           gap: 12,
-          boxShadow: '0 4px 16px rgba(0,0,0,0.15)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2)',
         }}
       >
         {/* Avatar */}
@@ -31,15 +33,15 @@ const PlayerHeader = ({ name = 'Kawshar', multiplier = 10 }) => {
             width: 52,
             height: 52,
             borderRadius: '50%',
-            border: '3px solid #d4b896',
-            background: 'linear-gradient(135deg, #c8a870, #a08050)',
+            border: '2.5px solid rgba(255,255,255,0.6)',
+            background: 'linear-gradient(135deg, #6600ff, #00ccff)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: 26,
             flexShrink: 0,
             overflow: 'hidden',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+            boxShadow: '0 2px 10px rgba(0,0,0,0.3)',
           }}
         >
           👩
@@ -49,10 +51,12 @@ const PlayerHeader = ({ name = 'Kawshar', multiplier = 10 }) => {
         <div style={{ flex: 1 }}>
           <span
             style={{
-              fontWeight: 700,
+              fontWeight: 800,
               fontSize: 17,
-              color: '#2a2a2a',
+              color: '#ffffff',
               fontFamily: 'Inter, system-ui, sans-serif',
+              textShadow: '0 1px 4px rgba(0,0,0,0.4)',
+              letterSpacing: 0.3,
             }}
           >
             {name}的棋盘
@@ -62,18 +66,18 @@ const PlayerHeader = ({ name = 'Kawshar', multiplier = 10 }) => {
         {/* Multiplier badge */}
         <div
           style={{
-            background: '#f5a623',
+            background: '#ff5500',
             borderRadius: 12,
             padding: '5px 14px',
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
-            boxShadow: '0 2px 6px rgba(245,166,35,0.4)',
+            boxShadow: '0 2px 8px rgba(255,85,0,0.5)',
+            border: '1.5px solid rgba(255,120,50,0.6)',
           }}
         >
           <span
             style={{
-              fontWeight: 800,
+              fontWeight: 900,
               fontSize: 18,
               color: '#fff',
               fontFamily: 'Inter, system-ui, sans-serif',
@@ -89,3 +93,4 @@ const PlayerHeader = ({ name = 'Kawshar', multiplier = 10 }) => {
 };
 
 export default PlayerHeader;
+

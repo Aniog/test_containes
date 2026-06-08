@@ -1,47 +1,52 @@
 # Design System
 
 ## Theme
-Mobile game UI inspired by Monopoly GO — isometric village board game aesthetic.
-Warm sandy tones, soft greens, sky blue backgrounds, golden accents.
+Bold geometric style inspired by vibrant flat design — large color blocks, concentric square texture, frosted glass UI panels.
 
 ## Colors
-- Background sky: `bg-[#a8d8e8]` / `#a8d8e8`
-- Ground/terrain: `bg-[#d4b896]` / `#d4b896`
-- Grass green: `bg-[#8fad6a]` / `#8fad6a`
-- Header card bg: `bg-white`
-- Header border: `border-[#d4b896]`
-- Multiplier badge: `bg-[#f5a623]` text-white
-- Bottom button: `bg-[#d4b896]` border `border-[#c4a070]` text-[#5a3e1b]
-- Glow ring: white with pink/red inner glow
-- Building highlight ring: animated white dashed circle with pink glow
+- Background base: `#5555cc` (blue-purple)
+- Pattern overlay: concentric squares, slightly darker/lighter than base
+- Purple block: `#6600ff`
+- Cyan block: `#00ccff`
+- Orange block: `#ff5500`
+- Frosted panel: `rgba(180,180,220,0.35)` with backdrop blur
+- Text primary: `#111111`
+- Text on dark: `#ffffff`
+- Multiplier badge: `#ff5500` (orange)
+- Bottom button: `#ff5500` or `#6600ff`
 
 ## Typography
 - Font: Inter, system-ui
-- Player name: `font-bold text-lg text-gray-800`
-- Button text: `text-lg font-medium text-[#5a3e1b]`
-- Badge text: `font-bold text-white text-xl`
+- Player name: `font-bold text-2xl text-gray-900`
+- Button text: `font-bold text-white text-xl tracking-wide`
+- Badge text: `font-extrabold text-white text-2xl`
 
 ## Borders & Radius
-- Header card: `rounded-2xl border-2`
-- Bottom button: `rounded-full border-2`
-- Avatar: `rounded-full border-4 border-[#d4b896]`
-- Multiplier badge: `rounded-xl px-3 py-1`
+- Header panel: frosted glass, `rounded-2xl`
+- Bottom button: `rounded-full`
+- Building cards: `rounded-xl` with bold color borders
 
-## Spacing
-- Header padding: `px-4 py-3`
-- Screen padding: `px-4`
+## Pattern
+- Repeating concentric squares SVG pattern on blue-purple background
+- Each cell ~36px, nested squares with subtle opacity difference
+
+## Geometric Shapes
+- Top-left: large purple diagonal triangle/block
+- Bottom-left: large cyan curved/diagonal block
+- Right side: tall orange vertical block
+- Shapes use CSS clip-path or absolute positioned divs
 
 ## Animations
-- Building ring: pulse + rotate animation (CSS keyframes)
-- Glow effect: box-shadow with pink/white colors
+- Building ring: rotate + pulse (same as before, but white/bright)
+- Shapes: static, no animation needed
 
 ## Do's
-- Use warm earthy tones for ground and UI elements
-- Use golden/amber for interactive badges and highlights
-- Keep the isometric perspective feel with CSS transforms
-- Animate the targeting rings on buildings
+- Use bold, saturated colors
+- Large geometric shapes as background decoration
+- Frosted glass for UI panels
+- High contrast text
 
 ## Don'ts
-- No dark mode
-- No flat/minimal design — keep the game-like richness
-- No sharp corners on UI cards
+- No earthy/sandy tones
+- No soft gradients
+- No rounded organic shapes for backgrounds
