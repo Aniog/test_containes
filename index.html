@@ -4,386 +4,2078 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+    <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required." />
+    <link rel="canonical" href="https://www.strikingly.com/generators" />
+    <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly" />
+    <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds." />
+    <meta property="og:url" content="https://www.strikingly.com/generators" />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <!-- BreadcrumbList JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strikingly",
+          "item": "https://www.strikingly.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AI Generators"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+      /* ======================================================
+         RESET & BASE
+         ====================================================== */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --brand-purple: #8159BB;
+        --ai-gradient: linear-gradient(135deg, #7671FF, #CB0C9F);
+        --body-text: #636972;
+        --headings-gray: #4B5056;
+        --hero-h1-dark: #2E2E2F;
+        --card-border: #C6C9CD;
+        --subtle-divider: #E2E4E7;
+        --light-bg: #F4F6F8;
+        --white: #FFFFFF;
+        --max-width: 1200px;
+        --heading-font: 'Josefin Sans', 'Poppins', sans-serif;
+        --body-font: 'Open Sans', sans-serif;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--body-font);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--body-text);
+        background-color: var(--white);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img, svg {
+        display: block;
+        max-width: 100%;
+      }
+
+      button {
+        font-family: inherit;
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      /* ======================================================
+         TYPOGRAPHY
+         ====================================================== */
+      .heading-font {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      h1, h2, h3, h4, .btn-text {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 44px;
+        letter-spacing: 0.02em;
+        line-height: 1.15;
+      }
+
+      h2 {
+        font-size: 28px;
+        letter-spacing: 0.04em;
+        color: var(--headings-gray);
+        margin-block-end: 8px;
+      }
+
+      h3 {
+        font-size: 20px;
+        letter-spacing: 0.04em;
+        color: var(--headings-gray);
+      }
+
+      .section-sub {
+        color: var(--body-text);
+        font-size: 14px;
+        margin-block-end: 30px;
+        max-width: 600px;
+      }
+
+      .text-gradient {
+        background: var(--ai-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+      }
+
+      /* ======================================================
+         LAYOUT
+         ====================================================== */
+      .container {
+        max-width: var(--max-width);
+        margin-inline: auto;
+        padding-inline: 20px;
+      }
+
+      .section {
+        padding-block: 40px;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-block-end: 30px;
+      }
+
+      .section-header .section-sub {
+        margin-inline: auto;
+      }
+
+      /* ======================================================
+         BUTTONS
+         ====================================================== */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--heading-font);
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+        height: 36px;
+        padding: 0 15px;
+        border-radius: 4px;
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+        transition: box-shadow 0.15s, opacity 0.15s;
+        line-height: 1;
+      }
+
+      .btn-primary {
+        background: var(--ai-gradient);
+        color: var(--white);
+      }
+
+      .btn-primary:hover {
+        opacity: 0.92;
+        box-shadow: 0 2px 8px rgba(118, 113, 255, 0.3);
+      }
+
+      .btn-primary:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      .btn-ghost {
+        background: transparent;
+        color: var(--brand-purple);
+        border: 1px solid var(--brand-purple);
+      }
+
+      .btn-ghost:hover {
+        background: rgba(129, 89, 187, 0.06);
+      }
+
+      .btn-ghost:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      .btn-large {
+        height: 44px;
+        padding: 0 20px;
+        font-size: 15px;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      /* ======================================================
+         TOP BAR
+         ====================================================== */
+      .top-bar {
+        border-bottom: 1px solid var(--subtle-divider);
+        background: var(--white);
+      }
+
+      .top-bar .container {
+        display: flex;
+        align-items: center;
+        height: 56px;
+      }
+
+      .top-bar-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 18px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--headings-gray);
+      }
+
+      .top-bar-logo svg {
+        width: 24px;
+        height: 24px;
+      }
+
+      /* ======================================================
+         BREADCRUMB
+         ====================================================== */
+      .breadcrumb {
+        padding-block: 12px;
+        border-bottom: 1px solid var(--subtle-divider);
+      }
+
+      .breadcrumb ol {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        list-style: none;
+        font-size: 13px;
+        color: var(--body-text);
+      }
+
+      .breadcrumb a {
+        color: var(--brand-purple);
+      }
+
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+
+      .breadcrumb-sep {
+        color: var(--body-text);
+        font-size: 12px;
+      }
+
+      /* ======================================================
+         HERO
+         ====================================================== */
+      .hero {
+        padding-block: 70px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(ellipse 60% 50% at 10% 50%, rgba(118, 113, 255, 0.05) 0%, transparent 70%),
+          radial-gradient(ellipse 50% 40% at 90% 50%, rgba(203, 12, 159, 0.04) 0%, transparent 70%);
+      }
+
+      .hero .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .hero h1 {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .hero-h1-line1 {
+        color: var(--hero-h1-dark);
+        font-size: inherit;
+      }
+
+      .hero-h1-line2 {
+        font-size: inherit;
+      }
+
+      .hero-sub {
+        font-size: 15px;
+        color: var(--body-text);
+        max-width: 480px;
+        line-height: 1.6;
+      }
+
+      .hero-illustration {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .hero-illustration svg {
+        width: 100%;
+        max-width: 480px;
+        height: auto;
+      }
+
+      /* ======================================================
+         FEATURED GENERATORS
+         ====================================================== */
+      .featured-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--white);
+        border: 1px solid var(--card-border);
+        border-radius: 3px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: box-shadow 0.2s, border-color 0.2s;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: var(--brand-purple);
+      }
+
+      .card:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      .card-name {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--hero-h1-dark);
+      }
+
+      .card-desc {
+        font-size: 13px;
+        color: var(--body-text);
+        line-height: 1.5;
+      }
+
+      .card-tag {
+        display: inline-block;
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--brand-purple);
+        border: 1px solid var(--brand-purple);
+        border-radius: 3px;
+        padding: 2px 6px;
+        align-self: flex-start;
+        line-height: 1.3;
+      }
+
+      .card-thumb {
+        width: 32px;
+        height: 32px;
+        margin-block-end: 4px;
+        color: var(--brand-purple);
+        opacity: 0.7;
+      }
+
+      /* ======================================================
+         BROWSE BY CATEGORY
+         ====================================================== */
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+
+      .category-card {
+        background: var(--white);
+        border: 1px solid var(--card-border);
+        border-radius: 3px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        transition: box-shadow 0.2s, border-color 0.2s;
+      }
+
+      .category-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-color: var(--brand-purple);
+      }
+
+      .category-card:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      .category-card-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .category-card-title span {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--hero-h1-dark);
+      }
+
+      .category-card-title svg {
+        width: 16px;
+        height: 16px;
+        color: var(--brand-purple);
+        flex-shrink: 0;
+      }
+
+      .category-card-desc {
+        font-size: 13px;
+        color: var(--body-text);
+      }
+
+      .cat-icon {
+        width: 28px;
+        height: 28px;
+        color: var(--brand-purple);
+        margin-block-end: 4px;
+      }
+
+      /* ======================================================
+         ALL GENERATORS DIRECTORY
+         ====================================================== */
+      .directory-section {
+        background: var(--light-bg);
+        padding-block: 40px;
+      }
+
+      .search-area {
+        margin-block-end: 30px;
+      }
+
+      .search-wrapper {
+        display: flex;
+        align-items: center;
+        max-width: 480px;
+        width: 100%;
+        border: 1px solid var(--card-border);
+        border-radius: 4px;
+        background: var(--white);
+        padding: 0 12px;
+        gap: 8px;
+      }
+
+      .search-wrapper:focus-within {
+        border-color: var(--brand-purple);
+        box-shadow: 0 0 0 2px rgba(129, 89, 187, 0.15);
+      }
+
+      .search-wrapper svg {
+        width: 16px;
+        height: 16px;
+        color: var(--body-text);
+        flex-shrink: 0;
+      }
+
+      .search-wrapper input {
+        flex: 1;
+        height: 40px;
+        border: none;
+        outline: none;
+        font-family: var(--body-font);
+        font-size: 14px;
+        color: var(--hero-h1-dark);
+        background: transparent;
+      }
+
+      .search-wrapper input::placeholder {
+        color: var(--body-text);
+        opacity: 0.6;
+      }
+
+      .search-count {
+        font-size: 13px;
+        color: var(--body-text);
+        margin-block-start: 8px;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--body-text);
+      }
+
+      .empty-state p {
+        margin-block-end: 16px;
+      }
+
+      .empty-state a {
+        color: var(--brand-purple);
+        text-decoration: underline;
+      }
+
+      .subsection {
+        margin-block-end: 30px;
+      }
+
+      .subsection-header {
+        margin-block-end: 16px;
+      }
+
+      .subsection-header h3 {
+        margin-block-end: 4px;
+      }
+
+      .subsection-header p {
+        font-size: 13px;
+        color: var(--body-text);
+      }
+
+      .generator-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .generator-card {
+        background: var(--white);
+        border: 1px solid var(--card-border);
+        border-radius: 3px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        transition: box-shadow 0.2s, border-color 0.2s;
+      }
+
+      .generator-card:hover {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.07);
+        border-color: var(--brand-purple);
+      }
+
+      .generator-card:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      .generator-card .card-thumb {
+        width: 28px;
+        height: 28px;
+      }
+
+      .generator-card .card-name {
+        font-size: 14px;
+      }
+
+      .generator-card .card-desc {
+        font-size: 12px;
+      }
+
+      /* Show-all toggle */
+      .show-all-wrapper {
+        text-align: center;
+        margin-block-start: 12px;
+      }
+
+      .show-all-btn {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--brand-purple);
+        background: none;
+        border: 1px solid var(--brand-purple);
+        border-radius: 3px;
+        padding: 6px 14px;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+
+      .show-all-btn:hover {
+        background: rgba(129, 89, 187, 0.06);
+      }
+
+      .show-all-btn:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      /* Collapsible wrapping */
+      .generator-grid-wrapper {
+        overflow: hidden;
+        transition: max-height 0.35s ease;
+      }
+
+      /* ======================================================
+         HOW IT WORKS
+         ====================================================== */
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        text-align: center;
+      }
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .step-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--brand-purple);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      .step-title {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--hero-h1-dark);
+      }
+
+      .step-desc {
+        font-size: 14px;
+        color: var(--body-text);
+        max-width: 280px;
+        line-height: 1.6;
+      }
+
+      /* ======================================================
+         WHY STRIKINGLY
+         ====================================================== */
+      .why-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        text-align: center;
+      }
+
+      .why-cell {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .why-icon {
+        width: 32px;
+        height: 32px;
+        color: var(--brand-purple);
+      }
+
+      .why-title {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--hero-h1-dark);
+      }
+
+      .why-desc {
+        font-size: 14px;
+        color: var(--body-text);
+        max-width: 280px;
+        line-height: 1.6;
+      }
+
+      /* ======================================================
+         FAQ
+         ====================================================== */
+      .faq-list {
+        max-width: 720px;
+        margin-inline: auto;
+      }
+
+      .faq-item {
+        border-bottom: 1px solid var(--subtle-divider);
+      }
+
+      .faq-item:first-child {
+        border-top: 1px solid var(--subtle-divider);
+      }
+
+      .faq-question {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+        color: var(--hero-h1-dark);
+        text-align: start;
+        background: none;
+        border: none;
+        cursor: pointer;
+        gap: 12px;
+      }
+
+      .faq-question:hover {
+        color: var(--brand-purple);
+      }
+
+      .faq-question:focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: -2px;
+      }
+
+      .faq-icon {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+        transition: transform 0.2s;
+        color: var(--brand-purple);
+      }
+
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+      }
+
+      .faq-item.open .faq-answer {
+        max-height: 300px;
+        padding-block-end: 18px;
+      }
+
+      .faq-answer p {
+        font-size: 14px;
+        color: var(--body-text);
+        line-height: 1.7;
+      }
+
+      .faq-answer p + p {
+        margin-block-start: 10px;
+      }
+
+      /* ======================================================
+         CLOSING CTA
+         ====================================================== */
+      .closing-cta {
+        text-align: center;
+        padding-block: 60px;
+      }
+
+      .closing-cta h2 {
+        margin-block-end: 8px;
+      }
+
+      .closing-cta p {
+        font-size: 15px;
+        color: var(--body-text);
+        margin-block-end: 20px;
+      }
+
+      /* ======================================================
+         FOOTER
+         ====================================================== */
+      .site-footer {
+        background: var(--light-bg);
+        border-top: 1px solid var(--subtle-divider);
+        padding-block: 40px 20px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+        gap: 30px;
+        margin-block-end: 30px;
+      }
+
+      .footer-col h4 {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--headings-gray);
+        margin-block-end: 12px;
+      }
+
+      .footer-col ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .footer-col a {
+        font-size: 13px;
+        color: var(--body-text);
+      }
+
+      .footer-col a:hover {
+        color: var(--brand-purple);
+      }
+
+      .footer-logo {
+        font-family: var(--heading-font);
+        font-weight: 700;
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--headings-gray);
+        margin-block-end: 8px;
+      }
+
+      .footer-col p {
+        font-size: 13px;
+        color: var(--body-text);
+        line-height: 1.6;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid var(--subtle-divider);
+        padding-block-start: 16px;
+        text-align: center;
+        font-size: 12px;
+        color: var(--body-text);
+      }
+
+      /* ======================================================
+         RESPONSIVE
+         ====================================================== */
+      @media (max-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 30px;
+        }
+
+        h2 {
+          font-size: 24px;
+        }
+
+        .hero {
+          padding-block: 50px;
+        }
+
+        .hero .container {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+
+        .hero-content {
+          order: 1;
+        }
+
+        .hero-illustration {
+          order: 0;
+          max-width: 280px;
+          margin-inline: auto;
+        }
+
+        .hero-sub {
+          max-width: 100%;
+        }
+
+        .featured-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .category-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .generator-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .steps-grid,
+        .why-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .step-desc,
+        .why-desc {
+          max-width: 100%;
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .btn-group {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding-inline: 16px;
+        }
+
+        .featured-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .category-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .generator-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-block: 40px;
+        }
+
+        h1 {
+          font-size: 26px;
+        }
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .btn-group {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .btn-group .btn {
+          width: 100%;
+        }
+
+        .search-wrapper {
+          max-width: 100%;
+        }
+      }
+
+      /* Focus visible for keyboard users */
+      :focus-visible {
+        outline: 2px solid var(--brand-purple);
+        outline-offset: 2px;
+      }
+
+      /* Skip link */
+      .skip-link {
+        position: absolute;
+        top: -100%;
+        inset-inline-start: 8px;
+        padding: 8px 16px;
+        background: var(--brand-purple);
+        color: var(--white);
+        z-index: 100;
+        font-family: var(--body-font);
+        font-size: 14px;
+        border-radius: 3px;
+      }
+
+      .skip-link:focus {
+        top: 8px;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- Skip link -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <!-- ======================================================
+    SECTION 0: TOP BAR
+    ====================================================== -->
+    <header class="top-bar" role="banner">
+      <div class="container">
+        <a href="/" class="top-bar-logo" aria-label="Strikingly AI home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" width="24" height="24">
+            <rect x="2" y="2" width="20" height="20" rx="4" fill="url(#ai-logo-grad)" />
+            <path d="M7 16l3-8 3 8" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M14 16l2-6 2 6" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <defs><linearGradient id="ai-logo-grad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7671FF"/><stop offset="1" stop-color="#CB0C9F"/></linearGradient></defs>
+          </svg>
+          strikingly AI
+        </a>
+      </div>
+    </header>
+
+    <!-- ======================================================
+    SECTION 1: BREADCRUMB
+    ====================================================== -->
+    <nav aria-label="Breadcrumb" class="breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="/">Strikingly</a></li>
+          <li class="breadcrumb-sep" aria-hidden="true">&gt;</li>
+          <li aria-current="page">AI Generators</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- ======================================================
+    SECTION 2: HERO
+    ====================================================== -->
+    <main id="main-content">
+      <section class="hero" aria-label="Hero">
+        <div class="container">
+          <div class="hero-content">
+            <h1>
+              <span class="hero-h1-line1">BUILD ANY KIND OF SITE</span>
+              <span class="hero-h1-line2 text-gradient">WITH AI, IN AN INSTANT</span>
+            </h1>
+            <p class="hero-sub">
+              Browse the right generator for what you're building, or jump straight into our AI site builder.
+            </p>
+            <div class="btn-group">
+              <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START BUILDING - IT'S FREE</a>
+              <a href="#all-generators" class="btn btn-ghost btn-large">BROWSE GENERATORS</a>
+            </div>
+          </div>
+          <div class="hero-illustration" aria-hidden="true">
+            <svg viewBox="0 0 480 380" fill="none" xmlns="http://www.w3.org/2000/svg" width="480" height="380">
+              <!-- Browser chrome -->
+              <rect x="40" y="30" width="400" height="300" rx="8" stroke="#8159BB" stroke-width="1.5" fill="none" opacity="0.5"/>
+              <rect x="40" y="30" width="400" height="32" rx="8" stroke="#8159BB" stroke-width="1.5" fill="none" opacity="0.5"/>
+              <circle cx="60" cy="46" r="4" stroke="#8159BB" stroke-width="1" fill="none" opacity="0.4"/>
+              <circle cx="76" cy="46" r="4" stroke="#8159BB" stroke-width="1" fill="none" opacity="0.4"/>
+              <circle cx="92" cy="46" r="4" stroke="#8159BB" stroke-width="1" fill="none" opacity="0.4"/>
+              <!-- Mockup content -->
+              <rect x="80" y="80" width="100" height="16" rx="3" stroke="#8159BB" stroke-width="1" fill="none" opacity="0.4"/>
+              <rect x="80" y="104" width="240" height="8" rx="2" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.25"/>
+              <rect x="80" y="118" width="200" height="8" rx="2" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.25"/>
+              <rect x="80" y="132" width="220" height="8" rx="2" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.25"/>
+              <!-- Mockup card -->
+              <rect x="80" y="160" width="140" height="120" rx="5" stroke="#8159BB" stroke-width="1" fill="none" opacity="0.35"/>
+              <rect x="100" y="178" width="100" height="10" rx="2" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.3"/>
+              <rect x="100" y="196" width="70" height="6" rx="2" stroke="#8159BB" stroke-width="0.6" fill="none" opacity="0.2"/>
+              <rect x="100" y="210" width="85" height="6" rx="2" stroke="#8159BB" stroke-width="0.6" fill="none" opacity="0.2"/>
+              <rect x="100" y="224" width="60" height="6" rx="2" stroke="#8159BB" stroke-width="0.6" fill="none" opacity="0.2"/>
+              <rect x="100" y="250" width="80" height="18" rx="3" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.35"/>
+              <!-- Second mockup card -->
+              <rect x="240" y="160" width="160" height="100" rx="5" stroke="#8159BB" stroke-width="1" fill="none" opacity="0.3"/>
+              <rect x="260" y="178" width="120" height="10" rx="2" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.25"/>
+              <rect x="260" y="196" width="90" height="6" rx="2" stroke="#8159BB" stroke-width="0.6" fill="none" opacity="0.15"/>
+              <rect x="260" y="210" width="60" height="6" rx="2" stroke="#8159BB" stroke-width="0.6" fill="none" opacity="0.15"/>
+              <!-- Bottom bar -->
+              <rect x="300" y="310" width="60" height="6" rx="3" stroke="#8159BB" stroke-width="0.8" fill="none" opacity="0.3"/>
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 3: FEATURED GENERATORS
+      ====================================================== -->
+      <section class="section" aria-labelledby="featured-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="featured-heading">FEATURED GENERATORS</h2>
+            <p class="section-sub">A few common starting points.</p>
+          </div>
+          <div class="featured-grid">
+            <a href="/generators/ai-website-generator" class="card" aria-label="AI Website Generator">
+              <span class="card-name">AI Website Generator</span>
+              <span class="card-desc">Describe your business, get a full site</span>
+              <span class="card-tag">Website</span>
+            </a>
+            <a href="/generators/free-portfolio-generator" class="card" aria-label="Free Portfolio Generator">
+              <span class="card-name">Free Portfolio Generator</span>
+              <span class="card-desc">For creatives, in minutes, no fee</span>
+              <span class="card-tag">Portfolio</span>
+            </a>
+            <a href="/generators/ai-landing-page-maker" class="card" aria-label="AI Landing Page Maker">
+              <span class="card-name">AI Landing Page Maker</span>
+              <span class="card-desc">One-page sites built to convert</span>
+              <span class="card-tag">Landing Page</span>
+            </a>
+            <a href="/generators/online-store-builder" class="card" aria-label="Online Store Builder">
+              <span class="card-name">Online Store Builder</span>
+              <span class="card-desc">Start selling without writing code</span>
+              <span class="card-tag">Store</span>
+            </a>
+            <a href="/generators/link-in-bio-generator" class="card" aria-label="Link-in-Bio Generator">
+              <span class="card-name">Link-in-Bio Generator</span>
+              <span class="card-desc">One link for all your channels</span>
+              <span class="card-tag">Link-in-Bio</span>
+            </a>
+            <a href="/generators/one-page-website-builder" class="card" aria-label="One-Page Website Builder">
+              <span class="card-name">One-Page Website Builder</span>
+              <span class="card-desc">Simple sites, single scroll</span>
+              <span class="card-tag">Website</span>
+            </a>
+            <a href="/generators/wedding-website-generator" class="card" aria-label="Wedding Website Generator">
+              <span class="card-name">Wedding Website Generator</span>
+              <span class="card-desc">Share your day with guests</span>
+              <span class="card-tag">Website</span>
+            </a>
+            <a href="/generators/restaurant-website-builder" class="card" aria-label="Restaurant Website Builder">
+              <span class="card-name">Restaurant Website Builder</span>
+              <span class="card-desc">Menu, hours, reservations, done</span>
+              <span class="card-tag">Website</span>
+            </a>
+            <a href="/generators/blog-generator-for-beginners" class="card" aria-label="Blog Generator for Beginners">
+              <span class="card-name">Blog Generator for Beginners</span>
+              <span class="card-desc">Publish-ready in minutes</span>
+              <span class="card-tag">Blog</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 4: BROWSE BY CATEGORY
+      ====================================================== -->
+      <section class="section" aria-labelledby="browse-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="browse-heading">BROWSE BY CATEGORY</h2>
+            <p class="section-sub">Jump to the generator type you need.</p>
+          </div>
+          <div class="category-grid">
+            <a href="/generators/#websites" class="category-card" aria-label="Websites">
+              <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <div class="category-card-title">
+                <span>Websites</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="category-card-desc">AI-built business and personal sites for any goal.</p>
+            </a>
+            <a href="/generators/#landing-pages" class="category-card" aria-label="Landing Pages">
+              <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              <div class="category-card-title">
+                <span>Landing Pages</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="category-card-desc">Single-page sites built to convert visitors fast.</p>
+            </a>
+            <a href="/generators/#portfolios" class="category-card" aria-label="Portfolios">
+              <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="category-card-title">
+                <span>Portfolios</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="category-card-desc">Showcase your work with a clean, focused site.</p>
+            </a>
+            <a href="/generators/#blogs" class="category-card" aria-label="Blogs">
+              <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+              <div class="category-card-title">
+                <span>Blogs</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="category-card-desc">Publish-ready blogs with built-in SEO basics.</p>
+            </a>
+            <a href="/generators/#stores" class="category-card" aria-label="Online Stores">
+              <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              <div class="category-card-title">
+                <span>Online Stores</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="category-card-desc">Sell products online with payments built in.</p>
+            </a>
+            <a href="/generators/#link-in-bio" class="category-card" aria-label="Link-in-Bio">
+              <svg class="cat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+              <div class="category-card-title">
+                <span>Link-in-Bio</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </div>
+              <p class="category-card-desc">One link, all your places. Made for creators.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 5: ALL GENERATORS DIRECTORY
+      ====================================================== -->
+      <section class="directory-section" id="all-generators" aria-labelledby="directory-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="directory-heading">ALL GENERATORS</h2>
+            <p class="section-sub">Sixty-plus generators, organized by what you're building.</p>
+          </div>
+
+          <div class="search-area">
+            <div class="search-wrapper">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="generator-search" aria-label="Search generators" placeholder="Search generators..." autocomplete="off" />
+            </div>
+            <div class="search-count" id="search-count" aria-live="polite"></div>
+          </div>
+
+          <div id="directory-empty" class="empty-state" style="display:none;">
+            <p>No generators match your search.</p>
+            <button class="btn btn-ghost" id="clear-search" style="margin-block-end:12px;">Clear search</button>
+            <p>Can't find it? <a href="/s/ai_site_builder">Start with our AI builder.</a></p>
+          </div>
+
+          <!-- WEBSITES SUBSECTION -->
+          <div class="subsection" id="websites" data-category="websites">
+            <div class="subsection-header">
+              <h3>Websites</h3>
+              <p>AI-built business and personal sites for any goal.</p>
+            </div>
+            <div class="generator-grid-wrapper" id="wrapper-websites">
+              <div class="generator-grid" id="grid-websites">
+                <a href="/generators/ai-website-generator" class="generator-card" data-name="AI Website Generator" data-desc="Describe your business, get a full site" data-category="websites" aria-label="AI Website Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">AI Website Generator</span>
+                  <span class="card-desc">Describe your business, get a full site</span>
+                </a>
+                <a href="/generators/free-website-builder-for-photographers" class="generator-card" data-name="Free Website Builder for Photographers" data-desc="Showcase your portfolio with an AI-built site" data-category="websites" aria-label="Free Website Builder for Photographers">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Free Website Builder for Photographers</span>
+                  <span class="card-desc">Showcase your portfolio with an AI-built site</span>
+                </a>
+                <a href="/generators/restaurant-website-builder" class="generator-card" data-name="Restaurant Website Builder" data-desc="Menu, hours, reservations, done" data-category="websites" aria-label="Restaurant Website Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Restaurant Website Builder</span>
+                  <span class="card-desc">Menu, hours, reservations, done</span>
+                </a>
+                <a href="/generators/wedding-website-generator" class="generator-card" data-name="Wedding Website Generator" data-desc="Share your day with guests" data-category="websites" aria-label="Wedding Website Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Wedding Website Generator</span>
+                  <span class="card-desc">Share your day with guests</span>
+                </a>
+                <a href="/generators/one-page-website-builder" class="generator-card" data-name="One-Page Website Builder" data-desc="Simple sites, single scroll" data-category="websites" aria-label="One-Page Website Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">One-Page Website Builder</span>
+                  <span class="card-desc">Simple sites, single scroll</span>
+                </a>
+                <a href="/generators/small-business-website-generator" class="generator-card" data-name="Small Business Website Generator" data-desc="Launch a professional business site fast" data-category="websites" aria-label="Small Business Website Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Small Business Website Generator</span>
+                  <span class="card-desc">Launch a professional business site fast</span>
+                </a>
+                <a href="/generators/no-code-website-builder" class="generator-card" data-name="No-Code Website Builder" data-desc="Build without writing a single line of code" data-category="websites" aria-label="No-Code Website Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">No-Code Website Builder</span>
+                  <span class="card-desc">Build without writing a single line of code</span>
+                </a>
+                <a href="/generators/ai-website-builder-for-freelancers" class="generator-card" data-name="AI Website Builder for Freelancers" data-desc="Get a portfolio site that sells your services" data-category="websites" aria-label="AI Website Builder for Freelancers">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">AI Website Builder for Freelancers</span>
+                  <span class="card-desc">Get a portfolio site that sells your services</span>
+                </a>
+                <a href="/generators/yoga-instructor-website-builder" class="generator-card" data-name="Yoga Instructor Website Builder" data-desc="Share classes, schedules, and philosophy" data-category="websites" aria-label="Yoga Instructor Website Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Yoga Instructor Website Builder</span>
+                  <span class="card-desc">Share classes, schedules, and philosophy</span>
+                </a>
+                <a href="/generators/beautiful-website-generator" class="generator-card" data-name="Beautiful Website Generator" data-desc="Design-focused sites that impress visitors" data-category="websites" aria-label="Beautiful Website Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Beautiful Website Generator</span>
+                  <span class="card-desc">Design-focused sites that impress visitors</span>
+                </a>
+                <a href="/generators/online-store-builder-for-restaurants" class="generator-card" data-name="Online Store Builder for Restaurants" data-desc="Sell meals, merch, and gift cards online" data-category="websites" aria-label="Online Store Builder for Restaurants">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                  <span class="card-name">Online Store Builder for Restaurants</span>
+                  <span class="card-desc">Sell meals, merch, and gift cards online</span>
+                </a>
+              </div>
+            </div>
+            <div class="show-all-wrapper">
+              <button class="show-all-btn" aria-expanded="false" aria-controls="grid-websites" data-target="grid-websites" data-wrapper="wrapper-websites" data-count="11">Show all 11 generators</button>
+            </div>
+          </div>
+
+          <!-- LANDING PAGES SUBSECTION -->
+          <div class="subsection" id="landing-pages" data-category="landing-pages">
+            <div class="subsection-header">
+              <h3>Landing Pages</h3>
+              <p>Single-page sites built to convert visitors fast.</p>
+            </div>
+            <div class="generator-grid-wrapper" id="wrapper-landing-pages">
+              <div class="generator-grid" id="grid-landing-pages">
+                <a href="/generators/ai-landing-page-maker" class="generator-card" data-name="AI Landing Page Maker" data-desc="One-page sites built to convert" data-category="landing-pages" aria-label="AI Landing Page Maker">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">AI Landing Page Maker</span>
+                  <span class="card-desc">One-page sites built to convert</span>
+                </a>
+                <a href="/generators/free-landing-page-builder" class="generator-card" data-name="Free Landing Page Builder" data-desc="Create high-converting pages at no cost" data-category="landing-pages" aria-label="Free Landing Page Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Free Landing Page Builder</span>
+                  <span class="card-desc">Create high-converting pages at no cost</span>
+                </a>
+                <a href="/generators/sales-page-generator" class="generator-card" data-name="Sales Page Generator" data-desc="Persuasive pages designed to drive revenue" data-category="landing-pages" aria-label="Sales Page Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Sales Page Generator</span>
+                  <span class="card-desc">Persuasive pages designed to drive revenue</span>
+                </a>
+                <a href="/generators/product-launch-page-generator" class="generator-card" data-name="Product Launch Page Generator" data-desc="Generate buzz for your next release" data-category="landing-pages" aria-label="Product Launch Page Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Product Launch Page Generator</span>
+                  <span class="card-desc">Generate buzz for your next release</span>
+                </a>
+                <a href="/generators/lead-generation-landing-page" class="generator-card" data-name="Lead Generation Landing Page" data-desc="Capture emails and grow your audience" data-category="landing-pages" aria-label="Lead Generation Landing Page">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Lead Generation Landing Page</span>
+                  <span class="card-desc">Capture emails and grow your audience</span>
+                </a>
+                <a href="/generators/event-landing-page-generator" class="generator-card" data-name="Event Landing Page Generator" data-desc="Promote webinars, workshops, and events" data-category="landing-pages" aria-label="Event Landing Page Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Event Landing Page Generator</span>
+                  <span class="card-desc">Promote webinars, workshops, and events</span>
+                </a>
+                <a href="/generators/squeeze-page-builder" class="generator-card" data-name="Squeeze Page Builder" data-desc="Ultra-focused pages for email captures" data-category="landing-pages" aria-label="Squeeze Page Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Squeeze Page Builder</span>
+                  <span class="card-desc">Ultra-focused pages for email captures</span>
+                </a>
+                <a href="/generators/coming-soon-page-generator" class="generator-card" data-name="Coming Soon Page Generator" data-desc="Build anticipation before you launch" data-category="landing-pages" aria-label="Coming Soon Page Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Coming Soon Page Generator</span>
+                  <span class="card-desc">Build anticipation before you launch</span>
+                </a>
+                <a href="/generators/mobile-landing-page-builder" class="generator-card" data-name="Mobile Landing Page Builder" data-desc="Mobile-first pages that load instantly" data-category="landing-pages" aria-label="Mobile Landing Page Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  <span class="card-name">Mobile Landing Page Builder</span>
+                  <span class="card-desc">Mobile-first pages that load instantly</span>
+                </a>
+              </div>
+            </div>
+            <div class="show-all-wrapper">
+              <button class="show-all-btn" aria-expanded="false" aria-controls="grid-landing-pages" data-target="grid-landing-pages" data-wrapper="wrapper-landing-pages" data-count="9">Show all 9 generators</button>
+            </div>
+          </div>
+
+          <!-- PORTFOLIOS SUBSECTION -->
+          <div class="subsection" id="portfolios" data-category="portfolios">
+            <div class="subsection-header">
+              <h3>Portfolios</h3>
+              <p>Showcase your work with a clean, focused site.</p>
+            </div>
+            <div class="generator-grid-wrapper" id="wrapper-portfolios">
+              <div class="generator-grid" id="grid-portfolios">
+                <a href="/generators/free-portfolio-generator" class="generator-card" data-name="Free Portfolio Generator" data-desc="For creatives, in minutes, no fee" data-category="portfolios" aria-label="Free Portfolio Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Free Portfolio Generator</span>
+                  <span class="card-desc">For creatives, in minutes, no fee</span>
+                </a>
+                <a href="/generators/portfolio-generator-for-designers" class="generator-card" data-name="Portfolio Generator for Designers" data-desc="Showcase your best design work beautifully" data-category="portfolios" aria-label="Portfolio Generator for Designers">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Portfolio Generator for Designers</span>
+                  <span class="card-desc">Showcase your best design work beautifully</span>
+                </a>
+                <a href="/generators/artist-portfolio-website-builder" class="generator-card" data-name="Artist Portfolio Website Builder" data-desc="Display paintings, illustrations, and art" data-category="portfolios" aria-label="Artist Portfolio Website Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Artist Portfolio Website Builder</span>
+                  <span class="card-desc">Display paintings, illustrations, and art</span>
+                </a>
+                <a href="/generators/photographer-portfolio-generator" class="generator-card" data-name="Photographer Portfolio Generator" data-desc="Present your photography in a stunning gallery" data-category="portfolios" aria-label="Photographer Portfolio Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Photographer Portfolio Generator</span>
+                  <span class="card-desc">Present your photography in a stunning gallery</span>
+                </a>
+                <a href="/generators/videographer-portfolio-builder" class="generator-card" data-name="Videographer Portfolio Builder" data-desc="Showcase reels, clips, and cinematography" data-category="portfolios" aria-label="Videographer Portfolio Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Videographer Portfolio Builder</span>
+                  <span class="card-desc">Showcase reels, clips, and cinematography</span>
+                </a>
+                <a href="/generators/architect-portfolio-generator" class="generator-card" data-name="Architect Portfolio Generator" data-desc="Present blueprints and completed projects" data-category="portfolios" aria-label="Architect Portfolio Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Architect Portfolio Generator</span>
+                  <span class="card-desc">Present blueprints and completed projects</span>
+                </a>
+                <a href="/generators/model-portfolio-website" class="generator-card" data-name="Model Portfolio Website" data-desc="Build a professional modeling portfolio" data-category="portfolios" aria-label="Model Portfolio Website">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Model Portfolio Website</span>
+                  <span class="card-desc">Build a professional modeling portfolio</span>
+                </a>
+                <a href="/generators/musician-portfolio-generator" class="generator-card" data-name="Musician Portfolio Generator" data-desc="Share music, press, and upcoming shows" data-category="portfolios" aria-label="Musician Portfolio Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Musician Portfolio Generator</span>
+                  <span class="card-desc">Share music, press, and upcoming shows</span>
+                </a>
+                <a href="/generators/writer-portfolio-website" class="generator-card" data-name="Writer Portfolio Website" data-desc="Showcase articles, books, and bylines" data-category="portfolios" aria-label="Writer Portfolio Website">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                  <span class="card-name">Writer Portfolio Website</span>
+                  <span class="card-desc">Showcase articles, books, and bylines</span>
+                </a>
+              </div>
+            </div>
+            <div class="show-all-wrapper">
+              <button class="show-all-btn" aria-expanded="false" aria-controls="grid-portfolios" data-target="grid-portfolios" data-wrapper="wrapper-portfolios" data-count="9">Show all 9 generators</button>
+            </div>
+          </div>
+
+          <!-- BLOGS SUBSECTION -->
+          <div class="subsection" id="blogs" data-category="blogs">
+            <div class="subsection-header">
+              <h3>Blogs</h3>
+              <p>Publish-ready blogs with built-in SEO basics.</p>
+            </div>
+            <div class="generator-grid-wrapper" id="wrapper-blogs">
+              <div class="generator-grid" id="grid-blogs">
+                <a href="/generators/blog-generator-for-beginners" class="generator-card" data-name="Blog Generator for Beginners" data-desc="Publish-ready in minutes" data-category="blogs" aria-label="Blog Generator for Beginners">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Blog Generator for Beginners</span>
+                  <span class="card-desc">Publish-ready in minutes</span>
+                </a>
+                <a href="/generators/ai-blog-writer" class="generator-card" data-name="AI Blog Writer" data-desc="Generate blog posts with AI assistance" data-category="blogs" aria-label="AI Blog Writer">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">AI Blog Writer</span>
+                  <span class="card-desc">Generate blog posts with AI assistance</span>
+                </a>
+                <a href="/generators/food-blog-generator" class="generator-card" data-name="Food Blog Generator" data-desc="Share recipes and culinary stories" data-category="blogs" aria-label="Food Blog Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Food Blog Generator</span>
+                  <span class="card-desc">Share recipes and culinary stories</span>
+                </a>
+                <a href="/generators/travel-blog-builder" class="generator-card" data-name="Travel Blog Builder" data-desc="Document adventures and destinations" data-category="blogs" aria-label="Travel Blog Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Travel Blog Builder</span>
+                  <span class="card-desc">Document adventures and destinations</span>
+                </a>
+                <a href="/generators/personal-blog-generator" class="generator-card" data-name="Personal Blog Generator" data-desc="Start a personal blog about any topic" data-category="blogs" aria-label="Personal Blog Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Personal Blog Generator</span>
+                  <span class="card-desc">Start a personal blog about any topic</span>
+                </a>
+                <a href="/generators/fashion-blog-builder" class="generator-card" data-name="Fashion Blog Builder" data-desc="Showcase style and trends" data-category="blogs" aria-label="Fashion Blog Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Fashion Blog Builder</span>
+                  <span class="card-desc">Showcase style and trends</span>
+                </a>
+                <a href="/generators/lifestyle-blog-generator" class="generator-card" data-name="Lifestyle Blog Generator" data-desc="Cover wellness, home, and daily life" data-category="blogs" aria-label="Lifestyle Blog Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Lifestyle Blog Generator</span>
+                  <span class="card-desc">Cover wellness, home, and daily life</span>
+                </a>
+                <a href="/generators/tech-blog-builder" class="generator-card" data-name="Tech Blog Builder" data-desc="Write about technology and innovation" data-category="blogs" aria-label="Tech Blog Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Tech Blog Builder</span>
+                  <span class="card-desc">Write about technology and innovation</span>
+                </a>
+                <a href="/generators/parenting-blog-generator" class="generator-card" data-name="Parenting Blog Generator" data-desc="Share parenting tips and family stories" data-category="blogs" aria-label="Parenting Blog Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                  <span class="card-name">Parenting Blog Generator</span>
+                  <span class="card-desc">Share parenting tips and family stories</span>
+                </a>
+              </div>
+            </div>
+            <div class="show-all-wrapper">
+              <button class="show-all-btn" aria-expanded="false" aria-controls="grid-blogs" data-target="grid-blogs" data-wrapper="wrapper-blogs" data-count="9">Show all 9 generators</button>
+            </div>
+          </div>
+
+          <!-- STORES SUBSECTION -->
+          <div class="subsection" id="stores" data-category="stores">
+            <div class="subsection-header">
+              <h3>Online Stores</h3>
+              <p>Sell products online with payments built in.</p>
+            </div>
+            <div class="generator-grid-wrapper" id="wrapper-stores">
+              <div class="generator-grid" id="grid-stores">
+                <a href="/generators/online-store-builder" class="generator-card" data-name="Online Store Builder" data-desc="Start selling without writing code" data-category="stores" aria-label="Online Store Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Online Store Builder</span>
+                  <span class="card-desc">Start selling without writing code</span>
+                </a>
+                <a href="/generators/shopify-alternative-generator" class="generator-card" data-name="Shopify Alternative Generator" data-desc="Launch a store with no monthly fees" data-category="stores" aria-label="Shopify Alternative Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Shopify Alternative Generator</span>
+                  <span class="card-desc">Launch a store with no monthly fees</span>
+                </a>
+                <a href="/generators/digital-products-store-builder" class="generator-card" data-name="Digital Products Store Builder" data-desc="Sell ebooks, courses, and downloads" data-category="stores" aria-label="Digital Products Store Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Digital Products Store Builder</span>
+                  <span class="card-desc">Sell ebooks, courses, and downloads</span>
+                </a>
+                <a href="/generators/physical-goods-store-generator" class="generator-card" data-name="Physical Goods Store Generator" data-desc="Sell tangible products with inventory tracking" data-category="stores" aria-label="Physical Goods Store Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Physical Goods Store Generator</span>
+                  <span class="card-desc">Sell tangible products with inventory tracking</span>
+                </a>
+                <a href="/generators/clothing-store-builder" class="generator-card" data-name="Clothing Store Builder" data-desc="Launch a fashion boutique online" data-category="stores" aria-label="Clothing Store Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Clothing Store Builder</span>
+                  <span class="card-desc">Launch a fashion boutique online</span>
+                </a>
+                <a href="/generators/jewelry-store-generator" class="generator-card" data-name="Jewelry Store Generator" data-desc="Sell jewelry and accessories online" data-category="stores" aria-label="Jewelry Store Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Jewelry Store Generator</span>
+                  <span class="card-desc">Sell jewelry and accessories online</span>
+                </a>
+                <a href="/generators/handmade-crafts-store-builder" class="generator-card" data-name="Handmade Crafts Store Builder" data-desc="Sell handmade goods and crafts" data-category="stores" aria-label="Handmade Crafts Store Builder">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Handmade Crafts Store Builder</span>
+                  <span class="card-desc">Sell handmade goods and crafts</span>
+                </a>
+                <a href="/generators/subscription-box-store-generator" class="generator-card" data-name="Subscription Box Store Generator" data-desc="Start a recurring subscription business" data-category="stores" aria-label="Subscription Box Store Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <span class="card-name">Subscription Box Store Generator</span>
+                  <span class="card-desc">Start a recurring subscription business</span>
+                </a>
+              </div>
+            </div>
+            <div class="show-all-wrapper">
+              <button class="show-all-btn" aria-expanded="false" aria-controls="grid-stores" data-target="grid-stores" data-wrapper="wrapper-stores" data-count="8">Show all 8 generators</button>
+            </div>
+          </div>
+
+          <!-- LINK-IN-BIO SUBSECTION -->
+          <div class="subsection" id="link-in-bio" data-category="link-in-bio">
+            <div class="subsection-header">
+              <h3>Link-in-Bio</h3>
+              <p>One link, all your places. Made for creators.</p>
+            </div>
+            <div class="generator-grid-wrapper" id="wrapper-link-in-bio">
+              <div class="generator-grid" id="grid-link-in-bio">
+                <a href="/generators/link-in-bio-generator" class="generator-card" data-name="Link-in-Bio Generator" data-desc="One link for all your channels" data-category="link-in-bio" aria-label="Link-in-Bio Generator">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">Link-in-Bio Generator</span>
+                  <span class="card-desc">One link for all your channels</span>
+                </a>
+                <a href="/generators/instagram-link-in-bio" class="generator-card" data-name="Instagram Link-in-Bio" data-desc="Optimized for Instagram profiles" data-category="link-in-bio" aria-label="Instagram Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">Instagram Link-in-Bio</span>
+                  <span class="card-desc">Optimized for Instagram profiles</span>
+                </a>
+                <a href="/generators/tiktok-link-in-bio" class="generator-card" data-name="TikTok Link-in-Bio" data-desc="Perfect for TikTok creators" data-category="link-in-bio" aria-label="TikTok Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">TikTok Link-in-Bio</span>
+                  <span class="card-desc">Perfect for TikTok creators</span>
+                </a>
+                <a href="/generators/youtuber-link-in-bio" class="generator-card" data-name="YouTuber Link-in-Bio" data-desc="Link to videos, merch, and socials" data-category="link-in-bio" aria-label="YouTuber Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">YouTuber Link-in-Bio</span>
+                  <span class="card-desc">Link to videos, merch, and socials</span>
+                </a>
+                <a href="/generators/influencer-link-in-bio" class="generator-card" data-name="Influencer Link-in-Bio" data-desc="Showcase partnerships and content" data-category="link-in-bio" aria-label="Influencer Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">Influencer Link-in-Bio</span>
+                  <span class="card-desc">Showcase partnerships and content</span>
+                </a>
+                <a href="/generators/musician-link-in-bio" class="generator-card" data-name="Musician Link-in-Bio" data-desc="Share music links, tour dates, and merch" data-category="link-in-bio" aria-label="Musician Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">Musician Link-in-Bio</span>
+                  <span class="card-desc">Share music links, tour dates, and merch</span>
+                </a>
+                <a href="/generators/podcaster-link-in-bio" class="generator-card" data-name="Podcaster Link-in-Bio" data-desc="Link to episodes and social platforms" data-category="link-in-bio" aria-label="Podcaster Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">Podcaster Link-in-Bio</span>
+                  <span class="card-desc">Link to episodes and social platforms</span>
+                </a>
+                <a href="/generators/coach-link-in-bio" class="generator-card" data-name="Coach Link-in-Bio" data-desc="Connect clients to bookings and content" data-category="link-in-bio" aria-label="Coach Link-in-Bio">
+                  <svg class="card-thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+                  <span class="card-name">Coach Link-in-Bio</span>
+                  <span class="card-desc">Connect clients to bookings and content</span>
+                </a>
+              </div>
+            </div>
+            <div class="show-all-wrapper">
+              <button class="show-all-btn" aria-expanded="false" aria-controls="grid-link-in-bio" data-target="grid-link-in-bio" data-wrapper="wrapper-link-in-bio" data-count="8">Show all 8 generators</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 6: HOW IT WORKS
+      ====================================================== -->
+      <section class="section" aria-labelledby="how-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="how-heading">HOW IT WORKS</h2>
+          </div>
+          <div class="steps-grid">
+            <div class="step">
+              <div class="step-circle" aria-hidden="true">1</div>
+              <span class="step-title">PICK A GENERATOR</span>
+              <p class="step-desc">Browse by category or search to find one that fits your goal.</p>
+            </div>
+            <div class="step">
+              <div class="step-circle" aria-hidden="true">2</div>
+              <span class="step-title">DESCRIBE YOUR SITE</span>
+              <p class="step-desc">Tell our AI builder about your business in a sentence or two.</p>
+            </div>
+            <div class="step">
+              <div class="step-circle" aria-hidden="true">3</div>
+              <span class="step-title">GENERATE AND PUBLISH</span>
+              <p class="step-desc">Get a fully built site in seconds. Customize anything, then go live.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 7: WHY STRIKINGLY
+      ====================================================== -->
+      <section class="section" aria-labelledby="why-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="why-heading">WHY STRIKINGLY</h2>
+          </div>
+          <div class="why-grid">
+            <div class="why-cell">
+              <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+              <span class="why-title">LIVE IN SECONDS</span>
+              <p class="why-desc">Describe your site, we build it. No setup, no learning curve.</p>
+            </div>
+            <div class="why-cell">
+              <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              <span class="why-title">MOBILE BY DEFAULT</span>
+              <p class="why-desc">Every generator produces responsive sites that work on any device.</p>
+            </div>
+            <div class="why-cell">
+              <svg class="why-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+              <span class="why-title">FREE TO START</span>
+              <p class="why-desc">Generate, customize, and publish without a credit card.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 8: FAQ
+      ====================================================== -->
+      <section class="section" aria-labelledby="faq-heading">
+        <div class="container">
+          <div class="section-header">
+            <h2 id="faq-heading">FREQUENTLY ASKED QUESTIONS</h2>
+          </div>
+          <div class="faq-list" role="list">
+            <div class="faq-item open" role="listitem">
+              <button class="faq-question" aria-expanded="true" aria-controls="faq-answer-1" id="faq-btn-1">
+                What is an AI site generator?
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-btn-1">
+                <div class="faq-answer-inner">
+                  <p>An AI site generator is a tool that creates a complete website based on a short description you provide. Instead of starting from a blank page or choosing a template, you tell the generator what you're building — a restaurant site, a portfolio, a store — and the AI builds the structure, layout, and content for you. You can then customize everything to match your brand.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item" role="listitem">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-btn-2">
+                How is a generator different from a template?
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-btn-2">
+                <div class="faq-answer-inner">
+                  <p>A template is a fixed design that you fill with your own content. A generator goes further — it creates a unique layout and pages tailored to your specific needs, based on your description. Templates give you a shell; generators give you a custom-built site that's ready to publish with minimal editing.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item" role="listitem">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-btn-3">
+                Are these generators free to use?
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-btn-3">
+                <div class="faq-answer-inner">
+                  <p>Yes, you can generate a site for free — no credit card required. You'll get a live site with Strikingly branding on the free plan. If you need a custom domain, remove Strikingly branding, or access advanced features, you can upgrade to a paid plan anytime.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item" role="listitem">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-btn-4">
+                What kinds of sites can I build?
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-btn-4">
+                <div class="faq-answer-inner">
+                  <p>You can build websites, landing pages, portfolios, blogs, online stores, and link-in-bio pages. Each category has specialised generators that tailor the output to your industry or use case — whether you're a photographer, restaurant owner, musician, coach, or e-commerce seller. Browse the All Generators section above to see the full list.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item" role="listitem">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-btn-5">
+                Can I customize what the generator produces?
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-btn-5">
+                <div class="faq-answer-inner">
+                  <p>Absolutely. After the generator creates your site, you can edit every element using Strikingly's drag-and-drop editor. Change colors, fonts, images, layout, and content. Add new sections or pages. Your site is fully editable from the moment it's generated, so you can make it yours before publishing.</p>
+                </div>
+              </div>
+            </div>
+            <div class="faq-item" role="listitem">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-btn-6">
+                Do generated sites work on mobile?
+                <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-btn-6">
+                <div class="faq-answer-inner">
+                  <p>Yes. Every site generated by Strikingly is fully responsive and looks great on mobile devices, tablets, and desktops. The designs are mobile-first by default, so your visitors will have a smooth experience no matter what device they're using. You can also preview and tweak the mobile view in the editor.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+      SECTION 9: CLOSING CTA
+      ====================================================== -->
+      <section class="closing-cta" aria-label="Ready to build">
+        <div class="container">
+          <h2>READY TO BUILD?</h2>
+          <p>Pick a generator above, or jump straight into our AI builder.</p>
+          <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START WITH AI BUILDER</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ======================================================
+    SECTION 10: FOOTER
+    ====================================================== -->
+    <footer class="site-footer" role="contentinfo">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="footer-logo">strikingly AI</div>
+            <p>AI-powered website builder. Generate, customize, and publish in minutes.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="/templates">Templates</a></li>
+              <li><a href="/pricing">Pricing</a></li>
+              <li><a href="/s/ai_site_builder">AI Site Builder</a></li>
+              <li><a href="/generators">Generators</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about">About</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/support">Support</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+              <li>Templates Library</li>
+              <li>Help Center</li>
+              <li><a href="/pricing">Plans</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          &copy; 2026 Strikingly. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <!-- ======================================================
+    JAVASCRIPT ENHANCEMENTS
+    ====================================================== -->
     <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
+      (function() {
+        'use strict';
 
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
+        /* ---- SEARCH FILTER ---- */
+        var searchInput = document.getElementById('generator-search');
+        var searchCount = document.getElementById('search-count');
+        var emptyState = document.getElementById('directory-empty');
+        var clearBtn = document.getElementById('clear-search');
 
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
+        if (searchInput) {
+          searchInput.addEventListener('input', function() {
+            var query = this.value.trim().toLowerCase();
+            var totalMatchCount = 0;
+            var subsections = document.querySelectorAll('.subsection');
 
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
+            subsections.forEach(function(sub) {
+              var cards = sub.querySelectorAll('.generator-card');
+              var matchCount = 0;
+              var hasVisible = false;
 
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
+              cards.forEach(function(card) {
+                var name = (card.getAttribute('data-name') || '').toLowerCase();
+                var desc = (card.getAttribute('data-desc') || '').toLowerCase();
+                var cat = (card.getAttribute('data-category') || '').toLowerCase();
+                var matches = !query || name.indexOf(query) !== -1 || desc.indexOf(query) !== -1 || cat.indexOf(query) !== -1;
 
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
-
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
-
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
-
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
-
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
-
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
-
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
-
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const MAX_STRING_LENGTH = 2000;
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
+                if (matches) {
+                  matchCount++;
+                  hasVisible = true;
+                  card.style.display = '';
+                } else {
+                  card.style.display = 'none';
                 }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const extractComponentStack = (args) => {
-          for (const arg of args) {
-            if (
-              arg &&
-              typeof arg === "object" &&
-              typeof arg.componentStack === "string"
-            ) {
-              return truncate(arg.componentStack);
-            }
-
-            if (
-              typeof arg === "string" &&
-              (arg.includes("\n    at ") ||
-                arg.includes("\n at ") ||
-                arg.includes("The above error occurred"))
-            ) {
-              return truncate(arg);
-            }
-          }
-
-          return "";
-        };
-
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
-
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-
-              postToParent({
-                type: "runtime-error",
-                kind: "resource-error",
-                message: `Failed to load ${tagName.toLowerCase()} resource.`,
-                source: resourceUrl,
-                resourceTagName: tagName.toLowerCase(),
-                resourceUrl,
               });
-              return;
+
+              totalMatchCount += matchCount;
+
+              if (hasVisible) {
+                sub.style.display = '';
+              } else {
+                sub.style.display = 'none';
+              }
+
+              // Update show-all button visibility within visible subsections
+              var showBtn = sub.querySelector('.show-all-btn');
+              if (showBtn) {
+                if (hasVisible) {
+                  showBtn.style.display = '';
+                } else {
+                  showBtn.style.display = 'none';
+                }
+              }
+            });
+
+            // Update count
+            if (searchCount) {
+              if (query) {
+                searchCount.textContent = totalMatchCount + ' generator' + (totalMatchCount !== 1 ? 's' : '') + ' match';
+              } else {
+                searchCount.textContent = '';
+              }
             }
 
-            const normalized = normalizeErrorLike(event.error || event.message);
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source: event.filename || normalized.source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
+            // Empty state
+            if (emptyState) {
+              if (query && totalMatchCount === 0) {
+                emptyState.style.display = 'block';
+              } else {
+                emptyState.style.display = 'none';
+              }
+            }
+          });
+
+          if (clearBtn) {
+            clearBtn.addEventListener('click', function() {
+              if (searchInput) {
+                searchInput.value = '';
+                searchInput.dispatchEvent(new Event('input'));
+                searchInput.focus();
+              }
             });
-          },
-          true,
-        );
+          }
+        }
 
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
+        /* ---- SHOW ALL TOGGLES ---- */
+        var SHOW_INITIAL = 6;
+
+        function initShowAll() {
+          var showAllBtns = document.querySelectorAll('.show-all-btn');
+          showAllBtns.forEach(function(btn) {
+            var gridId = btn.getAttribute('data-target');
+            var wrapperId = btn.getAttribute('data-wrapper');
+            var grid = document.getElementById(gridId);
+            var wrapper = document.getElementById(wrapperId);
+            if (!grid || !wrapper) return;
+
+            var cards = grid.querySelectorAll('.generator-card');
+            var totalCards = cards.length;
+            var isCollapsed = totalCards > SHOW_INITIAL;
+
+            // Set initial state
+            btn.setAttribute('data-collapsed', isCollapsed ? 'true' : 'false');
+
+            if (isCollapsed) {
+              // Calculate wrapper height for initial 6 cards
+              var initialHeight = 0;
+              for (var i = 0; i < Math.min(SHOW_INITIAL, totalCards); i++) {
+                var card = cards[i];
+                card.style.display = '';
+                initialHeight += card.offsetHeight + 16; // gap
+              }
+              // Hide remaining cards
+              for (var j = SHOW_INITIAL; j < totalCards; j++) {
+                cards[j].style.display = 'none';
+              }
+              // Set wrapper height
+              var rowHeight = 0;
+              var visible = 0;
+              for (var k = 0; k < totalCards; k++) {
+                if (cards[k].style.display !== 'none') {
+                  visible++;
+                }
+              }
+              // Calculate max-height based on grid layout
+              var cols = window.innerWidth <= 480 ? 1 : (window.innerWidth <= 768 ? 2 : 3);
+              var rows = Math.ceil(Math.min(SHOW_INITIAL, totalCards) / cols);
+              // We'll use a simpler approach: just let CSS handle it via max-height
+              var cardHeight = cards[0] ? cards[0].offsetHeight : 80;
+              var gap = 16;
+              wrapper.style.maxHeight = (rows * cardHeight + (rows - 1) * gap) + 'px';
+              btn.setAttribute('aria-expanded', 'false');
+            } else {
+              wrapper.style.maxHeight = 'none';
+              btn.style.display = 'none';
+            }
+
+            btn.addEventListener('click', function() {
+              var collapsed = this.getAttribute('data-collapsed') === 'true';
+              var allCards = grid.querySelectorAll('.generator-card');
+
+              if (collapsed) {
+                // Expand
+                allCards.forEach(function(c) { c.style.display = ''; });
+                var totalHeight = grid.offsetHeight;
+                wrapper.style.maxHeight = totalHeight + 'px';
+                this.setAttribute('data-collapsed', 'false');
+                this.setAttribute('aria-expanded', 'true');
+                this.textContent = 'Show less';
+              } else {
+                // Collapse
+                for (var i = 0; i < totalCards; i++) {
+                  allCards[i].style.display = i < SHOW_INITIAL ? '' : 'none';
+                }
+                // Recalculate height for initial cards
+                var h = 0;
+                var cols2 = window.innerWidth <= 480 ? 1 : (window.innerWidth <= 768 ? 2 : 3);
+                var rows2 = Math.ceil(Math.min(SHOW_INITIAL, totalCards) / cols2);
+                var ch = allCards[0] ? allCards[0].offsetHeight : 80;
+                wrapper.style.maxHeight = (rows2 * ch + (rows2 - 1) * 16) + 'px';
+                this.setAttribute('data-collapsed', 'true');
+                this.setAttribute('aria-expanded', 'false');
+                var count = this.getAttribute('data-count');
+                this.textContent = 'Show all ' + count + ' generators';
+              }
+            });
           });
-        });
+        }
 
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          const errorLike = args.find(
-            (arg) =>
-              arg instanceof Error ||
-              (arg &&
-                typeof arg === "object" &&
-                ("message" in arg || "stack" in arg)),
-          );
-          const normalized = normalizeErrorLike(errorLike || args[0]);
+        /* ---- FAQ ACCORDION ---- */
+        function initFaq() {
+          var faqItems = document.querySelectorAll('.faq-item');
+          faqItems.forEach(function(item) {
+            var btn = item.querySelector('.faq-question');
+            var answer = item.querySelector('.faq-answer');
+            if (!btn || !answer) return;
 
-          postToParent({
-            type: "console-error",
-            kind: "console-error",
-            name: normalized.name,
-            message:
-              normalized.message ||
-              args.map((arg) => stringifyValue(arg)).join(" "),
-            stack: normalized.stack,
-            componentStack: extractComponentStack(args),
-            args: args.map((arg) => stringifyValue(arg)),
+            btn.addEventListener('click', function() {
+              var isOpen = item.classList.contains('open');
+
+              // Close all
+              faqItems.forEach(function(other) {
+                other.classList.remove('open');
+                var otherBtn = other.querySelector('.faq-question');
+                var otherAnswer = other.querySelector('.faq-answer');
+                if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+                if (otherAnswer) otherAnswer.style.maxHeight = '0';
+              });
+
+              // Toggle current
+              if (!isOpen) {
+                item.classList.add('open');
+                btn.setAttribute('aria-expanded', 'true');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+              }
+            });
           });
+        }
 
-          originalConsoleError(...args);
-        };
+        /* ---- INIT ---- */
+        function init() {
+          initFaq();
+          // Show-all needs to wait for layout
+          if (document.readyState === 'complete') {
+            initShowAll();
+          } else {
+            window.addEventListener('load', initShowAll);
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+
+        /* ---- Route bridge for preview ---- */
+        (function() {
+          if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) return;
+          window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
+          var CHANNEL = "strikingly-preview", VERSION = 1;
+          var getPayload = function(src) { return { url: window.location.href, origin: window.location.origin, path: window.location.pathname + window.location.search + window.location.hash, pathname: window.location.pathname, search: window.location.search, hash: window.location.hash, title: document.title, source: src, timestamp: Date.now() }; };
+          var post = function(type, src) { if (!window.parent || window.parent === window) return; try { window.parent.postMessage({ channel: CHANNEL, version: VERSION, type: type, payload: getPayload(src) }, "*"); } catch(e) {} };
+          var notify = function(src) { window.requestAnimationFrame(function() { post("route:changed", src); }); };
+          var patch = function(m) { var o = window.history[m]; if (typeof o !== "function") return; window.history[m] = function() { var r = o.apply(this, arguments); notify(m); return r; }; };
+          patch("pushState"); patch("replaceState");
+          window.addEventListener("popstate", function() { notify("popstate"); });
+          window.addEventListener("hashchange", function() { notify("hashchange"); });
+          window.addEventListener("load", function() { post("route:ready", "load"); post("route:changed", "load"); });
+          window.addEventListener("message", function(e) {
+            var d = e.data;
+            if (!d || typeof d !== "object" || d.channel !== CHANNEL || d.version !== VERSION) return;
+            if (d.type === "route:request") { post("route:changed", "load"); return; }
+            if (d.type !== "route:navigate") return;
+            var p = d.payload && d.payload.path;
+            if (typeof p !== "string" || !p) return;
+            var replace = Boolean(d.payload && d.payload.replace);
+            var nav = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
+            if (typeof nav === "function") { nav(p, { replace: replace }); notify("navigate-command"); return; }
+            if (replace) { window.history.replaceState({}, "", p); } else { window.history.pushState({}, "", p); }
+            window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
+            notify("navigate-command");
+          });
+        })();
       })();
     </script>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
