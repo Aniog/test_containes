@@ -54,36 +54,49 @@ const Home = () => {
         <div className="w-full h-full bg-[#F05A1A]" />
       </div>
 
-      {/* Center brand panel */}
-      <div className="relative z-10 flex items-center gap-5 px-10 py-7 rounded-2xl border border-white/30 shadow-2xl"
-        style={{
-          background: 'rgba(200, 205, 240, 0.35)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          minWidth: '340px',
-          maxWidth: '680px',
-        }}
-      >
-        {/* Logo mark */}
-        <div className="flex-shrink-0">
-          <LogoMark size={90} />
+      {/* Center content column */}
+      <div className="relative z-10 flex flex-col items-center gap-6" style={{ maxWidth: '680px', width: '100%' }}>
+
+        {/* Brand panel */}
+        <div className="flex items-center gap-5 px-10 py-7 rounded-2xl border border-white/30 shadow-2xl w-full"
+          style={{
+            background: 'rgba(200, 205, 240, 0.35)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+          }}
+        >
+          {/* Logo mark */}
+          <div className="flex-shrink-0">
+            <LogoMark size={90} />
+          </div>
+
+          {/* Brand name */}
+          <div className="flex flex-col leading-none">
+            <span
+              className="font-black tracking-tight text-gray-900"
+              style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.05 }}
+            >
+              ExampleFile
+            </span>
+            <span
+              className="font-black tracking-tight text-gray-900 self-end"
+              style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', lineHeight: 1.1 }}
+            >
+              .com
+            </span>
+          </div>
         </div>
 
-        {/* Brand name */}
-        <div className="flex flex-col leading-none">
-          <span
-            className="font-black tracking-tight text-gray-900"
-            style={{ fontSize: 'clamp(2.2rem, 5vw, 3.8rem)', lineHeight: 1.05 }}
-          >
-            ExampleFile
-          </span>
-          <span
-            className="font-black tracking-tight text-gray-900 self-end"
-            style={{ fontSize: 'clamp(1.6rem, 3.5vw, 2.8rem)', lineHeight: 1.1 }}
-          >
-            .com
-          </span>
+        {/* Embedded photo */}
+        <div className="w-full rounded-2xl overflow-hidden shadow-2xl border border-white/30">
+          <img
+            src="/beach.jpeg"
+            alt="Beach sandcastle scene"
+            className="w-full h-auto object-cover block"
+            style={{ maxHeight: '420px', objectPosition: 'center' }}
+          />
         </div>
+
       </div>
 
     </div>
