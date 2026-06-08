@@ -1,13 +1,10 @@
 import './App.css'
+import TodoList from './components/TodoList'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
+    <main className="min-h-screen bg-gray-50 flex items-start justify-center pt-12">
+      <TodoList />
     </main>
   )
 }
