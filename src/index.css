@@ -74,3 +74,34 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Game board animations */
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ringPulse {
+  0%, 100% {
+    box-shadow: 0 0 12px 4px rgba(255,100,100,0.6), inset 0 0 12px 4px rgba(255,100,100,0.4);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 22px 8px rgba(255,60,60,0.85), inset 0 0 18px 6px rgba(255,60,60,0.6);
+    opacity: 0.85;
+  }
+}
+
+.target-ring {
+  animation: ringRotate 3s linear infinite, ringPulse 1.5s ease-in-out infinite;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
