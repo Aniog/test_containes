@@ -190,13 +190,83 @@ const TrustPoints = () => (
   </section>
 );
 
+const ProblemsWeSolve = () => {
+  const problems = [
+    { title: 'Poor Communication', desc: 'Misunderstandings regarding technical specs lead to unusable products.' },
+    { title: 'Hidden Middlemen', desc: 'Sourcing from "factories" that are actually trading companies adds 20-30% cost.' },
+    { title: 'Quality Inconsistency', desc: 'The first batch is perfect, but the second batch has a 15% defect rate.' },
+    { title: 'Payment Risks', desc: 'Sending large deposits to unverified suppliers with no legal protection.' }
+  ];
+
+  return (
+    <section className="py-24 bg-slate-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="relative">
+            <img 
+              data-strk-img-id="problems-visual"
+              data-strk-img="frustrated businessman at computer manufacturing problems"
+              data-strk-img-ratio="4x3"
+              data-strk-img-width="600"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 3'/%3E"
+              alt="Manufacturing Challenges"
+              className="rounded-2xl opacity-80"
+            />
+          </div>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">Stop Worrying About China Sourcing</h2>
+            <div className="space-y-6">
+              {problems.map((p) => (
+                <div key={p.title} className="flex gap-4">
+                  <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-xs font-bold">!</div>
+                  <div>
+                    <h3 className="font-bold text-blue-400 mb-1">{p.title}</h3>
+                    <p className="text-slate-400 text-sm">{p.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const FAQ = () => {
+  const faqs = [
+    { q: 'What are your sourcing fees?', a: 'We offer flexible pricing based on project scope. Usually, we charge a flat sourcing fee for the initial search and a small commission based on the order value for full-service management.' },
+    { q: 'Can you handle small orders?', a: "Yes, we work with both small businesses and large corporations. While some factories have MOQs, we help negotiate the best terms for your scale." },
+    { q: 'How do you verify a factory?', a: 'We perform on-site visits, verify business licenses, check production capacity, and review their history of exports and certifications.' },
+    { q: 'Do you arrange shipping?', a: 'Absolutely. We coordinate consolidate shipping, sea freight, air freight, and handle all customs documentation for export from China.' }
+  ];
+
+  return (
+    <section className="py-24 bg-white">
+      <div className="max-w-3xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-16">Frequently Asked Questions</h2>
+        <div className="space-y-8">
+          {faqs.map((faq) => (
+            <div key={faq.q} className="border-b border-slate-100 pb-8">
+              <h3 className="text-lg font-bold text-slate-900 mb-2">{faq.q}</h3>
+              <p className="text-slate-600 leading-relaxed">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Home = () => {
   return (
     <div>
       <Hero />
       <ServicesGrid />
+      <ProblemsWeSolve />
       <ProcessSteps />
       <TrustPoints />
+      <FAQ />
       
       {/* Featured Sourcing Quote CTA Section */}
       <section className="py-24 bg-blue-600 text-white">
