@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Name of the buyer's company"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Primary contact name for the sourcing inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address for follow-up communication"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp contact provided by the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country where the buyer or destination business is based"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Description of the product, specifications, materials, or packaging needs"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected quantity, MOQ target, or order volume details"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Search",
+          "Supplier Verification",
+          "Factory Audit",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping Coordination"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Requested sourcing support services"
+    },
+    "sourcing_stage": {
+      "type": "string",
+      "enum": [
+        "Need supplier search",
+        "Comparing suppliers",
+        "Sample stage",
+        "Production ready",
+        "Need inspection or shipping support"
+      ],
+      "description": "Current stage of the buyer's sourcing project"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target sales or destination market for the product"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Additional sourcing requirements, timing, concerns, or shipment details"
+    }
+  },
+  "required": [
+    "contact_name",
+    "email",
+    "product_description",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
+  }
+}
