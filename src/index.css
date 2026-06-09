@@ -1,24 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #1A1F2E;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -30,47 +24,37 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-[3.2rem] font-bold tracking-tight leading-tight;
   }
-
-  a:hover {
-    color: #747bff;
+  h2 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight leading-snug;
   }
-
-  button {
-    background-color: #f9f9f9;
+  h3 {
+    @apply text-xl md:text-2xl font-semibold leading-snug;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-brand-gold text-brand-dark font-semibold px-8 py-3 rounded-sm hover:bg-brand-gold-hover transition-colors duration-200;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center border border-brand-gold text-brand-gold bg-transparent px-8 py-3 rounded-sm hover:bg-brand-gold/10 transition-colors duration-200;
+  }
+  .section-dark {
+    @apply bg-brand-dark text-white;
+  }
+  .section-light {
+    @apply bg-brand-light text-brand-dark;
+  }
+  .container-wide {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+}
