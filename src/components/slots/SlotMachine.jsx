@@ -15,20 +15,20 @@ const generateInitialGrid = () =>
   );
 
 const PaylineIndicator = ({ numbers, side }) => (
-  <div className="flex flex-col gap-1.5 justify-center" style={{ minWidth: 28 }}>
+  <div className="flex flex-col gap-1.5 justify-center" style={{ minWidth: 30 }}>
     {numbers.map((n, i) => (
       <div
         key={i}
-        className="flex items-center justify-center rounded-lg font-bold text-xs"
+        className="flex items-center justify-center rounded-lg font-bold"
         style={{
-          width: 26,
-          height: 26,
-          background: 'linear-gradient(135deg, #2d1b69 0%, #1e1040 100%)',
-          border: '1.5px solid #7c3aed',
-          boxShadow: '0 0 6px rgba(124,58,237,0.4)',
+          width: 28,
+          height: 28,
+          background: 'linear-gradient(135deg, #3b1f8c 0%, #2d1b69 100%)',
+          border: '2px solid #6d28d9',
+          boxShadow: '0 0 8px rgba(109,40,217,0.5)',
           fontFamily: 'Orbitron, sans-serif',
-          color: '#e9d5ff',
-          fontSize: '0.6rem',
+          color: '#c4b5fd',
+          fontSize: '0.65rem',
         }}
       >
         {n}
@@ -251,16 +251,16 @@ const SlotMachine = () => {
       <div
         className="w-full max-w-2xl rounded-3xl p-1"
         style={{
-          background: 'linear-gradient(135deg, #f5a623 0%, #7c3aed 50%, #f5a623 100%)',
-          boxShadow: '0 0 40px rgba(124,58,237,0.6), 0 0 80px rgba(245,166,35,0.2)',
+          background: 'linear-gradient(135deg, #f5a623 0%, #e8850a 25%, #7c3aed 50%, #e8850a 75%, #f5a623 100%)',
+          boxShadow: '0 0 50px rgba(245,166,35,0.4), 0 0 100px rgba(124,58,237,0.3)',
         }}
       >
         {/* Machine inner */}
         <div
-          className="rounded-3xl p-3"
+          className="rounded-3xl p-3 pb-4"
           style={{
-            background: 'linear-gradient(180deg, #2d1b69 0%, #1e1040 50%, #2d1b69 100%)',
-            boxShadow: 'inset 0 0 30px rgba(0,0,0,0.5)',
+            background: 'linear-gradient(180deg, #3b1f8c 0%, #2a1260 30%, #1e0d4e 60%, #2a1260 100%)',
+            boxShadow: 'inset 0 0 40px rgba(0,0,0,0.6)',
           }}
         >
           {/* Header */}
@@ -275,27 +275,35 @@ const SlotMachine = () => {
             <div
               className="flex-1 rounded-2xl overflow-hidden relative"
               style={{
-                background: '#0a0515',
-                border: '3px solid',
-                borderColor: '#f5a623',
-                boxShadow: '0 0 20px rgba(245,166,35,0.4), inset 0 0 20px rgba(0,0,0,0.8)',
+                background: 'linear-gradient(180deg, #08041a 0%, #0d0525 50%, #08041a 100%)',
+                border: '3px solid #f5a623',
+                boxShadow: '0 0 25px rgba(245,166,35,0.5), inset 0 0 30px rgba(0,0,0,0.9)',
               }}
             >
-              {/* Center line highlight */}
+              {/* Horizontal row dividers */}
+              <div className="absolute inset-0 pointer-events-none z-20" style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ flex: 1 }} />
+                <div style={{ height: 1, background: 'rgba(80,40,160,0.4)' }} />
+                <div style={{ flex: 1 }} />
+                <div style={{ height: 1, background: 'rgba(80,40,160,0.4)' }} />
+                <div style={{ flex: 1 }} />
+              </div>
+
+              {/* Center row highlight */}
               <div
-                className="absolute left-0 right-0 z-20 pointer-events-none"
+                className="absolute left-0 right-0 z-10 pointer-events-none"
                 style={{
                   top: '50%',
                   transform: 'translateY(-50%)',
                   height: '90px',
-                  background: 'linear-gradient(90deg, rgba(245,166,35,0.08) 0%, rgba(245,166,35,0.15) 50%, rgba(245,166,35,0.08) 100%)',
-                  borderTop: '1px solid rgba(245,166,35,0.3)',
-                  borderBottom: '1px solid rgba(245,166,35,0.3)',
+                  background: 'linear-gradient(90deg, rgba(245,166,35,0.06) 0%, rgba(245,166,35,0.12) 50%, rgba(245,166,35,0.06) 100%)',
+                  borderTop: '1px solid rgba(245,166,35,0.25)',
+                  borderBottom: '1px solid rgba(245,166,35,0.25)',
                 }}
               />
 
               {/* Reels */}
-              <div className="flex" key={spinKey}>
+              <div className="flex" key={spinKey} style={{ position: 'relative' }}>
                 {Array.from({ length: NUM_REELS }, (_, col) => (
                   <Reel
                     key={col}
@@ -304,6 +312,8 @@ const SlotMachine = () => {
                     spinDelay={col}
                     onStop={handleReelStop}
                     winningCells={winningCellsPerReel[col]}
+                    isFirst={col === 0}
+                    isLast={col === NUM_REELS - 1}
                   />
                 ))}
               </div>

@@ -10,7 +10,7 @@ const generateSpinStrip = (finalSymbolIds) => {
   return [...randomPart, ...finalSymbolIds];
 };
 
-const SymbolCell = ({ symbolId, isWinning, winColor }) => {
+const SymbolCell = ({ symbolId, isWinning, winColor, isFirst, isLast }) => {
   const sym = getSymbol(symbolId) || { emoji: '❓', color: '#fff' };
 
   return (
@@ -20,29 +20,41 @@ const SymbolCell = ({ symbolId, isWinning, winColor }) => {
         height: `${SYMBOL_HEIGHT}px`,
         width: '100%',
         background: isWinning
-          ? `radial-gradient(circle, ${winColor}44 0%, transparent 70%)`
-          : 'transparent',
-        transition: 'background 0.2s',
+          ? `radial-gradient(ellipse at center, ${winColor}33 0%, rgba(15,8,35,0.85) 70%)`
+          : 'radial-gradient(ellipse at center, rgba(60,30,120,0.4) 0%, rgba(10,5,25,0.85) 70%)',
+        borderBottom: isLast ? 'none' : '1px solid rgba(80,40,160,0.35)',
+        transition: 'background 0.25s',
       }}
     >
+      {/* Cell inner glow when winning */}
+      {isWinning && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse at center, ${winColor}22 0%, transparent 70%)`,
+            animation: 'winLineFlash 0.4s ease-in-out infinite',
+          }}
+        />
+      )}
+      {/* Win border */}
       {isWinning && (
         <div
           className="absolute inset-1 rounded-lg pointer-events-none"
           style={{
-            border: `2px solid ${winColor}`,
-            boxShadow: `0 0 12px ${winColor}88, inset 0 0 12px ${winColor}22`,
+            border: `2px solid ${winColor}cc`,
+            boxShadow: `0 0 10px ${winColor}88, inset 0 0 10px ${winColor}22`,
             animation: 'winLineFlash 0.4s ease-in-out infinite',
           }}
         />
       )}
       <span
         style={{
-          fontSize: '2.6rem',
+          fontSize: '2.8rem',
           lineHeight: 1,
           filter: isWinning
-            ? `drop-shadow(0 0 8px ${sym.color}) drop-shadow(0 0 16px ${sym.color})`
-            : `drop-shadow(0 2px 4px rgba(0,0,0,0.6))`,
-          transform: isWinning ? 'scale(1.2)' : 'scale(1)',
+            ? `drop-shadow(0 0 10px ${sym.color}) drop-shadow(0 0 20px ${sym.color}88)`
+            : `drop-shadow(0 3px 6px rgba(0,0,0,0.7)) drop-shadow(0 1px 2px rgba(0,0,0,0.5))`,
+          transform: isWinning ? 'scale(1.18)' : 'scale(1)',
           transition: 'transform 0.2s, filter 0.2s',
           display: 'block',
           userSelect: 'none',
@@ -54,7 +66,7 @@ const SymbolCell = ({ symbolId, isWinning, winColor }) => {
   );
 };
 
-const Reel = ({ finalSymbols, isSpinning, spinDelay, onStop, winningCells }) => {
+const Reel = ({ finalSymbols, isSpinning, spinDelay, onStop, winningCells, isFirst, isLast }) => {
   const [visibleIds, setVisibleIds] = useState(() =>
     Array.from({ length: REEL_ROWS }, () => getRandomSymbol())
   );
@@ -105,7 +117,6 @@ const Reel = ({ finalSymbols, isSpinning, spinDelay, onStop, winningCells }) => 
       if (t < 1) {
         rafRef.current = requestAnimationFrame(animate);
       } else {
-        // Reset offset to 0 and switch to display symbols
         setOffset(0);
         setPhase('stopped');
         setVisibleIds([...finalSymbols]);
@@ -127,17 +138,15 @@ const Reel = ({ finalSymbols, isSpinning, spinDelay, onStop, winningCells }) => 
       className="relative overflow-hidden flex-1"
       style={{
         height: `${REEL_ROWS * SYMBOL_HEIGHT}px`,
-        background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(10,5,25,0.95) 50%, rgba(0,0,0,0.5) 100%)',
-        borderLeft: '1px solid rgba(124,58,237,0.3)',
-        borderRight: '1px solid rgba(124,58,237,0.3)',
+        borderRight: isLast ? 'none' : '1px solid rgba(100,50,200,0.5)',
       }}
     >
       {/* Top fade */}
       <div className="absolute top-0 left-0 right-0 z-10 pointer-events-none"
-        style={{ height: 28, background: 'linear-gradient(180deg, rgba(0,0,0,0.85) 0%, transparent 100%)' }} />
+        style={{ height: 32, background: 'linear-gradient(180deg, rgba(5,2,15,0.9) 0%, transparent 100%)', zIndex: 10 }} />
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 z-10 pointer-events-none"
-        style={{ height: 28, background: 'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 100%)' }} />
+        style={{ height: 32, background: 'linear-gradient(0deg, rgba(5,2,15,0.9) 0%, transparent 100%)', zIndex: 10 }} />
 
       {/* Symbol strip */}
       <div
@@ -157,6 +166,8 @@ const Reel = ({ finalSymbols, isSpinning, spinDelay, onStop, winningCells }) => 
               symbolId={id}
               isWinning={isWinning}
               winColor={winColor}
+              isFirst={idx === 0}
+              isLast={idx === symbolsToRender.length - 1}
             />
           );
         })}
@@ -166,5 +177,6 @@ const Reel = ({ finalSymbols, isSpinning, spinDelay, onStop, winningCells }) => 
 };
 
 export default Reel;
+
 
 
