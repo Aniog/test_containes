@@ -30,7 +30,7 @@ export default function Contact() {
 
   return (
     <div>
-      <section className="bg-navy-900 py-16 md:py-20">
+      <section className="bg-[#0f2a4a] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Get a Free Sourcing Quote</h1>
@@ -68,7 +68,7 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent"
                         placeholder="John Smith"
                       />
                     </div>
@@ -81,7 +81,7 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent"
                         placeholder="john@company.com"
                       />
                     </div>
@@ -96,7 +96,7 @@ export default function Contact() {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent"
                         placeholder="Your Company Ltd."
                       />
                     </div>
@@ -108,7 +108,7 @@ export default function Contact() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent"
                         placeholder="+1 234 567 8900"
                       />
                     </div>
@@ -124,7 +124,7 @@ export default function Contact() {
                         required
                         value={formData.product}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent"
                         placeholder="e.g., Bluetooth speakers"
                       />
                     </div>
@@ -136,7 +136,7 @@ export default function Contact() {
                         name="quantity"
                         value={formData.quantity}
                         onChange={handleChange}
-                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent"
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent"
                         placeholder="e.g., 1,000 units"
                       />
                     </div>
@@ -150,7 +150,7 @@ export default function Contact() {
                       rows={5}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-navy-700 focus:border-transparent resize-none"
+                      className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1e4d7b] focus:border-transparent resize-none"
                       placeholder="Tell us about your product specifications, target price, quality requirements, timeline, or any other details..."
                     />
                   </div>
@@ -158,7 +158,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="inline-flex items-center gap-2 px-8 py-3 bg-accent-500 hover:bg-accent-600 text-white text-sm font-semibold rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="inline-flex items-center gap-2 px-8 py-3 bg-[#e86c2b] hover:bg-[#d45a1a] text-white text-sm font-semibold rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
                     {submitting ? 'Sending...' : 'Submit Inquiry'}
@@ -172,28 +172,28 @@ export default function Contact() {
                 <h3 className="text-lg font-bold text-slate-900 mb-4">Contact Information</h3>
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
-                    <Mail className="w-5 h-5 text-navy-700 mt-0.5 shrink-0" />
+                    <Mail className="w-5 h-5 text-[#1e4d7b] mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-slate-900">Email</p>
                       <p className="text-sm text-slate-600">info@ssourcingchina.com</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Phone className="w-5 h-5 text-navy-700 mt-0.5 shrink-0" />
+                    <Phone className="w-5 h-5 text-[#1e4d7b] mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-slate-900">Phone / WhatsApp</p>
                       <p className="text-sm text-slate-600">+86 755 8888 6666</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <MapPin className="w-5 h-5 text-navy-700 mt-0.5 shrink-0" />
+                    <MapPin className="w-5 h-5 text-[#1e4d7b] mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-slate-900">Office</p>
                       <p className="text-sm text-slate-600">Shenzhen, Guangdong, China</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
-                    <Clock className="w-5 h-5 text-navy-700 mt-0.5 shrink-0" />
+                    <Clock className="w-5 h-5 text-[#1e4d7b] mt-0.5 shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-slate-900">Response Time</p>
                       <p className="text-sm text-slate-600">Within 24 hours (business days)</p>
@@ -202,19 +202,19 @@ export default function Contact() {
                 </ul>
               </div>
 
-              <div className="bg-navy-900 rounded-xl p-6">
+              <div className="bg-[#0f2a4a] rounded-xl p-6">
                 <h3 className="text-lg font-bold text-white mb-3">What Happens Next?</h3>
                 <ol className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-accent-500 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">1</span>
+                    <span className="w-6 h-6 bg-[#e86c2b] rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">1</span>
                     <p className="text-sm text-slate-300">We review your requirements within 24 hours</p>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-accent-500 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">2</span>
+                    <span className="w-6 h-6 bg-[#e86c2b] rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">2</span>
                     <p className="text-sm text-slate-300">Our team prepares a sourcing plan with timeline & costs</p>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="w-6 h-6 bg-accent-500 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">3</span>
+                    <span className="w-6 h-6 bg-[#e86c2b] rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0">3</span>
                     <p className="text-sm text-slate-300">We schedule a call to discuss your project in detail</p>
                   </li>
                 </ol>

@@ -84,7 +84,7 @@ export default function CaseStudies() {
 
   return (
     <div ref={containerRef}>
-      <section className="bg-navy-900 py-16 md:py-20">
+      <section className="bg-[#0f2a4a] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Case Studies</h1>
@@ -106,7 +106,7 @@ export default function CaseStudies() {
                       <h2 id={cs.titleId} className="text-xl font-bold text-slate-900">{cs.client}</h2>
                       <p id={cs.descId} className="text-sm text-slate-600">{cs.location} · {cs.category}</p>
                     </div>
-                    <span className="text-xs font-medium text-accent-500 bg-orange-50 px-3 py-1 rounded-full self-start">{cs.category}</span>
+                    <span className="text-xs font-medium text-[#e86c2b] bg-orange-50 px-3 py-1 rounded-full self-start">{cs.category}</span>
                   </div>
                 </div>
                 <div className="p-6 md:p-8">

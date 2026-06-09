@@ -76,7 +76,7 @@ export default function Blog() {
 
   return (
     <div ref={containerRef}>
-      <section className="bg-navy-900 py-16 md:py-20">
+      <section className="bg-[#0f2a4a] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Sourcing Insights & Guides</h1>
@@ -105,18 +105,18 @@ export default function Blog() {
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xs font-medium text-accent-500 bg-orange-50 px-2 py-0.5 rounded">{post.category}</span>
+                    <span className="text-xs font-medium text-[#e86c2b] bg-orange-50 px-2 py-0.5 rounded">{post.category}</span>
                     <span className="flex items-center gap-1 text-xs text-slate-500">
                       <Clock className="w-3 h-3" /> {post.readTime}
                     </span>
                   </div>
-                  <h2 id={post.titleId} className="text-base font-bold text-slate-900 mb-2 group-hover:text-navy-700 transition-colors leading-snug">
+                  <h2 id={post.titleId} className="text-base font-bold text-slate-900 mb-2 group-hover:text-[#1e4d7b] transition-colors leading-snug">
                     {post.title}
                   </h2>
                   <p className="text-sm text-slate-600 leading-relaxed mb-3">{post.excerpt}</p>
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-slate-500">{post.date}</span>
-                    <span className="text-sm font-medium text-navy-700 flex items-center gap-1 group-hover:gap-2 transition-all">
+                    <span className="text-sm font-medium text-[#1e4d7b] flex items-center gap-1 group-hover:gap-2 transition-all">
                       Read more <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>

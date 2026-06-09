@@ -35,7 +35,7 @@ export default function Home() {
 
 function HeroSection() {
   return (
-    <section className="relative bg-navy-900 overflow-hidden">
+    <section className="relative bg-[#0f2a4a] overflow-hidden">
       <div
         className="absolute inset-0 opacity-20"
         data-strk-bg-id="hero-bg-main-a7f3c2"
@@ -43,10 +43,10 @@ function HeroSection() {
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/95 to-navy-900/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0f2a4a] via-[#0f2a4a]/95 to-[#0f2a4a]/70" />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
         <div className="max-w-2xl">
-          <p className="text-accent-500 font-semibold text-sm uppercase tracking-wider mb-4">
+          <p className="text-[#e86c2b] font-semibold text-sm uppercase tracking-wider mb-4">
             Trusted Sourcing Partner Since 2015
           </p>
           <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
@@ -79,8 +79,8 @@ function TrustBar() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
-              <stat.icon className="w-6 h-6 text-accent-500 mx-auto mb-2" />
-              <p className="text-2xl md:text-3xl font-bold text-navy-900">{stat.value}</p>
+              <stat.icon className="w-6 h-6 text-[#e86c2b] mx-auto mb-2" />
+              <p className="text-2xl md:text-3xl font-bold text-[#0f2a4a]">{stat.value}</p>
               <p className="text-sm text-slate-600 mt-1">{stat.label}</p>
             </div>
           ))}
@@ -110,7 +110,7 @@ function ServicesSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (
             <div key={service.title} className="bg-white rounded-xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
-              <service.icon className="w-10 h-10 text-navy-700 mb-4" />
+              <service.icon className="w-10 h-10 text-[#1e4d7b] mb-4" />
               <h3 className="text-lg font-semibold text-slate-900 mb-2">{service.title}</h3>
               <p className="text-sm text-slate-600 leading-relaxed">{service.desc}</p>
             </div>
@@ -145,7 +145,7 @@ function ProcessSection() {
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
           {steps.map((step, i) => (
             <div key={step.num} className="text-center relative">
-              <div className="w-14 h-14 bg-navy-900 text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
+              <div className="w-14 h-14 bg-[#0f2a4a] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-lg font-bold">
                 {step.num}
               </div>
               {i < steps.length - 1 && (
@@ -180,8 +180,8 @@ function ProductsSection() {
         />
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((cat) => (
-            <div key={cat.name} className="bg-white rounded-xl p-5 border border-slate-200 text-center hover:border-navy-700 transition-colors">
-              <cat.icon className="w-8 h-8 text-navy-700 mx-auto mb-3" />
+            <div key={cat.name} className="bg-white rounded-xl p-5 border border-slate-200 text-center hover:border-[#1e4d7b] transition-colors">
+              <cat.icon className="w-8 h-8 text-[#1e4d7b] mx-auto mb-3" />
               <p className="text-xs font-medium text-slate-800">{cat.name}</p>
             </div>
           ))}
@@ -252,7 +252,7 @@ function CaseStudiesPreview() {
   ]
 
   return (
-    <section className="bg-navy-900 py-16 md:py-24">
+    <section className="bg-[#0f2a4a] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           title="Client Success Stories"
@@ -262,7 +262,7 @@ function CaseStudiesPreview() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {cases.map((c) => (
             <div key={c.id} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-              <span className="text-xs font-medium text-accent-500 uppercase tracking-wider">{c.category}</span>
+              <span className="text-xs font-medium text-[#e86c2b] uppercase tracking-wider">{c.category}</span>
               <h3 className="text-lg font-semibold text-white mt-2 mb-3">{c.title}</h3>
               <p className="text-sm text-slate-300 leading-relaxed">{c.result}</p>
             </div>

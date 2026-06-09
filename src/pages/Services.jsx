@@ -71,7 +71,7 @@ export default function Services() {
 
   return (
     <div ref={containerRef}>
-      <section className="bg-navy-900 py-16 md:py-20">
+      <section className="bg-[#0f2a4a] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 id="services-page-title" className="text-3xl md:text-5xl font-bold text-white mb-4">Our Sourcing Services</h1>
@@ -89,7 +89,7 @@ export default function Services() {
               <div key={service.title} className="bg-slate-50 rounded-xl p-6 md:p-8 border border-slate-200">
                 <div className="flex flex-col md:flex-row md:items-start gap-6">
                   <div className="shrink-0">
-                    <div className="w-14 h-14 bg-navy-900 rounded-lg flex items-center justify-center">
+                    <div className="w-14 h-14 bg-[#0f2a4a] rounded-lg flex items-center justify-center">
                       <service.icon className="w-7 h-7 text-white" />
                     </div>
                   </div>
@@ -99,7 +99,7 @@ export default function Services() {
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {service.details.map((detail) => (
                         <li key={detail} className="flex items-center gap-2 text-sm text-slate-700">
-                          <span className="w-1.5 h-1.5 bg-accent-500 rounded-full shrink-0" />
+                          <span className="w-1.5 h-1.5 bg-[#e86c2b] rounded-full shrink-0" />
                           {detail}
                         </li>
                       ))}

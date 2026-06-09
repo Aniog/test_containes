@@ -77,7 +77,7 @@ export default function Products() {
 
   return (
     <div ref={containerRef}>
-      <section className="bg-navy-900 py-16 md:py-20">
+      <section className="bg-[#0f2a4a] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">Products We Source</h1>
@@ -92,9 +92,9 @@ export default function Products() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat) => (
-              <div key={cat.title} className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-navy-700 transition-colors">
+              <div key={cat.title} className="bg-slate-50 rounded-xl p-6 border border-slate-200 hover:border-[#1e4d7b] transition-colors">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-navy-900 rounded-lg flex items-center justify-center">
+                  <div className="w-10 h-10 bg-[#0f2a4a] rounded-lg flex items-center justify-center">
                     <cat.icon className="w-5 h-5 text-white" />
                   </div>
                   <h2 className="text-base font-bold text-slate-900">{cat.title}</h2>

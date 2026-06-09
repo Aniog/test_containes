@@ -21,8 +21,8 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-18">
           <Link to="/" className="flex items-center gap-2">
-            <Globe className="w-7 h-7 text-navy-800" />
-            <span className="text-xl font-bold text-navy-900">SSourcing China</span>
+            <Globe className="w-7 h-7 text-[#1a3a5c]" />
+            <span className="text-xl font-bold text-[#0f2a4a]">SSourcing China</span>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-1">
@@ -33,8 +33,8 @@ export default function Header() {
                 className={cn(
                   'px-3 py-2 text-sm font-medium rounded-md transition-colors',
                   location.pathname === link.path
-                    ? 'text-accent-500 bg-orange-50'
-                    : 'text-slate-700 hover:text-navy-800 hover:bg-slate-50'
+                    ? 'text-[#e86c2b] bg-orange-50'
+                    : 'text-slate-700 hover:text-[#1a3a5c] hover:bg-slate-50'
                 )}
               >
                 {link.label}
@@ -45,7 +45,7 @@ export default function Header() {
           <div className="hidden lg:block">
             <Link
               to="/contact"
-              className="inline-flex items-center px-5 py-2.5 bg-accent-500 hover:bg-accent-600 text-white text-sm font-semibold rounded-lg transition-colors"
+              className="inline-flex items-center px-5 py-2.5 bg-[#e86c2b] hover:bg-[#d45a1a] text-white text-sm font-semibold rounded-lg transition-colors"
             >
               Get a Free Quote
             </Link>
@@ -72,7 +72,7 @@ export default function Header() {
                 className={cn(
                   'block px-3 py-2.5 text-sm font-medium rounded-md transition-colors',
                   location.pathname === link.path
-                    ? 'text-accent-500 bg-orange-50'
+                    ? 'text-[#e86c2b] bg-orange-50'
                     : 'text-slate-700 hover:bg-slate-50'
                 )}
               >
@@ -82,7 +82,7 @@ export default function Header() {
             <Link
               to="/contact"
               onClick={() => setMobileOpen(false)}
-              className="block mt-3 text-center px-5 py-2.5 bg-accent-500 hover:bg-accent-600 text-white text-sm font-semibold rounded-lg transition-colors"
+              className="block mt-3 text-center px-5 py-2.5 bg-[#e86c2b] hover:bg-[#d45a1a] text-white text-sm font-semibold rounded-lg transition-colors"
             >
               Get a Free Quote
             </Link>

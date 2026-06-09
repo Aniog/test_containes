@@ -3,12 +3,12 @@ import { Globe, Mail, Phone, MapPin } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-900 text-white">
+    <footer className="bg-[#0f2a4a] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <Globe className="w-6 h-6 text-accent-500" />
+              <Globe className="w-6 h-6 text-[#e86c2b]" />
               <span className="text-lg font-bold">SSourcing China</span>
             </div>
             <p className="text-slate-300 text-sm leading-relaxed">
@@ -42,15 +42,15 @@ export default function Footer() {
             <h4 className="text-sm font-semibold uppercase tracking-wider text-slate-300 mb-4">Contact</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-2.5">
-                <Mail className="w-4 h-4 text-accent-500 mt-0.5 shrink-0" />
+                <Mail className="w-4 h-4 text-[#e86c2b] mt-0.5 shrink-0" />
                 <span className="text-sm text-slate-400">info@ssourcingchina.com</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <Phone className="w-4 h-4 text-accent-500 mt-0.5 shrink-0" />
+                <Phone className="w-4 h-4 text-[#e86c2b] mt-0.5 shrink-0" />
                 <span className="text-sm text-slate-400">+86 755 8888 6666</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-accent-500 mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 text-[#e86c2b] mt-0.5 shrink-0" />
                 <span className="text-sm text-slate-400">Shenzhen, Guangdong, China</span>
               </li>
             </ul>

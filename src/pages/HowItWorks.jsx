@@ -58,7 +58,7 @@ export default function HowItWorks() {
 
   return (
     <div ref={containerRef}>
-      <section className="bg-navy-900 py-16 md:py-20">
+      <section className="bg-[#0f2a4a] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">How It Works</h1>
@@ -78,13 +78,13 @@ export default function HowItWorks() {
                   <div className="absolute left-7 top-14 bottom-0 w-0.5 bg-slate-200" />
                 )}
                 <div className="shrink-0 relative z-10">
-                  <div className="w-14 h-14 bg-navy-900 rounded-full flex items-center justify-center">
+                  <div className="w-14 h-14 bg-[#0f2a4a] rounded-full flex items-center justify-center">
                     <step.icon className="w-6 h-6 text-white" />
                   </div>
                 </div>
                 <div className="flex-1 pt-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-xs font-bold text-accent-500 uppercase tracking-wider">{step.duration}</span>
+                    <span className="text-xs font-bold text-[#e86c2b] uppercase tracking-wider">{step.duration}</span>
                   </div>
                   <h2 className="text-xl font-bold text-slate-900 mb-2">{step.num}. {step.title}</h2>
                   <p className="text-slate-600 leading-relaxed">{step.desc}</p>
