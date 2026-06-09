@@ -186,6 +186,20 @@ const SheepGame = () => {
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12, zIndex: 10 }}>
+        {/* Logo */}
+        <img
+          src="/sheep-logo.jpeg"
+          alt="羊了个羊"
+          style={{
+            width: 52,
+            height: 52,
+            borderRadius: '50%',
+            border: '3px solid rgba(255,255,255,0.7)',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+            objectFit: 'cover',
+            flexShrink: 0,
+          }}
+        />
         <div
           style={{
             background: 'rgba(255,255,255,0.3)',
