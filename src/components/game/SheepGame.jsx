@@ -185,9 +185,7 @@ const SheepGame = () => {
       ))}
 
       {/* Logo - 右下角固定 */}
-      <img
-        src="/sheep-logo.jpeg"
-        alt="羊了个羊"
+      <div
         style={{
           position: 'fixed',
           right: 16,
@@ -195,13 +193,43 @@ const SheepGame = () => {
           width: 72,
           height: 72,
           borderRadius: '50%',
-          border: '3px solid rgba(255,255,255,0.8)',
+          border: '3px solid rgba(255,255,255,0.85)',
           boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
-          objectFit: 'cover',
+          background: '#b8e878',
           zIndex: 200,
           pointerEvents: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
         }}
-      />
+      >
+        <svg viewBox="0 0 100 100" width="68" height="68" xmlns="http://www.w3.org/2000/svg">
+          {/* Body */}
+          <ellipse cx="50" cy="62" rx="30" ry="24" fill="#f0f0f0" stroke="#333" strokeWidth="2.5"/>
+          {/* Head */}
+          <ellipse cx="50" cy="36" rx="18" ry="16" fill="#f0f0f0" stroke="#333" strokeWidth="2.5"/>
+          {/* Ears */}
+          <ellipse cx="34" cy="30" rx="6" ry="9" fill="#333" stroke="#333" strokeWidth="1.5"/>
+          <ellipse cx="66" cy="30" rx="6" ry="9" fill="#333" stroke="#333" strokeWidth="1.5"/>
+          {/* Face dark overlay */}
+          <ellipse cx="50" cy="40" rx="13" ry="11" fill="#333"/>
+          {/* Eyes */}
+          <circle cx="44" cy="36" r="3" fill="white"/>
+          <circle cx="56" cy="36" r="3" fill="white"/>
+          <circle cx="45" cy="37" r="1.5" fill="#111"/>
+          <circle cx="57" cy="37" r="1.5" fill="#111"/>
+          {/* Tongue */}
+          <ellipse cx="50" cy="47" rx="4" ry="3" fill="#e05070"/>
+          {/* 羊 character on body */}
+          <rect x="36" y="52" width="28" height="22" rx="3" fill="white" stroke="#aaa" strokeWidth="1.5"/>
+          <text x="50" y="68" textAnchor="middle" fontSize="14" fontWeight="bold" fill="#333" fontFamily="serif">羊</text>
+          {/* Legs */}
+          <rect x="36" y="82" width="7" height="12" rx="3" fill="#333"/>
+          <rect x="46" y="82" width="7" height="12" rx="3" fill="#333"/>
+          <rect x="56" y="82" width="7" height="12" rx="3" fill="#333"/>
+        </svg>
+      </div>
 
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12, zIndex: 10 }}>
