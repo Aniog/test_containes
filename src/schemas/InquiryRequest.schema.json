@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inquiry Requests",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquiry contact"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Phone number or WhatsApp contact"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country where the buyer is based"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name or sourcing category"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Description of the product requirements and sourcing brief"
+    },
+    "order_volume": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order volume or buying plan"
+    },
+    "shipping_destination": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Shipping destination such as country, port, or warehouse"
+    },
+    "service_needs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier search",
+          "Supplier verification",
+          "Factory audit",
+          "Quality inspection",
+          "Production follow-up",
+          "Shipping coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Requested sourcing support services"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target sourcing or shipment timeline"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Additional notes about requirements, pricing, packaging, or current issues"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal inquiry handling status"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page or source where the inquiry was submitted"
+    }
+  },
+  "required": [
+    "name",
+    "company_name",
+    "email",
+    "product_name",
+    "product_description",
+    "shipping_destination",
+    "service_needs"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
