@@ -20,6 +20,7 @@ export default defineConfig({
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
+    port: 8080,
     hmr: {
       overlay: false
     }
