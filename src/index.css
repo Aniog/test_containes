@@ -1,76 +1,194 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-purple: #8159BB;
+    --ai-blue: #7671FF;
+    --ai-pink: #CB0C9F;
+    --body-gray: #636972;
+    --heading-dark: #2E2E2F;
+    --heading-gray: #4B5056;
+    --card-border: #C6C9CD;
+    --divider: #E2E4E7;
+    --light-bg: #F4F6F8;
+    --ai-gradient: linear-gradient(135deg, #7671FF, #CB0C9F);
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Open Sans', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--body-gray);
+    background-color: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Josefin Sans', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: var(--heading-gray);
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible {
+    outline: 2px solid var(--brand-purple);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 44px;
+    padding: 9px 15px;
+    border-radius: 4px;
+    font-family: 'Josefin Sans', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: linear-gradient(135deg, #7671FF, #CB0C9F);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 9px 15px;
+    border-radius: 4px;
+    font-family: 'Josefin Sans', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: var(--brand-purple);
+    background: transparent;
+    border: 1px solid var(--brand-purple);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background-color: rgba(129, 89, 187, 0.05);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Josefin Sans', 'Poppins', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--brand-purple);
+    border: 1px solid var(--brand-purple);
+    background: transparent;
+    white-space: nowrap;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid var(--card-border);
+    border-radius: 3px;
+    padding: 20px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--brand-purple);
+  }
+
+  .section-container {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+
+  .section-padding {
+    padding-block: 40px;
+  }
+
+  .hero-gradient-text {
+    background: linear-gradient(135deg, #7671FF, #CB0C9F);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Default: all cards visible (JS-off baseline) */
+  .show-all-container {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* JS progressive collapse: JS adds .collapsible after page load */
+  .show-all-container.collapsible {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .show-all-container.collapsible.expanded {
+    max-height: 5000px;
+  }
+
+  /* Generator card headings are proper names - don't uppercase */
+  .generator-card p.font-bold,
+  .featured-card p.font-bold {
+    text-transform: none;
+  }
+
+  /* JS-only toggle buttons: hidden by default, shown by JS */
+  .js-show-toggle {
+    display: none;
+  }
+
+  .js-show-toggle.js-active {
+    display: block;
+  }
+}
+
+@layer utilities {
+  .text-body { color: var(--body-gray); }
+  .text-heading { color: var(--heading-gray); }
+  .text-heading-dark { color: var(--heading-dark); }
+  .text-brand { color: var(--brand-purple); }
+  .bg-light { background-color: var(--light-bg); }
+  .border-card { border-color: var(--card-border); }
+  .border-divider { border-color: var(--divider); }
+  .font-heading { font-family: 'Josefin Sans', 'Poppins', system-ui, sans-serif; }
+  .font-body { font-family: 'Open Sans', system-ui, sans-serif; }
+}
