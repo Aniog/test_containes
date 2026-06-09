@@ -1,7 +1,41 @@
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
+  background-color: #8cc858;
+}
+
+/* Tile hover effect */
+.tile-wrapper.clickable:hover .tile-hover-overlay {
+  background: rgba(255, 255, 200, 0.25) !important;
+}
+
+.tile-wrapper.clickable:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+.tile-wrapper {
+  transition: transform 0.1s ease, filter 0.1s ease;
+}
+
+/* Match flash animation */
+@keyframes flash {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+/* Tile pop-in animation */
+@keyframes tilePopIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  70% { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Win bounce */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .app-loading-shell {
