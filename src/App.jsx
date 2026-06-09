@@ -1,15 +1,18 @@
-import './App.css'
+import Layout from './Layout.jsx';
+import Hero from './components/Hero.jsx';
+import Products from './components/Products.jsx';
+import About from './components/About.jsx';
+import Contact from './components/Contact.jsx';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <Layout>
+      <Hero />
+      <Products />
+      <About />
+      <Contact />
+    </Layout>
+  );
 }
 
-export default App
+export default App;
