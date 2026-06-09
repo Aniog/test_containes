@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category of interest"
+    },
+    "product_details": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed description of the product to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or annual volume"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_search", "factory_verification", "quality_inspection", "production_followup", "shipping_coordination", "custom_packaging"]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "budget_range": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price range or budget indication"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Expected timeline for the project"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any additional information"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Inquiry status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["name", "email"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
