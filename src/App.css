@@ -1,50 +1,870 @@
+/* ============================================
+   STRIKINGLY /GENERATORS HUB PAGE STYLES
+   ============================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #636972;
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
+  background-color: #FFFFFF;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: #4B5056;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* --- Container --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Section Spacing --- */
+.section {
+  padding: 40px 0;
+}
+
+.section-heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #4B5056;
+}
+
+.section-subheading {
+  font-size: 14px;
+  color: #636972;
+  margin-bottom: 30px;
+}
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+  height: 36px;
+  padding: 9px 15px;
+  border-radius: 4px;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: all 0.15s ease;
+  white-space: nowrap;
 }
 
-.app-loading-content {
+.btn:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(118, 113, 255, 0.3);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+}
+
+.btn-ghost:hover {
+  background: rgba(129, 89, 187, 0.05);
+}
+
+.btn-large {
+  height: 44px;
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.btn-small {
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.btn-show-all {
+  margin-top: 20px;
+}
+
+/* --- Tags --- */
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.tag-ghost {
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  background: transparent;
+}
+
+/* ============================================
+   SECTION 0: TOP BAR
+   ============================================ */
+.top-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E2E4E7;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.top-bar-logo {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #2E2E2F;
+  text-transform: lowercase;
+  letter-spacing: 0.5px;
+}
+
+.top-bar-logo:hover {
+  color: #8159BB;
+}
+
+/* ============================================
+   SECTION 1: BREADCRUMB
+   ============================================ */
+.breadcrumb {
+  padding: 15px 20px;
+}
+
+.breadcrumb ol {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #636972;
+}
+
+.breadcrumb ol li + li::before {
+  content: '>';
+  margin-inline-start: 8px;
+  color: #8159BB;
+}
+
+.breadcrumb ol li a {
+  color: #8159BB;
+}
+
+.breadcrumb ol li a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb ol li[aria-current='page'] {
+  color: #636972;
+}
+
+/* ============================================
+   SECTION 2: HERO
+   ============================================ */
+.hero {
+  padding: 60px 0 80px;
+  background: linear-gradient(180deg, rgba(129, 89, 187, 0.04) 0%, #FFFFFF 100%);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-content {
+  order: 1;
+}
+
+.hero-visual {
+  order: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-illustration {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero h1 {
+  margin-bottom: 15px;
+}
+
+.hero-h1-line1 {
+  display: block;
+  font-size: 44px;
+  color: #2E2E2F;
+}
+
+.hero-h1-line2 {
+  display: block;
+  font-size: 44px;
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subheadline {
+  font-size: 16px;
+  color: #636972;
+  margin-bottom: 25px;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   SECTION 3: FEATURED GENERATORS
+   ============================================ */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.featured-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
+  gap: 8px;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.featured-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.featured-card:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.featured-card-name {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2E2E2F;
+  text-transform: uppercase;
+}
+
+.featured-card-desc {
+  font-size: 13px;
+  color: #636972;
+  line-height: 1.4;
+}
+
+/* ============================================
+   SECTION 4: BROWSE BY CATEGORY
+   ============================================ */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 25px 20px;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.category-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.category-card:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.category-card-icon {
+  margin-bottom: 5px;
+}
+
+.category-card-name {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #2E2E2F;
+}
+
+.category-card-desc {
+  font-size: 13px;
+  color: #636972;
+  line-height: 1.4;
+}
+
+.category-card-arrow {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #8159BB;
+  transition: transform 0.15s ease;
+}
+
+.category-card:hover .category-card-arrow {
+  transform: translateX(3px);
+}
+
+/* ============================================
+   SECTION 5: ALL GENERATORS
+   ============================================ */
+.all-generators {
+  background: #F4F6F8;
+}
+
+.search-wrapper {
+  margin-bottom: 30px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  max-width: 480px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #636972;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px 0 40px;
+  border: 1px solid #C6C9CD;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #2E2E2F;
+  background: #FFFFFF;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #8159BB;
+  box-shadow: 0 0 0 2px rgba(129, 89, 187, 0.15);
+}
+
+.search-input::placeholder {
+  color: #9CA3AF;
+}
+
+.search-results-info {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #636972;
+}
+
+.search-empty-state {
+  margin-top: 15px;
+  padding: 20px;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+}
+
+.search-empty-title {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #2E2E2F;
+  margin-bottom: 5px;
+}
+
+.search-empty-desc {
+  font-size: 13px;
+  color: #636972;
+  margin-bottom: 15px;
+}
+
+.search-empty-state .btn {
+  margin-inline-end: 10px;
+  margin-bottom: 5px;
+}
+
+.generators-subsection {
+  margin-bottom: 30px;
+}
+
+.subsection-heading {
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #4B5056;
+}
+
+.subsection-desc {
+  font-size: 13px;
+  color: #636972;
+  margin-bottom: 15px;
+}
+
+.generators-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.generator-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+}
+
+.generator-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.generator-card:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.generator-card-name {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #2E2E2F;
+}
+
+.generator-card-desc {
+  font-size: 12px;
+  color: #636972;
+  line-height: 1.4;
+}
+
+/* ============================================
+   SECTION 6: HOW IT WORKS
+   ============================================ */
+.how-it-works {
+  background: #FFFFFF;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.step-card {
   text-align: center;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.step-number {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
+.step-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #2E2E2F;
+}
+
+.step-desc {
+  font-size: 13px;
+  color: #636972;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SECTION 7: WHY STRIKINGLY
+   ============================================ */
+.why-strikingly {
+  background: #F4F6F8;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.benefit-card {
+  text-align: center;
+}
+
+.benefit-icon {
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.benefit-title {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #2E2E2F;
+}
+
+.benefit-desc {
+  font-size: 13px;
+  color: #636972;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SECTION 8: FAQ
+   ============================================ */
+.faq {
+  background: #FFFFFF;
+}
+
+.faq-list {
+  max-width: 800px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #E2E4E7;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 0;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2E2E2F;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.faq-question:hover {
+  color: #8159BB;
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+}
+
+.faq-answer p {
+  font-size: 14px;
+  color: #636972;
   line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
+/* ============================================
+   SECTION 9: CLOSING CTA
+   ============================================ */
+.closing-cta {
+  background: #FFFFFF;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.closing-cta-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.closing-heading {
+  font-size: 32px;
+  color: #2E2E2F;
+}
+
+.closing-sub {
+  font-size: 16px;
+  color: #636972;
+  max-width: 480px;
+}
+
+/* ============================================
+   SECTION 10: FOOTER
+   ============================================ */
+.footer {
+  background: #F4F6F8;
+  border-top: 1px solid #E2E4E7;
+  padding: 40px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-col h4 {
+  font-size: 13px;
+  margin-bottom: 15px;
+  color: #4B5056;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  font-size: 13px;
+  color: #636972;
+}
+
+.footer-col ul li a:hover {
+  color: #8159BB;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid #E2E4E7;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 12px;
+  color: #9CA3AF;
+}
+
+/* ============================================
+   RESPONSIVE: TABLET (768px - 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero-h1-line1,
+  .hero-h1-line2 {
+    font-size: 36px;
   }
 
-  to {
-    transform: rotate(360deg);
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .generators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE (< 768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .section {
+    padding: 30px 0;
+  }
+
+  .section-heading {
+    font-size: 24px;
+  }
+
+  .hero {
+    padding: 40px 0 50px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .hero-content {
+    order: 1;
+  }
+
+  .hero-visual {
+    order: 2;
+  }
+
+  .hero-h1-line1,
+  .hero-h1-line2 {
+    font-size: 28px;
+  }
+
+  .hero-subheadline {
+    font-size: 14px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .generators-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .closing-heading {
+    font-size: 24px;
+  }
+
+  .closing-sub {
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY: FOCUS STATES
+   ============================================ */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .faq-answer {
+    transition: none;
+  }
+
+  .category-card-arrow {
+    transition: none;
+  }
+
+  .btn,
+  .featured-card,
+  .category-card,
+  .generator-card {
+    transition: none;
   }
 }
