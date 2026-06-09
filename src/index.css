@@ -2,6 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  /* ── Brand background colours ── */
+  .bg-brand-navy  { background-color: #0F2A4A; }
+  .bg-brand-blue  { background-color: #1A4B8C; }
+  .bg-brand-red   { background-color: #C0392B; }
+  .bg-brand-gold  { background-color: #D4A017; }
+  .bg-brand-light { background-color: #F4F6F9; }
+
+  /* ── Brand text colours ── */
+  .text-brand-navy { color: #0F2A4A; }
+  .text-brand-blue { color: #1A4B8C; }
+  .text-brand-red  { color: #C0392B; }
+  .text-brand-gold { color: #D4A017; }
+
+  /* ── Brand border colours ── */
+  .border-brand-blue { border-color: #1A4B8C; }
+  .border-brand-navy { border-color: #0F2A4A; }
+
+  /* ── Brand fill (SVG icons) ── */
+  .fill-brand-gold { fill: #D4A017; }
+
+  /* ── Hover variants ── */
+  .hover\:bg-brand-navy:hover { background-color: #0F2A4A; }
+  .hover\:bg-brand-blue:hover { background-color: #1A4B8C; }
+  .hover\:text-brand-blue:hover { color: #1A4B8C; }
+
+  /* ── Opacity / alpha variants ── */
+  .bg-brand-blue\/20 { background-color: rgb(26 75 140 / 0.2); }
+  .bg-brand-blue\/40 { background-color: rgb(26 75 140 / 0.4); }
+  .bg-brand-navy\/60 { background-color: rgb(15 42 74 / 0.6); }
+  .bg-brand-navy\/90 { background-color: rgb(15 42 74 / 0.9); }
+
+  /* ── Gradient stops ── */
+  .from-brand-navy {
+    --tw-gradient-from: #0F2A4A var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(15 42 74 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  .via-brand-navy\/90 {
+    --tw-gradient-to: rgb(15 42 74 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), rgb(15 42 74 / 0.9) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+  .to-brand-navy\/60 {
+    --tw-gradient-to: rgb(15 42 74 / 0.6) var(--tw-gradient-to-position);
+  }
+
+  /* ── Focus ring ── */
+  .focus\:ring-brand-blue:focus {
+    --tw-ring-color: #1A4B8C;
+  }
+
+  /* ── Font family ── */
+  .font-sans {
+    font-family: Inter, system-ui, sans-serif;
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
