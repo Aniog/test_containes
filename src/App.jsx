@@ -1,14 +1,52 @@
-import './App.css'
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import Layout from './pages/Layout'
+import Home from './pages/Home'
+import Services from './pages/Services'
+import HowItWorks from './pages/HowItWorks'
+import Products from './pages/Products'
+import CaseStudies from './pages/CaseStudies'
+import Blog from './pages/Blog'
+import Contact from './pages/Contact'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
+function NavigateBridge() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    window.__STRIKINGLY_PREVIEW_NAVIGATE__ = (path, options) => {
+      navigate(path, options)
+    }
+    return () => {
+      delete window.__STRIKINGLY_PREVIEW_NAVIGATE__
+    }
+  }, [navigate])
+  return null
+}
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <BrowserRouter>
+      <ScrollToTop />
+      <NavigateBridge />
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/how-it-works" element={<HowItWorks />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/case-studies" element={<CaseStudies />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 
