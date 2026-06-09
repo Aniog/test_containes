@@ -184,22 +184,27 @@ const SheepGame = () => {
         <GrassDecor key={i} x={g.x} y={g.y} />
       ))}
 
+      {/* Logo - 右下角固定 */}
+      <img
+        src="/sheep-logo.jpeg"
+        alt="羊了个羊"
+        style={{
+          position: 'fixed',
+          right: 16,
+          bottom: 16,
+          width: 72,
+          height: 72,
+          borderRadius: '50%',
+          border: '3px solid rgba(255,255,255,0.8)',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          objectFit: 'cover',
+          zIndex: 200,
+          pointerEvents: 'none',
+        }}
+      />
+
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 12, zIndex: 10 }}>
-        {/* Logo */}
-        <img
-          src="/sheep-logo.jpeg"
-          alt="羊了个羊"
-          style={{
-            width: 52,
-            height: 52,
-            borderRadius: '50%',
-            border: '3px solid rgba(255,255,255,0.7)',
-            boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
-            objectFit: 'cover',
-            flexShrink: 0,
-          }}
-        />
         <div
           style={{
             background: 'rgba(255,255,255,0.3)',
