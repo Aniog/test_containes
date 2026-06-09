@@ -1,0 +1,47 @@
+{
+  "\$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for contact"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product": {
+      "type": "string",
+      "description": "Product they are looking to source"
+    },
+    "quantity": {
+      "type": "string",
+      "description": "Estimated quantity"
+    },
+    "message": {
+      "type": "string",
+      "description": "Specific requirements or questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Lead status"
+    }
+  },
+  "required": ["name", "email", "product", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
