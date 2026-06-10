@@ -1,76 +1,142 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ink: 15 23 34;
+    --color-ink-soft: 28 42 58;
+    --color-brass: 201 169 106;
+    --color-brass-light: 226 200 150;
+    --color-bone: 246 242 234;
+    --color-paper: 255 255 255;
+    --color-hairline: 226 220 205;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", sans-serif;
+    background-color: #f6f2ea;
+    color: #1c2a3a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500;
+    color: #0f1722;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background-color: #c9a96a;
+    color: #0f1722;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto w-full max-w-content px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-eyebrow text-brass-deep;
+  }
+
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-brass;
+  }
+
+  .eyebrow-light {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-eyebrow text-brass-light;
+  }
+
+  .eyebrow-light::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-brass/60;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-none px-7 py-3.5 text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300;
+  }
+
+  .btn-primary {
+    @apply btn bg-ink text-bone hover:bg-ink-soft;
+  }
+
+  .btn-accent {
+    @apply btn bg-brass text-ink hover:bg-brass-light;
+  }
+
+  .btn-outline-light {
+    @apply btn border border-brass/60 text-brass hover:bg-brass hover:text-ink;
+  }
+
+  .btn-outline-dark {
+    @apply btn border border-ink/20 text-ink hover:border-ink hover:bg-ink hover:text-bone;
+  }
+
+  .btn-ghost {
+    @apply btn text-ink hover:text-brass-deep;
+  }
+
+  .card {
+    @apply rounded-none border border-hairline bg-paper transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:border-ink/40 hover:shadow-[0_18px_40px_-30px_rgba(15,23,34,0.4)];
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .section-pad-lg {
+    @apply py-24 md:py-32;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-hairline;
+  }
+
+  .hairline-dark {
+    @apply h-px w-full bg-white/10;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-2 text-ink transition-colors duration-200 hover:text-brass-deep;
+  }
+
+  .link-underline::after {
+    content: "";
+    @apply absolute -bottom-1 left-0 h-px w-full origin-right scale-x-0 bg-brass transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply origin-left scale-x-100;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .num-tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
