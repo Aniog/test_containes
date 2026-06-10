@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Buyer full name"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number, with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer country or region"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "consumer_electronics",
+        "home_kitchen",
+        "apparel_textile",
+        "promotional_gifts",
+        "industrial_hardware",
+        "auto_parts",
+        "outdoor_sports",
+        "beauty_personal_care",
+        "packaging",
+        "other"
+      ],
+      "description": "Main product category"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000,
+      "description": "Product description, specs, target price, reference links"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity (e.g. 1,000 pcs / month)"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price in USD if any"
+    },
+    "services_needed": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "supplier_verification",
+          "price_negotiation",
+          "sample_management",
+          "production_follow_up",
+          "quality_inspection",
+          "shipping_logistics",
+          "private_label_packaging"
+        ]
+      },
+      "description": "Services the buyer needs"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["asap", "1_3_months", "3_6_months", "exploring"],
+      "description": "Project timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "won", "lost"],
+      "default": "new",
+      "description": "Inquiry status"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
