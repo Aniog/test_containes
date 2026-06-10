@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the buyer making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Hardware",
+        "Beauty & Personal Care",
+        "Toys & Baby Products",
+        "Outdoor & Sports",
+        "Promotional & Custom",
+        "Other"
+      ],
+      "description": "Main product category to source"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping & Logistics",
+        "Full End-to-End Sourcing"
+      ],
+      "description": "Service requested by the buyer"
+    },
+    "estimated_order_value": {
+      "type": "string",
+      "enum": [
+        "Under USD 5,000",
+        "USD 5,000 - 20,000",
+        "USD 20,000 - 100,000",
+        "USD 100,000+",
+        "Not sure yet"
+      ],
+      "description": "Approximate order value"
+    },
+    "target_timeline": {
+      "type": "string",
+      "enum": [
+        "Within 1 month",
+        "1-3 months",
+        "3-6 months",
+        "Just exploring"
+      ],
+      "description": "Target delivery timeline"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Project description, product details, requirements, and questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
