@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const headerRef = React.useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,61 +16,58 @@ const Header = () => {
   }, []);
 
   useEffect(() => {
-    if (headerRef.current) {
-      return ImageHelper.loadImages(strkImgConfig, headerRef.current);
-    }
-  }, []);
+    setIsMenuOpen(false);
+  }, [location]);
 
   const navigation = [
-    { name: 'Home', href: '#home' },
-    { name: 'Products', href: '#products' },
-    { name: 'About', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
     <header
-      ref={headerRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-white shadow-lg py-2'
           : 'bg-white/95 backdrop-blur-sm py-4'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-900 to-blue-700 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">AM</span>
-            </div>
-            <div>
-              <h1 id="brand-name" className="text-2xl font-bold text-gray-900 leading-tight">
-                ARTITECT
-              </h1>
-              <p id="brand-tagline" className="text-xs text-gray-600 font-medium tracking-wider">
+          <Link to="/" className="flex items-center space-x-2">
+            <div className="font-bold text-2xl">
+              <span className="text-gray-900">ARTI</span>
+              <span className="text-orange-500">TECT</span>
+              <div className="text-xs text-gray-600 font-normal tracking-wider uppercase">
                 MACHINERY
-              </p>
+              </div>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navigation.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-200"
+                to={item.href}
+                className={`text-sm font-medium transition-colors hover:text-orange-500 ${
+                  location.pathname === item.href
+                    ? 'text-orange-500'
+                    : 'text-gray-700'
+                }`}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
-              className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors duration-200 font-medium"
+            <Link
+              to="/contact"
+              className="bg-orange-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors"
             >
-              Get Quote
-            </a>
+              Get a Quote
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -93,22 +89,24 @@ const Header = () => {
           <nav className="md:hidden mt-4 pb-4 border-t border-gray-200">
             <div className="flex flex-col space-y-3 pt-4">
               {navigation.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
-                  className="text-gray-700 hover:text-blue-900 font-medium transition-colors duration-200"
-                  onClick={() => setIsMenuOpen(false)}
+                  to={item.href}
+                  className={`text-sm font-medium transition-colors hover:text-orange-500 ${
+                    location.pathname === item.href
+                      ? 'text-orange-500'
+                      : 'text-gray-700'
+                  }`}
                 >
                   {item.name}
-                </a>
+                </Link>
               ))}
-              <a
-                href="#contact"
-                className="bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors duration-200 font-medium text-center"
-                onClick={() => setIsMenuOpen(false)}
+              <Link
+                to="/contact"
+                className="bg-orange-500 text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors text-center"
               >
-                Get Quote
-              </a>
+                Get a Quote
+              </Link>
             </div>
           </nav>
         )}
