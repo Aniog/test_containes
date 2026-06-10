@@ -668,7 +668,7 @@ function Generators() {
                 <li><Link to="/about" className="text-body hover:text-brand-purple no-underline">{t.footerAbout}</Link></li>
                 <li><span className="text-body">{t.footerCareers}</span></li>
                 <li><span className="text-body">{t.footerPress}</span></li>
-                <li><Link to="/support" className="text-body hover:text-brand-purple no-underline">{t.footerContact}</span></li>
+                <li><Link to="/support" className="text-body hover:text-brand-purple no-underline">{t.footerContact}</Link></li>
               </ul>
             </div>
             <div>
