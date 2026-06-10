@@ -1,389 +1,1164 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+  <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.">
+  <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly">
+  <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds.">
+  <meta property="og:url" content="https://www.strikingly.com/generators">
+  <link rel="canonical" href="https://www.strikingly.com/generators">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
+    :root {
+      --brand-purple: #8159BB;
+      --ai-gradient: linear-gradient(135deg, #7671FF 0%, #CB0C9F 100%);
+      --body-text: #636972;
+      --heading-dark: #4B5056;
+      --heading-darker: #2E2E2F;
+      --card-border: #C6C9CD;
+      --divider: #E2E4E7;
+      --light-bg: #F4F6F8;
+      --white: #FFFFFF;
+      --max-width: 1200px;
+    }
 
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
+    html {
+      scroll-behavior: smooth;
+    }
 
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
+    body {
+      font-family: 'Open Sans', system-ui, -apple-system, sans-serif;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--body-text);
+      background-color: var(--white);
+      overflow-x: hidden;
+    }
 
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
+    /* ===== TYPOGRAPHY ===== */
+    h1, h2, h3, h4 {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', 'Poppins', sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.2;
+      color: var(--heading-dark);
+    }
 
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
+    h1 {
+      font-size: 40px;
+      margin-block-end: 20px;
+    }
 
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
+    h2 {
+      font-size: 32px;
+      margin-block-end: 10px;
+    }
 
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
+    h3 {
+      font-size: 26px;
+      margin-block-end: 10px;
+    }
 
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
+    @media (max-width: 768px) {
+      h1 { font-size: 28px; }
+      h2 { font-size: 26px; }
+      h3 { font-size: 22px; }
+    }
 
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
+    /* ===== LAYOUT ===== */
+    .container {
+      max-width: var(--max-width);
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
 
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
+    section {
+      padding-block: 40px;
+    }
 
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--brand-purple);
+      outline-offset: 2px;
+    }
 
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
+    /* ===== TOP BAR ===== */
+    .top-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--divider);
+      padding-block: 15px;
+    }
 
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
+    .top-bar .container {
+      display: flex;
+      align-items: center;
+    }
 
-          if (data.type !== "route:navigate") {
-            return;
-          }
+    .logo {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--heading-darker);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
+    .logo span {
+      color: var(--brand-purple);
+    }
 
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb {
+      padding-block: 12px;
+      font-size: 13px;
+      color: var(--body-text);
+    }
 
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
+    .breadcrumb nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
+    .breadcrumb a {
+      color: var(--body-text);
+      transition: color 0.2s;
+    }
 
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
+    .breadcrumb a:hover {
+      color: var(--brand-purple);
+    }
 
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
+    .breadcrumb .separator {
+      color: var(--card-border);
+    }
 
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const MAX_STRING_LENGTH = 2000;
+    .breadcrumb .current {
+      color: var(--heading-dark);
+    }
 
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
+    /* ===== HERO ===== */
+    .hero {
+      padding-block: 60px 80px;
+      background: linear-gradient(180deg, rgba(129, 89, 187, 0.03) 0%, rgba(199, 12, 159, 0.02) 100%);
+    }
 
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
 
-          if (typeof value === "string") {
-            return truncate(value);
-          }
+    .hero-content {
+      order: 1;
+    }
 
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
+    .hero-illustration {
+      order: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
+    .hero-illustration svg {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+    }
 
-          const seen = new WeakSet();
+    .hero h1 {
+      margin-block-end: 20px;
+    }
 
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
+    .hero h1 .line1 {
+      display: block;
+      color: var(--heading-darker);
+    }
 
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
+    .hero h1 .line2 {
+      display: block;
+      background: var(--ai-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
+    .hero-subhead {
+      font-size: 16px;
+      color: var(--body-text);
+      margin-block-end: 30px;
+      max-width: 480px;
+      line-height: 1.6;
+    }
 
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
+    .hero-cta-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
+    @media (max-width: 768px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
 
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
+      .hero-content {
+        order: 1;
+      }
 
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
+      .hero-illustration {
+        order: 2;
+      }
 
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
+      .hero-cta-group {
+        flex-direction: column;
+      }
+    }
 
-        const extractComponentStack = (args) => {
-          for (const arg of args) {
-            if (
-              arg &&
-              typeof arg === "object" &&
-              typeof arg.componentStack === "string"
-            ) {
-              return truncate(arg.componentStack);
-            }
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 9px 15px;
+      height: 36px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+    }
 
-            if (
-              typeof arg === "string" &&
-              (arg.includes("\n    at ") ||
-                arg.includes("\n at ") ||
-                arg.includes("The above error occurred"))
-            ) {
-              return truncate(arg);
-            }
-          }
+    .btn:focus-visible {
+      outline: 2px solid var(--brand-purple);
+      outline-offset: 2px;
+    }
 
-          return "";
-        };
+    .btn-primary {
+      background: var(--ai-gradient);
+      color: var(--white);
+      border: none;
+    }
 
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(118, 113, 255, 0.3);
+    }
 
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
+    .btn-ghost {
+      background: transparent;
+      color: var(--brand-purple);
+      border: 1px solid var(--brand-purple);
+    }
 
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
+    .btn-ghost:hover {
+      background: rgba(129, 89, 187, 0.05);
+    }
 
-              postToParent({
-                type: "runtime-error",
-                kind: "resource-error",
-                message: `Failed to load ${tagName.toLowerCase()} resource.`,
-                source: resourceUrl,
-                resourceTagName: tagName.toLowerCase(),
-                resourceUrl,
-              });
-              return;
-            }
+    .btn-large {
+      height: 44px;
+      padding: 12px 24px;
+      font-size: 14px;
+    }
 
-            const normalized = normalizeErrorLike(event.error || event.message);
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source: event.filename || normalized.source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
-            });
-          },
-          true,
-        );
+    /* ===== SECTION HEADERS ===== */
+    .section-header {
+      text-align: center;
+      margin-block-end: 40px;
+    }
 
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
-          });
-        });
+    .section-header h2 {
+      margin-block-end: 10px;
+    }
 
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          const errorLike = args.find(
-            (arg) =>
-              arg instanceof Error ||
-              (arg &&
-                typeof arg === "object" &&
-                ("message" in arg || "stack" in arg)),
-          );
-          const normalized = normalizeErrorLike(errorLike || args[0]);
+    .section-header p {
+      font-size: 16px;
+      color: var(--body-text);
+      max-width: 600px;
+      margin-inline: auto;
+    }
 
-          postToParent({
-            type: "console-error",
-            kind: "console-error",
-            name: normalized.name,
-            message:
-              normalized.message ||
-              args.map((arg) => stringifyValue(arg)).join(" "),
-            stack: normalized.stack,
-            componentStack: extractComponentStack(args),
-            args: args.map((arg) => stringifyValue(arg)),
-          });
+    /* ===== FEATURED GENERATORS ===== */
+    .featured-generators {
+      background: var(--white);
+    }
 
-          originalConsoleError(...args);
-        };
-      })();
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
-</html>
+    .generators-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .generators-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .generators-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CATEGORY CARDS ===== */
+    .category-cards {
+      background: var(--light-bg);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      padding: 20px;
+      transition: all 0.2s;
+      text-decoration: none;
+      display: block;
+      color: inherit;
+    }
+
+    .card:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: var(--brand-purple);
+      transform: translateY(-2px);
+    }
+
+    .card:focus-visible {
+      outline: 2px solid var(--brand-purple);
+      outline-offset: 2px;
+    }
+
+    /* Generator Card (Featured + All) */
+    .generator-card .card-icon {
+      width: 40px;
+      height: 40px;
+      margin-block-end: 12px;
+      color: var(--brand-purple);
+    }
+
+    .generator-card .card-name {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--heading-darker);
+      margin-block-end: 8px;
+      text-transform: none;
+      line-height: 1.3;
+    }
+
+    .generator-card .card-desc {
+      font-size: 13px;
+      color: var(--body-text);
+      margin-block-end: 12px;
+      line-height: 1.4;
+    }
+
+    .generator-card .card-tag {
+      display: inline-block;
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--brand-purple);
+      border: 1px solid var(--brand-purple);
+      padding: 2px 6px;
+      border-radius: 3px;
+      letter-spacing: 0.3px;
+    }
+
+    /* Category Card */
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .category-card .card-icon {
+      width: 48px;
+      height: 48px;
+      margin-block-end: 16px;
+      color: var(--brand-purple);
+    }
+
+    .category-card .card-name {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--heading-darker);
+      text-transform: uppercase;
+      margin-block-end: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .category-card .card-desc {
+      font-size: 13px;
+      color: var(--body-text);
+      margin-block-end: 12px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .category-card .card-arrow {
+      color: var(--brand-purple);
+      font-size: 18px;
+      transition: transform 0.2s;
+    }
+
+    .category-card:hover .card-arrow {
+      transform: translateX(4px);
+    }
+
+    /* ===== ALL GENERATORS ===== */
+    .all-generators {
+      background: var(--white);
+    }
+
+    .search-container {
+      margin-block-end: 30px;
+      position: relative;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      max-width: 480px;
+    }
+
+    .search-input-wrapper .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--body-text);
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 44px;
+      padding: 9px 15px 9px 40px;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      color: var(--heading-darker);
+      background: var(--white);
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--brand-purple);
+    }
+
+    .search-input::placeholder {
+      color: var(--card-border);
+    }
+
+    .search-results-count {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--body-text);
+      min-height: 20px;
+    }
+
+    .search-no-results {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--body-text);
+    }
+
+    .search-no-results p {
+      margin-block-end: 15px;
+    }
+
+    .search-no-results .btn {
+      margin-top: 10px;
+    }
+
+    /* Category Subsection */
+    .category-subsection {
+      margin-block-end: 40px;
+    }
+
+    .category-subsection:last-child {
+      margin-block-end: 0;
+    }
+
+    .category-subsection h3 {
+      color: var(--heading-darker);
+      margin-block-end: 8px;
+    }
+
+    .category-subsection .subsection-desc {
+      font-size: 14px;
+      color: var(--body-text);
+      margin-block-end: 20px;
+    }
+
+    .subsection-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 1024px) {
+      .subsection-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .subsection-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .subsection-grid.collapsed .card-hidden {
+      display: none;
+    }
+
+    .show-all-btn {
+      margin-top: 15px;
+      background: none;
+      border: none;
+      color: var(--brand-purple);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 8px 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .show-all-btn:hover {
+      text-decoration: underline;
+    }
+
+    .show-all-btn:focus-visible {
+      outline: 2px solid var(--brand-purple);
+      outline-offset: 2px;
+    }
+
+    /* ===== HOW IT WORKS ===== */
+    .how-it-works {
+      background: var(--light-bg);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--brand-purple);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      margin-block-end: 16px;
+    }
+
+    .step-title {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--heading-darker);
+      margin-block-end: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--body-text);
+      line-height: 1.5;
+    }
+
+    /* ===== WHY STRIKINGLY ===== */
+    .why-strikingly {
+      background: var(--white);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      margin-block-end: 16px;
+      color: var(--brand-purple);
+    }
+
+    .feature-title {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--heading-darker);
+      margin-block-end: 8px;
+      letter-spacing: 0.3px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--body-text);
+      line-height: 1.5;
+    }
+
+    /* ===== FAQ ===== */
+    .faq {
+      background: var(--light-bg);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin-inline: auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--heading-darker);
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .faq-question:hover {
+      color: var(--brand-purple);
+    }
+
+    .faq-question:focus-visible {
+      outline: 2px solid var(--brand-purple);
+      outline-offset: 2px;
+    }
+
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--brand-purple);
+      transition: transform 0.3s;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .faq-answer.open {
+      max-height: 500px;
+    }
+
+    .faq-answer-content {
+      padding-block-end: 20px;
+      font-size: 14px;
+      color: var(--body-text);
+      line-height: 1.6;
+    }
+
+    /* ===== CLOSING CTA ===== */
+    .closing-cta {
+      background: var(--white);
+      padding-block: 60px;
+      text-align: center;
+    }
+
+    .closing-cta h2 {
+      margin-block-end: 10px;
+    }
+
+    .closing-cta p {
+      font-size: 16px;
+      color: var(--body-text);
+      margin-block-end: 30px;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--heading-darker);
+      color: rgba(255, 255, 255, 0.7);
+      padding-block: 40px;
+      font-size: 13px;
+    }
+
+    .footer .container {
+      display: grid;
+      grid-template-columns: 2fr repeat(4, 1fr);
+      gap: 30px;
+    }
+
+    @media (max-width: 1024px) {
+      .footer .container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .footer .container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer .container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .footer-brand .logo {
+      color: var(--white);
+      margin-block-end: 15px;
+      display: inline-block;
+    }
+
+    .footer-brand p {
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      font-family: 'Josefin Sans', 'Brandon Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-block-end: 15px;
+      letter-spacing: 0.3px;
+    }
+
+    .footer-column ul {
+      list-style: none;
+    }
+
+    .footer-column li {
+      margin-block-end: 8px;
+    }
+
+    .footer-column a {
+      color: rgba(255, 255, 255, 0.7);
+      transition: color 0.2s;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 30px;
+      padding-top: 20px;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    /* ===== UTILITY ===== */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- JSON-LD BreadcrumbList -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strikingly",
+        "item": "https://www.strikingly.com"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI Generators",
+        "item": "https://www.strikingly.com/generators"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Section 0: Top Bar -->
+  <header class="top-bar" role="banner">
+    <div class="container">
+      <a href="/" class="logo" aria-label="Strikingly">
+        striKingly <span>AI</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Section 1: Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="container">
+      <ol style="display: flex; align-items: center; gap: 8px; list-style: none;">
+        <li><a href="/">Strikingly</a></li>
+        <li class="separator" aria-hidden="true">&gt;</li>
+        <li class="current" aria-current="page">AI Generators</li>
+      </ol>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Section 2: Hero -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-content">
+          <h1 id="hero-heading">
+            <span class="line1">BUILD ANY KIND OF SITE</span>
+            <span class="line2">WITH AI, IN AN INSTANT</span>
+          </h1>
+          <p class="hero-subhead">Browse the right generator for what you're building, or jump straight into our AI site builder.</p>
+          <div class="hero-cta-group">
+            <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START BUILDING - IT'S FREE</a>
+            <a href="#all-generators" class="btn btn-ghost btn-large">BROWSE GENERATORS</a>
+          </div>
+        </div>
+        <div class="hero-illustration" aria-hidden="true">
+          <!-- Inline SVG: Soft purple line-art illustration of a website mockup -->
+          <svg viewBox="0 0 500 400" width="500" height="400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Browser chrome -->
+            <rect x="20" y="20" width="460" height="360" rx="8" fill="none" stroke="#8159BB" stroke-width="2" stroke-dasharray="8 4"/>
+            <!-- Title bar -->
+            <rect x="20" y="20" width="460" height="30" rx="8" fill="#F4F6F8" stroke="#8159BB" stroke-width="2"/>
+            <circle cx="40" cy="35" r="5" fill="#FF6B6B"/>
+            <circle cx="55" cy="35" r="5" fill="#FFD93D"/>
+            <circle cx="70" cy="35" r="5" fill="#6BCB77"/>
+            <!-- URL bar -->
+            <rect x="90" y="27" width="300" height="16" rx="3" fill="white" stroke="#C6C9CD" stroke-width="1"/>
+            <!-- Page content lines -->
+            <rect x="50" y="80" width="150" height="12" rx="2" fill="#8159BB" opacity="0.3"/>
+            <rect x="50" y="100" width="200" height="8" rx="2" fill="#C6C9CD"/>
+            <rect x="50" y="115" width="180" height="8" rx="2" fill="#C6C9CD"/>
+            <rect x="50" y="130" width="160" height="8" rx="2" fill="#C6C9CD"/>
+            <!-- Image placeholder -->
+            <rect x="50" y="155" width="180" height="120" rx="4" fill="#F4F6F8" stroke="#8159BB" stroke-width="1" stroke-dasharray="4 3"/>
+            <circle cx="140" cy="200" r="20" fill="none" stroke="#8159BB" stroke-width="1.5"/>
+            <rect x="120" y="225" width="40" height="3" rx="1" fill="#8159BB" opacity="0.4"/>
+            <!-- Sidebar -->
+            <rect x="280" y="80" width="160" height="200" rx="4" fill="#F4F6F8" stroke="#C6C9CD" stroke-width="1"/>
+            <rect x="295" y="100" width="130" height="10" rx="2" fill="#8159BB" opacity="0.2"/>
+            <rect x="295" y="120" width="100" height="8" rx="2" fill="#C6C9CD"/>
+            <rect x="295" y="135" width="120" height="8" rx="2" fill="#C6C9CD"/>
+            <rect x="295" y="150" width="90" height="8" rx="2" fill="#C6C9CD"/>
+            <rect x="295" y="175" width="130" height="30" rx="3" fill="#8159BB" opacity="0.5"/>
+            <!-- Gradient accent -->
+            <defs>
+              <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#7671FF;stop-opacity:0.1"/>
+                <stop offset="100%" style="stop-color:#CB0C9F;stop-opacity:0.1"/>
+              </linearGradient>
+            </defs>
+            <rect x="20" y="20" width="460" height="360" rx="8" fill="url(#hero-gradient)"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Featured Generators -->
+    <section class="featured-generators" aria-labelledby="featured-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="featured-heading">FEATURED GENERATORS</h2>
+          <p>A few common starting points.</p>
+        </div>
+        <div class="generators-grid">
+          <!-- Card 1 -->
+          <a href="/generators/ai-website-generator" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            <div class="card-name">AI Website Generator</div>
+            <div class="card-desc">Describe your business, get a full site</div>
+            <span class="card-tag">Website</span>
+          </a>
+          <!-- Card 2 -->
+          <a href="/generators/free-portfolio-generator" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <div class="card-name">Free Portfolio Generator</div>
+            <div class="card-desc">For creatives, in minutes, no fee</div>
+            <span class="card-tag">Portfolio</span>
+          </a>
+          <!-- Card 3 -->
+          <a href="/generators/ai-landing-page-maker" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <line x1="2" y1="8" x2="22" y2="8"/>
+              <line x1="8" y1="8" x2="8" y2="20"/>
+            </svg>
+            <div class="card-name">AI Landing Page Maker</div>
+            <div class="card-desc">One-page sites built to convert</div>
+            <span class="card-tag">Landing Page</span>
+          </a>
+          <!-- Card 4 -->
+          <a href="/generators/online-store-builder" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <div class="card-name">Online Store Builder</div>
+            <div class="card-desc">Start selling without writing code</div>
+            <span class="card-tag">Store</span>
+          </a>
+          <!-- Card 5 -->
+          <a href="/generators/link-in-bio-generator" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+            </svg>
+            <div class="card-name">Link-in-Bio Generator</div>
+            <div class="card-desc">One link for all your channels</div>
+            <span class="card-tag">Link-in-Bio</span>
+          </a>
+          <!-- Card 6 -->
+          <a href="/generators/one-page-website-builder" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+            </svg>
+            <div class="card-name">One-Page Website Builder</div>
+            <div class="card-desc">Simple sites, single scroll</div>
+            <span class="card-tag">Website</span>
+          </a>
+          <!-- Card 7 -->
+          <a href="/generators/wedding-website-generator" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+            </svg>
+            <div class="card-name">Wedding Website Generator</div>
+            <div class="card-desc">Share your day with guests</div>
+            <span class="card-tag">Website</span>
+          </a>
+          <!-- Card 8 -->
+          <a href="/generators/restaurant-website-builder" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M18 8h1a4 4 0 010 8h-1"/>
+              <path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/>
+              <line x1="6" y1="1" x2="6" y2="4"/>
+              <line x1="10" y1="1" x2="10" y2="4"/>
+              <line x1="14" y1="1" x2="14" y2="4"/>
+            </svg>
+            <div class="card-name">Restaurant Website Builder</div>
+            <div class="card-desc">Menu, hours, reservations, done</div>
+            <span class="card-tag">Website</span>
+          </a>
+          <!-- Card 9 -->
+          <a href="/generators/blog-generator-for-beginners" class="card generator-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            <div class="card-name">Blog Generator for Beginners</div>
+            <div class="card-desc">Publish-ready in minutes</div>
+            <span class="card-tag">Blog</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Browse by Category -->
+    <section class="category-cards" aria-labelledby="categories-heading">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="categories-heading">BROWSE BY CATEGORY</h2>
+        </div>
+        <div class="category-grid">
+          <!-- Category 1: Websites -->
+          <a href="#websites" class="card category-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            <div class="card-name">Websites</div>
+            <div class="card-desc">AI-built business and personal sites for any goal.</div>
+            <span class="card-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- Category 2: Landing Pages -->
+          <a href="#landing-pages" class="card category-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <line x1="2" y1="8" x2="22" y2="8"/>
+              <line x1="8" y1="8" x2="8" y2="20"/>
+            </svg>
+            <div class="card-name">Landing Pages</div>
+            <div class="card-desc">Single-page sites built to convert visitors fast.</div>
+            <span class="card-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- Category 3: Portfolios -->
+          <a href="#portfolios" class="card category-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <circle cx="8.5" cy="8.5" r="1.5"/>
+              <polyline points="21 15 16 10 5 21"/>
+            </svg>
+            <div class="card-name">Portfolios</div>
+            <div class="card-desc">Showcase your work with a clean, focused site.</div>
+            <span class="card-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- Category 4: Blogs -->
+          <a href="#blogs" class="card category-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            <div class="card-name">Blogs</div>
+            <div class="card-desc">Publish-ready blogs with built-in SEO basics.</div>
+            <span class="card-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- Category 5: Online Stores -->
+          <a href="#stores" class="card category-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+            <div class="card-name">Online Stores</div>
+            <div class="card-desc">Sell products online with payments built in.</div>
+            <span class="card-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+          <!-- Category 6: Link-in-Bio -->
+          <a href="#link-in-bio" class="card category-card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+              <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+            </svg>
+            <div class="card-name">Link-in-Bio</div>
+            <div class="card-desc">One link, all your places. Made for creators.</div>
+            <span class="card-arrow" aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </section>
