@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer country or region"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Description of the product, materials, specs, or use case"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or quantity range"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or target budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Which services the buyer needs help with",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "factory_verification",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_logistics",
+          "sample_consolidation",
+          "other"
+        ]
+      }
+    },
+    "destination_port": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination port or city, if known"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Optional extra requirements, certifications, or timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status for tracking the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
