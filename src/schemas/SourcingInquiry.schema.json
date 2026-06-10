@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer or contact person"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer's country of operation"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Beauty & Personal Care",
+        "Toys & Baby",
+        "Sports & Outdoor",
+        "Industrial & Hardware",
+        "Packaging",
+        "Other"
+      ],
+      "description": "Primary product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Detailed description of the product, specifications, target price, MOQ, references"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or MOQ target"
+    },
+    "target_unit_price_usd": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Target unit price in USD or budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing services the buyer is interested in",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier sourcing",
+          "Factory verification",
+          "Sample handling",
+          "Price negotiation",
+          "Quality inspection",
+          "Production follow-up",
+          "Shipping & logistics",
+          "Private label / OEM"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "Within 2 weeks",
+        "Within 1 month",
+        "1-3 months",
+        "Flexible / planning"
+      ],
+      "description": "When the buyer plans to start"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal pipeline status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
