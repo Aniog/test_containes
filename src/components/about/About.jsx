@@ -1,17 +1,7 @@
 import React from 'react';
 import { Settings, Award, Users, Clock, ArrowRight } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const About = () => {
-  const aboutRef = React.useRef(null);
-
-  React.useEffect(() => {
-    if (aboutRef.current) {
-      return ImageHelper.loadImages(strkImgConfig, aboutRef.current);
-    }
-  }, []);
-
   const features = [
     {
       icon: <Settings className="w-8 h-8" />,
@@ -45,7 +35,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" ref={aboutRef} className="py-20 bg-white">
+    <section id="about" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -65,16 +55,11 @@ const About = () => {
 
         {/* Main Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
-          {/* Left Column - Image */}
+          {/* Left Column - Image Placeholder */}
           <div className="relative">
-            <div
-              className="rounded-2xl overflow-hidden shadow-2xl"
-              data-strk-bg-id="about-image-001"
-              data-strk-bg="[about-subtitle] [about-title]"
-              data-strk-bg-ratio="4x3"
-              data-strk-bg-width="800"
-              style={{ minHeight: '400px' }}
-            />
+            <div className="rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-blue-900 to-blue-700 min-h-96 flex items-center justify-center">
+              <Settings className="w-32 h-32 text-white opacity-20" />
+            </div>
             <div className="absolute -bottom-6 -right-6 bg-blue-900 text-white p-6 rounded-xl shadow-xl">
               <div className="text-4xl font-bold mb-1">25+</div>
               <div className="text-sm text-blue-200">Years of Excellence</div>

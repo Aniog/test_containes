@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const Contact = () => {
-  const contactRef = React.useRef(null);
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
@@ -13,14 +10,8 @@ const Contact = () => {
     product: '',
     message: '',
   });
-  const [status, setStatus] = React.useState('idle');
-  const [error, setError] = React.useState(null);
-
-  React.useEffect(() => {
-    if (contactRef.current) {
-      return ImageHelper.loadImages(strkImgConfig, contactRef.current);
-    }
-  }, []);
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -83,7 +74,7 @@ const Contact = () => {
   ];
 
   return (
-    <section id="contact" ref={contactRef} className="py-20 bg-gray-50">
+    <section id="contact" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -260,14 +251,9 @@ const Contact = () => {
             ))}
 
             {/* Map Placeholder */}
-            <div
-              className="rounded-2xl overflow-hidden shadow-lg"
-              data-strk-bg-id="contact-map-001"
-              data-strk-bg="manufacturing facility location map"
-              data-strk-bg-ratio="16x9"
-              data-strk-bg-width="800"
-              style={{ minHeight: '250px' }}
-            />
+            <div className="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-br from-blue-900 to-blue-700 min-h-64 flex items-center justify-center">
+              <MapPin className="w-24 h-24 text-white opacity-20" />
+            </div>
           </div>
         </div>
       </div>
