@@ -13,7 +13,8 @@ const steps = [
     number: '02',
     icon: Search,
     title: 'Supplier Research & Shortlisting',
-    description: 'Our team searches across China's manufacturing regions to identify 3–5 qualified suppliers. We request quotes, evaluate capabilities, and present you with a comparison report.',
+    description: "Our team searches across China's manufacturing regions to identify 3–5 qualified suppliers. We request quotes, evaluate capabilities, and present you with a comparison report.",
+
     details: ['Database search + market visits', 'Initial supplier screening', 'Quote comparison table', 'Sample requests coordinated', 'Recommendation with rationale'],
   },
   {

@@ -12,15 +12,18 @@ const faqs = [
   },
   {
     q: 'What is your minimum order requirement?',
-    a: 'We don't impose our own MOQ. However, Chinese factories typically have minimum orders ranging from $2,000 to $10,000 depending on the product. We'll help you find suppliers that match your volume needs.',
+    a: "We don't impose our own MOQ. However, Chinese factories typically have minimum orders ranging from $2,000 to $10,000 depending on the product. We'll help you find suppliers that match your volume needs.",
+
   },
   {
     q: 'How do you verify that a factory is legitimate?',
     a: 'We conduct on-site audits checking business licenses, production equipment, worker conditions, quality systems, export history, and client references. You receive a detailed verification report with photos.',
   },
   {
-    q: 'Can you help with products I've already found a supplier for?',
-    a: 'Yes. We offer standalone services like factory audits, quality inspections, and shipping coordination — even if you've already identified your supplier independently.',
+    q: "Can you help with products I've already found a supplier for?",
+
+    a: "Yes. We offer standalone services like factory audits, quality inspections, and shipping coordination — even if you've already identified your supplier independently.",
+
   },
   {
     q: 'How long does the sourcing process take?',

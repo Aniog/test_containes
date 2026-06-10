@@ -10,7 +10,7 @@ const services = [
     icon: Search,
     title: 'Supplier Sourcing',
     subtitle: 'Find the right manufacturer for your product',
-    description: 'We search across China's manufacturing hubs to identify suppliers that match your exact requirements — product specifications, certifications, MOQ, pricing, and production capacity.',
+    description: "We search across China\u2019s manufacturing hubs to identify suppliers that match your exact requirements \u2014 product specifications, certifications, MOQ, pricing, and production capacity.",
     features: [
       'Multi-supplier comparison with detailed quotes',
       'Sample coordination and evaluation',
