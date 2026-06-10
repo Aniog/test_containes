@@ -10,10 +10,10 @@ import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
 const getErrorMessage = (response, error) => {
-  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+  if (response?.errors && Array.isArray(response.errors) && response.errors.length > 0) {
     return response.errors.join(', ')
   }
-  return error?.message || 'Submission failed. Please try again.'
+  return error?.message || 'Something went wrong. Please try again.'
 }
 
 const InquiryForm = ({ compact = false, source = 'Website' }) => {

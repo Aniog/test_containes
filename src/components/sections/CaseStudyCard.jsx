@@ -1,7 +1,8 @@
 import React from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 
-const CaseStudyCard = ({ client, industry, challenge, solution, results, product }) => {
+const CaseStudyCard = ({ client, industry, challenge, solution, result, results, product }) => {
+  const outcome = result || results
   return (
     <Card className="h-full border-slate-200">
       <CardContent className="p-6">
@@ -19,8 +20,8 @@ const CaseStudyCard = ({ client, industry, challenge, solution, results, product
             <p className="text-slate-600 leading-relaxed">{solution}</p>
           </div>
           <div>
-            <div className="font-medium text-slate-700 mb-1">Results</div>
-            <p className="text-slate-600 leading-relaxed">{results}</p>
+            <div className="font-medium text-slate-700 mb-1">Result</div>
+            <p className="text-slate-600 leading-relaxed">{outcome}</p>
           </div>
         </div>
       </CardContent>
