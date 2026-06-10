@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Current selling price in CNY"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount in CNY"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["electronics", "fashion", "food", "beauty", "home", "sports", "toys", "books"],
+      "description": "Product category"
+    },
+    "image_url": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Main product image URL or storage key"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock quantity"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating out of 5"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is featured on the homepage"
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is newly listed"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Product tags for search and filtering"
+    },
+    "brand": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product brand name"
+    },
+    "sku": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Stock keeping unit identifier"
+    }
+  },
+  "required": ["name", "price", "category", "stock"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
