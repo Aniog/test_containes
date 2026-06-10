@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_category": {
+      "type": "string",
+      "description": "Category of products to source"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed sourcing requirements"
+    },
+    "estimated_annual_volume": {
+      "type": "string",
+      "description": "Estimated annual purchase volume"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "processing", "contacted", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

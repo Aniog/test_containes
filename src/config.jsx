@@ -1,5 +1,11 @@
-export const STRK_PROJECT_URL = 'https://www.uat.strikingly.com/api/v1/sites/58658/form_entities'
-export const STRK_PROJECT_ANON_KEY = 'xx'
-export const SITE_ID = '58658'
-export const REQUEST_DOMAIN = 'https://www.uat.strikingly.com'
-export const S3_DOMAIN = 'https://strikingly-user-asset-images-dev.s3.ap-northeast-1.amazonaws.com'
+export const STRK_PROJECT_URL = import.meta.env.VITE_STRK_PROJECT_URL || 'https://api.strikingly.com';
+export const STRK_PROJECT_ANON_KEY = import.meta.env.VITE_STRK_PROJECT_ANON_KEY || 'anon-key-placeholder';
+export const SITE_ID = 'ssourcing-china-123';
+export const REQUEST_DOMAIN = 'api.strikingly.com';
+export const S3_DOMAIN = 'https://s3.amazonaws.com/your-bucket';
+EOF > /workspace/my-app/src/config.jsx
+export const STRK_PROJECT_URL = import.meta.env.VITE_STRK_PROJECT_URL || 'https://api.strikingly.com';
+export const STRK_PROJECT_ANON_KEY = import.meta.env.VITE_STRK_PROJECT_ANON_KEY || 'anon-key-placeholder';
+export const SITE_ID = 'ssourcing-china-123';
+export const REQUEST_DOMAIN = 'api.strikingly.com';
+export const S3_DOMAIN = 'https://s3.amazonaws.com/your-bucket';
