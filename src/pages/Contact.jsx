@@ -62,6 +62,19 @@ const Contact = () => {
             <div className="mt-6 text-xs text-slate-500">
               We work with buyers from all countries. English is our primary business language. We can also communicate in Mandarin Chinese as needed.
             </div>
+
+            {/* Office / factory visual */}
+            <div className="mt-6 h-40 rounded-xl overflow-hidden border border-slate-200">
+              <img
+                data-strk-img-id="contact-office"
+                data-strk-img={`Shanghai China office factory sourcing agent professional`}
+                data-strk-img-ratio="16x9"
+                data-strk-img-width="600"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                alt="Our team in Shanghai"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
 
           {/* Inquiry Form */}

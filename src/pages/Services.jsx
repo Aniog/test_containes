@@ -125,21 +125,35 @@ const Services = () => {
       <section className="section container">
         <div className="text-center mb-12">
           <div className="text-sm font-semibold tracking-wider text-accent mb-2">CORE SERVICES</div>
-          <h2 className="section-heading">What We Deliver</h2>
-          <p className="section-subheading mx-auto">
+          <h2 id="services-core-title" className="section-heading">What We Deliver</h2>
+          <p id="services-core-subtitle" className="section-subheading mx-auto">
             Each service can be engaged individually or as part of a complete end-to-end sourcing engagement.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <ServiceCard 
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              details={service.details}
-            />
+            <div key={index} className="b2b-card overflow-hidden">
+              <div className="h-36 bg-slate-100 relative">
+                <img
+                  data-strk-img-id={`services-img-${index}`}
+                  data-strk-img={`[services-core-subtitle] [services-core-title] factory audit quality inspection production monitoring`}
+                  data-strk-img-ratio="16x9"
+                  data-strk-img-width="600"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  alt={service.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <ServiceCard 
+                  icon={service.icon}
+                  title={service.title}
+                  description={service.description}
+                  details={service.details}
+                />
+              </div>
+            </div>
           ))}
         </div>
       </section>

@@ -74,15 +74,29 @@ const CaseStudies = () => {
       <section className="section container">
         <div className="grid md:grid-cols-2 gap-6">
           {caseStudies.map((study, index) => (
-            <CaseStudyCard 
-              key={index}
-              client={study.client}
-              industry={study.industry}
-              product={study.product}
-              challenge={study.challenge}
-              solution={study.solution}
-              result={study.result}
-            />
+            <div key={index} className="b2b-card overflow-hidden">
+              <div className="h-40 bg-slate-100 relative">
+                <img
+                  data-strk-img-id={`casestudy-img-${index}`}
+                  data-strk-img={`case studies factory production quality control shipping logistics`}
+                  data-strk-img-ratio="16x9"
+                  data-strk-img-width="600"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  alt={`${study.client} - ${study.product}`}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-6">
+                <CaseStudyCard 
+                  client={study.client}
+                  industry={study.industry}
+                  product={study.product}
+                  challenge={study.challenge}
+                  solution={study.solution}
+                  result={study.result}
+                />
+              </div>
+            </div>
           ))}
         </div>
       </section>

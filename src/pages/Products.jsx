@@ -171,13 +171,27 @@ const Products = () => {
         <div className="container">
           <div className="grid md:grid-cols-2 gap-6">
             {categories.map((category, index) => (
-              <ProductCategory 
-                key={index}
-                icon={category.icon}
-                title={category.title}
-                items={category.items}
-                examples={category.examples}
-              />
+              <div key={index} className="b2b-card overflow-hidden">
+                <div className="h-32 bg-slate-100 relative">
+                  <img
+                    data-strk-img-id={`products-cat-${index}`}
+                    data-strk-img={`products we source factory manufacturing ${category.title.toLowerCase()}`}
+                    data-strk-img-ratio="16x9"
+                    data-strk-img-width="600"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    alt={category.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <ProductCategory 
+                    icon={category.icon}
+                    title={category.title}
+                    items={category.items}
+                    examples={category.examples}
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>

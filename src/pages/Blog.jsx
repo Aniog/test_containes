@@ -89,15 +89,29 @@ const Blog = () => {
       <section className="section container">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article, index) => (
-            <BlogCard 
-              key={index}
-              slug={article.slug}
-              title={article.title}
-              excerpt={article.excerpt}
-              date={article.date}
-              category={article.category}
-              readTime={article.readTime}
-            />
+            <div key={index} className="b2b-card overflow-hidden blog-card">
+              <div className="h-36 bg-slate-100 relative">
+                <img
+                  data-strk-img-id={`blog-thumb-${index}`}
+                  data-strk-img={`sourcing from China factory quality control logistics ${article.category.toLowerCase()}`}
+                  data-strk-img-ratio="16x9"
+                  data-strk-img-width="500"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  alt={article.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-5">
+                <BlogCard 
+                  slug={article.slug}
+                  title={article.title}
+                  excerpt={article.excerpt}
+                  date={article.date}
+                  category={article.category}
+                  readTime={article.readTime}
+                />
+              </div>
+            </div>
           ))}
         </div>
       </section>

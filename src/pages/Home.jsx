@@ -152,17 +152,26 @@ const Home = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-primary text-white py-16 md:py-20">
-        <div className="container">
+      <section className="bg-primary text-white py-16 md:py-20 relative overflow-hidden">
+        {/* Background image using Strikingly stock system */}
+        <div 
+          data-strk-bg-id="hero-bg-home"
+          data-strk-bg="[hero-subtitle] [hero-title]"
+          data-strk-bg-ratio="16x9"
+          data-strk-bg-width="1600"
+          className="absolute inset-0 opacity-20"
+          aria-hidden="true"
+        />
+        <div className="container relative z-10">
           <div className="max-w-4xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-sm mb-6">
               <span className="w-2 h-2 bg-emerald-400 rounded-full"></span>
               Serving international buyers since 2014
             </div>
-            <h1 className="text-white mb-6 leading-tight">
+            <h1 id="hero-title" className="text-white mb-6 leading-tight">
               China Sourcing Agent for Global Buyers
             </h1>
-            <p className="text-xl text-slate-200 mb-8 max-w-2xl leading-relaxed">
+            <p id="hero-subtitle" className="text-xl text-slate-200 mb-8 max-w-2xl leading-relaxed">
               We help overseas companies find reliable Chinese suppliers, verify factories, 
               control quality, and manage production and shipping — so you can source with confidence.
             </p>
@@ -207,8 +216,8 @@ const Home = () => {
       <section id="services" className="section container">
         <div className="text-center mb-12">
           <div className="text-sm font-semibold tracking-wider text-accent mb-2">WHAT WE DO</div>
-          <h2 className="section-heading">End-to-End Sourcing Services</h2>
-          <p className="section-subheading mx-auto">
+          <h2 id="services-title" className="section-heading">End-to-End Sourcing Services</h2>
+          <p id="services-subtitle" className="section-subheading mx-auto">
             We manage the entire sourcing process so you can focus on your business.
           </p>
         </div>
@@ -216,13 +225,27 @@ const Home = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon
+            const serviceId = `service-${index}`
             return (
-              <div key={index} className="b2b-card p-6">
-                <div className="w-11 h-11 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-primary" />
+              <div key={index} className="b2b-card overflow-hidden">
+                <div className="h-40 bg-slate-100 relative">
+                  <img
+                    data-strk-img-id={`home-service-img-${index}`}
+                    data-strk-img={`[services-subtitle] [services-title] factory inspection quality control sourcing`}
+                    data-strk-img-ratio="16x9"
+                    data-strk-img-width="600"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    alt={service.title}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-primary">{service.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{service.description}</p>
+                <div className="p-6">
+                  <div className="w-11 h-11 bg-slate-100 rounded-lg flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-semibold text-lg mb-2 text-primary">{service.title}</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">{service.description}</p>
+                </div>
               </div>
             )
           })}
@@ -273,8 +296,8 @@ const Home = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
             <div className="text-sm font-semibold tracking-wider text-accent mb-2">PRODUCT EXPERTISE</div>
-            <h2 className="section-heading mb-4">Products We Source</h2>
-            <p className="text-slate-600 mb-6 leading-relaxed">
+            <h2 id="products-title" className="section-heading mb-4">Products We Source</h2>
+            <p id="products-subtitle" className="text-slate-600 mb-6 leading-relaxed">
               We have experience sourcing across a wide range of product categories for 
               retailers, wholesalers, brands, and distributors worldwide.
             </p>
@@ -282,13 +305,26 @@ const Home = () => {
               Browse all categories <ArrowRight className="ml-1 w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {productCategories.map((category, index) => (
-              <div key={index} className="flex items-start gap-3 p-4 bg-white border border-slate-200 rounded-lg">
-                <CheckCircle className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-slate-700">{category}</span>
-              </div>
-            ))}
+          <div className="relative">
+            <div className="h-64 rounded-xl overflow-hidden mb-4 border border-slate-200">
+              <img
+                data-strk-img-id="home-products-hero"
+                data-strk-img={`[products-subtitle] [products-title] factory production manufacturing`}
+                data-strk-img-ratio="16x9"
+                data-strk-img-width="800"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                alt="Manufacturing and production"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {productCategories.slice(0, 6).map((category, index) => (
+                <div key={index} className="flex items-start gap-3 p-4 bg-white border border-slate-200 rounded-lg">
+                  <CheckCircle className="w-5 h-5 text-accent mt-0.5 flex-shrink-0" />
+                  <span className="text-sm text-slate-700">{category}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -367,12 +403,25 @@ const Home = () => {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            {caseStudies.map((study) => (
-              <Link key={study.id} to="/case-studies" className="b2b-card p-6 block group">
-                <div className="product-tag mb-4">{study.category}</div>
-                <h3 className="font-semibold text-lg mb-3 text-primary group-hover:text-accent transition-colors">{study.title}</h3>
-                <p className="text-sm text-slate-500 mb-3">{study.client}</p>
-                <p className="text-sm text-slate-700 leading-relaxed">{study.result}</p>
+            {caseStudies.map((study, idx) => (
+              <Link key={study.id} to="/case-studies" className="b2b-card overflow-hidden block group">
+                <div className="h-40 bg-slate-100 relative">
+                  <img
+                    data-strk-img-id={`home-case-${idx}`}
+                    data-strk-img={`[case-studies-title] factory production quality control shipping`}
+                    data-strk-img-ratio="16x9"
+                    data-strk-img-width="600"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    alt={study.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="product-tag mb-4">{study.category}</div>
+                  <h3 className="font-semibold text-lg mb-3 text-primary group-hover:text-accent transition-colors">{study.title}</h3>
+                  <p className="text-sm text-slate-500 mb-3">{study.client}</p>
+                  <p className="text-sm text-slate-700 leading-relaxed">{study.result}</p>
+                </div>
               </Link>
             ))}
           </div>

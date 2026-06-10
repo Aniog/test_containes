@@ -97,19 +97,41 @@ const HowItWorks = () => {
       <section className="section container">
         <div className="max-w-3xl mx-auto">
           <div className="mb-12">
-            <h2 className="section-heading mb-4">The 5-Step Sourcing Process</h2>
-            <p className="text-slate-600">Each step includes clear deliverables and checkpoints. You approve before we proceed to the next stage.</p>
+            <h2 id="process-title" className="section-heading mb-4">The 5-Step Sourcing Process</h2>
+            <p id="process-subtitle" className="text-slate-600">Each step includes clear deliverables and checkpoints. You approve before we proceed to the next stage.</p>
           </div>
 
           <div className="space-y-2">
             {steps.map((step, index) => (
-              <ProcessStep 
-                key={index}
-                number={step.number}
-                title={step.title}
-                description={step.description}
-                items={step.items}
-              />
+              <div key={index} className="b2b-card p-6 mb-4">
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm">
+                    {step.number}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg text-primary mb-1.5">{step.title}</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed mb-3">{step.description}</p>
+                    <ul className="text-sm text-slate-600 grid sm:grid-cols-2 gap-x-4">
+                      {step.items.map((item, i) => (
+                        <li key={i} className="flex items-start gap-2">• {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                {index < 2 && (
+                  <div className="mt-4 h-32 rounded-lg overflow-hidden border border-slate-200">
+                    <img
+                      data-strk-img-id={`howitworks-step-${index}`}
+                      data-strk-img={`[process-subtitle] [process-title] factory verification sampling production shipping`}
+                      data-strk-img-ratio="16x9"
+                      data-strk-img-width="600"
+                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      alt={step.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
