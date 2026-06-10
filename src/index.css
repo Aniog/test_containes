@@ -1,76 +1,66 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #1e293b;
+    background-color: #ffffff;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #1e293b;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* SSourcing China Brand Colors */
+.bg-primary { background-color: #1e3a5f; }
+.bg-primary-light { background-color: #2d5a8e; }
+.bg-primary-dark { background-color: #152a45; }
+.bg-primary\/5 { background-color: rgba(30, 58, 95, 0.05); }
+.bg-primary\/10 { background-color: rgba(30, 58, 95, 0.1); }
+.text-primary { color: #1e3a5f; }
+.text-primary-light { color: #2d5a8e; }
+.border-primary { border-color: #1e3a5f; }
+.border-primary\/10 { border-color: rgba(30, 58, 95, 0.1); }
+.border-primary\/20 { border-color: rgba(30, 58, 95, 0.2); }
+
+.bg-accent { background-color: #e86c2e; }
+.bg-accent-hover { background-color: #d45a1c; }
+.bg-accent-light { background-color: #fef3ed; }
+.bg-accent\/10 { background-color: rgba(232, 108, 46, 0.1); }
+.text-accent { color: #e86c2e; }
+.text-accent\/40 { color: rgba(232, 108, 46, 0.4); }
+.text-accent-hover { color: #d45a1c; }
+.border-accent { border-color: #e86c2e; }
+
+.hover\:bg-accent-hover:hover { background-color: #d45a1c; }
+.hover\:bg-primary-dark:hover { background-color: #152a45; }
+.hover\:bg-primary-light:hover { background-color: #2d5a8e; }
+.hover\:bg-slate-50:hover { background-color: #f8fafc; }
+.hover\:text-accent:hover { color: #e86c2e; }
+.hover\:text-accent-hover:hover { color: #d45a1c; }
+.hover\:text-primary:hover { color: #1e3a5f; }
+.hover\:border-accent:hover { border-color: #e86c2e; }
+.focus\:ring-accent\/50:focus { --tw-ring-color: rgba(232, 108, 46, 0.5); }
+.focus\:border-accent:focus { border-color: #e86c2e; }
