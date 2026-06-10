@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the contact person"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Hardware",
+        "Beauty & Personal Care",
+        "Sports & Outdoors",
+        "Toys & Baby",
+        "Auto Parts & Accessories",
+        "Other"
+      ],
+      "description": "Main product category for sourcing"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 4000,
+      "description": "Short description of the product to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity (e.g. 1,000 units / month)"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing services the buyer is interested in",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Sample Management",
+          "Price Negotiation",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping & Logistics",
+          "Private Label / OEM"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "ASAP",
+        "Within 1 month",
+        "1-3 months",
+        "3-6 months",
+        "Just exploring"
+      ],
+      "description": "Buyer timeline for the project"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Additional notes or requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Page where the form was submitted"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
