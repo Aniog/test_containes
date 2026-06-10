@@ -54,12 +54,12 @@ export default function ScienceSection() {
   }, []);
 
   return (
-    <section id="science" ref={containerRef} className="py-20 md:py-28 bg-[#0a1628]">
+    <section id="science" ref={containerRef} className="py-20 md:py-28 bg-[#fce7f3]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-[#00d4ff] text-sm font-semibold tracking-widest uppercase">Methodology</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-[#f0f9ff]">The Science of Seeing Small</h2>
-          <p className="mt-4 text-[#94a3b8] max-w-2xl mx-auto text-lg">
+          <span className="text-[#be185d] text-sm font-semibold tracking-widest uppercase">Methodology</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-[#1e1b2e]">The Science of Seeing Small</h2>
+          <p className="mt-4 text-[#7c4d6a] max-w-2xl mx-auto text-lg">
             Modern microscopy techniques have revolutionized our understanding of life, matter, and the universe at the smallest scales.
           </p>
         </div>
@@ -70,7 +70,7 @@ export default function ScienceSection() {
             return (
               <div
                 key={t.id}
-                className="group rounded-2xl overflow-hidden bg-[#0d1f3c] border border-[#1e3a5f] hover:border-[#00d4ff]/40 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,212,255,0.1)] flex flex-col"
+                className="group rounded-2xl overflow-hidden bg-[#fff0f7] border border-[#f9a8d4] hover:border-[#f472b6] transition-all duration-300 hover:shadow-[0_0_40px_rgba(219,39,119,0.1)] flex flex-col"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img
@@ -82,17 +82,17 @@ export default function ScienceSection() {
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0d1f3c] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#fff0f7] to-transparent" />
                 </div>
                 <div className="p-6 flex flex-col gap-3">
                   <div className="flex items-center gap-3">
-                    <div className="p-2 rounded-lg bg-[#00d4ff]/10 border border-[#00d4ff]/20">
-                      <Icon className="w-5 h-5 text-[#00d4ff]" />
+                    <div className="p-2 rounded-lg bg-[#fce7f3] border border-[#f9a8d4]">
+                      <Icon className="w-5 h-5 text-[#be185d]" />
                     </div>
-                    <span className="text-[#00d4ff] text-xs font-semibold tracking-wider">{t.detail}</span>
+                    <span className="text-[#be185d] text-xs font-semibold tracking-wider">{t.detail}</span>
                   </div>
-                  <h3 id={t.titleId} className="text-xl font-bold text-[#f0f9ff]">{t.title}</h3>
-                  <p id={t.descId} className="text-[#94a3b8] text-sm leading-relaxed">{t.desc}</p>
+                  <h3 id={t.titleId} className="text-xl font-bold text-[#1e1b2e]">{t.title}</h3>
+                  <p id={t.descId} className="text-[#7c4d6a] text-sm leading-relaxed">{t.desc}</p>
                 </div>
               </div>
             );

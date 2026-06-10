@@ -40,12 +40,12 @@ export default function ExploreSection() {
   }, []);
 
   return (
-    <section id="explore" ref={containerRef} className="py-20 md:py-28 bg-[#050a0f]">
+    <section id="explore" ref={containerRef} className="py-20 md:py-28 bg-[#fdf2f8]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-[#00d4ff] text-sm font-semibold tracking-widest uppercase">What We Explore</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-[#f0f9ff]">Worlds Within Worlds</h2>
-          <p className="mt-4 text-[#94a3b8] max-w-2xl mx-auto text-lg">
+          <span className="text-[#be185d] text-sm font-semibold tracking-widest uppercase">What We Explore</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-[#1e1b2e]">Worlds Within Worlds</h2>
+          <p className="mt-4 text-[#7c4d6a] max-w-2xl mx-auto text-lg">
             Every drop of water, every grain of soil, every breath of air teems with microscopic life and structure beyond imagination.
           </p>
         </div>
@@ -54,7 +54,7 @@ export default function ExploreSection() {
           {features.map((f) => (
             <div
               key={f.id}
-              className="group rounded-2xl overflow-hidden bg-[#0d1f3c] border border-[#1e3a5f] hover:border-[#00d4ff]/40 transition-all duration-300 hover:shadow-[0_0_40px_rgba(0,212,255,0.12)]"
+              className="group rounded-2xl overflow-hidden bg-[#fff0f7] border border-[#f9a8d4] hover:border-[#f472b6] transition-all duration-300 hover:shadow-[0_0_40px_rgba(219,39,119,0.1)]"
             >
               <div className="relative h-56 overflow-hidden">
                 <img
@@ -66,14 +66,14 @@ export default function ExploreSection() {
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1f3c] via-transparent to-transparent" />
-                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#00d4ff]/20 border border-[#00d4ff]/40 text-[#00d4ff] text-xs font-semibold">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#fff0f7] via-transparent to-transparent" />
+                <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#fbcfe8] border border-[#f472b6] text-[#be185d] text-xs font-semibold">
                   {f.label}
                 </span>
               </div>
               <div className="p-6">
-                <h3 id={f.titleId} className="text-xl font-bold text-[#f0f9ff] mb-3">{f.title}</h3>
-                <p id={f.descId} className="text-[#94a3b8] text-sm leading-relaxed">{f.desc}</p>
+                <h3 id={f.titleId} className="text-xl font-bold text-[#1e1b2e] mb-3">{f.title}</h3>
+                <p id={f.descId} className="text-[#7c4d6a] text-sm leading-relaxed">{f.desc}</p>
               </div>
             </div>
           ))}

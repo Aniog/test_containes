@@ -95,12 +95,12 @@ export default function GallerySection() {
   }, [selected]);
 
   return (
-    <section id="gallery" ref={containerRef} className="py-20 md:py-28 bg-[#0a1628]">
+    <section id="gallery" ref={containerRef} className="py-20 md:py-28 bg-[#fce7f3]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <span className="text-[#00d4ff] text-sm font-semibold tracking-widest uppercase">Visual Archive</span>
-          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-[#f0f9ff]">Microscopy Gallery</h2>
-          <p className="mt-4 text-[#94a3b8] max-w-2xl mx-auto text-lg">
+          <span className="text-[#be185d] text-sm font-semibold tracking-widest uppercase">Visual Archive</span>
+          <h2 className="mt-3 text-3xl md:text-5xl font-bold text-[#1e1b2e]">Microscopy Gallery</h2>
+          <p className="mt-4 text-[#7c4d6a] max-w-2xl mx-auto text-lg">
             Stunning images captured through electron microscopes, fluorescence imaging, and polarized light photography.
           </p>
         </div>
@@ -111,7 +111,7 @@ export default function GallerySection() {
             <button
               key={item.id}
               onClick={() => setSelected(item)}
-              className={`group relative rounded-2xl overflow-hidden border border-[#1e3a5f] hover:border-[#00d4ff]/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,212,255,0.2)] cursor-pointer ${
+              className={`group relative rounded-2xl overflow-hidden border border-[#f9a8d4] hover:border-[#ec4899] transition-all duration-300 hover:shadow-[0_0_30px_rgba(0,212,255,0.2)] cursor-pointer ${
                 item.size === 'large' ? 'md:col-span-2 md:row-span-2' : ''
               }`}
             >
@@ -124,13 +124,13 @@ export default function GallerySection() {
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#050a0f]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#fdf2f8]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                <span className="text-[#00d4ff] text-xs font-semibold">{item.category}</span>
-                <h3 id={item.titleId} className="text-[#f0f9ff] font-bold text-sm mt-1">{item.title}</h3>
+                <span className="text-[#be185d] text-xs font-semibold">{item.category}</span>
+                <h3 id={item.titleId} className="text-[#1e1b2e] font-bold text-sm mt-1">{item.title}</h3>
               </div>
               <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <ZoomIn className="w-5 h-5 text-[#00d4ff]" />
+                <ZoomIn className="w-5 h-5 text-[#be185d]" />
               </div>
               {/* Hidden desc for image query */}
               <span id={item.descId} className="sr-only">{item.desc}</span>
@@ -142,16 +142,16 @@ export default function GallerySection() {
       {/* Lightbox */}
       {selected && (
         <div
-          className="fixed inset-0 z-50 bg-[#050a0f]/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-[#fdf2f8]/95 backdrop-blur-md flex items-center justify-center p-4"
           onClick={() => setSelected(null)}
         >
           <div
-            className="relative max-w-3xl w-full bg-[#0d1f3c] rounded-2xl border border-[#1e3a5f] overflow-hidden shadow-[0_0_60px_rgba(0,212,255,0.2)]"
+            className="relative max-w-3xl w-full bg-[#fff0f7] rounded-2xl border border-[#f9a8d4] overflow-hidden shadow-[0_0_60px_rgba(219,39,119,0.15)]"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelected(null)}
-              className="absolute top-4 right-4 z-10 text-[#94a3b8] hover:text-[#00d4ff] transition-colors bg-[#050a0f]/60 rounded-full p-1"
+              className="absolute top-4 right-4 z-10 text-[#7c4d6a] hover:text-[#be185d] transition-colors bg-[#fdf2f8]/60 rounded-full p-1"
             >
               <X className="w-6 h-6" />
             </button>
@@ -167,9 +167,9 @@ export default function GallerySection() {
               />
             </div>
             <div className="p-6">
-              <span className="text-[#00d4ff] text-xs font-semibold tracking-widest uppercase">{selected.category}</span>
-              <h3 id={`lightbox-title-${selected.id}`} className="text-[#f0f9ff] text-2xl font-bold mt-2">{selected.title}</h3>
-              <p id={`lightbox-desc-${selected.id}`} className="text-[#94a3b8] mt-3 leading-relaxed">{selected.desc}</p>
+              <span className="text-[#be185d] text-xs font-semibold tracking-widest uppercase">{selected.category}</span>
+              <h3 id={`lightbox-title-${selected.id}`} className="text-[#1e1b2e] text-2xl font-bold mt-2">{selected.title}</h3>
+              <p id={`lightbox-desc-${selected.id}`} className="text-[#7c4d6a] mt-3 leading-relaxed">{selected.desc}</p>
             </div>
           </div>
         </div>

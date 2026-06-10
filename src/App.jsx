@@ -9,7 +9,7 @@ import Footer from './components/microcosmos/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#050a0f]">
+    <div className="min-h-screen bg-[#fdf2f8]">
       <NavBar />
       <HeroSection />
       <ExploreSection />
