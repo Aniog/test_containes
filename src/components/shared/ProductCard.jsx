@@ -6,7 +6,7 @@ const ProductCard = ({ product }) => {
   return (
     <Link
       to={`/products/${product.slug}`}
-      className="product-card flex flex-col h-full overflow-hidden"
+      className="group product-card flex flex-col h-full overflow-hidden"
     >
       <div className="relative aspect-[4/3] bg-steel-100 overflow-hidden">
         <img
