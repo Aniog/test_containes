@@ -1,15 +1,25 @@
-import './App.css'
+import NavBar from './components/microcosmos/NavBar';
+import HeroSection from './components/microcosmos/HeroSection';
+import ExploreSection from './components/microcosmos/ExploreSection';
+import GallerySection from './components/microcosmos/GallerySection';
+import WorldsSection from './components/microcosmos/WorldsSection';
+import ScienceSection from './components/microcosmos/ScienceSection';
+import AboutSection from './components/microcosmos/AboutSection';
+import Footer from './components/microcosmos/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen bg-[#050a0f]">
+      <NavBar />
+      <HeroSection />
+      <ExploreSection />
+      <GallerySection />
+      <WorldsSection />
+      <ScienceSection />
+      <AboutSection />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
