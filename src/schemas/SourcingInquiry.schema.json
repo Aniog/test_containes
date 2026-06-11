@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer country or region"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "supplier_sourcing",
+        "factory_verification",
+        "quality_inspection",
+        "production_follow_up",
+        "shipping_logistics",
+        "full_service"
+      ],
+      "description": "Primary service the buyer is interested in"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category or industry"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product or sourcing requirements"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or annual volume"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or total budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["urgent", "1_3_months", "3_6_months", "exploring"],
+      "description": "Project timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "won", "lost"],
+      "default": "new",
+      "description": "Internal lead status"
+    }
+  },
+  "required": ["full_name", "email", "service_type", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
