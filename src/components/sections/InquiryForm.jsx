@@ -34,6 +34,7 @@ const servicesOptions = [
 const InquiryForm = ({ compact = false }) => {
   const [status, setStatus] = useState('idle')
   const [error, setError] = useState(null)
+  const [submittedEmail, setSubmittedEmail] = useState('')
   const [values, setValues] = useState({
     companyName: '',
     contactName: '',
@@ -87,6 +88,45 @@ const InquiryForm = ({ compact = false }) => {
       return
     }
 
+    if (!client) {
+      // Demo mode: simulate successful submission for preview/testing purposes
+      setStatus('success')
+      setSubmittedEmail(values.email.trim())
+      toast.success('Thank you. Your inquiry has been received. (Demo mode — this is a simulation)')
+      // In a real environment with valid credentials, this would be saved to the Sourcing Inquiries database.
+      console.log('[Demo] Sourcing inquiry captured (not sent to database):', {
+        companyName: values.companyName.trim(),
+        contactName: values.contactName.trim(),
+        email: values.email.trim(),
+        phone: values.phone.trim() || null,
+        country: values.country.trim(),
+        productCategory: values.productCategory.trim(),
+        productDescription: values.productDescription.trim(),
+        targetQuantity: values.targetQuantity.trim() || null,
+        targetPrice: values.targetPrice.trim() || null,
+        timeline: values.timeline.trim() || null,
+        servicesNeeded: values.servicesNeeded.length > 0 ? values.servicesNeeded : null,
+        additionalNotes: values.additionalNotes.trim() || null,
+        status: 'new',
+      })
+
+      setValues({
+        companyName: '',
+        contactName: '',
+        email: '',
+        phone: '',
+        country: '',
+        productCategory: '',
+        productDescription: '',
+        targetQuantity: '',
+        targetPrice: '',
+        timeline: '',
+        servicesNeeded: [],
+        additionalNotes: '',
+      })
+      return
+    }
+
     setStatus('submitting')
 
     try {
@@ -121,6 +161,7 @@ const InquiryForm = ({ compact = false }) => {
       }
 
       setStatus('success')
+      setSubmittedEmail(values.email.trim())
       toast.success('Thank you. Your inquiry has been received. We will contact you within 24 hours.')
 
       setValues({
@@ -143,6 +184,44 @@ const InquiryForm = ({ compact = false }) => {
       toast.error(msg)
       setStatus('error')
     }
+  }
+
+  const handleReset = () => {
+    setStatus('idle')
+    setError(null)
+    setSubmittedEmail('')
+  }
+
+  // Success state UI
+  if (status === 'success') {
+    return (
+      <Card className={compact ? "border-slate-200" : "border-slate-200 shadow-lg"}>
+        <CardHeader>
+          <CardTitle className="text-2xl text-green-700">Inquiry Received</CardTitle>
+          <CardDescription>
+            Thank you for contacting SSourcing China.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="rounded-lg bg-green-50 border border-green-200 p-4 text-sm text-green-800">
+            <p className="mb-2">Your inquiry has been submitted successfully.</p>
+            <p>We will review your requirements and respond within one business day. A confirmation has been noted for <span className="font-medium">{submittedEmail}</span>.</p>
+          </div>
+
+          <div className="text-sm text-slate-600">
+            In a live environment, this inquiry is saved to our database and our sourcing team is notified immediately.
+          </div>
+
+          <div className="pt-2">
+            <Button type="button" variant="outline" onClick={handleReset}>
+              Submit Another Inquiry
+            </Button>
+          </div>
+
+          <p className="text-xs text-slate-500">Need urgent assistance? Email us at <a href="mailto:info@ssourcingchina.com" className="underline">info@ssourcingchina.com</a>.</p>
+        </CardContent>
+      </Card>
+    )
   }
 
   return (
@@ -246,6 +325,12 @@ const InquiryForm = ({ compact = false }) => {
           <Button type="submit" className="w-full md:w-auto" disabled={status === 'submitting'}>
             {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
           </Button>
+
+          {!client && (
+            <p className="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded p-2">
+              Demo mode: Submissions are simulated for preview. In production, inquiries are saved to our database and we respond within 24 hours.
+            </p>
+          )}
 
           <p className="text-xs text-slate-500">We respect your privacy. Your information will only be used to respond to your inquiry.</p>
         </form>
