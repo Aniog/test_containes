@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Records",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the city for this weather record"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather observation (YYYY-MM-DD)"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Stormy", "Foggy", "Windy", "Snowy"],
+      "description": "General weather condition for the day"
+    },
+    "temp_high": {
+      "type": "number",
+      "description": "Highest temperature of the day in Celsius"
+    },
+    "temp_low": {
+      "type": "number",
+      "description": "Lowest temperature of the day in Celsius"
+    },
+    "temp_avg": {
+      "type": "number",
+      "description": "Average temperature of the day in Celsius"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Average relative humidity percentage"
+    },
+    "wind_speed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Average wind speed in km/h"
+    },
+    "precipitation": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total precipitation in millimeters"
+    }
+  },
+  "required": ["city", "date", "condition", "temp_high", "temp_low", "temp_avg", "humidity", "wind_speed", "precipitation"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
