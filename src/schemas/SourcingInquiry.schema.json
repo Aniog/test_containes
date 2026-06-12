@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Buyer's full name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number (optional)"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Industrial & Machinery",
+        "Furniture & Decor",
+        "Beauty & Personal Care",
+        "Sports & Outdoors",
+        "Auto Parts & Accessories",
+        "Packaging & Printing",
+        "Other"
+      ],
+      "description": "Main product category"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 4000,
+      "description": "Description of the product the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity (e.g. '5,000 units / month')"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target landed or FOB unit price (optional)"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Sample Management",
+          "Price Negotiation",
+          "Production Follow-up",
+          "Quality Inspection",
+          "Shipping & Logistics",
+          "Private Label / OEM"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Services the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "Within 2 weeks",
+        "Within 1 month",
+        "1-3 months",
+        "Just exploring"
+      ],
+      "description": "When the buyer wants to start"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "won", "lost"],
+      "default": "new",
+      "description": "Internal CRM status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
