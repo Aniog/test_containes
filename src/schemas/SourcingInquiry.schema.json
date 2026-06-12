@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Furniture & Home Décor",
+        "Apparel & Textiles",
+        "Industrial Equipment",
+        "Toys & Baby Products",
+        "Sports & Outdoor Gear",
+        "Packaging & Labels",
+        "Auto Parts",
+        "Health & Beauty",
+        "Pet Products",
+        "Other"
+      ],
+      "description": "Product category for sourcing"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed description of the product to be sourced"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or MOQ requirement"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping & Logistics",
+        "Private Label / OEM",
+        "Full Sourcing Service"
+      ],
+      "description": "Primary service required"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional details or questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "contacted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
