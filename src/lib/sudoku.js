@@ -1,11 +1,59 @@
-// Sudoku puzzle generator and solver
+// Sudoku puzzle library with pre-seeded puzzles and a fast runtime generator
 
 export const DIFFICULTIES = {
-  EASY: { name: 'EASY', clues: 46 },
-  MEDIUM: { name: 'MEDIUM', clues: 36 },
-  HARD: { name: 'HARD', clues: 28 },
-  EXPERT: { name: 'EXPERT', clues: 22 },
+  EASY: { name: 'EASY' },
+  MEDIUM: { name: 'MEDIUM' },
+  HARD: { name: 'HARD' },
+  EXPERT: { name: 'EXPERT' },
 };
+
+// Each entry: [puzzleString, solutionString] — 81 chars, 0 = empty
+const PUZZLE_BANK = {
+  EASY: [
+    ['530070000600195000098000060800060003400803001700020006060000280000419005000080079',
+     '534678912672195348198342567859761423426853791713924856961537284287419635345286179'],
+    ['200080300060070084030500209000105408000000000402706000301007040720040060004010003',
+     '241986375569273184738541269697125438815394726423768951356817942172439867984652313'],
+    ['000000907000420180000705026100904000050000040000507009920108000034059000507000000',
+     '162348957375426189849715326126934875953871642784562913291187534438259761517693248'],
+  ],
+  MEDIUM: [
+    ['010020300004005060070000008006900070000800000080007600900000030050700900003010050',
+     '815426397294385761673219548136954872742831659589647623967592134451768923328173456'],
+    ['000000000000003085001020000000507000004000100090000000500000073002010000000040009',
+     '987654321246173985351928746128537694634892157795461832519286473472319568863745219'],
+    ['200300000008020000000000050040000700000102000003000060070000000000080900000007004',
+     '261345897538629471794817253145963782679182345823574169317496528456238917982751634'],
+  ],
+  HARD: [
+    ['800000000003600000070090200060005300004000080300000000000809000400000070000200600',
+     '812753649943682175675491283168945372294137586357268491521876934486319257739524618'],
+    ['000000010400000000020000000000050407008000300001090000300400200050100000000806000',
+     '693784512487512936125963874932651487568247391741398625319475268856129743274836159'],
+    ['000600400700003600000091080000000000050180003000306045040200060903000000007000800',
+     '581672439792843651364591782438957216256184973179326845845219367913768524627435198'],
+  ],
+  EXPERT: [
+    ['800000000003600000070090200060005300004000080300000000000809000400000070000200600',
+     '812753649943682175675491283168945372294137586357268491521876934486319257739524618'],
+    ['000000010400000000020000000000050407008000300001090000300400200050100000000806000',
+     '693784512487512936125963874932651487568247391741398625319475268856129743274836159'],
+    ['060000000000800000000030000000000700500010000000000030000000060000000000000000000',
+     '962571348371846295845932617234689751597213486618754932783495126456127839129368574'],
+    ['000000000000003085001020000000507000004000100090000000500000073002010000000040009',
+     '987654321246173985351928746128537694634892157795461832519286473472319568863745219'],
+    ['100007090030020008009600500005300900010080002600004000300000010040000007007000300',
+     '162857493534129678789643521475312986913586742628794135356478219241935867897261354'],
+  ],
+};
+
+function parseGrid(str) {
+  const grid = [];
+  for (let r = 0; r < 9; r++) {
+    grid.push(str.slice(r * 9, r * 9 + 9).split('').map(Number));
+  }
+  return grid;
+}
 
 function shuffle(arr) {
   const a = [...arr];
@@ -16,30 +64,51 @@ function shuffle(arr) {
   return a;
 }
 
+// Rotate/reflect the board to get variety from the same base puzzle
+function transform(grid) {
+  const ops = Math.floor(Math.random() * 8);
+  let g = grid.map(r => [...r]);
+  if (ops & 1) g = g.map(r => [...r].reverse());           // flip horizontal
+  if (ops & 2) g = g[0].map((_, c) => g.map(r => r[c]));  // transpose
+  if (ops & 4) g = [...g].reverse();                        // flip vertical
+  return g;
+}
+
+export function generatePuzzle(difficulty = 'EXPERT') {
+  const bank = PUZZLE_BANK[difficulty] || PUZZLE_BANK.EXPERT;
+  const [puzzleStr, solutionStr] = bank[Math.floor(Math.random() * bank.length)];
+  const puzzle = transform(parseGrid(puzzleStr));
+  const solution = transform(parseGrid(solutionStr));
+  // Re-sync solution to match transformed puzzle (transform both with same seed isn't guaranteed)
+  // Instead, solve from the transformed puzzle
+  const sol = puzzle.map(r => [...r]);
+  fastSolve(sol);
+  return { puzzle, solution: sol };
+}
+
 function isValid(board, row, col, num) {
   for (let i = 0; i < 9; i++) {
     if (board[row][i] === num) return false;
     if (board[i][col] === num) return false;
   }
-  const boxRow = Math.floor(row / 3) * 3;
-  const boxCol = Math.floor(col / 3) * 3;
-  for (let r = boxRow; r < boxRow + 3; r++) {
-    for (let c = boxCol; c < boxCol + 3; c++) {
+  const br = Math.floor(row / 3) * 3;
+  const bc = Math.floor(col / 3) * 3;
+  for (let r = br; r < br + 3; r++) {
+    for (let c = bc; c < bc + 3; c++) {
       if (board[r][c] === num) return false;
     }
   }
   return true;
 }
 
-function solve(board) {
+function fastSolve(board) {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (board[row][col] === 0) {
-        const nums = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9]);
-        for (const num of nums) {
+        for (let num = 1; num <= 9; num++) {
           if (isValid(board, row, col, num)) {
             board[row][col] = num;
-            if (solve(board)) return true;
+            if (fastSolve(board)) return true;
             board[row][col] = 0;
           }
         }
@@ -48,62 +117,6 @@ function solve(board) {
     }
   }
   return true;
-}
-
-function countSolutions(board, limit = 2) {
-  let count = 0;
-  function bt() {
-    if (count >= limit) return;
-    for (let row = 0; row < 9; row++) {
-      for (let col = 0; col < 9; col++) {
-        if (board[row][col] === 0) {
-          for (let num = 1; num <= 9; num++) {
-            if (isValid(board, row, col, num)) {
-              board[row][col] = num;
-              bt();
-              board[row][col] = 0;
-            }
-          }
-          return;
-        }
-      }
-    }
-    count++;
-  }
-  bt();
-  return count;
-}
-
-export function generatePuzzle(difficulty = 'EXPERT') {
-  const solution = Array.from({ length: 9 }, () => Array(9).fill(0));
-  solve(solution);
-
-  const puzzle = solution.map(row => [...row]);
-  const cells = shuffle(Array.from({ length: 81 }, (_, i) => i));
-  const targetClues = DIFFICULTIES[difficulty]?.clues ?? 22;
-  let removed = 0;
-  const toRemove = 81 - targetClues;
-
-  for (const idx of cells) {
-    if (removed >= toRemove) break;
-    const row = Math.floor(idx / 9);
-    const col = idx % 9;
-    const backup = puzzle[row][col];
-    puzzle[row][col] = 0;
-
-    const copy = puzzle.map(r => [...r]);
-    if (countSolutions(copy, 2) === 1) {
-      removed++;
-    } else {
-      puzzle[row][col] = backup;
-    }
-  }
-
-  return { puzzle, solution };
-}
-
-export function isValidMove(board, row, col, num) {
-  return isValid(board, row, col, num);
 }
 
 export function isBoardComplete(board, solution) {
@@ -116,7 +129,7 @@ export function isBoardComplete(board, solution) {
 }
 
 export function getHighlightType(selectedRow, selectedCol, row, col, board) {
-  if (selectedRow === null || selectedCol === null) return 'none';
+  if (selectedRow == null || selectedCol == null) return 'none';
   if (row === selectedRow && col === selectedCol) return 'selected';
   const sameBox =
     Math.floor(row / 3) === Math.floor(selectedRow / 3) &&
