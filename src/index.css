@@ -1,76 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Reset & base ─────────────────────────────────────────── */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #636972;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #ffffff;
+  color: #636972;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a { text-decoration: none; color: inherit; }
+
+/* ── Typography helpers ───────────────────────────────────── */
+.font-heading {
+  font-family: 'Josefin Sans', Poppins, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+/* ── AI gradient utilities ────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-gradient {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  color: #ffffff !important;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: 'Josefin Sans', Poppins, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.btn-gradient:hover { opacity: 0.9; box-shadow: 0 4px 16px rgba(118, 113, 255, 0.35); }
+.btn-gradient:focus-visible { outline: 3px solid #7671FF; outline-offset: 2px; }
+
+.btn-ghost {
+  background: transparent;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  cursor: pointer;
+  font-family: 'Josefin Sans', Poppins, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+.btn-ghost:hover { background: rgba(129, 89, 187, 0.06); }
+.btn-ghost:focus-visible { outline: 3px solid #8159BB; outline-offset: 2px; }
+
+/* ── Card ─────────────────────────────────────────────────── */
+.gen-card {
+  background: #ffffff;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+  display: block;
+  color: inherit;
+}
+.gen-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  border-color: #8159BB;
+}
+.gen-card:focus-visible {
+  outline: 3px solid #8159BB;
+  outline-offset: 2px;
 }
 
-button:hover {
-  border-color: #646cff;
+/* ── Category tag / badge ─────────────────────────────────── */
+.cat-tag {
+  font-family: 'Josefin Sans', Poppins, sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  border-radius: 3px;
+  padding: 2px 6px;
+  display: inline-block;
+  line-height: 1.4;
 }
 
-button:focus,
+/* ── Section spacing ──────────────────────────────────────── */
+.section-gap { padding-block: 60px; }
+.section-gap-sm { padding-block: 40px; }
+
+/* ── Content container ────────────────────────────────────── */
+.content-wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.section-divider { border: none; border-top: 1px solid #E2E4E7; margin: 0; }
+
+/* ── Show-all collapse ────────────────────────────────────── */
+.extra-cards-wrap {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+.extra-cards-wrap.collapsed { max-height: 0; }
+.extra-cards-wrap.expanded  { max-height: 9999px; }
+
+/* ── Search hidden cards ──────────────────────────────────── */
+.card-search-hidden { display: none; }
+
+/* ── Subsection hidden (search) ───────────────────────────── */
+.subsection-search-hidden { display: none; }
+
+/* ── FAQ accordion ────────────────────────────────────────── */
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+.faq-answer.collapsed { max-height: 0; padding-block: 0; }
+.faq-answer.expanded  { max-height: 600px; }
+
+/* ── Focus ring for all interactive elements ──────────────── */
+a:focus-visible,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid #8159BB;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* ── Screen-reader only ───────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
