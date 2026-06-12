@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp contact number"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "consumer_electronics",
+        "home_kitchen",
+        "apparel_textiles",
+        "promotional_gifts",
+        "industrial_machinery",
+        "beauty_personal_care",
+        "outdoor_sports",
+        "furniture_decor",
+        "other"
+      ],
+      "description": "Primary product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Description of the product, target specs, materials, certifications"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit cost or total budget"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "factory_audit",
+          "sample_handling",
+          "production_follow_up",
+          "quality_inspection",
+          "shipping_logistics",
+          "private_label_oem"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Sourcing services the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["urgent_under_30_days", "1_to_3_months", "3_to_6_months", "exploring"],
+      "description": "Expected sourcing timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "quoted", "won", "archived"],
+      "default": "new",
+      "description": "Internal pipeline status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
