@@ -1,76 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Global reset ── */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #636972;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #ffffff;
+  color: #636972;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ── AI Gradient ── */
+.ai-gradient-bg {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.ai-gradient-text {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  color: #ffffff !important;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 9px 20px;
+  border-radius: 4px;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  text-decoration: none;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary:hover {
+  opacity: 0.92;
+  box-shadow: 0 4px 16px rgba(118, 113, 255, 0.35);
 }
 
-button:focus,
+.btn-primary:focus-visible {
+  outline: 3px solid #7671FF;
+  outline-offset: 2px;
+}
+
+.btn-primary-lg {
+  height: 44px;
+  padding: 9px 24px;
+  font-size: 14px;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #8159BB;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 9px 20px;
+  border-radius: 4px;
+  border: 1px solid #8159BB;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-ghost:hover {
+  background-color: rgba(129, 89, 187, 0.06);
+}
+
+.btn-ghost:focus-visible {
+  outline: 3px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.btn-ghost-lg {
+  height: 44px;
+  padding: 9px 24px;
+}
+
+/* ── Cards ── */
+.generator-card {
+  background: #ffffff;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  text-decoration: none;
+  display: block;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  color: inherit;
+}
+
+.generator-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  border-color: #8159BB;
+}
+
+.generator-card:focus-visible {
+  outline: 3px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* ── Category Tags ── */
+.category-tag {
+  display: inline-block;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #8159BB;
+  color: #8159BB;
+  background: transparent;
+}
+
+/* ── Section headings ── */
+.section-heading {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #4B5056;
+  line-height: 1.2;
+}
+
+/* ── Content container ── */
+.content-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* ── Focus ring for all interactive elements ── */
+a:focus-visible,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 3px solid #8159BB;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* ── Show-all collapse/expand ── */
+.cards-overflow {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.cards-overflow.collapsed {
+  max-height: 0;
+}
+
+.cards-overflow.expanded {
+  max-height: 9999px;
+}
+
+/* ── Search hidden cards ── */
+.search-hidden {
+  display: none !important;
+}
+
+.search-hidden-section {
+  display: none !important;
+}
+
