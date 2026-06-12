@@ -1,15 +1,17 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import GeneratorsHub from './pages/GeneratorsHub'
 import './App.css'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/generators" element={<GeneratorsHub />} />
+        <Route path="*" element={<Navigate to="/generators" replace />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
 export default App
+
