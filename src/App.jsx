@@ -1,15 +1,7 @@
-import './App.css'
+import SudokuGame from './pages/SudokuGame';
 
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  return <SudokuGame />;
 }
 
-export default App
+export default App;
