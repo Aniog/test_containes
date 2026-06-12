@@ -1,0 +1,33 @@
+# ARTITECT MACHINERY - Design Guidelines
+
+## Visual Style
+- **Theme**: Elegant industrial - combining precision engineering aesthetics with modern web design
+- **Color Palette**:
+  - Primary: Deep navy blue (`slate-900`, `slate-800`) for headers and key elements
+  - Secondary: Steel gray (`slate-600`, `slate-500`) for body text and secondary elements
+  - Accent: Warm amber/orange (`amber-500`, `amber-600`) for CTAs and highlights
+  - Background: Clean white (`white`) and light gray (`slate-50`, `slate-100`)
+  - Text: Dark slate (`slate-900`) on light backgrounds, white on dark backgrounds
+- **Typography**:
+  - Headings: Inter, bold weights (600-800), large sizes for impact
+  - Body: Inter, regular weight (400-500), comfortable reading size
+  - Use uppercase for section labels and navigation items
+- **Layout**:
+  - Generous whitespace and padding for elegant feel
+  - Grid-based product displays with consistent spacing
+  - Full-width hero sections with overlay text
+  - Card-based layouts for products with subtle shadows
+- **Components**:
+  - Buttons: Rounded corners (`rounded-lg`), solid fills for primary, outlined for secondary
+  - Cards: Subtle borders (`border-slate-200`), hover effects with shadow elevation
+  - Navigation: Clean, minimal with hover underline effects
+- **Do's**:
+  - Use high-quality industrial imagery
+  - Maintain consistent spacing with Tailwind spacing scale
+  - Use subtle animations for hover states
+  - Keep text concise and professional
+- **Don'ts**:
+  - Don't use overly bright or neon colors
+  - Don't clutter the layout with too many elements
+  - Don't use decorative fonts that reduce readability
+  - Don't use dark text on dark backgrounds
