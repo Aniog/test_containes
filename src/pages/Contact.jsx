@@ -1,0 +1,251 @@
+import { useState } from 'react';
+import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react';
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    product: '',
+    message: '',
+  });
+  const [status, setStatus] = useState('idle');
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    setTimeout(() => {
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', phone: '', product: '', message: '' });
+    }, 1500);
+  };
+
+  return (
+    <div>
+      {/* Page Header */}
+      <section className="bg-navy-900 py-16 lg:py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <h1 className="text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
+              Contact Us
+            </h1>
+            <p className="text-slate-300 text-lg leading-relaxed">
+              Ready to discuss your sheet metal folding needs? Our team is here to help you find the right solution.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Content */}
+      <section className="py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Contact Info */}
+            <div className="lg:col-span-1">
+              <h2 className="text-2xl font-bold text-navy-900 mb-6">Get in Touch</h2>
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 text-brand-amber" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-navy-900">Phone</p>
+                    <p className="text-slate-600 text-sm">+1 (555) 123-4567</p>
+                    <p className="text-slate-600 text-sm">+1 (555) 123-4568</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 text-brand-amber" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-navy-900">Email</p>
+                    <p className="text-slate-600 text-sm">info@artitectmachinery.com</p>
+                    <p className="text-slate-600 text-sm">sales@artitectmachinery.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 text-brand-amber" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-navy-900">Address</p>
+                    <p className="text-slate-600 text-sm">123 Industrial Boulevard</p>
+                    <p className="text-slate-600 text-sm">Manufacturing District, MD 21000</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-amber-50 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-5 h-5 text-brand-amber" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-navy-900">Business Hours</p>
+                    <p className="text-slate-600 text-sm">Mon – Fri: 8:00 AM – 6:00 PM</p>
+                    <p className="text-slate-600 text-sm">Sat: 9:00 AM – 1:00 PM</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-2">
+              <div className="bg-white rounded-xl border border-slate-200 p-6 lg:p-8">
+                <h2 className="text-2xl font-bold text-navy-900 mb-2">Request a Quote</h2>
+                <p className="text-slate-600 text-sm mb-6">
+                  Fill out the form below and we'll get back to you within 24 hours.
+                </p>
+
+                {status === 'success' ? (
+                  <div className="bg-emerald-50 border border-emerald-200 rounded-lg p-6 text-center">
+                    <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Send className="w-6 h-6 text-emerald-600" />
+                    </div>
+                    <h3 className="text-lg font-bold text-emerald-800 mb-2">Message Sent!</h3>
+                    <p className="text-emerald-700 text-sm">
+                      Thank you for your inquiry. Our team will review your request and respond within 24 hours.
+                    </p>
+                    <button
+                      onClick={() => setStatus('idle')}
+                      className="mt-4 text-sm font-medium text-emerald-700 hover:text-emerald-800 underline bg-transparent border-none cursor-pointer"
+                    >
+                      Send another message
+                    </button>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-navy-900 mb-1.5">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          required
+                          value={formData.name}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:border-transparent transition-shadow"
+                          placeholder="John Smith"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-navy-900 mb-1.5">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          required
+                          value={formData.email}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:border-transparent transition-shadow"
+                          placeholder="john@company.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label htmlFor="company" className="block text-sm font-medium text-navy-900 mb-1.5">
+                          Company
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:border-transparent transition-shadow"
+                          placeholder="Your Company Ltd."
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-navy-900 mb-1.5">
+                          Phone Number
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleChange}
+                          className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:border-transparent transition-shadow"
+                          placeholder="+1 (555) 000-0000"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="product" className="block text-sm font-medium text-navy-900 mb-1.5">
+                        Product of Interest
+                      </label>
+                      <select
+                        id="product"
+                        name="product"
+                        value={formData.product}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:border-transparent transition-shadow bg-white"
+                      >
+                        <option value="">Select a product...</option>
+                        <option value="df-2500">DF-2500 Double Folding Machine</option>
+                        <option value="df-3200">DF-3200 Double Folder</option>
+                        <option value="smf-1600">SMF-1600 Sheet Metal Folder</option>
+                        <option value="mfm-2000">MFM-2000 Metal Folding Machine</option>
+                        <option value="df-4000-pro">DF-4000 PRO Metal Folder</option>
+                        <option value="smf-1200-lite">SMF-1200 LITE Sheet Metal Folding Machine</option>
+                        <option value="custom">Custom Solution</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-navy-900 mb-1.5">
+                        Message *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={5}
+                        value={formData.message}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 border border-slate-300 rounded-lg text-sm text-navy-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-amber focus:border-transparent transition-shadow resize-vertical"
+                        placeholder="Tell us about your requirements, materials, production volume, etc."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={status === 'sending'}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-amber hover:bg-brand-amber-dark text-navy-900 font-semibold rounded-lg px-6 py-3 text-sm transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer border-none"
+                    >
+                      {status === 'sending' ? (
+                        <>Sending...</>
+                      ) : (
+                        <>
+                          Send Message <Send className="w-4 h-4" />
+                        </>
+                      )}
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default Contact;
