@@ -9,34 +9,34 @@ const SudokuBoard = ({ board, puzzle, solution, selected, onSelect, notes, error
     const isError = errors?.has(`${row}-${col}`);
     const isGiven = puzzle[row][col] !== 0;
 
-    // Border classes — thick borders at box boundaries
+    // Thick borders at 3×3 box boundaries, thin within
     const borderR = col === 8
-      ? 'border-r-[2px] border-r-gray-800'
+      ? 'border-r-[2px]'
       : (col + 1) % 3 === 0
-        ? 'border-r-[2px] border-r-gray-700'
-        : 'border-r border-r-gray-300';
+        ? 'border-r-[2px]'
+        : 'border-r border-r-[#c8a870]';
 
     const borderB = row === 8
-      ? 'border-b-[2px] border-b-gray-800'
+      ? 'border-b-[2px]'
       : (row + 1) % 3 === 0
-        ? 'border-b-[2px] border-b-gray-700'
-        : 'border-b border-b-gray-300';
+        ? 'border-b-[2px]'
+        : 'border-b border-b-[#c8a870]';
 
-    const borderL = col === 0 ? 'border-l-[2px] border-l-gray-800' : '';
-    const borderT = row === 0 ? 'border-t-[2px] border-t-gray-800' : '';
+    const borderL = col === 0 ? 'border-l-[2px]' : '';
+    const borderT = row === 0 ? 'border-t-[2px]' : '';
 
-    let bg = 'bg-white';
-    if (isSelected) bg = 'bg-blue-500';
-    else if (isSameNumber) bg = 'bg-blue-100';
-    else if (isRelated) bg = 'bg-gray-100';
+    let bg = 'bg-[#fdf5e4]';
+    if (isSelected) bg = 'bg-[#f5a623]';
+    else if (isSameNumber) bg = 'bg-[#fde9a0]';
+    else if (isRelated) bg = 'bg-[#f5e8cc]';
 
     const textColor = isSelected
       ? 'text-white'
       : isError
-        ? 'text-red-500'
+        ? 'text-red-600'
         : isGiven
-          ? 'text-gray-900'
-          : 'text-blue-600';
+          ? 'text-[#3d2b1a]'
+          : 'text-[#1a6fa4]';
 
     return { bg, borderR, borderB, borderL, borderT, isSelected, isGiven, isError, textColor };
   };
@@ -44,7 +44,10 @@ const SudokuBoard = ({ board, puzzle, solution, selected, onSelect, notes, error
   const getCellNotes = (row, col) => notes?.[`${row}-${col}`] || new Set();
 
   return (
-    <div className="w-full select-none" style={{ aspectRatio: '1/1' }}>
+    <div
+      className="w-full select-none border-[2px] border-[#8b6340]"
+      style={{ aspectRatio: '1/1', backgroundColor: '#8b6340' }}
+    >
       {Array.from({ length: 9 }, (_, row) => (
         <div key={row} className="flex" style={{ height: '11.11%' }}>
           {Array.from({ length: 9 }, (_, col) => {
@@ -53,12 +56,23 @@ const SudokuBoard = ({ board, puzzle, solution, selected, onSelect, notes, error
             const cellNotes = getCellNotes(row, col);
             const hasNotes = cellNotes.size > 0 && value === 0;
 
+            // Use brown for box borders, lighter for inner borders
+            const boxBorderColor = 'border-[#8b6340]';
+            const innerBorderColor = '';
+
             return (
               <div
                 key={col}
                 className={`flex-1 flex items-center justify-center cursor-pointer relative
-                  ${bg} ${borderR} ${borderB} ${borderL} ${borderT}
+                  ${bg} ${borderR} ${borderB} ${borderL} ${borderT} ${boxBorderColor}
                   transition-colors duration-75`}
+                style={{
+                  borderColor: undefined,
+                  borderRightColor: col === 8 || (col + 1) % 3 === 0 ? '#8b6340' : '#c8a870',
+                  borderBottomColor: row === 8 || (row + 1) % 3 === 0 ? '#8b6340' : '#c8a870',
+                  borderLeftColor: col === 0 ? '#8b6340' : undefined,
+                  borderTopColor: row === 0 ? '#8b6340' : undefined,
+                }}
                 onClick={() => onSelect(row, col)}
               >
                 {hasNotes ? (
@@ -68,9 +82,9 @@ const SudokuBoard = ({ board, puzzle, solution, selected, onSelect, notes, error
                         key={n}
                         className={`flex items-center justify-center leading-none font-medium
                           ${cellNotes.has(n)
-                            ? (isSelected ? 'text-white' : 'text-blue-500')
+                            ? (isSelected ? 'text-white' : 'text-[#1a6fa4]')
                             : 'text-transparent'}`}
-                        style={{ fontSize: 'clamp(6px, 1.2vw, 10px)' }}
+                        style={{ fontSize: 'clamp(6px, 1.2vw, 9px)' }}
                       >
                         {n}
                       </span>
@@ -78,8 +92,8 @@ const SudokuBoard = ({ board, puzzle, solution, selected, onSelect, notes, error
                   </div>
                 ) : value !== 0 ? (
                   <span
-                    className={`font-semibold leading-none select-none ${textColor}`}
-                    style={{ fontSize: 'clamp(14px, 4vw, 22px)' }}
+                    className={`font-bold leading-none select-none ${textColor}`}
+                    style={{ fontSize: 'clamp(15px, 4.2vw, 24px)' }}
                   >
                     {value}
                   </span>

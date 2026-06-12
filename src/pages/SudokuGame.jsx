@@ -171,28 +171,36 @@ const SudokuGame = () => {
   }, [handleKeyDown]);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-start">
-      <div className="w-full max-w-[420px] flex flex-col" style={{ minHeight: '100dvh' }}>
+    <div
+      className="min-h-screen flex flex-col items-center justify-start"
+      style={{ backgroundColor: '#f0d9a0' }}
+    >
+      <div
+        className="w-full max-w-[420px] flex flex-col"
+        style={{ minHeight: '100dvh', backgroundColor: '#f0d9a0' }}
+      >
         <GameHeader
           time={time}
           difficulty={difficulty}
           onSettings={() => setShowSettings(true)}
         />
 
-        {/* Board fills full width */}
-        <div className="w-full flex-shrink-0">
-          <SudokuBoard
-            board={board}
-            puzzle={puzzle}
-            solution={solution}
-            selected={selected}
-            onSelect={handleSelect}
-            notes={notes}
-            errors={errors}
-          />
+        {/* Board fills full width, with a warm shadow/border */}
+        <div className="w-full flex-shrink-0 px-2 pt-2">
+          <div style={{ borderRadius: 4, overflow: 'hidden', boxShadow: '0 4px 16px rgba(80,40,0,0.25)' }}>
+            <SudokuBoard
+              board={board}
+              puzzle={puzzle}
+              solution={solution}
+              selected={selected}
+              onSelect={handleSelect}
+              notes={notes}
+              errors={errors}
+            />
+          </div>
         </div>
 
-        {/* Number pad + action bar fill remaining space */}
+        {/* Number pad + action bar */}
         <div className="flex-1 flex flex-col justify-between">
           <NumberPad
             onNumber={handleNumber}
