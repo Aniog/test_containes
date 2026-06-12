@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional contact phone number"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or workshop name"
+    },
+    "interest": {
+      "type": "string",
+      "enum": ["atelier-d2", "studio-s1", "forge-f3", "general"],
+      "default": "general",
+      "description": "Which product the visitor is interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Inquiry details, intended use, panel sizes, materials, etc."
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
