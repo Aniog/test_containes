@@ -2,125 +2,122 @@ const ExampleFilePage = () => {
   return (
     <div
       className="relative w-screen h-screen overflow-hidden"
-      style={{
-        // Blue/indigo base with concentric-squares repeating pattern
-        backgroundColor: '#5a5fc8',
-        backgroundImage: `
-          repeating-linear-gradient(#5a5fc8 0px, #5a5fc8 1px, transparent 1px, transparent 100%),
-          repeating-linear-gradient(90deg, #5a5fc8 0px, #5a5fc8 1px, transparent 1px, transparent 100%)
-        `,
-      }}
+      style={{ backgroundColor: '#5558c8' }}
     >
-      {/* Concentric-squares SVG pattern overlay */}
+      {/* Concentric-squares SVG tile pattern */}
       <svg
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         xmlns="http://www.w3.org/2000/svg"
-        style={{ opacity: 0.35 }}
       >
         <defs>
-          <pattern id="squares" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
-            {/* Concentric squares */}
-            <rect x="1" y="1" width="46" height="46" fill="none" stroke="#7a7fe8" strokeWidth="1" rx="3" />
-            <rect x="6" y="6" width="36" height="36" fill="none" stroke="#7a7fe8" strokeWidth="1" rx="2" />
-            <rect x="11" y="11" width="26" height="26" fill="none" stroke="#7a7fe8" strokeWidth="1" rx="1.5" />
-            <rect x="16" y="16" width="16" height="16" fill="none" stroke="#7a7fe8" strokeWidth="1" rx="1" />
-            <rect x="21" y="21" width="6" height="6" fill="none" stroke="#7a7fe8" strokeWidth="1" />
+          <pattern id="sq" x="0" y="0" width="44" height="44" patternUnits="userSpaceOnUse">
+            <rect x="1"  y="1"  width="42" height="42" fill="none" stroke="#6b6fd8" strokeWidth="1.2" rx="3" />
+            <rect x="6"  y="6"  width="32" height="32" fill="none" stroke="#6b6fd8" strokeWidth="1"   rx="2" />
+            <rect x="11" y="11" width="22" height="22" fill="none" stroke="#6b6fd8" strokeWidth="0.9" rx="1.5" />
+            <rect x="16" y="16" width="12" height="12" fill="none" stroke="#6b6fd8" strokeWidth="0.8" rx="1" />
+            <rect x="20" y="20" width="4"  height="4"  fill="none" stroke="#6b6fd8" strokeWidth="0.7" />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#squares)" />
+        <rect width="100%" height="100%" fill="url(#sq)" />
       </svg>
 
       {/* Purple triangle — top-left */}
       <div
         className="absolute"
         style={{
-          top: 0,
-          left: 0,
-          width: '42%',
-          height: '62%',
+          top: 0, left: 0,
+          width: '44%', height: '65%',
           background: '#6600ff',
           clipPath: 'polygon(0 0, 100% 0, 0 100%)',
         }}
       />
 
-      {/* Cyan large shape — left side */}
-      <div
-        className="absolute"
-        style={{
-          top: 0,
-          left: 0,
-          width: '58%',
-          height: '100%',
-          background: '#00d4f0',
-          clipPath: 'polygon(0 38%, 38% 26%, 62% 52%, 48% 100%, 0 100%)',
-        }}
-      />
+      {/* Cyan shape — left, with curved bottom-right edge */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        viewBox="0 0 100 100"
+      >
+        <path d="M0,38 L28,22 L44,38 Q58,62 52,100 L0,100 Z" fill="#00d4f0" />
+      </svg>
 
       {/* Orange stripe — far right */}
       <div
         className="absolute top-0 right-0 h-full"
-        style={{
-          width: '18%',
-          background: '#f05a00',
-        }}
+        style={{ width: '18.5%', background: '#f05500' }}
       />
 
-      {/* Center logo banner */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div
-          className="flex items-center gap-5 px-10 py-6"
-          style={{
-            background: 'rgba(220, 225, 255, 0.55)',
-            backdropFilter: 'blur(6px)',
-            WebkitBackdropFilter: 'blur(6px)',
-            borderRadius: 6,
-            minWidth: 520,
-            maxWidth: '65%',
-          }}
-        >
-          {/* Logo icon — overlapping triangles */}
-          <div className="relative flex-shrink-0" style={{ width: 110, height: 90 }}>
-            {/* White chevron stripes (top layer) */}
-            <svg width="110" height="90" viewBox="0 0 110 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* Green large triangle */}
-              <polygon points="20,10 100,10 60,80" fill="#22c55e" />
-              {/* Purple/blue triangle (offset) */}
-              <polygon points="5,30 75,30 40,85" fill="#6366f1" opacity="0.85" />
-              {/* White chevron lines */}
-              <polyline points="15,22 38,55 60,22" fill="none" stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
-              <polyline points="28,22 51,55 73,22" fill="none" stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
-              <polyline points="41,22 64,55 86,22" fill="none" stroke="white" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
+      {/* Wide frosted banner */}
+      <div
+        className="absolute"
+        style={{
+          top: '50%',
+          left: '18%',
+          right: '20%',
+          transform: 'translateY(-50%)',
+          background: 'rgba(210, 215, 245, 0.52)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          padding: '16px 36px 16px 16px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 20,
+        }}
+      >
+        {/* Logo icon — overlapping DOWNWARD-pointing triangles with white diagonal stripes */}
+        <div className="flex-shrink-0" style={{ width: 140, height: 120 }}>
+          <svg width="140" height="120" viewBox="0 0 140 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              {/* Clip to the combined downward-triangle area */}
+              <clipPath id="logoClip">
+                <polygon points="0,5 140,5 140,115 70,115 0,115" />
+              </clipPath>
+            </defs>
 
-          {/* Text */}
-          <div className="flex flex-col leading-none">
-            <span
-              style={{
-                fontSize: 'clamp(36px, 5vw, 72px)',
-                fontWeight: 800,
-                color: '#111111',
-                letterSpacing: '-1px',
-                lineHeight: 1,
-                fontFamily: 'Inter, sans-serif',
-              }}
-            >
-              ExampleFile
-            </span>
-            <span
-              style={{
-                fontSize: 'clamp(28px, 3.8vw, 58px)',
-                fontWeight: 700,
-                color: '#111111',
-                letterSpacing: '-0.5px',
-                lineHeight: 1.1,
-                fontFamily: 'Inter, sans-serif',
-                paddingLeft: '2px',
-              }}
-            >
-              .com
-            </span>
-          </div>
+            {/* Back purple/indigo downward triangle (left-offset) */}
+            <polygon points="5,8 75,8 40,108" fill="#5558c8" opacity="0.85" />
+
+            {/* Front green downward triangle (right-offset) */}
+            <polygon points="35,8 105,8 70,108" fill="#22c55e" />
+
+            {/* White diagonal stripes — clipped to the logo area */}
+            <g clipPath="url(#logoClip)">
+              <line x1="-5"  y1="0"   x2="55"  y2="125" stroke="white" strokeWidth="13" strokeLinecap="round" />
+              <line x1="15"  y1="-5"  x2="75"  y2="120" stroke="white" strokeWidth="13" strokeLinecap="round" />
+              <line x1="35"  y1="-10" x2="95"  y2="115" stroke="white" strokeWidth="13" strokeLinecap="round" />
+              <line x1="55"  y1="-15" x2="115" y2="110" stroke="white" strokeWidth="13" strokeLinecap="round" />
+            </g>
+          </svg>
+        </div>
+
+        {/* Text block — "ExampleFile" then ".com" right-aligned */}
+        <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
+          <span
+            style={{
+              fontSize: 'clamp(40px, 5.4vw, 86px)',
+              fontWeight: 800,
+              color: '#111111',
+              letterSpacing: '-1.5px',
+              fontFamily: 'Inter, Arial, sans-serif',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            ExampleFile
+          </span>
+          <span
+            style={{
+              fontSize: 'clamp(32px, 4.3vw, 70px)',
+              fontWeight: 700,
+              color: '#111111',
+              letterSpacing: '-0.5px',
+              fontFamily: 'Inter, Arial, sans-serif',
+              textAlign: 'right',
+              marginTop: 2,
+            }}
+          >
+            .com
+          </span>
         </div>
       </div>
     </div>
