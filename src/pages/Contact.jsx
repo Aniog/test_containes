@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DataClient, User } from '@strikingly/sdk';
+import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 import { CheckCircle, Mail, Phone, MapPin, Clock, Globe } from 'lucide-react';
 
@@ -62,12 +62,6 @@ const Contact = () => {
     setStatus('submitting');
 
     try {
-      const userRecord = await User.upsert({
-        email: values.email,
-        name: values.full_name,
-        role: 'guest',
-      });
-
       const { data: response, error: insertError } = await client
         .from('Sourcing Inquiries')
         .insert({

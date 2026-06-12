@@ -4,8 +4,8 @@ import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import {
   Search, ShieldCheck, ClipboardCheck, Truck, Factory, Star,
-  ArrowRight, CheckCircle, Globe, Users, Award, TrendingUp,
-  ChevronDown, MessageSquare, Package, Zap
+  ArrowRight, CheckCircle, Globe, Users, Award,
+  ChevronDown, Package
 } from 'lucide-react';
 
 const services = [
@@ -121,29 +121,6 @@ const faqs = [
   { q: 'Can you handle shipping to any country?', a: 'We coordinate with freight forwarders for sea, air, and express shipping to most destinations worldwide, including the US, EU, UK, Australia, and Southeast Asia.' },
   { q: 'What if the goods fail quality inspection?', a: 'We work with the factory to resolve issues before shipment. If goods do not meet agreed standards, we do not approve the shipment until corrections are made.' },
 ];
-
-const HomeFaqItem = ({ q, a }) => {
-  const [open, setOpen] = useRef ? [false, () => {}] : [false, () => {}];
-  return null;
-};
-
-const FaqItem = ({ q, a }) => {
-  const [open, setOpen] = require ? [false, () => {}] : [false, () => {}];
-  return (
-    <div className="border border-border rounded-lg overflow-hidden">
-      <button
-        className="w-full text-left px-6 py-4 flex items-center justify-between gap-4 bg-white hover:bg-gray-50 transition-colors"
-        onClick={() => {}}
-      >
-        <span className="font-semibold text-darktext text-sm md:text-base">{q}</span>
-        <ChevronDown className="w-5 h-5 text-muted shrink-0" />
-      </button>
-      <div className="px-6 py-4 bg-white border-t border-border">
-        <p className="text-muted text-sm leading-relaxed">{a}</p>
-      </div>
-    </div>
-  );
-};
 
 const Home = () => {
   const containerRef = useRef(null);
