@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer or contact person"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer country or region"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "supplier_sourcing",
+        "factory_verification",
+        "quality_inspection",
+        "production_follow_up",
+        "shipping_logistics",
+        "full_service",
+        "other"
+      ],
+      "description": "Primary service the buyer is interested in"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category, e.g. consumer electronics, home goods, apparel"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Description of the products to source, target specs, materials, references"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target order quantity or estimated annual volume"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or total budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "asap",
+        "within_1_month",
+        "1_3_months",
+        "3_6_months",
+        "exploring"
+      ],
+      "description": "Expected timeline to start"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal lead status"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
