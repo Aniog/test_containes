@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the buyer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where products will be imported"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Hardware",
+        "Outdoor & Sports",
+        "Beauty & Personal Care",
+        "Toys & Baby",
+        "Auto Parts",
+        "Other"
+      ],
+      "description": "Product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the products to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated quantity or MOQ requirement"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target budget or unit price range"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Sample Management",
+          "Price Negotiation",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping & Logistics",
+          "Customs & Documents"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Services the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "ASAP",
+        "Within 1 month",
+        "1-3 months",
+        "3-6 months",
+        "Just exploring"
+      ],
+      "description": "Project timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
