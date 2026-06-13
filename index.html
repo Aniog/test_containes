@@ -4,10 +4,1743 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <title>{{ pageTitle }}</title>
+    <meta name="description" content="{{ metaDescription }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://www.strikingly.com/generators">
+    <meta property="og:title" content="{{ pageTitle }}">
+    <meta property="og:description" content="{{ metaDescription }}">
+    <meta property="og:url" content="https://www.strikingly.com/generators">
+    <style>
+      [x-cloak] { display: none !important; }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strikingly",
+        "item": "https://www.strikingly.com/"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI Generators"
+      }]
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- 0. Top bar -->
+    <header class="bg-white border-b border-[#E2E4E7] h-14 flex items-center px-4/6 md:px-10">
+      <div class="max-w-[1200px] w-full mx-auto">
+        <!-- Text logo placeholder for "strikingly AI" -->
+        <a href="/" class="font-heading font-bold text-lg text-[#2E2E2F] flex items-center">
+          strikingly<span class="text-brand-purple ml-1">AI</span>
+        </a>
+      </div>
+    </header>
+    <nav aria-label="Breadcrumb" class="max-w-[1200px] mx-auto px-4 md:px-10 py-4">
+      <ol class="flex text-[12px] text-[#636972] m-0 p-0 list-none">
+        <li><a href="/" class="hover:text-[#4B5056] text-[#636972] no-underline">Strikingly</a></li>
+        <li class="mx-2 text-brand-purple">&gt;</li>
+        <li class="text-[#636972]" aria-current="page">AI Generators</li>
+      </ol>
+    </nav>
+
+    <main>
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[60px] md:py-[80px] flex flex-col md:flex-row items-center gap-10 hero-wash">
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="font-heading text-[28px] md:text-[48px] leading-[1.2] text-[#2E2E2F] mb-4">
+            <span class="block">{{ heroH1L1 }}</span>
+            <span class="block text-ai-gradient">{{ heroH1L2 }}</span>
+          </h1>
+          <p class="text-[#636972] text-[16px] md:text-[18px] max-w-[500px] mx-auto md:mx-0 mb-8">{{ heroSub }}</p>
+          <div class="flex flex-col md:flex-row gap-[10px] justify-center md:justify-start">
+            <a href="/s/ai_site_builder" class="inline-flex items-center justify-center bg-ai-gradient text-white font-heading text-[14px] h-[44px] px-[24px] rounded-[4px] hover:opacity-90 transition-opacity">{{ heroCtaPrimary }}</a>
+            <a href="#all-generators" class="inline-flex items-center justify-center bg-transparent border border-brand-purple text-brand-purple font-heading text-[14px] h-[44px] px-[24px] rounded-[4px] hover:bg-brand-purple/5 transition-colors">{{ heroCtaSecondary }}</a>
+          </div>
+        </div>
+        <div class="flex-1 w-full flex justify-center md:justify-end">
+            <svg aria-hidden="true" width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="max-w-full h-auto drop-shadow-sm">
+                <rect width="400" height="300" rx="8" fill="#F4F6F8"/>
+                <rect x="20" y="20" width="360" height="40" rx="4" fill="#E2E4E7"/>
+                <rect x="20" y="80" width="160" height="20" rx="4" fill="#8159BB" fill-opacity="0.2"/>
+                <rect x="20" y="120" width="240" height="12" rx="4" fill="#C6C9CD"/>
+                <rect x="20" y="140" width="200" height="12" rx="4" fill="#C6C9CD"/>
+                <rect x="20" y="180" width="100" height="100" rx="4" fill="#8159BB" fill-opacity="0.1"/>
+                <rect x="140" y="180" width="100" height="100" rx="4" fill="#8159BB" fill-opacity="0.1"/>
+                <rect x="260" y="180" width="100" height="100" rx="4" fill="#8159BB" fill-opacity="0.1"/>
+            </svg>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[40px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px] mb-2">{{ featHeading }}</h2>
+          <p class="text-[#636972]">{{ featSub }}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+
+          <article class="h-full"><a href="/generators/ai-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">AI Website Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Describe your business, get a full site</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/free-portfolio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Free Portfolio Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">For creatives, in minutes, no fee</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Portfolio</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/ai-landing-page-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">AI Landing Page Maker</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">One-page sites built to convert</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Landing Page</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/online-store-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Online Store Builder</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Start selling without writing code</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Store</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/link-in-bio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Link-in-Bio Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">One link for all your channels</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Link-in-Bio</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/one-page-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">One-Page Website Builder</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Simple sites, single scroll</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/wedding-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Wedding Website Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Share your day with guests</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/restaurant-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Restaurant Website Builder</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Menu, hours, reservations, done</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a></article>
+          <article class="h-full"><a href="/generators/blog-generator-for-beginners" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group h-full">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Blog Generator for Beginners</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Publish-ready in minutes</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Blog</span>
+          </a></article>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[40px] bg-[#F4F6F8] rounded-[8px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ catHeading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+
+          <article class="h-full"><a href="#websites" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Websites</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">AI-built business and personal sites for any goal.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a></article>
+          <article class="h-full"><a href="#landing-pages" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Landing Pages</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Single-page sites built to convert visitors fast.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a></article>
+          <article class="h-full"><a href="#portfolios" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Portfolios</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Showcase your work with a clean, focused site.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a></article>
+          <article class="h-full"><a href="#blogs" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Blogs</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Publish-ready blogs with built-in SEO basics.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a></article>
+          <article class="h-full"><a href="#stores" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Online Stores</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Sell products online with payments built in.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a></article>
+          <article class="h-full"><a href="#link-in-bio" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Link-in-Bio</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">One link, all your places. Made for creators.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a></article>
+        </div>
+      </section>
+
+      <section id="all-generators" class="max-w-[1200px] mx-auto px-4 md:px-10 py-[40px]">
+        <div class="text-center mb-[30px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px] mb-2">{{ allHeading }}</h2>
+          <p class="text-[#636972]">{{ allSub }}</p>
+        </div>
+
+        <div class="relative max-w-[480px] mx-auto mb-[20px]">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="absolute left-3 top-[10px] text-[#A6A9AE]">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <input type="text" id="generatorInfoSearch" aria-label="Search generators" placeholder="{{ searchPlaceholder }}" class="w-full h-[40px] pl-[40px] pr-[16px] border border-[#C6C9CD] rounded-[4px] focus:outline-none focus:border-brand-purple text-[#2E2E2F]" />
+          <div id="searchCount" class="text-right text-[12px] text-[#636972] mt-1 h-[18px]"></div>
+        </div>
+        
+        <div id="emptySearchState" class="hidden text-center py-[60px] bg-[#F4F6F8] rounded-[8px] mb-[40px]">
+          <p class="text-[#4B5056] mb-4 font-bold text-[18px]"><a href="/s/ai_site_builder" class="text-brand-purple hover:underline hover:opacity-90">{{ searchEmptyText }}</a></p>
+          <button id="clearSearchBtn" class="bg-white border border-[#C6C9CD] text-[#2E2E2F] font-bold text-[13px] px-4 py-2 rounded-[4px] hover:border-brand-purple">Clear search</button>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="websites">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Websites</h3>
+            <p class="text-[#636972]">AI-built business and personal sites for any goal.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="websites-list">
+
+            <article class="directory-card h-full" data-name="ai website generator" data-desc="describe your business, get a full site" data-cat="websites"><a href="/generators/ai-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">AI Website Generator</h4>
+              <p class="text-[#636972] text-[13px]">Describe your business, get a full site</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="free website builder for photographers" data-desc="showcase your photo gallery" data-cat="websites"><a href="/generators/free-website-builder-for-photographers" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Free Website Builder for Photographers</h4>
+              <p class="text-[#636972] text-[13px]">Showcase your photo gallery</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="one-page wedding website builder" data-desc="share your special day" data-cat="websites"><a href="/generators/one-page-wedding-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">One-Page Wedding Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Share your special day</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="restaurant website builder" data-desc="menu, hours, reservations, done" data-cat="websites"><a href="/generators/restaurant-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Restaurant Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Menu, hours, reservations, done</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="small business website maker" data-desc="get your local business online" data-cat="websites"><a href="/generators/small-business-website-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Small Business Website Maker</h4>
+              <p class="text-[#636972] text-[13px]">Get your local business online</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="yoga instructor site generator" data-desc="classes, schedules, bookings" data-cat="websites"><a href="/generators/yoga-instructor-site-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Yoga Instructor Site Generator</h4>
+              <p class="text-[#636972] text-[13px]">Classes, schedules, bookings</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="real estate agent website builder" data-desc="listings and agent bio" data-cat="websites"><a href="/generators/real-estate-agent-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Real Estate Agent Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Listings and agent bio</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="freelancer website generator" data-desc="promote your services independently" data-cat="websites"><a href="/generators/freelancer-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Freelancer Website Generator</h4>
+              <p class="text-[#636972] text-[13px]">Promote your services independently</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="event website builder" data-desc="registration and event details" data-cat="websites"><a href="/generators/event-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Event Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Registration and event details</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="church website generator" data-desc="sermons, donations, community" data-cat="websites"><a href="/generators/church-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Church Website Generator</h4>
+              <p class="text-[#636972] text-[13px]">Sermons, donations, community</p>
+            </a></article>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="websites-list">Show all 10 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="landing-pages">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Landing Pages</h3>
+            <p class="text-[#636972]">Single-page sites built to convert visitors fast.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="landing-pages-list">
+
+            <article class="directory-card h-full" data-name="ai landing page maker" data-desc="one-page sites built to convert" data-cat="landing pages"><a href="/generators/ai-landing-page-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">AI Landing Page Maker</h4>
+              <p class="text-[#636972] text-[13px]">One-page sites built to convert</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="app launch landing page generator" data-desc="collect emails before launch" data-cat="landing pages"><a href="/generators/app-launch-landing-page-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">App Launch Landing Page Generator</h4>
+              <p class="text-[#636972] text-[13px]">Collect emails before launch</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="product teaser page builder" data-desc="generate hype for your product" data-cat="landing pages"><a href="/generators/product-teaser-page-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Product Teaser Page Builder</h4>
+              <p class="text-[#636972] text-[13px]">Generate hype for your product</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="webinar registration page maker" data-desc="get signups for your next talk" data-cat="landing pages"><a href="/generators/webinar-registration-page-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Webinar Registration Page Maker</h4>
+              <p class="text-[#636972] text-[13px]">Get signups for your next talk</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="book launch landing page" data-desc="sell your e-book with a single page" data-cat="landing pages"><a href="/generators/book-launch-landing-page" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Book Launch Landing Page</h4>
+              <p class="text-[#636972] text-[13px]">Sell your e-book with a single page</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="course sales page generator" data-desc="convert visitors into students" data-cat="landing pages"><a href="/generators/course-sales-page-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Course Sales Page Generator</h4>
+              <p class="text-[#636972] text-[13px]">Convert visitors into students</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="email capture page builder" data-desc="grow your newsletter list fast" data-cat="landing pages"><a href="/generators/email-capture-page-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Email Capture Page Builder</h4>
+              <p class="text-[#636972] text-[13px]">Grow your newsletter list fast</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="lead generation site maker" data-desc="collect inbound leads locally" data-cat="landing pages"><a href="/generators/lead-generation-site-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Lead Generation Site Maker</h4>
+              <p class="text-[#636972] text-[13px]">Collect inbound leads locally</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="fitness class promo page" data-desc="fill up your studio seats" data-cat="landing pages"><a href="/generators/fitness-class-promo-page" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Fitness Class Promo Page</h4>
+              <p class="text-[#636972] text-[13px]">Fill up your studio seats</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="consulting service landing page" data-desc="book more client calls" data-cat="landing pages"><a href="/generators/consulting-service-landing-page" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Consulting Service Landing Page</h4>
+              <p class="text-[#636972] text-[13px]">Book more client calls</p>
+            </a></article>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="landing-pages-list">Show all 10 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="portfolios">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Portfolios</h3>
+            <p class="text-[#636972]">Showcase your work with a clean, focused site.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="portfolios-list">
+
+            <article class="directory-card h-full" data-name="free portfolio generator" data-desc="for creatives, in minutes, no fee" data-cat="portfolios"><a href="/generators/free-portfolio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Free Portfolio Generator</h4>
+              <p class="text-[#636972] text-[13px]">For creatives, in minutes, no fee</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="portfolio generator for designers" data-desc="ux/ui case studies made easy" data-cat="portfolios"><a href="/generators/portfolio-generator-for-designers" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Portfolio Generator for Designers</h4>
+              <p class="text-[#636972] text-[13px]">UX/UI case studies made easy</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="photography portfolio builder" data-desc="clean grid layouts for photos" data-cat="portfolios"><a href="/generators/photography-portfolio-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Photography Portfolio Builder</h4>
+              <p class="text-[#636972] text-[13px]">Clean grid layouts for photos</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="copywriter portfolio maker" data-desc="showcase your best writing clips" data-cat="portfolios"><a href="/generators/copywriter-portfolio-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Copywriter Portfolio Maker</h4>
+              <p class="text-[#636972] text-[13px]">Showcase your best writing clips</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="actor/model portfolio generator" data-desc="headshots and reels in one place" data-cat="portfolios"><a href="/generators/actor-model-portfolio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Actor/Model Portfolio Generator</h4>
+              <p class="text-[#636972] text-[13px]">Headshots and reels in one place</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="software developer portfolio" data-desc="show off your github projects" data-cat="portfolios"><a href="/generators/software-developer-portfolio" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Software Developer Portfolio</h4>
+              <p class="text-[#636972] text-[13px]">Show off your GitHub projects</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="art student portfolio builder" data-desc="apply to schools with a slick site" data-cat="portfolios"><a href="/generators/art-student-portfolio-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Art Student Portfolio Builder</h4>
+              <p class="text-[#636972] text-[13px]">Apply to schools with a slick site</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="musician portfolio generator" data-desc="embed tracks and tour dates" data-cat="portfolios"><a href="/generators/musician-portfolio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Musician Portfolio Generator</h4>
+              <p class="text-[#636972] text-[13px]">Embed tracks and tour dates</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="videographer reel page builder" data-desc="put your video reels front and center" data-cat="portfolios"><a href="/generators/videographer-reel-page-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Videographer Reel Page Builder</h4>
+              <p class="text-[#636972] text-[13px]">Put your video reels front and center</p>
+            </a></article>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="portfolios-list">Show all 9 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="blogs">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Blogs</h3>
+            <p class="text-[#636972]">Publish-ready blogs with built-in SEO basics.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="blogs-list">
+
+            <article class="directory-card h-full" data-name="blog generator for beginners" data-desc="publish-ready in minutes" data-cat="blogs"><a href="/generators/blog-generator-for-beginners" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Blog Generator for Beginners</h4>
+              <p class="text-[#636972] text-[13px]">Publish-ready in minutes</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="travel blog builder" data-desc="share your adventures globally" data-cat="blogs"><a href="/generators/travel-blog-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Travel Blog Builder</h4>
+              <p class="text-[#636972] text-[13px]">Share your adventures globally</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="food recipe blog generator" data-desc="post recipes with lovely layouts" data-cat="blogs"><a href="/generators/food-recipe-blog-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Food Recipe Blog Generator</h4>
+              <p class="text-[#636972] text-[13px]">Post recipes with lovely layouts</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="tech review blog maker" data-desc="review gadgets with clean formatting" data-cat="blogs"><a href="/generators/tech-review-blog-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Tech Review Blog Maker</h4>
+              <p class="text-[#636972] text-[13px]">Review gadgets with clean formatting</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="personal journal site builder" data-desc="a private-looking public diary" data-cat="blogs"><a href="/generators/personal-journal-site-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Personal Journal Site Builder</h4>
+              <p class="text-[#636972] text-[13px]">A private-looking public diary</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="mom blog generator" data-desc="parenting tips and lifestyle posts" data-cat="blogs"><a href="/generators/mom-blog-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Mom Blog Generator</h4>
+              <p class="text-[#636972] text-[13px]">Parenting tips and lifestyle posts</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="fashion blog builder" data-desc="lookbooks and outfit links" data-cat="blogs"><a href="/generators/fashion-blog-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Fashion Blog Builder</h4>
+              <p class="text-[#636972] text-[13px]">Lookbooks and outfit links</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="finance blog generator" data-desc="tips for saving and investing" data-cat="blogs"><a href="/generators/finance-blog-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Finance Blog Generator</h4>
+              <p class="text-[#636972] text-[13px]">Tips for saving and investing</p>
+            </a></article>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="blogs-list">Show all 8 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="stores">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Online Stores</h3>
+            <p class="text-[#636972]">Sell products online with payments built in.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="stores-list">
+
+            <article class="directory-card h-full" data-name="online store builder" data-desc="start selling without writing code" data-cat="online stores"><a href="/generators/online-store-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Online Store Builder</h4>
+              <p class="text-[#636972] text-[13px]">Start selling without writing code</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="online store builder for restaurants" data-desc="takeout orders and local delivery" data-cat="online stores"><a href="/generators/online-store-builder-for-restaurants" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Online Store Builder for Restaurants</h4>
+              <p class="text-[#636972] text-[13px]">Takeout orders and local delivery</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="digital product store generator" data-desc="sell e-books, presets, and guides" data-cat="online stores"><a href="/generators/digital-product-store-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Digital Product Store Generator</h4>
+              <p class="text-[#636972] text-[13px]">Sell e-books, presets, and guides</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="handmade goods shop builder" data-desc="for etsy sellers stepping up" data-cat="online stores"><a href="/generators/handmade-goods-shop-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Handmade Goods Shop Builder</h4>
+              <p class="text-[#636972] text-[13px]">For Etsy sellers stepping up</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="dropshipping store generator" data-desc="connect your products, start selling" data-cat="online stores"><a href="/generators/dropshipping-store-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Dropshipping Store Generator</h4>
+              <p class="text-[#636972] text-[13px]">Connect your products, start selling</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="merch store builder for creators" data-desc="sell t-shirts to your fans" data-cat="online stores"><a href="/generators/merch-store-builder-for-creators" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Merch Store Builder for Creators</h4>
+              <p class="text-[#636972] text-[13px]">Sell t-shirts to your fans</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="bakery online shop maker" data-desc="pre-orders and local pickup" data-cat="online stores"><a href="/generators/bakery-online-shop-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Bakery Online Shop Maker</h4>
+              <p class="text-[#636972] text-[13px]">Pre-orders and local pickup</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="jewelry boutique builder" data-desc="elegant templates for fine goods" data-cat="online stores"><a href="/generators/jewelry-boutique-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Jewelry Boutique Builder</h4>
+              <p class="text-[#636972] text-[13px]">Elegant templates for fine goods</p>
+            </a></article>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="stores-list">Show all 8 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="link-in-bio">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Link-in-Bio</h3>
+            <p class="text-[#636972]">One link, all your places. Made for creators.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="link-in-bio-list">
+
+            <article class="directory-card h-full" data-name="link-in-bio generator" data-desc="one link for all your channels" data-cat="link-in-bio"><a href="/generators/link-in-bio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Link-in-Bio Generator</h4>
+              <p class="text-[#636972] text-[13px]">One link for all your channels</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="tiktok creator link page" data-desc="drive video traffic to your links" data-cat="link-in-bio"><a href="/generators/tiktok-creator-link-page" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">TikTok Creator Link Page</h4>
+              <p class="text-[#636972] text-[13px]">Drive video traffic to your links</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="instagram bio link builder" data-desc="the only url your profile needs" data-cat="link-in-bio"><a href="/generators/instagram-bio-link-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Instagram Bio Link Builder</h4>
+              <p class="text-[#636972] text-[13px]">The only URL your profile needs</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="podcast link page generator" data-desc="aggregate spotify, apple, and patreon" data-cat="link-in-bio"><a href="/generators/podcast-link-page-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Podcast Link Page Generator</h4>
+              <p class="text-[#636972] text-[13px]">Aggregate Spotify, Apple, and Patreon</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="twitch streamer bio link" data-desc="merch, tips, and live tracking" data-cat="link-in-bio"><a href="/generators/twitch-streamer-bio-link" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Twitch Streamer Bio Link</h4>
+              <p class="text-[#636972] text-[13px]">Merch, tips, and live tracking</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="youtuber link-in-bio maker" data-desc="centralize your streams and vods" data-cat="link-in-bio"><a href="/generators/youtuber-link-in-bio-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">YouTuber Link-in-Bio Maker</h4>
+              <p class="text-[#636972] text-[13px]">Centralize your streams and VODs</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="onlyfans promo link page" data-desc="drive subscriber conversions discretely" data-cat="link-in-bio"><a href="/generators/onlyfans-promo-link-page" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">OnlyFans Promo Link Page</h4>
+              <p class="text-[#636972] text-[13px]">Drive subscriber conversions discretely</p>
+            </a></article>
+            <article class="directory-card h-full" data-name="musician multi-link page" data-desc="tour dates and streaming links together" data-cat="link-in-bio"><a href="/generators/musician-multi-link-page" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Musician Multi-Link Page</h4>
+              <p class="text-[#636972] text-[13px]">Tour dates and streaming links together</p>
+            </a></article>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="link-in-bio-list">Show all 8 generators</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[60px] bg-[#F4F6F8] rounded-[8px] mb-[60px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ howHeading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-[40px]">
+          <div class="text-center md:text-left">
+            <div class="w-[40px] h-[40px] rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-[18px] mx-auto md:mx-0 mb-4">1</div>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ how1Title }}</h3>
+            <p class="text-[#636972]">{{ how1Desc }}</p>
+          </div>
+          <div class="text-center md:text-left">
+            <div class="w-[40px] h-[40px] rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-[18px] mx-auto md:mx-0 mb-4">2</div>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ how2Title }}</h3>
+            <p class="text-[#636972]">{{ how2Desc }}</p>
+          </div>
+          <div class="text-center md:text-left">
+            <div class="w-[40px] h-[40px] rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-[18px] mx-auto md:mx-0 mb-4">3</div>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ how3Title }}</h3>
+            <p class="text-[#636972]">{{ how3Desc }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[60px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ whyHeading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-[40px]">
+          <div class="text-center">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8159BB" stroke-width="2" class="mx-auto mb-4"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ why1Title }}</h3>
+            <p class="text-[#636972] mx-auto max-w-[280px]">{{ why1Desc }}</p>
+          </div>
+          <div class="text-center">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8159BB" stroke-width="2" class="mx-auto mb-4"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ why2Title }}</h3>
+            <p class="text-[#636972] mx-auto max-w-[280px]">{{ why2Desc }}</p>
+          </div>
+          <div class="text-center">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8159BB" stroke-width="2" class="mx-auto mb-4"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ why3Title }}</h3>
+            <p class="text-[#636972] mx-auto max-w-[280px]">{{ why3Desc }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[800px] mx-auto px-4 md:px-10 py-[60px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ faqHeading }}</h2>
+        </div>
+        <div class="border-t border-[#E2E4E7]" id="faqContainer">
+
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="true" aria-controls="faq-answer-1">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ1 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200 rotate-180 js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-1" class="overflow-hidden max-h-[500px]" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA1 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-2">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ2 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-2" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA2 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-3">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ3 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-3" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA3 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-4">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ4 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-4" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA4 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-5">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ5 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-5" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA5 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-6">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ6 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-6" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA6 }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[80px] text-center">
+        <h2 class="font-heading text-[#4B5056] text-[28px] md:text-[40px] mb-4">{{ closingHeading }}</h2>
+        <p class="text-[#636972] text-[16px] md:text-[18px] mb-8">{{ closingSub }}</p>
+        <a href="/s/ai_site_builder" class="inline-flex items-center justify-center bg-ai-gradient text-white font-heading text-[16px] h-[44px] px-[32px] rounded-[4px] hover:opacity-90 transition-opacity">{{ closingCta }}</a>
+      </section>
+    </main>
+
+    <footer class="bg-[#F4F6F8] py-[60px] border-t border-[#E2E4E7]">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-10 grid grid-cols-1 md:grid-cols-4 gap-[40px]">
+        <div>
+          <a href="/" class="font-heading font-bold text-lg text-[#2E2E2F] flex items-center mb-4">
+            strikingly<span class="text-brand-purple ml-1">AI</span>
+          </a>
+          <p class="text-[12px] text-[#636972]">&copy; 2026 Strikingly. All rights reserved.</p>
+        </div>
+        <div>
+          <h2 class="font-bold text-[#4B5056] mb-4 text-[14px]">Product</h2>
+          <ul class="list-none p-0 m-0 space-y-2 text-[13px]">
+            <li><a href="/templates" class="text-[#636972] hover:text-brand-purple">Templates</a></li>
+            <li><a href="/pricing" class="text-[#636972] hover:text-brand-purple">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-[#4B5056] mb-4 text-[14px]">Company</h2>
+          <ul class="list-none p-0 m-0 space-y-2 text-[13px]">
+            <li><a href="/about" class="text-[#636972] hover:text-brand-purple">About Us</a></li>
+            <li><a href="/blog" class="text-[#636972] hover:text-brand-purple">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-[#4B5056] mb-4 text-[14px]">Support</h2>
+          <ul class="list-none p-0 m-0 space-y-2 text-[13px]">
+            <li><a href="/support" class="text-[#636972] hover:text-brand-purple">Help Center</a></li>
+            <li><a href="/terms" class="text-[#636972] hover:text-brand-purple">Terms of Service</a></li>
+            <li><a href="/privacy" class="text-[#636972] hover:text-brand-purple">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <nav aria-label="Breadcrumb" class="max-w-[1200px] mx-auto px-4 md:px-10 py-4">
+      <ol class="flex text-[12px] text-[#636972] m-0 p-0 list-none">
+        <li><a href="/" class="hover:text-[#4B5056] text-[#636972] no-underline">Strikingly</a></li>
+        <li class="mx-2 text-brand-purple">&gt;</li>
+        <li class="text-[#636972]" aria-current="page">AI Generators</li>
+      </ol>
+    </nav>
+
+    <main>
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[60px] md:py-[80px] flex flex-col md:flex-row items-center gap-10 hero-wash">
+        <div class="flex-1 text-center md:text-left">
+          <h1 class="font-heading text-[28px] md:text-[48px] leading-[1.2] text-[#2E2E2F] mb-4">
+            <span class="block">{{ heroH1L1 }}</span>
+            <span class="block text-ai-gradient">{{ heroH1L2 }}</span>
+          </h1>
+          <p class="text-[#636972] text-[16px] md:text-[18px] max-w-[500px] mx-auto md:mx-0 mb-8">{{ heroSub }}</p>
+          <div class="flex flex-col md:flex-row gap-[10px] justify-center md:justify-start">
+            <a href="/s/ai_site_builder" class="inline-flex items-center justify-center bg-ai-gradient text-white font-heading text-[14px] h-[44px] px-[24px] rounded-[4px] hover:opacity-90 transition-opacity">{{ heroCtaPrimary }}</a>
+            <a href="#all-generators" class="inline-flex items-center justify-center bg-transparent border border-brand-purple text-brand-purple font-heading text-[14px] h-[44px] px-[24px] rounded-[4px] hover:bg-brand-purple/5 transition-colors">{{ heroCtaSecondary }}</a>
+          </div>
+        </div>
+        <div class="flex-1 w-full flex justify-center md:justify-end">
+            <svg aria-hidden="true" width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="max-w-full h-auto drop-shadow-sm">
+                <rect width="400" height="300" rx="8" fill="#F4F6F8"/>
+                <rect x="20" y="20" width="360" height="40" rx="4" fill="#E2E4E7"/>
+                <rect x="20" y="80" width="160" height="20" rx="4" fill="#8159BB" fill-opacity="0.2"/>
+                <rect x="20" y="120" width="240" height="12" rx="4" fill="#C6C9CD"/>
+                <rect x="20" y="140" width="200" height="12" rx="4" fill="#C6C9CD"/>
+                <rect x="20" y="180" width="100" height="100" rx="4" fill="#8159BB" fill-opacity="0.1"/>
+                <rect x="140" y="180" width="100" height="100" rx="4" fill="#8159BB" fill-opacity="0.1"/>
+                <rect x="260" y="180" width="100" height="100" rx="4" fill="#8159BB" fill-opacity="0.1"/>
+            </svg>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[40px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px] mb-2">{{ featHeading }}</h2>
+          <p class="text-[#636972]">{{ featSub }}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+
+          <a href="/generators/ai-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">AI Website Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Describe your business, get a full site</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a>
+          <a href="/generators/free-portfolio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Free Portfolio Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">For creatives, in minutes, no fee</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Portfolio</span>
+          </a>
+          <a href="/generators/ai-landing-page-maker" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">AI Landing Page Maker</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">One-page sites built to convert</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Landing Page</span>
+          </a>
+          <a href="/generators/online-store-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Online Store Builder</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Start selling without writing code</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Store</span>
+          </a>
+          <a href="/generators/link-in-bio-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Link-in-Bio Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">One link for all your channels</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Link-in-Bio</span>
+          </a>
+          <a href="/generators/one-page-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">One-Page Website Builder</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Simple sites, single scroll</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a>
+          <a href="/generators/wedding-website-generator" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Wedding Website Generator</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Share your day with guests</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a>
+          <a href="/generators/restaurant-website-builder" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Restaurant Website Builder</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Menu, hours, reservations, done</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Website</span>
+          </a>
+          <a href="/generators/blog-generator-for-beginners" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group">
+            <h3 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple leading-tight text-[16px]">Blog Generator for Beginners</h3>
+            <p class="text-[#636972] mb-3 text-[13px]">Publish-ready in minutes</p>
+            <span class="inline-block font-heading text-[11px] px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple uppercase">Blog</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[40px] bg-[#F4F6F8] rounded-[8px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ catHeading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
+
+          <a href="#websites" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Websites</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">AI-built business and personal sites for any goal.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a>
+          <a href="#landing-pages" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Landing Pages</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Single-page sites built to convert visitors fast.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a>
+          <a href="#portfolios" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Portfolios</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Showcase your work with a clean, focused site.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a>
+          <a href="#blogs" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Blogs</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Publish-ready blogs with built-in SEO basics.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a>
+          <a href="#stores" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Online Stores</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">Sell products online with payments built in.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a>
+          <a href="#link-in-bio" class="block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" class="mb-4">
+              <rect width="32" height="32" rx="4" fill="#E2E4E7" />
+              <path d="M8 16 l6 6 l10 -12" stroke="#8159BB" stroke-width="2" fill="none" />
+            </svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] mb-1 group-hover:text-brand-purple uppercase">Link-in-Bio</h3>
+            <p class="text-[#636972] text-[13px] flex-grow">One link, all your places. Made for creators.</p>
+            <div class="mt-4 flex justify-end text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-7-7 7 7-7 7"/></svg>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section id="all-generators" class="max-w-[1200px] mx-auto px-4 md:px-10 py-[40px]">
+        <div class="text-center mb-[30px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px] mb-2">{{ allHeading }}</h2>
+          <p class="text-[#636972]">{{ allSub }}</p>
+        </div>
+
+        <div class="relative max-w-[480px] mx-auto mb-[20px]">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="absolute left-3 top-[10px] text-[#A6A9AE]">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/><path d="m21 21-4.3-4.3" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <input type="text" id="generatorInfoSearch" aria-label="Search generators" placeholder="{{ searchPlaceholder }}" class="w-full h-[40px] pl-[40px] pr-[16px] border border-[#C6C9CD] rounded-[4px] focus:outline-none focus:border-brand-purple text-[#2E2E2F]" />
+          <div id="searchCount" class="text-right text-[12px] text-[#636972] mt-1 h-[18px]"></div>
+        </div>
+        
+        <div id="emptySearchState" class="hidden text-center py-[60px] bg-[#F4F6F8] rounded-[8px] mb-[40px]">
+          <p class="text-[#4B5056] mb-4 font-bold text-[18px]"><a href="/s/ai_site_builder" class="text-brand-purple hover:underline hover:opacity-90">{{ searchEmptyText }}</a></p>
+          <button id="clearSearchBtn" class="bg-white border border-[#C6C9CD] text-[#2E2E2F] font-bold text-[13px] px-4 py-2 rounded-[4px] hover:border-brand-purple">Clear search</button>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="websites">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Websites</h3>
+            <p class="text-[#636972]">AI-built business and personal sites for any goal.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="websites-list">
+
+            <a href="/generators/ai-website-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="ai website generator" data-desc="describe your business, get a full site" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">AI Website Generator</h4>
+              <p class="text-[#636972] text-[13px]">Describe your business, get a full site</p>
+            </a>
+            <a href="/generators/free-website-builder-for-photographers" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="free website builder for photographers" data-desc="showcase your photo gallery" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Free Website Builder for Photographers</h4>
+              <p class="text-[#636972] text-[13px]">Showcase your photo gallery</p>
+            </a>
+            <a href="/generators/one-page-wedding-website-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="one-page wedding website builder" data-desc="share your special day" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">One-Page Wedding Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Share your special day</p>
+            </a>
+            <a href="/generators/restaurant-website-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="restaurant website builder" data-desc="menu, hours, reservations, done" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Restaurant Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Menu, hours, reservations, done</p>
+            </a>
+            <a href="/generators/small-business-website-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="small business website maker" data-desc="get your local business online" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Small Business Website Maker</h4>
+              <p class="text-[#636972] text-[13px]">Get your local business online</p>
+            </a>
+            <a href="/generators/yoga-instructor-site-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="yoga instructor site generator" data-desc="classes, schedules, bookings" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Yoga Instructor Site Generator</h4>
+              <p class="text-[#636972] text-[13px]">Classes, schedules, bookings</p>
+            </a>
+            <a href="/generators/real-estate-agent-website-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="real estate agent website builder" data-desc="listings and agent bio" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Real Estate Agent Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Listings and agent bio</p>
+            </a>
+            <a href="/generators/freelancer-website-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="freelancer website generator" data-desc="promote your services independently" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Freelancer Website Generator</h4>
+              <p class="text-[#636972] text-[13px]">Promote your services independently</p>
+            </a>
+            <a href="/generators/event-website-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="event website builder" data-desc="registration and event details" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Event Website Builder</h4>
+              <p class="text-[#636972] text-[13px]">Registration and event details</p>
+            </a>
+            <a href="/generators/church-website-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="church website generator" data-desc="sermons, donations, community" data-cat="websites">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Church Website Generator</h4>
+              <p class="text-[#636972] text-[13px]">Sermons, donations, community</p>
+            </a>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="websites-list">Show all 10 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="landing-pages">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Landing Pages</h3>
+            <p class="text-[#636972]">Single-page sites built to convert visitors fast.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="landing-pages-list">
+
+            <a href="/generators/ai-landing-page-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="ai landing page maker" data-desc="one-page sites built to convert" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">AI Landing Page Maker</h4>
+              <p class="text-[#636972] text-[13px]">One-page sites built to convert</p>
+            </a>
+            <a href="/generators/app-launch-landing-page-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="app launch landing page generator" data-desc="collect emails before launch" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">App Launch Landing Page Generator</h4>
+              <p class="text-[#636972] text-[13px]">Collect emails before launch</p>
+            </a>
+            <a href="/generators/product-teaser-page-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="product teaser page builder" data-desc="generate hype for your product" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Product Teaser Page Builder</h4>
+              <p class="text-[#636972] text-[13px]">Generate hype for your product</p>
+            </a>
+            <a href="/generators/webinar-registration-page-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="webinar registration page maker" data-desc="get signups for your next talk" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Webinar Registration Page Maker</h4>
+              <p class="text-[#636972] text-[13px]">Get signups for your next talk</p>
+            </a>
+            <a href="/generators/book-launch-landing-page" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="book launch landing page" data-desc="sell your e-book with a single page" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Book Launch Landing Page</h4>
+              <p class="text-[#636972] text-[13px]">Sell your e-book with a single page</p>
+            </a>
+            <a href="/generators/course-sales-page-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="course sales page generator" data-desc="convert visitors into students" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Course Sales Page Generator</h4>
+              <p class="text-[#636972] text-[13px]">Convert visitors into students</p>
+            </a>
+            <a href="/generators/email-capture-page-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="email capture page builder" data-desc="grow your newsletter list fast" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Email Capture Page Builder</h4>
+              <p class="text-[#636972] text-[13px]">Grow your newsletter list fast</p>
+            </a>
+            <a href="/generators/lead-generation-site-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="lead generation site maker" data-desc="collect inbound leads locally" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Lead Generation Site Maker</h4>
+              <p class="text-[#636972] text-[13px]">Collect inbound leads locally</p>
+            </a>
+            <a href="/generators/fitness-class-promo-page" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="fitness class promo page" data-desc="fill up your studio seats" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Fitness Class Promo Page</h4>
+              <p class="text-[#636972] text-[13px]">Fill up your studio seats</p>
+            </a>
+            <a href="/generators/consulting-service-landing-page" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="consulting service landing page" data-desc="book more client calls" data-cat="landing pages">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Consulting Service Landing Page</h4>
+              <p class="text-[#636972] text-[13px]">Book more client calls</p>
+            </a>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="landing-pages-list">Show all 10 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="portfolios">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Portfolios</h3>
+            <p class="text-[#636972]">Showcase your work with a clean, focused site.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="portfolios-list">
+
+            <a href="/generators/free-portfolio-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="free portfolio generator" data-desc="for creatives, in minutes, no fee" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Free Portfolio Generator</h4>
+              <p class="text-[#636972] text-[13px]">For creatives, in minutes, no fee</p>
+            </a>
+            <a href="/generators/portfolio-generator-for-designers" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="portfolio generator for designers" data-desc="ux/ui case studies made easy" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Portfolio Generator for Designers</h4>
+              <p class="text-[#636972] text-[13px]">UX/UI case studies made easy</p>
+            </a>
+            <a href="/generators/photography-portfolio-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="photography portfolio builder" data-desc="clean grid layouts for photos" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Photography Portfolio Builder</h4>
+              <p class="text-[#636972] text-[13px]">Clean grid layouts for photos</p>
+            </a>
+            <a href="/generators/copywriter-portfolio-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="copywriter portfolio maker" data-desc="showcase your best writing clips" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Copywriter Portfolio Maker</h4>
+              <p class="text-[#636972] text-[13px]">Showcase your best writing clips</p>
+            </a>
+            <a href="/generators/actor-model-portfolio-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="actor/model portfolio generator" data-desc="headshots and reels in one place" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Actor/Model Portfolio Generator</h4>
+              <p class="text-[#636972] text-[13px]">Headshots and reels in one place</p>
+            </a>
+            <a href="/generators/software-developer-portfolio" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="software developer portfolio" data-desc="show off your github projects" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Software Developer Portfolio</h4>
+              <p class="text-[#636972] text-[13px]">Show off your GitHub projects</p>
+            </a>
+            <a href="/generators/art-student-portfolio-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="art student portfolio builder" data-desc="apply to schools with a slick site" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Art Student Portfolio Builder</h4>
+              <p class="text-[#636972] text-[13px]">Apply to schools with a slick site</p>
+            </a>
+            <a href="/generators/musician-portfolio-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="musician portfolio generator" data-desc="embed tracks and tour dates" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Musician Portfolio Generator</h4>
+              <p class="text-[#636972] text-[13px]">Embed tracks and tour dates</p>
+            </a>
+            <a href="/generators/videographer-reel-page-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="videographer reel page builder" data-desc="put your video reels front and center" data-cat="portfolios">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Videographer Reel Page Builder</h4>
+              <p class="text-[#636972] text-[13px]">Put your video reels front and center</p>
+            </a>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="portfolios-list">Show all 9 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="blogs">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Blogs</h3>
+            <p class="text-[#636972]">Publish-ready blogs with built-in SEO basics.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="blogs-list">
+
+            <a href="/generators/blog-generator-for-beginners" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="blog generator for beginners" data-desc="publish-ready in minutes" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Blog Generator for Beginners</h4>
+              <p class="text-[#636972] text-[13px]">Publish-ready in minutes</p>
+            </a>
+            <a href="/generators/travel-blog-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="travel blog builder" data-desc="share your adventures globally" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Travel Blog Builder</h4>
+              <p class="text-[#636972] text-[13px]">Share your adventures globally</p>
+            </a>
+            <a href="/generators/food-recipe-blog-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="food recipe blog generator" data-desc="post recipes with lovely layouts" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Food Recipe Blog Generator</h4>
+              <p class="text-[#636972] text-[13px]">Post recipes with lovely layouts</p>
+            </a>
+            <a href="/generators/tech-review-blog-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="tech review blog maker" data-desc="review gadgets with clean formatting" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Tech Review Blog Maker</h4>
+              <p class="text-[#636972] text-[13px]">Review gadgets with clean formatting</p>
+            </a>
+            <a href="/generators/personal-journal-site-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="personal journal site builder" data-desc="a private-looking public diary" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Personal Journal Site Builder</h4>
+              <p class="text-[#636972] text-[13px]">A private-looking public diary</p>
+            </a>
+            <a href="/generators/mom-blog-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="mom blog generator" data-desc="parenting tips and lifestyle posts" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Mom Blog Generator</h4>
+              <p class="text-[#636972] text-[13px]">Parenting tips and lifestyle posts</p>
+            </a>
+            <a href="/generators/fashion-blog-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="fashion blog builder" data-desc="lookbooks and outfit links" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Fashion Blog Builder</h4>
+              <p class="text-[#636972] text-[13px]">Lookbooks and outfit links</p>
+            </a>
+            <a href="/generators/finance-blog-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="finance blog generator" data-desc="tips for saving and investing" data-cat="blogs">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Finance Blog Generator</h4>
+              <p class="text-[#636972] text-[13px]">Tips for saving and investing</p>
+            </a>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="blogs-list">Show all 8 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="stores">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Online Stores</h3>
+            <p class="text-[#636972]">Sell products online with payments built in.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="stores-list">
+
+            <a href="/generators/online-store-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="online store builder" data-desc="start selling without writing code" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Online Store Builder</h4>
+              <p class="text-[#636972] text-[13px]">Start selling without writing code</p>
+            </a>
+            <a href="/generators/online-store-builder-for-restaurants" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="online store builder for restaurants" data-desc="takeout orders and local delivery" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Online Store Builder for Restaurants</h4>
+              <p class="text-[#636972] text-[13px]">Takeout orders and local delivery</p>
+            </a>
+            <a href="/generators/digital-product-store-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="digital product store generator" data-desc="sell e-books, presets, and guides" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Digital Product Store Generator</h4>
+              <p class="text-[#636972] text-[13px]">Sell e-books, presets, and guides</p>
+            </a>
+            <a href="/generators/handmade-goods-shop-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="handmade goods shop builder" data-desc="for etsy sellers stepping up" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Handmade Goods Shop Builder</h4>
+              <p class="text-[#636972] text-[13px]">For Etsy sellers stepping up</p>
+            </a>
+            <a href="/generators/dropshipping-store-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="dropshipping store generator" data-desc="connect your products, start selling" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Dropshipping Store Generator</h4>
+              <p class="text-[#636972] text-[13px]">Connect your products, start selling</p>
+            </a>
+            <a href="/generators/merch-store-builder-for-creators" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="merch store builder for creators" data-desc="sell t-shirts to your fans" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Merch Store Builder for Creators</h4>
+              <p class="text-[#636972] text-[13px]">Sell t-shirts to your fans</p>
+            </a>
+            <a href="/generators/bakery-online-shop-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="bakery online shop maker" data-desc="pre-orders and local pickup" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Bakery Online Shop Maker</h4>
+              <p class="text-[#636972] text-[13px]">Pre-orders and local pickup</p>
+            </a>
+            <a href="/generators/jewelry-boutique-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="jewelry boutique builder" data-desc="elegant templates for fine goods" data-cat="online stores">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Jewelry Boutique Builder</h4>
+              <p class="text-[#636972] text-[13px]">Elegant templates for fine goods</p>
+            </a>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="stores-list">Show all 8 generators</button>
+          </div>
+        </div>
+
+        <div class="directory-section mb-[60px]" id="link-in-bio">
+          <div class="mb-4">
+            <h3 class="font-bold text-[#4B5056] text-[20px] mb-1">Link-in-Bio</h3>
+            <p class="text-[#636972]">One link, all your places. Made for creators.</p>
+          </div>
+          <div class="directory-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]" id="link-in-bio-list">
+
+            <a href="/generators/link-in-bio-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="link-in-bio generator" data-desc="one link for all your channels" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Link-in-Bio Generator</h4>
+              <p class="text-[#636972] text-[13px]">One link for all your channels</p>
+            </a>
+            <a href="/generators/tiktok-creator-link-page" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="tiktok creator link page" data-desc="drive video traffic to your links" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">TikTok Creator Link Page</h4>
+              <p class="text-[#636972] text-[13px]">Drive video traffic to your links</p>
+            </a>
+            <a href="/generators/instagram-bio-link-builder" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="instagram bio link builder" data-desc="the only url your profile needs" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Instagram Bio Link Builder</h4>
+              <p class="text-[#636972] text-[13px]">The only URL your profile needs</p>
+            </a>
+            <a href="/generators/podcast-link-page-generator" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="podcast link page generator" data-desc="aggregate spotify, apple, and patreon" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Podcast Link Page Generator</h4>
+              <p class="text-[#636972] text-[13px]">Aggregate Spotify, Apple, and Patreon</p>
+            </a>
+            <a href="/generators/twitch-streamer-bio-link" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="twitch streamer bio link" data-desc="merch, tips, and live tracking" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Twitch Streamer Bio Link</h4>
+              <p class="text-[#636972] text-[13px]">Merch, tips, and live tracking</p>
+            </a>
+            <a href="/generators/youtuber-link-in-bio-maker" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="youtuber link-in-bio maker" data-desc="centralize your streams and vods" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">YouTuber Link-in-Bio Maker</h4>
+              <p class="text-[#636972] text-[13px]">Centralize your streams and VODs</p>
+            </a>
+            <a href="/generators/onlyfans-promo-link-page" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="onlyfans promo link page" data-desc="drive subscriber conversions discretely" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">OnlyFans Promo Link Page</h4>
+              <p class="text-[#636972] text-[13px]">Drive subscriber conversions discretely</p>
+            </a>
+            <a href="/generators/musician-multi-link-page" class="directory-card block bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] hover:shadow-md hover:border-brand-purple transition-all group flex flex-col h-full" data-name="musician multi-link page" data-desc="tour dates and streaming links together" data-cat="link-in-bio">
+              <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" class="mb-3">
+                <rect width="24" height="24" rx="3" fill="#F4F6F8" />
+                <circle cx="12" cy="12" r="6" fill="#8159BB" fill-opacity="0.2" />
+              </svg>
+              <h4 class="font-bold text-[#4B5056] mb-1 group-hover:text-brand-purple text-[15px] leading-tight">Musician Multi-Link Page</h4>
+              <p class="text-[#636972] text-[13px]">Tour dates and streaming links together</p>
+            </a>
+          </div>
+          <div class="mt-[20px] text-center js-show-all-container hidden">
+            <button class="bg-[#F4F6F8] border border-transparent text-[#4B5056] font-bold text-[13px] px-[16px] py-[8px] rounded-[4px] hover:bg-[#E2E4E7] js-show-all-btn cursor-pointer" aria-expanded="false" aria-controls="link-in-bio-list">Show all 8 generators</button>
+          </div>
+        </div>
+
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[60px] bg-[#F4F6F8] rounded-[8px] mb-[60px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ howHeading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-[40px]">
+          <div class="text-center md:text-left">
+            <div class="w-[40px] h-[40px] rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-[18px] mx-auto md:mx-0 mb-4">1</div>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ how1Title }}</h3>
+            <p class="text-[#636972]">{{ how1Desc }}</p>
+          </div>
+          <div class="text-center md:text-left">
+            <div class="w-[40px] h-[40px] rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-[18px] mx-auto md:mx-0 mb-4">2</div>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ how2Title }}</h3>
+            <p class="text-[#636972]">{{ how2Desc }}</p>
+          </div>
+          <div class="text-center md:text-left">
+            <div class="w-[40px] h-[40px] rounded-full bg-brand-purple text-white flex items-center justify-center font-bold text-[18px] mx-auto md:mx-0 mb-4">3</div>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ how3Title }}</h3>
+            <p class="text-[#636972]">{{ how3Desc }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[60px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ whyHeading }}</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-[40px]">
+          <div class="text-center">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8159BB" stroke-width="2" class="mx-auto mb-4"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ why1Title }}</h3>
+            <p class="text-[#636972] mx-auto max-w-[280px]">{{ why1Desc }}</p>
+          </div>
+          <div class="text-center">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8159BB" stroke-width="2" class="mx-auto mb-4"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><path d="M12 18h.01"/></svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ why2Title }}</h3>
+            <p class="text-[#636972] mx-auto max-w-[280px]">{{ why2Desc }}</p>
+          </div>
+          <div class="text-center">
+            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8159BB" stroke-width="2" class="mx-auto mb-4"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>
+            <h3 class="font-heading text-[#4B5056] text-[16px] uppercase mb-2">{{ why3Title }}</h3>
+            <p class="text-[#636972] mx-auto max-w-[280px]">{{ why3Desc }}</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[800px] mx-auto px-4 md:px-10 py-[60px]">
+        <div class="text-center mb-[40px]">
+          <h2 class="font-heading text-[#4B5056] text-[24px] md:text-[32px]">{{ faqHeading }}</h2>
+        </div>
+        <div class="border-t border-[#E2E4E7]" id="faqContainer">
+
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="true" aria-controls="faq-answer-1">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ1 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200 rotate-180 js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-1" class="overflow-hidden max-h-[500px]" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA1 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-2">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ2 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-2" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA2 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-3">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ3 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-3" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA3 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-4">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ4 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-4" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA4 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-5">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ5 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-5" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA5 }}</p>
+            </div>
+          </div>
+          <div class="border-b border-[#E2E4E7]">
+            <button class="w-full text-left py-[20px] flex justify-between items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-purple js-faq-toggle group" aria-expanded="false" aria-controls="faq-answer-6">
+              <span class="font-bold text-[#4B5056] pr-4 group-hover:text-brand-purple">{{ faqQ6 }}</span>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" class="transform transition-transform duration-200  js-faq-icon text-[#636972] group-hover:text-brand-purple">
+                <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div id="faq-answer-6" class="overflow-hidden max-h-0" style="transition: max-height 0.3s ease;">
+              <p class="text-[#636972] pb-[20px] pr-8">{{ faqA6 }}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-[1200px] mx-auto px-4 md:px-10 py-[80px] text-center">
+        <h2 class="font-heading text-[#4B5056] text-[28px] md:text-[40px] mb-4">{{ closingHeading }}</h2>
+        <p class="text-[#636972] text-[16px] md:text-[18px] mb-8">{{ closingSub }}</p>
+        <a href="/s/ai_site_builder" class="inline-flex items-center justify-center bg-ai-gradient text-white font-heading text-[16px] h-[44px] px-[32px] rounded-[4px] hover:opacity-90 transition-opacity">{{ closingCta }}</a>
+      </section>
+    </main>
+
+    <footer class="bg-[#F4F6F8] py-[60px] border-t border-[#E2E4E7]">
+      <div class="max-w-[1200px] mx-auto px-4 md:px-10 grid grid-cols-1 md:grid-cols-4 gap-[40px]">
+        <div>
+          <a href="/" class="font-heading font-bold text-lg text-[#2E2E2F] flex items-center mb-4">
+            strikingly<span class="text-brand-purple ml-1">AI</span>
+          </a>
+          <p class="text-[12px] text-[#636972]">&copy; 2026 Strikingly. All rights reserved.</p>
+        </div>
+        <div>
+          <h2 class="font-bold text-[#4B5056] mb-4 text-[14px]">Product</h2>
+          <ul class="list-none p-0 m-0 space-y-2 text-[13px]">
+            <li><a href="/templates" class="text-[#636972] hover:text-brand-purple">Templates</a></li>
+            <li><a href="/pricing" class="text-[#636972] hover:text-brand-purple">Pricing</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-[#4B5056] mb-4 text-[14px]">Company</h2>
+          <ul class="list-none p-0 m-0 space-y-2 text-[13px]">
+            <li><a href="/about" class="text-[#636972] hover:text-brand-purple">About Us</a></li>
+            <li><a href="/blog" class="text-[#636972] hover:text-brand-purple">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-bold text-[#4B5056] mb-4 text-[14px]">Support</h2>
+          <ul class="list-none p-0 m-0 space-y-2 text-[13px]">
+            <li><a href="/support" class="text-[#636972] hover:text-brand-purple">Help Center</a></li>
+            <li><a href="/terms" class="text-[#636972] hover:text-brand-purple">Terms of Service</a></li>
+            <li><a href="/privacy" class="text-[#636972] hover:text-brand-purple">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
