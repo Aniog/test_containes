@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquiry sender"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address for reply"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Country or market served by the buyer"
+    },
+    "service_interest": {
+      "type": "string",
+      "enum": [
+        "Supplier search",
+        "Factory verification",
+        "Quality inspection",
+        "Production follow-up",
+        "Shipping coordination",
+        "Full sourcing support"
+      ],
+      "description": "Primary service the buyer is interested in"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Summary of the product, target specifications, and sourcing needs"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Estimated order quantity or expected annual volume"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price or budget guidance if available"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Desired launch or delivery timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "qualified", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal lead management status"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Website page from which the inquiry was submitted"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp for when the inquiry was created"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "company",
+    "country",
+    "service_interest",
+    "product_details"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
