@@ -3,11 +3,2164 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+    <meta
+      name="description"
+      content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required."
+    />
+    <link rel="canonical" href="https://www.strikingly.com/generators" />
+    <meta
+      property="og:title"
+      content="AI Website Generators - Build Any Site in Seconds | Strikingly"
+    />
+    <meta
+      property="og:description"
+      content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds."
+    />
+    <meta property="og:url" content="https://www.strikingly.com/generators" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Strikingly",
+            "item": "https://www.strikingly.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "AI Generators",
+            "item": "https://www.strikingly.com/generators"
+          }
+        ]
+      }
+    </script>
+    <style>
+      :root {
+        --color-purple: #8159bb;
+        --color-gradient-start: #7671ff;
+        --color-gradient-end: #cb0c9f;
+        --color-body: #636972;
+        --color-heading: #4b5056;
+        --color-hero: #2e2e2f;
+        --color-border: #c6c9cd;
+        --color-divider: #e2e4e7;
+        --color-surface: #f4f6f8;
+        --color-white: #ffffff;
+        --shadow-card: 0 8px 24px rgba(75, 80, 86, 0.08);
+        --shadow-soft: 0 10px 30px rgba(129, 89, 187, 0.08);
+        --radius-card: 3px;
+        --radius-button: 4px;
+        --container-inline: min(1200px, calc(100% - 40px));
+        --font-heading: 'Brandon Grotesque', 'Josefin Sans', 'Poppins', sans-serif;
+        --font-body: 'Open Sans', Arial, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font-body);
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--color-body);
+        background: var(--color-white);
+      }
+
+      a,
+      button,
+      input {
+        font: inherit;
+      }
+
+      img,
+      svg {
+        display: block;
+        max-inline-size: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      input:focus-visible {
+        outline: 3px solid rgba(118, 113, 255, 0.35);
+        outline-offset: 3px;
+      }
+
+      .page-shell {
+        min-block-size: 100vh;
+        background: var(--color-white);
+      }
+
+      .container {
+        inline-size: var(--container-inline);
+        margin-inline: auto;
+      }
+
+      .topbar {
+        border-block-end: 1px solid var(--color-divider);
+        background: var(--color-white);
+      }
+
+      .topbar__inner {
+        display: flex;
+        align-items: center;
+        min-block-size: 60px;
+      }
+
+      .logo-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--color-hero);
+        font-family: var(--font-heading);
+        font-size: 21px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .logo-link__mark {
+        display: inline-flex;
+        inline-size: 30px;
+        block-size: 30px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+        color: var(--color-white);
+        font-size: 14px;
+      }
+
+      .logo-link__text-accent {
+        color: var(--color-purple);
+      }
+
+      .breadcrumb {
+        padding-block: 20px 10px;
+      }
+
+      .breadcrumb__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        color: var(--color-body);
+      }
+
+      .breadcrumb__item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .breadcrumb__item + .breadcrumb__item::before {
+        content: ">";
+        color: var(--color-purple);
+      }
+
+      .breadcrumb__link {
+        color: var(--color-body);
+      }
+
+      .section {
+        padding-block: 40px;
+      }
+
+      .hero {
+        position: relative;
+        overflow: clip;
+        padding-block: 70px;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at top right, rgba(203, 12, 159, 0.08), transparent 38%),
+          radial-gradient(circle at left center, rgba(118, 113, 255, 0.08), transparent 34%);
+        pointer-events: none;
+      }
+
+      .hero__grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        gap: 40px;
+        align-items: center;
+      }
+
+      .eyebrow,
+      .section-heading,
+      .hero-title,
+      .card-title,
+      .step-title,
+      .reason-title,
+      .footer-title,
+      .faq-button__text,
+      .cta-button,
+      .footer-brand,
+      .category-card__title {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        margin: 0;
+        color: var(--color-hero);
+        font-size: clamp(32px, 5vw, 48px);
+        line-height: 1.2;
+      }
+
+      .hero-title__line {
+        display: block;
+      }
+
+      .hero-title__line--gradient {
+        background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .hero__copy {
+        max-inline-size: 540px;
+        margin: 20px 0 0;
+        font-size: 16px;
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-block-start: 30px;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-block-size: 36px;
+        padding-block: 9px;
+        padding-inline: 15px;
+        border-radius: var(--radius-button);
+        border: 1px solid transparent;
+        font-size: 14px;
+        transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+        cursor: pointer;
+      }
+
+      .cta-button--large {
+        min-block-size: 44px;
+        padding-inline: 20px;
+      }
+
+      .cta-button--primary {
+        background: linear-gradient(135deg, var(--color-gradient-start), var(--color-gradient-end));
+        color: var(--color-white);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .cta-button--primary:hover {
+        box-shadow: 0 12px 32px rgba(118, 113, 255, 0.18);
+      }
+
+      .cta-button--ghost {
+        border-color: var(--color-purple);
+        background: transparent;
+        color: var(--color-purple);
+      }
+
+      .cta-button--ghost:hover {
+        border-color: var(--color-gradient-start);
+        color: var(--color-gradient-start);
+      }
+
+      .hero-illustration {
+        display: flex;
+        justify-content: center;
+      }
+
+      .hero-illustration svg {
+        inline-size: min(100%, 520px);
+        block-size: auto;
+        filter: drop-shadow(0 18px 36px rgba(129, 89, 187, 0.12));
+      }
+
+      .section-header {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-block-end: 30px;
+      }
+
+      .section-heading {
+        margin: 0;
+        color: var(--color-heading);
+        font-size: clamp(26px, 3vw, 32px);
+        line-height: 1.2;
+      }
+
+      .section-subheading,
+      .category-copy,
+      .generator-card__copy,
+      .step-copy,
+      .reason-copy,
+      .faq-panel p,
+      .footer-copy,
+      .directory-description {
+        margin: 0;
+        color: var(--color-body);
+      }
+
+      .card-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .card-grid--three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card-grid--category {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card-link,
+      .category-card__link,
+      .generator-card__link,
+      .footer-link {
+        color: inherit;
+      }
+
+      .card-link,
+      .generator-card__link,
+      .category-card__link {
+        display: block;
+        block-size: 100%;
+      }
+
+      .card,
+      .generator-card,
+      .category-card,
+      .faq-item {
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-card);
+        background: var(--color-white);
+        transition: border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .card:hover,
+      .generator-card:hover,
+      .category-card:hover,
+      .faq-item:hover {
+        border-color: var(--color-purple);
+        box-shadow: var(--shadow-card);
+      }
+
+      .card__body,
+      .generator-card__link,
+      .category-card__link,
+      .faq-item {
+        padding: 20px;
+      }
+
+      .card-title,
+      .generator-card__title {
+        margin: 0;
+        color: var(--color-heading);
+        font-size: 19px;
+        line-height: 1.25;
+      }
+
+      .card__description,
+      .generator-card__copy {
+        display: -webkit-box;
+        overflow: hidden;
+        margin-block-start: 10px;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        margin-block-start: 15px;
+        padding-block: 2px;
+        padding-inline: 6px;
+        border: 1px solid var(--color-purple);
+        border-radius: 3px;
+        color: var(--color-purple);
+        font-family: var(--font-heading);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .category-card__link {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .category-card__title {
+        margin: 0;
+        color: var(--color-heading);
+        font-size: 20px;
+        line-height: 1.2;
+      }
+
+      .arrow-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-block-start: auto;
+        color: var(--color-purple);
+        font-family: var(--font-heading);
+        font-size: 12px;
+      }
+
+      .arrow-indicator svg {
+        inline-size: 18px;
+        block-size: 18px;
+      }
+
+      .category-art,
+      .mini-illustration {
+        position: relative;
+        border-radius: 3px;
+        border: 1px solid rgba(129, 89, 187, 0.28);
+        background: linear-gradient(180deg, rgba(118, 113, 255, 0.08), rgba(203, 12, 159, 0.03));
+        overflow: hidden;
+      }
+
+      .category-art {
+        inline-size: 110px;
+        block-size: 76px;
+      }
+
+      .mini-illustration {
+        inline-size: 80px;
+        block-size: 56px;
+        margin-block-end: 15px;
+      }
+
+      .category-art::before,
+      .mini-illustration::before,
+      .category-art::after,
+      .mini-illustration::after {
+        content: "";
+        position: absolute;
+        border-radius: 2px;
+      }
+
+      .category-art::before,
+      .mini-illustration::before {
+        inset-block-start: 10px;
+        inset-inline-start: 10px;
+        inline-size: calc(100% - 20px);
+        block-size: 10px;
+        border: 2px solid rgba(129, 89, 187, 0.45);
+      }
+
+      .category-art::after,
+      .mini-illustration::after {
+        inset-block-start: 28px;
+        inset-inline-start: 10px;
+        inline-size: 48%;
+        block-size: 28px;
+        background: rgba(129, 89, 187, 0.12);
+      }
+
+      .category-art--landing-pages::after,
+      .mini-illustration--landing-pages::after {
+        inline-size: calc(100% - 20px);
+        background: linear-gradient(90deg, rgba(118, 113, 255, 0.2), rgba(203, 12, 159, 0.12));
+      }
+
+      .category-art--portfolios::after,
+      .mini-illustration--portfolios::after {
+        inline-size: 30%;
+        box-shadow: 34px 0 0 rgba(129, 89, 187, 0.09), 68px 0 0 rgba(129, 89, 187, 0.15);
+      }
+
+      .category-art--blogs::after,
+      .mini-illustration--blogs::after {
+        inline-size: calc(100% - 20px);
+        block-size: 8px;
+        box-shadow: 0 12px 0 rgba(129, 89, 187, 0.18), 0 24px 0 rgba(129, 89, 187, 0.1);
+      }
+
+      .category-art--stores::after,
+      .mini-illustration--stores::after {
+        inline-size: 54%;
+        inset-inline-start: auto;
+        inset-inline-end: 10px;
+        background: rgba(118, 113, 255, 0.16);
+      }
+
+      .category-art--link-in-bio::after,
+      .mini-illustration--link-in-bio::after {
+        inline-size: 22%;
+        border-radius: 999px;
+        box-shadow: 26px 0 0 rgba(129, 89, 187, 0.16), 52px 0 0 rgba(118, 113, 255, 0.2);
+      }
+
+      .directory-tools {
+        display: grid;
+        gap: 20px;
+        margin-block-end: 30px;
+      }
+
+      .search-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+      }
+
+      .search-field {
+        position: relative;
+        inline-size: min(100%, 480px);
+      }
+
+      .search-field svg {
+        position: absolute;
+        inset-block-start: 50%;
+        inset-inline-start: 15px;
+        inline-size: 18px;
+        block-size: 18px;
+        transform: translateY(-50%);
+        color: var(--color-purple);
+        pointer-events: none;
+      }
+
+      .search-field input {
+        inline-size: 100%;
+        min-block-size: 44px;
+        padding-inline: 44px 15px;
+        border: 1px solid var(--color-border);
+        border-radius: 4px;
+        color: var(--color-heading);
+        background: var(--color-white);
+      }
+
+      .directory-count {
+        margin: 0;
+        color: var(--color-heading);
+      }
+
+      .directory-empty {
+        display: none;
+        gap: 15px;
+        padding: 20px;
+        border: 1px dashed var(--color-border);
+        border-radius: 3px;
+        background: var(--color-surface);
+      }
+
+      .directory-empty.is-visible {
+        display: grid;
+      }
+
+      .directory-empty__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .text-link {
+        color: var(--color-purple);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+
+      .directory-section {
+        padding-block: 20px;
+        border-block-start: 1px solid var(--color-divider);
+        scroll-margin-block-start: 20px;
+      }
+
+      .directory-section:first-of-type {
+        border-block-start: 0;
+        padding-block-start: 0;
+      }
+
+      .directory-section__header {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-block-end: 20px;
+      }
+
+      .directory-section__title {
+        margin: 0;
+        color: var(--color-heading);
+        font-family: var(--font-heading);
+        font-size: 24px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .directory-collapse {
+        overflow: visible;
+      }
+
+      .js-enhanced .directory-collapse {
+        overflow: hidden;
+        transition: max-height 260ms ease;
+      }
+
+      .directory-grid {
+        display: grid;
+        gap: 20px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .directory-card.is-hidden-by-search,
+      .directory-section.is-hidden-by-search {
+        display: none;
+      }
+
+      .directory-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        margin-block-start: 20px;
+      }
+
+      .js-enhanced .directory-toggle {
+        display: inline-flex;
+      }
+
+      .steps,
+      .reasons {
+        display: grid;
+        gap: 20px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .step-card,
+      .reason-card {
+        padding: 20px;
+        border: 1px solid var(--color-border);
+        border-radius: 3px;
+        background: var(--color-white);
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        inline-size: 36px;
+        block-size: 36px;
+        margin-block-end: 15px;
+        border-radius: 999px;
+        background: rgba(129, 89, 187, 0.12);
+        color: var(--color-purple);
+        font-family: var(--font-heading);
+        font-size: 16px;
+      }
+
+      .step-title,
+      .reason-title {
+        margin: 0 0 10px;
+        color: var(--color-heading);
+        font-size: 18px;
+        line-height: 1.25;
+      }
+
+      .reason-icon {
+        inline-size: 32px;
+        block-size: 32px;
+        margin-block-end: 15px;
+        color: var(--color-purple);
+      }
+
+      .reasons {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .faq-list {
+        display: grid;
+        gap: 15px;
+      }
+
+      .faq-item {
+        padding: 0;
+      }
+
+      .faq-button {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        inline-size: 100%;
+        padding: 20px;
+        border: 0;
+        background: transparent;
+        color: var(--color-heading);
+        text-align: start;
+        cursor: pointer;
+      }
+
+      .faq-button__text {
+        font-size: 18px;
+        line-height: 1.3;
+      }
+
+      .faq-button__icon {
+        inline-size: 22px;
+        block-size: 22px;
+        flex: 0 0 auto;
+        color: var(--color-purple);
+        transition: transform 180ms ease;
+      }
+
+      .faq-button[aria-expanded="true"] .faq-button__icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-panel {
+        padding: 0 20px 20px;
+      }
+
+      .faq-panel p + p {
+        margin-block-start: 10px;
+      }
+
+      .closing-cta {
+        text-align: center;
+      }
+
+      .closing-cta__copy {
+        max-inline-size: 560px;
+        margin: 10px auto 0;
+      }
+
+      .closing-cta__actions {
+        display: flex;
+        justify-content: center;
+        margin-block-start: 30px;
+      }
+
+      .footer {
+        padding-block: 40px;
+        border-block-start: 1px solid var(--color-divider);
+        background: var(--color-surface);
+      }
+
+      .footer__top {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .footer-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--color-hero);
+        font-size: 18px;
+      }
+
+      .footer-title {
+        margin: 0 0 10px;
+        color: var(--color-heading);
+        font-size: 15px;
+      }
+
+      .footer-list {
+        display: grid;
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .footer-copy--intro {
+        margin-block-start: 15px;
+        max-inline-size: 260px;
+      }
+
+      .footer-note {
+        margin-block-start: 30px;
+        padding-block-start: 20px;
+        border-block-start: 1px solid var(--color-divider);
+      }
+
+      .visually-hidden {
+        position: absolute;
+        inline-size: 1px;
+        block-size: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1100px) {
+        .hero__grid,
+        .card-grid--three,
+        .card-grid--category,
+        .directory-grid,
+        .steps,
+        .footer__top {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .footer__top > :first-child {
+          grid-column: 1 / -1;
+        }
+      }
+
+      @media (max-width: 767px) {
+        .section {
+          padding-block: 30px;
+        }
+
+        .hero {
+          padding-block: 60px;
+        }
+
+        .hero__grid,
+        .card-grid--three,
+        .card-grid--category,
+        .directory-grid,
+        .steps,
+        .reasons,
+        .footer__top {
+          grid-template-columns: 1fr;
+        }
+
+        .hero__content {
+          order: 1;
+        }
+
+        .hero-illustration {
+          order: 2;
+        }
+
+        .button-row,
+        .closing-cta__actions {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .search-row {
+          align-items: stretch;
+        }
+
+        .search-field {
+          inline-size: 100%;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="container topbar__inner">
+          <a class="logo-link" href="/" aria-label="Strikingly home">
+            <span class="logo-link__mark" aria-hidden="true">AI</span>
+            <span>Strikingly <span class="logo-link__text-accent">AI</span></span>
+          </a>
+        </div>
+      </header>
+
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb__list">
+            <li class="breadcrumb__item">
+              <a class="breadcrumb__link" href="/">Strikingly</a>
+            </li>
+            <li class="breadcrumb__item" aria-current="page">AI Generators</li>
+          </ol>
+        </div>
+      </nav>
+
+      <main>
+        <section class="hero">
+          <div class="container hero__grid">
+            <div class="hero__content">
+              <h1 class="hero-title">
+                <span class="hero-title__line">BUILD ANY KIND OF SITE</span>
+                <span class="hero-title__line hero-title__line--gradient">WITH AI, IN AN INSTANT</span>
+              </h1>
+              <p class="hero__copy">
+                Browse the right generator for what you're building, or jump straight into our AI site builder.
+              </p>
+              <div class="button-row">
+                <a class="cta-button cta-button--primary cta-button--large" href="/s/ai_site_builder">
+                  START BUILDING - IT'S FREE
+                </a>
+                <a class="cta-button cta-button--ghost cta-button--large" href="#all-generators">
+                  BROWSE GENERATORS
+                </a>
+              </div>
+            </div>
+            <div class="hero-illustration" aria-hidden="true">
+              <svg viewBox="0 0 520 420" width="520" height="420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="62" y="42" width="396" height="320" rx="18" stroke="#8159BB" stroke-width="2" opacity="0.28"/>
+                <rect x="94" y="78" width="332" height="252" rx="14" fill="#FFFFFF" stroke="#C6C9CD" stroke-width="2"/>
+                <rect x="118" y="108" width="110" height="12" rx="6" fill="#8159BB" opacity="0.18"/>
+                <rect x="118" y="138" width="220" height="16" rx="8" fill="#4B5056" opacity="0.12"/>
+                <rect x="118" y="164" width="180" height="10" rx="5" fill="#636972" opacity="0.12"/>
+                <rect x="118" y="196" width="124" height="88" rx="10" fill="url(#heroGradient)" opacity="0.18"/>
+                <rect x="256" y="196" width="146" height="16" rx="8" fill="#8159BB" opacity="0.16"/>
+                <rect x="256" y="224" width="126" height="12" rx="6" fill="#636972" opacity="0.12"/>
+                <rect x="256" y="246" width="118" height="12" rx="6" fill="#636972" opacity="0.12"/>
+                <rect x="256" y="278" width="96" height="34" rx="8" fill="url(#heroGradient)"/>
+                <circle cx="418" cy="110" r="56" stroke="#CB0C9F" stroke-width="2" opacity="0.16"/>
+                <circle cx="138" cy="322" r="72" stroke="#7671FF" stroke-width="2" opacity="0.12"/>
+                <defs>
+                  <linearGradient id="heroGradient" x1="118" y1="196" x2="352" y2="330" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#7671FF"/>
+                    <stop offset="1" stop-color="#CB0C9F"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="featured-generators-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-heading" id="featured-generators-heading">FEATURED GENERATORS</h2>
+              <p class="section-subheading">A few common starting points.</p>
+            </div>
+            <div class="card-grid card-grid--three">
+              <article class="card">
+                <a class="card-link" href="/generators/ai-website-generator">
+                  <div class="card__body">
+                    <h3 class="card-title">AI Website Generator</h3>
+                    <p class="card__description">Describe your business, get a full site.</p>
+                    <span class="tag">Website</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/free-portfolio-generator">
+                  <div class="card__body">
+                    <h3 class="card-title">Free Portfolio Generator</h3>
+                    <p class="card__description">For creatives, in minutes, no fee.</p>
+                    <span class="tag">Portfolio</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/ai-landing-page-maker">
+                  <div class="card__body">
+                    <h3 class="card-title">AI Landing Page Maker</h3>
+                    <p class="card__description">One-page sites built to convert.</p>
+                    <span class="tag">Landing Page</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/online-store-builder">
+                  <div class="card__body">
+                    <h3 class="card-title">Online Store Builder</h3>
+                    <p class="card__description">Start selling without writing code.</p>
+                    <span class="tag">Store</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/link-in-bio-generator">
+                  <div class="card__body">
+                    <h3 class="card-title">Link-in-Bio Generator</h3>
+                    <p class="card__description">One link for all your channels.</p>
+                    <span class="tag">Link-in-Bio</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/one-page-website-builder">
+                  <div class="card__body">
+                    <h3 class="card-title">One-Page Website Builder</h3>
+                    <p class="card__description">Simple sites, single scroll.</p>
+                    <span class="tag">Website</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/wedding-website-generator">
+                  <div class="card__body">
+                    <h3 class="card-title">Wedding Website Generator</h3>
+                    <p class="card__description">Share your day with guests.</p>
+                    <span class="tag">Website</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/restaurant-website-builder">
+                  <div class="card__body">
+                    <h3 class="card-title">Restaurant Website Builder</h3>
+                    <p class="card__description">Menu, hours, reservations, done.</p>
+                    <span class="tag">Website</span>
+                  </div>
+                </a>
+              </article>
+              <article class="card">
+                <a class="card-link" href="/generators/blog-generator-for-beginners">
+                  <div class="card__body">
+                    <h3 class="card-title">Blog Generator for Beginners</h3>
+                    <p class="card__description">Publish-ready in minutes.</p>
+                    <span class="tag">Blog</span>
+                  </div>
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="browse-by-category-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-heading" id="browse-by-category-heading">BROWSE BY CATEGORY</h2>
+            </div>
+            <div class="card-grid card-grid--category">
+              <article class="category-card">
+                <a class="category-card__link" href="/generators#websites">
+                  <div class="category-art" aria-hidden="true"></div>
+                  <h3 class="category-card__title">WEBSITES</h3>
+                  <p class="category-copy">AI-built business and personal sites for any goal.</p>
+                  <span class="arrow-indicator">Jump to directory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </a>
+              </article>
+              <article class="category-card">
+                <a class="category-card__link" href="/generators#landing-pages">
+                  <div class="category-art category-art--landing-pages" aria-hidden="true"></div>
+                  <h3 class="category-card__title">LANDING PAGES</h3>
+                  <p class="category-copy">Single-page sites built to convert visitors fast.</p>
+                  <span class="arrow-indicator">Jump to directory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </a>
+              </article>
+              <article class="category-card">
+                <a class="category-card__link" href="/generators#portfolios">
+                  <div class="category-art category-art--portfolios" aria-hidden="true"></div>
+                  <h3 class="category-card__title">PORTFOLIOS</h3>
+                  <p class="category-copy">Showcase your work with a clean, focused site.</p>
+                  <span class="arrow-indicator">Jump to directory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </a>
+              </article>
+              <article class="category-card">
+                <a class="category-card__link" href="/generators#blogs">
+                  <div class="category-art category-art--blogs" aria-hidden="true"></div>
+                  <h3 class="category-card__title">BLOGS</h3>
+                  <p class="category-copy">Publish-ready blogs with built-in SEO basics.</p>
+                  <span class="arrow-indicator">Jump to directory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </a>
+              </article>
+              <article class="category-card">
+                <a class="category-card__link" href="/generators#stores">
+                  <div class="category-art category-art--stores" aria-hidden="true"></div>
+                  <h3 class="category-card__title">ONLINE STORES</h3>
+                  <p class="category-copy">Sell products online with payments built in.</p>
+                  <span class="arrow-indicator">Jump to directory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </a>
+              </article>
+              <article class="category-card">
+                <a class="category-card__link" href="/generators#link-in-bio">
+                  <div class="category-art category-art--link-in-bio" aria-hidden="true"></div>
+                  <h3 class="category-card__title">LINK-IN-BIO</h3>
+                  <p class="category-copy">One link, all your places. Made for creators.</p>
+                  <span class="arrow-indicator">Jump to directory
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 5l7 7-7 7"></path>
+                    </svg>
+                  </span>
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="all-generators" aria-labelledby="all-generators-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-heading" id="all-generators-heading">ALL GENERATORS</h2>
+              <p class="section-subheading">Sixty-plus generators, organized by what you're building.</p>
+            </div>
+
+            <div class="directory-tools">
+              <div class="search-row">
+                <label class="search-field" for="generator-search">
+                  <span class="visually-hidden">Search generators</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="M20 20l-3.5-3.5"></path>
+                  </svg>
+                  <input id="generator-search" type="search" aria-label="Search generators" placeholder="Search generators..." />
+                </label>
+                <p class="directory-count" id="directory-count">60 generators match</p>
+              </div>
+              <div class="directory-empty" id="directory-empty" aria-live="polite">
+                <p>No generators match your search right now.</p>
+                <div class="directory-empty__actions">
+                  <button class="cta-button cta-button--ghost" type="button" id="clear-search-button">Clear search</button>
+                  <a class="text-link" href="/s/ai_site_builder">Can't find it? Start with our AI builder.</a>
+                </div>
+              </div>
+            </div>
+
+            <section class="directory-section" id="websites" data-section="websites">
+              <div class="directory-section__header">
+                <h3 class="directory-section__title">WEBSITES</h3>
+                <p class="directory-description">AI-built business and personal sites for any goal.</p>
+              </div>
+              <div class="directory-collapse" id="websites-cards" data-collapsible>
+                <div class="directory-grid">
+                  <article class="directory-card" data-name="AI Website Generator" data-description="Describe your business and get a full website in moments." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/ai-website-generator">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">AI Website Generator</h4>
+                        <p class="generator-card__copy">Describe your business and get a full website in moments.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Free Website Builder for Photographers" data-description="Create a visual-first site that highlights galleries, services, and booking details." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/free-website-builder-for-photographers">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Free Website Builder for Photographers</h4>
+                        <p class="generator-card__copy">Create a visual-first site that highlights galleries, services, and booking details.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="One-Page Wedding Website Builder" data-description="Share your story, schedule, and RSVP details in a single polished page." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/one-page-wedding-website-builder">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">One-Page Wedding Website Builder</h4>
+                        <p class="generator-card__copy">Share your story, schedule, and RSVP details in a single polished page.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Restaurant Website Builder" data-description="Launch a dining site with menu, hours, reservations, and location info." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/restaurant-website-builder">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Restaurant Website Builder</h4>
+                        <p class="generator-card__copy">Launch a dining site with menu, hours, reservations, and location info.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Personal Website Builder for Coaches" data-description="Turn your offer, bio, and contact details into a focused personal site." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/personal-website-builder-for-coaches">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Personal Website Builder for Coaches</h4>
+                        <p class="generator-card__copy">Turn your offer, bio, and contact details into a focused personal site.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="No-Code Business Website Generator" data-description="Start a professional business presence without touching code or templates." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/no-code-business-website-generator">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">No-Code Business Website Generator</h4>
+                        <p class="generator-card__copy">Start a professional business presence without touching code or templates.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Beautiful Website Builder for Consultants" data-description="Present services, proof points, and a strong call to action with ease." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/beautiful-website-builder-for-consultants">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Beautiful Website Builder for Consultants</h4>
+                        <p class="generator-card__copy">Present services, proof points, and a strong call to action with ease.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Website Builder for Yoga Instructors" data-description="Show class schedules, teaching style, and booking options in one place." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/website-builder-for-yoga-instructors">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Website Builder for Yoga Instructors</h4>
+                        <p class="generator-card__copy">Show class schedules, teaching style, and booking options in one place.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Quick Website Generator for Freelancers" data-description="Create a fast online home for your services, work samples, and contact form." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/quick-website-generator-for-freelancers">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Quick Website Generator for Freelancers</h4>
+                        <p class="generator-card__copy">Create a fast online home for your services, work samples, and contact form.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Website Maker for Real Estate Agents" data-description="Publish listings, local expertise, and lead capture sections in minutes." data-category="Websites">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/website-maker-for-real-estate-agents">
+                        <div class="mini-illustration" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Website Maker for Real Estate Agents</h4>
+                        <p class="generator-card__copy">Publish listings, local expertise, and lead capture sections in minutes.</p>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <button class="cta-button cta-button--ghost directory-toggle" type="button" data-toggle data-target="websites-cards" data-visible-count="6" aria-expanded="true" aria-controls="websites-cards">Show all 10 generators</button>
+            </section>
+
+            <section class="directory-section" id="landing-pages" data-section="landing-pages">
+              <div class="directory-section__header">
+                <h3 class="directory-section__title">LANDING PAGES</h3>
+                <p class="directory-description">Single-page sites built to convert visitors fast.</p>
+              </div>
+              <div class="directory-collapse" id="landing-pages-cards" data-collapsible>
+                <div class="directory-grid">
+                  <article class="directory-card" data-name="AI Landing Page Maker" data-description="Build a focused one-page site designed to turn visitors into action." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/ai-landing-page-maker">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">AI Landing Page Maker</h4>
+                        <p class="generator-card__copy">Build a focused one-page site designed to turn visitors into action.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Product Launch Landing Page Builder" data-description="Announce a new launch with benefits, visuals, and signup flow in one page." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/product-launch-landing-page-builder">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Product Launch Landing Page Builder</h4>
+                        <p class="generator-card__copy">Announce a new launch with benefits, visuals, and signup flow in one page.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Lead Capture Page Generator" data-description="Collect interest with a sharp offer, clear proof, and a simple form section." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/lead-capture-page-generator">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Lead Capture Page Generator</h4>
+                        <p class="generator-card__copy">Collect interest with a sharp offer, clear proof, and a simple form section.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="One-Page Startup Landing Page" data-description="Introduce your startup, explain the product, and drive early signups." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/one-page-startup-landing-page">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">One-Page Startup Landing Page</h4>
+                        <p class="generator-card__copy">Introduce your startup, explain the product, and drive early signups.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Landing Page Builder for Events" data-description="Promote an event with schedule highlights, speakers, and registration details." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/landing-page-builder-for-events">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Landing Page Builder for Events</h4>
+                        <p class="generator-card__copy">Promote an event with schedule highlights, speakers, and registration details.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Landing Page Generator for Agencies" data-description="Frame services, case studies, and contact next steps in a compact layout." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/landing-page-generator-for-agencies">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Landing Page Generator for Agencies</h4>
+                        <p class="generator-card__copy">Frame services, case studies, and contact next steps in a compact layout.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Free Webinar Landing Page Builder" data-description="Get a webinar page with topic highlights, host info, and registration prompts." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/free-webinar-landing-page-builder">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Free Webinar Landing Page Builder</h4>
+                        <p class="generator-card__copy">Get a webinar page with topic highlights, host info, and registration prompts.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="No-Code Sales Page Maker" data-description="Present a product offer, social proof, and checkout path without a builder maze." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/no-code-sales-page-maker">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">No-Code Sales Page Maker</h4>
+                        <p class="generator-card__copy">Present a product offer, social proof, and checkout path without a builder maze.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Landing Page Builder for Apps" data-description="Explain your app, key features, and download prompts in a clean mobile-first page." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/landing-page-builder-for-apps">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Landing Page Builder for Apps</h4>
+                        <p class="generator-card__copy">Explain your app, key features, and download prompts in a clean mobile-first page.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Simple Coming Soon Page Generator" data-description="Publish a polished holding page with launch timing and email signup in minutes." data-category="Landing Pages">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/simple-coming-soon-page-generator">
+                        <div class="mini-illustration mini-illustration--landing-pages" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Simple Coming Soon Page Generator</h4>
+                        <p class="generator-card__copy">Publish a polished holding page with launch timing and email signup in minutes.</p>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <button class="cta-button cta-button--ghost directory-toggle" type="button" data-toggle data-target="landing-pages-cards" data-visible-count="6" aria-expanded="true" aria-controls="landing-pages-cards">Show all 10 generators</button>
+            </section>
+
+            <section class="directory-section" id="portfolios" data-section="portfolios">
+              <div class="directory-section__header">
+                <h3 class="directory-section__title">PORTFOLIOS</h3>
+                <p class="directory-description">Showcase your work with a clean, focused site.</p>
+              </div>
+              <div class="directory-collapse" id="portfolios-cards" data-collapsible>
+                <div class="directory-grid">
+                  <article class="directory-card" data-name="Free Portfolio Generator" data-description="Launch a simple portfolio with project blocks, about copy, and contact details." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/free-portfolio-generator">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Free Portfolio Generator</h4>
+                        <p class="generator-card__copy">Launch a simple portfolio with project blocks, about copy, and contact details.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Portfolio Generator for Designers" data-description="Present selected work with a layout that keeps case studies easy to browse." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/portfolio-generator-for-designers">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Portfolio Generator for Designers</h4>
+                        <p class="generator-card__copy">Present selected work with a layout that keeps case studies easy to browse.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Portfolio Builder for Illustrators" data-description="Display visual work, commissions, and contact info in a crisp, visual format." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/portfolio-builder-for-illustrators">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Portfolio Builder for Illustrators</h4>
+                        <p class="generator-card__copy">Display visual work, commissions, and contact info in a crisp, visual format.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Photography Portfolio Website Maker" data-description="Highlight galleries, packages, and inquiry details with a calm visual structure." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/photography-portfolio-website-maker">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Photography Portfolio Website Maker</h4>
+                        <p class="generator-card__copy">Highlight galleries, packages, and inquiry details with a calm visual structure.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Portfolio Builder for Architects" data-description="Show built work, process, and studio story with room for large project imagery." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/portfolio-builder-for-architects">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Portfolio Builder for Architects</h4>
+                        <p class="generator-card__copy">Show built work, process, and studio story with room for large project imagery.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Copywriter Portfolio Generator" data-description="Organize writing samples, specialties, and client-ready calls to action." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/copywriter-portfolio-generator">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Copywriter Portfolio Generator</h4>
+                        <p class="generator-card__copy">Organize writing samples, specialties, and client-ready calls to action.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Portfolio Maker for Developers" data-description="Introduce projects, technical skills, and contact information in a neat build." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/portfolio-maker-for-developers">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Portfolio Maker for Developers</h4>
+                        <p class="generator-card__copy">Introduce projects, technical skills, and contact information in a neat build.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Creative Portfolio Builder with AI" data-description="Generate a polished creative site that feels tailored to your medium and style." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/creative-portfolio-builder-with-ai">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Creative Portfolio Builder with AI</h4>
+                        <p class="generator-card__copy">Generate a polished creative site that feels tailored to your medium and style.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Portfolio Website for Models" data-description="Publish comp cards, featured work, and booking information in one tidy site." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/portfolio-website-for-models">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Portfolio Website for Models</h4>
+                        <p class="generator-card__copy">Publish comp cards, featured work, and booking information in one tidy site.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Minimal Portfolio Generator for Artists" data-description="Create a quiet, gallery-like portfolio that keeps attention on the artwork itself." data-category="Portfolios">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/minimal-portfolio-generator-for-artists">
+                        <div class="mini-illustration mini-illustration--portfolios" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Minimal Portfolio Generator for Artists</h4>
+                        <p class="generator-card__copy">Create a quiet, gallery-like portfolio that keeps attention on the artwork itself.</p>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <button class="cta-button cta-button--ghost directory-toggle" type="button" data-toggle data-target="portfolios-cards" data-visible-count="6" aria-expanded="true" aria-controls="portfolios-cards">Show all 10 generators</button>
+            </section>
+
+            <section class="directory-section" id="blogs" data-section="blogs">
+              <div class="directory-section__header">
+                <h3 class="directory-section__title">BLOGS</h3>
+                <p class="directory-description">Publish-ready blogs with built-in SEO basics.</p>
+              </div>
+              <div class="directory-collapse" id="blogs-cards" data-collapsible>
+                <div class="directory-grid">
+                  <article class="directory-card" data-name="Blog Generator for Beginners" data-description="Start publishing with a clean blog layout, about page, and simple navigation." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/blog-generator-for-beginners">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Blog Generator for Beginners</h4>
+                        <p class="generator-card__copy">Start publishing with a clean blog layout, about page, and simple navigation.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="AI Blog Website Builder" data-description="Get a blog structure with homepage, article feed, and featured content areas." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/ai-blog-website-builder">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">AI Blog Website Builder</h4>
+                        <p class="generator-card__copy">Get a blog structure with homepage, article feed, and featured content areas.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Personal Blog Maker for Writers" data-description="Share essays, updates, and archives with a writing-first presentation." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/personal-blog-maker-for-writers">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Personal Blog Maker for Writers</h4>
+                        <p class="generator-card__copy">Share essays, updates, and archives with a writing-first presentation.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Travel Blog Generator" data-description="Create destination stories, guides, and photo-led posts in a polished format." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/travel-blog-generator">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Travel Blog Generator</h4>
+                        <p class="generator-card__copy">Create destination stories, guides, and photo-led posts in a polished format.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Food Blog Builder" data-description="Organize recipes, featured dishes, and cooking tips with clear navigation." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/food-blog-builder">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Food Blog Builder</h4>
+                        <p class="generator-card__copy">Organize recipes, featured dishes, and cooking tips with clear navigation.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Tech Blog Website Generator" data-description="Publish product notes, deep dives, and analysis in a crisp modern blog." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/tech-blog-website-generator">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Tech Blog Website Generator</h4>
+                        <p class="generator-card__copy">Publish product notes, deep dives, and analysis in a crisp modern blog.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Lifestyle Blog Creator" data-description="Build a magazine-style blog with space for categories, images, and featured posts." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/lifestyle-blog-creator">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Lifestyle Blog Creator</h4>
+                        <p class="generator-card__copy">Build a magazine-style blog with space for categories, images, and featured posts.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Blog Builder for Coaches" data-description="Share insights, client education, and service prompts from one simple blog." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/blog-builder-for-coaches">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Blog Builder for Coaches</h4>
+                        <p class="generator-card__copy">Share insights, client education, and service prompts from one simple blog.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Newsletter Style Blog Generator" data-description="Blend editorial posts and subscriber-friendly sections in a familiar format." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/newsletter-style-blog-generator">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Newsletter Style Blog Generator</h4>
+                        <p class="generator-card__copy">Blend editorial posts and subscriber-friendly sections in a familiar format.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Free AI Blog Starter" data-description="Get a quick starting point for publishing articles without sorting through themes." data-category="Blogs">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/free-ai-blog-starter">
+                        <div class="mini-illustration mini-illustration--blogs" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Free AI Blog Starter</h4>
+                        <p class="generator-card__copy">Get a quick starting point for publishing articles without sorting through themes.</p>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <button class="cta-button cta-button--ghost directory-toggle" type="button" data-toggle data-target="blogs-cards" data-visible-count="6" aria-expanded="true" aria-controls="blogs-cards">Show all 10 generators</button>
+            </section>
+
+            <section class="directory-section" id="stores" data-section="stores">
+              <div class="directory-section__header">
+                <h3 class="directory-section__title">ONLINE STORES</h3>
+                <p class="directory-description">Sell products online with payments built in.</p>
+              </div>
+              <div class="directory-collapse" id="stores-cards" data-collapsible>
+                <div class="directory-grid">
+                  <article class="directory-card" data-name="Online Store Builder" data-description="Launch a storefront with product sections, payments, and clear buying paths." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/online-store-builder">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Online Store Builder</h4>
+                        <p class="generator-card__copy">Launch a storefront with product sections, payments, and clear buying paths.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Online Store Builder for Restaurants" data-description="Sell gift cards, pantry goods, or merch alongside your restaurant brand." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/online-store-builder-for-restaurants">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Online Store Builder for Restaurants</h4>
+                        <p class="generator-card__copy">Sell gift cards, pantry goods, or merch alongside your restaurant brand.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Ecommerce Website Builder for Makers" data-description="Create a handmade goods shop with product storytelling and easy checkout." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/ecommerce-website-builder-for-makers">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Ecommerce Website Builder for Makers</h4>
+                        <p class="generator-card__copy">Create a handmade goods shop with product storytelling and easy checkout.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="AI Store Generator for Clothing Brands" data-description="Launch a branded apparel store with featured drops, lookbooks, and payments." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/ai-store-generator-for-clothing-brands">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">AI Store Generator for Clothing Brands</h4>
+                        <p class="generator-card__copy">Launch a branded apparel store with featured drops, lookbooks, and payments.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Digital Product Store Builder" data-description="Sell downloads, guides, or templates from a simple high-conversion product site." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/digital-product-store-builder">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Digital Product Store Builder</h4>
+                        <p class="generator-card__copy">Sell downloads, guides, or templates from a simple high-conversion product site.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Free Online Shop Generator" data-description="Start a simple shop fast with collections, featured items, and cart support." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/free-online-shop-generator">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Free Online Shop Generator</h4>
+                        <p class="generator-card__copy">Start a simple shop fast with collections, featured items, and cart support.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Beauty Product Store Website Maker" data-description="Build a beauty brand store with strong visuals, collections, and product details." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/beauty-product-store-website-maker">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Beauty Product Store Website Maker</h4>
+                        <p class="generator-card__copy">Build a beauty brand store with strong visuals, collections, and product details.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Store Builder for Home Decor Shops" data-description="Show curated products, style inspiration, and featured collections in one shop." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/store-builder-for-home-decor-shops">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Store Builder for Home Decor Shops</h4>
+                        <p class="generator-card__copy">Show curated products, style inspiration, and featured collections in one shop.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Minimal One-Product Store Builder" data-description="Create a lean store page centered on one hero product and one clear offer." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/minimal-one-product-store-builder">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Minimal One-Product Store Builder</h4>
+                        <p class="generator-card__copy">Create a lean store page centered on one hero product and one clear offer.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Local Grocery Store Website Generator" data-description="Publish weekly offers, delivery info, and featured products for local shoppers." data-category="Online Stores">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/local-grocery-store-website-generator">
+                        <div class="mini-illustration mini-illustration--stores" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Local Grocery Store Website Generator</h4>
+                        <p class="generator-card__copy">Publish weekly offers, delivery info, and featured products for local shoppers.</p>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <button class="cta-button cta-button--ghost directory-toggle" type="button" data-toggle data-target="stores-cards" data-visible-count="6" aria-expanded="true" aria-controls="stores-cards">Show all 10 generators</button>
+            </section>
+
+            <section class="directory-section" id="link-in-bio" data-section="link-in-bio">
+              <div class="directory-section__header">
+                <h3 class="directory-section__title">LINK-IN-BIO</h3>
+                <p class="directory-description">One link, all your places. Made for creators.</p>
+              </div>
+              <div class="directory-collapse" id="link-in-bio-cards" data-collapsible>
+                <div class="directory-grid">
+                  <article class="directory-card" data-name="Link-in-Bio Generator" data-description="Turn your key links into a polished page you can share anywhere." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/link-in-bio-generator">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Link-in-Bio Generator</h4>
+                        <p class="generator-card__copy">Turn your key links into a polished page you can share anywhere.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Creator Link Page Builder" data-description="Bundle your newest content, offers, and channels into one clean creator page." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/creator-link-page-builder">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Creator Link Page Builder</h4>
+                        <p class="generator-card__copy">Bundle your newest content, offers, and channels into one clean creator page.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Instagram Bio Link Website Maker" data-description="Create a simple mobile-first hub for social links, offers, and launches." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/instagram-bio-link-website-maker">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Instagram Bio Link Website Maker</h4>
+                        <p class="generator-card__copy">Create a simple mobile-first hub for social links, offers, and launches.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Musician Link-in-Bio Builder" data-description="Point fans to new releases, tour dates, merch, and streaming links at once." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/musician-link-in-bio-builder">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Musician Link-in-Bio Builder</h4>
+                        <p class="generator-card__copy">Point fans to new releases, tour dates, merch, and streaming links at once.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Podcast Link Hub Generator" data-description="Bring episodes, newsletters, sponsors, and listening links together on one page." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/podcast-link-hub-generator">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Podcast Link Hub Generator</h4>
+                        <p class="generator-card__copy">Bring episodes, newsletters, sponsors, and listening links together on one page.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Link-in-Bio for Coaches" data-description="Gather booking, offers, lead magnets, and social links in one quick-share page." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/link-in-bio-for-coaches">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Link-in-Bio for Coaches</h4>
+                        <p class="generator-card__copy">Gather booking, offers, lead magnets, and social links in one quick-share page.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Personal Brand Link Page Maker" data-description="Show your speaking, newsletter, social, and contact links from one personal hub." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/personal-brand-link-page-maker">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Personal Brand Link Page Maker</h4>
+                        <p class="generator-card__copy">Show your speaking, newsletter, social, and contact links from one personal hub.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Free Link-in-Bio Website Builder" data-description="Start a quick link page that feels like a tiny website, not a plain list." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/free-link-in-bio-website-builder">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Free Link-in-Bio Website Builder</h4>
+                        <p class="generator-card__copy">Start a quick link page that feels like a tiny website, not a plain list.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Simple Creator Landing Link" data-description="Publish a single mobile page for latest content, partnerships, and products." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/simple-creator-landing-link">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Simple Creator Landing Link</h4>
+                        <p class="generator-card__copy">Publish a single mobile page for latest content, partnerships, and products.</p>
+                      </a>
+                    </div>
+                  </article>
+                  <article class="directory-card" data-name="Link Page Builder for Small Shops" data-description="Send customers to your store, socials, contact info, and featured products fast." data-category="Link-in-Bio">
+                    <div class="generator-card">
+                      <a class="generator-card__link" href="/generators/link-page-builder-for-small-shops">
+                        <div class="mini-illustration mini-illustration--link-in-bio" aria-hidden="true"></div>
+                        <h4 class="generator-card__title">Link Page Builder for Small Shops</h4>
+                        <p class="generator-card__copy">Send customers to your store, socials, contact info, and featured products fast.</p>
+                      </a>
+                    </div>
+                  </article>
+                </div>
+              </div>
+              <button class="cta-button cta-button--ghost directory-toggle" type="button" data-toggle data-target="link-in-bio-cards" data-visible-count="6" aria-expanded="true" aria-controls="link-in-bio-cards">Show all 10 generators</button>
+            </section>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="how-it-works-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-heading" id="how-it-works-heading">HOW IT WORKS</h2>
+            </div>
+            <div class="steps">
+              <article class="step-card">
+                <span class="step-number">1</span>
+                <h3 class="step-title">PICK A GENERATOR</h3>
+                <p class="step-copy">Browse by category or search to find one that fits your goal.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-number">2</span>
+                <h3 class="step-title">DESCRIBE YOUR SITE</h3>
+                <p class="step-copy">Tell our AI builder about your business in a sentence or two.</p>
+              </article>
+              <article class="step-card">
+                <span class="step-number">3</span>
+                <h3 class="step-title">GENERATE AND PUBLISH</h3>
+                <p class="step-copy">Get a fully built site in seconds. Customize anything, then go live.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="why-strikingly-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-heading" id="why-strikingly-heading">WHY STRIKINGLY</h2>
+            </div>
+            <div class="reasons">
+              <article class="reason-card">
+                <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                  <path d="M13 2L4 14h6l-1 8 9-12h-6l1-8Z"></path>
+                </svg>
+                <h3 class="reason-title">LIVE IN SECONDS</h3>
+                <p class="reason-copy">Describe your site, we build it. No setup, no learning curve.</p>
+              </article>
+              <article class="reason-card">
+                <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                  <rect x="4" y="3" width="16" height="18" rx="3"></rect>
+                  <path d="M9 17h6"></path>
+                  <path d="M8 7h8"></path>
+                  <path d="M8 11h8"></path>
+                </svg>
+                <h3 class="reason-title">MOBILE BY DEFAULT</h3>
+                <p class="reason-copy">Every generator produces responsive sites that work on any device.</p>
+              </article>
+              <article class="reason-card">
+                <svg class="reason-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M8.5 12.5l2.3 2.3 4.7-5.3"></path>
+                </svg>
+                <h3 class="reason-title">FREE TO START</h3>
+                <p class="reason-copy">Generate, customize, and publish without a credit card.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="faq-heading">
+          <div class="container">
+            <div class="section-header">
+              <h2 class="section-heading" id="faq-heading">FREQUENTLY ASKED QUESTIONS</h2>
+            </div>
+            <div class="faq-list">
+              <article class="faq-item">
+                <button class="faq-button" type="button" aria-expanded="true" aria-controls="faq-panel-1" id="faq-button-1">
+                  <span class="faq-button__text">What is an AI site generator?</span>
+                  <svg class="faq-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                </button>
+                <div class="faq-panel" id="faq-panel-1" role="region" aria-labelledby="faq-button-1">
+                  <p>An AI site generator creates the first version of a website for you based on a short description of what you do. Instead of starting from a blank page, you begin with a site structure, sections, and copy that already fit your goal.</p>
+                  <p>On Strikingly, the generator helps you move from idea to usable website quickly. You can still edit the result afterward, but the heavy lifting of getting started happens in seconds.</p>
+                </div>
+              </article>
+              <article class="faq-item">
+                <button class="faq-button" type="button" aria-expanded="false" aria-controls="faq-panel-2" id="faq-button-2">
+                  <span class="faq-button__text">How is a generator different from a template?</span>
+                  <svg class="faq-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                </button>
+                <div class="faq-panel" id="faq-panel-2" role="region" aria-labelledby="faq-button-2">
+                  <p>A template gives you a fixed starting design that you fill in yourself. A generator starts from your goal and produces a site draft with layout and content direction already in place.</p>
+                  <p>That means you spend less time swapping placeholder text and more time refining something that already feels relevant to your business, portfolio, store, or blog.</p>
+                </div>
+              </article>
+              <article class="faq-item">
+                <button class="faq-button" type="button" aria-expanded="false" aria-controls="faq-panel-3" id="faq-button-3">
+                  <span class="faq-button__text">Are these generators free to use?</span>
+                  <svg class="faq-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                </button>
+                <div class="faq-panel" id="faq-panel-3" role="region" aria-labelledby="faq-button-3">
+                  <p>Yes. You can start generating and exploring your site without a credit card. That makes it easy to test ideas, compare directions, and see what fits before you commit.</p>
+                  <p>If you later want more publishing features or a custom domain, you can decide that after you have a real site draft in front of you.</p>
+                </div>
+              </article>
+              <article class="faq-item">
+                <button class="faq-button" type="button" aria-expanded="false" aria-controls="faq-panel-4" id="faq-button-4">
+                  <span class="faq-button__text">What kinds of sites can I build?</span>
+                  <svg class="faq-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                </button>
+                <div class="faq-panel" id="faq-panel-4" role="region" aria-labelledby="faq-button-4">
+                  <p>You can build business websites, landing pages, portfolios, blogs, online stores, and link-in-bio pages. The hub is organized to help you start from the type of site that fits your goal fastest.</p>
+                  <p>Within each category, you can pick a more specific generator for your audience, industry, or format, then continue inside the AI builder.</p>
+                </div>
+              </article>
+              <article class="faq-item">
+                <button class="faq-button" type="button" aria-expanded="false" aria-controls="faq-panel-5" id="faq-button-5">
+                  <span class="faq-button__text">Can I customize what the generator produces?</span>
+                  <svg class="faq-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                </button>
+                <div class="faq-panel" id="faq-panel-5" role="region" aria-labelledby="faq-button-5">
+                  <p>Yes. The generated site is a starting point, not a locked result. You can update text, swap sections, change visuals, and shape the final site around your brand.</p>
+                  <p>The point is to remove the slow first step so you can spend your time improving a site that already exists.</p>
+                </div>
+              </article>
+              <article class="faq-item">
+                <button class="faq-button" type="button" aria-expanded="false" aria-controls="faq-panel-6" id="faq-button-6">
+                  <span class="faq-button__text">Do generated sites work on mobile?</span>
+                  <svg class="faq-button__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M12 5v14"></path>
+                    <path d="M5 12h14"></path>
+                  </svg>
+                </button>
+                <div class="faq-panel" id="faq-panel-6" role="region" aria-labelledby="faq-button-6">
+                  <p>Yes. Strikingly sites are designed to work well across phones, tablets, and desktops. That matters for discovery, readability, and conversion from the first visit.</p>
+                  <p>You can still preview and refine the mobile experience, but the starting point is already responsive by default.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section closing-cta" aria-labelledby="closing-cta-heading">
+          <div class="container">
+            <h2 class="section-heading" id="closing-cta-heading">READY TO BUILD?</h2>
+            <p class="closing-cta__copy">Pick a generator above, or jump straight into our AI builder.</p>
+            <div class="closing-cta__actions">
+              <a class="cta-button cta-button--primary cta-button--large" href="/s/ai_site_builder">START WITH AI BUILDER</a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__top">
+            <div>
+              <a class="footer-brand" href="/" aria-label="Strikingly home">
+                <span class="logo-link__mark" aria-hidden="true">AI</span>
+                <span>Strikingly AI</span>
+              </a>
+              <p class="footer-copy footer-copy--intro">AI-powered website creation for business sites, landing pages, stores, blogs, and more.</p>
+            </div>
+            <div>
+              <h3 class="footer-title">PRODUCT</h3>
+              <ul class="footer-list">
+                <li><a class="footer-link" href="/pricing">Pricing</a></li>
+                <li><a class="footer-link" href="/templates">Templates</a></li>
+                <li><a class="footer-link" href="/s/ai_site_builder">AI Builder</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="footer-title">COMPANY</h3>
+              <ul class="footer-list">
+                <li><a class="footer-link" href="/about">About</a></li>
+                <li><a class="footer-link" href="/blog">Blog</a></li>
+                <li>Careers</li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="footer-title">RESOURCES</h3>
+              <ul class="footer-list">
+                <li><a class="footer-link" href="/support">Support</a></li>
+                <li><a class="footer-link" href="/privacy">Privacy</a></li>
+                <li><a class="footer-link" href="/terms">Terms</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="footer-title">POPULAR</h3>
+              <ul class="footer-list">
+                <li><a class="footer-link" href="/generators">AI Generators</a></li>
+                <li><a class="footer-link" href="/templates">Website Templates</a></li>
+                <li>Help Center</li>
+              </ul>
+            </div>
+          </div>
+          <p class="footer-note">© 2026 Strikingly. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      const strings = {
+        en: {
+          searchPlaceholder: 'Search generators...',
+          resultsSingular: 'generator match',
+          resultsPlural: 'generators match',
+          emptyStateTitle: 'No generators match your search right now.',
+          emptyStateLink: "Can't find it? Start with our AI builder.",
+          clearSearch: 'Clear search',
+          showAll: 'Show all {count} generators',
+          showLess: 'Show fewer generators',
+          faqOpen: 'Open answer',
+          faqClose: 'Close answer',
+          sectionIds: ['websites', 'landing-pages', 'portfolios', 'blogs', 'stores', 'link-in-bio'],
+        },
+      };
+
+      (() => {
+        const locale = strings.en;
+        const html = document.documentElement;
+        const searchInput = document.getElementById('generator-search');
+        const countNode = document.getElementById('directory-count');
+        const emptyState = document.getElementById('directory-empty');
+        const clearSearchButton = document.getElementById('clear-search-button');
+        const sections = Array.from(document.querySelectorAll('.directory-section'));
+        const toggles = Array.from(document.querySelectorAll('[data-toggle]'));
+        const faqButtons = Array.from(document.querySelectorAll('.faq-button'));
+
+        if (searchInput) {
+          searchInput.placeholder = locale.searchPlaceholder;
+        }
+        if (clearSearchButton) {
+          clearSearchButton.textContent = locale.clearSearch;
+        }
+
+        const updateCount = (count) => {
+          const suffix = count === 1 ? locale.resultsSingular : locale.resultsPlural;
+          if (countNode) {
+            countNode.textContent = `${count} ${suffix}`;
+          }
+        };
+
+        const getVisibleHeight = (container, visibleCount) => {
+          const cards = Array.from(container.querySelectorAll('.directory-card')).filter(
+            (card) => !card.classList.contains('is-hidden-by-search'),
+          );
+
+          if (!cards.length) {
+            return 0;
+          }
+
+          if (cards.length <= visibleCount) {
+            const lastCard = cards[cards.length - 1];
+            return lastCard.offsetTop + lastCard.offsetHeight;
+          }
+
+          const lastVisibleCard = cards[visibleCount - 1];
+          return lastVisibleCard.offsetTop + lastVisibleCard.offsetHeight;
+        };
+
+        const applyCollapseState = (toggle, forceExpanded) => {
+          const targetId = toggle.getAttribute('data-target');
+          const visibleCount = Number(toggle.getAttribute('data-visible-count') || '6');
+          const container = document.getElementById(targetId);
+          if (!container) {
+            return;
+          }
+
+          const cards = Array.from(container.querySelectorAll('.directory-card')).filter(
+            (card) => !card.classList.contains('is-hidden-by-search'),
+          );
+
+          const hasQuery = Boolean(searchInput && searchInput.value.trim() !== '');
+          const shouldHideToggle = hasQuery || cards.length <= visibleCount;
+          toggle.style.display = shouldHideToggle ? 'none' : 'inline-flex';
+
+          if (shouldHideToggle) {
+            container.style.maxHeight = `${container.scrollHeight}px`;
+            toggle.setAttribute('aria-expanded', 'true');
+            return;
+          }
+
+          const expanded = forceExpanded ?? toggle.getAttribute('aria-expanded') === 'true';
+          const nextHeight = expanded
+            ? container.scrollHeight
+            : getVisibleHeight(container, visibleCount);
+
+          container.style.maxHeight = `${nextHeight}px`;
+          toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+          toggle.textContent = expanded
+            ? locale.showLess
+            : locale.showAll.replace('{count}', String(cards.length));
+        };
+
+        const applySearch = () => {
+          const query = searchInput.value.trim().toLowerCase();
+          let totalMatches = 0;
+
+          sections.forEach((section) => {
+            const cards = Array.from(section.querySelectorAll('.directory-card'));
+            let sectionMatches = 0;
+
+            cards.forEach((card) => {
+              const haystack = [
+                card.getAttribute('data-name') || '',
+                card.getAttribute('data-description') || '',
+                card.getAttribute('data-category') || '',
+              ]
+                .join(' ')
+                .toLowerCase();
+
+              const matches = query === '' || haystack.includes(query);
+              card.classList.toggle('is-hidden-by-search', !matches);
+              if (matches) {
+                sectionMatches += 1;
+                totalMatches += 1;
+              }
+            });
+
+            section.classList.toggle('is-hidden-by-search', sectionMatches === 0);
+          });
+
+          updateCount(totalMatches);
+          if (emptyState) {
+            emptyState.classList.toggle('is-visible', totalMatches === 0);
+          }
+          toggles.forEach((toggle) => applyCollapseState(toggle));
+        };
+
+        html.classList.add('js-enhanced');
+
+        toggles.forEach((toggle) => {
+          applyCollapseState(toggle, false);
+          toggle.addEventListener('click', () => {
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            applyCollapseState(toggle, !expanded);
+          });
+        });
+
+        window.addEventListener('resize', () => {
+          toggles.forEach((toggle) => applyCollapseState(toggle));
+        });
+
+        if (searchInput) {
+          searchInput.addEventListener('input', applySearch);
+        }
+
+        if (clearSearchButton && searchInput) {
+          clearSearchButton.addEventListener('click', () => {
+            searchInput.value = '';
+            applySearch();
+            searchInput.focus();
+          });
+        }
+
+        faqButtons.forEach((button, index) => {
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          const shouldBeOpen = index === 0;
+          button.setAttribute('aria-label', shouldBeOpen ? locale.faqClose : locale.faqOpen);
+          if (!shouldBeOpen && panel) {
+            panel.hidden = true;
+          }
+
+          button.addEventListener('click', () => {
+            const isOpen = button.getAttribute('aria-expanded') === 'true';
+            button.setAttribute('aria-expanded', String(!isOpen));
+            button.setAttribute('aria-label', !isOpen ? locale.faqClose : locale.faqOpen);
+            if (panel) {
+              panel.hidden = isOpen;
+            }
+          });
+        });
+
+        applySearch();
+      })();
+    </script>
+
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
