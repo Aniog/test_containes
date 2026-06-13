@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_interest": {
+      "type": "string",
+      "description": "What they are looking to source"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional details or questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_interest"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
