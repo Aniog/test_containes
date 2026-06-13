@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the sourcing inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Primary contact person for the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for reply"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country or region of the buyer"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product the buyer wants to source"
+    },
+    "service_interest": {
+      "type": "array",
+      "description": "Requested sourcing services",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "factory_verification",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected quantity or buying volume"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target price or budget guidance"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Market where the goods will be sold"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Desired project or shipment timing"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Project details, requirements, and notes"
+    },
+    "consent": {
+      "type": "boolean",
+      "description": "Confirmation that the buyer agrees to be contacted"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal inquiry processing status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "country",
+    "product_name",
+    "service_interest",
+    "message",
+    "consent"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": {
+      "allow": ["*"]
+    },
+    "read": {
+      "allow": ["owner"]
+    },
+    "update": {
+      "allow": ["owner"]
+    },
+    "delete": {
+      "allow": ["owner"]
+    }
+  }
+}
