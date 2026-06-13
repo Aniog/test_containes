@@ -1,76 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --brand-purple: #8159BB;
+  --ai-gradient-start: #7671FF;
+  --ai-gradient-end: #CB0C9F;
+  --body-text: #636972;
+  --heading-color: #4B5056;
+  --hero-heading: #2E2E2F;
+  --card-border: #C6C9CD;
+  --subtle-divider: #E2E4E7;
+  --light-bg: #F4F6F8;
+  --white: #FFFFFF;
+  --font-heading: "Josefin Sans", "Poppins", sans-serif;
+  --font-body: "Open Sans", system-ui, sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--body-text);
+  background-color: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--brand-purple);
+  outline-offset: 2px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--heading-color);
+}
+
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 40px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+h2 {
+  font-size: 28px;
 }
 
-button:hover {
-  border-color: #646cff;
+h3 {
+  font-size: 18px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+p {
+  margin: 0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@media (max-width: 768px) {
+  h1 {
+    font-size: 28px;
   }
-
-  a:hover {
-    color: #747bff;
+  h2 {
+    font-size: 22px;
   }
-
-  button {
-    background-color: #f9f9f9;
+  h3 {
+    font-size: 16px;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.ai-gradient-text {
+  background: linear-gradient(90deg, var(--ai-gradient-start), var(--ai-gradient-end));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-gradient-bg {
+  background: linear-gradient(90deg, var(--ai-gradient-start), var(--ai-gradient-end));
+}
+
+.heading-font {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* Show all toggle transitions */
+.generator-list {
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+/* FAQ accordion transitions */
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Card hover lift */
+.generator-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.generator-card:hover {
+  border-color: var(--brand-purple);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* No-JS fallbacks */
+.no-js .generator-list {
+  max-height: none !important;
+}
+
+.no-js .show-all-btn {
+  display: none !important;
+}
+
+.no-js .faq-answer {
+  max-height: none !important;
+  opacity: 1 !important;
+}
+
+.no-js .faq-icon {
+  display: none !important;
+}
