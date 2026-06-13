@@ -1,76 +1,72 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: #1a2744;
+    --color-primary-light: #2d4a7a;
+    --color-accent: #d4a843;
+    --color-accent-hover: #c49a35;
+    --color-bg-light: #f5f7fa;
+    --color-text-primary: #1a1a2e;
+    --color-text-secondary: #4a5568;
+    --color-text-muted: #718096;
+    --color-border: #e2e8f0;
+    --color-success: #38a169;
+    --color-error: #e53e3e;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--color-text-primary);
+    background-color: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#d4a843] hover:bg-[#c49a35] text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 inline-flex items-center justify-center;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-[#1a2744] text-[#1a2744] hover:bg-[#1a2744] hover:text-white font-semibold px-6 py-3 rounded-md transition-colors duration-200 inline-flex items-center justify-center;
+  }
+
+  .btn-outline-light {
+    @apply border-2 border-white text-white hover:bg-white hover:text-[#1a2744] font-semibold px-6 py-3 rounded-md transition-colors duration-200 inline-flex items-center justify-center;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-sm border border-[#e2e8f0] p-6 md:p-8 transition-shadow duration-200 hover:shadow-md;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 border border-[#e2e8f0] rounded-md focus:outline-none focus:ring-2 focus:ring-[#d4a843] focus:border-transparent transition-all duration-200;
+  }
+
+  .label-field {
+    @apply block text-sm font-medium text-[#4a5568] mb-2;
+  }
+}
