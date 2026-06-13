@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "form_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Form identifier"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "full_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Full name"
+        },
+        "company_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Company name"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "maxLength": 200,
+          "description": "Contact email"
+        },
+        "phone": {
+          "type": "string",
+          "maxLength": 30,
+          "description": "Phone number"
+        },
+        "product_category": {
+          "type": "string",
+          "enum": ["electronics", "machinery", "textiles", "home_goods", "packaging", "automotive", "medical", "other"],
+          "description": "Product category"
+        },
+        "product_description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 2000,
+          "description": "Product description"
+        },
+        "target_quantity": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Order quantity"
+        },
+        "target_budget": {
+          "type": "string",
+          "maxLength": 100,
+          "description": "Budget range"
+        },
+        "services_needed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Requested services"
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 3000,
+          "description": "Additional message"
+        }
+      }
+    }
+  },
+  "required": ["data"],
+  "additionalProperties": true,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
