@@ -1,76 +1,166 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #636972;
+    background-color: #FFFFFF;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .ai-gradient-text {
+    background: linear-gradient(135deg, #7671FF 0%, #CB0C9F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ai-gradient-bg {
+    background: linear-gradient(135deg, #7671FF 0%, #CB0C9F 100%);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans', 'Poppins', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1;
+    padding: 9px 15px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s, box-shadow 0.2s;
+    color: #FFFFFF;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.92;
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid #8159BB;
+    outline-offset: 2px;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Josefin Sans', 'Poppins', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14px;
+    line-height: 1;
+    padding: 9px 15px;
+    border-radius: 4px;
+    border: 1px solid #8159BB;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    color: #8159BB;
+    background: transparent;
+  }
+
+  .btn-ghost:hover {
+    background-color: #8159BB;
+    color: #FFFFFF;
+  }
+
+  .btn-ghost:focus-visible {
+    outline: 2px solid #8159BB;
+    outline-offset: 2px;
+  }
+
+  .btn-primary-lg {
+    height: 44px;
+    padding: 0 24px;
+    font-size: 14px;
+  }
+
+  .btn-primary-md {
+    height: 36px;
+    padding: 0 15px;
+    font-size: 14px;
+  }
+
+  .btn-ghost-lg {
+    height: 44px;
+    padding: 0 24px;
+    font-size: 14px;
+  }
+
+  .btn-ghost-md {
+    height: 36px;
+    padding: 0 15px;
+    font-size: 14px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border: 1px solid #C6C9CD;
+    border-radius: 3px;
+    padding: 20px;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #8159BB;
+  }
+
+  .card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-link:focus-visible {
+    outline: 2px solid #8159BB;
+    outline-offset: 2px;
+    border-radius: 3px;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Josefin Sans', 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid #8159BB;
+    color: #8159BB;
+    background: transparent;
+  }
+
+  .section-padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .content-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
