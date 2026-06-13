@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the sourcing inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country or market where the buyer is located."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Product category or item the buyer wants to source."
+    },
+    "order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or purchasing volume."
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination", "full_sourcing_project"],
+      "description": "Primary sourcing service requested by the buyer."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Project details, requirements, timelines, or questions from the buyer."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted."
+    }
+  },
+  "required": ["name", "email", "product_category", "service_needed", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
