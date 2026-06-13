@@ -1,389 +1,371 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
+<head>
+  <meta charset="utf-8">
+  <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+  <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://www.strikingly.com/generators">
+  <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly">
+  <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds.">
+  <meta property="og:url" content="https://www.strikingly.com/generators">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Strikingly", "item": "https://www.strikingly.com/" },
+      { "@type": "ListItem", "position": 2, "name": "AI Generators" }
+    ]
+  }
+  </script>
+  <style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Open Sans',system-ui,Arial,sans-serif;font-size:14px;font-weight:400;line-height:1.5;color:#636972;background:#FFF;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+ul{list-style:none}
+.content{max-width:1200px;margin-inline:auto;padding-inline:20px}
+.top-bar{border-bottom:1px solid #E2E4E7;background:#FFF;padding:10px 0}
+.top-bar .content{display:flex;align-items:center}
+.logo-text{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:20px;color:#4B5056;text-transform:uppercase;letter-spacing:-0.3px}
+.logo-ai{background:linear-gradient(90deg,#7671FF,#CB0C9F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.breadcrumb{padding:12px 0;border-bottom:1px solid #E2E4E7}
+.breadcrumb ol{display:flex;align-items:center;gap:6px;font-size:13px;color:#636972}
+.breadcrumb li{display:flex;align-items:center;gap:6px}
+.breadcrumb li+li::before{content:">";color:#8159BB;font-size:12px}
+.breadcrumb a:hover{color:#8159BB}
+.breadcrumb [aria-current]{color:#4B5056;font-weight:600}
+.hero{padding:70px 0 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(118,113,255,0.06) 0%,rgba(203,12,159,0.04) 50%,transparent 70%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;position:relative;z-index:1}
+.hero h1{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;text-transform:uppercase;line-height:1.2;margin:0 0 16px}
+.hero-line1{display:block;font-size:40px;color:#2E2E2F}
+.hero-line2{display:block;font-size:40px;background:linear-gradient(90deg,#7671FF,#CB0C9F);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:16px;color:#636972;max-width:480px;margin-bottom:28px;line-height:1.6}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero-illustration svg{width:100%;height:auto;max-width:480px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;text-transform:uppercase;font-size:14px;height:36px;padding:0 15px;border-radius:4px;border:none;cursor:pointer;text-decoration:none;white-space:nowrap;gap:4px}
+.btn-lg{height:44px;font-size:14px;padding:0 24px}
+.btn-sm{height:32px;font-size:12px;padding:0 12px}
+.btn-primary{background:linear-gradient(90deg,#7671FF,#CB0C9F);color:#FFF}
+.btn-primary:hover{opacity:0.9}
+.btn-ghost{background:transparent;color:#8159BB;border:1px solid #8159BB}
+.btn-ghost:hover{background:rgba(129,89,187,0.06)}
+.section{padding:50px 0}
+.section-light{background:#F4F6F8}
+.section h2{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;text-transform:uppercase;font-size:28px;line-height:1.2;color:#4B5056;margin-bottom:8px}
+.sec-sub{color:#636972;margin-bottom:30px;font-size:15px}
+.card{background:#FFF;border:1px solid #C6C9CD;border-radius:3px;padding:20px;transition:box-shadow .2s,border-color .2s}
+.card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.08);border-color:#8159BB}
+.gen-card-link{display:flex;flex-direction:column;gap:6px;height:100%}
+.card-thumb{color:#8159BB;margin-bottom:4px}
+.card-title{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;color:#4B5056;line-height:1.3}
+.card-desc{font-size:13px;color:#636972;line-height:1.4}
+.cat-tag{display:inline-block;font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:11px;text-transform:uppercase;color:#8159BB;border:1px solid #8159BB;border-radius:3px;padding:2px 6px;align-self:flex-start;margin-top:auto}
+.featured-grid,.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cat-card .gen-card-link{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:6px 12px}
+.cat-card .card-thumb{grid-column:1;grid-row:1}
+.cat-card-name{grid-column:1;grid-row:2;font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:15px;text-transform:uppercase;color:#4B5056}
+.cat-card-desc{grid-column:1;grid-row:3;font-size:13px;color:#636972}
+.arrow-icon{grid-column:2;grid-row:1/4;display:flex;align-items:center;color:#8159BB}
+.search-wrap{margin-bottom:30px}
+.search-inner{position:relative;max-width:480px}
+.search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#C6C9CD;pointer-events:none}
+.search-input{width:100%;height:40px;padding:0 14px 0 40px;border:1px solid #C6C9CD;border-radius:4px;font-family:'Open Sans',sans-serif;font-size:14px;color:#4B5056;background:#FFF;outline:none}
+.search-input:focus{border-color:#8159BB;box-shadow:0 0 0 2px rgba(129,89,187,0.15)}
+.search-input::placeholder{color:#C6C9CD}
+.search-count{display:block;margin-top:8px;font-size:13px;color:#636972}
+.search-empty{display:none;margin-top:24px;padding:20px;text-align:center;border:1px dashed #C6C9CD;border-radius:3px}
+.search-empty p{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;color:#4B5056;margin-bottom:12px}
+.empty-actions{display:flex;align-items:center;justify-content:center;gap:10px}
+.empty-or{font-size:13px;color:#636972}
+.gen-section{margin-bottom:40px;scroll-margin-top:20px}
+.gen-section h3{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;text-transform:uppercase;font-size:22px;color:#4B5056;margin-bottom:4px}
+.gen-section>.sec-sub{margin-bottom:20px}
+.gen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;overflow:hidden;transition:max-height .4s ease}
+.toggle-wrap{margin-top:16px;text-align:center}
+.hidden-card{display:none!important}
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.step-card{text-align:center}
+.step-num{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#7671FF,#CB0C9F);color:#FFF;font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:20px;margin:0 auto 14px}
+.step-title{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;text-transform:uppercase;font-size:15px;color:#4B5056;margin-bottom:6px}
+.step-desc{font-size:14px;color:#636972;max-width:300px;margin:0 auto;line-height:1.5}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px}
+.why-card{text-align:center;padding:20px}
+.why-icon{margin-bottom:14px;display:flex;justify-content:center}
+.faq-list{max-width:760px}
+.faq-item{border-bottom:1px solid #E2E4E7}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0;background:none;border:none;cursor:pointer;font-family:'Open Sans',sans-serif;font-weight:600;font-size:15px;color:#4B5056;text-align:left}
+.faq-q:hover{color:#8159BB}
+.faq-q:focus-visible{outline:2px solid #8159BB;outline-offset:2px}
+.faq-chevron{flex-shrink:0;transition:transform .2s;color:#8159BB}
+.faq-q[aria-expanded="true"] .faq-chevron{transform:rotate(180deg)}
+.faq-a{max-height:300px;overflow:hidden;transition:max-height .3s ease,padding .3s ease;padding:0 0 18px}
+.faq-a.collapsed{max-height:0;padding:0}
+.faq-a p{font-size:14px;color:#636972;line-height:1.6}
+.closing-cta{text-align:center}
+.closing-cta h2{font-size:32px;margin-bottom:8px}
+.closing-sub{font-size:16px;color:#636972;margin-bottom:24px}
+.closing-cta-inner{display:flex;flex-direction:column;align-items:center}
+.footer{background:#F4F6F8;padding:40px 0 20px;border-top:1px solid #E2E4E7}
+.footer-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-bottom:30px}
+.footer-heading{font-family:'Josefin Sans','Poppins',sans-serif;font-weight:700;font-size:13px;text-transform:uppercase;color:#4B5056;margin-bottom:12px}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links li{font-size:13px;color:#636972}
+.footer-links a:hover{color:#8159BB}
+.footer-bottom{border-top:1px solid #E2E4E7;padding-top:20px;text-align:center;font-size:13px;color:#636972}
+a:focus-visible,button:focus-visible{outline:2px solid #8159BB;outline-offset:2px}
+@media(max-width:900px){.featured-grid,.gen-grid{grid-template-columns:repeat(2,1fr)}.cat-grid{grid-template-columns:repeat(2,1fr)}.steps-grid{grid-template-columns:repeat(1,1fr)}.why-grid{grid-template-columns:repeat(3,1fr)}.footer-inner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.hero-inner{grid-template-columns:1fr;gap:24px}.hero-text{order:0}.hero-illustration{order:-1}.hero-line1,.hero-line2{font-size:28px}.hero-ctas{flex-direction:column}.hero-ctas .btn{width:100%}.featured-grid,.cat-grid,.gen-grid,.steps-grid,.why-grid,.footer-inner{grid-template-columns:1fr}.section h2{font-size:22px}.closing-cta h2{font-size:26px}.hero{padding:40px 0}.section{padding:30px 0}}
+@media(min-width:601px)and(max-width:900px){.hero-line1,.hero-line2{font-size:32px}}
+</style>
+</head>
+<body>
 
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
+<header class="top-bar"><div class="content"><a href="/" class="logo-link" aria-label="Strikingly home"><span class="logo-text">strikingly <span class="logo-ai">AI</span></span></a></div></header>
 
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
+<nav aria-label="Breadcrumb" class="breadcrumb"><div class="content"><ol><li><a href="/">Strikingly</a></li><li><span aria-current="page">AI Generators</span></li></ol></div></nav>
 
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
+<main>
+<section class="hero"><div class="content hero-inner"><div class="hero-text"><h1><span class="hero-line1">Build Any Kind of Site</span><span class="hero-line2">With AI, In an Instant</span></h1><p class="hero-sub">Browse the right generator for what you&#8217;re building, or jump straight into our AI site builder.</p><div class="hero-ctas"><a href="/s/ai_site_builder" class="btn btn-primary btn-lg">START BUILDING &#8211; IT&#8217;S FREE</a><a href="#all-generators" class="btn btn-ghost btn-lg">BROWSE GENERATORS</a></div></div><div class="hero-illustration" aria-hidden="true"><svg width="480" height="360" viewBox="0 0 480 360" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#7671FF" stop-opacity=".15"/><stop offset="100%" stop-color="#CB0C9F" stop-opacity=".1"/></linearGradient><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#8159BB" stop-opacity=".3"/><stop offset="100%" stop-color="#8159BB" stop-opacity=".08"/></linearGradient></defs><rect x="60" y="60" width="360" height="260" rx="8" fill="url(#hg)" stroke="#C6C9CD" stroke-width="1"/><rect x="60" y="60" width="360" height="32" rx="8" fill="#F4F6F8" stroke="#C6C9CD" stroke-width="1"/><rect x="60" y="84" width="360" height="8" fill="#F4F6F8"/><circle cx="78" cy="76" r="4" fill="#E2E4E7"/><circle cx="94" cy="76" r="4" fill="#E2E4E7"/><circle cx="110" cy="76" r="4" fill="#E2E4E7"/><rect x="140" y="70" width="180" height="14" rx="7" fill="url(#sg)"/><rect x="80" y="106" width="320" height="24" rx="4" fill="url(#sg)" opacity=".6"/><rect x="80" y="140" width="160" height="12" rx="3" fill="#C6C9CD" opacity=".4"/><rect x="80" y="158" width="240" height="8" rx="3" fill="#C6C9CD" opacity=".25"/><rect x="80" y="172" width="200" height="8" rx="3" fill="#C6C9CD" opacity=".25"/><rect x="80" y="192" width="320" height="80" rx="4" fill="url(#sg)" opacity=".3"/><rect x="80" y="286" width="80" height="20" rx="4" fill="url(#sg)" opacity=".5"/><circle cx="340" cy="200" r="28" stroke="#8159BB" stroke-width=".8" fill="none" opacity=".3"/><rect x="328" y="220" width="24" height="18" rx="3" stroke="#8159BB" stroke-width=".8" fill="none" opacity=".3"/><circle cx="332" cy="194" r="2" fill="#8159BB" opacity=".2"/><circle cx="348" cy="194" r="2" fill="#8159BB" opacity=".2"/><path d="M334 206 Q340 212 346 206" stroke="#8159BB" stroke-width=".8" fill="none" opacity=".3"/><path d="M380 150 L383 144 L386 150 L392 153 L386 156 L383 162 L380 156 L374 153 Z" fill="#8159BB" opacity=".15"/><path d="M100 250 L102 246 L104 250 L108 252 L104 254 L102 258 L100 254 L96 252 Z" fill="#8159BB" opacity=".1"/></svg></div></div></section>
 
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
+<section class="section"><div class="content"><h2>FEATURED GENERATORS</h2><p class="sec-sub">A few common starting points.</p><div class="featured-grid">
+          <article class="card gen-card"><a href="/generators/ai-website-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">AI Website Generator</div><div class="card-desc">Describe your business, get a full site</div><span class="cat-tag">Website</span></a></article>
+          <article class="card gen-card"><a href="/generators/free-portfolio-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Free Portfolio Generator</div><div class="card-desc">For creatives, in minutes, no fee</div><span class="cat-tag">Portfolio</span></a></article>
+          <article class="card gen-card"><a href="/generators/ai-landing-page-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">AI Landing Page Maker</div><div class="card-desc">One-page sites built to convert</div><span class="cat-tag">Landing Page</span></a></article>
+          <article class="card gen-card"><a href="/generators/online-store-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Online Store Builder</div><div class="card-desc">Start selling without writing code</div><span class="cat-tag">Store</span></a></article>
+          <article class="card gen-card"><a href="/generators/link-in-bio-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Link-in-Bio Generator</div><div class="card-desc">One link for all your channels</div><span class="cat-tag">Link-in-Bio</span></a></article>
+          <article class="card gen-card"><a href="/generators/one-page-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">One-Page Website Builder</div><div class="card-desc">Simple sites, single scroll</div><span class="cat-tag">Website</span></a></article>
+          <article class="card gen-card"><a href="/generators/wedding-website-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Wedding Website Generator</div><div class="card-desc">Share your day with guests</div><span class="cat-tag">Website</span></a></article>
+          <article class="card gen-card"><a href="/generators/restaurant-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Restaurant Website Builder</div><div class="card-desc">Menu, hours, reservations, done</div><span class="cat-tag">Website</span></a></article>
+          <article class="card gen-card"><a href="/generators/blog-generator-for-beginners" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Blog Generator for Beginners</div><div class="card-desc">Publish-ready in minutes</div><span class="cat-tag">Blog</span></a></article>
+</div></div></section>
 
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
+<section class="section section-light"><div class="content"><h2>BROWSE BY CATEGORY</h2><p class="sec-sub">Jump to the section that fits your project.</p><div class="cat-grid">
+          <article class="card cat-card"><a href="#websites" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="cat-card-name">WEBSITES</div><div class="cat-card-desc">AI-built business and personal sites for any goal.</div><span class="arrow-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></article>
+          <article class="card cat-card"><a href="#landing-pages" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="cat-card-name">LANDING PAGES</div><div class="cat-card-desc">Single-page sites built to convert visitors fast.</div><span class="arrow-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></article>
+          <article class="card cat-card"><a href="#portfolios" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="cat-card-name">PORTFOLIOS</div><div class="cat-card-desc">Showcase your work with a clean, focused site.</div><span class="arrow-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></article>
+          <article class="card cat-card"><a href="#blogs" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="cat-card-name">BLOGS</div><div class="cat-card-desc">Publish-ready blogs with built-in SEO basics.</div><span class="arrow-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></article>
+          <article class="card cat-card"><a href="#stores" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="cat-card-name">ONLINE STORES</div><div class="cat-card-desc">Sell products online with payments built in.</div><span class="arrow-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></article>
+          <article class="card cat-card"><a href="#link-in-bio" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="cat-card-name">LINK-IN-BIO</div><div class="cat-card-desc">One link, all your places. Made for creators.</div><span class="arrow-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a></article>
+</div></div></section>
 
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
+<section class="section" id="all-generators"><div class="content"><h2>ALL GENERATORS</h2><p class="sec-sub">Sixty-plus generators, organized by what you&#8217;re building.</p>
+<div class="search-wrap"><div class="search-inner"><svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.3" fill="none"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg><input type="text" id="gen-search" class="search-input" aria-label="Search generators" placeholder="Search generators..." autocomplete="off"></div><span class="search-count" id="search-count"></span><div class="search-empty" id="search-empty"><p>No generators match your search.</p><div class="empty-actions"><button class="btn btn-ghost btn-sm" id="clear-search">Clear search</button><span class="empty-or">or</span><a href="/s/ai_site_builder" class="btn btn-primary btn-sm">Try our AI builder</a></div></div></div>
 
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
+      <div class="gen-section" id="websites" data-category="websites">
+        <h3>Websites</h3>
+        <p class="sec-sub">Full business and personal sites for every goal.</p>
+        <div class="gen-grid" data-section="websites">
+            <article class="card gen-card"><a href="/generators/ai-website-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">AI Website Generator</div><div class="card-desc">Describe your business, get a full site</div></a></article>
+            <article class="card gen-card"><a href="/generators/free-website-builder-for-photographers" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Free Website Builder for Photographers</div><div class="card-desc">Showcase portfolios and booking info</div></a></article>
+            <article class="card gen-card"><a href="/generators/one-page-wedding-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">One-Page Wedding Website Builder</div><div class="card-desc">Registry, gallery, and event details</div></a></article>
+            <article class="card gen-card"><a href="/generators/restaurant-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Restaurant Website Builder</div><div class="card-desc">Menu, hours, reservations, done</div></a></article>
+            <article class="card gen-card"><a href="/generators/small-business-website-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Small Business Website Generator</div><div class="card-desc">Professional site for local businesses</div></a></article>
+            <article class="card gen-card"><a href="/generators/personal-website-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Personal Website Creator</div><div class="card-desc">About you, your work, and your story</div></a></article>
+            <article class="card gen-card"><a href="/generators/one-page-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">One-Page Website Builder</div><div class="card-desc">Simple sites, single scroll</div></a></article>
+            <article class="card gen-card"><a href="/generators/landing-page-generator-for-startups" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Landing Page Generator for Startups</div><div class="card-desc">Product launches and signup pages</div></a></article>
+            <article class="card gen-card"><a href="/generators/saas-landing-page-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">SaaS Landing Page Builder</div><div class="card-desc">Feature lists, pricing, and demo CTAs</div></a></article>
+            <article class="card gen-card"><a href="/generators/lead-generation-page-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Lead Generation Page Maker</div><div class="card-desc">Forms, testimonials, and call actions</div></a></article>
+            <article class="card gen-card"><a href="/generators/product-launch-page-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Product Launch Page Creator</div><div class="card-desc">Countdowns, pre-orders, and announcements</div></a></article>
+            <article class="card gen-card"><a href="/generators/event-registration-page-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><circle cx="6" cy="6" r=".8" fill="currentColor"/><circle cx="8" cy="6" r=".8" fill="currentColor"/></svg></div><div class="card-title">Event Registration Page Builder</div><div class="card-desc">Tickets, schedules, and speaker info</div></a></article>
+        </div>
+        <div class="toggle-wrap" id="toggle-websites"><button class="btn btn-ghost btn-sm show-all-btn" aria-expanded="false" aria-controls="gen-grid-websites" data-section="websites" data-total="12">Show all 12 generators</button></div>
+      </div>
+      <div class="gen-section" id="landing-pages" data-category="landing-pages">
+        <h3>Landing Pages</h3>
+        <p class="sec-sub">Single-page sites built to convert visitors fast.</p>
+        <div class="gen-grid" data-section="landing-pages">
+            <article class="card gen-card"><a href="/generators/ai-landing-page-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">AI Landing Page Maker</div><div class="card-desc">One-page sites built to convert</div></a></article>
+            <article class="card gen-card"><a href="/generators/landing-page-generator-for-startups" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">Landing Page Generator for Startups</div><div class="card-desc">Product launches and signup pages</div></a></article>
+            <article class="card gen-card"><a href="/generators/saas-landing-page-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">SaaS Landing Page Builder</div><div class="card-desc">Feature lists, pricing, and demo CTAs</div></a></article>
+            <article class="card gen-card"><a href="/generators/lead-generation-page-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">Lead Generation Page Maker</div><div class="card-desc">Forms, testimonials, and call actions</div></a></article>
+            <article class="card gen-card"><a href="/generators/product-launch-page-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">Product Launch Page Creator</div><div class="card-desc">Countdowns, pre-orders, and announcements</div></a></article>
+            <article class="card gen-card"><a href="/generators/event-registration-page-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">Event Registration Page Builder</div><div class="card-desc">Tickets, schedules, and speaker info</div></a></article>
+            <article class="card gen-card"><a href="/generators/app-download-page-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">App Download Page Creator</div><div class="card-desc">App store links, screenshots, and reviews</div></a></article>
+            <article class="card gen-card"><a href="/generators/coming-soon-page-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 16V4h14v12z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 8h14" stroke="currentColor" stroke-width="1.2"/><rect x="5" y="10" width="4" height="2" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/><rect x="11" y="10" width="4" height="4" rx=".5" stroke="currentColor" stroke-width="1" fill="none"/></svg></div><div class="card-title">Coming Soon Page Maker</div><div class="card-desc">Teaser content and email capture forms</div></a></article>
+        </div>
+        <div class="toggle-wrap" id="toggle-landing-pages"><button class="btn btn-ghost btn-sm show-all-btn" aria-expanded="false" aria-controls="gen-grid-landing-pages" data-section="landing-pages" data-total="8">Show all 8 generators</button></div>
+      </div>
+      <div class="gen-section" id="portfolios" data-category="portfolios">
+        <h3>Portfolios</h3>
+        <p class="sec-sub">Showcase your work with clean, focused portfolio sites.</p>
+        <div class="gen-grid" data-section="portfolios">
+            <article class="card gen-card"><a href="/generators/free-portfolio-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Free Portfolio Generator</div><div class="card-desc">For creatives, in minutes, no fee</div></a></article>
+            <article class="card gen-card"><a href="/generators/portfolio-generator-for-designers" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Portfolio Generator for Designers</div><div class="card-desc">Showcase UI/UX, graphic design, and brand work</div></a></article>
+            <article class="card gen-card"><a href="/generators/photography-portfolio-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Photography Portfolio Builder</div><div class="card-desc">Full-screen galleries and client proofing pages</div></a></article>
+            <article class="card gen-card"><a href="/generators/architect-portfolio-website" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Architect Portfolio Website</div><div class="card-desc">Blueprints, project galleries, and firm details</div></a></article>
+            <article class="card gen-card"><a href="/generators/artist-portfolio-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Artist Portfolio Generator</div><div class="card-desc">Paintings, illustrations, and exhibition history</div></a></article>
+            <article class="card gen-card"><a href="/generators/writer-portfolio-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Writer Portfolio Builder</div><div class="card-desc">Published clips, books, and author biography</div></a></article>
+            <article class="card gen-card"><a href="/generators/developer-portfolio-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Developer Portfolio Generator</div><div class="card-desc">Projects, GitHub links, and tech stack highlights</div></a></article>
+            <article class="card gen-card"><a href="/generators/fashion-portfolio-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Fashion Portfolio Website Builder</div><div class="card-desc">Lookbooks, collections, and press features</div></a></article>
+            <article class="card gen-card"><a href="/generators/videographer-portfolio-page" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Videographer Portfolio Page</div><div class="card-desc">Showreels, client work, and production services</div></a></article>
+            <article class="card gen-card"><a href="/generators/maker-portfolio-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="10" cy="11" r="2.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Maker Portfolio Builder</div><div class="card-desc">DIY projects, build logs, and product prototypes</div></a></article>
+        </div>
+        <div class="toggle-wrap" id="toggle-portfolios"><button class="btn btn-ghost btn-sm show-all-btn" aria-expanded="false" aria-controls="gen-grid-portfolios" data-section="portfolios" data-total="10">Show all 10 generators</button></div>
+      </div>
+      <div class="gen-section" id="blogs" data-category="blogs">
+        <h3>Blogs</h3>
+        <p class="sec-sub">Start publishing with SEO-friendly blog setups.</p>
+        <div class="gen-grid" data-section="blogs">
+            <article class="card gen-card"><a href="/generators/blog-generator-for-beginners" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Blog Generator for Beginners</div><div class="card-desc">Publish-ready in minutes</div></a></article>
+            <article class="card gen-card"><a href="/generators/travel-blog-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Travel Blog Builder</div><div class="card-desc">Destinations, itineraries, and travel photography</div></a></article>
+            <article class="card gen-card"><a href="/generators/food-blog-website-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Food Blog Website Generator</div><div class="card-desc">Recipes, reviews, and restaurant recommendations</div></a></article>
+            <article class="card gen-card"><a href="/generators/personal-blog-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Personal Blog Creator</div><div class="card-desc">Your thoughts, stories, and ideas on a custom blog</div></a></article>
+            <article class="card gen-card"><a href="/generators/lifestyle-blog-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Lifestyle Blog Builder</div><div class="card-desc">Wellness, home, and everyday inspiration</div></a></article>
+            <article class="card gen-card"><a href="/generators/tech-blog-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Tech Blog Generator</div><div class="card-desc">Tutorials, reviews, and industry insights</div></a></article>
+            <article class="card gen-card"><a href="/generators/fashion-blog-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Fashion Blog Website Builder</div><div class="card-desc">Style guides, trends, and outfit inspiration</div></a></article>
+            <article class="card gen-card"><a href="/generators/parenting-blog-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Parenting Blog Maker</div><div class="card-desc">Tips, milestones, and family stories</div></a></article>
+            <article class="card gen-card"><a href="/generators/health-and-wellness-blog-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Health and Wellness Blog Builder</div><div class="card-desc">Workouts, nutrition, and mindful living</div></a></article>
+            <article class="card gen-card"><a href="/generators/photography-blog-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 4h12v12H4z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M6 7h8M6 10h6M6 13h4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg></div><div class="card-title">Photography Blog Generator</div><div class="card-desc">Photo essays, gear reviews, and editing tutorials</div></a></article>
+        </div>
+        <div class="toggle-wrap" id="toggle-blogs"><button class="btn btn-ghost btn-sm show-all-btn" aria-expanded="false" aria-controls="gen-grid-blogs" data-section="blogs" data-total="10">Show all 10 generators</button></div>
+      </div>
+      <div class="gen-section" id="stores" data-category="stores">
+        <h3>Online Stores</h3>
+        <p class="sec-sub">E-commerce sites with payments and inventory built in.</p>
+        <div class="gen-grid" data-section="stores">
+            <article class="card gen-card"><a href="/generators/online-store-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Online Store Builder</div><div class="card-desc">Start selling without writing code</div></a></article>
+            <article class="card gen-card"><a href="/generators/online-store-builder-for-restaurants" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Online Store Builder for Restaurants</div><div class="card-desc">Online ordering, delivery, and catering menus</div></a></article>
+            <article class="card gen-card"><a href="/generators/etsy-shop-website-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Etsy Shop Website Maker</div><div class="card-desc">Cross-sell your handmade goods on your own site</div></a></article>
+            <article class="card gen-card"><a href="/generators/dropshipping-store-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Dropshipping Store Creator</div><div class="card-desc">Product imports and automated fulfillment</div></a></article>
+            <article class="card gen-card"><a href="/generators/digital-products-store-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Digital Products Store Builder</div><div class="card-desc">Sell courses, ebooks, and downloads</div></a></article>
+            <article class="card gen-card"><a href="/generators/subscription-box-store-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Subscription Box Store Maker</div><div class="card-desc">Recurring billing and member portals</div></a></article>
+            <article class="card gen-card"><a href="/generators/clothing-store-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Clothing Store Website Builder</div><div class="card-desc">Lookbooks, size guides, and checkout flows</div></a></article>
+            <article class="card gen-card"><a href="/generators/coffee-shop-website-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Coffee Shop Website Builder</div><div class="card-desc">Cafe menus, loyalty programs, and online orders</div></a></article>
+            <article class="card gen-card"><a href="/generators/jewelry-store-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Jewelry Store Builder</div><div class="card-desc">Product showcases with zoom and custom sizing</div></a></article>
+            <article class="card gen-card"><a href="/generators/furniture-store-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Furniture Store Creator</div><div class="card-desc">Catalog browsing, configurators, and delivery scheduling</div></a></article>
+            <article class="card gen-card"><a href="/generators/bookstore-website-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Bookstore Website Maker</div><div class="card-desc">Author bios, reviews, and direct sales</div></a></article>
+            <article class="card gen-card"><a href="/generators/pet-store-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="7" width="14" height="10" rx="2" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M3 10h14" stroke="currentColor" stroke-width="1.2"/><circle cx="7.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/><circle cx="12.5" cy="14" r="1.5" stroke="currentColor" stroke-width="1.2" fill="none"/></svg></div><div class="card-title">Pet Store Builder</div><div class="card-desc">Pet products, services, and appointment booking</div></a></article>
+        </div>
+        <div class="toggle-wrap" id="toggle-stores"><button class="btn btn-ghost btn-sm show-all-btn" aria-expanded="false" aria-controls="gen-grid-stores" data-section="stores" data-total="12">Show all 12 generators</button></div>
+      </div>
+      <div class="gen-section" id="link-in-bio" data-category="link-in-bio">
+        <h3>Link-in-Bio</h3>
+        <p class="sec-sub">One link for all your channels. Made for creators.</p>
+        <div class="gen-grid" data-section="link-in-bio">
+            <article class="card gen-card"><a href="/generators/link-in-bio-generator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Link-in-Bio Generator</div><div class="card-desc">One link for all your channels</div></a></article>
+            <article class="card gen-card"><a href="/generators/creator-link-in-bio-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Creator Link-in-Bio Maker</div><div class="card-desc">YouTube, Instagram, TikTok all in one place</div></a></article>
+            <article class="card gen-card"><a href="/generators/musician-link-in-bio-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Musician Link-in-Bio Builder</div><div class="card-desc">Tours, merch, streaming links</div></a></article>
+            <article class="card gen-card"><a href="/generators/podcaster-link-in-bio-page" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Podcaster Link-in-Bio Page</div><div class="card-desc">Episodes, sponsors, and social links</div></a></article>
+            <article class="card gen-card"><a href="/generators/coach-link-in-bio-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Coach Link-in-Bio Creator</div><div class="card-desc">Bookings, content, and consultation links</div></a></article>
+            <article class="card gen-card"><a href="/generators/freelancer-link-in-bio-maker" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Freelancer Link-in-Bio Maker</div><div class="card-desc">Services, portfolio, and contact options</div></a></article>
+            <article class="card gen-card"><a href="/generators/brand-link-in-bio-page" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Brand Link-in-Bio Page</div><div class="card-desc">Campaigns, products, and press mentions</div></a></article>
+            <article class="card gen-card"><a href="/generators/photographer-link-in-bio-builder" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Photographer Link-in-Bio Builder</div><div class="card-desc">Galleries, booking, and social links</div></a></article>
+            <article class="card gen-card"><a href="/generators/writer-link-in-bio-creator" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Writer Link-in-Bio Creator</div><div class="card-desc">Stories, newsletters, and publication links</div></a></article>
+            <article class="card gen-card"><a href="/generators/speaker-link-in-bio-page" class="gen-card-link"><div class="card-thumb" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7 10a3 3 0 015-3l2-2a3 3 0 010 4l-1 1M13 10a3 3 0 01-5 3l-2 2a3 3 0 010-4l1-1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg></div><div class="card-title">Speaker Link-in-Bio Page</div><div class="card-desc">Events, talks, and media appearances</div></a></article>
+        </div>
+        <div class="toggle-wrap" id="toggle-link-in-bio"><button class="btn btn-ghost btn-sm show-all-btn" aria-expanded="false" aria-controls="gen-grid-link-in-bio" data-section="link-in-bio" data-total="10">Show all 10 generators</button></div>
+      </div>
 
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
+</div></section>
 
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
+<section class="section section-light"><div class="content"><h2>HOW IT WORKS</h2><div class="steps-grid">
+        <div class="step-card"><span class="step-num" aria-hidden="true">1</span><h3 class="step-title">PICK A GENERATOR</h3><p class="step-desc">Browse by category or search to find one that fits your goal.</p></div>
+        <div class="step-card"><span class="step-num" aria-hidden="true">2</span><h3 class="step-title">DESCRIBE YOUR SITE</h3><p class="step-desc">Tell our AI builder about your business in a sentence or two.</p></div>
+        <div class="step-card"><span class="step-num" aria-hidden="true">3</span><h3 class="step-title">GENERATE AND PUBLISH</h3><p class="step-desc">Get a fully built site in seconds. Customize anything, then go live.</p></div>
 
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
+</div></div></section>
 
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
+<section class="section"><div class="content"><h2>WHY STRIKINGLY</h2><div class="why-grid">
+        <div class="why-card"><div class="why-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="#8159BB" stroke-width="1.2" fill="none"/><path d="M10 16l4 4 8-8" stroke="#8159BB" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3 class="why-title">LIVE IN SECONDS</h3><p class="why-desc">Describe your site, we build it. No setup, no learning curve.</p></div>
+        <div class="why-card"><div class="why-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="5" y="8" width="22" height="16" rx="3" stroke="#8159BB" stroke-width="1.2" fill="none"/><rect x="8" y="12" width="16" height="8" rx="1.5" stroke="#8159BB" stroke-width="1" fill="none"/><circle cx="12" cy="16" r="1.5" fill="#8159BB"/><circle cx="20" cy="16" r="1.5" fill="#8159BB"/></svg></div><h3 class="why-title">MOBILE BY DEFAULT</h3><p class="why-desc">Every generator produces responsive sites that work on any device.</p></div>
+        <div class="why-card"><div class="why-icon" aria-hidden="true"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 20V12c0-4.418 3.582-8 8-8s8 3.582 8 8v8" stroke="#8159BB" stroke-width="1.2" fill="none"/><rect x="6" y="18" width="20" height="10" rx="3" stroke="#8159BB" stroke-width="1.2" fill="none"/><path d="M12 18v-2a4 4 0 018 0v2" stroke="#8159BB" stroke-width="1.2" fill="none"/></svg></div><h3 class="why-title">FREE TO START</h3><p class="why-desc">Generate, customize, and publish without a credit card.</p></div>
 
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
+</div></div></section>
 
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
+<section class="section section-light"><div class="content"><h2>FREQUENTLY ASKED QUESTIONS</h2><div class="faq-list" id="faq-list">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="true" aria-controls="faq-a1" id="faq-btn1">
+            <span>What is an AI site generator?</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="faq-chevron" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-a" id="faq-a1" role="region" aria-labelledby="faq-btn1">
+            <p>An AI site generator is a tool that uses artificial intelligence to build a complete website from a short text description. Instead of coding or dragging blocks, you describe your business, project, or goal in a sentence or two and the AI creates a full site with layout, content, images, and styling in seconds. It&#8217;s the fastest way to go from idea to a live website.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a2" id="faq-btn2">
+            <span>How is a generator different from a template?</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="faq-chevron" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-a collapsed" id="faq-a2" role="region" aria-labelledby="faq-btn2">
+            <p>A template is a fixed page layout that you fill with your own content, making every site that uses it look structurally similar. A generator, by contrast, creates a unique layout and content arrangement based on your description and chosen category. Every generated site adapts to your industry, goal, and preferences, so you get a site that feels custom-built rather than pre-packaged.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a3" id="faq-btn3">
+            <span>Are these generators free to use?</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="faq-chevron" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-a collapsed" id="faq-a3" role="region" aria-labelledby="faq-btn3">
+            <p>Yes, you can generate a website completely free with no credit card required. The free plan includes a subdomain on strikingly.com, basic customization, and enough bandwidth to get started. Premium plans unlock custom domains, advanced analytics, e-commerce features, and priority support. You can upgrade at any time after your site is live.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a4" id="faq-btn4">
+            <span>What kinds of sites can I build?</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="faq-chevron" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-a collapsed" id="faq-a4" role="region" aria-labelledby="faq-btn4">
+            <p>Our generators cover a wide range of site types: business websites, personal portfolios, landing pages, blogs, online stores, and link-in-bio pages. Within each category, specialized generators tailor the output to your specific field, whether you are a photographer, restaurateur, wedding couple, startup founder, artist, writer, or fitness coach. If you are not sure which generator fits, the AI site builder can handle any goal from a single description.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a5" id="faq-btn5">
+            <span>Can I customize what the generator produces?</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="faq-chevron" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-a collapsed" id="faq-a5" role="region" aria-labelledby="faq-btn5">
+            <p>Absolutely. After the AI generates your site, you can edit every part of it using Strikingly&#8217;s visual editor. Change text, swap images, adjust colors and fonts, rearrange sections, add new pages, or embed third-party tools. The generator gives you a head start with a solid foundation, but you have full control over the final result.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false" aria-controls="faq-a6" id="faq-btn6">
+            <span>Do generated sites work on mobile?</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="faq-chevron" aria-hidden="true">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="faq-a collapsed" id="faq-a6" role="region" aria-labelledby="faq-btn6">
+            <p>Yes, every site generated by Strikingly is fully responsive and works flawlessly on mobile phones, tablets, and desktops. Our generators apply mobile-first design principles, so your site will look great and function well on any screen size. You can also preview and fine-tune the mobile layout in the editor after generation.</p>
+          </div>
+        </div>
 
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
+</div></div></section>
 
-          if (data.type !== "route:navigate") {
-            return;
-          }
+<section class="section closing-cta"><div class="content closing-cta-inner"><h2>READY TO BUILD?</h2><p class="closing-sub">Pick a generator above, or jump straight into our AI builder.</p><a href="/s/ai_site_builder" class="btn btn-primary btn-lg">START WITH AI BUILDER</a></div></section>
 
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
+</main>
 
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
+<footer class="footer"><div class="content footer-inner">
+<div class="footer-col"><h4 class="footer-heading">Product</h4><ul class="footer-links"><li><a href="/pricing">Pricing</a></li><li><a href="/templates">Templates</a></li><li><a href="/s/ai_site_builder">AI Builder</a></li></ul></div>
+<div class="footer-col"><h4 class="footer-heading">Company</h4><ul class="footer-links"><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li><li><a href="/support">Support</a></li></ul></div>
+<div class="footer-col"><h4 class="footer-heading">Resources</h4><ul class="footer-links"><li>Help Center</li><li><a href="/terms">Terms of Service</a></li><li><a href="/privacy">Privacy Policy</a></li></ul></div>
+<div class="footer-col"><h4 class="footer-heading">Connect</h4><ul class="footer-links"><li>Twitter</li><li>Facebook</li><li>Instagram</li></ul></div>
+</div><div class="content footer-bottom"><p>&copy; 2026 Strikingly. All rights reserved.</p></div></footer>
 
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
-
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const MAX_STRING_LENGTH = 2000;
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const extractComponentStack = (args) => {
-          for (const arg of args) {
-            if (
-              arg &&
-              typeof arg === "object" &&
-              typeof arg.componentStack === "string"
-            ) {
-              return truncate(arg.componentStack);
-            }
-
-            if (
-              typeof arg === "string" &&
-              (arg.includes("\n    at ") ||
-                arg.includes("\n at ") ||
-                arg.includes("The above error occurred"))
-            ) {
-              return truncate(arg);
-            }
-          }
-
-          return "";
-        };
-
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
-
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-
-              postToParent({
-                type: "runtime-error",
-                kind: "resource-error",
-                message: `Failed to load ${tagName.toLowerCase()} resource.`,
-                source: resourceUrl,
-                resourceTagName: tagName.toLowerCase(),
-                resourceUrl,
-              });
-              return;
-            }
-
-            const normalized = normalizeErrorLike(event.error || event.message);
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source: event.filename || normalized.source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
-            });
-          },
-          true,
-        );
-
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
-          });
-        });
-
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          const errorLike = args.find(
-            (arg) =>
-              arg instanceof Error ||
-              (arg &&
-                typeof arg === "object" &&
-                ("message" in arg || "stack" in arg)),
-          );
-          const normalized = normalizeErrorLike(errorLike || args[0]);
-
-          postToParent({
-            type: "console-error",
-            kind: "console-error",
-            name: normalized.name,
-            message:
-              normalized.message ||
-              args.map((arg) => stringifyValue(arg)).join(" "),
-            stack: normalized.stack,
-            componentStack: extractComponentStack(args),
-            args: args.map((arg) => stringifyValue(arg)),
-          });
-
-          originalConsoleError(...args);
-        };
-      })();
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<script>
+(function(){'use strict';var si=document.getElementById('gen-search'),sc=document.getElementById('search-count'),se=document.getElementById('search-empty'),cb=document.getElementById('clear-search');if(si){var ac=document.querySelectorAll('.gen-card'),as_=document.querySelectorAll('.gen-section');function f(){var q=si.value.toLowerCase().trim(),mc=0;ac.forEach(function(c){var t=c.textContent.toLowerCase(),m=!q||t.indexOf(q)!==-1;c.style.display=m?'':'none';if(m)mc++});as_.forEach(function(s){var hc=s.querySelectorAll('.gen-card[style*="display: none"]'),tt=s.querySelectorAll('.gen-card').length;var s_=hc.length<tt;s.style.display=s_?'':'none'});if(sc){sc.textContent=q?mc+' generator'+(mc!==1?'s':'')+' match':''}if(se){se.style.display=q&&mc===0?'block':'none'}}si.addEventListener('input',f);if(cb){cb.addEventListener('click',function(){si.value='';f();si.focus()})}}
+var sBtns=document.querySelectorAll('.show-all-btn'),isc=6;sBtns.forEach(function(btn){var sid=btn.getAttribute('data-section'),grid=document.querySelector('.gen-grid[data-section="'+sid+'"]'),tt=parseInt(btn.getAttribute('data-total'),10);if(grid&&tt>isc){var cards=grid.querySelectorAll('.gen-card'),ih=0;cards.forEach(function(c,i){if(i<isc){ih+=c.offsetHeight||100}});ih+=(Math.min(isc,cards.length)-1)*16;cards.forEach(function(c,i){if(i>=isc)c.classList.add('hidden-card')});grid.style.maxHeight=ih+'px';btn.addEventListener('click',function(){var exp=btn.getAttribute('aria-expanded')==='true';if(exp){cards.forEach(function(c,i){if(i>=isc)c.classList.add('hidden-card')});grid.style.maxHeight=ih+'px';btn.setAttribute('aria-expanded','false');btn.textContent='Show all '+tt+' generators'}else{cards.forEach(function(c){c.classList.remove('hidden-card')});grid.style.maxHeight=grid.scrollHeight+'px';btn.setAttribute('aria-expanded','true');btn.textContent='Show less'}})}else{btn.style.display='none'}})
+var fBtns=document.querySelectorAll('.faq-q');fBtns.forEach(function(btn){btn.addEventListener('click',function(){var exp=btn.getAttribute('aria-expanded')==='true';var ct=document.getElementById(btn.getAttribute('aria-controls'));fBtns.forEach(function(b){b.setAttribute('aria-expanded','false');var c=document.getElementById(b.getAttribute('aria-controls'));if(c)c.classList.add('collapsed')});if(!exp){btn.setAttribute('aria-expanded','true');if(ct)ct.classList.remove('collapsed')}})})})();
+</script>
+</body>
 </html>
