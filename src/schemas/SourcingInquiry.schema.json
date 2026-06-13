@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the buyer's company"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquiry contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "Company website URL"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Description of the product or project to source"
+    },
+    "service_needs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "supplier_verification",
+          "factory_audit",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Services the buyer needs support with"
+    },
+    "order_volume": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Estimated order size or annual purchasing volume"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Main market where the products will be sold"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Expected sourcing or production timeline"
+    },
+    "shipping_destination": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Destination country or port for shipment"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes or sourcing requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page where the inquiry was submitted"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was created"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "product_details",
+    "service_needs"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
+  }
+}
