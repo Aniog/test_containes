@@ -1,14 +1,21 @@
+import Navigation from './components/Navigation'
+import Hero from './components/Hero'
+import Products from './components/Products'
+import About from './components/About'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
 import './App.css'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <div className="min-h-screen bg-[#faf8f5]">
+      <Navigation />
+      <Hero />
+      <Products />
+      <About />
+      <Contact />
+      <Footer />
+    </div>
   )
 }
 
