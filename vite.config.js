@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
+import noscriptPlugin from './vite-plugin-noscript.js'
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,7 @@ export default defineConfig({
     strkImgPlugin(),
     visualEditPlugin(),
     react(),
+    noscriptPlugin(),
   ],
   resolve: {
     alias: {
