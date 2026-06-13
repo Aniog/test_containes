@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the sourcing inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the primary contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for the inquiry"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country or market of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product category or sourcing area requested"
+    },
+    "service_need": {
+      "type": "string",
+      "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination", "full_sourcing_support"],
+      "description": "Primary sourcing service needed"
+    },
+    "order_stage": {
+      "type": "string",
+      "enum": ["idea_stage", "sample_stage", "supplier_comparison", "production_ready", "active_production", "repeat_orders"],
+      "description": "Current purchasing or production stage"
+    },
+    "estimated_order_value": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Approximate expected order value or purchasing budget"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 4000,
+      "description": "Detailed sourcing brief or inquiry message"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page or funnel source where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "qualified", "contacted", "closed"],
+      "default": "new",
+      "description": "Internal inquiry handling status"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "country",
+    "product_category",
+    "service_need",
+    "order_stage",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
