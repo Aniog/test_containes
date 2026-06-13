@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of operation"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics",
+        "Machinery & Industrial",
+        "Textiles & Apparel",
+        "Consumer Goods",
+        "Home & Garden",
+        "Packaging & Printing",
+        "Automotive Parts",
+        "Other"
+      ],
+      "description": "Product category of interest"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed sourcing requirements"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget_range": {
+      "type": "string",
+      "enum": [
+        "Under $10,000",
+        "$10,000 - $50,000",
+        "$50,000 - $200,000",
+        "$200,000 - $500,000",
+        "Over $500,000",
+        "Not sure yet"
+      ],
+      "description": "Estimated budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Quality Control",
+          "Production Monitoring",
+          "Shipping Coordination",
+          "Custom Manufacturing"
+        ]
+      },
+      "description": "Services the client is interested in"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inquiry submission timestamp"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Inquiry status"
+    }
+  },
+  "required": ["id", "name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
