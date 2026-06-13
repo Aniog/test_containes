@@ -1,0 +1,45 @@
+export const strings = {
+  en: {
+    title: "AI Website Generators - Build Any Site in Seconds | Strikingly",
+    description: "Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.",
+    logoAlt: "Strikingly AI Logo",
+    navHome: "Strikingly",
+    navCurrent: "AI Generators",
+    heroH1Line1: "BUILD ANY KIND OF SITE",
+    heroH1Line2: "WITH AI, IN AN INSTANT",
+    heroSub: "Browse the right generator for what you're building, or jump straight into our AI site builder.",
+    heroCtaPrimary: "START BUILDING - IT'S FREE",
+    heroCtaSecondary: "BROWSE GENERATORS",
+    featuredHeading: "FEATURED GENERATORS",
+    featuredSub: "A few common starting points.",
+    browseHeading: "BROWSE BY CATEGORY",
+    allHeading: "ALL GENERATORS",
+    allSub: "Sixty-plus generators, organized by what you're building.",
+    searchPlaceholder: "Search generators...",
+    searchAriaLabel: "Search generators",
+    searchEmptyText: "Can't find it? Start with our AI builder.",
+    searchResultsToggle: "Show all {count} generators",
+    collapseResultsToggle: "Show less",
+    howItWorksHeading: "HOW IT WORKS",
+    howStep1Title: "PICK A GENERATOR",
+    howStep1Desc: "Browse by category or search to find one that fits your goal.",
+    howStep2Title: "DESCRIBE YOUR SITE",
+    howStep2Desc: "Tell our AI builder about your business in a sentence or two.",
+    howStep3Title: "GENERATE AND PUBLISH",
+    howStep3Desc: "Get a fully built site in seconds. Customize anything, then go live.",
+    whyHeading: "WHY STRIKINGLY",
+    why1Title: "LIVE IN SECONDS",
+    why1Desc: "Describe your site, we build it. No setup, no learning curve.",
+    why2Title: "MOBILE BY DEFAULT",
+    why2Desc: "Every generator produces responsive sites that work on any device.",
+    why3Title: "FREE TO START",
+    why3Desc: "Generate, customize, and publish without a credit card.",
+    faqHeading: "FREQUENTLY ASKED QUESTIONS",
+    closingHeading: "READY TO BUILD?",
+    closingSub: "Pick a generator above, or jump straight into our AI builder.",
+    closingCta: "START WITH AI BUILDER"
+  }
+};
+
+export const locale = 'en';
+export const t = (key) => strings[locale][key] || key;
