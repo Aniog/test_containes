@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name of the prospect"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Product category interested in"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed product description"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_price_range": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price range"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Expected timeline"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_monitoring", "product_development", "shipping_logistics"]
+      },
+      "description": "Services the prospect is interested in"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any additional notes or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "proposal_sent", "won", "lost"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["contact_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
