@@ -5,7 +5,16 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          navy: '#0f172a',
+          'navy-light': '#1e293b',
+          amber: '#d97706',
+          'amber-light': '#fffbeb',
+        },
+      },
+    },
   },
   plugins: [],
 }
