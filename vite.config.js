@@ -17,11 +17,23 @@ export default defineConfig({
     },
   },
   server: {
+    port: 12000,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
+    strictPort: false,
     hmr: {
       overlay: false
-    }
+    },
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
+    },
   }
 })
