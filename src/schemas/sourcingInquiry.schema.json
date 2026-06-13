@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number/WhatsApp/WeChat"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Home & Garden", "Apparel & Textiles", "Toys & Baby", "Industrial", "Other"],
+      "description": "Target product category"
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Sourcing requirements, quantities, links"
+    },
+    "user_id": {
+        "type": "string",
+        "format": "uuid",
+        "description": "Reference to the user record",
+        "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "product_category", "details"],
+  "additionalProperties": false,
+  "x-security": {
+      "create": { "allow": ["*"] }
+  }
+}
