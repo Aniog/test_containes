@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Phone number or messaging contact"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer country or market"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 140,
+      "description": "Main product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1200,
+      "description": "Product details, specifications, materials, standards, or reference requirements"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or annual volume"
+    },
+    "budget_range": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target budget, price range, or commercial expectation"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["as_soon_as_possible", "within_30_days", "one_to_three_months", "planning_stage"],
+      "description": "Expected sourcing or purchasing timeline"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination"]
+      },
+      "uniqueItems": true,
+      "description": "Sourcing support services requested by the buyer"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 1600,
+      "description": "Additional questions, project context, or special requirements"
+    },
+    "page_source": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page or section where the inquiry was submitted"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inquiry submission timestamp"
+    }
+  },
+  "required": ["name", "email", "product_description", "timeline", "services_needed", "created_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
