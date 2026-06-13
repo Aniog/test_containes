@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer submitting the inquiry"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the main contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "maxLength": 200,
+      "description": "Company website URL"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Main product category or item being sourced"
+    },
+    "quantity_estimate": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order size, MOQ target, or purchase volume"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Primary destination market for the products"
+    },
+    "services_needed": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Requested sourcing support services",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Search",
+          "Supplier Verification",
+          "Factory Audit",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping Coordination"
+        ]
+      }
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Inquiry details, product specifications, and current sourcing needs"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "product_category",
+    "services_needed",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
