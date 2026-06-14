@@ -1,50 +1,114 @@
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
+.font-heading {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ai-gradient {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+}
+
+.ai-gradient-text {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+  height: 36px;
+  padding: 0 15px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+.btn-big {
+  height: 44px;
+  font-size: 16px;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.btn-primary {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+.btn-primary:hover {
+  opacity: 0.9;
+  text-decoration: none;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
+.btn-ghost {
+  background: transparent;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+}
+
+.btn-ghost:hover {
+  background: #8159BB;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.card {
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.tag {
+  display: inline-block;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #8159BB;
+  color: #8159BB;
+}
+
+.section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.section-hero {
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: 30px;
+    padding-bottom: 30px;
   }
-
-  to {
-    transform: rotate(360deg);
+  
+  .section-hero {
+    padding-top: 40px;
+    padding-bottom: 50px;
   }
 }
