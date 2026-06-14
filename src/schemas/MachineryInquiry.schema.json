@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machinery Inquiry",
+  "type": "object",
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Contact phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country / region of the buyer"
+    },
+    "productInterest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "double-folder",
+        "sheet-metal-folder",
+        "sheet-metal-folding-machine",
+        "metal-folder",
+        "metal-folder-machine",
+        "metal-folding-machine",
+        "other"
+      ],
+      "description": "Which ARTITECT machine the inquiry is about"
+    },
+    "material": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Primary material the buyer intends to fold (e.g. mild steel, stainless, aluminium)"
+    },
+    "thickness": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Typical sheet thickness the buyer needs to fold"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "immediate",
+        "1-3-months",
+        "3-6-months",
+        "6-12-months",
+        "researching"
+      ],
+      "description": "Buyer's procurement timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Free-form description of the application and requirements"
+    }
+  },
+  "required": ["fullName", "email", "message"],
+  "additionalProperties": false
+}
