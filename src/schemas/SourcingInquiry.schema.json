@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company or brand name of the inquirer"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "What type of product they want to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or trial run size"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price range in USD"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Which services the buyer needs help with",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "factory_verification",
+          "sampling",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_logistics",
+          "private_label",
+          "other"
+        ]
+      }
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Free-form description of the project, requirements, and timeline"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Which page the inquiry was submitted from"
+    }
+  },
+  "required": ["company", "contact_name", "email", "product_category", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
