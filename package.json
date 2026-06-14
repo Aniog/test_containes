@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "node scripts/build.js && vite preview --port 12000 --host 0.0.0.0",
+    "build:html": "node scripts/build.js",
+    "watch:html": "node scripts/build.js --watch",
+    "build": "node scripts/build.js",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview --port 12000 --host 0.0.0.0"
   },
   "dependencies": {
     "@strikingly/sdk": "git+https://gitlab+deploy-token-13:GIT_LAB_TOKEN@cd.i.strikingly.com/strikingly/vibe-coder-sdk.git",

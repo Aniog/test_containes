@@ -2,12 +2,43 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%238159BB'/><text x='16' y='22' text-anchor='middle' font-family='sans-serif' font-size='18' font-weight='700' fill='white'>S</text></svg>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+    <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required." />
+    <link rel="canonical" href="https://www.strikingly.com/generators" />
+    <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly" />
+    <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds." />
+    <meta property="og:url" content="https://www.strikingly.com/generators" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style id="inline-tailwind"></style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strikingly",
+          "item": "https://www.strikingly.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AI Generators",
+          "item": "https://www.strikingly.com/generators"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!--ssr-outlet--></div>
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
@@ -384,6 +415,187 @@
         };
       })();
     </script>
-    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Mark <html> as having JS so .js-only hooks become visible.
+      // Search filter, "Show all" toggles, and FAQ are progressively enhanced
+      // by this script. With JS disabled, every card stays visible and the
+      // search input is inert — the page is still fully usable.
+      (function () {
+        var d = document.documentElement;
+        d.className = (d.className || "").replace(/\bno-js\b/g, "") + " has-js";
+
+        var COLLAPSED = 6;
+
+        function ready(fn) {
+          if (document.readyState !== "loading") fn();
+          else document.addEventListener("DOMContentLoaded", fn);
+        }
+
+        ready(function () {
+          initShowAll();
+          initSearch();
+        });
+
+        function initShowAll() {
+          var buttons = document.querySelectorAll("[data-show-all]");
+          buttons.forEach(function (btn) {
+            var gridId = btn.getAttribute("data-controls");
+            var grid = document.getElementById(gridId);
+            if (!grid) return;
+            var cards = grid.querySelectorAll("[data-card]");
+            var total = cards.length;
+            if (total <= COLLAPSED) {
+              btn.parentNode && btn.parentNode.removeChild(btn);
+              return;
+            }
+            // Show the toggle, then collapse extras.
+            btn.classList.remove("hidden");
+            btn.style.display = "inline-flex";
+            btn.setAttribute("aria-expanded", "false");
+            collapse(grid, cards, true);
+
+            btn.addEventListener("click", function () {
+              var expanded = btn.getAttribute("aria-expanded") === "true";
+              if (expanded) {
+                collapse(grid, cards, true);
+                btn.setAttribute("aria-expanded", "false");
+                btn.querySelector("[data-show-all-label]").textContent =
+                  "Show all " + total + " generators";
+              } else {
+                expand(cards);
+                btn.setAttribute("aria-expanded", "true");
+                btn.querySelector("[data-show-all-label]").textContent =
+                  "Show fewer";
+              }
+            });
+          });
+        }
+
+        function collapse(grid, cards, isInitial) {
+          cards.forEach(function (card, i) {
+            if (i < COLLAPSED) {
+              card.style.display = "";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        }
+        function expand(cards) {
+          cards.forEach(function (card) {
+            card.style.display = "";
+          });
+        }
+
+        function initSearch() {
+          var input = document.querySelector("[data-search-input]");
+          if (!input) return;
+          var countEl = document.querySelector("[data-search-count]");
+          var emptyEl = document.querySelector("[data-empty-state]");
+          var clearBtn = document.querySelector("[data-clear-search]");
+          var allCards = document.querySelectorAll("[data-card]");
+          var subsections = document.querySelectorAll("[data-subsection]");
+          var total = allCards.length;
+
+          function format(n) {
+            return n + " generator" + (n === 1 ? "" : "s") + " match";
+          }
+
+          function applySearch() {
+            var raw = input.value || "";
+            var q = raw.trim().toLowerCase();
+            var visibleCount = 0;
+            var visibleSubsections = 0;
+
+            subsections.forEach(function (sub) {
+              var cardsInSub = sub.querySelectorAll("[data-card]");
+              var subVisible = 0;
+              cardsInSub.forEach(function (card) {
+                var hay = card.getAttribute("data-search") || "";
+                var match = !q || hay.indexOf(q) !== -1;
+                // For a clear visual, hide non-matching cards in sub mode,
+                // and force-show hidden-by-collapse cards during a search.
+                if (!q) {
+                  // Reset to collapsed state if we had a "Show all" toggle.
+                  card.style.display = "";
+                } else if (match) {
+                  card.style.display = "";
+                  subVisible++;
+                } else {
+                  card.style.display = "none";
+                }
+              });
+              if (q) visibleCount += subVisible;
+              if (!q || subVisible > 0) {
+                sub.style.display = "";
+                if (q) visibleSubsections++;
+              } else {
+                sub.style.display = "none";
+              }
+            });
+
+            // While searching, force-expand every grid (ignore the 6-card
+            // collapse). After clearing, re-collapse using the buttons.
+            if (q) {
+              // Re-expand all cards (filtering already happened above).
+              document
+                .querySelectorAll("[data-show-all]")
+                .forEach(function (btn) {
+                  btn.style.display = "none";
+                });
+            } else {
+              document
+                .querySelectorAll("[data-show-all]")
+                .forEach(function (btn) {
+                  btn.style.display = "inline-flex";
+                });
+              // Re-collapse to first 6 per subsection.
+              subsections.forEach(function (sub) {
+                var cardsInSub = sub.querySelectorAll("[data-card]");
+                cardsInSub.forEach(function (card, i) {
+                  card.style.display = i < COLLAPSED ? "" : "none";
+                });
+                var btn = sub.querySelector("[data-show-all]");
+                if (btn) {
+                  var gridId = btn.getAttribute("data-controls");
+                  var grid = document.getElementById(gridId);
+                  if (grid) {
+                    var totalInSub = grid.querySelectorAll("[data-card]").length;
+                    if (totalInSub <= COLLAPSED) {
+                      btn.style.display = "none";
+                    } else {
+                      btn.setAttribute("aria-expanded", "false");
+                      btn.querySelector("[data-show-all-label]").textContent =
+                        "Show all " + totalInSub + " generators";
+                    }
+                  }
+                }
+              });
+            }
+
+            if (!q) {
+              if (countEl) countEl.textContent = format(total);
+            } else {
+              if (countEl) countEl.textContent = format(visibleCount);
+            }
+            if (emptyEl) {
+              if (q && visibleCount === 0) {
+                emptyEl.removeAttribute("hidden");
+              } else {
+                emptyEl.setAttribute("hidden", "");
+              }
+            }
+          }
+
+          input.addEventListener("input", applySearch);
+          if (clearBtn) {
+            clearBtn.addEventListener("click", function () {
+              input.value = "";
+              applySearch();
+              input.focus();
+            });
+          }
+        }
+      })();
+    </script>
   </body>
 </html>

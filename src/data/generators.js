@@ -1,0 +1,140 @@
+// Sample generator data. The 9 "featured" entries are pinned by slug so the
+// Featured grid renders the exact cards the brief specifies, in order.
+// The 6 category subsections each contain 8-12 entries; total ~62 cards.
+//
+// Slugs are stable and used as the URL: /generators/{slug}
+
+export const categories = [
+  {
+    slug: "websites",
+    name: "Websites",
+    shortName: "Website",
+    description: "AI-built business and personal sites for any goal.",
+    illustration: "website",
+  },
+  {
+    slug: "landing-pages",
+    name: "Landing Pages",
+    shortName: "Landing Page",
+    description: "Single-page sites built to convert visitors fast.",
+    illustration: "landing",
+  },
+  {
+    slug: "portfolios",
+    name: "Portfolios",
+    shortName: "Portfolio",
+    description: "Showcase your work with a clean, focused site.",
+    illustration: "portfolio",
+  },
+  {
+    slug: "blogs",
+    name: "Blogs",
+    shortName: "Blog",
+    description: "Publish-ready blogs with built-in SEO basics.",
+    illustration: "blog",
+  },
+  {
+    slug: "stores",
+    name: "Online Stores",
+    shortName: "Store",
+    description: "Sell products online with payments built in.",
+    illustration: "store",
+  },
+  {
+    slug: "link-in-bio",
+    name: "Link-in-Bio",
+    shortName: "Link-in-Bio",
+    description: "One link, all your places. Made for creators.",
+    illustration: "link",
+  },
+]
+
+export const generators = {
+  websites: [
+    { name: "AI Website Generator", desc: "Describe your business, get a full site" },
+    { name: "Free Website Builder for Photographers", desc: "A clean gallery site in minutes" },
+    { name: "One-Page Wedding Website Builder", desc: "Share the day with one scroll" },
+    { name: "Restaurant Website Builder", desc: "Menu, hours, reservations, done" },
+    { name: "Wedding Website Generator", desc: "Share your day with guests" },
+    { name: "One-Page Website Builder", desc: "Simple sites, single scroll" },
+    { name: "Yoga Studio Website Generator", desc: "Schedule, pricing, and a calm look" },
+    { name: "Real Estate Website Builder", desc: "Listings, leads, and a clean brand" },
+    { name: "Salon Website Generator", desc: "Services, prices, and online booking" },
+    { name: "Coaching Website Builder", desc: "Offers, testimonials, and a booking link" },
+    { name: "Personal Website Builder", desc: "A simple home on the web for you" },
+    { name: "No-Code Website Builder", desc: "Drag, drop, publish — no engineers" },
+  ],
+  "landing-pages": [
+    { name: "AI Landing Page Maker", desc: "One-page sites built to convert" },
+    { name: "Free Landing Page Builder", desc: "A focused page, ready to ship" },
+    { name: "Coming Soon Landing Page Generator", desc: "Build buzz before you launch" },
+    { name: "Product Launch Page Builder", desc: "Pre-orders and sign-ups in one page" },
+    { name: "Lead Generation Landing Page", desc: "Capture emails with a clean form" },
+    { name: "Event Landing Page Builder", desc: "Date, venue, RSVP, done" },
+    { name: "SaaS Landing Page Generator", desc: "Pricing, features, and a free trial CTA" },
+    { name: "Book a Demo Landing Page", desc: "Calendly-ready, with social proof slots" },
+    { name: "Webinar Registration Page Builder", desc: "Sign-ups, agenda, and reminders" },
+    { name: "Course Sales Page Generator", desc: "Syllabus, outcomes, and a buy button" },
+  ],
+  portfolios: [
+    { name: "Free Portfolio Generator", desc: "For creatives, in minutes, no fee" },
+    { name: "Portfolio Generator for Designers", desc: "Project case studies that read well" },
+    { name: "AI Portfolio Builder", desc: "Tell it your craft, get a portfolio" },
+    { name: "Photographer Portfolio Generator", desc: "Big images, fast loading" },
+    { name: "Graphic Designer Portfolio Builder", desc: "Process pages, not just finals" },
+    { name: "Writer Portfolio Generator", desc: "Long-form samples, easy to read" },
+    { name: "Architecture Portfolio Builder", desc: "Plans, renders, and project notes" },
+    { name: "Makeup Artist Portfolio Generator", desc: "Before-afters and a service menu" },
+    { name: "Freelancer Portfolio Builder", desc: "A site that helps you land the next gig" },
+    { name: "Model Portfolio Generator", desc: "Comp cards, digitals, and bookings" },
+  ],
+  blogs: [
+    { name: "Blog Generator for Beginners", desc: "Publish-ready in minutes" },
+    { name: "AI Blog Builder", desc: "Posts, categories, and an RSS feed" },
+    { name: "Personal Blog Generator", desc: "A clean reading experience for your words" },
+    { name: "Travel Blog Builder", desc: "Map, photos, and day-by-day posts" },
+    { name: "Food Blog Generator", desc: "Recipes, photos, and printable cards" },
+    { name: "Free Blog Maker", desc: "Start writing, skip the setup" },
+    { name: "Tech Blog Builder", desc: "Code-friendly, with syntax highlighting" },
+    { name: "Fashion Blog Generator", desc: "Looks, lookbooks, and a shop link" },
+    { name: "Lifestyle Blog Builder", desc: "A warm, image-first home for posts" },
+    { name: "News-Style Blog Builder", desc: "Headlines, dates, and an archive" },
+  ],
+  stores: [
+    { name: "Online Store Builder", desc: "Start selling without writing code" },
+    { name: "Online Store Builder for Restaurants", desc: "Order online, pickup, or delivery" },
+    { name: "AI Store Generator", desc: "Products, prices, and a checkout in minutes" },
+    { name: "Free Online Store Builder", desc: "List products and accept payments free" },
+    { name: "Boutique Store Builder", desc: "A small-shop look with a real cart" },
+    { name: "Handmade Store Generator", desc: "Made-to-order forms and shop sections" },
+    { name: "Print-on-Demand Store Builder", desc: "Products synced from your catalog" },
+    { name: "Digital Product Store Builder", desc: "Sell downloads, courses, and licenses" },
+    { name: "Jewelry Store Generator", desc: "Detail-friendly product pages" },
+    { name: "Coffee Shop Store Builder", desc: "Beans, merch, and subscriptions" },
+  ],
+  "link-in-bio": [
+    { name: "Link-in-Bio Generator", desc: "One link for all your channels" },
+    { name: "Instagram Link-in-Bio Builder", desc: "A clean grid that fits IG bios" },
+    { name: "TikTok Link-in-Bio Maker", desc: "Links that match a short-form feed" },
+    { name: "Creator Link Page Builder", desc: "Your content, your links, your brand" },
+    { name: "Musician Link-in-Bio Generator", desc: "Streaming links, shows, and merch" },
+    { name: "Influencer Link Page Builder", desc: "Brand-friendly, easy to update" },
+    { name: "Free Link-in-Bio Tool", desc: "No fee, no signup walls" },
+    { name: "YouTube Link-in-Bio Builder", desc: "Latest video front and center" },
+    { name: "Podcast Link-in-Bio Generator", desc: "Every podcast app, one tap away" },
+    { name: "Coach Link-in-Bio Builder", desc: "Bookings, freebie, and a contact form" },
+  ],
+}
+
+// Pinned featured entries — first 9 in this exact order, by slug
+export const featuredSlugs = [
+  "ai-website-generator",
+  "free-portfolio-generator",
+  "ai-landing-page-maker",
+  "online-store-builder",
+  "link-in-bio-generator",
+  "one-page-website-builder",
+  "wedding-website-generator",
+  "restaurant-website-builder",
+  "blog-generator-for-beginners",
+]
