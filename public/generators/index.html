@@ -1,0 +1,1515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+  <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required." />
+  <link rel="canonical" href="https://www.strikingly.com/generators" />
+  <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly" />
+  <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds." />
+  <meta property="og:url" content="https://www.strikingly.com/generators" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --purple: #8159BB;
+      --ai-blue: #7671FF;
+      --ai-pink: #CB0C9F;
+      --body: #636972;
+      --heading: #4B5056;
+      --hero-heading: #2E2E2F;
+      --card-border: #C6C9CD;
+      --divider: #E2E4E7;
+      --light-bg: #F4F6F8;
+      --white: #FFFFFF;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--body);
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* Top bar */
+    .top-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--divider);
+      padding: 14px 0;
+    }
+    .top-bar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.5px;
+      color: var(--hero-heading);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-ai {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--ai-blue), var(--ai-pink));
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      padding: 12px 0;
+      font-size: 13px;
+      color: var(--body);
+    }
+    .breadcrumb ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .breadcrumb a {
+      color: var(--body);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .breadcrumb .current {
+      color: var(--body);
+    }
+    .breadcrumb .sep {
+      color: var(--purple);
+      margin: 0 2px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 60px 0 70px;
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(1200px 600px at 30% 20%, rgba(129,89,187,0.06), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-copy h1 {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1.15;
+      margin: 0 0 16px;
+      text-transform: uppercase;
+      color: var(--hero-heading);
+      letter-spacing: 0.5px;
+    }
+    .hero-copy h1 .gradient {
+      background: linear-gradient(90deg, var(--ai-blue), var(--ai-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 100% 100%;
+    }
+    .hero-copy .sub {
+      font-size: 15px;
+      color: var(--body);
+      max-width: 520px;
+      margin-bottom: 24px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      height: 36px;
+      padding: 0 15px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+    .btn:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, var(--ai-blue), var(--ai-pink));
+      color: var(--white);
+      border: none;
+      height: 44px;
+      padding: 0 20px;
+      font-size: 14px;
+    }
+    .btn-primary:hover {
+      box-shadow: 0 2px 8px rgba(118, 113, 255, 0.35);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--purple);
+      border: 1px solid var(--purple);
+      height: 44px;
+      padding: 0 18px;
+    }
+    .btn-ghost:hover {
+      background: rgba(129, 89, 187, 0.06);
+    }
+    .btn-small {
+      height: 36px;
+      padding: 0 14px;
+      font-size: 13px;
+    }
+
+    .hero-illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-illustration svg {
+      width: 100%;
+      max-width: 420px;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+      .hero-copy {
+        order: 1;
+      }
+      .hero-illustration {
+        order: 2;
+      }
+      .hero-copy h1 {
+        font-size: 28px;
+      }
+      .hero-ctas {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero-ctas .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    /* Section headings */
+    .section {
+      padding: 40px 0;
+    }
+    .section-head {
+      margin-bottom: 20px;
+    }
+    .section-head h2 {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      color: var(--heading);
+      margin: 0 0 6px;
+      letter-spacing: 0.5px;
+    }
+    .section-head .sub {
+      color: var(--body);
+      font-size: 14px;
+    }
+
+    /* Featured grid */
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .featured-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .card:hover {
+      border-color: var(--purple);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .card:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+    .card .name {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--hero-heading);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .card .desc {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.45;
+      margin-bottom: 10px;
+    }
+    .card .tag {
+      display: inline-block;
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      background: transparent;
+    }
+
+    /* Browse by Category */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 900px) {
+      .category-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .category-grid { grid-template-columns: 1fr; }
+    }
+
+    .category-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      padding: 20px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .category-card:hover {
+      border-color: var(--purple);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .category-card:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+    .category-card .icon {
+      width: 36px;
+      height: 36px;
+      margin-bottom: 12px;
+      color: var(--purple);
+    }
+    .category-card .name {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--hero-heading);
+      margin-bottom: 4px;
+    }
+    .category-card .desc {
+      font-size: 13px;
+      color: var(--body);
+      margin-bottom: 8px;
+    }
+    .category-card .arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: var(--purple);
+    }
+
+    /* All Generators */
+    #all-generators {
+      scroll-margin-top: 20px;
+    }
+    .search-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+    .search-wrap input {
+      width: 100%;
+      height: 40px;
+      padding: 0 14px 0 40px;
+      border: 1px solid var(--card-border);
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+      background: var(--white);
+    }
+    .search-wrap input:focus {
+      outline: none;
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(129,89,187,0.12);
+    }
+    .search-wrap .icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--body);
+      pointer-events: none;
+    }
+    .result-count {
+      font-size: 13px;
+      color: var(--body);
+      white-space: nowrap;
+    }
+
+    .subsection {
+      margin-bottom: 28px;
+    }
+    .subsection:last-child {
+      margin-bottom: 0;
+    }
+    .subsection h3 {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--heading);
+      margin: 0 0 4px;
+    }
+    .subsection .section-desc {
+      font-size: 13px;
+      color: var(--body);
+      margin-bottom: 12px;
+    }
+
+    .gen-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px) {
+      .gen-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .gen-grid { grid-template-columns: 1fr; }
+    }
+
+    .gen-card {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      padding: 16px 16px 14px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .gen-card:hover {
+      border-color: var(--purple);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .gen-card:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+    .gen-card .thumb {
+      width: 100%;
+      height: 92px;
+      border-radius: 2px;
+      background: var(--light-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .gen-card .thumb svg {
+      width: 48px;
+      height: 48px;
+      color: var(--purple);
+      opacity: 0.9;
+    }
+    .gen-card .name {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--hero-heading);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .gen-card .desc {
+      font-size: 13px;
+      color: var(--body);
+      line-height: 1.4;
+    }
+
+    .show-all-wrap {
+      margin-top: 10px;
+    }
+    .show-all-btn {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--purple);
+      background: transparent;
+      border: 1px solid var(--purple);
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+    }
+    .show-all-btn:hover {
+      background: rgba(129,89,187,0.06);
+    }
+
+    .empty-state {
+      border: 1px dashed var(--card-border);
+      border-radius: 4px;
+      padding: 20px;
+      background: var(--light-bg);
+    }
+    .empty-state p {
+      margin: 0 0 8px;
+    }
+    .empty-state a {
+      color: var(--purple);
+    }
+
+    /* How it works */
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+    .step {
+      display: flex;
+      gap: 14px;
+    }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: var(--purple);
+      color: var(--white);
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-content .title {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--hero-heading);
+      margin-bottom: 2px;
+    }
+    .step-content .body {
+      font-size: 13px;
+      color: var(--body);
+    }
+
+    /* Why Strikingly */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    @media (max-width: 768px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+    .why-item {
+      display: flex;
+      gap: 12px;
+    }
+    .why-item .icon {
+      width: 22px;
+      height: 22px;
+      color: var(--purple);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .why-item .title {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--hero-heading);
+      margin-bottom: 2px;
+    }
+    .why-item .body {
+      font-size: 13px;
+      color: var(--body);
+    }
+
+    /* FAQ */
+    .faq {
+      border-top: 1px solid var(--divider);
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--divider);
+    }
+    .faq-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 16px 0;
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--hero-heading);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .faq-btn:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 2px;
+    }
+    .faq-btn .chev {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.2s ease;
+      color: var(--purple);
+    }
+    .faq-btn[aria-expanded="true"] .chev {
+      transform: rotate(180deg);
+    }
+    .faq-panel {
+      padding: 0 0 16px;
+      font-size: 14px;
+      color: var(--body);
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+    .faq-panel.open {
+      max-height: 200px;
+    }
+    .faq-panel p {
+      margin: 0 0 8px;
+    }
+    .faq-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Closing CTA */
+    .closing {
+      background: var(--white);
+      padding: 40px 0;
+      text-align: center;
+      border-top: 1px solid var(--divider);
+    }
+    .closing h2 {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--hero-heading);
+      margin: 0 0 6px;
+    }
+    .closing .sub {
+      color: var(--body);
+      margin-bottom: 16px;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--light-bg);
+      padding: 30px 0 20px;
+      font-size: 12px;
+      color: var(--body);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.2fr 2fr;
+      gap: 30px;
+    }
+    @media (max-width: 700px) {
+      .footer-inner { grid-template-columns: 1fr; }
+    }
+    .footer-logo {
+      font-family: "Josefin Sans", "Open Sans", sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--hero-heading);
+      margin-bottom: 8px;
+    }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 700px) {
+      .footer-cols { grid-template-columns: repeat(2, 1fr); }
+    }
+    .footer-col a {
+      display: block;
+      color: var(--body);
+      text-decoration: none;
+      margin-bottom: 6px;
+    }
+    .footer-col a:hover {
+      text-decoration: underline;
+    }
+    .footer-bottom {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--divider);
+      font-size: 12px;
+    }
+
+    /* Utility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strikingly",
+        "item": "https://www.strikingly.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI Generators",
+        "item": "https://www.strikingly.com/generators"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!-- Section 0: Top bar -->
+  <header class="top-bar">
+    <div class="container top-bar-inner">
+      <a href="/" class="logo" aria-label="Strikingly AI">
+        Strikingly <span class="logo-ai">AI</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Section 1: Breadcrumb -->
+  <nav class="breadcrumb container" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="/">Strikingly</a></li>
+      <li class="sep">›</li>
+      <li class="current">AI Generators</li>
+    </ol>
+  </nav>
+
+  <!-- Section 2: Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>
+          BUILD ANY KIND OF SITE<br>
+          <span class="gradient">WITH AI, IN AN INSTANT</span>
+        </h1>
+        <p class="sub">Browse the right generator for what you're building, or jump straight into our AI site builder.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/s/ai_site_builder">START BUILDING - IT'S FREE</a>
+          <a class="btn btn-ghost" href="#all-generators">BROWSE GENERATORS</a>
+        </div>
+      </div>
+      <div class="hero-illustration" aria-hidden="true">
+        <!-- Soft purple line-art website mockup -->
+        <svg width="420" height="280" viewBox="0 0 420 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="380" height="240" rx="8" stroke="#8159BB" stroke-opacity="0.35" stroke-width="2"/>
+          <rect x="36" y="40" width="348" height="28" rx="4" stroke="#8159BB" stroke-opacity="0.25" stroke-width="1.5"/>
+          <circle cx="52" cy="54" r="4" fill="#8159BB" fill-opacity="0.35"/>
+          <circle cx="68" cy="54" r="4" fill="#8159BB" fill-opacity="0.25"/>
+          <circle cx="84" cy="54" r="4" fill="#8159BB" fill-opacity="0.25"/>
+          <rect x="36" y="82" width="220" height="12" rx="2" stroke="#8159BB" stroke-opacity="0.25" stroke-width="1.5"/>
+          <rect x="36" y="102" width="180" height="10" rx="2" stroke="#8159BB" stroke-opacity="0.2" stroke-width="1.5"/>
+          <rect x="36" y="120" width="260" height="10" rx="2" stroke="#8159BB" stroke-opacity="0.2" stroke-width="1.5"/>
+          <rect x="36" y="150" width="120" height="70" rx="4" stroke="#8159BB" stroke-opacity="0.25" stroke-width="1.5"/>
+          <rect x="170" y="150" width="120" height="70" rx="4" stroke="#8159BB" stroke-opacity="0.25" stroke-width="1.5"/>
+          <rect x="304" y="150" width="80" height="70" rx="4" stroke="#8159BB" stroke-opacity="0.25" stroke-width="1.5"/>
+          <rect x="36" y="232" width="348" height="8" rx="2" stroke="#8159BB" stroke-opacity="0.15" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Featured Generators -->
+  <section class="section container">
+    <div class="section-head">
+      <h2>FEATURED GENERATORS</h2>
+      <p class="sub">A few common starting points.</p>
+    </div>
+    <div class="featured-grid" id="featured-grid">
+      <!-- Populated by JS from data, but also present in static HTML for view-source -->
+    </div>
+  </section>
+
+  <!-- Section 4: Browse by Category -->
+  <section class="section container">
+    <div class="section-head">
+      <h2>BROWSE BY CATEGORY</h2>
+    </div>
+    <div class="category-grid" id="category-grid">
+      <!-- Populated statically -->
+    </div>
+  </section>
+
+  <!-- Section 5: All Generators -->
+  <section id="all-generators" class="section container">
+    <div class="section-head">
+      <h2>ALL GENERATORS</h2>
+      <p class="sub">Sixty-plus generators, organized by what you're building.</p>
+    </div>
+
+    <div class="search-row">
+      <div class="search-wrap">
+        <label for="gen-search" class="sr-only">Search generators</label>
+        <span class="icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </span>
+        <input id="gen-search" type="search" placeholder="Search generators..." aria-label="Search generators" autocomplete="off" />
+      </div>
+      <div class="result-count" id="result-count" aria-live="polite"></div>
+    </div>
+
+    <div id="directory-root">
+      <!-- Subsections populated statically for view-source -->
+    </div>
+  </section>
+
+  <!-- Section 6: How It Works -->
+  <section class="section container">
+    <div class="section-head">
+      <h2>HOW IT WORKS</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num" aria-hidden="true">1</div>
+        <div class="step-content">
+          <div class="title">PICK A GENERATOR</div>
+          <div class="body">Browse by category or search to find one that fits your goal.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">2</div>
+        <div class="step-content">
+          <div class="title">DESCRIBE YOUR SITE</div>
+          <div class="body">Tell our AI builder about your business in a sentence or two.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num" aria-hidden="true">3</div>
+        <div class="step-content">
+          <div class="title">GENERATE AND PUBLISH</div>
+          <div class="body">Get a fully built site in seconds. Customize anything, then go live.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Why Strikingly -->
+  <section class="section container">
+    <div class="section-head">
+      <h2>WHY STRIKINGLY</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        <div>
+          <div class="title">LIVE IN SECONDS</div>
+          <div class="body">Describe your site, we build it. No setup, no learning curve.</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20M8 20v-4M16 20v-4"/></svg>
+        <div>
+          <div class="title">MOBILE BY DEFAULT</div>
+          <div class="body">Every generator produces responsive sites that work on any device.</div>
+        </div>
+      </div>
+      <div class="why-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+        <div>
+          <div class="title">FREE TO START</div>
+          <div class="body">Generate, customize, and publish without a credit card.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: FAQ -->
+  <section class="section container">
+    <div class="section-head">
+      <h2>FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div class="faq" id="faq">
+      <!-- Populated by JS + static HTML for accessibility -->
+    </div>
+  </section>
+
+  <!-- Section 9: Closing CTA -->
+  <section class="closing">
+    <div class="container">
+      <h2>READY TO BUILD?</h2>
+      <p class="sub">Pick a generator above, or jump straight into our AI builder.</p>
+      <a class="btn btn-primary" href="/s/ai_site_builder">START WITH AI BUILDER</a>
+    </div>
+  </section>
+
+  <!-- Section 10: Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo">Strikingly</div>
+        <div style="font-size:12px; color:#636972;">Make a website in minutes.</div>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <a href="/about">About</a>
+          <a href="/pricing">Pricing</a>
+          <a href="/templates">Templates</a>
+        </div>
+        <div class="footer-col">
+          <a href="/support">Support</a>
+          <a href="/blog">Blog</a>
+          <a href="/terms">Terms</a>
+        </div>
+        <div class="footer-col">
+          <a href="/privacy">Privacy</a>
+          <a href="/about">Careers</a>
+          <a href="/support">Contact</a>
+        </div>
+        <div class="footer-col">
+          <a href="/templates">Examples</a>
+          <a href="/blog">Resources</a>
+          <a href="/pricing">Enterprise</a>
+        </div>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      © Strikingly, Inc. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // i18n readiness: all user-visible strings in strings.en
+    window.strings = window.strings || {};
+    window.strings.en = {
+      topBarLogo: "Strikingly AI",
+      breadcrumbHome: "Strikingly",
+      breadcrumbCurrent: "AI Generators",
+      heroH1Line1: "BUILD ANY KIND OF SITE",
+      heroH1Line2: "WITH AI, IN AN INSTANT",
+      heroSub: "Browse the right generator for what you're building, or jump straight into our AI site builder.",
+      ctaStartFree: "START BUILDING - IT'S FREE",
+      ctaBrowse: "BROWSE GENERATORS",
+      featuredTitle: "FEATURED GENERATORS",
+      featuredSub: "A few common starting points.",
+      browseTitle: "BROWSE BY CATEGORY",
+      allTitle: "ALL GENERATORS",
+      allSub: "Sixty-plus generators, organized by what you're building.",
+      searchPlaceholder: "Search generators...",
+      searchLabel: "Search generators",
+      howTitle: "HOW IT WORKS",
+      whyTitle: "WHY STRIKINGLY",
+      faqTitle: "FREQUENTLY ASKED QUESTIONS",
+      closingTitle: "READY TO BUILD?",
+      closingSub: "Pick a generator above, or jump straight into our AI builder.",
+      closingCta: "START WITH AI BUILDER",
+      showAll: "Show all {count} generators",
+      showLess: "Show less",
+      resultCount: "{count} generators match",
+      noResults: "No generators match your search.",
+      clearSearch: "Clear search",
+      tryBuilder: "Can't find it? Start with our AI builder.",
+      categories: {
+        websites: { name: "Websites", desc: "AI-built business and personal sites for any goal." },
+        "landing-pages": { name: "Landing Pages", desc: "Single-page sites built to convert visitors fast." },
+        portfolios: { name: "Portfolios", desc: "Showcase your work with a clean, focused site." },
+        blogs: { name: "Blogs", desc: "Publish-ready blogs with built-in SEO basics." },
+        stores: { name: "Online Stores", desc: "Sell products online with payments built in." },
+        "link-in-bio": { name: "Link-in-Bio", desc: "One link, all your places. Made for creators." }
+      }
+    };
+
+    // Sample data (exact per brief where provided)
+    const featuredData = [
+      { name: "AI Website Generator", desc: "Describe your business, get a full site", category: "Website", slug: "ai-website-generator" },
+      { name: "Free Portfolio Generator", desc: "For creatives, in minutes, no fee", category: "Portfolio", slug: "free-portfolio-generator" },
+      { name: "AI Landing Page Maker", desc: "One-page sites built to convert", category: "Landing Page", slug: "ai-landing-page-maker" },
+      { name: "Online Store Builder", desc: "Start selling without writing code", category: "Store", slug: "online-store-builder" },
+      { name: "Link-in-Bio Generator", desc: "One link for all your channels", category: "Link-in-Bio", slug: "link-in-bio-generator" },
+      { name: "One-Page Website Builder", desc: "Simple sites, single scroll", category: "Website", slug: "one-page-website-builder" },
+      { name: "Wedding Website Generator", desc: "Share your day with guests", category: "Website", slug: "wedding-website-generator" },
+      { name: "Restaurant Website Builder", desc: "Menu, hours, reservations, done", category: "Website", slug: "restaurant-website-builder" },
+      { name: "Blog Generator for Beginners", desc: "Publish-ready in minutes", category: "Blog", slug: "blog-generator-for-beginners" }
+    ];
+
+    const categoryCards = [
+      { id: "websites", name: "WEBSITES", desc: "AI-built business and personal sites for any goal.", href: "#websites" },
+      { id: "landing-pages", name: "LANDING PAGES", desc: "Single-page sites built to convert visitors fast.", href: "#landing-pages" },
+      { id: "portfolios", name: "PORTFOLIOS", desc: "Showcase your work with a clean, focused site.", href: "#portfolios" },
+      { id: "blogs", name: "BLOGS", desc: "Publish-ready blogs with built-in SEO basics.", href: "#blogs" },
+      { id: "stores", name: "ONLINE STORES", desc: "Sell products online with payments built in.", href: "#stores" },
+      { id: "link-in-bio", name: "LINK-IN-BIO", desc: "One link, all your places. Made for creators.", href: "#link-in-bio" }
+    ];
+
+    // Directory data: 8-12 per category, plausible names mixing demographics and modifiers
+    const directoryData = {
+      "websites": [
+        { name: "AI Website Generator", desc: "Describe your business, get a full site" },
+        { name: "One-Page Website Builder", desc: "Simple sites, single scroll" },
+        { name: "Wedding Website Generator", desc: "Share your day with guests" },
+        { name: "Restaurant Website Builder", desc: "Menu, hours, reservations, done" },
+        { name: "Free Website Builder for Photographers", desc: "Beautiful sites for visual portfolios" },
+        { name: "AI Website for Yoga Instructors", desc: "Class schedules and booking ready" },
+        { name: "Beautiful Website Generator for Coaches", desc: "Professional presence in minutes" },
+        { name: "No-Code Website Builder for Nonprofits", desc: "Tell your story and collect donations" },
+        { name: "Personal Website Generator", desc: "A clean home for your story" },
+        { name: "Small Business Website Builder", desc: "Local businesses, big impact" },
+        { name: "AI Website for Consultants", desc: "Lead capture and credibility" },
+        { name: "Modern Website Maker for Startups", desc: "Launch fast with a polished site" }
+      ],
+      "landing-pages": [
+        { name: "AI Landing Page Maker", desc: "One-page sites built to convert" },
+        { name: "High-Converting Landing Page Generator", desc: "Optimized for signups and sales" },
+        { name: "Product Launch Landing Page Builder", desc: "Announce and convert fast" },
+        { name: "Event Landing Page Generator", desc: "Registrations and details in one place" },
+        { name: "Free Landing Page Maker for Startups", desc: "Ship your MVP landing today" },
+        { name: "AI Landing Page for SaaS", desc: "Feature highlights and trials" },
+        { name: "Webinar Registration Page Builder", desc: "Fill seats with a focused page" },
+        { name: "Lead Capture Landing Page Generator", desc: "Grow your list with intent" },
+        { name: "Sales Landing Page Builder", desc: "Close more with clear value" },
+        { name: "AI Landing Page for Mobile Apps", desc: "App store style, conversion focused" }
+      ],
+      "portfolios": [
+        { name: "Free Portfolio Generator", desc: "For creatives, in minutes, no fee" },
+        { name: "Portfolio Generator for Designers", desc: "Case studies that stand out" },
+        { name: "Portfolio Generator for Photographers", desc: "Galleries that feel like you" },
+        { name: "AI Portfolio Builder for Artists", desc: "Show your work, tell your story" },
+        { name: "Minimal Portfolio Generator for Developers", desc: "Projects, clean and fast" },
+        { name: "Creative Portfolio Website Builder", desc: "Bold layouts for bold work" },
+        { name: "Professional Portfolio Maker for Freelancers", desc: "Win clients with clarity" },
+        { name: "Architecture Portfolio Generator", desc: "Projects and process, beautifully" },
+        { name: "Fashion Portfolio Builder", desc: "Collections and campaigns" },
+        { name: "AI Portfolio for Illustrators", desc: "Series, sketches, and process" },
+        { name: "Student Portfolio Generator", desc: "Academic and personal work" }
+      ],
+      "blogs": [
+        { name: "Blog Generator for Beginners", desc: "Publish-ready in minutes" },
+        { name: "AI Blog Builder for Writers", desc: "A home for your words" },
+        { name: "Personal Blog Generator", desc: "Essays, notes, and life" },
+        { name: "Food Blog Website Builder", desc: "Recipes, stories, and photos" },
+        { name: "Travel Blog Generator", desc: "Places, itineraries, and tips" },
+        { name: "AI Blog for Coaches", desc: "Insights that build trust" },
+        { name: "Minimal Blog Maker", desc: "Simple, fast, and readable" },
+        { name: "SEO Blog Generator", desc: "Structure that helps you rank" },
+        { name: "Newsletter Blog Builder", desc: "Posts that feed your list" },
+        { name: "AI Blog for Educators", desc: "Lessons, resources, and updates" },
+        { name: "Lifestyle Blog Generator", desc: "Stories from everyday life" },
+        { name: "Tech Blog Builder", desc: "Tutorials and deep dives" }
+      ],
+      "stores": [
+        { name: "Online Store Builder", desc: "Start selling without writing code" },
+        { name: "Online Store Builder for Restaurants", desc: "Menus, orders, and pickup" },
+        { name: "AI Store Generator for Fashion Brands", desc: "Collections that convert" },
+        { name: "Free Store Builder for Makers", desc: "Sell what you make, simply" },
+        { name: "Handmade Goods Store Generator", desc: "Crafted products, clear story" },
+        { name: "AI Store for Jewelry Designers", desc: "Pieces, stories, and checkout" },
+        { name: "No-Code Store Builder for Artists", desc: "Prints, originals, and merch" },
+        { name: "Subscription Box Store Generator", desc: "Recurring revenue made easy" },
+        { name: "AI Store for Beauty Brands", desc: "Products, routines, and reviews" },
+        { name: "Local Shop Online Store Builder", desc: "Inventory and local delivery" },
+        { name: "Digital Products Store Generator", desc: "Ebooks, templates, and courses" }
+      ],
+      "link-in-bio": [
+        { name: "Link-in-Bio Generator", desc: "One link for all your channels" },
+        { name: "Link-in-Bio for Creators", desc: "Everything you make, one tap away" },
+        { name: "AI Link-in-Bio for Influencers", desc: "Campaigns, collabs, and shop" },
+        { name: "Free Link-in-Bio Maker for Musicians", desc: "Music, merch, and shows" },
+        { name: "Link-in-Bio for Podcasters", desc: "Episodes, guests, and sponsors" },
+        { name: "AI Link-in-Bio for Coaches", desc: "Programs, booking, and content" },
+        { name: "Minimal Link-in-Bio Generator", desc: "Clean, fast, and on-brand" },
+        { name: "Link-in-Bio for Photographers", desc: "Portfolio, rates, and contact" },
+        { name: "Link-in-Bio for Writers", desc: "Books, essays, and newsletter" },
+        { name: "AI Link-in-Bio for Agencies", desc: "Clients, case studies, and contact" },
+        { name: "Link-in-Bio for YouTubers", desc: "Videos, community, and shop" }
+      ]
+    };
+
+    // Category icons for Browse by Category (simple line art)
+    const categoryIcons = {
+      "websites": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 8h20M8 21v-5"/></svg>',
+      "landing-pages": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg>',
+      "portfolios": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>',
+      "blogs": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+      "stores": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"/><path d="M9 22V12h6v10"/></svg>',
+      "link-in-bio": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 01-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>'
+    };
+
+    // Shared thumbnail per subsection (simple consistent icon per category)
+    const subsectionThumbs = {
+      "websites": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 8h20M8 21v-5"/></svg>',
+      "landing-pages": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v18H3z"/><path d="M7 7h10M7 11h10M7 15h6"/></svg>',
+      "portfolios": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>',
+      "blogs": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>',
+      "stores": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a1 1 0 01-1 1H4a1 1 0 01-1-1V9z"/><path d="M9 22V12h6v10"/></svg>',
+      "link-in-bio": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 01-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>'
+    };
+
+    // FAQ data (exact questions, 1-2 short paragraphs each)
+    const faqData = [
+      {
+        q: "What is an AI site generator?",
+        a: "An AI site generator uses a short description of your business or goal to create a complete, ready-to-edit website in seconds. It handles layout, copy, and imagery so you can focus on your message instead of starting from a blank page."
+      },
+      {
+        q: "How is a generator different from a template?",
+        a: "A template is a pre-designed layout you fill in manually. A generator builds the site for you based on what you tell it, including structure, sections, and starter content tailored to your goal."
+      },
+      {
+        q: "Are these generators free to use?",
+        a: "Yes. You can generate, customize, and publish without a credit card. Paid plans unlock extra features like custom domains, advanced analytics, and more storage."
+      },
+      {
+        q: "What kinds of sites can I build?",
+        a: "Anything from simple personal sites and portfolios to landing pages, blogs, online stores, and link-in-bio pages. Each generator is tuned for a specific type of site and audience."
+      },
+      {
+        q: "Can I customize what the generator produces?",
+        a: "Absolutely. After generation you can edit text, swap images, reorder sections, change colors, and add or remove pages. The AI gives you a strong starting point, not a finished product you cannot change."
+      },
+      {
+        q: "Do generated sites work on mobile?",
+        a: "Yes. Every site produced by a generator is responsive by default and looks great on phones, tablets, and desktops without extra work."
+      }
+    ];
+
+    // Utility: slugify
+    function slugify(str) {
+      return str.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+    }
+
+    // Render Featured (static HTML + JS for consistency)
+    function renderFeatured() {
+      const root = document.getElementById("featured-grid");
+      if (!root) return;
+      root.innerHTML = "";
+      featuredData.forEach(item => {
+        const a = document.createElement("a");
+        a.className = "card";
+        a.href = "/generators/" + item.slug;
+        a.setAttribute("aria-label", item.name);
+        a.innerHTML = `
+          <div class="name">${item.name}</div>
+          <div class="desc">${item.desc}</div>
+          <span class="tag">${item.category}</span>
+        `;
+        root.appendChild(a);
+      });
+    }
+
+    // Render Browse by Category cards (static)
+    function renderCategoryCards() {
+      const root = document.getElementById("category-grid");
+      if (!root) return;
+      root.innerHTML = "";
+      categoryCards.forEach(cat => {
+        const a = document.createElement("a");
+        a.className = "category-card";
+        a.href = cat.href;
+        a.setAttribute("aria-label", cat.name);
+        a.innerHTML = `
+          <div class="icon" aria-hidden="true">${categoryIcons[cat.id] || ""}</div>
+          <div class="name">${cat.name}</div>
+          <div class="desc">${cat.desc}</div>
+          <span class="arrow">Browse <span aria-hidden="true">→</span></span>
+        `;
+        root.appendChild(a);
+      });
+    }
+
+    // Build directory subsections (ALL cards in DOM from the start)
+    function buildDirectory() {
+      const root = document.getElementById("directory-root");
+      if (!root) return;
+      root.innerHTML = "";
+
+      const order = ["websites", "landing-pages", "portfolios", "blogs", "stores", "link-in-bio"];
+
+      order.forEach(catId => {
+        const items = directoryData[catId] || [];
+        const section = document.createElement("div");
+        section.className = "subsection";
+        section.id = catId;
+        section.dataset.category = catId;
+
+        const head = document.createElement("h3");
+        head.textContent = (window.strings.en.categories[catId] && window.strings.en.categories[catId].name) || catId.toUpperCase();
+
+        const desc = document.createElement("div");
+        desc.className = "section-desc";
+        desc.textContent = (window.strings.en.categories[catId] && window.strings.en.categories[catId].desc) || "";
+
+        const grid = document.createElement("div");
+        grid.className = "gen-grid";
+        grid.dataset.gridFor = catId;
+
+        items.forEach(item => {
+          const slug = slugify(item.name);
+          const card = document.createElement("a");
+          card.className = "gen-card";
+          card.href = "/generators/" + slug;
+          card.dataset.name = item.name.toLowerCase();
+          card.dataset.desc = (item.desc || "").toLowerCase();
+          card.dataset.category = catId;
+          card.setAttribute("aria-label", item.name);
+          card.innerHTML = `
+            <div class="thumb" aria-hidden="true">${subsectionThumbs[catId] || ""}</div>
+            <div class="name">${item.name}</div>
+            <div class="desc">${item.desc}</div>
+          `;
+          grid.appendChild(card);
+        });
+
+        // Show all toggle container (progressive enhancement)
+        const toggleWrap = document.createElement("div");
+        toggleWrap.className = "show-all-wrap";
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "show-all-btn";
+        btn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-controls", grid.id || (grid.id = "grid-" + catId));
+        btn.textContent = window.strings.en.showAll.replace("{count}", items.length);
+        btn.dataset.total = String(items.length);
+        btn.dataset.collapsed = "true";
+
+        // Initially show all (static requirement). JS will collapse after load if many.
+        toggleWrap.appendChild(btn);
+
+        section.appendChild(head);
+        section.appendChild(desc);
+        section.appendChild(grid);
+        section.appendChild(toggleWrap);
+        root.appendChild(section);
+      });
+    }
+
+    // Collapse extras after load (CSS height transition)
+    function initShowAllToggles() {
+      const COLLAPSE_AT = 6; // show first 6 by default when JS runs
+      const sections = document.querySelectorAll("#directory-root .subsection");
+
+      sections.forEach(section => {
+        const grid = section.querySelector(".gen-grid");
+        const btn = section.querySelector(".show-all-btn");
+        if (!grid || !btn) return;
+
+        const cards = Array.from(grid.children);
+        const total = cards.length;
+        if (total <= COLLAPSE_AT) {
+          btn.style.display = "none";
+          return;
+        }
+
+        // Collapse to COLLAPSE_AT
+        function applyCollapse() {
+          cards.forEach((c, i) => {
+            if (i >= COLLAPSE_AT) {
+              c.style.display = "none";
+            } else {
+              c.style.display = "";
+            }
+          });
+          btn.textContent = window.strings.en.showAll.replace("{count}", total);
+          btn.setAttribute("aria-expanded", "false");
+          btn.dataset.collapsed = "true";
+        }
+
+        function applyExpand() {
+          cards.forEach(c => c.style.display = "");
+          btn.textContent = window.strings.en.showLess;
+          btn.setAttribute("aria-expanded", "true");
+          btn.dataset.collapsed = "false";
+        }
+
+        // Start collapsed (progressive enhancement)
+        applyCollapse();
+
+        btn.addEventListener("click", () => {
+          const collapsed = btn.dataset.collapsed === "true";
+          if (collapsed) {
+            applyExpand();
+          } else {
+            applyCollapse();
+          }
+        });
+      });
+    }
+
+    // Render FAQ (first expanded)
+    function renderFAQ() {
+      const root = document.getElementById("faq");
+      if (!root) return;
+      root.innerHTML = "";
+
+      faqData.forEach((item, idx) => {
+        const wrap = document.createElement("div");
+        wrap.className = "faq-item";
+
+        const btn = document.createElement("button");
+        btn.className = "faq-btn";
+        btn.setAttribute("aria-expanded", idx === 0 ? "true" : "false");
+        btn.setAttribute("aria-controls", "faq-panel-" + idx);
+        btn.innerHTML = `
+          <span>${item.q}</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        `;
+
+        const panel = document.createElement("div");
+        panel.className = "faq-panel" + (idx === 0 ? " open" : "");
+        panel.id = "faq-panel-" + idx;
+        panel.setAttribute("role", "region");
+        panel.setAttribute("aria-labelledby", "faq-btn-" + idx);
+        panel.innerHTML = `<p>${item.a}</p>`;
+
+        btn.id = "faq-btn-" + idx;
+
+        btn.addEventListener("click", () => {
+          const isOpen = panel.classList.contains("open");
+          // Close all
+          root.querySelectorAll(".faq-panel").forEach(p => p.classList.remove("open"));
+          root.querySelectorAll(".faq-btn").forEach(b => b.setAttribute("aria-expanded", "false"));
+          if (!isOpen) {
+            panel.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+          }
+        });
+
+        wrap.appendChild(btn);
+        wrap.appendChild(panel);
+        root.appendChild(wrap);
+      });
+    }
+
+    // Search filter (name, desc, category). Subsections without matches collapse.
+    function initSearch() {
+      const input = document.getElementById("gen-search");
+      const countEl = document.getElementById("result-count");
+      const root = document.getElementById("directory-root");
+      if (!input || !root) return;
+
+      function updateCount(visible) {
+        if (!countEl) return;
+        countEl.textContent = window.strings.en.resultCount.replace("{count}", visible);
+      }
+
+      function clearSearch() {
+        input.value = "";
+        applyFilter("");
+      }
+
+      function applyFilter(q) {
+        const query = (q || "").trim().toLowerCase();
+        const subsections = root.querySelectorAll(".subsection");
+        let totalVisible = 0;
+
+        subsections.forEach(sub => {
+          const cards = Array.from(sub.querySelectorAll(".gen-card"));
+          let visibleInSub = 0;
+
+          cards.forEach(card => {
+            const name = card.dataset.name || "";
+            const desc = card.dataset.desc || "";
+            const cat = card.dataset.category || "";
+            const match = !query || name.includes(query) || desc.includes(query) || cat.includes(query);
+            card.style.display = match ? "" : "none";
+            if (match) visibleInSub++;
+          });
+
+          // Hide subsection if no visible cards
+          if (visibleInSub === 0) {
+            sub.style.display = "none";
+          } else {
+            sub.style.display = "";
+            totalVisible += visibleInSub;
+          }
+        });
+
+        // Empty state
+        let empty = root.querySelector(".empty-state");
+        if (query && totalVisible === 0) {
+          if (!empty) {
+            empty = document.createElement("div");
+            empty.className = "empty-state";
+            empty.innerHTML = `
+              <p>${window.strings.en.noResults}</p>
+              <p><button type="button" class="btn btn-small" id="clear-search-btn">${window.strings.en.clearSearch}</button> · <a href="/s/ai_site_builder">${window.strings.en.tryBuilder}</a></p>
+            `;
+            root.appendChild(empty);
+            const clearBtn = empty.querySelector("#clear-search-btn");
+            if (clearBtn) clearBtn.addEventListener("click", clearSearch);
+          }
+        } else if (empty) {
+          empty.remove();
+        }
+
+        updateCount(totalVisible);
+      }
+
+      input.addEventListener("input", (e) => {
+        applyFilter(e.target.value);
+      });
+
+      // Initial count (all visible)
+      const initialCount = root.querySelectorAll(".gen-card").length;
+      if (countEl) countEl.textContent = window.strings.en.resultCount.replace("{count}", initialCount);
+
+      // Keyboard escape clears
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          input.value = "";
+          applyFilter("");
+          input.blur();
+        }
+      });
+    }
+
+    // Ensure hash navigation works without JS (anchors are real). This just smooths.
+    function initHashScroll() {
+      // No JS required for basic #hash to work. This is a progressive nicety.
+      document.addEventListener("click", (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        const id = a.getAttribute("href").slice(1);
+        const el = document.getElementById(id);
+        if (el) {
+          // Let the browser handle it; we just ensure focus for a11y
+          setTimeout(() => {
+            el.setAttribute("tabindex", "-1");
+            el.focus({ preventScroll: true });
+          }, 10);
+        }
+      });
+    }
+
+    // Main init
+    function init() {
+      // Render static content blocks
+      renderFeatured();
+      renderCategoryCards();
+      buildDirectory();
+      renderFAQ();
+
+      // Progressive enhancements
+      initShowAllToggles();
+      initSearch();
+      initHashScroll();
+
+      // Ensure initial result count reflects all cards
+      const root = document.getElementById("directory-root");
+      const countEl = document.getElementById("result-count");
+      if (root && countEl) {
+        const total = root.querySelectorAll(".gen-card").length;
+        countEl.textContent = window.strings.en.resultCount.replace("{count}", total);
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
