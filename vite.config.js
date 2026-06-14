@@ -3,12 +3,14 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
+import generatorsPrerenderPlugin from './vite-prerender.js'
 
 export default defineConfig({
   plugins: [
     // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
+    generatorsPrerenderPlugin(),
     react(),
   ],
   resolve: {
