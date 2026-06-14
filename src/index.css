@@ -1,74 +1,83 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #0F172A;
+  background-color: #FFFFFF;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #FFFFFF;
+  color: #0F172A;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Professional B2B Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.25;
+  color: #0F172A;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+h1 { font-size: 2.625rem; }
+h2 { font-size: 1.875rem; }
+h3 { font-size: 1.375rem; }
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: inherit;
+}
+
+/* Form Styles */
+input, select, textarea {
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+input:focus, select:focus, textarea:focus {
+  outline: none;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Prose styles for blog content */
+.prose h3 {
+  font-size: 1.125rem;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: #0F172A;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.prose p {
+  margin-bottom: 1rem;
+  color: #334155;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.prose ul {
+  margin: 1rem 0;
+  padding-left: 1.25rem;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.prose li {
+  margin-bottom: 0.25rem;
+  color: #334155;
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 @tailwind base;
