@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Response",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the form"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or workshop name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of operation"
+    },
+    "interest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "double-folder",
+        "sheet-metal-folder",
+        "sheet-metal-folding-machine",
+        "metal-folder",
+        "metal-folder-machine",
+        "metal-folding-machine",
+        "other"
+      ],
+      "description": "Product the customer is most interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Free-form message describing the project or requirement"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal follow-up status"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
