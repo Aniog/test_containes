@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 200,
+      "description": "Company name of the buyer"
+    },
+    "contactName": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "productDescription": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Description of the product(s) they want to source"
+    },
+    "productCategory": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Industrial & Machinery",
+        "Beauty & Personal Care",
+        "Sports & Outdoors",
+        "Furniture & Home Decor",
+        "Automotive Parts",
+        "Packaging & Materials",
+        "Other"
+      ],
+      "description": "Primary product category"
+    },
+    "estimatedVolume": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Estimated order quantity or annual volume"
+    },
+    "targetTimeline": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "When they need to start production or receive goods"
+    },
+    "currentChallenges": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Current sourcing challenges or specific requirements"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "How they heard about SSourcing China"
+    }
+  },
+  "required": ["companyName", "contactName", "email", "phone", "country", "productDescription", "productCategory"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
