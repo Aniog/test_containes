@@ -1,15 +1,9 @@
 import './App.css'
 
+// This app serves the /generators hub as a static HTML page in index.html.
+// React mount is inert to avoid conflicting with the self-contained static page.
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  return null;
 }
 
 export default App
