@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quote Requests",
+  "type": "object",
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "contactName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "Phone number with country code"
+    },
+    "productInterest": {
+      "type": "string",
+      "enum": [
+        "Double Folding Machine",
+        "Double Folder",
+        "Sheet Metal Folder",
+        "Sheet Metal Folding Machine",
+        "Metal Folder",
+        "Metal Folder Machine",
+        "Metal Folding Machine",
+        "Other / Custom Solution"
+      ],
+      "description": "Primary product of interest"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Number of units or project scale"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional project details or requirements"
+    }
+  },
+  "required": ["companyName", "contactName", "email", "phone", "productInterest"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
