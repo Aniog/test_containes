@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Full name of the person making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number"
+    },
+    "productInterest": {
+      "type": "string",
+      "enum": [
+        "Double Folding Machine",
+        "Sheet Metal Folder",
+        "Heavy Duty Metal Folder",
+        "Compact Metal Folding Machine",
+        "Automated Double Folder",
+        "General Inquiry"
+      ],
+      "description": "Product the customer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Detailed inquiry message"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
