@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name (optional)"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address used for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number, including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer's country or region"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category, e.g. Consumer Electronics, Apparel, Home Goods"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Description of the product to source, including key specifications, materials, target price, and quantity"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target order quantity, e.g. 1000 units, 5,000 units, a 20-foot container"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range, e.g. USD 3.50 - 4.00 per unit FOB Shanghai"
+    },
+    "target_port": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Destination port or city, e.g. Los Angeles, Rotterdam, Hamburg, Sydney"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional context: certifications needed, packaging, OEM/ODM, deadlines"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Page on the website where the inquiry was submitted from, for internal analytics"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
