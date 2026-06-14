@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email of the inquirer."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name of the buyer."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region of the buyer (e.g. United States, Germany)."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number with country code."
+    },
+    "product_type": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "What product or category the buyer wants to source."
+    },
+    "order_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or trial order size (free text, e.g. '500 units' or '1x 40HQ')."
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price guidance in any currency (free text, e.g. 'USD 4-5 / pc')."
+    },
+    "service_required": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Which service the buyer is most interested in (sourcing, audit, QC, shipping, full-package)."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Free-form details: specs, materials, target factories, timeline, anything that helps the sourcing manager reply well."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Which page on the site submitted the inquiry (home, services, contact, etc.) — used for internal attribution."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal CRM status, managed by the team."
+    }
+  },
+  "required": ["full_name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
