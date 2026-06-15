@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the machine"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Double Folding Machine",
+        "Sheet Metal Folder",
+        "Manual Folder",
+        "CNC Folding Machine"
+      ],
+      "description": "Machine category"
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key features"
+    },
+    "imageUrl": {
+        "type": "object",
+        "description": "Product image",
+        "properties": {
+          "filename": { "type": "string" },
+          "size": { "type": "integer" },
+          "storageKey": { "type": "string" },
+          "storage": { "type": "string" },
+          "mimeType": { "type": "string" },
+          "width": { "type": "integer" },
+          "height": { "type": "integer" }
+        },
+        "x-upload": true,
+        "x-fileType": "image"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the product is currently available"
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
