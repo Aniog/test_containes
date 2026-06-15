@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Contact name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_id": {
+      "type": "string",
+      "description": "Product ID of interest"
+    },
+    "message": {
+      "type": "string",
+      "description": "Inquiry message"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] }
+  }
+}
