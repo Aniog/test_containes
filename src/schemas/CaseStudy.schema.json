@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Case study title"
+    },
+    "category": {
+      "type": "string",
+      "description": "Industry or product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief summary of the case"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "The problem the client faced"
+    },
+    "solution": {
+      "type": "string",
+      "description": "How SSourcing China helped"
+    },
+    "result": {
+      "type": "string",
+      "description": "The outcome (cost savings, quality improvement, etc.)"
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Main image for the case study"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL friendly identifier"
+    }
+  },
+  "required": ["title", "description", "slug"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
