@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Case study title"
+    },
+    "client_industry": {
+      "type": "string",
+      "description": "Industry of the client"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "The problem we solved"
+    },
+    "solution": {
+      "type": "string",
+      "description": "How we helped"
+    },
+    "result": {
+      "type": "string",
+      "description": "The outcome (e.g., 20% cost reduction)"
+    },
+    "product_category": {
+      "type": "string",
+      "description": "Category of products sourced"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to case study image"
+    }
+  },
+  "required": ["title", "challenge", "solution", "result"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] }
+  }
+}
