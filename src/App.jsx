@@ -1,7 +1,7 @@
-import GamePage from './pages/GamePage'
+import MeowsokuGame from './pages/MeowsokuGame'
 
 function App() {
-  return <GamePage />
+  return <MeowsokuGame />
 }
 
 export default App
