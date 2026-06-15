@@ -1,15 +1,25 @@
-import './App.css'
+import Navbar from './components/rugby/Navbar';
+import Hero from './components/rugby/Hero';
+import About from './components/rugby/About';
+import Team from './components/rugby/Team';
+import Schedule from './components/rugby/Schedule';
+import News from './components/rugby/News';
+import Contact from './components/rugby/Contact';
+import Footer from './components/rugby/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen bg-rugby-dark font-sans">
+      <Navbar />
+      <Hero />
+      <About />
+      <Team />
+      <Schedule />
+      <News />
+      <Contact />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
