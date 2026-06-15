@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Submissions",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "description": "Full name" },
+    "email": { "type": "string", "format": "email", "description": "Email address" },
+    "company": { "type": "string", "description": "Company name" },
+    "machine_interest": { "type": "string", "description": "Machine of interest" },
+    "message": { "type": "string", "description": "Detailed message" }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "description": "Product name" },
+    "category": { "type": "string", "description": "Product category" },
+    "description": { "type": "string", "description": "Detailed description" },
+    "capacity": { "type": "string", "description": "Bending capacity" },
+    "width": { "type": "string", "description": "Max bending width" },
+    "weight": { "type": "string", "description": "Machine weight" },
+    "image_query": { "type": "string", "description": "Search query for stock images" }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
