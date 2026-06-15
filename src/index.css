@@ -1,76 +1,61 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --brand-purple: #8159BB;
+  --ai-gradient: linear-gradient(to right, #7671FF, #CB0C9F);
+  --body-text: #636972;
+  --heading-text: #4B5056;
+  --hero-h1-1: #2E2E2F;
+  --card-border: #C6C9CD;
+  --divider: #E2E4E7;
+  --bg-light: #F4F6F8;
+  --white: #FFFFFF;
+}
+
+@layer base {
+  body {
+    @apply font-['Open_Sans'] text-[14px] leading-[1.5] text-[#636972] bg-[#FFFFFF] m-0 min-h-screen overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Josefin_Sans'] font-bold uppercase leading-[1.2] text-[#4B5056] m-0;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button {
+    @apply cursor-pointer font-['Josefin_Sans'] font-bold uppercase transition-all duration-200 border-none outline-none;
+  }
+}
+
+.ai-gradient-text {
+  background: var(--ai-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-gradient-bg {
+  background: var(--ai-gradient);
+}
+
+.ghost-button {
+  @apply border border-[#8159BB] text-[#8159BB] bg-transparent hover:bg-purple-50;
+}
+
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-sm hover:border-[#8159BB];
+}
+
+/* Smooth scroll for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+.container-custom {
+  @apply max-w-[1200px] mx-auto px-5;
+}
