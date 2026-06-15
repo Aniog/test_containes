@@ -2,388 +2,2042 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.">
+    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly">
+    <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds.">
+    <meta property="og:url" content="https://www.strikingly.com/generators">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://www.strikingly.com/generators">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strikingly",
+          "item": "https://www.strikingly.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AI Generators",
+          "item": "https://www.strikingly.com/generators"
+        }
+      ]
+    }
+    </script>
+    
+    <style>
+      /* ===== RESET & BASE ===== */
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.5;
+        color: #636972;
+        background-color: #FFFFFF;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      
+      button {
+        font-family: inherit;
+        cursor: pointer;
+      }
+      
+      img, svg {
+        display: block;
+        max-width: 100%;
+      }
+      
+      /* ===== BRAND TOKENS ===== */
+      :root {
+        --brand-purple: #8159BB;
+        --ai-gradient: linear-gradient(135deg, #7671FF 0%, #CB0C9F 100%);
+        --body-text: #636972;
+        --heading-dark: #4B5056;
+        --heading-darker: #2E2E2F;
+        --card-border: #C6C9CD;
+        --divider: #E2E4E7;
+        --light-bg: #F4F6F8;
+        --white: #FFFFFF;
+        --border-radius-sm: 3px;
+        --border-radius-md: 4px;
+        --border-radius-lg: 3px;
+      }
+      
+      /* ===== TYPOGRAPHY ===== */
+      h1, h2, h3, h4, .heading-font {
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--heading-dark);
+      }
+      
+      h1 {
+        font-size: 40px;
+        margin-block-end: 20px;
+      }
+      
+      h2 {
+        font-size: 32px;
+        margin-block-end: 10px;
+      }
+      
+      h3 {
+        font-size: 26px;
+        margin-block-end: 10px;
+      }
+      
+      .card-title, .step-title, .feature-title, .category-title {
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        line-height: 1.2;
+        color: var(--heading-dark);
+      }
+      
+      .card-title {
+        font-size: 16px;
+        margin-block-end: 8px;
+        font-weight: 700;
+      }
+      
+      .step-title {
+        font-size: 18px;
+        margin-block-end: 10px;
+      }
+      
+      .feature-title {
+        font-size: 18px;
+        margin-block-end: 10px;
+      }
+      
+      .category-title {
+        font-size: 18px;
+        margin-block-end: 10px;
+      }
+      
+      /* ===== LAYOUT ===== */
+      .container {
+        max-width: 1200px;
+        margin-inline: auto;
+        padding-inline: 20px;
+      }
+      
+      section {
+        padding-block: 40px;
+      }
+      
+      /* ===== BUTTONS ===== */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        border-radius: var(--border-radius-md);
+        padding: 9px 15px;
+        height: 36px;
+        border: none;
+        transition: all 0.2s ease;
+        text-decoration: none;
+      }
+      
+      .btn-primary {
+        background: var(--ai-gradient);
+        color: var(--white);
+      }
+      
+      .btn-primary:hover {
+        opacity: 0.9;
+        box-shadow: 0 4px 12px rgba(118, 113, 255, 0.3);
+      }
+      
+      .btn-ghost {
+        background: transparent;
+        color: var(--brand-purple);
+        border: 1px solid var(--brand-purple);
+      }
+      
+      .btn-ghost:hover {
+        background: var(--brand-purple);
+        color: var(--white);
+      }
+      
+      .btn-large {
+        height: 44px;
+        font-size: 16px;
+        padding: 11px 20px;
+      }
+      
+      .btn + .btn {
+        margin-inline-start: 10px;
+      }
+      
+      /* ===== CARDS ===== */
+      .card {
+        background: var(--white);
+        border: 1px solid var(--card-border);
+        border-radius: var(--border-radius-lg);
+        padding: 20px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: block;
+      }
+      
+      .card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-color: var(--brand-purple);
+      }
+      
+      /* ===== TAGS ===== */
+      .tag {
+        display: inline-block;
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        text-transform: uppercase;
+        padding: 2px 6px;
+        border-radius: var(--border-radius-sm);
+        border: 1px solid var(--brand-purple);
+        color: var(--brand-purple);
+        background: transparent;
+      }
+      
+      /* ===== SECTION 0: TOP BAR ===== */
+      .top-bar {
+        background: var(--white);
+        border-bottom: 1px solid var(--divider);
+        padding-block: 15px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      
+      .top-bar .container {
+        display: flex;
+        align-items: center;
+      }
+      
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--heading-darker);
+      }
+      
+      .logo-icon {
+        width: 28px;
+        height: 28px;
+      }
+      
+      /* ===== SECTION 1: BREADCRUMB ===== */
+      .breadcrumb {
+        padding-block: 15px;
+        font-size: 13px;
+        color: var(--body-text);
+      }
+      
+      .breadcrumb nav {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      
+      .breadcrumb a {
+        color: var(--brand-purple);
+        text-decoration: none;
+      }
+      
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+      
+      .breadcrumb .separator {
+        color: var(--body-text);
+      }
+      
+      .breadcrumb .current {
+        color: var(--body-text);
+      }
+      
+      /* ===== SECTION 2: HERO ===== */
+      .hero {
+        padding-block: 60px 80px;
+        background: linear-gradient(180deg, rgba(118, 113, 255, 0.03) 0%, rgba(203, 12, 159, 0.02) 100%);
+      }
+      
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      
+      .hero-text h1 {
+        margin-block-end: 20px;
+      }
+      
+      .hero-text h1 .line1 {
+        display: block;
+        color: var(--heading-darker);
+        font-size: 40px;
+      }
+      
+      .hero-text h1 .line2 {
+        display: block;
+        background: var(--ai-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-size: 40px;
+      }
+      
+      .hero-subhead {
+        font-size: 16px;
+        line-height: 1.6;
+        margin-block-end: 30px;
+        max-width: 500px;
+        color: var(--body-text);
+      }
+      
+      .hero-illustration {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .hero-illustration svg {
+        width: 100%;
+        max-width: 500px;
+        height: auto;
+      }
+      
+      /* ===== SECTION 3: FEATURED GENERATORS ===== */
+      .featured-generators {
+        background: var(--white);
+      }
+      
+      .section-header {
+        text-align: center;
+        margin-block-end: 40px;
+      }
+      
+      .section-header p {
+        font-size: 16px;
+        color: var(--body-text);
+      }
+      
+      .generators-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      
+      .generator-card h3 {
+        font-size: 18px;
+        margin-block-end: 8px;
+        text-transform: none;
+        color: var(--heading-darker);
+      }
+      
+      .generator-card p {
+        font-size: 13px;
+        margin-block-end: 12px;
+        line-height: 1.4;
+      }
+      
+      .generator-card .tag {
+        margin-top: auto;
+      }
+      
+      /* ===== SECTION 4: BROWSE BY CATEGORY ===== */
+      .browse-categories {
+        background: var(--light-bg);
+      }
+      
+      .category-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      
+      .category-card {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .category-card .icon {
+        width: 48px;
+        height: 48px;
+        margin-block-end: 15px;
+        color: var(--brand-purple);
+      }
+      
+      .category-card h3 {
+        font-size: 16px;
+        margin-block-end: 8px;
+        text-transform: uppercase;
+      }
+      
+      .category-card p {
+        font-size: 13px;
+        margin-block-end: 12px;
+        line-height: 1.4;
+      }
+      
+      .category-card .arrow {
+        margin-top: auto;
+        color: var(--brand-purple);
+      }
+      
+      /* ===== SECTION 5: ALL GENERATORS ===== */
+      .all-generators {
+        background: var(--white);
+      }
+      
+      .search-box {
+        position: relative;
+        margin-block-end: 30px;
+        max-width: 480px;
+      }
+      
+      .search-box input {
+        width: 100%;
+        height: 44px;
+        padding: 10px 15px 10px 40px;
+        border: 1px solid var(--card-border);
+        border-radius: var(--border-radius-md);
+        font-size: 14px;
+        font-family: 'Open Sans', sans-serif;
+        color: var(--heading-darker);
+      }
+      
+      .search-box input:focus {
+        outline: none;
+        border-color: var(--brand-purple);
+        box-shadow: 0 0 0 3px rgba(129, 89, 187, 0.1);
+      }
+      
+      .search-box .search-icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--body-text);
+      }
+      
+      .search-results-count {
+        font-size: 13px;
+        color: var(--body-text);
+        margin-block-end: 20px;
+        display: none;
+      }
+      
+      .search-results-count.visible {
+        display: block;
+      }
+      
+      .category-section {
+        margin-block-end: 40px;
+      }
+      
+      .category-section h3 {
+        color: var(--heading-darker);
+        margin-block-end: 5px;
+      }
+      
+      .category-section .description {
+        font-size: 14px;
+        margin-block-end: 20px;
+        color: var(--body-text);
+      }
+      
+      .directory-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      
+      .directory-card {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .directory-card .thumbnail {
+        width: 100%;
+        height: 120px;
+        background: var(--light-bg);
+        border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+        margin: -20px -20px 15px -20px;
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .directory-card h4 {
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        text-transform: none;
+        color: var(--heading-darker);
+        margin-block-end: 8px;
+      }
+      
+      .directory-card p {
+        font-size: 13px;
+        line-height: 1.4;
+        color: var(--body-text);
+      }
+      
+      .show-all-toggle {
+        margin-block-start: 20px;
+        background: none;
+        border: none;
+        color: var(--brand-purple);
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        cursor: pointer;
+        padding: 8px 0;
+      }
+      
+      .show-all-toggle:hover {
+        text-decoration: underline;
+      }
+      
+      .hidden-card {
+        display: none;
+      }
+      
+      .hidden-card.visible {
+        display: block;
+      }
+      
+      .no-results {
+        display: none;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      
+      .no-results.visible {
+        display: block;
+      }
+      
+      /* ===== SECTION 6: HOW IT WORKS ===== */
+      .how-it-works {
+        background: var(--light-bg);
+      }
+      
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      
+      .step {
+        text-align: center;
+      }
+      
+      .step-number {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--brand-purple);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        margin: 0 auto 20px auto;
+      }
+      
+      .step h3 {
+        font-size: 16px;
+        margin-block-end: 10px;
+      }
+      
+      .step p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--body-text);
+      }
+      
+      /* ===== SECTION 7: WHY STRIKINGLY ===== */
+      .why-strikingly {
+        background: var(--white);
+      }
+      
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+      }
+      
+      .feature {
+        text-align: center;
+      }
+      
+      .feature-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 20px auto;
+        color: var(--brand-purple);
+      }
+      
+      .feature h3 {
+        font-size: 16px;
+        margin-block-end: 10px;
+      }
+      
+      .feature p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--body-text);
+      }
+      
+      /* ===== SECTION 8: FAQ ===== */
+      .faq {
+        background: var(--light-bg);
+      }
+      
+      .faq-list {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      
+      .faq-item {
+        border-bottom: 1px solid var(--divider);
+      }
+      
+      .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 20px 0;
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--heading-darker);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .faq-question:hover {
+        color: var(--brand-purple);
+      }
+      
+      .faq-question .icon {
+        transition: transform 0.2s ease;
+      }
+      
+      .faq-question[aria-expanded="true"] .icon {
+        transform: rotate(180deg);
+      }
+      
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      
+      .faq-answer.open {
+        max-height: 500px;
+      }
+      
+      .faq-answer p {
+        padding-block-end: 20px;
+        line-height: 1.6;
+        color: var(--body-text);
+      }
+      
+      /* ===== SECTION 9: CLOSING CTA ===== */
+      .closing-cta {
+        background: var(--white);
+        text-align: center;
+        padding-block: 60px;
+      }
+      
+      .closing-cta h2 {
+        font-size: 32px;
+        margin-block-end: 15px;
+      }
+      
+      .closing-cta p {
+        font-size: 16px;
+        margin-block-end: 30px;
+        color: var(--body-text);
+      }
+      
+      /* ===== SECTION 10: FOOTER ===== */
+      .footer {
+        background: var(--heading-darker);
+        color: var(--white);
+        padding-block: 40px;
+      }
+      
+      .footer-content {
+        display: grid;
+        grid-template-columns: 2fr repeat(4, 1fr);
+        gap: 40px;
+        margin-block-end: 40px;
+      }
+      
+      .footer-logo {
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+        margin-block-end: 15px;
+      }
+      
+      .footer-column h4 {
+        font-family: 'Josefin Sans', 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-block-end: 15px;
+        color: var(--white);
+      }
+      
+      .footer-column ul {
+        list-style: none;
+      }
+      
+      .footer-column li {
+        margin-block-end: 8px;
+      }
+      
+      .footer-column a {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 13px;
+        transition: color 0.2s ease;
+      }
+      
+      .footer-column a:hover {
+        color: var(--white);
+      }
+      
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 20px;
+        text-align: center;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 1024px) {
+        .generators-grid,
+        .category-grid,
+        .directory-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 28px;
+        }
+        
+        h2 {
+          font-size: 26px;
+        }
+        
+        .hero-content {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        
+        .hero-text {
+          order: 1;
+        }
+        
+        .hero-illustration {
+          order: 2;
+        }
+        
+        .hero-text h1 .line1,
+        .hero-text h1 .line2 {
+          font-size: 28px;
+        }
+        
+        .generators-grid,
+        .category-grid,
+        .directory-grid,
+        .steps-grid,
+        .features-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+        
+        .btn + .btn {
+          margin-inline-start: 0;
+          margin-top: 10px;
+        }
+        
+        .hero-text .btn {
+          display: block;
+          margin-block-end: 10px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <!-- SECTION 0: TOP BAR -->
+    <header class="top-bar" role="banner">
+      <div class="container">
+        <a href="/" class="logo">
+          <svg class="logo-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="28" height="28" rx="4" fill="#8159BB"/>
+            <path d="M8 8h5v5H8V8zm7 0h5v5h-5V8zm-7 7h5v5H8v-5zm7 3.5a3.5 3.5 0 107 0 3.5 3.5 0 00-7 0z" fill="white"/>
+          </svg>
+          <span>strikingly AI</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- SECTION 1: BREADCRUMB -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol style="display: flex; list-style: none; gap: 8px; align-items: center;">
+          <li><a href="/">Strikingly</a></li>
+          <li class="separator">></li>
+          <li class="current" aria-current="page">AI Generators</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- SECTION 2: HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <h1>
+              <span class="line1">BUILD ANY KIND OF SITE</span>
+              <span class="line2">WITH AI, IN AN INSTANT</span>
+            </h1>
+            <p class="hero-subhead">Browse the right generator for what you're building, or jump straight into our AI site builder.</p>
+            <div>
+              <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START BUILDING - IT'S FREE</a>
+              <a href="#all-generators" class="btn btn-ghost btn-large">BROWSE GENERATORS</a>
+            </div>
+          </div>
+          <div class="hero-illustration">
+            <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Soft purple line-art illustration of website mockup -->
+              <rect x="50" y="50" width="400" height="300" rx="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <rect x="70" y="70" width="120" height="20" rx="4" fill="#8159BB" opacity="0.2"/>
+              <rect x="200" y="70" width="60" height="20" rx="4" fill="#8159BB" opacity="0.1"/>
+              <rect x="270" y="70" width="60" height="20" rx="4" fill="#8159BB" opacity="0.1"/>
+              <rect x="340" y="70" width="60" height="20" rx="4" fill="#8159BB" opacity="0.1"/>
+              <rect x="70" y="110" width="360" height="40" rx="4" fill="#8159BB" opacity="0.05"/>
+              <rect x="70" y="170" width="160" height="120" rx="4" stroke="#8159BB" stroke-width="1.5" fill="none"/>
+              <rect x="240" y="170" width="190" height="20" rx="4" fill="#8159BB" opacity="0.1"/>
+              <rect x="240" y="200" width="190" height="20" rx="4" fill="#8159BB" opacity="0.1"/>
+              <rect x="240" y="230" width="120" height="20" rx="4" fill="#8159BB" opacity="0.1"/>
+              <rect x="70" y="310" width="100" height="30" rx="4" fill="url(#hero-gradient)" opacity="0.3"/>
+              <defs>
+                <linearGradient id="hero-gradient" x1="0" y1="0" x2="100" y2="0">
+                  <stop offset="0%" stop-color="#7671FF"/>
+                  <stop offset="100%" stop-color="#CB0C9F"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: FEATURED GENERATORS -->
+    <section class="featured-generators">
+      <div class="container">
+        <div class="section-header">
+          <h2>FEATURED GENERATORS</h2>
+          <p>A few common starting points.</p>
+        </div>
+        <div class="generators-grid">
+          <a href="/generators/ai-website-generator" class="card generator-card">
+            <div class="card-title">AI Website Generator</div>
+            <p>Describe your business, get a full site</p>
+            <span class="tag">Website</span>
+          </a>
+          <a href="/generators/free-portfolio-generator" class="card generator-card">
+            <div class="card-title">Free Portfolio Generator</div>
+            <p>For creatives, in minutes, no fee</p>
+            <span class="tag">Portfolio</span>
+          </a>
+          <a href="/generators/ai-landing-page-maker" class="card generator-card">
+            <div class="card-title">AI Landing Page Maker</div>
+            <p>One-page sites built to convert</p>
+            <span class="tag">Landing Page</span>
+          </a>
+          <a href="/generators/online-store-builder" class="card generator-card">
+            <div class="card-title">Online Store Builder</div>
+            <p>Start selling without writing code</p>
+            <span class="tag">Store</span>
+          </a>
+          <a href="/generators/link-in-bio-generator" class="card generator-card">
+            <div class="card-title">Link-in-Bio Generator</div>
+            <p>One link for all your channels</p>
+            <span class="tag">Link-in-Bio</span>
+          </a>
+          <a href="/generators/one-page-website-builder" class="card generator-card">
+            <div class="card-title">One-Page Website Builder</div>
+            <p>Simple sites, single scroll</p>
+            <span class="tag">Website</span>
+          </a>
+          <a href="/generators/wedding-website-generator" class="card generator-card">
+            <div class="card-title">Wedding Website Generator</div>
+            <p>Share your day with guests</p>
+            <span class="tag">Website</span>
+          </a>
+          <a href="/generators/restaurant-website-builder" class="card generator-card">
+            <div class="card-title">Restaurant Website Builder</div>
+            <p>Menu, hours, reservations, done</p>
+            <span class="tag">Website</span>
+          </a>
+          <a href="/generators/blog-generator-for-beginners" class="card generator-card">
+            <div class="card-title">Blog Generator for Beginners</div>
+            <p>Publish-ready in minutes</p>
+            <span class="tag">Blog</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: BROWSE BY CATEGORY -->
+    <section class="browse-categories">
+      <div class="container">
+        <div class="section-header">
+          <h2>BROWSE BY CATEGORY</h2>
+        </div>
+        <div class="category-grid">
+          <a href="#websites" class="card category-card">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <rect x="8" y="6" width="32" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <rect x="14" y="14" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+              <rect x="14" y="20" width="20" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+              <rect x="14" y="26" width="14" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+            </svg>
+            <div class="category-title">Websites</div>
+            <p>AI-built business and personal sites for any goal.</p>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#landing-pages" class="card category-card">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <rect x="6" y="10" width="36" height="28" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <circle cx="24" cy="24" r="6" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <path d="M24 18v-4M24 34v-4M18 24h-4M34 24h-4" stroke="#8159BB" stroke-width="2"/>
+            </svg>
+            <div class="category-title">Landing Pages</div>
+            <p>Single-page sites built to convert visitors fast.</p>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#portfolios" class="card category-card">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <rect x="10" y="8" width="28" height="32" rx="2" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <circle cx="24" cy="20" r="6" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <rect x="16" y="30" width="16" height="2" rx="1" fill="#8159BB" opacity="0.3"/>
+              <rect x="18" y="34" width="12" height="2" rx="1" fill="#8159BB" opacity="0.2"/>
+            </svg>
+            <div class="category-title">Portfolios</div>
+            <p>Showcase your work with a clean, focused site.</p>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#blogs" class="card category-card">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <path d="M12 8h24v32H12z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+              <line x1="16" y1="16" x2="32" y2="16" stroke="#8159BB" stroke-width="2"/>
+              <line x1="16" y1="22" x2="32" y2="22" stroke="#8159BB" stroke-width="2"/>
+              <line x1="16" y1="28" x2="26" y2="28" stroke="#8159BB" stroke-width="2"/>
+            </svg>
+            <div class="category-title">Blogs</div>
+            <p>Publish-ready blogs with built-in SEO basics.</p>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#stores" class="card category-card">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <path d="M14 12h20l2 24H12l2-24z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+              <path d="M18 12v-4h12v4" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <circle cx="20" cy="28" r="2" fill="#8159BB" opacity="0.3"/>
+              <circle cx="28" cy="28" r="2" fill="#8159BB" opacity="0.3"/>
+            </svg>
+            <div class="category-title">Online Stores</div>
+            <p>Sell products online with payments built in.</p>
+            <span class="arrow">→</span>
+          </a>
+          <a href="#link-in-bio" class="card category-card">
+            <svg class="icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <circle cx="24" cy="24" r="16" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <circle cx="24" cy="18" r="3" fill="#8159BB" opacity="0.3"/>
+              <rect x="20" y="24" width="8" height="2" rx="1" fill="#8159BB" opacity="0.3"/>
+              <rect x="20" y="28" width="8" height="2" rx="1" fill="#8159BB" opacity="0.3"/>
+              <rect x="20" y="32" width="6" height="2" rx="1" fill="#8159BB" opacity="0.3"/>
+            </svg>
+            <div class="category-title">Link-in-Bio</div>
+            <p>One link, all your places. Made for creators.</p>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: ALL GENERATORS DIRECTORY -->
+    <section class="all-generators" id="all-generators">
+      <div class="container">
+        <div class="section-header">
+          <h2>ALL GENERATORS</h2>
+          <p>Sixty-plus generators, organized by what you're building.</p>
+        </div>
+        
+        <div class="search-box">
+          <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="8.5" cy="8.5" r="5.5" stroke="#636972" stroke-width="2"/>
+            <path d="M12.5 12.5L17 17" stroke="#636972" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="search-input" aria-label="Search generators" placeholder="Search generators...">
+        </div>
+        <div class="search-results-count" id="search-results-count"></div>
+        
+        <div class="no-results" id="no-results">
+          <p>No generators match your search.</p>
+          <button class="btn btn-ghost" onclick="clearSearch()">Clear search</button>
+          <p style="margin-top: 15px;"><a href="/s/ai_site_builder">Can't find it? Start with our AI builder.</a></p>
+        </div>
+
+        <!-- Websites Category -->
+        <div class="category-section" id="websites">
+          <h3>Websites</h3>
+          <p class="description">AI-built business and personal sites for any goal.</p>
+          <div class="directory-grid">
+            <a href="/generators/ai-website-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>AI Website Generator</h4>
+              <p>Describe your business, get a full site</p>
+            </a>
+            <a href="/generators/one-page-website-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>One-Page Website Builder</h4>
+              <p>Simple sites, single scroll</p>
+            </a>
+            <a href="/generators/wedding-website-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Wedding Website Generator</h4>
+              <p>Share your day with guests</p>
+            </a>
+            <a href="/generators/restaurant-website-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Restaurant Website Builder</h4>
+              <p>Menu, hours, reservations, done</p>
+            </a>
+            <a href="/generators/free-website-builder-for-photographers" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Free Website Builder for Photographers</h4>
+              <p>Showcase your photos beautifully</p>
+            </a>
+            <a href="/generators/no-code-website-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>No-Code Website Builder</h4>
+              <p>Build without writing a line of code</p>
+            </a>
+            <a href="/generators/beautiful-website-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Beautiful Website Generator</h4>
+              <p>Stunning designs, zero design skills</p>
+            </a>
+            <a href="/generators/ai-website-builder-for-yoga-instructors" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>AI Website Builder for Yoga Instructors</h4>
+              <p>Share your classes with the world</p>
+            </a>
+            <a href="/generators/small-business-website-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Small Business Website Generator</h4>
+              <p>Get online and start growing</p>
+            </a>
+            <a href="/generators/personal-website-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="10" y="8" width="40" height="44" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="18" y="18" width="24" height="4" rx="2" fill="#8159BB" opacity="0.3"/>
+                  <rect x="18" y="26" width="24" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                  <rect x="18" y="34" width="16" height="4" rx="2" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Personal Website Builder</h4>
+              <p>Your own corner of the internet</p>
+            </a>
+          </div>
+          <button class="show-all-toggle" onclick="toggleCards(this, 'websites')">Show all 10 generators</button>
+        </div>
+
+        <!-- Landing Pages Category -->
+        <div class="category-section" id="landing-pages">
+          <h3>Landing Pages</h3>
+          <p class="description">Single-page sites built to convert visitors fast.</p>
+          <div class="directory-grid">
+            <a href="/generators/ai-landing-page-maker" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>AI Landing Page Maker</h4>
+              <p>One-page sites built to convert</p>
+            </a>
+            <a href="/generators/free-landing-page-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Free Landing Page Generator</h4>
+              <p>High-converting pages at no cost</p>
+            </a>
+            <a href="/generators/lead-generation-landing-page" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Lead Generation Landing Page</h4>
+              <p>Capture leads and grow your list</p>
+            </a>
+            <a href="/generators/event-landing-page-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Event Landing Page Builder</h4>
+              <p>Promote your event, sell tickets</p>
+            </a>
+            <a href="/generators/product-launch-landing-page" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Product Launch Landing Page</h4>
+              <p>Build hype and drive sales</p>
+            </a>
+            <a href="/generators/webinar-registration-page" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Webinar Registration Page</h4>
+              <p>Get more signups for your webinar</p>
+            </a>
+            <a href="/generators/coming-soon-page-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Coming Soon Page Generator</h4>
+              <p>Build anticipation before launch</p>
+            </a>
+            <a href="/generators/thank-you-page-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="8" y="12" width="44" height="36" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="28" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <path d="M30 20v-6M30 44v-6M22 28h-6M44 28h-6" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Thank You Page Builder</h4>
+              <p>Close the loop with customers</p>
+            </a>
+          </div>
+          <button class="show-all-toggle" onclick="toggleCards(this, 'landing-pages')">Show all 8 generators</button>
+        </div>
+
+        <!-- Portfolios Category -->
+        <div class="category-section" id="portfolios">
+          <h3>Portfolios</h3>
+          <p class="description">Showcase your work with a clean, focused site.</p>
+          <div class="directory-grid">
+            <a href="/generators/free-portfolio-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Free Portfolio Generator</h4>
+              <p>For creatives, in minutes, no fee</p>
+            </a>
+            <a href="/generators/portfolio-generator-for-designers" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Portfolio Generator for Designers</h4>
+              <p>Put your best work forward</p>
+            </a>
+            <a href="/generators/photography-portfolio-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Photography Portfolio Builder</h4>
+              <p>Let your images do the talking</p>
+            </a>
+            <a href="/generators/artist-portfolio-website" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Artist Portfolio Website</h4>
+              <p>Display your art professionally</p>
+            </a>
+            <a href="/generators/freelancer-portfolio-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Freelancer Portfolio Builder</h4>
+              <p>Win clients with a strong portfolio</p>
+            </a>
+            <a href="/generators/architecture-portfolio-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Architecture Portfolio Generator</h4>
+              <p>Showcase your built work</p>
+            </a>
+            <a href="/generators/fashion-portfolio-website" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Fashion Portfolio Website</h4>
+              <p>For models, stylists, and designers</p>
+            </a>
+            <a href="/generators/developer-portfolio-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <rect x="12" y="10" width="36" height="40" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="24" r="8" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <rect x="20" y="36" width="20" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="22" y="42" width="16" height="3" rx="1" fill="#8159BB" opacity="0.2"/>
+                </svg>
+              </div>
+              <h4>Developer Portfolio Generator</h4>
+              <p>Show your code and your style</p>
+            </a>
+          </div>
+          <button class="show-all-toggle" onclick="toggleCards(this, 'portfolios')">Show all 8 generators</button>
+        </div>
+
+        <!-- Blogs Category -->
+        <div class="category-section" id="blogs">
+          <h3>Blogs</h3>
+          <p class="description">Publish-ready blogs with built-in SEO basics.</p>
+          <div class="directory-grid">
+            <a href="/generators/blog-generator-for-beginners" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Blog Generator for Beginners</h4>
+              <p>Publish-ready in minutes</p>
+            </a>
+            <a href="/generators/free-blog-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Free Blog Builder</h4>
+              <p>Start writing at no cost</p>
+            </a>
+            <a href="/generators/ai-blog-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>AI Blog Generator</h4>
+              <p>Let AI write your first post</p>
+            </a>
+            <a href="/generators/travel-blog-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Travel Blog Builder</h4>
+              <p>Share your adventures</p>
+            </a>
+            <a href="/generators/food-blog-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Food Blog Generator</h4>
+              <p>Share recipes and reviews</p>
+            </a>
+            <a href="/generators/lifestyle-blog-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Lifestyle Blog Builder</h4>
+              <p>Write about what you love</p>
+            </a>
+            <a href="/generators/tech-blog-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Tech Blog Generator</h4>
+              <p>Share your technical insights</p>
+            </a>
+            <a href="/generators/personal-blog-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M15 10h30v40H15z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+                  <line x1="20" y1="20" x2="40" y2="20" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="28" x2="40" y2="28" stroke="#8159BB" stroke-width="2"/>
+                  <line x1="20" y1="36" x2="35" y2="36" stroke="#8159BB" stroke-width="2"/>
+                </svg>
+              </div>
+              <h4>Personal Blog Builder</h4>
+              <p>Your own space to write</p>
+            </a>
+          </div>
+          <button class="show-all-toggle" onclick="toggleCards(this, 'blogs')">Show all 8 generators</button>
+        </div>
+
+        <!-- Online Stores Category -->
+        <div class="category-section" id="stores">
+          <h3>Online Stores</h3>
+          <p class="description">Sell products online with payments built in.</p>
+          <div class="directory-grid">
+            <a href="/generators/online-store-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Online Store Builder</h4>
+              <p>Start selling without writing code</p>
+            </a>
+            <a href="/generators/free-ecommerce-website-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Free Ecommerce Website Generator</h4>
+              <p>Sell online at no cost to start</p>
+            </a>
+            <a href="/generators/online-store-builder-for-restaurants" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Online Store Builder for Restaurants</h4>
+              <p>Sell menu items and merch</p>
+            </a>
+            <a href="/generators/digital-products-store-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Digital Products Store Builder</h4>
+              <p>Sell downloads and courses</p>
+            </a>
+            <a href="/generators/fashion-boutique-online-store" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Fashion Boutique Online Store</h4>
+              <p>Sell clothing and accessories</p>
+            </a>
+            <a href="/generators/handmade-crafts-store-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Handmade Crafts Store Builder</h4>
+              <p>Sell your handmade goods</p>
+            </a>
+            <a href="/generators/subscription-box-store-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Subscription Box Store Generator</h4>
+              <p>Recurring revenue made simple</p>
+            </a>
+            <a href="/generators/bookstore-ecommerce-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M17 15h26l3 30H14l3-30z" stroke="#8159BB" stroke-width="2" fill="none" rx="2"/>
+                  <path d="M22 15v-5h16v5" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="25" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                  <circle cx="35" cy="35" r="3" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Bookstore Ecommerce Builder</h4>
+              <p>Sell books online easily</p>
+            </a>
+          </div>
+          <button class="show-all-toggle" onclick="toggleCards(this, 'stores')">Show all 8 generators</button>
+        </div>
+
+        <!-- Link-in-Bio Category -->
+        <div class="category-section" id="link-in-bio">
+          <h3>Link-in-Bio</h3>
+          <p class="description">One link, all your places. Made for creators.</p>
+          <div class="directory-grid">
+            <a href="/generators/link-in-bio-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Link-in-Bio Generator</h4>
+              <p>One link for all your channels</p>
+            </a>
+            <a href="/generators/free-link-in-bio-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Free Link-in-Bio Builder</h4>
+              <p>Start connecting for free</p>
+            </a>
+            <a href="/generators/creator-link-in-bio-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Creator Link-in-Bio Generator</h4>
+              <p>Built for influencers and creators</p>
+            </a>
+            <a href="/generators/musician-link-in-bio-builder" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Musician Link-in-Bio Builder</h4>
+              <p>Link to your music everywhere</p>
+            </a>
+            <a href="/generators/artist-link-in-bio-generator" class="card directory-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Artist Link-in-Bio Generator</h4>
+              <p>Showcase your portfolio and store</p>
+            </a>
+            <a href="/generators/podcast-link-in-bio-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Podcast Link-in-Bio Builder</h4>
+              <p>All your episodes in one place</p>
+            </a>
+            <a href="/generators/influencer-link-in-bio-generator" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Influencer Link-in-Bio Generator</h4>
+              <p>Grow your following faster</p>
+            </a>
+            <a href="/generators/brand-link-in-bio-builder" class="card directory-card hidden-card">
+              <div class="thumbnail">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <circle cx="30" cy="30" r="20" stroke="#8159BB" stroke-width="2" fill="none"/>
+                  <circle cx="30" cy="22" r="4" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="30" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="35" width="10" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                  <rect x="25" y="40" width="8" height="3" rx="1" fill="#8159BB" opacity="0.3"/>
+                </svg>
+              </div>
+              <h4>Brand Link-in-Bio Builder</h4>
+              <p>Connect all your brand channels</p>
+            </a>
+          </div>
+          <button class="show-all-toggle" onclick="toggleCards(this, 'link-in-bio')">Show all 8 generators</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: HOW IT WORKS -->
+    <section class="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <h2>HOW IT WORKS</h2>
+        </div>
+        <div class="steps-grid">
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">PICK A GENERATOR</div>
+            <p>Browse by category or search to find one that fits your goal.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-title">DESCRIBE YOUR SITE</div>
+            <p>Tell our AI builder about your business in a sentence or two.</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">GENERATE AND PUBLISH</div>
+            <p>Get a fully built site in seconds. Customize anything, then go live.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: WHY STRIKINGLY -->
+    <section class="why-strikingly">
+      <div class="container">
+        <div class="section-header">
+          <h2>WHY STRIKINGLY</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature">
+            <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <circle cx="24" cy="24" r="16" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <path d="M16 24l5 5 11-11" stroke="#8159BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <div class="feature-title">LIVE IN SECONDS</div>
+            <p>Describe your site, we build it. No setup, no learning curve.</p>
+          </div>
+          <div class="feature">
+            <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <rect x="8" y="10" width="32" height="28" rx="4" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <rect x="14" y="16" width="20" height="16" rx="2" stroke="#8159BB" stroke-width="2" fill="none"/>
+              <circle cx="24" cy="40" r="2" fill="#8159BB" opacity="0.3"/>
+            </svg>
+            <div class="feature-title">MOBILE BY DEFAULT</div>
+            <p>Every generator produces responsive sites that work on any device.</p>
+          </div>
+          <div class="feature">
+            <svg class="feature-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="48" height="48">
+              <path d="M12 12h24v24H12z" stroke="#8159BB" stroke-width="2" fill="none" rx="4"/>
+              <path d="M18 20h12M18 26h12M18 32h8" stroke="#8159BB" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16 8v4M24 8v4M32 8v4" stroke="#8159BB" stroke-width="2"/>
+            </svg>
+            <div class="feature-title">FREE TO START</div>
+            <p>Generate, customize, and publish without a credit card.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8: FAQ -->
+    <section class="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2>FREQUENTLY ASKED QUESTIONS</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="true" aria-controls="faq-answer-1" onclick="toggleFaq(this)">
+              <span>What is an AI site generator?</span>
+              <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer open" id="faq-answer-1" role="region">
+              <p>An AI site generator is a tool that creates a complete website for you based on a short description. Instead of starting with a blank page or choosing from hundreds of templates, you simply describe what you need, and our AI builds a custom site in seconds. Each generator is optimized for a specific goal—like portfolios, online stores, or landing pages—so the result is tailored to what you're building.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" onclick="toggleFaq(this)">
+              <span>How is a generator different from a template?</span>
+              <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-2" role="region">
+              <p>A template gives you a static layout that you manually fill in. A generator creates a unique site structure based on your specific input. With a template, you're locked into a fixed design. With a generator, the AI adapts the layout, sections, and content suggestions to match what you describe, giving you a more custom result from the start.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" onclick="toggleFaq(this)">
+              <span>Are these generators free to use?</span>
+              <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-3" role="region">
+              <p>Yes, you can generate, customize, and publish a site for free. Our free plan includes hosting, a Strikingly subdomain, and all the core features you need to get online. If you want a custom domain, advanced ecommerce, or more storage, you can upgrade to a paid plan later. But there's no credit card required to start.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" onclick="toggleFaq(this)">
+              <span>What kinds of sites can I build?</span>
+              <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-4" role="region">
+              <p>You can build almost any kind of site: business websites, portfolios, blogs, online stores, landing pages, event pages, and more. Each generator is tuned for its purpose, so a portfolio generator will suggest galleries and about sections, while a store generator will set up product pages and a checkout flow.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" onclick="toggleFaq(this)">
+              <span>Can I customize what the generator produces?</span>
+              <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-5" role="region">
+              <p>Absolutely. The generator gives you a complete starting point, but you have full control from there. You can edit text, swap images, change colors, add or remove sections, and rearrange the layout. Our editor is drag-and-drop simple, so you don't need any technical skills to make the site truly yours.</p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" onclick="toggleFaq(this)">
+              <span>Do generated sites work on mobile?</span>
+              <svg class="icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="faq-answer" id="faq-answer-6" role="region">
+              <p>Yes, every site generated with Strikingly is fully responsive and mobile-ready from the first second. Your site will automatically adapt to look great on phones, tablets, and desktops. You can preview how it looks on different screen sizes right in the editor and make adjustments if needed.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9: CLOSING CTA -->
+    <section class="closing-cta">
+      <div class="container">
+        <h2>READY TO BUILD?</h2>
+        <p>Pick a generator above, or jump straight into our AI builder.</p>
+        <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START WITH AI BUILDER</a>
+      </div>
+    </section>
+
+    <!-- SECTION 10: FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-logo">strikingly</div>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 13px; line-height: 1.6;">
+              Strikingly is the easiest way to build a beautiful, mobile-friendly website quickly.
+            </p>
+          </div>
+          <div class="footer-column">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="/pricing">Pricing</a></li>
+              <li><a href="/templates">Templates</a></li>
+              <li><a href="/generators">AI Generators</a></li>
+              <li><a href="/features">Features</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="/about">About Us</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/careers">Careers</a></li>
+              <li><a href="/press">Press</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Support</h4>
+            <ul>
+              <li><a href="/support">Help Center</a></li>
+              <li><a href="/tutorials">Tutorials</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              <li><a href="/status">Status</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/terms">Terms of Service</a></li>
+              <li><a href="/privacy">Privacy Policy</a></li>
+              <li><a href="/cookies">Cookie Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Strikingly. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
     <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
-
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
-
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
-
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
+      // Search functionality
+      const searchInput = document.getElementById('search-input');
+      const searchResultsCount = document.getElementById('search-results-count');
+      const noResults = document.getElementById('no-results');
+      const allCards = document.querySelectorAll('.directory-card');
+      const allCategorySections = document.querySelectorAll('.category-section');
+      
+      if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+          const query = e.target.value.toLowerCase().trim();
+          
+          if (!query) {
+            clearSearch();
             return;
           }
-
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
-
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
-
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
-
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
-
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
-
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
-
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
-
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const MAX_STRING_LENGTH = 2000;
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const extractComponentStack = (args) => {
-          for (const arg of args) {
-            if (
-              arg &&
-              typeof arg === "object" &&
-              typeof arg.componentStack === "string"
-            ) {
-              return truncate(arg.componentStack);
-            }
-
-            if (
-              typeof arg === "string" &&
-              (arg.includes("\n    at ") ||
-                arg.includes("\n at ") ||
-                arg.includes("The above error occurred"))
-            ) {
-              return truncate(arg);
-            }
-          }
-
-          return "";
-        };
-
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
-
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-
-              postToParent({
-                type: "runtime-error",
-                kind: "resource-error",
-                message: `Failed to load ${tagName.toLowerCase()} resource.`,
-                source: resourceUrl,
-                resourceTagName: tagName.toLowerCase(),
-                resourceUrl,
-              });
-              return;
-            }
-
-            const normalized = normalizeErrorLike(event.error || event.message);
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source: event.filename || normalized.source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
+          
+          let matchCount = 0;
+          
+          allCategorySections.forEach(section => {
+            const cards = section.querySelectorAll('.directory-card');
+            let sectionHasMatch = false;
+            
+            cards.forEach(card => {
+              const name = card.querySelector('h4')?.textContent.toLowerCase() || '';
+              const desc = card.querySelector('p')?.textContent.toLowerCase() || '';
+              const category = section.querySelector('h3')?.textContent.toLowerCase() || '';
+              
+              const matches = name.includes(query) || desc.includes(query) || category.includes(query);
+              
+              if (matches) {
+                card.classList.remove('hidden-card');
+                card.classList.add('visible');
+                sectionHasMatch = true;
+                matchCount++;
+              } else {
+                card.classList.add('hidden-card');
+                card.classList.remove('visible');
+              }
             });
-          },
-          true,
-        );
-
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
+            
+            if (sectionHasMatch) {
+              section.style.display = '';
+            } else {
+              section.style.display = 'none';
+            }
+          });
+          
+          searchResultsCount.textContent = matchCount + ' generators match';
+          searchResultsCount.classList.add('visible');
+          
+          if (matchCount === 0) {
+            noResults.classList.add('visible');
+          } else {
+            noResults.classList.remove('visible');
+          }
+        });
+      }
+      
+      function clearSearch() {
+        if (searchInput) {
+          searchInput.value = '';
+        }
+        searchResultsCount.classList.remove('visible');
+        noResults.classList.remove('visible');
+        
+        allCategorySections.forEach(section => {
+          section.style.display = '';
+          const cards = section.querySelectorAll('.directory-card');
+          cards.forEach(card => {
+            card.classList.remove('hidden-card');
+            card.classList.remove('visible');
           });
         });
-
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          const errorLike = args.find(
-            (arg) =>
-              arg instanceof Error ||
-              (arg &&
-                typeof arg === "object" &&
-                ("message" in arg || "stack" in arg)),
-          );
-          const normalized = normalizeErrorLike(errorLike || args[0]);
-
-          postToParent({
-            type: "console-error",
-            kind: "console-error",
-            name: normalized.name,
-            message:
-              normalized.message ||
-              args.map((arg) => stringifyValue(arg)).join(" "),
-            stack: normalized.stack,
-            componentStack: extractComponentStack(args),
-            args: args.map((arg) => stringifyValue(arg)),
+      }
+      
+      // Show all toggle functionality
+      function toggleCards(button, categoryId) {
+        const section = document.getElementById(categoryId);
+        if (!section) return;
+        
+        const hiddenCards = section.querySelectorAll('.directory-card.hidden-card');
+        const isShowingAll = button.textContent.includes('Show all');
+        
+        if (isShowingAll) {
+          hiddenCards.forEach(card => {
+            card.classList.remove('hidden-card');
+            card.classList.add('visible');
           });
-
-          originalConsoleError(...args);
-        };
-      })();
+          button.textContent = 'Show fewer generators';
+        } else {
+          hiddenCards.forEach(card => {
+            card.classList.add('hidden-card');
+            card.classList.remove('visible');
+          });
+          const count = section.querySelectorAll('.directory-card:not(.hidden-card)').length;
+          button.textContent = 'Show all ' + (parseInt(section.querySelectorAll('.directory-card').length) + ' generators';
+        }
+      }
+      
+      // FAQ accordion functionality
+      function toggleFaq(button) {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        const answerId = button.getAttribute('aria-controls');
+        const answer = document.getElementById(answerId);
+        
+        if (!answer) return;
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-question').forEach(q => {
+          if (q !== button) {
+            q.setAttribute('aria-expanded', 'false');
+            const otherAnswerId = q.getAttribute('aria-controls');
+            const otherAnswer = document.getElementById(otherAnswerId);
+            if (otherAnswer) {
+              otherAnswer.classList.remove('open');
+            }
+          }
+        });
+        
+        // Toggle current FAQ
+        button.setAttribute('aria-expanded', !isExpanded);
+        if (isExpanded) {
+          answer.classList.remove('open');
+        } else {
+          answer.classList.add('open');
+        }
+      }
     </script>
-    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
