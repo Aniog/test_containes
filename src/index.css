@@ -1,76 +1,92 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --brand-purple: #8159BB;
+  --ai-blue: #7671FF;
+  --ai-pink: #CB0C9F;
+  --body-text: #636972;
+  --heading-text: #4B5056;
+  --hero-h1-dark: #2E2E2F;
+  --card-border: #C6C9CD;
+  --subtle-divider: #E2E4E7;
+  --light-bg: #F4F6F8;
+  --font-heading: 'Josefin Sans', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--body-text);
+  background-color: #FFFFFF;
+  margin: 0;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--heading-text);
+}
+
+.ai-gradient-text {
+  background: linear-gradient(to right, var(--ai-blue), var(--ai-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ai-gradient-bg {
+  background: linear-gradient(to right, var(--ai-blue), var(--ai-pink));
+}
+
+.btn {
+  @apply inline-flex items-center justify-center font-heading text-[14px] uppercase font-bold rounded-[4px] px-[15px] h-[36px] transition-all;
+}
+
+.btn-big {
+  @apply h-[44px];
+}
+
+.btn-primary {
+  @apply ai-gradient-bg text-white shadow-sm hover:opacity-90;
+}
+
+.btn-ghost {
+  @apply border border-[var(--brand-purple)] text-[var(--brand-purple)] bg-transparent hover:bg-[var(--light-bg)];
+}
+
+.card {
+  @apply bg-white border border-[var(--card-border)] rounded-[3px] p-[20px] transition-all hover:border-[var(--brand-purple)] hover:shadow-md;
+}
+
+.tag {
+  @apply inline-block font-heading text-[11px] uppercase px-[6px] py-[2px] rounded-[3px] border border-[var(--brand-purple)] text-[var(--brand-purple)];
+}
+
+.container-custom {
+  @apply max-w-[1200px] mx-auto px-[20px];
+}
+
+section {
+  @apply py-[40px];
+}
+
+.section-title {
+  @apply text-[26px] md:text-[32px] mb-[10px];
+}
+
+.section-subtitle {
+  @apply text-[14px] text-[var(--body-text)] mb-[20px];
+}
+
+/* Accordion transition logic if needed */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
