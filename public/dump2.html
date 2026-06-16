@@ -1,0 +1,17 @@
+<!doctype html><html><body>
+<pre id="o">waiting...</pre>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push(s); out.textContent = log.join('\n'); }
+window.addEventListener('error', e => add('SCRIPT-ERR: ' + (e.message || (e.error && e.error.message) || e.toString()) + ' src=' + e.filename + ' line=' + e.lineno));
+add('test 1: try direct script tag load');
+const s = document.createElement('script');
+s.type = 'module';
+s.src = '/src/main.jsx';
+s.onload = () => add('test1 onload ok');
+s.onerror = (e) => add('test1 onerror: ' + (e.message || e.toString()) + ' src=' + s.src);
+document.body.appendChild(s);
+setTimeout(() => add('after 3s: scripts in body = ' + document.scripts.length), 3000);
+</script>
+</body></html>

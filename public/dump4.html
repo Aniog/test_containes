@@ -1,0 +1,39 @@
+<!doctype html><html><body>
+<pre id="o">waiting...</pre>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push(s); out.textContent = log.join('\n'); }
+
+async function go() {
+  add('test 1: import from origin (this page)');
+  try {
+    const m = await import('/src/main.jsx');
+    add('OK keys=' + Object.keys(m).join(','));
+  } catch(e) { add('err1: ' + (e.message || e.toString())); }
+  
+  add('test 2: import with cache buster');
+  try {
+    const m = await import('/src/main.jsx?bust=' + Date.now());
+    add('OK keys=' + Object.keys(m).join(','));
+  } catch(e) { add('err2: ' + (e.message || e.toString())); }
+
+  add('test 3: import from /src/main.jsx?t= match');
+  try {
+    const m = await import('/src/main.jsx?t=1781648585883');
+    add('OK keys=' + Object.keys(m).join(','));
+  } catch(e) { add('err3: ' + (e.message || e.toString())); }
+
+  add('test 4: script tag (no cache buster)');
+  const s = document.createElement('script');
+  s.type = 'module';
+  s.src = '/src/main.jsx';
+  s.onload = () => add('script4 onload');
+  s.onerror = (e) => add('script4 onerror: ' + (e.message || e.toString()));
+  document.body.appendChild(s);
+}
+window.addEventListener('error', e => add('PAGE-ERR: ' + e.message + ' ' + e.filename + ':' + e.lineno));
+window.addEventListener('unhandledrejection', e => add('UNHANDLED: ' + e.reason));
+go();
+</script>
+</body></html>

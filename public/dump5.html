@@ -1,0 +1,25 @@
+<!doctype html><html><body>
+<pre id="o">waiting...</pre>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push(s); out.textContent = log.join('\n'); }
+async function go() {
+  add('test: use full https URL via blob');
+  const r1 = await fetch('https://ta-01kv980bytgg7gsg7z14dym723-12000-4dgb50h9hqetn4k59yo4aj7e9.w.modal.host/src/main.jsx');
+  add('r1: status=' + r1.status + ' ct=' + r1.headers.get('content-type') + ' len=' + r1.headers.get('content-length'));
+  const t = await r1.text();
+  add('r1 body: ' + t.length + ' bytes; last200=' + t.slice(-200));
+  add('test: import main.jsx from external URL with blob');
+  const b = new Blob([t], { type: 'text/javascript' });
+  const u = URL.createObjectURL(b);
+  try {
+    const m = await import(u);
+    add('blob-import-ok keys=' + Object.keys(m).join(','));
+  } catch(e) { add('blob-import-err: ' + (e.message || e.toString())); }
+}
+window.addEventListener('error', e => add('PAGE-ERR: ' + e.message + ' ' + e.filename + ':' + e.lineno));
+window.addEventListener('unhandledrejection', e => add('UNHANDLED: ' + e.reason));
+go();
+</script>
+</body></html>

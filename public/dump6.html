@@ -1,0 +1,26 @@
+<!doctype html><html><body>
+<pre id="o">waiting...</pre>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push(s); out.textContent = log.join('\n'); }
+async function go() {
+  add('test: instrument script load with onload/onerror direct');
+  const s = document.createElement('script');
+  s.type = 'module';
+  s.src = '/src/main.jsx?bust=1';
+  s.addEventListener('load', () => add('script1 loaded'));
+  s.addEventListener('error', (e) => add('script1 error: ' + e.message + ' type=' + e.type));
+  document.body.appendChild(s);
+  
+  await new Promise(r => setTimeout(r, 4000));
+  
+  add('test: import App.jsx directly');
+  try {
+    const m = await import('/src/App.jsx');
+    add('App-import-OK default=' + (typeof m.default));
+  } catch(e) { add('App-import-err: ' + (e.message || e.toString())); }
+}
+go();
+</script>
+</body></html>

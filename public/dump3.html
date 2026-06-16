@@ -1,0 +1,38 @@
+<!doctype html><html><body>
+<pre id="o">waiting...</pre>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push(s); out.textContent = log.join('\n'); }
+async function go() {
+  add('test: fetch main.jsx as text');
+  try {
+    const r = await fetch('/src/main.jsx');
+    add('status=' + r.status + ' content-type=' + r.headers.get('content-type'));
+    const t = await r.text();
+    add('body len=' + t.length + ' first50=' + t.slice(0,50));
+  } catch(e) { add('fetch err: ' + e.message); }
+  add('test: dynamic import');
+  try {
+    const m = await import('/src/main.jsx');
+    add('import ok keys=' + Object.keys(m).join(','));
+  } catch(e) { add('import err: ' + (e.message || e.toString())); }
+  add('test: blob script tag');
+  try {
+    const r = await fetch('/src/main.jsx');
+    const t = await r.text();
+    const b = new Blob([t], { type: 'text/javascript' });
+    const u = URL.createObjectURL(b);
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = u;
+    s.onerror = (e) => add('blob script onerror');
+    s.onload = () => add('blob script onload');
+    document.body.appendChild(s);
+  } catch(e) { add('blob err: ' + e.message); }
+}
+window.addEventListener('error', e => add('PAGE-ERR: ' + e.message + ' ' + e.filename + ':' + e.lineno));
+window.addEventListener('unhandledrejection', e => add('UNHANDLED: ' + e.reason));
+go();
+</script>
+</body></html>

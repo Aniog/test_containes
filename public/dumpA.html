@@ -1,0 +1,37 @@
+<!doctype html><html><body>
+<pre id="o">loading...</pre>
+<iframe id="f" src="/" style="width:100%;height:600px;border:1px solid #ccc"></iframe>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push('['+new Date().toISOString().slice(11,19)+'] '+s); out.textContent = log.join('\n'); }
+const f = document.getElementById('f');
+f.addEventListener('load', () => {
+  add('iframe loaded');
+  // Inject a script into the iframe to monkeypatch error capture
+  setTimeout(() => {
+    try {
+      const w = f.contentWindow;
+      const origConsole = w.console;
+      // capture
+      const newConsole = {
+        ...origConsole,
+        log: (...a) => { add('IFRAME-LOG: ' + a.map(x => String(x)).join(' ')); origConsole.log(...a); },
+        error: (...a) => { add('IFRAME-ERR: ' + a.map(x => String(x)).join(' ')); origConsole.error(...a); },
+        warn: (...a) => { add('IFRAME-WARN: ' + a.map(x => String(x)).join(' ')); origConsole.warn(...a); },
+      };
+      Object.defineProperty(w, 'console', { value: newConsole, configurable: true });
+      w.addEventListener('error', e => add('IFRAME-WIN-ERR: ' + e.message + ' at ' + e.filename + ':' + e.lineno + ':' + e.colno + ' (isModule=' + (e.error && e.error.message) + ')'));
+      w.addEventListener('unhandledrejection', e => add('IFRAME-UNH: ' + (e.reason && (e.reason.message || e.reason.toString()))));
+      add('monkeypatches installed');
+    } catch(e) { add('monkeypatch err: ' + e.message); }
+  }, 500);
+});
+window.addEventListener('message', e => {
+  const d = e.data;
+  if (d && d.__strkRuntimeErrorBridge) {
+    add('BRIDGE: ' + JSON.stringify(d).slice(0, 800));
+  }
+});
+</script>
+</body></html>

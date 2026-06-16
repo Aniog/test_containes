@@ -1,0 +1,44 @@
+<!doctype html><html><body>
+<pre id="o">waiting...</pre>
+<script>
+const out = document.getElementById('o');
+const log = [];
+function add(s) { log.push(s); out.textContent = log.join('\n'); }
+
+async function go() {
+  add('A: test fetch /@react-refresh');
+  try {
+    const r = await fetch('/@react-refresh');
+    add('A: status=' + r.status + ' ct=' + r.headers.get('content-type') + ' len=' + (await r.text()).length);
+  } catch(e) { add('A: err ' + e.message); }
+
+  add('B: try the inline preamble pattern');
+  try {
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.textContent = `import { injectIntoGlobalHook } from "/@react-refresh";
+injectIntoGlobalHook(window);
+window.$RefreshReg$ = () => {};
+window.$RefreshSig$ = () => (type) => type;
+window.__PREAMBLE_RAN__ = true;
+parent.postMessage({k:'preamble-loaded', hasRefreshReg: typeof window.$RefreshReg$}, '*');`;
+    document.head.appendChild(s);
+  } catch(e) { add('B: err ' + e.message); }
+
+  await new Promise(r => setTimeout(r, 4000));
+
+  add('C: after wait, hasRefreshReg=' + (typeof window.$RefreshReg$));
+  add('C: preamble ran=' + !!window.__PREAMBLE_RAN__);
+  
+  add('D: now try import App.jsx');
+  try {
+    const m = await import('/src/App.jsx');
+    add('D: import OK');
+  } catch(e) { add('D: import err: ' + (e.message || e.toString())); }
+}
+window.addEventListener('error', e => add('PAGE-ERR: ' + e.message + ' ' + e.filename + ':' + e.lineno));
+window.addEventListener('unhandledrejection', e => add('UNHANDLED: ' + e.reason));
+window.addEventListener('message', e => { if (e.data && e.data.k) add('MSG: ' + JSON.stringify(e.data)); });
+go();
+</script>
+</body></html>

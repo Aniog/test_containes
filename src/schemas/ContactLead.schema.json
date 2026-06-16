@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Lead",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Telephone number, including country code if applicable"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the inquirer"
+    },
+    "productInterest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "double-folder",
+        "sheet-metal-folder",
+        "sheet-metal-folding-machine",
+        "metal-folder",
+        "metal-folder-machine",
+        "metal-folding-machine",
+        "other"
+      ],
+      "description": "The product line the inquirer is most interested in"
+    },
+    "material": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Primary material the inquirer will be forming"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Free-form project description or question"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Marketing source attribution (e.g. direct, search, referral)"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
