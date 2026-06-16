@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machine Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Name of the machine"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folding Machine", "Sheet Metal Folder", "Metal Folding Machine"],
+      "description": "Category of the folding machine"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the machine"
+    },
+    "specifications": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key technical specifications"
+    },
+    "imageUrl": {
+      "type": "object",
+      "description": "Product image",
+      "properties": {
+        "filename": { "type": "string" },
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["name", "category", "description"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
