@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the requester"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or workshop name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of operation"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": [
+        "Double Folding Machine",
+        "Double Folder",
+        "Sheet Metal Folder",
+        "Sheet Metal Folding Machine",
+        "Metal Folder",
+        "Metal Folder Machine",
+        "Metal Folding Machine",
+        "Not sure yet"
+      ],
+      "description": "Primary product the visitor wants a quote for"
+    },
+    "material_thickness": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Typical sheet thickness they plan to fold (e.g. 0.5–3 mm)"
+    },
+    "sheet_length": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Maximum sheet length they need (e.g. 2500 mm)"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes about the application, timeline, or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal CRM status of the quote request"
+    }
+  },
+  "required": ["full_name", "email", "product_interest"],
+  "additionalProperties": false
+}
