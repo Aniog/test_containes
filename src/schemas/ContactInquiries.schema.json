@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company Name"
+    },
+    "inquiry_type": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Topic of Inquiry"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Message body"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_progress", "resolved"],
+      "default": "new",
+      "description": "Processing status"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
