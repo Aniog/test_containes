@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quote Request",
+  "description": "Inbound quote or information request from a website visitor",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the requester"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address used to reply"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number, including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of operation"
+    },
+    "productInterest": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Product the visitor is interested in (e.g. Double Folding Machine)"
+    },
+    "material": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Material to be folded (e.g. mild steel 2mm, stainless, aluminum)"
+    },
+    "thickness": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Maximum sheet thickness to be processed"
+    },
+    "length": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Maximum folding length required"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Free-form project notes or questions"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Where the inquiry came from (home, products, contact)"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

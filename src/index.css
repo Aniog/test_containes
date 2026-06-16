@@ -1,76 +1,120 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color-scheme: light;
+    color: #0b0d10;
+    background-color: #faf8f3;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #faf8f3;
+    color: #0b0d10;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: inherit;
+  }
+
+  *::selection {
+    background-color: #c89b3c;
+    color: #0b0d10;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Inter, system-ui, sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-eyebrow text-brass;
+  }
+
+  .eyebrow-light {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase tracking-eyebrow text-brass-2;
+  }
+
+  .eyebrow-line::before {
+    content: '';
+    @apply block h-px w-8 bg-current opacity-70;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-brass-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  }
+
+  .btn-secondary-dark {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line bg-transparent px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  }
+
+  .btn-secondary-light {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-line-2 bg-transparent px-6 py-3 text-sm font-semibold text-ink transition-colors duration-200 hover:bg-ink hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brass focus-visible:ring-offset-2 focus-visible:ring-offset-paper;
+  }
+
+  .card-dark {
+    @apply rounded-2xl border border-line bg-ink-2 transition-all duration-300;
+  }
+
+  .card-light {
+    @apply rounded-2xl border border-line-2 bg-paper transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-line-2 bg-paper px-4 py-3 text-sm text-ink placeholder:text-ash focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass;
+  }
+
+  .input-field-dark {
+    @apply w-full rounded-xl border border-line bg-ink-3 px-4 py-3 text-sm text-white placeholder:text-steel focus:border-brass focus:outline-none focus:ring-1 focus:ring-brass;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-steel transition-colors duration-200 hover:text-white;
+  }
+
+  .nav-link-light {
+    @apply text-sm font-medium text-ash transition-colors duration-200 hover:text-ink;
+  }
+
+  .section-eyebrow {
+    @apply text-xs font-medium uppercase tracking-eyebrow text-brass;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-grain {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 3px 3px;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+}
