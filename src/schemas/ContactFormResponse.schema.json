@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ContactFormResponse",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number with country code"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Workshop or company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the workshop is located"
+    },
+    "productInterest": {
+      "type": "string",
+      "enum": [
+        "Double Folding Machine",
+        "Double Folder",
+        "Sheet Metal Folder",
+        "Sheet Metal Folding Machine",
+        "Metal Folder",
+        "Metal Folder Machine",
+        "Metal Folding Machine",
+        "General inquiry"
+      ],
+      "description": "The ARTITECT product the customer is most interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "Details about materials, batch size, tolerances, and timeline"
+    }
+  },
+  "required": ["name", "email", "productInterest", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
