@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": { "type": "string", "description": "Product Name" },
+    "description": { "type": "string", "description": "Product Description" },
+    "category": { "type": "string", "description": "Product Category" },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key features"
+    },
+    "specifications": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Technical specifications"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "filename": { "type": "string" },
+        "storageKey": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "size": { "type": "integer" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["name", "description"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
