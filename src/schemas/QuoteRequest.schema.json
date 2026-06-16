@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quote Request",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the requester"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or fabrication shop name"
+    },
+    "product_interest": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Product the requester is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Free-form description of the project, parts, and timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
