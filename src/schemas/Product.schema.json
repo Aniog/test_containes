@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the folding machine"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folding", "Sheet Metal Folder", "Manual Folder", "CNC Folder"],
+      "description": "Category of the machine"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "maxThickness": { "type": "string" },
+        "workingLength": { "type": "string" },
+        "weight": { "type": "string" }
+      }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
