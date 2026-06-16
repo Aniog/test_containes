@@ -1,14 +1,24 @@
-import './App.css'
+import Navigation from './components/layout/Navigation'
+import Footer from './components/layout/Footer'
+import Hero from './components/sections/Hero'
+import Products from './components/sections/Products'
+import Features from './components/sections/Features'
+import About from './components/sections/About'
+import Contact from './components/sections/Contact'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <div className="min-h-screen bg-white">
+      <Navigation />
+      <main>
+        <Hero />
+        <Products />
+        <Features />
+        <About />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   )
 }
 
