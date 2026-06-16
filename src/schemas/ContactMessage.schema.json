@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Messages",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the contact"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Subject of the message"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The contact message content"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": [
+        "Double Folding Machine",
+        "Double Folder",
+        "Sheet Metal Folder",
+        "Sheet Metal Folding Machine",
+        "Metal Folder",
+        "Metal Folding Machine",
+        "General Inquiry"
+      ],
+      "description": "Product the user is interested in"
+    }
+  },
+  "required": ["name", "email", "subject", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
