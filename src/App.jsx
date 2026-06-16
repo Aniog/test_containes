@@ -1,15 +1,10 @@
-import './App.css'
-
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div style={{ padding: 40, color: 'white', background: '#1a1d23', minHeight: '100vh' }}>
+      <h1 style={{ fontSize: 32, color: '#c9a962' }}>ARTITECT MACHINERY - Test</h1>
+      <p style={{ color: '#aaa' }}>If you can see this, React is working.</p>
+    </div>
+  );
 }
 
-export default App
+export default App;

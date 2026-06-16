@@ -4,7 +4,29 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>ARTITECT MACHINERY | Sheet Metal Folding Machines</title>
+    <script>
+      window.__errors = [];
+      window.onerror = function(msg, url, line, col, err) {
+        var info = {msg: String(msg), url: url, line: line, col: col, err: err ? String(err.stack || err) : null};
+        window.__errors.push(info);
+        var d = document.createElement('div');
+        d.style.cssText = 'color:red;background:white;padding:10px;margin:5px;font-size:12px;border:1px solid red;position:relative;z-index:99999;font-family:monospace;white-space:pre-wrap';
+        d.textContent = 'ERROR: ' + info.msg + ' at ' + info.url + ':' + info.line + '\n' + (info.err || '');
+        (document.getElementById('root') || document.body).appendChild(d);
+      };
+      window.addEventListener('unhandledrejection', function(e) {
+        var info = {msg: 'Unhandled rejection: ' + String(e.reason), err: e.reason ? String(e.reason.stack || e.reason) : null};
+        window.__errors.push(info);
+        var d = document.createElement('div');
+        d.style.cssText = 'color:red;background:white;padding:10px;margin:5px;font-size:12px;border:1px solid red;position:relative;z-index:99999;font-family:monospace;white-space:pre-wrap';
+        d.textContent = 'PROMISE ERROR: ' + info.msg + '\n' + (info.err || '');
+        (document.getElementById('root') || document.body).appendChild(d);
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>
