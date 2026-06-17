@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Contact name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country"
+    },
+    "product": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Product to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_followup", "shipping_coordination", "price_negotiation"]
+      },
+      "description": "Requested services"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "completed", "archived"],
+      "default": "new",
+      "description": "Inquiry status"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
