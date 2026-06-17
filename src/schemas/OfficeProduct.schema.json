@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Office Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product description"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["书写工具", "纸张文具", "办公设备", "收纳整理", "桌面用品", "打印耗材"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in CNY"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price before discount"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock quantity"
+    },
+    "sku": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Stock keeping unit identifier"
+    },
+    "brand": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product brand"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Product tags for search"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether product is featured on homepage"
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether product is newly added"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 0,
+      "description": "Number of customer reviews"
+    }
+  },
+  "required": ["name", "category", "price", "stock"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
