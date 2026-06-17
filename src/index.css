@@ -1,76 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #636972;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #ffffff;
+  color: #636972;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Reset default link styles */
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
+/* Reset button styles */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Heading font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', Poppins, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* AI gradient text utility */
+.ai-gradient-text {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* AI gradient button */
+.ai-gradient-btn {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  color: #ffffff !important;
+  border: none;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.ai-gradient-btn:hover {
+  opacity: 0.92;
+}
+
+/* Focus visible styles */
+*:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card hover */
+.generator-card:hover {
+  box-shadow: 0 4px 16px rgba(129, 89, 187, 0.15);
+  border-color: #8159BB !important;
+}
+
+/* Show-all collapse transition */
+.cards-collapsible {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
