@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Requests",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "x-foreignKey": "users.id",
+      "description": "Linked user ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Inquirer's name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact number"
+    },
+    "product_interest": {
+      "type": "string",
+      "description": "Specific product they are asking about"
+    },
+    "message": {
+      "type": "string",
+      "description": "Inquiry details"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

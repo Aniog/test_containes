@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Industrial Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name (e.g., Double Folding Machine Model X)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short marketing description"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folding Machine", "Sheet Metal Folder", "Manual Folder", "Hydraulic Folder"],
+      "description": "Machine category"
+    },
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "maxThickness": { "type": "string", "description": "Maximum sheet thickness (e.g., 2.0mm)" },
+        "workingLength": { "type": "string", "description": "Maximum working length (e.g., 3200mm)" },
+        "motorPower": { "type": "string", "description": "Motor power (e.g., 5.5kW)" }
+      },
+      "description": "Technical specifications"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Product photo"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to show on homepage"
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
