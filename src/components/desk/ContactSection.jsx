@@ -16,8 +16,20 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-slate-900">
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
+    <section
+      id="contact"
+      className="relative py-16 md:py-24"
+      style={{
+        backgroundImage: 'url(/contact-bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-slate-900/80" aria-hidden="true" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
           <span className="text-blue-400 font-semibold text-sm uppercase tracking-widest">
             联系我们
