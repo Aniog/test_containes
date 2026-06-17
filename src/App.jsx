@@ -1,15 +1,34 @@
-import './App.css'
+import React from 'react';
+import TopBar from '@/components/TopBar';
+import Breadcrumb from '@/components/Breadcrumb';
+import Hero from '@/components/Hero';
+import FeaturedGenerators from '@/components/FeaturedGenerators';
+import BrowseByCategory from '@/components/BrowseByCategory';
+import AllGenerators from '@/components/AllGenerators';
+import HowItWorks from '@/components/HowItWorks';
+import WhyStrikingly from '@/components/WhyStrikingly';
+import FAQ from '@/components/FAQ';
+import ClosingCTA from '@/components/ClosingCTA';
+import Footer from '@/components/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: 'var(--white)' }}>
+      <TopBar />
+      <Breadcrumb />
+      <main className="flex-1">
+        <Hero />
+        <FeaturedGenerators />
+        <BrowseByCategory />
+        <AllGenerators />
+        <HowItWorks />
+        <WhyStrikingly />
+        <FAQ />
+        <ClosingCTA />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
