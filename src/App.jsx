@@ -1,15 +1,42 @@
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import LevelSelect from './pages/LevelSelect';
+import GameBoard from './components/game/GameBoard';
 
 function App() {
+  const [currentLevel, setCurrentLevel] = useState(null);
+  const [completedLevels, setCompletedLevels] = useState([]);
+
+  const handleSelectLevel = (level) => {
+    setCurrentLevel(level);
+  };
+
+  const handleBack = () => {
+    setCurrentLevel(null);
+  };
+
+  const handleWin = () => {
+    if (currentLevel && !completedLevels.includes(currentLevel.id)) {
+      setCompletedLevels(prev => [...prev, currentLevel.id]);
+    }
+  };
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen" style={{ backgroundColor: '#F0EBE3' }}>
+      {currentLevel ? (
+        <GameBoard
+          level={currentLevel}
+          onBack={handleBack}
+          onWin={handleWin}
+        />
+      ) : (
+        <LevelSelect
+          onSelectLevel={handleSelectLevel}
+          completedLevels={completedLevels}
+        />
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;
