@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Name of the buyer company submitting the inquiry"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Country or region where the buyer is located"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product category or item the buyer wants to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity or annual purchasing volume"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing support services requested by the buyer",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_sourcing", "factory_verification", "sample_follow_up", "quality_inspection", "production_follow_up", "shipping_coordination"]
+      },
+      "uniqueItems": true
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Detailed sourcing requirements, timeline, target market, or quality expectations"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal review status for the sourcing inquiry"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the inquiry was submitted"
+    }
+  },
+  "required": ["company_name", "contact_name", "email", "country", "product_category", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
