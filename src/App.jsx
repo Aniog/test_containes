@@ -1,9 +1,22 @@
 import './App.css'
+import Navbar from './components/layout/Navbar'
+import HeroSection from './components/home/HeroSection'
+import ProductsSection from './components/home/ProductsSection'
+import AboutSection from './components/home/AboutSection'
+import ContactSection from './components/home/ContactSection'
+import Footer from './components/layout/Footer'
 
 function App() {
   return (
     <div className="min-h-screen bg-white">
-      <h1 className="text-4xl font-bold text-red-600 p-10">APP IS RENDERING</h1>
+      <Navbar />
+      <main>
+        <HeroSection />
+        <ProductsSection />
+        <AboutSection />
+        <ContactSection />
+      </main>
+      <Footer />
     </div>
   )
 }

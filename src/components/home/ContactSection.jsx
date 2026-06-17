@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react'
-import { DataClient, User } from '@strikingly/sdk'
+import { DataClient } from '@strikingly/sdk'
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
@@ -42,29 +42,22 @@ export default function ContactSection() {
     setStatus('submitting')
 
     try {
-      const userRecord = await User.upsert({
-        email: values.email,
-        name: values.name,
-        role: 'guest',
-      })
-
-      if (!userRecord || !userRecord.id) {
-        throw new Error('Failed to process contact information.')
-      }
-
-      const { error: insertError } = await client
+      const { data: response, error: insertError } = await client
         .from('ContactInquiries')
         .insert({
           data: {
-            user_id: userRecord.id,
             name: values.name,
             email: values.email,
             company: values.company,
             message: values.message,
           },
         })
+        .select()
+        .single()
 
-      if (insertError) throw insertError
+      if (insertError || (response && response.success === false)) {
+        throw new Error(response?.errors?.join(', ') || insertError?.message || 'Submission failed.')
+      }
 
       setStatus('success')
       setValues({ name: '', email: '', company: '', message: '' })
