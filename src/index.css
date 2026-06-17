@@ -1,76 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Open Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+
+  color-scheme: light;
+  color: #636972;
+  background-color: #ffffff;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Josefin Sans", sans-serif;
+  color: #4B5056;
+  text-transform: uppercase;
+  line-height: 1.2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+#root {
+  width: 100%;
 }
 
-button:hover {
-  border-color: #646cff;
+.ai-text-gradient {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer components {
+  .btn-primary {
+    @apply h-[44px] px-[15px] py-[9px] bg-ai-gradient text-white font-heading text-[14px] font-bold rounded-[4px] uppercase flex items-center justify-center transition-opacity hover:opacity-90;
+  }
+  .btn-secondary {
+    @apply h-[36px] px-[15px] py-[9px] bg-ai-gradient text-white font-heading text-[14px] font-bold rounded-[4px] uppercase flex items-center justify-center transition-opacity hover:opacity-90;
+  }
+  .btn-ghost {
+    @apply h-[36px] px-[15px] py-[9px] bg-transparent border border-brand-purple text-brand-purple font-heading text-[14px] font-bold rounded-[4px] uppercase flex items-center justify-center hover:bg-brand-purple/5;
+  }
+  .card {
+    @apply bg-white border border-card-border rounded-[3px] p-5 transition-all duration-200 hover:shadow-md hover:border-brand-purple;
+  }
+  .tag {
+    @apply text-[11px] font-heading font-bold uppercase px-[6px] py-[2px] rounded-[3px] border border-brand-purple text-brand-purple;
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  /* Progressive enhancement: Hide items > 6 only when JS is enabled */
+  .js-enabled .directory-grid.is-collapsed .directory-item:nth-child(n+7) {
+    @apply hidden md:hidden lg:hidden;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

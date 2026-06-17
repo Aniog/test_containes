@@ -5,7 +5,30 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          purple: '#8159BB',
+          'blue-ai': '#7671FF',
+          'pink-ai': '#CB0C9F',
+        },
+        body: '#636972',
+        heading: {
+          primary: '#4B5056',
+          hero: '#2E2E2F',
+        },
+        'card-border': '#C6C9CD',
+        divider: '#E2E4E7',
+        'light-bg': '#F4F6F8',
+      },
+      fontFamily: {
+        heading: ['"Josefin Sans"', 'sans-serif'],
+        body: ['"Open Sans"', 'sans-serif'],
+      },
+      backgroundImage: {
+        'ai-gradient': 'linear-gradient(to right, #7671FF, #CB0C9F)',
+      },
+    },
   },
   plugins: [],
 }
