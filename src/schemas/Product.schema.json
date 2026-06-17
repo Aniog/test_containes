@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double folding machine", "Sheet metal folder", "Metal folder machine"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description of the product"
+    },
+    "technical_specs": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "max_thickness": { "type": "string", "description": \"Maximum sheet thickness (e.g. 2.0mm)\" },
+        "working_length": { "type": "string", "description": \"Maximum working length (e.g. 3200mm)\" },
+        "folding_angle": { "type": "string", "description": \"Folding angle range (e.g. 0-145°)\" },
+        "weight": { "type": "string", "description": \"Machine weight\" }
+      }
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key features"
+    },
+    "image": {
+      "type": "object",
+      "description": "Product image",
+      "properties": {
+        "filename": { "type": "string" },
+        "storageKey": { "type": "string" },
+        "mimeType": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
