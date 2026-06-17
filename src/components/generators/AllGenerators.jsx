@@ -74,6 +74,9 @@ const SearchIcon = () => (
 function Subsection({ categoryId, categoryName, description, generators, searchQuery, expandedSections, toggleSection }) {
   const isExpanded = expandedSections[categoryId];
   const hasSearch = searchQuery.length > 0;
+  const collapsibleRef = useRef(null);
+  const [collapsibleHeight, setCollapsibleHeight] = useState(null);
+  const [jsReady, setJsReady] = useState(false);
 
   const filteredGens = hasSearch
     ? generators.filter(g => {
@@ -87,11 +90,31 @@ function Subsection({ categoryId, categoryName, description, generators, searchQ
       })
     : generators;
 
+  useEffect(() => {
+    setJsReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (collapsibleRef.current) {
+      setCollapsibleHeight(collapsibleRef.current.scrollHeight);
+    }
+  }, [generators.length, searchQuery]);
+
   if (hasSearch && filteredGens.length === 0) return null;
 
   const showToggle = !hasSearch && generators.length > VISIBLE_COUNT;
   const contentId = `subsection-content-${categoryId}`;
   const buttonId = `subsection-toggle-${categoryId}`;
+  const extraId = `subsection-extra-${categoryId}`;
+
+  const visibleGens = hasSearch ? filteredGens : generators.slice(0, VISIBLE_COUNT);
+  const extraGens = hasSearch ? [] : generators.slice(VISIBLE_COUNT);
+
+  const collapsibleStyle = jsReady && !isExpanded && !hasSearch && extraGens.length > 0
+    ? { maxHeight: '0px', overflow: 'hidden', transition: 'max-height 0.3s ease' }
+    : jsReady && (isExpanded || hasSearch) && extraGens.length > 0
+    ? { maxHeight: `${collapsibleHeight || 2000}px`, overflow: 'hidden', transition: 'max-height 0.3s ease' }
+    : undefined;
 
   return (
     <div id={categoryId} className="scroll-mt-20 mb-12">
@@ -111,27 +134,47 @@ function Subsection({ categoryId, categoryName, description, generators, searchQ
         aria-labelledby={buttonId}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filteredGens.map((gen, index) => {
-            const isHiddenByCollapse = !isExpanded && !hasSearch && index >= VISIBLE_COUNT;
-            return (
-              <a
-                key={gen.slug}
-                href={`/generators/${gen.slug}`}
-                className="card block no-underline text-body-text hover:text-body-text"
-                style={isHiddenByCollapse ? { display: 'none' } : undefined}
-                data-collapsed={isHiddenByCollapse ? 'true' : undefined}
-              >
-                <div className="mb-3">
-                  <CategoryThumbnail id={categoryId} />
-                </div>
-                <h4 className="font-heading font-bold text-heading text-sm mb-1" style={{ textTransform: 'uppercase' }}>
-                  {gen.name}
-                </h4>
-                <p className="text-body-text text-sm leading-relaxed m-0">{gen.description}</p>
-              </a>
-            );
-          })}
+          {visibleGens.map((gen) => (
+            <a
+              key={gen.slug}
+              href={`/generators/${gen.slug}`}
+              className="card block no-underline text-body-text hover:text-body-text"
+            >
+              <div className="mb-3">
+                <CategoryThumbnail id={categoryId} />
+              </div>
+              <strong className="font-heading font-bold text-heading text-sm mb-1 block" style={{ textTransform: 'uppercase' }}>
+                {gen.name}
+              </strong>
+              <p className="text-body-text text-sm leading-relaxed m-0">{gen.description}</p>
+            </a>
+          ))}
         </div>
+        {extraGens.length > 0 && (
+          <div
+            id={extraId}
+            ref={collapsibleRef}
+            style={collapsibleStyle}
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">
+              {extraGens.map((gen) => (
+                <a
+                  key={gen.slug}
+                  href={`/generators/${gen.slug}`}
+                  className="card block no-underline text-body-text hover:text-body-text"
+                >
+                  <div className="mb-3">
+                    <CategoryThumbnail id={categoryId} />
+                  </div>
+                  <strong className="font-heading font-bold text-heading text-sm mb-1 block" style={{ textTransform: 'uppercase' }}>
+                    {gen.name}
+                  </strong>
+                  <p className="text-body-text text-sm leading-relaxed m-0">{gen.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
       {showToggle && (
         <button
@@ -139,7 +182,7 @@ function Subsection({ categoryId, categoryName, description, generators, searchQ
           type="button"
           className="btn-ghost mt-5"
           aria-expanded={isExpanded}
-          aria-controls={contentId}
+          aria-controls={extraId}
           onClick={() => toggleSection(categoryId)}
         >
           {isExpanded

@@ -5,7 +5,8 @@ const s = strings.en.howItWorks;
 
 const StepCircle = ({ number }) => (
   <div
-    className="flex items-center justify-center w-12 h-12 rounded-full ai-gradient-bg flex-shrink-0"
+    className="flex items-center justify-center w-12 h-12 rounded-full flex-shrink-0"
+    style={{ backgroundColor: '#8159BB' }}
     aria-hidden="true"
   >
     <span className="font-heading font-bold text-white text-lg">{number}</span>
