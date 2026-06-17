@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product category (e.g., Folding Machines)"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "max_width": { "type": "string" },
+        "max_thickness": { "type": "string" },
+        "folding_speed": { "type": "string" }
+      }
+    },
+    "image": {
+      "type": "object",
+      "description": "Product image",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["name", "description", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
