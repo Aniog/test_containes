@@ -4,12 +4,12 @@ import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
-    react(),
+    react()
   ],
   resolve: {
     alias: {
@@ -17,11 +17,19 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0',
+    port: 8080,
+    host: true,
     allowedHosts: true,
     cors: true,
-    hmr: {
-      overlay: false
-    }
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
+    },
   }
 })
