@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Requests",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Customer name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": ["Double Folding Machine", "Sheet Metal Folder", "Custom Solution", "Other"],
+      "description": "The product the customer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "description": "Customer message or quote details"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the request was submitted"
+    }
+  },
+  "required": ["name", "email", "product_interest"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}
