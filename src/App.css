@@ -1,50 +1,886 @@
-#root {
-  min-height: 100vh;
+/* ============================================
+   STRIKINGLY GENERATORS HUB - STYLES
+   Brand tokens matching Strikingly component kit
+   ============================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
   padding: 0;
-  background-color: #e4e8ef;
 }
 
-.app-loading-shell {
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #636972;
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: #4B5056;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* --- Container --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* --- Section spacing --- */
+section {
+  padding: 40px 0;
+}
+
+.section-heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #4B5056;
+}
+
+.section-subheading {
+  font-size: 14px;
+  color: #636972;
+  margin-bottom: 30px;
+}
+
+/* ============================================
+   SECTION 0: TOP BAR
+   ============================================ */
+.top-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E2E4E7;
+  padding: 10px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #2E2E2F;
+  letter-spacing: 0.5px;
+}
+
+.logo:hover {
+  color: #8159BB;
+}
+
+/* ============================================
+   SECTION 1: BREADCRUMB
+   ============================================ */
+.breadcrumb-nav {
+  padding: 10px 0;
+}
+
+.breadcrumb-list {
   display: flex;
-  min-height: 100vh;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #636972;
+}
+
+.breadcrumb-item a {
+  color: #8159BB;
+}
+
+.breadcrumb-item a:hover {
+  text-decoration: underline;
+}
+
+.breadcrumb-separator {
+  color: #C6C9CD;
+}
+
+.breadcrumb-current {
+  color: #636972;
+}
+
+/* ============================================
+   SECTION 2: HERO
+   ============================================ */
+.hero {
+  padding: 60px 0 80px;
+  background: linear-gradient(180deg, rgba(129, 89, 187, 0.04) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.hero-h1 {
+  margin-bottom: 20px;
+}
+
+.hero-h1-line1 {
+  display: block;
+  font-size: 44px;
+  color: #2E2E2F;
+  letter-spacing: 1px;
+}
+
+.hero-h1-line2 {
+  display: block;
+  font-size: 44px;
+  background: linear-gradient(90deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: 1px;
+}
+
+.hero-subheadline {
+  font-size: 16px;
+  color: #636972;
+  margin-bottom: 30px;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-illustration {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  height: 36px;
+  padding: 9px 15px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-.app-loading-content {
+.btn:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 2px 8px rgba(118, 113, 255, 0.3);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+}
+
+.btn-ghost:hover {
+  background: rgba(129, 89, 187, 0.05);
+}
+
+.btn-large {
+  height: 44px;
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.btn-small {
+  height: 28px;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* ============================================
+   SECTION 3: FEATURED GENERATORS
+   ============================================ */
+.featured {
+  background: #FFFFFF;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.featured-card {
   display: flex;
   flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.featured-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.featured-card:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.featured-card-name {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #2E2E2F;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.featured-card-desc {
+  font-size: 14px;
+  color: #636972;
+  margin-bottom: 12px;
+  flex-grow: 1;
+}
+
+.category-tag {
+  display: inline-block;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  border-radius: 3px;
+  padding: 2px 6px;
+  align-self: flex-start;
+}
+
+/* ============================================
+   SECTION 4: BROWSE BY CATEGORY
+   ============================================ */
+.browse-categories {
+  background: #F4F6F8;
+}
+
+.category-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  gap: 10px;
+}
+
+.category-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.category-card:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.category-card-name {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #2E2E2F;
+  margin: 0;
+}
+
+.category-card-desc {
+  font-size: 14px;
+  color: #636972;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.category-card svg:last-child {
+  margin-inline-start: auto;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   SECTION 5: ALL GENERATORS
+   ============================================ */
+.all-generators {
+  background: #FFFFFF;
+}
+
+.search-wrapper {
+  margin-bottom: 30px;
+}
+
+.search-input-wrapper {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
+  gap: 10px;
+  border: 1px solid #C6C9CD;
+  border-radius: 4px;
+  padding: 8px 12px;
+  max-width: 480px;
+  background: #FFFFFF;
+}
+
+.search-input-wrapper:focus-within {
+  border-color: #8159BB;
+  box-shadow: 0 0 0 2px rgba(129, 89, 187, 0.15);
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: #2E2E2F;
+  background: transparent;
+}
+
+.search-input::placeholder {
+  color: #C6C9CD;
+}
+
+.search-results-info {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #636972;
+}
+
+.search-empty-state {
+  margin-top: 15px;
+  padding: 20px;
+  background: #F4F6F8;
+  border-radius: 4px;
   text-align: center;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.search-empty-state p {
+  margin-bottom: 10px;
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
+.search-empty-cta {
+  margin-top: 10px;
+}
+
+.search-empty-cta a {
+  color: #8159BB;
+  font-weight: 600;
+}
+
+.search-empty-cta a:hover {
+  text-decoration: underline;
+}
+
+/* Category subsections */
+.category-section {
+  margin-bottom: 40px;
+}
+
+.category-heading {
+  font-size: 22px;
+  margin-bottom: 5px;
+  color: #4B5056;
+}
+
+.category-desc {
+  font-size: 14px;
+  color: #636972;
+  margin-bottom: 20px;
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.directory-card {
+  display: flex;
+  flex-direction: column;
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.directory-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+.directory-card:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+.directory-card-name {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #2E2E2F;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.directory-card-desc {
+  font-size: 14px;
+  color: #636972;
+  margin: 0;
+}
+
+.show-all-btn {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #8159BB;
+  padding: 8px 16px;
+  border: 1px solid #8159BB;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.show-all-btn:hover {
+  background: rgba(129, 89, 187, 0.05);
+}
+
+.show-all-btn:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   SECTION 6: HOW IT WORKS
+   ============================================ */
+.how-it-works {
+  background: #F4F6F8;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.step {
+  text-align: center;
+}
+
+.step-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #8159BB;
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.step-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #2E2E2F;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: #636972;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SECTION 7: WHY STRIKINGLY
+   ============================================ */
+.why-strikingly {
+  background: #FFFFFF;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.why-card {
+  text-align: center;
+  padding: 20px;
+}
+
+.why-card svg {
+  margin: 0 auto 15px;
+}
+
+.why-title {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #2E2E2F;
+}
+
+.why-desc {
+  font-size: 14px;
+  color: #636972;
+  line-height: 1.5;
+}
+
+/* ============================================
+   SECTION 8: FAQ
+   ============================================ */
+.faq {
+  background: #F4F6F8;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  border-bottom: 1px solid #E2E4E7;
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 0;
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #2E2E2F;
+  text-align: left;
+  transition: color 0.2s ease;
+}
+
+.faq-question:hover {
+  color: #8159BB;
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.faq-chevron {
+  flex-shrink: 0;
+  margin-inline-start: 10px;
+  transition: transform 0.2s ease;
+}
+
+.faq-chevron.open {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.faq-answer p {
+  padding-bottom: 20px;
+  font-size: 14px;
+  color: #636972;
   line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
+/* ============================================
+   SECTION 9: CLOSING CTA
+   ============================================ */
+.closing-cta {
+  background: #FFFFFF;
+  text-align: center;
+  padding: 60px 0;
+}
+
+.closing-heading {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: #2E2E2F;
+}
+
+.closing-sub {
+  font-size: 16px;
+  color: #636972;
+  margin-bottom: 30px;
+}
+
+/* ============================================
+   SECTION 10: FOOTER
+   ============================================ */
+.footer {
+  background: #F4F6F8;
+  border-top: 1px solid #E2E4E7;
+  padding: 40px 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(4, 1fr);
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.footer-logo {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #2E2E2F;
+}
+
+.footer-col h4 {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #4B5056;
+  margin-bottom: 15px;
+}
+
+.footer-col ul li {
+  margin-bottom: 8px;
+}
+
+.footer-col ul li a {
+  font-size: 14px;
+  color: #636972;
+  transition: color 0.2s ease;
+}
+
+.footer-col ul li a:hover {
+  color: #8159BB;
+}
+
+.footer-bottom {
+  border-top: 1px solid #E2E4E7;
+  padding-top: 20px;
+  text-align: center;
+}
+
+.footer-bottom p {
+  font-size: 13px;
+  color: #636972;
+}
+
+/* ============================================
+   RESPONSIVE: TABLET (768px - 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .hero-h1-line1,
+  .hero-h1-line2 {
+    font-size: 36px;
   }
 
-  to {
-    transform: rotate(360deg);
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   RESPONSIVE: MOBILE (up to 767px)
+   ============================================ */
+@media (max-width: 767px) {
+  section {
+    padding: 30px 0;
+  }
+
+  .section-heading {
+    font-size: 24px;
+  }
+
+  .hero {
+    padding: 40px 0 50px;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .hero-content {
+    order: 1;
+  }
+
+  .hero-visual {
+    order: 2;
+  }
+
+  .hero-h1-line1,
+  .hero-h1-line2 {
+    font-size: 28px;
+  }
+
+  .hero-subheadline {
+    font-size: 14px;
+  }
+
+  .hero-ctas {
+    flex-direction: column;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
+  .featured-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .footer-col:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .search-input-wrapper {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY: Focus states
+   ============================================ */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .faq-answer {
+    transition: none;
+  }
+
+  .featured-card,
+  .category-card,
+  .directory-card {
+    transition: none;
   }
 }
