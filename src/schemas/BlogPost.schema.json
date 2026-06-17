@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Post title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full content of the post"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary"
+    },
+    "image": {
+      "type": "object",
+      "description": "Cover image",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Sourcing Tips", "Industry News", "Case Studies", "Shipping & Logistics"]
+    },
+    "author": {
+      "type": "string",
+      "description": "Author name"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["title", "content", "slug"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
