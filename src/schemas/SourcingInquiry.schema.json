@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the visitor record connected to this sourcing inquiry.",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer country or target market."
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 140,
+      "description": "Product category or product name to source."
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity or annual volume."
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing support services requested by the buyer.",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier sourcing", "Factory verification", "Price negotiation", "Quality inspection", "Production follow-up", "Shipping coordination"]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Desired sourcing or shipment timeline."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Detailed sourcing requirements, quality expectations, or project notes."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page or section where the inquiry was submitted."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Client-side submission timestamp."
+    }
+  },
+  "required": ["name", "email", "product_category", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
