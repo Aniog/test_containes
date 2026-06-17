@@ -5,7 +5,23 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        navy: {
+          dark: '#0B1426',
+          medium: '#132042',
+          light: '#1C2D5A',
+        },
+        gold: {
+          DEFAULT: '#C8A45C',
+          light: '#D4B876',
+          dark: '#A88940',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
