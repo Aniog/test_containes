@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number (optional)"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics",
+        "Furniture & Home Décor",
+        "Apparel & Textiles",
+        "Home & Kitchen",
+        "Industrial & Hardware",
+        "Packaging & Printing",
+        "Toys & Baby Products",
+        "Sports & Outdoor",
+        "Other"
+      ],
+      "description": "Product category the buyer is interested in sourcing"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping & Logistics",
+        "Full Service (End-to-End)",
+        "Not Sure Yet"
+      ],
+      "description": "Primary service the buyer is looking for"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or range"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Detailed description of the sourcing requirement"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "responded", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
