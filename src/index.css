@@ -1,76 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #241A16;
+  background-color: #F8F3EA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F8F3EA;
+  color: #241A16;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #D6AA63;
+  color: #241A16;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.image-sheen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 20%, rgba(255, 253, 248, 0.22) 46%, transparent 62%);
+  transform: translateX(-130%);
+  transition: transform 900ms ease;
+  pointer-events: none;
+}
+
+.group:hover .image-sheen::after {
+  transform: translateX(130%);
+}
+
+@layer utilities {
+  .bg-velmora-ivory { background-color: #F8F3EA; }
+  .bg-velmora-pearl { background-color: #FFFDF8; }
+  .bg-velmora-espresso { background-color: #241A16; }
+  .bg-velmora-cocoa { background-color: #5E4A3F; }
+  .bg-velmora-taupe { background-color: #CDBFAE; }
+  .bg-velmora-champagne { background-color: #D6AA63; }
+  .bg-velmora-gold { background-color: #B98232; }
+  .bg-velmora-blush { background-color: #E9D9CC; }
+  .bg-velmora-sage { background-color: #586052; }
+  .text-velmora-ivory { color: #F8F3EA; }
+  .text-velmora-pearl { color: #FFFDF8; }
+  .text-velmora-espresso { color: #241A16; }
+  .text-velmora-cocoa { color: #5E4A3F; }
+  .text-velmora-taupe { color: #CDBFAE; }
+  .text-velmora-champagne { color: #D6AA63; }
+  .text-velmora-gold { color: #B98232; }
+  .text-velmora-blush { color: #E9D9CC; }
+  .text-velmora-sage { color: #586052; }
+  .border-velmora-ivory { border-color: #F8F3EA; }
+  .border-velmora-pearl { border-color: #FFFDF8; }
+  .border-velmora-espresso { border-color: #241A16; }
+  .border-velmora-cocoa { border-color: #5E4A3F; }
+  .border-velmora-taupe { border-color: #CDBFAE; }
+  .border-velmora-champagne { border-color: #D6AA63; }
+  .border-velmora-gold { border-color: #B98232; }
+  .border-velmora-blush { border-color: #E9D9CC; }
+  .accent-velmora-gold { accent-color: #B98232; }
+  .fill-velmora-gold { fill: #B98232; }
+  .from-velmora-espresso { --tw-gradient-from: #241A16 var(--tw-gradient-from-position); --tw-gradient-to: rgb(36 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-velmora-espresso\/65 { --tw-gradient-to: rgb(36 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(36 26 22 / 0.65) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-espresso\/10 { --tw-gradient-to: rgb(36 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(36 26 22 / 0.10) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-velmora-espresso\/20 { --tw-gradient-to: rgb(36 26 22 / 0.20) var(--tw-gradient-to-position); }
+  .from-velmora-espresso\/75 { --tw-gradient-from: rgb(36 26 22 / 0.75) var(--tw-gradient-from-position); --tw-gradient-to: rgb(36 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-espresso\/80 { --tw-gradient-from: rgb(36 26 22 / 0.80) var(--tw-gradient-from-position); --tw-gradient-to: rgb(36 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .bg-velmora-espresso\/45 { background-color: rgb(36 26 22 / 0.45); }
+  .bg-velmora-ivory\/95 { background-color: rgb(248 243 234 / 0.95); }
+  .bg-velmora-taupe\/25 { background-color: rgb(205 191 174 / 0.25); }
+  .border-velmora-taupe\/25 { border-color: rgb(205 191 174 / 0.25); }
+  .border-velmora-taupe\/30 { border-color: rgb(205 191 174 / 0.30); }
+  .border-velmora-taupe\/40 { border-color: rgb(205 191 174 / 0.40); }
+  .border-velmora-taupe\/50 { border-color: rgb(205 191 174 / 0.50); }
+  .border-velmora-taupe\/60 { border-color: rgb(205 191 174 / 0.60); }
+  .border-velmora-taupe\/70 { border-color: rgb(205 191 174 / 0.70); }
+}
