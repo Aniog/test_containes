@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { 
   FileText, 
   Search, 
-  Sample, 
+  FlaskConical, 
   Factory, 
   ClipboardCheck, 
   Truck, 
@@ -49,7 +49,7 @@ const processSteps = [
   },
   {
     id: 3,
-    icon: Sample,
+    icon: FlaskConical,
     title: 'Sample & Negotiation',
     description: 'We coordinate sample requests, evaluate quality, and negotiate the best terms with suppliers.',
     details: [
