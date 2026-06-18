@@ -163,7 +163,7 @@ const caseStudies = [
       author: 'Emma van der Berg',
       role: 'CEO, GreenPack Solutions',
     },
-  ],
+  },
 ]
 
 const CaseStudies = () => {
