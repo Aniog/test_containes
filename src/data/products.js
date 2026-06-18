@@ -1,0 +1,103 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviews: 124,
+    description: 'A statement ear cuff adorned with a single crystal accent, catching light with every movement. Designed to elevate any look from day to evening.',
+    material: '18K Gold Plated Brass · Cubic Zirconia',
+    variants: ['gold', 'silver'],
+    imgQuery: 'gold ear cuff crystal accent jewelry',
+    imgQuery2: 'gold ear cuff on model close up',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviews: 89,
+    description: 'A delicate chain adorned with multicolor floral crystal clusters, inspired by wildflower meadows at golden hour.',
+    material: '18K Gold Plated Sterling Silver · Natural Zircon',
+    variants: ['gold', 'silver'],
+    imgQuery: 'multicolor floral crystal necklace gold chain',
+    imgQuery2: 'floral crystal necklace on neck close up',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky dome huggie earrings with a polished gold finish. The perfect everyday luxury — lightweight yet bold.',
+    material: '18K Gold Plated Brass · Hypoallergenic Posts',
+    variants: ['gold'],
+    imgQuery: 'chunky gold dome huggie earrings',
+    imgQuery2: 'gold huggie earrings on ear close up',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.8,
+    reviews: 156,
+    description: 'Textured gold filigree drop earrings with an intricate lace-like pattern. Artisan-crafted for a one-of-a-kind feel.',
+    material: '18K Gold Plated Brass · Nickel-Free',
+    variants: ['gold', 'silver'],
+    imgQuery: 'textured gold filigree drop earrings',
+    imgQuery2: 'gold filigree earrings on model',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'necklaces',
+    price: 95,
+    rating: 5.0,
+    reviews: 67,
+    description: 'A curated gift set featuring matching earrings and necklace in a luxe presentation box. The perfect gift for someone special.',
+    material: '18K Gold Plated Sterling Silver · Gift Box Included',
+    variants: ['gold'],
+    imgQuery: 'gold jewelry gift set earrings necklace box',
+    imgQuery2: 'gold jewelry set elegant presentation',
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', imgQuery: 'gold earrings on dark background' },
+  { id: 'necklaces', name: 'Necklaces', imgQuery: 'gold necklace on dark background' },
+  { id: 'huggies', name: 'Huggies', imgQuery: 'gold huggie earrings on dark background' },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    text: 'The quality is incredible for the price. I wear my Vivid Aura ear cuff every single day — it still looks brand new after months.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging alone made her gasp. Absolutely stunning pieces.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Jessica L.',
+    text: 'Finally found jewelry that looks expensive but doesn\'t irritate my sensitive skin. The hypoallergenic promise is real.',
+    rating: 5,
+  },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday sparkle', query: 'woman wearing gold ear cuff casual style' },
+  { id: 'ugc-2', caption: 'Date night ready', query: 'woman wearing gold necklace evening look' },
+  { id: 'ugc-3', caption: 'Stacking perfection', query: 'multiple gold earrings on ear stacked' },
+  { id: 'ugc-4', caption: 'Gift unboxing', query: 'gold jewelry gift box opening hands' },
+  { id: 'ugc-5', caption: 'Golden hour glow', query: 'woman gold jewelry sunset warm light' },
+  { id: 'ugc-6', caption: 'Minimal luxe', query: 'minimalist gold huggie earrings on ear' },
+]
