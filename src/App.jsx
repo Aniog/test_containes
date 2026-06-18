@@ -1,15 +1,23 @@
-import './App.css'
+import NavBar from './components/applewatch/NavBar';
+import HeroSection from './components/applewatch/HeroSection';
+import FeaturesSection from './components/applewatch/FeaturesSection';
+import SeriesSection from './components/applewatch/SeriesSection';
+import SpecsSection from './components/applewatch/SpecsSection';
+import CTASection from './components/applewatch/CTASection';
+import Footer from './components/applewatch/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen bg-white">
+      <NavBar />
+      <HeroSection />
+      <FeaturesSection />
+      <SeriesSection />
+      <SpecsSection />
+      <CTASection />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
