@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number (optional)"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Description of the product the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity or MOQ requirement"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target unit price or budget range (optional)"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Sourcing", "Factory Audit", "Quality Inspection", "Production Follow-up", "Shipping Coordination", "Consolidation & Labeling"]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["ASAP", "1-3 months", "3-6 months", "6+ months", "Not sure"],
+      "description": "Expected sourcing timeline"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any additional information or special requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
