@@ -1,76 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  --color-cream: #FAF5EE;
+  --color-cream-dark: #F5EDE0;
+  --color-gold: #C9A84C;
+  --color-gold-dark: #A68A3A;
+  --color-charcoal: #1A1A1A;
+  --color-charcoal-light: #2D2D2D;
+  --color-charcoal-lighter: #525252;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  margin: 0;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/* Typography utilities */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-product {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #2D2D2D;
+  font-size: 0.875rem;
+}
+
+.text-heading {
+  font-family: var(--font-serif);
+  color: #0D0D0D;
+  line-height: 1.2;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-charcoal-lighter);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-charcoal);
+}
+
+/* Hairline divider */
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: #D1D1D1;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #1A1A1A;
+  color: #FAF5EE;
+  padding: 1rem 2rem;
+  font-family: var(--font-sans);
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary:hover {
+  background-color: #2D2D2D;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-secondary {
+  border: 1px solid #1A1A1A;
+  color: #1A1A1A;
+  padding: 1rem 2rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+  background-color: transparent;
+  cursor: pointer;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-secondary:hover {
+  background-color: #1A1A1A;
+  color: #FAF5EE;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Card hover effects */
+.card-hover {
+  transition: all 0.5s ease;
+}
+
+.card-hover:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Image reveal on hover */
+.img-reveal {
+  transition: opacity 0.5s ease;
+}
+
+.img-reveal-hidden {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+}
+
+/* Scroll animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Product image aspect ratio */
+.aspect-product {
+  aspect-ratio: 4/5;
+}
+
+.aspect-ugc {
+  aspect-ratio: 9/16;
+}
+
+/* Overlay gradient */
+.overlay-gradient {
+  background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+}
+
+/* Form inputs */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-gold);
+  color: white;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
