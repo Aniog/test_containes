@@ -1,0 +1,143 @@
+export const products = [
+  {
+    id: 1,
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 124,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'vivid-aura-jewels-gold-ear-cuff-crystal',
+      'vivid-aura-jewels-gold-ear-cuff-side',
+    ],
+    imgId: 'prod-vivid-aura-1',
+    titleId: 'prod-vivid-aura-title',
+    descId: 'prod-vivid-aura-desc',
+  },
+  {
+    id: 2,
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 89,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'majestic-flora-nectar-floral-crystal-necklace',
+      'majestic-flora-nectar-necklace-detail',
+    ],
+    imgId: 'prod-majestic-flora-2',
+    titleId: 'prod-majestic-flora-title',
+    descId: 'prod-majestic-flora-desc',
+  },
+  {
+    id: 3,
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    rating: 4.7,
+    reviews: 203,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'golden-sphere-huggies-dome-earrings',
+      'golden-sphere-huggies-worn',
+    ],
+    imgId: 'prod-golden-sphere-3',
+    titleId: 'prod-golden-sphere-title',
+    descId: 'prod-golden-sphere-desc',
+  },
+  {
+    id: 4,
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 67,
+    variants: ['Gold', 'Rose Gold'],
+    images: [
+      'amber-lace-earrings-filigree-drop-gold',
+      'amber-lace-earrings-detail',
+    ],
+    imgId: 'prod-amber-lace-4',
+    titleId: 'prod-amber-lace-title',
+    descId: 'prod-amber-lace-desc',
+  },
+  {
+    id: 5,
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set',
+    price: 95,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 5.0,
+    reviews: 42,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'royal-heirloom-set-gift-box-earring-necklace',
+      'royal-heirloom-set-worn',
+    ],
+    imgId: 'prod-royal-heirloom-5',
+    titleId: 'prod-royal-heirloom-title',
+    descId: 'prod-royal-heirloom-desc',
+  },
+];
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    imgId: 'cat-earrings-1',
+    titleId: 'cat-earrings-title',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    imgId: 'cat-necklaces-2',
+    titleId: 'cat-necklaces-title',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    imgId: 'cat-huggies-3',
+    titleId: 'cat-huggies-title',
+  },
+];
+
+export const ugcItems = [
+  { id: 1, caption: 'Everyday elegance', imgId: 'ugc-everyday-1', captionId: 'ugc-caption-1' },
+  { id: 2, caption: 'Golden hour glow', imgId: 'ugc-golden-2', captionId: 'ugc-caption-2' },
+  { id: 3, caption: 'Stacked & styled', imgId: 'ugc-stacked-3', captionId: 'ugc-caption-3' },
+  { id: 4, caption: 'Date night ready', imgId: 'ugc-datenight-4', captionId: 'ugc-caption-4' },
+  { id: 5, caption: 'Minimal luxury', imgId: 'ugc-minimal-5', captionId: 'ugc-caption-5' },
+  { id: 6, caption: 'Gift worthy', imgId: 'ugc-gift-6', captionId: 'ugc-caption-6' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every day and they still look brand new.',
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift and she absolutely loved it. The packaging alone feels so luxurious.',
+  },
+  {
+    id: 3,
+    name: 'Jessica L.',
+    rating: 5,
+    text: 'Finally, jewelry that doesn\'t irritate my skin. These pieces are beautiful and truly hypoallergenic.',
+  },
+];
