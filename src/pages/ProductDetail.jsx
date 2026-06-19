@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { Star, ChevronLeft, Plus, Minus, ShoppingBag } from 'lucide-react';
 import products from '../data/products';
@@ -11,10 +11,10 @@ const ProductDetail = () => {
   
   const product = products.find(p => p.id === parseInt(id));
   
-  const [selectedMaterial, setSelectedMaterial] = React.useState('Gold');
-  const [selectedImageIndex, setSelectedImageIndex] = React.useState(0);
-  const [quantity, setQuantity] = React.useState(1);
-  const [activeAccordion, setActiveAccordion] = React.useState(null);
+  const [selectedMaterial, setSelectedMaterial] = useState('Gold');
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [quantity, setQuantity] = useState(1);
+  const [activeAccordion, setActiveAccordion] = useState(null);
 
   if (!product) {
     return (
@@ -23,7 +23,7 @@ const ProductDetail = () => {
           <h2 className="font-serif text-3xl mb-4">Product Not Found</h2>
           <button
             onClick={() => navigate('/shop')}
-            className="btn-outline"
+            className="border border-velmora-charcoal px-6 py-2 uppercase tracking-wider text-sm hover:bg-velmora-charcoal hover:text-white transition-colors"
           >
             Back to Shop
           </button>
@@ -49,7 +49,7 @@ const ProductDetail = () => {
   };
 
   const accordionItems = [
-    { title: 'Description', content: product.details },
+    { title: 'Description', content: product.details || 'No description available.' },
     { title: 'Materials & Care', content: `Materials: ${product.materials}\n\nCare: Avoid contact with water, perfume, and lotions. Store in a cool, dry place. Clean gently with a soft cloth.` },
     { title: 'Shipping & Returns', content: 'Free worldwide shipping on all orders. 30-day return policy. See our returns page for full details.' },
   ];
@@ -95,7 +95,7 @@ const ProductDetail = () => {
         {/* Right - Product Info */}
         <div className="space-y-6">
           <div>
-            <h1 className="product-name text-3xl md:text-4xl mb-2">{product.name}</h1>
+            <h1 className="font-serif text-3xl md:text-4xl mb-2 uppercase tracking-wider">{product.name}</h1>
             <p className="text-velmora-stone uppercase tracking-wider text-sm">{product.category}</p>
           </div>
 
@@ -158,9 +158,7 @@ const ProductDetail = () => {
           {/* Add to Cart Button */}
           <button
             onClick={handleAddToCart}
-            className="w-full bg-velmora-charcoal text-white py-4 uppercase tracking-widest text-sm 
-                       hover:bg-velmora-charcoalLight transition-all duration-300 
-                       flex items-center justify-center gap-2"
+            className="w-full bg-velmora-charcoal text-white py-4 uppercase tracking-wider text-sm hover:bg-velmora-charcoalLight transition-all duration-300 flex items-center justify-center gap-2"
           >
             <ShoppingBag size={18} />
             Add to Cart
@@ -203,7 +201,7 @@ const ProductDetail = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="product-name text-sm">{related.name}</h3>
+                <h3 className="font-serif text-sm uppercase tracking-wider">{related.name}</h3>
                 <p className="text-sm font-medium mt-1">${related.price}</p>
               </Link>
             </div>
