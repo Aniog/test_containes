@@ -1,76 +1,56 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 34 26% 96%; /* brand.beige */
+    --foreground: 20 6% 10%; /* brand.dark */
+    
+    --card: 34 26% 96%;
+    --card-foreground: 20 6% 10%;
+    
+    --popover: 34 26% 96%;
+    --popover-foreground: 20 6% 10%;
+    
+    --primary: 20 6% 10%;
+    --primary-foreground: 34 26% 96%;
+    
+    --secondary: 40 40% 56%; /* brand.gold */
+    --secondary-foreground: 34 26% 96%;
+    
+    --muted: 33 22% 88%; /* brand.sand */
+    --muted-foreground: 28 4% 53%; /* brand.gray */
+    
+    --accent: 40 40% 56%;
+    --accent-foreground: 34 26% 96%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 33 22% 88%;
+    --input: 33 22% 88%;
+    --ring: 20 6% 10%;
+    
+    --radius: 0rem;
+    
+    color-scheme: light;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-brand-sand;
+  }
+  body {
+    @apply bg-brand-beige text-brand-dark font-sans;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-wide;
+  }
+}
