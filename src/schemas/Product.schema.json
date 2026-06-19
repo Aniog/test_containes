@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Velmora Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "description": "Product price in USD"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "details": {
+      "type": "string",
+      "description": "Detailed description, materials, etc."
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "shipping": {
+      "type": "string",
+      "description": "Shipping and returns information"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of image descriptions for the stock image helper"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "description": "Available color/material variants"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average star rating"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
