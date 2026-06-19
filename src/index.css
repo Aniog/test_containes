@@ -74,3 +74,135 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-cream: #F7F4F0;
+  --color-sand: #E8E2DA;
+  --color-taupe: #B8AFA3;
+  --color-charcoal: #2C2A26;
+  --color-gold: #C9A962;
+  --color-gold-light: #D4BC7D;
+  --color-gold-dark: #A68B4B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.uppercase-tracking {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-sand);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-taupe);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Smooth transitions */
+.transition-smooth {
+  transition: all 0.3s ease;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--color-charcoal);
+  color: white;
+  padding: 0.75rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold);
+}
+
+.btn-outline {
+  border: 1px solid var(--color-charcoal);
+  color: var(--color-charcoal);
+  padding: 0.75rem 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-charcoal);
+  color: white;
+}
+
+/* Product card hover effect */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card .secondary-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-card:hover .secondary-image {
+  opacity: 1;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background-color: rgba(184, 175, 163, 0.3);
+  width: 100%;
+}
+
+/* Image placeholder background */
+.img-placeholder {
+  background: linear-gradient(135deg, var(--color-sand) 0%, var(--color-taupe) 100%);
+}
