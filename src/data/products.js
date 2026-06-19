@@ -1,0 +1,151 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural gold ear cuff with a delicate crystal accent that catches the light with every turn. Designed to be worn solo or stacked for a curated ear look.',
+    materials: '18K gold-plated brass, cubic zirconia crystal',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the included velvet pouch. Gently polish with the provided cloth.',
+    shipping: 'Free worldwide shipping on all orders. Ships within 1-2 business days. 30-day easy returns.',
+    category: 'earrings',
+    material: 'gold',
+    tags: ['ear cuff', 'crystal', 'statement'],
+    variants: [
+      { name: 'Gold', value: 'gold', hex: '#dba030' },
+      { name: 'Silver', value: 'silver', hex: '#c5c5c5' },
+    ],
+    images: {
+      primary: 'gold ear cuff crystal sculptural warm lighting',
+      hover: 'gold ear cuff worn on ear closeup model',
+    },
+    ugc: 'gold ear cuff worn ear selfie mirror',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    rating: 4.9,
+    reviews: 87,
+    description: 'A blooming floral pendant necklace featuring multicolor crystals set in warm gold plating. The adjustable chain allows for layering or wearing as a statement piece.',
+    materials: '18K gold-plated brass, multicolor Swarovski crystals',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the included velvet pouch. Gently polish with the provided cloth.',
+    shipping: 'Free worldwide shipping on all orders. Ships within 1-2 business days. 30-day easy returns.',
+    category: 'necklaces',
+    material: 'gold',
+    tags: ['floral', 'crystal', 'pendant'],
+    variants: [
+      { name: 'Gold', value: 'gold', hex: '#dba030' },
+      { name: 'Silver', value: 'silver', hex: '#c5c5c5' },
+    ],
+    images: {
+      primary: 'multicolor floral crystal gold necklace dark background',
+      hover: 'floral crystal necklace worn neckline model',
+    },
+    ugc: 'floral gold necklace worn casual outfit mirror selfie',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky dome huggie earrings with a high-polish finish. These everyday essentials bring a bold yet understated touch to any ear stack.',
+    materials: '18K gold-plated brass, high-polish finish',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the included velvet pouch. Gently polish with the provided cloth.',
+    shipping: 'Free worldwide shipping on all orders. Ships within 1-2 business days. 30-day easy returns.',
+    category: 'earrings',
+    material: 'gold',
+    tags: ['huggies', 'dome', 'everyday', 'chunky'],
+    variants: [
+      { name: 'Gold', value: 'gold', hex: '#dba030' },
+      { name: 'Silver', value: 'silver', hex: '#c5c5c5' },
+    ],
+    images: {
+      primary: 'chunky gold dome huggie earrings polished',
+      hover: 'gold dome huggie earrings worn stacked ear model',
+    },
+    ugc: 'gold huggie earrings closeup ear selfie',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    rating: 4.6,
+    reviews: 56,
+    description: 'Intricate filigree drop earrings with a warm amber-toned textured finish. Lightweight and airy, these earrings sway gracefully with every movement.',
+    materials: '18K gold-plated brass, textured filigree finish',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the included velvet pouch. Gently polish with the provided cloth.',
+    shipping: 'Free worldwide shipping on all orders. Ships within 1-2 business days. 30-day easy returns.',
+    category: 'earrings',
+    material: 'gold',
+    tags: ['drop', 'filigree', 'textured'],
+    variants: [
+      { name: 'Gold', value: 'gold', hex: '#dba030' },
+    ],
+    images: {
+      primary: 'textured gold filigree drop earrings editorial',
+      hover: 'gold filigree drop earrings worn model closeup',
+    },
+    ugc: 'gold drop earrings night out mirror selfie',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    rating: 5.0,
+    reviews: 42,
+    description: 'A perfectly paired earring and necklace set presented in a gift-ready box. The timeless design makes this an unforgettable gift for someone special — or yourself.',
+    materials: '18K gold-plated brass, premium crystals, gift box included',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the included velvet pouch. Gently polish with the provided cloth.',
+    shipping: 'Free worldwide shipping on all orders. Ships within 1-2 business days. 30-day easy returns.',
+    category: 'sets',
+    material: 'gold',
+    tags: ['gift set', 'earrings', 'necklace', 'boxed'],
+    variants: [
+      { name: 'Gold', value: 'gold', hex: '#dba030' },
+    ],
+    images: {
+      primary: 'gift boxed gold earring necklace set elegant',
+      hover: 'gold jewellery set worn model editorial',
+    },
+    ugc: 'gold jewellery gift unboxing flatlay',
+  },
+];
+
+export const testimonials = [
+  {
+    id: 't1',
+    name: 'Sophie L.',
+    rating: 5,
+    text: 'The quality is extraordinary for the price. I wear my Golden Sphere Huggies every single day and they still look brand new.',
+  },
+  {
+    id: 't2',
+    name: 'Clara M.',
+    rating: 5,
+    text: 'I bought the Majestic Flora Nectar necklace for my sister\'s wedding. It was even more beautiful in person. The packaging felt so luxurious.',
+  },
+  {
+    id: 't3',
+    name: 'Amandine R.',
+    rating: 5,
+    text: 'Finally found demi-fine jewelry that doesn\'t look cheap. The gold tone is warm and the crystals sparkle beautifully. Already planning my next purchase.',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'gold earrings display editorial warm light' },
+  { id: 'necklaces', name: 'Necklaces', image: 'gold necklaces layered display editorial' },
+  { id: 'huggies', name: 'Huggies', image: 'gold huggie earrings closeup editorial' },
+];
+
+export const ugcItems = [
+  { id: 'ugc1', product: 'Vivid Aura Jewels', caption: 'Everyday glow ✨', query: 'gold ear cuff worn ear selfie mirror warm' },
+  { id: 'ugc2', product: 'Majestic Flora Nectar', caption: 'Date night perfection', query: 'floral crystal gold necklace worn woman neckline' },
+  { id: 'ugc3', product: 'Golden Sphere Huggies', caption: 'Stacked & loved', query: 'stacked gold huggie earrings ear closeup selfie' },
+  { id: 'ugc4', product: 'Amber Lace Earrings', caption: 'Details that matter', query: 'gold filigree drop earrings editorial detail' },
+  { id: 'ugc5', product: 'Royal Heirloom Set', caption: 'Gift ready 🎁', query: 'luxury gold jewellery gift box flatlay warm' },
+  { id: 'ugc6', product: 'Golden Sphere Huggies', caption: 'Never taking these off', query: 'gold dome earrings casual mirror selfie' },
+];

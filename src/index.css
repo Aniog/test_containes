@@ -1,76 +1,111 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --velmora-bg: #f7f5f0;
+    --velmora-text: #2c211c;
+    --velmora-accent: #cc8125;
+    --velmora-accent-hover: #a96322;
+    --velmora-cream: #fdf9f3;
+    --velmora-muted: #8d7357;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #2c211c;
+    background-color: #f7f5f0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.15;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 
+           bg-gold-600 text-white font-sans font-medium text-sm tracking-wide
+           hover:bg-gold-700 active:bg-gold-800
+           transition-all duration-300 ease-out;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3
+           border border-deep-700 text-deep-800 font-sans font-medium text-sm tracking-wide
+           hover:bg-deep-800 hover:text-cream-50 hover:border-deep-800
+           transition-all duration-300 ease-out;
+    letter-spacing: 0.06em;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-2
+           text-deep-700 font-sans text-sm tracking-wide
+           hover:text-gold-600 transition-colors duration-200;
+  }
+
+  .section-heading {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-deep-950;
+  }
+
+  .section-subheading {
+    @apply font-sans text-sm md:text-base text-deep-500 tracking-wide;
+    letter-spacing: 0.1em;
+  }
+
+  .hairline-divider {
+    @apply w-full border-0 border-t border-deep-200;
+  }
+
+  .product-name {
+    @apply font-serif text-sm tracking-wider font-medium;
+    letter-spacing: 0.12em;
+  }
+
+  .price-text {
+    @apply font-sans text-sm text-deep-600 font-medium;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
