@@ -1,0 +1,120 @@
+const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    description: 'A sculpted gold ear cuff with a warm crystal accent. Light-catching and effortlessly cool — wear alone or stack for an edgy curated look.',
+    materials: '18K gold plated over brass, cubic zirconia',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in a dry place, ideally in the provided pouch. Clean gently with a soft, dry cloth.',
+    shipping: 'Free worldwide shipping on all orders. Orders are processed within 1–2 business days. Delivery typically takes 5–10 business days depending on destination.',
+    returns: 'We offer a 30-day return policy from the date of delivery. Items must be unworn and in original packaging. Please contact our support team to initiate a return.',
+    images: [
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
+      'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80',
+    variants: ['18K Gold', 'Silver'],
+    badge: 'Best Seller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    description: 'A breathtaking multicolor floral crystal necklace that catches every angle of light. Suspended on a delicate gold chain, this piece transitions effortlessly from desk to dinner.',
+    materials: '18K gold plated over brass, multicolor crystal drops, adjustable cable chain',
+    care: 'Avoid contact with water, perfumes, and lotions. Store flat in the jewelry box. Clean with a soft, dry cloth after each wear.',
+    shipping: 'Free worldwide shipping on all orders. Orders are processed within 1–2 business days. Delivery typically takes 5–10 business days.',
+    returns: '30-day return policy from delivery. Item must be unworn with tags. Start a return through your account or contact support.',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1515562141589-67f0e753a5f8?w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1515562141589-67f0e753a5f8?w=800&q=80',
+    variants: ['18K Gold', 'Silver'],
+    badge: null,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'earrings',
+    price: 38,
+    rating: 4.7,
+    description: 'Chunky gold dome huggie earrings with a high-polish finish. These little statement-makers hug the earlobe comfortably — perfect for everyday luxury.',
+    materials: '18K gold plated over brass, hypoallergenic ear posts',
+    care: 'Avoid contact with water and chemicals. Wipe with a soft cloth after wear. Store in a dry place away from direct sunlight.',
+    shipping: 'Free worldwide shipping. Orders processed within 1–2 business days. Delivery 5–10 business days.',
+    returns: '30-day returns. Must be unworn and in original packaging. Contact support to initiate.',
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
+      'https://images.unsplash.com/photo-1588444837495-c6cfeb53a32f?w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53a32f?w=800&q=80',
+    variants: ['18K Gold'],
+    badge: null,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.6,
+    description: 'Textured gold filigree drop earrings with an heirloom feel. Intricate lace-like detailing catches the light from every angle.',
+    materials: '18K gold plated over brass, filigree metalwork, hypoallergenic hooks',
+    care: 'Handle gently — the filigree is delicate. Avoid bending. Store flat in the jewelry box. Clean with a soft brush or dry cloth.',
+    shipping: 'Free worldwide shipping. Orders processed within 1–2 business days. Delivery 5–10 business days.',
+    returns: '30-day return policy. Unworn items in original packaging. Contact support for returns.',
+    images: [
+      'https://images.unsplash.com/photo-1611652022419-c941d7a5a2b1?w=800&q=80',
+      'https://images.unsplash.com/photo-1635767798638-3665c7b9042f?w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1635767798638-3665c7b9042f?w=800&q=80',
+    variants: ['18K Gold', 'Silver'],
+    badge: null,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    description: 'A gift-boxed set featuring a pair of elegant earrings and a matching gold chain necklace. Curated for gifting — just add a ribbon.',
+    materials: '18K gold plated over brass, gift box included',
+    care: 'Store both pieces in the included gift box. Avoid water and chemicals. Clean with a soft, dry cloth.',
+    shipping: 'Free worldwide shipping. Orders processed within 1–2 business days. Delivery 5–10 business days.',
+    returns: '30-day returns on unworn sets in original gift box. Contact support to start a return.',
+    images: [
+      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&q=80',
+      'https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1591085686350-798c0f9faa7f?w=800&q=80',
+    variants: ['18K Gold'],
+    badge: 'Gift Set',
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80', count: 3 },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', count: 1 },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53a32f?w=600&q=80', count: 1 },
+]
+
+export const testimonials = [
+  { id: 1, name: 'Sophie M.', rating: 5, text: 'Absolute quality. The gold tone is warm and rich, not brassy. I\'ve gotten so many compliments on my Vivid Aura cuff.' },
+  { id: 2, name: 'Claire T.', rating: 5, text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging alone is stunning — it felt like unboxing a luxury brand.' },
+  { id: 3, name: 'Amanda K.', rating: 5, text: 'The Flora Nectar necklace is my new everyday piece. It catches the light beautifully and looks far more expensive than it is.' },
+]
+
+export const ugcContent = [
+  { id: 1, image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80', caption: 'Golden hour with my Vivid Aura cuff ✨', product: 'Vivid Aura Jewels' },
+  { id: 2, image: 'https://images.unsplash.com/photo-1589674781759-c21c58356e59?w=400&q=80', caption: 'The Flora Nectar is everything 🌼', product: 'Majestic Flora Nectar' },
+  { id: 3, image: 'https://images.unsplash.com/photo-1603561591411-071f3f456a78?w=400&q=80', caption: 'Huggies that hug just right 💛', product: 'Golden Sphere Huggies' },
+  { id: 4, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&q=80', caption: 'Amber Lace — heirloom vibes', product: 'Amber Lace Earrings' },
+  { id: 5, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80', caption: 'Gifted the Royal Set to my bestie 🎁', product: 'Royal Heirloom Set' },
+  { id: 6, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80', caption: 'Stacked my cuffs — obsessed', product: 'Vivid Aura Jewels' },
+]
+
+export default products
