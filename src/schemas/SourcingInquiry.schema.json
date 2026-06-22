@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry Form Responses",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this form",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Machinery", "Apparel", "Furniture", "Sports", "Packaging", "Other"],
+      "description": "Category of the product to source"
+    },
+    "inquiry_type": {
+      "type": "string",
+      "enum": ["Full Sourcing Service", "Factory Audit", "Quality Inspection", "Shipping & Logistics", "General Inquiry"],
+      "description": "Type of service requested"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Detailed description of requirements"
+    }
+  },
+  "required": ["user_id", "name", "email", "inquiry_type", "message"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user", "guest", "admin"] },
+    "read": { "allow": ["owner", "admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
