@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -9,19 +8,8 @@ import Products from './pages/Products';
 import CaseStudies from './pages/CaseStudies';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from './strk-img-config.json';
 
 function App() {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    // Initialize image loading
-    const cleanup = ImageHelper.loadImages(strkImgConfig, document.body);
-    setIsLoaded(true);
-    return cleanup;
-  }, []);
-
   return (
     <Router>
       <div className="min-h-screen flex flex-col bg-white">
