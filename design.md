@@ -4,16 +4,16 @@
 A dark, immersive website exploring the microscopic world. The visual style evokes the feeling of peering through a microscope into an alien, beautiful universe — deep blacks, glowing teals, electric blues, and soft purples.
 
 ## Colors
-- Background primary: `#050a14` (near-black deep navy) — `bg-cosmos-dark`
-- Background secondary: `#0d1b2e` (dark navy) — `bg-cosmos-navy`
-- Background card: `#0f2035` (dark blue-gray) — `bg-cosmos-card`
-- Accent teal: `#00d4c8` — `text-cosmos-teal`, `bg-cosmos-teal`
-- Accent cyan: `#38bdf8` — `text-cosmos-cyan`
-- Accent purple: `#a855f7` — `text-cosmos-purple`
-- Accent glow: `#00ffd5` — `text-cosmos-glow`
-- Text primary: `#f0f8ff` (alice blue / near white) — `text-cosmos-text`
-- Text muted: `#7ea8c4` — `text-cosmos-muted`
-- Border: `#1a3a5c` — `border-cosmos-border`
+- Background primary: `#0a0a0a` (near-black) — `bg-cosmos-dark`
+- Background secondary: `#111111` (dark gray) — `bg-cosmos-navy`
+- Background card: `#1a1a1a` (dark card) — `bg-cosmos-card`
+- Accent white: `#ffffff` — `text-cosmos-teal`, `bg-cosmos-teal`
+- Accent light gray: `#e2e8f0` — `text-cosmos-cyan`
+- Accent medium gray: `#94a3b8` — `text-cosmos-purple`
+- Accent glow: `#ffffff` — `text-cosmos-glow`
+- Text primary: `#f8fafc` (near white) — `text-cosmos-text`
+- Text muted: `#64748b` — `text-cosmos-muted`
+- Border: `#2d2d2d` — `border-cosmos-border`
 
 ## Typography
 - Headings: `font-display` → "Playfair Display", serif — elegant, scientific

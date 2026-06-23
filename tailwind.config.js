@@ -8,16 +8,16 @@ export default {
     extend: {
       colors: {
         cosmos: {
-          dark: '#050a14',
-          navy: '#0d1b2e',
-          card: '#0f2035',
-          teal: '#00d4c8',
-          cyan: '#38bdf8',
-          purple: '#a855f7',
-          glow: '#00ffd5',
-          text: '#f0f8ff',
-          muted: '#7ea8c4',
-          border: '#1a3a5c',
+          dark: '#0a0a0a',
+          navy: '#111111',
+          card: '#1a1a1a',
+          teal: '#ffffff',
+          cyan: '#e2e8f0',
+          purple: '#94a3b8',
+          glow: '#ffffff',
+          text: '#f8fafc',
+          muted: '#64748b',
+          border: '#2d2d2d',
         },
       },
       fontFamily: {
