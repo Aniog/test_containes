@@ -1,7 +1,4 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useRef } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import {
   Search, Factory, ClipboardCheck, Gauge, Ship,
   HeadphonesIcon, CheckCircle, ArrowRight, Shield, Package, FileText
@@ -92,14 +89,9 @@ const serviceList = [
 ]
 
 export default function Services() {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
 
   return (
-    <div ref={containerRef}>
+    <div>
       {/* Hero */}
       <section className="bg-brand-900 text-white">
         <div className="container-wide py-16 md:py-20">
@@ -126,9 +118,9 @@ export default function Services() {
                     <svc.icon size={28} className="text-brand-800" />
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-text mb-3">
-                    <span id={`svc-title-${svc.imgId}`}>{svc.title}</span>
+                    {svc.title}
                   </h2>
-                  <p id={`svc-desc-${svc.imgId}`} className="text-text-secondary leading-relaxed mb-5">
+                  <p className="text-text-secondary leading-relaxed mb-5">
                     {svc.desc}
                   </p>
                   <ul className="space-y-2.5">
@@ -141,16 +133,8 @@ export default function Services() {
                   </ul>
                 </div>
                 <div className="flex-1 w-full">
-                  <div className="aspect-[4/3] bg-surface-alt rounded-xl overflow-hidden">
-                    <img
-                      alt={svc.title}
-                      data-strk-img-id={svc.imgId}
-                      data-strk-img={`[svc-desc-${svc.imgId}] [svc-title-${svc.imgId}]`}
-                      data-strk-img-ratio="4x3"
-                      data-strk-img-width="700"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="aspect-[4/3] bg-gradient-to-br from-brand-50 to-brand-100 rounded-xl flex items-center justify-center">
+                    <svc.icon size={64} className="text-brand-300" />
                   </div>
                 </div>
               </div>

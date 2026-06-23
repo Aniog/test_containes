@@ -1,7 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
-import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react'
+import { useState } from 'react'
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, AlertCircle, Loader2, Globe } from 'lucide-react'
 
 const CATEGORIES = [
   'Electronics & Accessories',
@@ -42,14 +40,9 @@ const initialValues = {
 }
 
 export default function Contact() {
-  const containerRef = useRef(null)
   const [values, setValues] = useState(initialValues)
   const [status, setStatus] = useState('idle')
   const [errorMsg, setErrorMsg] = useState(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
 
   const onChange = (e) => {
     const { name, value } = e.target
@@ -91,7 +84,7 @@ export default function Contact() {
   }
 
   return (
-    <div ref={containerRef}>
+    <div>
       {/* Hero */}
       <section className="bg-brand-900 text-white">
         <div className="container-wide py-16 md:py-20">
@@ -100,7 +93,7 @@ export default function Contact() {
             <h1 className="text-4xl md:text-5xl font-extrabold mt-3 mb-4 leading-tight">
               Get a Free Sourcing Quote
             </h1>
-            <p id="contact-subtitle" className="text-lg text-white/70 leading-relaxed">
+            <p className="text-lg text-white/70 leading-relaxed">
               Tell us about your product needs and receive a customized sourcing plan within 24 hours — no obligation, no cost.
             </p>
           </div>
@@ -390,16 +383,8 @@ export default function Contact() {
                 </div>
 
                 {/* Visual */}
-                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-surface-alt">
-                  <img
-                    alt="China sourcing office"
-                    data-strk-img-id="contact-sidebar-z9y8x7"
-                    data-strk-img={`[contact-subtitle]`}
-                    data-strk-img-ratio="4x3"
-                    data-strk-img-width="500"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-brand-700 to-brand-900 flex items-center justify-center">
+                  <Globe2 size={56} className="text-brand-400" />
                 </div>
               </div>
             </div>

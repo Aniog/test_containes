@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useRef } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
-import { ArrowRight, Check } from 'lucide-react'
+import { ArrowRight, Check, Package } from 'lucide-react'
 
 const categories = [
   {
@@ -91,23 +88,18 @@ const capabilities = [
 ]
 
 export default function ProductsWeSource() {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
 
   return (
-    <div ref={containerRef}>
+    <div>
       {/* Hero */}
       <section className="bg-brand-900 text-white">
         <div className="container-wide py-16 md:py-20">
           <div className="max-w-3xl">
-            <span id="products-page-title" className="text-accent-400 font-semibold text-sm uppercase tracking-wide">Products We Source</span>
+            <span className="text-accent-400 font-semibold text-sm uppercase tracking-wide">Products We Source</span>
             <h1 className="text-4xl md:text-5xl font-extrabold mt-3 mb-4 leading-tight">
               We Source Across 20+ Categories
             </h1>
-            <p id="products-page-desc" className="text-lg text-white/70 leading-relaxed">
+            <p className="text-lg text-white/70 leading-relaxed">
               From consumer electronics to industrial machinery — our supplier network spans virtually every major manufacturing sector in China.
             </p>
           </div>
@@ -120,20 +112,12 @@ export default function ProductsWeSource() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {categories.map((cat) => (
               <div key={cat.name} className="group bg-surface border border-surface-border rounded-xl overflow-hidden hover:shadow-lg transition-all">
-                <div className="aspect-[16/10] bg-surface-alt overflow-hidden">
-                  <img
-                    alt={cat.name}
-                    data-strk-img-id={cat.imgId}
-                    data-strk-img={`[cat-desc-${cat.imgId}] [cat-name-${cat.imgId}]`}
-                    data-strk-img-ratio="16x10"
-                    data-strk-img-width="600"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className="aspect-[16/10] bg-gradient-to-br from-brand-50 to-brand-100 flex items-center justify-center">
+                  <Package size={48} className="text-brand-300 group-hover:text-brand-500 transition-colors" />
                 </div>
                 <div className="p-5">
-                  <h3 id={`cat-name-${cat.imgId}`} className="font-semibold text-text mb-2">{cat.name}</h3>
-                  <p id={`cat-desc-${cat.imgId}`} className="text-text-secondary text-sm leading-relaxed mb-3">{cat.desc}</p>
+                  <h3 className="font-semibold text-text mb-2">{cat.name}</h3>
+                  <p className="text-text-secondary text-sm leading-relaxed mb-3">{cat.desc}</p>
                   <div className="text-xs text-text-muted bg-surface-alt rounded px-3 py-2">
                     <span className="font-medium text-text">Example products:</span> {cat.examples}
                   </div>
