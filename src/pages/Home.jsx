@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
+import { useEffect, useState } from 'react'
 import {
   Shield, Search, ClipboardCheck, Factory, Ship, Truck,
-  ChevronRight, CheckCircle, Star, Users, Award, Globe,
-  ArrowRight, HeadphonesIcon, Building2, Gauge, CreditCard
+  ChevronRight, CheckCircle, X, Star, Users, Award, Globe,
+  ArrowRight, HeadphonesIcon, Building2, Gauge, CreditCard,
+  Image
 } from 'lucide-react'
 
 const services = [
@@ -84,12 +83,7 @@ const productCategories = [
 ]
 
 export default function Home() {
-  const containerRef = useRef(null)
   const [testimonialIndex, setTestimonialIndex] = useState(0)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -99,20 +93,10 @@ export default function Home() {
   }, [])
 
   return (
-    <div ref={containerRef}>
+    <div>
       {/* Hero */}
       <section className="relative bg-brand-900 text-white overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-25"
-          data-strk-bg-id="hero-bg-a1b2c3"
-          data-strk-bg="[hero-subtitle] [hero-title]"
-          data-strk-bg-ratio="16x9"
-          data-strk-bg-width="1600"
-          style={{
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-800 to-brand-900" />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-900/90 to-brand-900/70" />
         <div className="relative container-wide py-24 md:py-32 lg:py-40">
           <div className="max-w-3xl">
@@ -279,24 +263,15 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {productCategories.map((cat) => (
               <div key={cat.name} className="group bg-white rounded-xl overflow-hidden border border-surface-border hover:shadow-md transition-all">
-                <div className="aspect-[4/3] bg-surface-alt overflow-hidden relative">
-                  <img
-                    alt={cat.name}
-                    data-strk-img-id={cat.imgId}
-                    data-strk-img={`[cat-name-${cat.name.replace(/\s+/g, '-').replace(/[&]/g, '')}] [products-section-title]`}
-                    data-strk-img-ratio="4x3"
-                    data-strk-img-width="400"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+                <div className="aspect-[4/3] bg-gradient-to-br from-brand-50 to-brand-100 flex items-center justify-center">
+                  <Image size={48} className="text-brand-300 group-hover:text-brand-500 transition-colors" />
                 </div>
                 <div className="p-4">
-                  <h3 id={`cat-name-${cat.name.replace(/\s+/g, '-').replace(/[&]/g, '')}`} className="font-semibold text-text text-sm">{cat.name}</h3>
+                  <h3 className="font-semibold text-text text-sm">{cat.name}</h3>
                 </div>
               </div>
             ))}
           </div>
-          <div id="products-section-title" className="sr-only">China manufactured products sourcing</div>
 
           <div className="text-center mt-10">
             <Link to="/products-we-source" className="inline-flex items-center gap-2 text-brand-800 font-semibold hover:text-accent-500 transition-colors">
@@ -362,25 +337,17 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: 'Electronics Startup Cuts Costs by 35%', imgId: 'cs1-img-u9v8w7', cat: 'Consumer Electronics' },
-              { title: 'Furniture Brand Scales to 3 New Factories', imgId: 'cs2-img-x6y5z4', cat: 'Furniture & Home' },
-              { title: 'Apparel Importer Achieves 99.2% QC Pass Rate', imgId: 'cs3-img-a3b2c1', cat: 'Apparel & Textiles' },
+              { title: 'Electronics Startup Cuts Costs by 35%', cat: 'Consumer Electronics', color: 'from-blue-50 to-blue-100' },
+              { title: 'Furniture Brand Scales to 3 New Factories', cat: 'Furniture & Home', color: 'from-amber-50 to-amber-100' },
+              { title: 'Apparel Importer Achieves 99.2% QC Pass Rate', cat: 'Apparel & Textiles', color: 'from-green-50 to-green-100' },
             ].map((cs) => (
-              <Link key={cs.imgId} to="/case-studies" className="group bg-surface border border-surface-border rounded-xl overflow-hidden hover:shadow-lg transition-all">
-                <div className="aspect-[16/10] bg-surface-alt overflow-hidden">
-                  <img
-                    alt={cs.title}
-                    data-strk-img-id={cs.imgId}
-                    data-strk-img={`[cs-title-${cs.imgId}] [cs-cat-${cs.imgId}]`}
-                    data-strk-img-ratio="16x10"
-                    data-strk-img-width="600"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
+              <Link key={cs.title} to="/case-studies" className="group bg-surface border border-surface-border rounded-xl overflow-hidden hover:shadow-lg transition-all">
+                <div className={`aspect-[16/10] bg-gradient-to-br ${cs.color} flex items-center justify-center`}>
+                  <Factory size={40} className="text-brand-300 group-hover:text-brand-500 transition-colors" />
                 </div>
                 <div className="p-5">
-                  <span id={`cs-cat-${cs.imgId}`} className="text-xs font-semibold text-accent-500 uppercase tracking-wide">{cs.cat}</span>
-                  <h3 id={`cs-title-${cs.imgId}`} className="font-semibold text-text mt-1 group-hover:text-brand-800 transition-colors">{cs.title}</h3>
+                  <span className="text-xs font-semibold text-accent-500 uppercase tracking-wide">{cs.cat}</span>
+                  <h3 className="font-semibold text-text mt-1 group-hover:text-brand-800 transition-colors">{cs.title}</h3>
                 </div>
               </Link>
             ))}

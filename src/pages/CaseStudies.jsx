@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
-import { useEffect, useRef, useState } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
-import { ArrowRight, TrendingDown, TrendingUp, CheckCircle, Quote } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, TrendingDown, TrendingUp, CheckCircle, Quote, FileText } from 'lucide-react'
 
 const caseStudies = [
   {
@@ -110,24 +108,10 @@ const caseStudies = [
 ]
 
 export default function CaseStudies() {
-  const containerRef = useRef(null)
   const [expanded, setExpanded] = useState(null)
 
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
-  useEffect(() => {
-    if (expanded !== null) {
-      const frameId = requestAnimationFrame(() => {
-        ImageHelper.loadImages(strkImgConfig, containerRef.current)
-      })
-      return () => cancelAnimationFrame(frameId)
-    }
-  }, [expanded])
-
   return (
-    <div ref={containerRef}>
+    <div>
       {/* Hero */}
       <section className="bg-brand-900 text-white">
         <div className="container-wide py-16 md:py-20">
@@ -151,16 +135,8 @@ export default function CaseStudies() {
               <div key={cs.id} className="bg-surface border border-surface-border rounded-xl overflow-hidden hover:shadow-md transition-shadow">
                 <div className="flex flex-col lg:flex-row">
                   <div className="lg:w-2/5">
-                    <div className="aspect-[4/3] lg:aspect-auto lg:h-full bg-surface-alt overflow-hidden">
-                      <img
-                        alt={cs.title}
-                        data-strk-img-id={cs.imgId}
-                        data-strk-img={`[cs-client-${cs.id}] [cs-title-${cs.id}]`}
-                        data-strk-img-ratio="4x3"
-                        data-strk-img-width="700"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="aspect-[4/3] lg:aspect-auto lg:h-full bg-gradient-to-br from-brand-50 to-brand-100 flex items-center justify-center">
+                      <FileText size={56} className="text-brand-300" />
                     </div>
                   </div>
                   <div className="lg:w-3/5 p-6 md:p-8">
