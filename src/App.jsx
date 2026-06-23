@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import Header from '@/components/layout/Header.jsx'
 import Footer from '@/components/layout/Footer.jsx'
@@ -17,6 +17,25 @@ function ScrollToTop() {
 
   return null
 }
+
+function PreviewRouteBridge() {
+  const navigate = useNavigate()
+
+  React.useEffect(() => {
+    window.__STRIKINGLY_PREVIEW_NAVIGATE__ = (path, options = {}) => {
+      navigate(path, { replace: Boolean(options.replace) })
+    }
+
+    return () => {
+      if (window.__STRIKINGLY_PREVIEW_NAVIGATE__) {
+        delete window.__STRIKINGLY_PREVIEW_NAVIGATE__
+      }
+    }
+  }, [navigate])
+
+  return null
+}
+
 
 function Storefront() {
   const [cartOpen, setCartOpen] = React.useState(false)
@@ -53,6 +72,8 @@ function Storefront() {
 
   return (
     <div className="min-h-screen bg-porcelain text-ink">
+      <PreviewRouteBridge />
+
       <ScrollToTop />
       <Header cartCount={cartCount} onCartOpen={() => setCartOpen(true)} />
       <Routes>
