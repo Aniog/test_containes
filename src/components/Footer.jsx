@@ -16,12 +16,12 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: 'Supplier Discovery', path: '/services' },
-    { name: 'Factory Verification', path: '/services' },
-    { name: 'Quality Inspection', path: '/services' },
-    { name: 'Production Follow-up', path: '/services' },
-    { name: 'Shipping & Logistics', path: '/services' },
-    { name: 'Sample Management', path: '/services' },
+    { name: 'Supplier Discovery', path: '/services#discovery' },
+    { name: 'Factory Verification', path: '/services#verification' },
+    { name: 'Quality Inspection', path: '/services#inspection' },
+    { name: 'Production Follow-up', path: '/services#production' },
+    { name: 'Shipping & Logistics', path: '/services#shipping' },
+    { name: 'Sample Management', path: '/services#samples' },
   ];
 
   return (
