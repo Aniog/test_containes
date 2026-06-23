@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Consumer Electronics", "Home & Furniture", "Fitness & Sporting Goods", "Office Supplies", "Industrial & Machinery", "Gadgets & Novelties", "Other"],
+      "description": "General category of the product to source"
+    },
+    "product_details": {
+      "type": "string",
+      "description": "Detailed description of the product, specifications, and requirements"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "description": "Estimated order volume"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_progress", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_category", "product_details"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
