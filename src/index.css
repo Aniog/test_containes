@@ -1,76 +1,206 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: 'Manrope', Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #171412;
+  background-color: #F8F3EC;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F8F3EC;
+  color: #171412;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #C9A45C;
+  outline-offset: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #C9A45C;
+  color: #171412;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+html::before,
+html::after,
+body::before,
+body::after {
+  content: none !important;
+  display: none !important;
+}
+
+body > *:not(#root):not(script):not(style) {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+#root {
+  position: relative;
+  z-index: 2147483647;
+  min-height: 100vh;
+  isolation: isolate;
+  background-color: #F8F3EC;
+}
+
+#root,
+#root *,
+#root *::before,
+#root *::after {
+  background-image: none !important;
+}
+
+#root img,
+#root picture,
+#root iframe,
+#root canvas,
+#root video {
+  display: none !important;
+}
+
+.oh-ve-hover-box,
+.oh-ve-selected-box,
+.oh-ve-tag-badge,
+.oh-ve-popover,
+.oh-ve-image-overlay,
+.oh-ve-toolbar,
+[data-visual-edit-bid],
+.strk-visual-edit-badge,
+.strk-img-loading,
+.strk-bg-loading,
+[data-strk-img],
+[data-strk-bg] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  background-image: none !important;
+}
+
+[data-visual-edit-id],
+[data-visual-edit-id] * {
+  outline: none !important;
+}
+
+@layer base {
+  .bg-ink { background-color: #171412; }
+  .bg-espresso { background-color: #2A211B; }
+  .bg-porcelain { background-color: #F8F3EC; }
+  .bg-pearl { background-color: #FFFDF8; }
+  .bg-sand { background-color: #E8DCCB; }
+  .bg-champagne { background-color: #C9A45C; }
+  .bg-antique { background-color: #8A642C; }
+  .bg-sand\/24 { background-color: rgb(232 220 203 / 0.24); }
+  .bg-sand\/25 { background-color: rgb(232 220 203 / 0.25); }
+  .bg-sand\/30 { background-color: rgb(232 220 203 / 0.30); }
+  .bg-sand\/40 { background-color: rgb(232 220 203 / 0.40); }
+  .bg-sand\/45 { background-color: rgb(232 220 203 / 0.45); }
+  .bg-champagne\/15 { background-color: rgb(201 164 92 / 0.15); }
+  .bg-champagne\/35 { background-color: rgb(201 164 92 / 0.35); }
+  .bg-porcelain\/10 { background-color: rgb(248 243 236 / 0.10); }
+  .bg-porcelain\/18 { background-color: rgb(248 243 236 / 0.18); }
+  .bg-porcelain\/20 { background-color: rgb(248 243 236 / 0.20); }
+  .bg-porcelain\/40 { background-color: rgb(248 243 236 / 0.40); }
+  .bg-porcelain\/42 { background-color: rgb(248 243 236 / 0.42); }
+  .bg-pearl\/95 { background-color: rgb(255 253 248 / 0.95); }
+  .bg-ink\/35 { background-color: rgb(23 20 18 / 0.35); }
+  .bg-ink\/45 { background-color: rgb(23 20 18 / 0.45); }
+  .bg-ink\/50 { background-color: rgb(23 20 18 / 0.50); }
+  .bg-ink\/55 { background-color: rgb(23 20 18 / 0.55); }
+  .bg-ink\/70 { background-color: rgb(23 20 18 / 0.70); }
+  .bg-ink\/80 { background-color: rgb(23 20 18 / 0.80); }
+  .text-ink { color: #171412; }
+  .text-espresso { color: #2A211B; }
+  .text-porcelain { color: #F8F3EC; }
+  .text-pearl { color: #FFFDF8; }
+  .text-sand { color: #E8DCCB; }
+  .text-champagne { color: #C9A45C; }
+  .text-antique { color: #8A642C; }
+  .text-stone { color: #6F665D; }
+  .text-porcelain\/65 { color: rgb(248 243 236 / 0.65); }
+  .text-porcelain\/72 { color: rgb(248 243 236 / 0.72); }
+  .text-porcelain\/75 { color: rgb(248 243 236 / 0.75); }
+  .text-porcelain\/76 { color: rgb(248 243 236 / 0.76); }
+  .text-porcelain\/78 { color: rgb(248 243 236 / 0.78); }
+  .text-porcelain\/80 { color: rgb(248 243 236 / 0.80); }
+  .text-porcelain\/82 { color: rgb(248 243 236 / 0.82); }
+  .text-porcelain\/90 { color: rgb(248 243 236 / 0.90); }
+  .text-champagne\/85 { color: rgb(201 164 92 / 0.85); }
+  .border-sand { border-color: #E8DCCB; }
+  .border-champagne { border-color: #C9A45C; }
+  .border-porcelain { border-color: #F8F3EC; }
+  .border-ink { border-color: #171412; }
+  .border-sand\/40 { border-color: rgb(232 220 203 / 0.40); }
+  .border-champagne\/25 { border-color: rgb(201 164 92 / 0.25); }
+  .border-champagne\/30 { border-color: rgb(201 164 92 / 0.30); }
+  .border-champagne\/45 { border-color: rgb(201 164 92 / 0.45); }
+  .border-champagne\/70 { border-color: rgb(201 164 92 / 0.70); }
+  .border-champagne\/75 { border-color: rgb(201 164 92 / 0.75); }
+  .border-champagne\/80 { border-color: rgb(201 164 92 / 0.80); }
+  .border-porcelain\/10 { border-color: rgb(248 243 236 / 0.10); }
+  .border-porcelain\/15 { border-color: rgb(248 243 236 / 0.15); }
+  .border-porcelain\/18 { border-color: rgb(248 243 236 / 0.18); }
+  .border-porcelain\/20 { border-color: rgb(248 243 236 / 0.20); }
+  .placeholder\:text-stone::placeholder { color: #6F665D; }
+  .from-ink\/45 { --tw-gradient-from: rgb(23 20 18 / 0.45) var(--tw-gradient-from-position); --tw-gradient-to: rgb(23 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-ink\/70 { --tw-gradient-from: rgb(23 20 18 / 0.70) var(--tw-gradient-from-position); --tw-gradient-to: rgb(23 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-ink\/80 { --tw-gradient-from: rgb(23 20 18 / 0.80) var(--tw-gradient-from-position); --tw-gradient-to: rgb(23 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-ink\/10 { --tw-gradient-to: rgb(23 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(23 20 18 / 0.10) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-ink\/30 { --tw-gradient-to: rgb(23 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(23 20 18 / 0.30) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-ink\/82 { --tw-gradient-to: rgb(23 20 18 / 0.82) var(--tw-gradient-to-position); }
+  .to-porcelain\/10 { --tw-gradient-to: rgb(248 243 236 / 0.10) var(--tw-gradient-to-position); }
+
+  .bg-still-visual {
+    background-color: #171412;
+    background-image:
+      radial-gradient(circle at 68% 24%, rgba(201, 164, 92, 0.38), transparent 30%),
+      radial-gradient(circle at 22% 74%, rgba(248, 243, 236, 0.16), transparent 34%),
+      linear-gradient(135deg, #171412 0%, #2A211B 54%, #6F665D 100%);
+  }
+  .bg-worn-visual {
+    background-color: #2A211B;
+    background-image:
+      radial-gradient(circle at 76% 22%, rgba(248, 243, 236, 0.22), transparent 28%),
+      radial-gradient(circle at 30% 64%, rgba(201, 164, 92, 0.32), transparent 34%),
+      linear-gradient(135deg, #2A211B 0%, #171412 58%, #8A642C 100%);
+  }
+  .bg-hero-visual {
+    background-color: #171412;
+    background-image:
+      radial-gradient(circle at 70% 32%, rgba(201, 164, 92, 0.42), transparent 30%),
+      radial-gradient(circle at 22% 72%, rgba(248, 243, 236, 0.14), transparent 35%),
+      linear-gradient(135deg, #171412 0%, #2A211B 48%, #8A642C 100%);
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+  .fill-current { fill: currentColor; }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
