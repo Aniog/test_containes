@@ -22,6 +22,16 @@ export default defineConfig({
     cors: true,
     hmr: {
       overlay: false
+    },
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
     }
   }
 })
