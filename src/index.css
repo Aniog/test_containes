@@ -1,76 +1,221 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2d211c;
+  background-color: #f6f1ea;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: #f6f1ea;
+  color: #2d211c;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #b78857;
+  color: #201714;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    background-color: #f6f1ea;
+    color: #2d211c;
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Cormorant Garamond', serif;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.bg-brand-ivory {
+  background-color: #f6f1ea;
+}
+
+.bg-brand-ivory\/95 {
+  background-color: rgba(246, 241, 234, 0.95);
+}
+
+.bg-brand-surface {
+  background-color: #fbf7f1;
+}
+
+.bg-brand-surface\/80 {
+  background-color: rgba(251, 247, 241, 0.8);
+}
+
+.bg-brand-sand\/70 {
+  background-color: rgba(233, 220, 207, 0.7);
+}
+
+.bg-brand-umber {
+  background-color: #201714;
+}
+
+.bg-brand-umber\/35 {
+  background-color: rgba(32, 23, 20, 0.35);
+}
+
+.bg-brand-bronze {
+  background-color: #b78857;
+}
+
+.bg-brand-bronze\/10 {
+  background-color: rgba(183, 136, 87, 0.1);
+}
+
+.text-brand-ivory {
+  color: #f6f1ea;
+}
+
+.text-brand-ivory\/60 {
+  color: rgba(246, 241, 234, 0.6);
+}
+
+.text-brand-ivory\/80 {
+  color: rgba(246, 241, 234, 0.8);
+}
+
+.text-brand-ivory\/85 {
+  color: rgba(246, 241, 234, 0.85);
+}
+
+.text-brand-espresso {
+  color: #2d211c;
+}
+
+.text-brand-mink {
+  color: #7a675a;
+}
+
+.text-brand-bronze {
+  color: #b78857;
+}
+
+.text-brand-umber {
+  color: #201714;
+}
+
+.border-brand-line {
+  border-color: #d8c7b8;
+}
+
+.border-brand-bronze {
+  border-color: #b78857;
+}
+
+.border-brand-espresso {
+  border-color: #2d211c;
+}
+
+.from-brand-umber {
+  --tw-gradient-from: #201714 var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(32, 23, 20, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-brand-umber\/35 {
+  --tw-gradient-from: rgba(32, 23, 20, 0.35) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(32, 23, 20, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-brand-umber\/85 {
+  --tw-gradient-from: rgba(32, 23, 20, 0.85) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(32, 23, 20, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-brand-umber\/90 {
+  --tw-gradient-from: rgba(32, 23, 20, 0.9) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(32, 23, 20, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-brand-umber\/20 {
+  --tw-gradient-to: rgba(32, 23, 20, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(32, 23, 20, 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-brand-umber\/55 {
+  --tw-gradient-to: rgba(32, 23, 20, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(32, 23, 20, 0.55) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-brand-umber\/30 {
+  --tw-gradient-to: rgba(32, 23, 20, 0.3) var(--tw-gradient-to-position);
+}
+
+.shadow-soft {
+  box-shadow: 0 24px 64px rgba(45, 33, 28, 0.1);
+}
+
+.accent-brand-bronze {
+  accent-color: #b78857;
+}
+
+.placeholder\:text-brand-ivory\/60::placeholder {
+  color: rgba(246, 241, 234, 0.6);
+}
+
+.hover\:text-brand-bronze:hover {
+  color: #b78857;
+}
+
+.hover\:text-brand-espresso:hover {
+  color: #2d211c;
+}
+
+.hover\:border-brand-bronze:hover {
+  border-color: #b78857;
+}
+
+.hover\:bg-brand-bronze\/10:hover {
+  background-color: rgba(183, 136, 87, 0.1);
+}
+

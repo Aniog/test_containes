@@ -21,6 +21,16 @@ export const products = [
       alt: 'velmora-vivid-aura-alt-b84d2f',
       detail: 'velmora-vivid-aura-detail-c54e7a',
     },
+    media: {
+      cardPrimary: 'velmora-vivid-aura-hero-a12c9e',
+      cardSecondary: 'velmora-vivid-aura-alt-b84d2f',
+      cart: 'velmora-vivid-aura-hero-a12c9e',
+      gallery: [
+        'velmora-vivid-aura-hero-a12c9e',
+        'velmora-vivid-aura-alt-b84d2f',
+        { imageId: 'velmora-vivid-aura-alt-b84d2f', resultIndex: 2 },
+      ],
+    },
   },
   {
     id: 'majestic-flora-nectar',
@@ -43,6 +53,16 @@ export const products = [
       hero: 'velmora-flora-hero-d39f6b',
       alt: 'velmora-flora-alt-e71c4d',
       detail: 'velmora-flora-detail-f18a3c',
+    },
+    media: {
+      cardPrimary: 'velmora-flora-hero-d39f6b',
+      cardSecondary: 'velmora-flora-alt-e71c4d',
+      cart: 'velmora-flora-hero-d39f6b',
+      gallery: [
+        'velmora-flora-hero-d39f6b',
+        'velmora-flora-alt-e71c4d',
+        { imageId: 'velmora-flora-alt-e71c4d', resultIndex: 2 },
+      ],
     },
   },
   {
@@ -67,6 +87,16 @@ export const products = [
       alt: 'velmora-huggies-alt-h65l8n',
       detail: 'velmora-huggies-detail-i13r4m',
     },
+    media: {
+      cardPrimary: 'velmora-huggies-hero-g28k1q',
+      cardSecondary: 'velmora-huggies-alt-h65l8n',
+      cart: 'velmora-huggies-hero-g28k1q',
+      gallery: [
+        'velmora-huggies-hero-g28k1q',
+        'velmora-huggies-alt-h65l8n',
+        'velmora-huggies-detail-i13r4m',
+      ],
+    },
   },
   {
     id: 'amber-lace-earrings',
@@ -90,6 +120,16 @@ export const products = [
       alt: 'velmora-amber-alt-k92v6w',
       detail: 'velmora-amber-detail-l37x9y',
     },
+    media: {
+      cardPrimary: 'velmora-amber-hero-j84t2s',
+      cardSecondary: 'velmora-amber-alt-k92v6w',
+      cart: 'velmora-amber-hero-j84t2s',
+      gallery: [
+        'velmora-amber-hero-j84t2s',
+        'velmora-amber-alt-k92v6w',
+        { imageId: 'velmora-amber-hero-j84t2s', resultIndex: 2 },
+      ],
+    },
   },
   {
     id: 'royal-heirloom-set',
@@ -112,6 +152,16 @@ export const products = [
       hero: 'velmora-heirloom-hero-m27q5p',
       alt: 'velmora-heirloom-alt-n44c8v',
       detail: 'velmora-heirloom-detail-o70b2r',
+    },
+    media: {
+      cardPrimary: 'velmora-heirloom-hero-m27q5p',
+      cardSecondary: 'velmora-heirloom-alt-n44c8v',
+      cart: 'velmora-heirloom-hero-m27q5p',
+      gallery: [
+        'velmora-heirloom-hero-m27q5p',
+        'velmora-heirloom-alt-n44c8v',
+        { imageId: 'velmora-heirloom-alt-n44c8v', resultIndex: 2 },
+      ],
     },
   },
 ]
