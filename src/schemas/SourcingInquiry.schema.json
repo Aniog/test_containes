@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "productDescription": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Description of the product to be sourced"
+    },
+    "quantity": {
+      "type": "string",
+      "description": "Estimated order quantity"
+    },
+    "targetPrice": {
+      "type": "string",
+      "description": "Target price per unit"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional requirements or questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "company", "productDescription", "quantity"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
