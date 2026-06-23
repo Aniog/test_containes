@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the buyer or contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Furniture & Home Decor",
+        "Clothing & Textiles",
+        "Machinery & Industrial",
+        "Toys & Baby Products",
+        "Health & Beauty",
+        "Sports & Outdoor",
+        "Packaging & Printing",
+        "Other"
+      ],
+      "description": "Category of product the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed description of the product(s) to be sourced"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or MOQ requirement"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping Coordination",
+          "Sample Procurement"
+        ]
+      },
+      "description": "Services the buyer requires"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional notes or requirements from the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
