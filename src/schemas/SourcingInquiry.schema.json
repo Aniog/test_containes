@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the inquiry (Users table ID)",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the contact person"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name (optional)"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number/WhatsApp/WeChat (optional)"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["electronics", "toys", "apparel", "home_garden", "machinery", "automotive", "health_beauty", "other"],
+      "description": "Category of the product being sourced"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Detailed description of the product or sourcing needs"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Estimated order quantity (e.g., '1000 pcs', '20ft container')"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Target price per unit (optional)"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_search", "factory_audit", "sample_consolidation", "product_inspection", "shipping_logistics"]
+      },
+      "description": "Specific services required"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "contacted", "working", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_category", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
