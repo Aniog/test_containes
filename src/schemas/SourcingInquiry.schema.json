@@ -3,12 +3,6 @@
   "title": "Sourcing Inquiries",
   "type": "object",
   "properties": {
-    "user_id": {
-      "type": "string",
-      "format": "uuid",
-      "description": "Reference to the CRM user created or updated for this inquiry",
-      "x-foreignKey": "users.id"
-    },
     "name": {
       "type": "string",
       "minLength": 1,
@@ -37,7 +31,14 @@
     },
     "service_needed": {
       "type": "string",
-      "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination", "complete_sourcing_project"],
+      "enum": [
+        "supplier_sourcing",
+        "factory_verification",
+        "quality_inspection",
+        "production_follow_up",
+        "shipping_coordination",
+        "complete_sourcing_project"
+      ],
       "description": "Primary sourcing service requested"
     },
     "quantity": {
@@ -57,9 +58,19 @@
       "description": "Timestamp when the inquiry was submitted"
     }
   },
-  "required": ["name", "email", "product_category", "service_needed", "message"],
+  "required": [
+    "name",
+    "email",
+    "product_category",
+    "service_needed",
+    "message"
+  ],
   "additionalProperties": false,
   "x-security": {
-    "create": { "allow": ["*"] }
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
   }
 }
