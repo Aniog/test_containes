@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DataClient, User } from '@strikingly/sdk';
+import { DataClient, API } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { toast } from 'sonner';
 import { 
@@ -55,20 +55,12 @@ const Contact = () => {
     setLoading(true);
 
     try {
-      // 1. Upsert User
-      const userRecord = await User.upsert({
-        email: formData.email,
-        name: formData.name,
-        role: 'guest'
-      });
-
-      // 2. Insert Inquiry
+      // 1. Insert Inquiry
       const { data: response, error } = await client
         .from('Inquiry')
         .insert({
           data: {
             ...formData,
-            user_id: userRecord?.id,
             createdAt: new Date().toISOString(),
             status: 'new'
           }

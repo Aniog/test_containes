@@ -8,9 +8,9 @@ import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 export default defineConfig({
   plugins: [
     tailwindcss(),
+    react(),
     strkImgPlugin(),
     visualEditPlugin(),
-    react(),
   ],
   resolve: {
     alias: {
