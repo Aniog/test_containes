@@ -1,7 +1,14 @@
-import React from 'react'
-import { ArrowRight, Users, SearchIcon, Truck, Package, MessageSquareText } from 'lucide-react'
+import React, { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import { ArrowRight, Users, Search, Truck, Package, MessageSquareText } from 'lucide-react'
 
 const HowItWorks = () => {
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    return ImageHelper.loadImages({}, containerRef.current)
+  }, [])
+
   const steps = [
     {
       title: 'Step 1: Free Consultation',
@@ -15,7 +22,7 @@ const HowItWorks = () => {
     },
     {
       title: 'Step 3: Quality Verification',
-      icon: SearchIcon,
+      icon: Search,
       desc: 'We arrange samples, conduct virtual or in-person audits, and ensure the supplier meets your technical and compliance standards.'
     },
     {
@@ -29,20 +36,23 @@ const HowItWorks = () => {
       desc: 'A final random inspection (FRI) is performed before shipping. We coordinate booking, document prep, and global logistics.'
     }
   ]
+
   return (
-    <div className="bg-white">
+    <div ref={containerRef} className="bg-white">
       <section className="bg-slate-50 py-20 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl font-bold text-slate-900 tracking-tight">Our Proven Sourcing Method</h1>
-          <p className="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
+          <h1 id="how-it-works-title" className="text-4xl font-bold text-slate-900 tracking-tight">Our Proven Sourcing Method</h1>
+          <p id="how-it-works-subtitle" className="mt-4 text-xl text-slate-600 max-w-2xl mx-auto">
             We follow a systematic process that minimizes risk and maximizes efficiency for every shipment.
           </p>
         </div>
       </section>
+
       <section className="py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-16 relative">
             <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-0.5 bg-slate-100 -translate-x-1/2 hidden md:block" />
+            
             {steps.map((step, i) => (
               <div key={i} className={`relative flex flex-col md:flex-row items-center ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                 <div className="md:w-1/2" />
@@ -51,7 +61,7 @@ const HowItWorks = () => {
                 </div>
                 <div className={`md:w-1/2 pl-24 md:pl-0 ${i % 2 === 0 ? 'md:pr-24 md:text-right text-left pl-24' : 'md:pl-24 text-left'}`}>
                   <h3 className="text-2xl font-bold text-slate-900 mb-4">{step.title}</h3>
-                  <p className="text-slate-600 leading-relaxed text-lg">
+                  <p className="text-slate-600 leading-relaxed text-lg mb-4">
                     {step.desc}
                   </p>
                 </div>
@@ -60,6 +70,7 @@ const HowItWorks = () => {
           </div>
         </div>
       </section>
+
       <section className="pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-blue-600 rounded-3xl p-12 text-center text-white">
@@ -77,4 +88,5 @@ const HowItWorks = () => {
     </div>
   )
 }
+
 export default HowItWorks

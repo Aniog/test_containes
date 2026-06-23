@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { DataClient } from '@strikingly/sdk'
-import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 
 // Mocking config since we don't have src/config.jsx yet
@@ -45,7 +44,7 @@ const InquiryForm = () => {
         throw new Error(error?.message || 'Submission failed')
       }
 
-      toast.success('Inquiry sent successfully! We will contact you soon.')
+      alert('Inquiry sent successfully! We will contact you soon.')
       setFormData({
         name: '',
         email: '',
@@ -56,7 +55,7 @@ const InquiryForm = () => {
       })
     } catch (err) {
       console.error('Submit error:', err)
-      toast.error('Failed to send inquiry. Please try again.')
+      alert('Failed to send inquiry. Please try again.')
     } finally {
       setLoading(false)
     }
