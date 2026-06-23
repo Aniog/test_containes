@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet-async'
 import { ArrowRight, CheckCircle, Shield, Factory, Truck, Search, Eye, ClipboardCheck, Package, Globe, Users, Star, ChevronDown, ChevronUp } from 'lucide-react'
 import { useState } from 'react'
@@ -314,9 +313,9 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold text-slate-900 mb-3">{service.title}</h3>
                 <p className="text-slate-600 leading-relaxed">{service.description}</p>
-                <Link to="/services" className="inline-flex items-center mt-4 text-blue-600 font-medium hover:text-blue-700">
+                <a href="/services" className="inline-flex items-center mt-4 text-blue-600 font-medium hover:text-blue-700">
                   Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
+                </a>
               </div>
             ))}
           </div>
