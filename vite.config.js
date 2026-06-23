@@ -14,6 +14,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@strikingly/sdk": path.resolve(__dirname, "./src/lib/strikingly-sdk-mock.js"),
     },
   },
   server: {
