@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 
-// Normally these would come from an environment config file
-// Reusing standard config vars approach for DataClient
 import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 
-// Using dummy keys to allow component to compile since we don't have the real env file accessible in this standalone component snippet right now.
-// Real project will have a config to import from.
-const STRK_PROJECT_URL = 'http://localhost'; 
-const STRK_PROJECT_ANON_KEY = 'anon';
-
-// Only init if real keys exist, else mock it or handle gracefully
-let client = null;
-try {
-  client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
-} catch (e) {
-  console.warn("Client could not be initialized without proper keys", e);
-}
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 
 const Contact = () => {

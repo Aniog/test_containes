@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
