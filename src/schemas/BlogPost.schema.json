@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string" },
+    "slug": { "type": "string" },
+    "excerpt": { "type": "string" },
+    "content": { "type": "string" },
+    "category": { "type": "string", "enum": ["Sourcing Tips", "Market Trends", "QC Insights", "Shipping & Logistics"] },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "status": { "type": "string", "enum": ["draft", "published"], "default": "published" },
+    "publishedAt": { "type": "string", "format": "date-time" }
+  },
+  "required": ["title", "slug", "content"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

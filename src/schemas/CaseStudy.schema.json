@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": { "type": "string", "description": "Title of the case study" },
+    "industry": { "type": "string", "description": "Client industry" },
+    "products": { "type": "string", "description": "Products sourced" },
+    "challenge": { "type": "string", "description": "The problem the client faced" },
+    "solution": { "type": "string", "description": "How we solved it" },
+    "result": { "type": "string", "description": "The outcome (e.g., 20% cost savings)" },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "status": { "type": "string", "enum": ["draft", "published"], "default": "published" }
+  },
+  "required": ["title", "industry", "solution"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
