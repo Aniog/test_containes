@@ -24,10 +24,11 @@ a:hover {
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #040b16; /* Fallback */
+  color: #e0e1dd; /* Fallback */
   min-height: 100vh;
   overflow-x: hidden;
+  @apply bg-[#040b16] text-[#e0e1dd] antialiased;
 }
 
 h1 {
@@ -74,9 +75,3 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base {
-  body {
-    @apply bg-background text-textMain antialiased;
-  }
-}
