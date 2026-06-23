@@ -1,4 +1,4 @@
-import { FileText, MagnifyingGlass, Handshake, ShieldCheck, PlaneTakeoff, Check } from 'lucide-react';
+import { FileText, Search, Handshake, ShieldCheck, PlaneTakeoff, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ const HowItWorks = () => {
       description: "Submit your product specifications, target price, quantities, and quality requirements. The more details you provide, the better."
     },
     {
-      icon: <MagnifyingGlass className="h-8 w-8" />,
+      icon: <Search className="h-8 w-8" />,
       title: "2. Supplier Search & Quote",
       description: "We reach out to our network and vet new factories to bring you the best options. We present you with transparent quotes."
     },

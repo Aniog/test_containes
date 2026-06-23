@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Loader2 } from 'lucide-react';
-import { DataClient, User } from '@strikingly/sdk';
+import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { Button } from '@/components/ui/button';
 
@@ -33,23 +33,10 @@ const Contact = () => {
       setStatus('submitting');
 
       try {
-          // 1. Upsert User
-          const userRecord = await User.upsert({
-              email: values.email,
-              name: values.name,
-              phone: values.phone,
-              role: 'guest'
-          });
-
-          if (!userRecord || !userRecord.id) {
-              throw new Error("Could not create user record.");
-          }
-
-          // 2. Insert Inquiry
+          // Insert Inquiry directly
           const { error: dbError } = await client.from('SourcingInquiries').insert({
               data: {
-                  ...values,
-                  user_id: userRecord.id
+                  ...values
               }
           });
 
