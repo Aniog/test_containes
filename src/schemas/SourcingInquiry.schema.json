@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Buyer's full name"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer's country"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer electronics",
+        "Home & kitchen",
+        "Apparel & textiles",
+        "Furniture",
+        "Industrial & machinery",
+        "Auto parts & accessories",
+        "Beauty & personal care",
+        "Sports & outdoor",
+        "Promotional & packaging",
+        "Other"
+      ],
+      "description": "Product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product and any specs, materials, or references"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or annual volume"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price or budget range per unit"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing services the buyer is interested in",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier sourcing",
+          "Factory verification",
+          "Sample management",
+          "Price negotiation",
+          "Quality inspection",
+          "Production follow-up",
+          "Shipping & logistics",
+          "Private labeling"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "Within 1 month",
+        "1-3 months",
+        "3-6 months",
+        "Just exploring"
+      ],
+      "description": "When the buyer needs to start sourcing"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal status for follow-up"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission time"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
