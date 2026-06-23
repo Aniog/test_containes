@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country / region of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "consumer_electronics",
+        "home_kitchen",
+        "apparel_textiles",
+        "industrial_machinery",
+        "auto_parts",
+        "promotional_gifts",
+        "furniture",
+        "beauty_personal_care",
+        "sports_outdoors",
+        "other"
+      ],
+      "description": "Product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 4000,
+      "description": "Product description, specifications and any reference links"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target order quantity (e.g. 1,000 pcs / month)"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target FOB price or budget per unit"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "factory_audit",
+          "sample_management",
+          "price_negotiation",
+          "production_follow_up",
+          "quality_inspection",
+          "shipping_logistics",
+          "private_label_oem"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Services the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["asap", "1_month", "1_3_months", "3_6_months", "exploring"],
+      "description": "Expected start timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "won", "lost"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
