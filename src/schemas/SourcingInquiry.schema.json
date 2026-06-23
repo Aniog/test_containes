@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the person inquiring"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the person inquiring"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_details": {
+      "type": "string",
+      "description": "Details about the product they want to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "description": "Estimated order quantity"
+    },
+    "target_market": {
+      "type": "string",
+      "description": "Target market or country"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inquiry creation timestamp"
+    }
+  },
+  "required": ["id", "name", "email", "product_details", "estimated_quantity"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {"allow": ["guest", "user", "admin"]},
+    "read": {"allow": ["admin"]},
+    "update": {"allow": ["admin"]},
+    "delete": {"allow": ["admin"]}
+  }
+}
