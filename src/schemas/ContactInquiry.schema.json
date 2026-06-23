@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "productInfo": {
+      "type": "string",
+      "description": "Details about the required products, specs, quantities"
+    },
+    "serviceNeeded": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Audit",
+        "Quality Inspection",
+        "Logistics & Shipping",
+        "Full Sourcing Service",
+        "Other"
+      ],
+      "description": "Primary service they are interested in"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["New", "Contacted", "Closed"],
+      "default": "New",
+      "description": "Status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "productInfo", "serviceNeeded"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
