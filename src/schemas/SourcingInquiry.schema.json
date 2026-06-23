@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "default": "",
+      "description": "Phone number"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "default": "",
+      "description": "Company name"
+    },
+    "product_interest": {
+      "type": "string",
+      "maxLength": 200,
+      "default": "",
+      "description": "Product or category they want to source"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Inquiry message or details"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Lead status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time of inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
