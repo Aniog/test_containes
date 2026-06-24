@@ -24,7 +24,7 @@ export const products = [
     material: '18K Gold Plated',
     images: [
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1515562141589-67f0d569b6f5?w=800&h=800&fit=crop',
+      'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&h=800&fit=crop',
     ],
     rating: 4.9,
     reviews: 89,
@@ -122,6 +122,6 @@ export const ugcItems = [
   { id: 2, caption: 'Golden hour glow', image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=400&h=700&fit=crop' },
   { id: 3, caption: 'Stacked & styled', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&h=700&fit=crop' },
   { id: 4, caption: 'Gift-ready', image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&h=700&fit=crop' },
-  { id: 5, caption: 'Minimal luxury', image: 'https://images.unsplash.com/photo-1515562141589-67f0d569b6f5?w=400&h=700&fit=crop' },
+  { id: 5, caption: 'Minimal luxury', image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&h=700&fit=crop' },
   { id: 6, caption: 'Date night look', image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=700&fit=crop' },
 ]

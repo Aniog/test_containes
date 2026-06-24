@@ -14,7 +14,7 @@ const Journal = () => {
       id: 2,
       title: 'The Art of Layering Necklaces',
       excerpt: 'Master the layered look with our guide to combining chains, pendants, and chokers.',
-      image: 'https://images.unsplash.com/photo-1515562141589-67f0d569b6f5?w=600&h=400&fit=crop',
+      image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&h=400&fit=crop',
       date: 'May 28, 2026',
     },
     {

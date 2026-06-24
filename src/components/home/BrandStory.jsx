@@ -8,7 +8,7 @@ const BrandStory = () => {
         {/* Image */}
         <div className="aspect-[4/5] overflow-hidden rounded-sm">
           <img
-            src="https://images.unsplash.com/photo-1515562141589-67f0d569b6f5?w=800&h=1000&fit=crop"
+            src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&h=1000&fit=crop"
             alt="Jewelry craftsmanship"
             className="w-full h-full object-cover"
           />
