@@ -1,76 +1,352 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   Velmora — Global styles
+   Quiet-luxury editorial design system. See design.md for the full spec.
+   --------------------------------------------------------------------------- */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+  color: #1F1A14;
+  background-color: #F6EFE6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html, body, #root {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: #F6EFE6;
+  color: #1F1A14;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::selection {
+  background: #B08A4A;
+  color: #F6EFE6;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* ----- Typography rhythm -------------------------------------------------- */
+.font-display {
+  font-family: "Cormorant Garamond", "Playfair Display", ui-serif, Georgia, serif;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.005em;
+}
+
+.font-display-italic {
+  font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.eyebrow {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: #8A7E6E;
+}
+
+.eyebrow-gold {
+  color: #B08A4A;
+}
+
+.eyebrow-ivory {
+  color: rgba(241, 231, 216, 0.7);
+}
+
+.product-name {
+  font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #1F1A14;
+}
+
+.product-name-lg {
+  font-size: 22px;
+  letter-spacing: 0.2em;
+}
+
+.section-title {
+  font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  color: #1F1A14;
+}
+
+.section-title-italic {
+  font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.section-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #3B322A;
+  max-width: 38rem;
+}
+
+/* ----- Layout helpers ----------------------------------------------------- */
+.container-x {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container-x { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+
+.hairline {
+  background-color: #D7C9B5;
+  height: 1px;
+  width: 100%;
+}
+
+.editorial-rule {
+  display: block;
+  height: 1px;
+  width: 64px;
+  background-color: #B08A4A;
+}
+
+/* ----- Buttons ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  font-family: "Inter", sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  padding: 0.95rem 1.6rem;
+  border-radius: 0;
+  transition: background-color 220ms ease-out, color 220ms ease-out, border-color 220ms ease-out, transform 220ms ease-out;
   cursor: pointer;
-  transition: border-color 0.25s;
+  white-space: nowrap;
+  line-height: 1;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary {
+  background-color: #1F1A14;
+  color: #F1E7D8;
+  border: 1px solid #1F1A14;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: #3B322A;
+  border-color: #3B322A;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-gold {
+  background-color: #B08A4A;
+  color: #1F1A14;
+  border: 1px solid #B08A4A;
+}
+.btn-gold:hover:not(:disabled) {
+  background-color: #C39954;
+  border-color: #C39954;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.btn-outline {
+  background-color: transparent;
+  color: #1F1A14;
+  border: 1px solid #1F1A14;
+}
+.btn-outline:hover:not(:disabled) {
+  background-color: #1F1A14;
+  color: #F1E7D8;
+}
+
+.btn-outline-light {
+  background-color: transparent;
+  color: #F1E7D8;
+  border: 1px solid rgba(241, 231, 216, 0.5);
+}
+.btn-outline-light:hover:not(:disabled) {
+  background-color: #F1E7D8;
+  color: #1F1A14;
+  border-color: #F1E7D8;
+}
+
+/* ----- Pills / chips ------------------------------------------------------ */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid #D7C9B5;
+  background-color: transparent;
+  color: #1F1A14;
+  font-family: "Inter", sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: border-color 200ms ease-out, background-color 200ms ease-out, color 200ms ease-out;
+}
+.pill:hover {
+  border-color: #1F1A14;
+}
+.pill.is-active {
+  border-color: #1F1A14;
+  background-color: #F1E7D8;
+}
+
+.pill-dark {
+  border-color: rgba(241, 231, 216, 0.4);
+  color: #F1E7D8;
+}
+.pill-dark.is-active {
+  border-color: #B08A4A;
+  background-color: rgba(176, 138, 74, 0.12);
+  color: #F1E7D8;
+}
+
+/* ----- Reveal on scroll --------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 600ms ease-out, transform 600ms ease-out;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 550ms ease-out, transform 550ms ease-out;
+}
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+
+/* ----- Nav ---------------------------------------------------------------- */
+.nav-link {
+  font-family: "Inter", sans-serif;
+  font-size: 11.5px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: rgba(31, 26, 20, 0.7);
+  position: relative;
+  padding: 0.4rem 0;
+  transition: color 220ms ease-out;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #B08A4A;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 220ms ease-out;
+}
+.nav-link:hover,
+.nav-link.is-active {
+  color: #1F1A14;
+}
+.nav-link:hover::after,
+.nav-link.is-active::after {
+  transform: scaleX(1);
+}
+
+.nav-link-light {
+  color: rgba(241, 231, 216, 0.78);
+}
+.nav-link-light:hover,
+.nav-link-light.is-active {
+  color: #F1E7D8;
+}
+
+/* ----- Stock-image placeholder skeleton ---------------------------------- */
+.stock-skeleton {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(176, 138, 74, 0.18), transparent 55%),
+    radial-gradient(ellipse at 70% 80%, rgba(215, 201, 181, 0.4), transparent 60%),
+    linear-gradient(180deg, #2A2118 0%, #1F1A14 100%);
+  position: relative;
+  overflow: hidden;
+}
+.stock-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(212, 180, 129, 0.08) 50%, transparent 70%);
+  animation: shimmer 2.4s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%   { transform: translateX(-30%); }
+  100% { transform: translateX(30%); }
+}
+
+/* ----- Subtle hover lift -------------------------------------------------- */
+.lift {
+  transition: transform 320ms ease-out;
+}
+.lift:hover {
+  transform: translateY(-4px);
+}
+
+/* ----- Form --------------------------------------------------------------- */
+.input-underline {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #D7C9B5;
+  padding: 0.85rem 0.25rem;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: #1F1A14;
+  transition: border-color 200ms ease-out;
+}
+.input-underline::placeholder { color: #8A7E6E; }
+.input-underline:focus { outline: none; border-bottom-color: #B08A4A; }
+
+/* ----- Scrollbar (cart drawer) ------------------------------------------- */
+.cart-scroll::-webkit-scrollbar { width: 6px; }
+.cart-scroll::-webkit-scrollbar-thumb { background: rgba(31,26,20,0.18); }
+.cart-scroll::-webkit-scrollbar-track { background: transparent; }
+
+/* ----- Subtle ring focus ------------------------------------------------- */
+:focus-visible {
+  outline: 1px solid #B08A4A;
+  outline-offset: 2px;
+}
