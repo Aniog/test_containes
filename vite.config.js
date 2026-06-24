@@ -33,6 +33,7 @@ export default defineConfig({
       }
     },
     hmr: {
+      clientPort: 443,
       overlay: false
     }
   }
