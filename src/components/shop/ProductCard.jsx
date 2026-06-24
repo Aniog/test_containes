@@ -23,14 +23,25 @@ const ProductCard = ({ product }) => {
     >
       <Link to={`/product/${product.id}`} className="block relative overflow-hidden bg-secondary aspect-[3/4]">
         <img 
-          data-strk-img-id={`product-img-${product.id}`}
-          data-strk-img={`[product-title-${product.id}] [product-category-${product.id}]`}
+          data-strk-img-id={`product-img-${product.id}-0`}
+          data-strk-img={`[product-title-${product.id}] [product-category-${product.id}] view 1`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="600"
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E"
           alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:opacity-0"
         />
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+          <img 
+            data-strk-img-id={`product-img-${product.id}-1`}
+            data-strk-img={`[product-title-${product.id}] [product-category-${product.id}] view 2 secondary`}
+            data-strk-img-ratio="3x4"
+            data-strk-img-width="600"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E"
+            alt={product.name}
+            className="w-full h-full object-cover transition-transform duration-1000 scale-105 group-hover:scale-100"
+          />
+        </div>
         
         {/* Quick Add Overlay */}
         <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">

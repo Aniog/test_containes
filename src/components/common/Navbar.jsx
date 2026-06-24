@@ -24,31 +24,31 @@ const Navbar = () => {
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-6 md:px-12 flex items-center justify-between',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 py-4 px-6 md:px-12 flex items-center',
         isScrolled || !isHome ? 'bg-background shadow-sm border-b' : 'bg-transparent'
       )}
     >
-      <div className="flex-1 hidden md:flex gap-8 items-center text-xs uppercase tracking-[0.2em] font-sans">
-        <Link to="/shop" className="hover:opacity-60 transition-opacity">Shop</Link>
-        <Link to="/collections" className="hover:opacity-60 transition-opacity">Collections</Link>
-        <Link to="/about" className="hover:opacity-60 transition-opacity">About</Link>
-      </div>
-
-      <div className="md:hidden">
-        <button onClick={() => setIsMobileMenuOpen(true)}>
+      <div className="flex-1 flex items-center">
+        <button className="md:hidden mr-4" onClick={() => setIsMobileMenuOpen(true)}>
           <Menu className={cn("w-5 h-5", isScrolled || !isHome ? "text-foreground" : "text-white")} />
         </button>
+        <Link 
+          to="/" 
+          className={cn(
+            "font-serif text-2xl md:text-3xl tracking-[0.1em] transition-colors",
+            isScrolled || !isHome ? "text-foreground" : "text-white"
+          )}
+        >
+          VELMORA
+        </Link>
       </div>
 
-      <Link 
-        to="/" 
-        className={cn(
-          "font-serif text-2xl md:text-3xl tracking-[0.1em] text-center flex-1",
-          isScrolled || !isHome ? "text-foreground" : "text-white"
-        )}
-      >
-        VELMORA
-      </Link>
+      <div className="flex-1 hidden md:flex gap-8 items-center justify-center text-[10px] uppercase tracking-[0.2em] font-sans">
+        <Link to="/shop" className="hover:opacity-60 transition-opacity whitespace-nowrap">Shop</Link>
+        <Link to="/shop" className="hover:opacity-60 transition-opacity whitespace-nowrap">Collections</Link>
+        <Link to="/about" className="hover:opacity-60 transition-opacity whitespace-nowrap">About</Link>
+        <Link to="/journal" className="hover:opacity-60 transition-opacity whitespace-nowrap">Journal</Link>
+      </div>
 
       <div className="flex-1 flex gap-6 items-center justify-end">
         <button className="hover:opacity-60 transition-opacity hidden md:block">

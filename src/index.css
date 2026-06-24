@@ -2,28 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-heading: "Playfair Display", serif;
+  --font-sans: "Inter", "Manrope", sans-serif;
+
+  --color-background: hsl(30, 20%, 98%);
+  --color-foreground: hsl(20, 10%, 12%);
+  --color-primary: hsl(35, 30%, 15%);
+  --color-primary-foreground: hsl(35, 30%, 98%);
+  --color-secondary: hsl(35, 15%, 94%);
+  --color-secondary-foreground: hsl(35, 30%, 15%);
+  --color-muted: hsl(35, 10%, 92%);
+  --color-muted-foreground: hsl(35, 10%, 45%);
+  --color-accent: hsl(38, 45%, 85%);
+  --color-accent-foreground: hsl(35, 30%, 15%);
+  --color-border: hsl(35, 15%, 88%);
+}
+
 @layer base {
   :root {
-    --background: 30 20% 98%;
-    --foreground: 20 10% 12%;
-    --primary: 35 30% 15%;
-    --primary-foreground: 35 30% 98%;
-    --secondary: 35 15% 94%;
-    --secondary-foreground: 35 30% 15%;
-    --muted: 35 10% 92%;
-    --muted-foreground: 35 10% 45%;
-    --accent: 38 45% 85%;
-    --accent-foreground: 35 30% 15%;
-    --border: 35 15% 88%;
-
-    --font-serif: "Cormorant Garamond", serif;
-    --font-heading: "Playfair Display", serif;
-    --font-sans: "Inter", "Manrope", sans-serif;
+    --background: var(--color-background);
+    --foreground: var(--color-foreground);
+    --primary: var(--color-primary);
+    --primary-foreground: var(--color-primary-foreground);
+    --secondary: var(--color-secondary);
+    --secondary-foreground: var(--color-secondary-foreground);
+    --muted: var(--color-muted);
+    --muted-foreground: var(--color-muted-foreground);
+    --accent: var(--color-accent);
+    --accent-foreground: var(--color-accent-foreground);
+    --border: var(--color-border);
   }
-
+  
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
