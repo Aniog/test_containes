@@ -1,74 +1,102 @@
 @import "tailwindcss";
 
+@theme {
+  --color-parchment: #f2f0e9;
+  --color-parchment-2: #e8e5db;
+  --color-bone: #faf8f2;
+  --color-ink: #1a1a1a;
+  --color-charcoal: #3a3a38;
+  --color-graphite: #6b6a66;
+  --color-ash: #a9a69d;
+
+  --font-serif: "Cormorant Garamond", "EB Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  font-family: var(--font-sans);
+  color: #1a1a1a;
+  background-color: #f2f0e9;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #f2f0e9;
+  color: #1a1a1a;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Subtle paper grain — layered SVG noise + warm vignette */
+.paper-texture {
+  background-color: #f2f0e9;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(26, 26, 26, 0.04), transparent 60%),
+    radial-gradient(ellipse 60% 60% at 100% 100%, rgba(26, 26, 26, 0.05), transparent 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.paper-texture-strong {
+  background-color: #f2f0e9;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0 0.1  0 0 0 0.13 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
-button:hover {
-  border-color: #646cff;
+/* Hairline rule used as decorative border */
+.rule-double {
+  border-top: 2px solid #1a1a1a;
+  box-shadow: 0 4px 0 -3px #1a1a1a;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Sepia / grayscale micrograph filter */
+.micrograph {
+  filter: grayscale(1) contrast(1.08) brightness(0.96);
+}
+.micrograph-sepia {
+  filter: sepia(0.55) grayscale(0.4) contrast(1.05);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Vintage drop-cap helper */
+.drop-cap::first-letter {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  float: left;
+  font-size: 4.25rem;
+  line-height: 0.9;
+  padding: 0.4rem 0.6rem 0 0;
+  color: #1a1a1a;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/* Thin scrollbar in dark glass panels */
+.thin-scroll::-webkit-scrollbar { width: 6px; }
+.thin-scroll::-webkit-scrollbar-thumb { background: rgba(26,26,26,0.3); border-radius: 999px; }
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* Plate frame around images */
+.plate-frame {
+  background: #faf8f2;
+  padding: 10px;
+  box-shadow:
+    inset 0 0 0 1px rgba(26, 26, 26, 0.18),
+    0 1px 0 rgba(26, 26, 26, 0.08),
+    0 18px 30px -22px rgba(26, 26, 26, 0.35);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: none;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Selection */
+::selection {
+  background: #1a1a1a;
+  color: #f2f0e9;
 }
