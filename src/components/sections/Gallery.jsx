@@ -9,6 +9,9 @@ const galleryItems = [
   { id: 'item-4', title: 'Snowflake Symmetry', desc: 'Unique ice crystals formed in the atmosphere.' },
   { id: 'item-5', title: 'Caffeine Crystals', desc: 'Molecular art through a polarized lens.' },
   { id: 'item-6', title: 'Butterfly Wing Scales', desc: 'Iridescent structures that create vivid colors.' },
+  { id: 'item-7', title: 'Plant Stomata', desc: 'Breathing pores on the underside of leaves.' },
+  { id: 'item-8', title: 'Diatoms', desc: 'Microscopic algae with intricate glass-like shells.' },
+  { id: 'item-9', title: 'Neural Network', desc: 'The complex web of neurons within the brain.' },
 ];
 
 const Gallery = () => {
@@ -19,7 +22,7 @@ const Gallery = () => {
   }, []);
 
   return (
-    <section className="py-24 px-4 bg-slate-950" ref={containerRef}>
+    <section id="gallery" className="py-24 px-4 bg-slate-950" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         <div className="mb-16 text-center">
           <h2 id="gallery-title" className="text-4xl md:text-5xl font-bold text-white mb-4">Gallery of the Minute</h2>

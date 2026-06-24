@@ -10,7 +10,7 @@ const Microscopy = () => {
   }, []);
 
   return (
-    <section className="py-24 px-4 bg-slate-900 overflow-hidden" ref={containerRef}>
+    <section id="science" className="py-24 px-4 bg-slate-900 overflow-hidden" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="flex-1 space-y-8">

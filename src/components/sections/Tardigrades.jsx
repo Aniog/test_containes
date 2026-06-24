@@ -10,7 +10,7 @@ const Tardigrades = () => {
   }, []);
 
   return (
-    <section className="py-24 px-4 bg-slate-950" ref={containerRef}>
+    <section id="organisms" className="py-24 px-4 bg-slate-950" ref={containerRef}>
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 rounded-3xl overflow-hidden border border-slate-800">
