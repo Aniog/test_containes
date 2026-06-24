@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Layout from './Layout';
-import Home from './pages/Home';
-import Collection from './pages/Collection';
-import ProductDetail from './pages/ProductDetail';
+import Layout from './Layout.jsx';
+import Home from './pages/Home.jsx';
+import Collection from './pages/Collection.jsx';
+import ProductDetail from './pages/ProductDetail.jsx';
 
 function App() {
   return (
