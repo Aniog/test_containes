@@ -1,31 +1,11 @@
-import { BrowserRouter, Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import ScrollToTop from "@/components/router/ScrollToTop";
+import PreviewNavigationBridge from "@/components/router/PreviewNavigationBridge";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "instant" });
-  }, [pathname]);
-  return null;
-}
-
-function PreviewNavigationBridge() {
-  const navigate = useNavigate();
-  useEffect(() => {
-    window.__STRIKINGLY_PREVIEW_NAVIGATE__ = navigate;
-    return () => {
-      if (window.__STRIKINGLY_PREVIEW_NAVIGATE__ === navigate) {
-        delete window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-      }
-    };
-  }, [navigate]);
-  return null;
-}
 
 function App() {
   return (
