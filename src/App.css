@@ -1,50 +1,63 @@
-#root {
-  min-height: 100vh;
-  padding: 0;
-  background-color: #e4e8ef;
+/* Hero Section */
+.hero-gradient-text {
+  background: linear-gradient(135deg, #2dd4bf 0%, #06b6d4 50%, #a3e635 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+.hero-glow {
+  box-shadow: 0 0 80px rgba(45, 212, 191, 0.15), 0 0 40px rgba(6, 182, 212, 0.1);
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+/* Floating animation for organisms */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+/* Pulse glow */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
 }
 
-@keyframes app-loading-spin {
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* Fade in up */
+@keyframes fadeInUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
-
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(45, 212, 191, 0.1), 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Dot pattern background */
+.bg-dot-pattern {
+  background-image: radial-gradient(rgba(45, 212, 191, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
