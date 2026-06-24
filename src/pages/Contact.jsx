@@ -1,8 +1,9 @@
 import React from 'react'
-import { DataClient, User } from '@strikingly/sdk'
-import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY, SITE_ID, REQUEST_DOMAIN } from '../config.jsx'
 import { Mail, Phone, MapPin, Send, Clock, Globe } from 'lucide-react'
 import { toast } from "sonner"
+import { API } from '@strikingly/sdk'
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
@@ -20,31 +21,29 @@ export default function Contact() {
     setStatus('submitting')
 
     try {
-      // Upsert User
-      const userRecord = await User.upsert({
-        email: values.email,
-        name: values.name,
-        role: 'guest',
-      });
-
-      if (!userRecord || !userRecord.id) {
-        throw new Error('Failed to retrieve user profile.');
-      }
+      // ---------------------------------------------------------
+      // NOTE: Our version of @strikingly/sdk does not export "User"
+      // We will skip explicit User.upsert and rely on the CRM auto-link or direct insert
+      // ---------------------------------------------------------
 
       // Insert Form Response
-      const { error: responseError } = await client
+      const { data: response, error: responseError } = await client
         .from('ContactFormResponse')
         .insert({
           data: {
-            user_id: userRecord.id,
+            // user_id: ... // If we had it
             email: values.email,
             name: values.name,
             subject: values.subject,
             message: values.message,
           }
         })
+        .select()
+        .single()
 
-      if (responseError) throw responseError
+      if (responseError || response?.success === false) {
+        throw new Error(response?.errors?.join(', ') || responseError?.message || 'Submission failed')
+      }
 
       setStatus('success')
       setValues({ name: '', email: '', subject: '', message: '' })
