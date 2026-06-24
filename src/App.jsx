@@ -1,15 +1,24 @@
-import './App.css'
+import './App.css';
+import NavBar from './components/NavBar';
+import HeroSection from './components/HeroSection';
+import IntroSection from './components/IntroSection';
+import OrganismsSection from './components/OrganismsSection';
+import FactsSection from './components/FactsSection';
+import GallerySection from './components/GallerySection';
+import FooterSection from './components/FooterSection';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div style={{ background: '#030b18', minHeight: '100vh' }}>
+      <NavBar />
+      <HeroSection />
+      <IntroSection />
+      <OrganismsSection />
+      <FactsSection />
+      <GallerySection />
+      <FooterSection />
+    </div>
+  );
 }
 
-export default App
+export default App;
