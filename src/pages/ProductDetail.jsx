@@ -1,17 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { seedProducts } from '@/lib/data';
 import { useCartStore } from '@/lib/cart';
 import { Star, ChevronDown, ChevronUp, Minus, Plus } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
+import ProductCard from '@/components/ProductCard';
 
 export default function ProductDetail() {
   const { id } = useParams();
   const product = seedProducts.find(p => p.id === id) || seedProducts[0];
   const addItem = useCartStore(state => state.addItem);
+  const containerRef = useRef(null);
   
   const [selectedVariant, setSelectedVariant] = useState(product.variants[0]);
   const [quantity, setQuantity] = useState(1);
-  const [activeImage, setActiveImage] = useState(product.image);
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   // Accordion state
   const [openSections, setOpenSections] = useState({
@@ -19,6 +23,15 @@ export default function ProductDetail() {
     materials: false,
     shipping: false
   });
+
+  useEffect(() => {
+    // Reset active image when product changes
+    setActiveImageIndex(0);
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [product.id]);
 
   const toggleSection = (section) => {
     setOpenSections(prev => ({ ...prev, [section]: !prev[section] }));
@@ -32,7 +45,7 @@ export default function ProductDetail() {
   const relatedProducts = seedProducts.filter(p => p.id !== product.id).slice(0, 4);
 
   return (
-    <div className="pt-28 pb-16">
+    <div className="pt-28 pb-16" ref={containerRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Breadcrumb */}
@@ -50,27 +63,55 @@ export default function ProductDetail() {
           {/* Left: Images */}
           <div className="flex flex-col-reverse md:flex-row gap-4">
             {/* Thumbnails */}
-            <div className="flex md:flex-col gap-4 overflow-x-auto md:w-20 md:flex-shrink-0 hide-scrollbar">
-              {[product.image, product.hoverImage].map((img, i) => (
+            <div className="flex md:flex-col gap-4 overflow-x-auto md:w-20 md:flex-shrink-0 hide-scrollbar cursor-pointer">
+              {[
+                { id: product.imgId, query: "" }, 
+                { id: product.hoverImgId, query: "model wear" }
+              ].map((imgData, i) => (
                 <button 
                   key={i} 
-                  onClick={() => setActiveImage(img)}
-                  className={`w-20 h-24 flex-shrink-0 border-2 transition-all ${activeImage === img ? 'border-primary' : 'border-transparent opacity-70 hover:opacity-100'}`}
+                  onClick={() => setActiveImageIndex(i)}
+                  className={`w-20 h-24 flex-shrink-0 border-2 transition-all ${activeImageIndex === i ? 'border-primary' : 'border-transparent opacity-70 hover:opacity-100'}`}
                 >
-                  <img src={img} alt={`${product.name} view ${i+1}`} className="w-full h-full object-cover" />
+                  <img 
+                    data-strk-img-id={imgData.id}
+                    data-strk-img={`[${product.descId}] [${product.titleId}] ${imgData.query} thumbnail`}
+                    data-strk-img-ratio="2x3"
+                    data-strk-img-width="150"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    alt={`${product.name} view ${i+1}`} 
+                    className="w-full h-full object-cover" 
+                  />
                 </button>
               ))}
             </div>
             
             {/* Main Image */}
-            <div className="flex-1 bg-muted">
-              <img src={activeImage} alt={product.name} className="w-full h-auto object-cover aspect-[3/4]" />
+            <div className="flex-1 bg-muted relative aspect-[3/4]">
+              <img 
+                data-strk-img-id={product.imgId}
+                data-strk-img={`[${product.descId}] [${product.titleId}]`}
+                data-strk-img-ratio="3x4"
+                data-strk-img-width="800"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                alt={product.name} 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeImageIndex === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`} 
+              />
+              <img 
+                data-strk-img-id={product.hoverImgId}
+                data-strk-img={`[${product.descId}] [${product.titleId}] model wear`}
+                data-strk-img-ratio="3x4"
+                data-strk-img-width="800"
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                alt={product.name} 
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${activeImageIndex === 1 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`} 
+              />
             </div>
           </div>
 
           {/* Right: Details */}
           <div className="flex flex-col pt-2 lg:pt-8">
-            <h1 className="font-serif text-3xl md:text-4xl tracking-widest uppercase mb-4">{product.name}</h1>
+            <h1 id={product.titleId} className="font-serif text-3xl md:text-4xl tracking-widest uppercase mb-4">{product.name}</h1>
             
             <div className="flex items-center gap-4 mb-6">
               <span className="text-xl">${product.price}</span>
@@ -134,7 +175,7 @@ export default function ProductDetail() {
                 isOpen={openSections.description} 
                 onToggle={() => toggleSection('description')}
               >
-                <p className="text-muted-foreground leading-relaxed font-light">{product.description}</p>
+                <p id={product.descId} className="text-muted-foreground leading-relaxed font-light">{product.description}</p>
               </Accordion>
               
               <Accordion 
@@ -169,24 +210,10 @@ export default function ProductDetail() {
 
         {/* You May Also Like */}
         <div className="mt-32">
-          <h2 className="text-2xl md:text-3xl font-serif text-center mb-12">You May Also Like</h2>
+          <h2 id="related-title" className="text-2xl md:text-3xl font-serif text-center mb-12">You May Also Like</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {relatedProducts.map(p => (
-               <div key={p.id} className="group flex flex-col">
-               <Link to={`/product/${p.id}`} className="relative aspect-[3/4] mb-4 overflow-hidden bg-muted block">
-                 <img 
-                   src={p.image} 
-                   alt={p.name}
-                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 />
-               </Link>
-               <div className="flex flex-col items-center text-center">
-                 <Link to={`/product/${p.id}`} className="font-serif text-sm uppercase tracking-wider mb-2">
-                   {p.name}
-                 </Link>
-                 <p className="text-muted-foreground text-sm">${p.price}</p>
-               </div>
-             </div>
+               <ProductCard key={p.id} product={p} context="[related-title]" />
             ))}
           </div>
         </div>

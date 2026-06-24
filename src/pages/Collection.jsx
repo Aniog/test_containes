@@ -1,13 +1,17 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { seedProducts } from '@/lib/data';
 import { useCartStore } from '@/lib/cart';
 import { ChevronDown, Filter } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
+import ProductCard from '@/components/ProductCard';
 
 export default function Collection() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortOption, setSortOption] = useState("featured");
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+  const containerRef = useRef(null);
 
   const categories = ["All", "Earrings", "Necklaces", "Huggies", "Sets"];
 
@@ -29,8 +33,15 @@ export default function Collection() {
     return products;
   }, [activeCategory, sortOption]);
 
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [filteredProducts]);
+
   return (
-    <div className="pt-28 pb-24">
+    <div className="pt-28 pb-24" ref={containerRef}>
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
         <h1 className="font-serif text-4xl md:text-5xl uppercase tracking-widest mb-4">
@@ -155,40 +166,3 @@ export default function Collection() {
   );
 }
 
-function ProductCard({ product }) {
-  const addItem = useCartStore(state => state.addItem);
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div 
-      className="group flex flex-col"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <Link to={`/product/${product.id}`} className="relative aspect-[3/4] mb-4 overflow-hidden bg-muted block">
-        <img 
-          src={isHovered ? product.hoverImage : product.image} 
-          alt={product.name}
-          className="w-full h-full object-cover transition-opacity duration-500"
-        />
-        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-          <button 
-            className="w-full bg-background/95 backdrop-blur text-foreground py-3 text-sm tracking-wide uppercase font-medium hover:bg-background shadow-sm"
-            onClick={(e) => {
-              e.preventDefault();
-              addItem({ ...product, variant: product.variants[0], quantity: 1 });
-            }}
-          >
-            Quick Add
-          </button>
-        </div>
-      </Link>
-      <div className="flex flex-col items-center text-center">
-        <Link to={`/product/${product.id}`} className="font-serif text-sm md:text-base uppercase tracking-wider mb-2">
-          {product.name}
-        </Link>
-        <p className="text-muted-foreground">${product.price}</p>
-      </div>
-    </div>
-  );
-}

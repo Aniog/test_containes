@@ -1,16 +1,29 @@
 import { useCartStore } from '@/lib/cart';
 import { X, Minus, Plus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export default function CartDrawer() {
   const { isOpen, closeCart, items, updateQuantity, removeItem } = useCartStore();
+  const drawerRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      const frameId = window.requestAnimationFrame(() => {
+        ImageHelper.loadImages(strkImgConfig, drawerRef.current);
+      });
+      return () => window.cancelAnimationFrame(frameId);
+    }
+  }, [isOpen, items]);
 
   if (!isOpen) return null;
 
   const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <>
+    <div ref={drawerRef}>
       <div 
         className="fixed inset-0 bg-black/40 z-[100] transition-opacity"
         onClick={closeCart}
@@ -40,7 +53,11 @@ export default function CartDrawer() {
               <div key={`${item.id}-${item.variant}`} className="flex gap-4">
                 <div className="w-24 h-24 bg-muted overflow-hidden flex-shrink-0">
                   <img 
-                    src={item.image} 
+                    data-strk-img-id={item.imgId}
+                    data-strk-img={`[${item.descId}] [${item.titleId}] cart thumbnail`}
+                    data-strk-img-ratio="1x1"
+                    data-strk-img-width="150"
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                     alt={item.name} 
                     className="w-full h-full object-cover" 
                   />
@@ -103,6 +120,6 @@ export default function CartDrawer() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }
