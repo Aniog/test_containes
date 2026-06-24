@@ -4,7 +4,7 @@ import {
   Search, Shield, ClipboardCheck, Factory, Ship,
   CheckCircle, ArrowRight, Star, Users, Award,
   Clock, Globe, TrendingUp, AlertTriangle, XCircle,
-  ChevronDown, ChevronUp, Mail
+  ChevronDown, ChevronUp, Mail, Send
 } from 'lucide-react';
 
 // Hero Section
