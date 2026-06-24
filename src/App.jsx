@@ -1,7 +1,5 @@
-import Generators from './pages/Generators'
-
 function App() {
-  return <Generators />
+  return null
 }
 
 export default App
