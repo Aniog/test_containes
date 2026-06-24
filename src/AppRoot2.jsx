@@ -5,8 +5,7 @@ import Footer from '@/components/layout/Footer';
 import CartDrawer from '@/components/layout/CartDrawer';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
-import ProductDetail from '@/pages/ProductDetail';
-import './App.css';
+import ProductDetail from '@/pages/ProductDetailPage';
 
 function Layout({ children }) {
   return (
@@ -19,7 +18,7 @@ function Layout({ children }) {
   );
 }
 
-function App() {
+export default function AppRoot2() {
   return (
     <BrowserRouter>
       <CartProvider>
@@ -35,6 +34,3 @@ function App() {
     </BrowserRouter>
   );
 }
-
-export default App;
-
