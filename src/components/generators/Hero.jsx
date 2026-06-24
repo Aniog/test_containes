@@ -143,9 +143,6 @@ export default function Hero() {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
           }
-          .hero-grid > div:last-child {
-            order: -1;
-          }
         }
       `}</style>
     </section>
