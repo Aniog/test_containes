@@ -5,9 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && react-snap || true && cp dist/generators/index.html dist/index.html || true",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+  },
+  "reactSnap": {
+    "source": "dist",
+    "include": ["/generators"],
+    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"]
   },
   "dependencies": {
     "@strikingly/sdk": "git+https://gitlab+deploy-token-13:4WZZiK3EEFix7QEEzSzH@cd.i.strikingly.com/strikingly/vibe-coder-sdk.git",
@@ -33,6 +38,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
     "lucide-react": "^0.544.0",
+    "react-snap": "^1.23.0",
     "tailwindcss": "^4.1.11",
     "vite": "^5.2.0"
   }
