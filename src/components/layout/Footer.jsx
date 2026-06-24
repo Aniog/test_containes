@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Instagram, Facebook, Pinterest, Mail } from 'lucide-react'
+import { Instagram, Facebook, Mail } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -21,9 +21,6 @@ export default function Footer() {
               </a>
               <a href="#" className="hover:text-[hsl(var(--accent))] transition-colors" aria-label="Facebook">
                 <Facebook size={18} />
-              </a>
-              <a href="#" className="hover:text-[hsl(var(--accent))] transition-colors" aria-label="Pinterest">
-                <Pinterest size={18} />
               </a>
               <a href="#" className="hover:text-[hsl(var(--accent))] transition-colors" aria-label="Email">
                 <Mail size={18} />
