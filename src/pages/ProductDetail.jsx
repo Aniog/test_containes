@@ -24,8 +24,6 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        console.log('Fetching product with ID:', id);
-        // Ensure id is treated as the correct type (integer for IDs)
         const numericId = parseInt(id, 10);
         const queryId = isNaN(numericId) ? id : numericId;
         
@@ -35,18 +33,12 @@ const ProductDetail = () => {
           .eq('id', queryId)
           .limit(1);
         
-        console.log('Product response:', response);
-        
-        if (error) {
-          console.error('Error fetching product:', error);
-          return;
-        }
+        if (error) return;
 
         const productEntity = response?.data?.list?.[0];
         if (productEntity) {
           setProduct(productEntity);
           
-          // Fetch related products
           const { data: related } = await client
             .from('Product')
             .select('*')
@@ -59,7 +51,7 @@ const ProductDetail = () => {
           }
         }
       } catch (err) {
-        console.error('Unexpected error:', err);
+        // Silent error
       }
     };
     fetchProduct();
@@ -73,13 +65,11 @@ const ProductDetail = () => {
     }
   }, [product, relatedProducts]);
 
-
   if (!product || !product.data) {
     return (
       <Layout>
         <div className="pt-40 pb-24 text-center">
           <p className="text-brand-espresso/60 uppercase tracking-widest text-xs">Loading treasure...</p>
-          <button onClick={() => window.location.reload()} className="mt-4 text-[10px] uppercase tracking-widest underline">Retry</button>
         </div>
       </Layout>
     );
