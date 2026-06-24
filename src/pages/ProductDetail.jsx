@@ -23,21 +23,43 @@ const ProductDetail = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const { data: response } = await client.from('Product').select('*').eq('id', id).single();
-      if (response?.data) {
-        setProduct(response.data);
+      try {
+        console.log('Fetching product with ID:', id);
+        // Ensure id is treated as the correct type (integer for IDs)
+        const numericId = parseInt(id, 10);
+        const queryId = isNaN(numericId) ? id : numericId;
         
-        // Fetch related products
-        const { data: related } = await client
+        const { data: response, error } = await client
           .from('Product')
           .select('*')
-          .neq('id', id)
-          .eq('category', response.data.data.category)
-          .limit(4);
+          .eq('id', queryId)
+          .limit(1);
         
-        if (related?.data?.list) {
-          setRelatedProducts(related.data.list);
+        console.log('Product response:', response);
+        
+        if (error) {
+          console.error('Error fetching product:', error);
+          return;
         }
+
+        const productEntity = response?.data?.list?.[0];
+        if (productEntity) {
+          setProduct(productEntity);
+          
+          // Fetch related products
+          const { data: related } = await client
+            .from('Product')
+            .select('*')
+            .neq('id', queryId)
+            .eq('category', productEntity.data.category)
+            .limit(4);
+          
+          if (related?.data?.list) {
+            setRelatedProducts(related.data.list);
+          }
+        }
+      } catch (err) {
+        console.error('Unexpected error:', err);
       }
     };
     fetchProduct();
@@ -46,12 +68,22 @@ const ProductDetail = () => {
   }, [id]);
 
   useEffect(() => {
-    if (containerRef.current) {
+    if (containerRef.current && product) {
       ImageHelper.loadImages(strkImgConfig, containerRef.current);
     }
   }, [product, relatedProducts]);
 
-  if (!product) return null;
+
+  if (!product || !product.data) {
+    return (
+      <Layout>
+        <div className="pt-40 pb-24 text-center">
+          <p className="text-brand-espresso/60 uppercase tracking-widest text-xs">Loading treasure...</p>
+          <button onClick={() => window.location.reload()} className="mt-4 text-[10px] uppercase tracking-widest underline">Retry</button>
+        </div>
+      </Layout>
+    );
+  }
 
   const fields = product.data;
 
