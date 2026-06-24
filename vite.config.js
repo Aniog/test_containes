@@ -3,16 +3,6 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
-import { execSync } from 'child_process'
-
-try {
-  console.log('Running npm install to repair packages...')
-  execSync('npm install', { stdio: 'inherit' })
-  console.log('Done npm install')
-} catch (e) {
-  console.error('Failed', e)
-}
-
 export default defineConfig({
   plugins: [
     // Our plugin runs BEFORE React transform so it sees raw JSX
