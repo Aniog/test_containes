@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the contact form."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address used to contact the lead back."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number for quick callbacks."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization the lead is associated with."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the machine would be installed or shipped."
+    },
+    "interest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "sheet-metal-folder",
+        "metal-folding-machine",
+        "spare-parts-service",
+        "general-inquiry"
+      ],
+      "description": "Type of product or service the lead is interested in."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Detailed message including specifications, sheet sizes, or use case."
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the linked user (CRM) record.",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
