@@ -1,8 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import { Toaster } from "sonner";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 const Layout = () => {
   return (
@@ -12,7 +11,6 @@ const Layout = () => {
         <Outlet />
       </main>
       <Footer />
-      <Toaster position="bottom-right" />
     </div>
   );
 };
