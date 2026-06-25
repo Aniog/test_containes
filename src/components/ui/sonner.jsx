@@ -1,6 +1,6 @@
 import { Toaster as SonnerToaster } from "sonner";
 
-export default function Toaster() {
+export function Toaster() {
   return (
     <SonnerToaster
       position="top-center"
@@ -29,3 +29,5 @@ export default function Toaster() {
     />
   );
 }
+
+export default Toaster;
