@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique inquiry ID"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Contact Name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact Email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company Name"
+    },
+    "product_details": {
+      "type": "string",
+      "description": "Description of products needed"
+    },
+    "estimated_order_value": {
+      "type": "string",
+      "description": "Estimated annual or per-order value"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "processing", "closed"],
+      "default": "new",
+      "description": "Inquiry Status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp"
+    }
+  },
+  "required": ["name", "email", "product_details"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}
