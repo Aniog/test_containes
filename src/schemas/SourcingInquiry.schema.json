@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer or contact person"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number with country code, including WhatsApp/WeChat if applicable"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the buyer is located"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Machinery",
+        "Beauty & Personal Care",
+        "Toys & Baby",
+        "Sports & Outdoors",
+        "Packaging & Printing",
+        "Other"
+      ],
+      "description": "Primary product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Detailed description of the product, specifications, materials, and any reference links"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity (e.g. 500 pcs, 1 x 20ft container)"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or total budget in USD"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing services the buyer is interested in",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Sample Management",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping & Logistics",
+          "Private Label / OEM",
+          "Amazon FBA Prep"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "Within 2 weeks",
+        "Within 1 month",
+        "1-3 months",
+        "Flexible / Just exploring"
+      ],
+      "description": "When the buyer wants to start sourcing"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
