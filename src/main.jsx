@@ -1,14 +1,19 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+const root = document.getElementById("root");
 
 if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+if (root && root.dataset.staticPage !== "true") {
+  Promise.all([
+    import("react"),
+    import("react-dom/client"),
+    import("./App.jsx"),
+  ]).then(([{ default: React }, { default: ReactDOM }, { default: App }]) => {
+    ReactDOM.createRoot(root).render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>,
+    );
+  });
+}
