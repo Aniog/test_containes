@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Buyer's full name."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Buyer's company name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number with country code (WhatsApp / WeChat acceptable)."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the buyer is located."
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Hardware & Tools",
+        "Auto Parts",
+        "Beauty & Personal Care",
+        "Toys & Baby",
+        "Industrial Equipment",
+        "Packaging",
+        "Other"
+      ],
+      "description": "Main product category the buyer wants to source."
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000,
+      "description": "Description of the product, materials, target specs and reference links."
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or annual volume."
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target FOB or EXW unit price, including currency."
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing services requested by the buyer.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Sample Management",
+          "Price Negotiation",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping & Logistics",
+          "Private Label / OEM"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "Within 2 weeks",
+        "1-2 months",
+        "3-6 months",
+        "Just exploring"
+      ],
+      "description": "When the buyer needs to place the order."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "won", "lost"],
+      "default": "new",
+      "description": "Internal status of the inquiry."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time of inquiry submission."
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
