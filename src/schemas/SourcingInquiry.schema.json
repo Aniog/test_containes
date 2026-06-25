@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Machinery",
+        "Auto Parts",
+        "Beauty & Personal Care",
+        "Toys & Baby",
+        "Packaging",
+        "Other"
+      ],
+      "description": "Primary product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product to source, including key specs"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target order quantity (e.g., 5,000 pcs / month)"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or budget range (optional)"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "ASAP (within 30 days)",
+        "1-3 months",
+        "3-6 months",
+        "Just exploring"
+      ],
+      "description": "Expected timeline to start production or order"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Sample Management",
+          "Price Negotiation",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping & Logistics",
+          "Amazon FBA Prep"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Sourcing services the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Additional details, files, or context for the request"
+    },
+    "consent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the buyer agrees to be contacted about the inquiry"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
