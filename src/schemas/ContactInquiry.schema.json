@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization the inquirer represents"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional contact phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the inquirer is located"
+    },
+    "interest": {
+      "type": "string",
+      "enum": [
+        "DF-2500 Double Folder",
+        "DF-3200 Sheet Metal Folder",
+        "DF-4000 Metal Folder Machine",
+        "MF-1600 Metal Folder",
+        "Custom configuration",
+        "Service & support",
+        "General inquiry"
+      ],
+      "description": "Primary product or topic of interest"
+    },
+    "sheet_thickness": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Typical sheet thickness the customer needs to fold"
+    },
+    "working_length": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Required working length"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Free-form message describing the customer's requirements"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
