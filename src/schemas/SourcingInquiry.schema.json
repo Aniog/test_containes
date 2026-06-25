@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Optional phone or messaging contact"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or market where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 140,
+      "description": "Product category or item the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated quantity, order size, or purchase plan"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": ["Supplier sourcing", "Factory verification", "Quality inspection", "Production follow-up", "Shipping coordination", "Full sourcing project"],
+      "description": "Primary service requested by the buyer"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected sourcing or delivery timeline"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Detailed sourcing requirements and project notes"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "product_category", "service_needed", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
