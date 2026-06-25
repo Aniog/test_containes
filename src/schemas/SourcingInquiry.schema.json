@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquiry contact"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Country or market of the buyer"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product or category the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or target volume"
+    },
+    "service_interest": {
+      "type": "string",
+      "enum": [
+        "supplier_sourcing",
+        "factory_verification",
+        "quality_inspection",
+        "production_follow_up",
+        "shipping_coordination",
+        "full_sourcing_support"
+      ],
+      "description": "Primary service the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Inquiry details, requirements, or sourcing brief"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page or section where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal processing status for the inquiry"
+    }
+  },
+  "required": ["name", "company", "email", "country", "product", "service_interest", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
