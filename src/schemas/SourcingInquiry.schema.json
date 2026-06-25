@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the visitor or buyer record in the Users table.",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the buyer contact."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 140,
+      "description": "Company name of the overseas buyer."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region where the buyer is based."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Main product category the buyer wants to source from China."
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product, specifications, quality expectations, or reference details."
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity, target MOQ, or annual purchasing volume."
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination market or compliance region for the product."
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing support services requested by the buyer.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "supplier_verification",
+          "factory_audit",
+          "sample_follow_up",
+          "quality_inspection",
+          "production_tracking",
+          "shipping_coordination"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["as_soon_as_possible", "within_1_month", "within_3_months", "planning_stage"],
+      "description": "Buyer timeline for starting sourcing or placing an order."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes or questions from the buyer."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page where the inquiry was submitted."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted."
+    }
+  },
+  "required": ["name", "email", "product_description", "services_needed", "timeline", "submitted_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
