@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer or inquiry contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or region where the buyer is located"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "New supplier search",
+        "Factory verification",
+        "Quality inspection",
+        "Production follow-up",
+        "Shipping coordination",
+        "Other sourcing support"
+      ],
+      "description": "Primary sourcing support requested"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Product category or item the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or purchase volume"
+    },
+    "project_stage": {
+      "type": "string",
+      "enum": [
+        "Idea or early research",
+        "Have product specifications",
+        "Have supplier quotes",
+        "Samples received",
+        "Order in production",
+        "Ready for inspection or shipping"
+      ],
+      "description": "Current stage of the sourcing project"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Project requirements, supplier concerns, timeline, or other details"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewed", "contacted", "closed"],
+      "default": "new",
+      "description": "Internal inquiry follow-up status"
+    }
+  },
+  "required": ["name", "email", "service_needed", "product_category", "message", "submitted_at", "status"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
