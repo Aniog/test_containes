@@ -7,7 +7,6 @@ import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
     tailwindcss(),
@@ -17,13 +16,5 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  server: {
-    host: '0.0.0.0',
-    allowedHosts: true,
-    cors: true,
-    hmr: {
-      overlay: false
-    }
   }
 })
