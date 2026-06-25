@@ -236,3 +236,45 @@ input:focus-visible {
   }
 }
 
+/* Responsive grids */
+.grid-hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .grid-hero {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Show all toggle — hide extra cards only when JS adds data-collapsed */
+.generator-grid[data-collapsed="true"] .generator-card-extra {
+  display: none;
+}
+
+/* FAQ — show first answer when JS is off */
+.faq-item:first-child .faq-content {
+  grid-template-rows: 1fr;
+}
+
