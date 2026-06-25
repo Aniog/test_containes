@@ -8,7 +8,7 @@ export const strings = {
       ctaStartWithAI: "START WITH AI BUILDER",
       clearSearch: "Clear search",
       noResults: "Can't find it? Start with our AI builder.",
-      showAll: "Show all {count} generators",
+      showAll: "Show all {count} {category}",
     },
     hero: {
       line1: "BUILD ANY KIND OF SITE",
@@ -86,6 +86,15 @@ export const strings = {
       sub: "Pick a generator above, or jump straight into our AI builder.",
     }
   }
+};
+
+export const catTagMap = {
+  "websites": "Website",
+  "landing-pages": "Landing Page",
+  "portfolios": "Portfolio",
+  "blogs": "Blog",
+  "stores": "Store",
+  "link-in-bio": "Link-in-Bio",
 };
 
 export const generatorData = [
