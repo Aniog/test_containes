@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Search, CheckCircle, Factory, Truck, Briefcase } from 'lucide-react';
+import { Shield, Search, CheckCircle, Factory, Truck, Briefcase, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
