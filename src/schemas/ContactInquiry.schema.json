@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person sending the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or workshop name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the machine will be used"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": [
+        "double_folding_machine",
+        "sheet_metal_folder",
+        "metal_folding_machine",
+        "custom_solution",
+        "service_parts",
+        "general_inquiry"
+      ],
+      "default": "general_inquiry",
+      "description": "Which product line the inquiry is about"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Project requirements or question"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal lead status"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
