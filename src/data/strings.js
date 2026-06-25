@@ -1,0 +1,185 @@
+export const strings = {
+  en: {
+    topBar: { logo: 'STRIKINGLY AI' },
+    breadcrumb: { home: 'Strikingly', current: 'AI Generators' },
+    hero: {
+      h1Line1: 'BUILD ANY KIND OF SITE',
+      h1Line2: 'WITH AI, IN AN INSTANT',
+      sub: "Browse the right generator for what you're building, or jump straight into our AI site builder.",
+      ctaPrimary: "START BUILDING — IT'S FREE",
+      ctaSecondary: 'BROWSE GENERATORS',
+    },
+    featured: {
+      heading: 'FEATURED GENERATORS',
+      sub: 'A few common starting points.',
+    },
+    browseByCategory: { heading: 'BROWSE BY CATEGORY' },
+    allGenerators: {
+      heading: 'ALL GENERATORS',
+      sub: "Sixty-plus generators, organized by what you're building.",
+      searchPlaceholder: 'Search generators...',
+      showAll: 'SHOW ALL',
+      showLess: 'SHOW LESS',
+      generators: 'GENERATORS',
+      noResults: "Can't find it?",
+      noResultsCta: 'Start with our AI builder.',
+      clearSearch: 'Clear search',
+      matchCount: 'generators match',
+    },
+    howItWorks: {
+      heading: 'HOW IT WORKS',
+      steps: [
+        { title: 'PICK A GENERATOR', description: 'Browse by category or search to find one that fits your goal.' },
+        { title: 'DESCRIBE YOUR SITE', description: 'Tell our AI builder about your business in a sentence or two.' },
+        { title: 'GENERATE AND PUBLISH', description: 'Get a fully built site in seconds. Customize anything, then go live.' },
+      ],
+    },
+    whyStrikingly: {
+      heading: 'WHY STRIKINGLY',
+      items: [
+        { title: 'LIVE IN SECONDS', description: 'Describe your site, we build it. No setup, no learning curve.' },
+        { title: 'MOBILE BY DEFAULT', description: 'Every generator produces responsive sites that work on any device.' },
+        { title: 'FREE TO START', description: 'Generate, customize, and publish without a credit card.' },
+      ],
+    },
+    faq: {
+      heading: 'FREQUENTLY ASKED QUESTIONS',
+      items: [
+        { q: 'WHAT IS AN AI SITE GENERATOR?', a: "An AI site generator is a tool that creates a complete website based on a short description you provide. Instead of choosing a template and filling in content manually, you describe your business or project in a sentence or two, and the AI builds a fully designed site with relevant copy, images, and layout. It's the fastest way to go from idea to live website." },
+        { q: 'HOW IS A GENERATOR DIFFERENT FROM A TEMPLATE?', a: 'A template is a pre-designed layout that you fill in with your own content. A generator creates a unique site from scratch based on your input. Templates give you a starting structure; generators give you a finished product. With a generator, no two sites are exactly alike because the AI tailors everything to your specific description.' },
+        { q: 'ARE THESE GENERATORS FREE TO USE?', a: 'Yes. You can generate, preview, and customize your site without paying anything or entering a credit card. Strikingly offers free plans that let you publish and share your site. Premium features like custom domains and advanced analytics are available on paid plans if you need them later.' },
+        { q: 'WHAT KINDS OF SITES CAN I BUILD?', a: 'Virtually any kind. Our generators cover business websites, portfolios, landing pages, blogs, online stores, link-in-bio pages, event sites, restaurant pages, and more. If you have a specific niche in mind, browse the directory above or use the search to find a generator tailored to your industry or goal.' },
+        { q: 'CAN I CUSTOMIZE WHAT THE GENERATOR PRODUCES?', a: "Absolutely. The generated site is a starting point, not a locked result. After generation, you can edit any text, swap images, rearrange sections, change colors, add new blocks, and more using Strikingly's visual editor. Think of the generator as a fast first draft that you can refine to perfection." },
+        { q: 'DO GENERATED SITES WORK ON MOBILE?', a: 'Yes. Every site produced by our generators is fully responsive out of the box. The AI builds with mobile-first principles, so your site looks great on phones, tablets, and desktops without any extra work on your part.' },
+      ],
+    },
+    closingCta: {
+      heading: 'READY TO BUILD?',
+      sub: 'Pick a generator above, or jump straight into our AI builder.',
+      cta: 'START WITH AI BUILDER',
+    },
+    footer: {
+      copyright: '© 2026 Strikingly. All rights reserved.',
+    },
+  },
+};
+
+export const featuredGenerators = [
+  { name: 'AI Website Generator', description: 'Describe your business, get a full site', category: 'Website', slug: 'ai-website-generator' },
+  { name: 'Free Portfolio Generator', description: 'For creatives, in minutes, no fee', category: 'Portfolio', slug: 'free-portfolio-generator' },
+  { name: 'AI Landing Page Maker', description: 'One-page sites built to convert', category: 'Landing Page', slug: 'ai-landing-page-maker' },
+  { name: 'Online Store Builder', description: 'Start selling without writing code', category: 'Store', slug: 'online-store-builder' },
+  { name: 'Link-in-Bio Generator', description: 'One link for all your channels', category: 'Link-in-Bio', slug: 'link-in-bio-generator' },
+  { name: 'One-Page Website Builder', description: 'Simple sites, single scroll', category: 'Website', slug: 'one-page-website-builder' },
+  { name: 'Wedding Website Generator', description: 'Share your day with guests', category: 'Website', slug: 'wedding-website-generator' },
+  { name: 'Restaurant Website Builder', description: 'Menu, hours, reservations, done', category: 'Website', slug: 'restaurant-website-builder' },
+  { name: 'Blog Generator for Beginners', description: 'Publish-ready in minutes', category: 'Blog', slug: 'blog-generator-for-beginners' },
+];
+
+export const categories = [
+  { name: 'Websites', slug: 'websites', description: 'AI-built business and personal sites for any goal.' },
+  { name: 'Landing Pages', slug: 'landing-pages', description: 'Single-page sites built to convert visitors fast.' },
+  { name: 'Portfolios', slug: 'portfolios', description: 'Showcase your work with a clean, focused site.' },
+  { name: 'Blogs', slug: 'blogs', description: 'Publish-ready blogs with built-in SEO basics.' },
+  { name: 'Online Stores', slug: 'stores', description: 'Sell products online with payments built in.' },
+  { name: 'Link-in-Bio', slug: 'link-in-bio', description: 'One link, all your places. Made for creators.' },
+];
+
+export const allGenerators = {
+  websites: [
+    { name: 'AI Website Generator', description: 'Describe your business and get a complete website in seconds', slug: 'ai-website-generator' },
+    { name: 'Free Website Builder for Photographers', description: 'Showcase your photography with a stunning gallery site', slug: 'free-website-builder-for-photographers' },
+    { name: 'One-Page Wedding Website Builder', description: 'Share your love story, RSVP, and event details', slug: 'one-page-wedding-website-builder' },
+    { name: 'Restaurant Website Builder', description: 'Menu, hours, location, and online reservations', slug: 'restaurant-website-builder' },
+    { name: 'AI Website Generator for Small Business', description: 'Professional sites for local shops and services', slug: 'ai-website-generator-for-small-business' },
+    { name: 'Yoga Instructor Website Builder', description: 'Class schedules, booking, and your teaching philosophy', slug: 'yoga-instructor-website-builder' },
+    { name: 'Freelancer Website Generator', description: 'Showcase services, testimonials, and contact info', slug: 'freelancer-website-generator' },
+    { name: 'Nonprofit Website Builder', description: 'Share your mission, accept donations, recruit volunteers', slug: 'nonprofit-website-builder' },
+    { name: 'Real Estate Agent Website', description: 'Listings, virtual tours, and lead capture forms', slug: 'real-estate-agent-website' },
+    { name: 'Music Artist Website Generator', description: 'Bio, discography, tour dates, and streaming links', slug: 'music-artist-website-generator' },
+    { name: 'Consultant Website Builder', description: 'Establish authority with case studies and booking', slug: 'consultant-website-builder' },
+    { name: 'Church Website Generator', description: 'Service times, sermons, events, and community info', slug: 'church-website-generator' },
+  ],
+  'landing-pages': [
+    { name: 'AI Landing Page Maker', description: 'High-converting single pages built by AI', slug: 'ai-landing-page-maker' },
+    { name: 'Product Launch Landing Page', description: 'Build hype and collect signups before launch day', slug: 'product-launch-landing-page' },
+    { name: 'Free Landing Page Generator', description: 'No-cost landing pages for any campaign', slug: 'free-landing-page-generator' },
+    { name: 'Event Landing Page Builder', description: 'Promote your event with a focused registration page', slug: 'event-landing-page-builder' },
+    { name: 'SaaS Landing Page Generator', description: 'Feature highlights, pricing, and signup for software products', slug: 'saas-landing-page-generator' },
+    { name: 'App Download Landing Page', description: 'Drive installs with a clean app showcase page', slug: 'app-download-landing-page' },
+    { name: 'Webinar Registration Page', description: 'Capture signups for your next online event', slug: 'webinar-registration-page' },
+    { name: 'Coming Soon Page Generator', description: 'Build anticipation with a countdown and email capture', slug: 'coming-soon-page-generator' },
+    { name: 'Lead Magnet Landing Page', description: 'Offer a freebie in exchange for email addresses', slug: 'lead-magnet-landing-page' },
+    { name: 'Course Sales Landing Page', description: 'Sell your online course with compelling copy and CTAs', slug: 'course-sales-landing-page' },
+  ],
+  portfolios: [
+    { name: 'Free Portfolio Generator', description: 'Showcase your best work without spending a dime', slug: 'free-portfolio-generator' },
+    { name: 'Portfolio Generator for Designers', description: 'Visual-first layouts for graphic and UI designers', slug: 'portfolio-generator-for-designers' },
+    { name: 'Photography Portfolio Builder', description: 'Full-bleed galleries that let your images speak', slug: 'photography-portfolio-builder' },
+    { name: 'Developer Portfolio Generator', description: 'Projects, GitHub links, and tech stack highlights', slug: 'developer-portfolio-generator' },
+    { name: 'Illustrator Portfolio Website', description: 'Colorful layouts for artists and illustrators', slug: 'illustrator-portfolio-website' },
+    { name: 'Architecture Portfolio Builder', description: 'Present your projects with clean, structured layouts', slug: 'architecture-portfolio-builder' },
+    { name: 'Video Portfolio Generator', description: 'Embed reels and showreels in a cinematic layout', slug: 'video-portfolio-generator' },
+    { name: 'Student Portfolio Website', description: 'Stand out to employers with your academic projects', slug: 'student-portfolio-website' },
+    { name: 'Writer Portfolio Generator', description: 'Published clips, bio, and contact in one place', slug: 'writer-portfolio-generator' },
+    { name: 'Model Portfolio Builder', description: 'Comp cards, measurements, and agency-ready galleries', slug: 'model-portfolio-builder' },
+  ],
+  blogs: [
+    { name: 'Blog Generator for Beginners', description: 'Start publishing with zero technical knowledge', slug: 'blog-generator-for-beginners' },
+    { name: 'AI Blog Website Builder', description: 'AI-written starter posts and SEO-ready structure', slug: 'ai-blog-website-builder' },
+    { name: 'Personal Blog Generator', description: 'Share your thoughts with a clean reading experience', slug: 'personal-blog-generator' },
+    { name: 'Travel Blog Builder', description: 'Photo-rich layouts for your adventures', slug: 'travel-blog-builder' },
+    { name: 'Food Blog Generator', description: 'Recipe cards, photography, and a hungry audience', slug: 'food-blog-generator' },
+    { name: 'Tech Blog Website Builder', description: 'Code snippets, tutorials, and industry insights', slug: 'tech-blog-website-builder' },
+    { name: 'Fashion Blog Generator', description: 'Lookbooks, outfit posts, and style guides', slug: 'fashion-blog-generator' },
+    { name: 'Fitness Blog Builder', description: 'Workout plans, nutrition tips, and progress tracking', slug: 'fitness-blog-builder' },
+    { name: 'Parenting Blog Generator', description: 'Stories, advice, and community for parents', slug: 'parenting-blog-generator' },
+    { name: 'Finance Blog Website Builder', description: 'Investment tips, budgeting guides, and market analysis', slug: 'finance-blog-website-builder' },
+  ],
+  stores: [
+    { name: 'Online Store Builder', description: 'Start selling products with payments built in', slug: 'online-store-builder' },
+    { name: 'AI E-Commerce Website Generator', description: 'Product pages, cart, and checkout powered by AI', slug: 'ai-ecommerce-website-generator' },
+    { name: 'Free Online Store Generator', description: 'Launch your shop without upfront costs', slug: 'free-online-store-generator' },
+    { name: 'Handmade Goods Store Builder', description: 'Sell crafts, art, and handmade products online', slug: 'handmade-goods-store-builder' },
+    { name: 'Digital Products Store Generator', description: 'Sell ebooks, courses, and downloads', slug: 'digital-products-store-generator' },
+    { name: 'Fashion Store Website Builder', description: 'Lookbooks, size guides, and seamless checkout', slug: 'fashion-store-website-builder' },
+    { name: 'Online Store Builder for Restaurants', description: 'Menus, ordering, and delivery options', slug: 'online-store-builder-for-restaurants' },
+    { name: 'Jewelry Store Generator', description: 'Elegant product displays for fine accessories', slug: 'jewelry-store-generator' },
+    { name: 'Print-on-Demand Store Builder', description: 'Custom merch with no inventory needed', slug: 'print-on-demand-store-builder' },
+    { name: 'Subscription Box Store Generator', description: 'Recurring orders and membership management', slug: 'subscription-box-store-generator' },
+  ],
+  'link-in-bio': [
+    { name: 'Link-in-Bio Generator', description: 'One link for all your channels and content', slug: 'link-in-bio-generator' },
+    { name: 'Free Link-in-Bio Page Builder', description: 'No cost, no ads, just your links', slug: 'free-link-in-bio-page-builder' },
+    { name: 'Creator Link-in-Bio Generator', description: 'Built for influencers and content creators', slug: 'creator-link-in-bio-generator' },
+    { name: 'Artist Link-in-Bio Page', description: 'Music, merch, and social links in one place', slug: 'artist-link-in-bio-page' },
+    { name: 'Business Link-in-Bio Builder', description: 'Professional link hub for brands and companies', slug: 'business-link-in-bio-builder' },
+    { name: 'AI Link-in-Bio Generator', description: 'Let AI organize your links beautifully', slug: 'ai-link-in-bio-generator' },
+    { name: 'Podcast Link-in-Bio Page', description: 'Episodes, platforms, and guest booking links', slug: 'podcast-link-in-bio-page' },
+    { name: 'Photographer Link-in-Bio', description: 'Portfolio, booking, and social in one link', slug: 'photographer-link-in-bio' },
+    { name: 'DJ Link-in-Bio Generator', description: 'Mixes, events, and booking all in one spot', slug: 'dj-link-in-bio-generator' },
+    { name: 'Streamer Link-in-Bio Page', description: 'Twitch, YouTube, merch, and donation links', slug: 'streamer-link-in-bio-page' },
+  ],
+};
+
+export const footerLinks = {
+  product: [
+    { name: 'Templates', href: '/templates' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'AI Site Builder', href: '/s/ai_site_builder' },
+  ],
+  company: [
+    { name: 'About', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Support', href: '/support' },
+  ],
+  resources: [
+    { name: 'Help Center', href: '/support' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Templates', href: '/templates' },
+  ],
+  legal: [
+    { name: 'Terms of Service', href: '/terms' },
+    { name: 'Privacy Policy', href: '/privacy' },
+  ],
+};
