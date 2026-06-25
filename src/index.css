@@ -1,74 +1,60 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  
+  --color-brand-beige: #FAF9F5;
+  --color-brand-gold: #Cbb26A;
+  --color-brand-gold-dark: #A68D47;
+  --color-brand-charcoal: #2D2A26;
+  --color-brand-stone: #E5E0D8;
+  --color-brand-clay: #8B857D;
+}
+
+@utility font-serif {
+  font-family: var(--font-serif);
+}
+
+@utility font-sans {
+  font-family: var(--font-sans);
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  font-family: var(--font-sans);
+  color: var(--color-brand-charcoal);
+  background-color: var(--color-brand-beige);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+html {
+  scroll-behavior: smooth;
 }
 
-a:hover {
-  color: #535bf2;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+::-webkit-scrollbar-track {
+  background: var(--color-brand-beige);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::-webkit-scrollbar-thumb {
+  background: var(--color-brand-stone);
+  border-radius: 4px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-brand-clay);
 }
 
-button:hover {
-  border-color: #646cff;
+/* Hide scrollbar for reel style scroll */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
