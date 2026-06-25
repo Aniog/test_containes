@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the overseas buyer submitting the inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer country or target market."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Product or category the buyer wants to source from China."
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or expected purchasing volume."
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "supplier_search",
+        "factory_verification",
+        "quality_inspection",
+        "production_follow_up",
+        "shipping_coordination",
+        "full_sourcing_project"
+      ],
+      "description": "Primary sourcing service requested by the buyer."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Project details, requirements, timeline, and any known specifications."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewing",
+        "qualified",
+        "closed"
+      ],
+      "default": "new",
+      "description": "Internal inquiry handling status."
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Optional reference to the visitor record created for this sourcing inquiry.",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "product_category",
+    "service_needed",
+    "message",
+    "submitted_at",
+    "status"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
+  }
+}
