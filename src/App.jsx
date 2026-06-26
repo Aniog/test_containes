@@ -1,15 +1,25 @@
-import './App.css'
+import './App.css';
+// 非遗文化推广网站
+import Navbar from './components/heritage/Navbar';
+import HeroSection from './components/heritage/HeroSection';
+import AboutSection from './components/heritage/AboutSection';
+import HeritageGrid from './components/heritage/HeritageGrid';
+import StoriesSection from './components/heritage/StoriesSection';
+import JoinSection from './components/heritage/JoinSection';
+import Footer from './components/heritage/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="scroll-smooth">
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <HeritageGrid />
+      <StoriesSection />
+      <JoinSection />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
