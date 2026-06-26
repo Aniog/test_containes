@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the buyer or contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Electrical",
+        "Furniture & Home Goods",
+        "Apparel & Textiles",
+        "Hardware & Tools",
+        "Packaging & Printing",
+        "Toys & Baby Products",
+        "Health & Beauty",
+        "Automotive & Parts",
+        "Sports & Outdoor",
+        "Other"
+      ],
+      "description": "Product category the buyer is interested in sourcing"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product the buyer wants to source, including specs and requirements"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or range (e.g. 500 units, 1000-2000 pcs)"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Full Sourcing Service",
+        "Supplier Sourcing Only",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping Coordination",
+        "Private Label / OEM",
+        "Not Sure"
+      ],
+      "description": "The specific service the buyer is looking for"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional information or questions from the buyer"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user record in the Users table",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
