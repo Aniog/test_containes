@@ -1,0 +1,33 @@
+import React, { useEffect, useRef } from 'react';
+import HeroSection from '../components/home/HeroSection';
+import ServicesSection from '../components/home/ServicesSection';
+import ProcessSection from '../components/home/ProcessSection';
+import ProductsSection from '../components/home/ProductsSection';
+import ProblemsSection from '../components/home/ProblemsSection';
+import TrustSection from '../components/home/TrustSection';
+import CaseStudiesSection from '../components/home/CaseStudiesSection';
+import FAQSection from '../components/home/FAQSection';
+import InquiryForm from '../components/home/InquiryForm';
+
+export default function HomePage() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    // ImageHelper would be called here if available
+    // ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
+  return (
+    <div ref={containerRef}>
+      <HeroSection />
+      <ServicesSection />
+      <ProcessSection />
+      <ProductsSection />
+      <ProblemsSection />
+      <TrustSection />
+      <CaseStudiesSection />
+      <FAQSection />
+      <InquiryForm />
+    </div>
+  );
+}
