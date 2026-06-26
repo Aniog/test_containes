@@ -1,12 +1,23 @@
 @import "tailwindcss";
 
+@theme {
+  --color-am-bg: #0B0F17;
+  --color-am-surface: #141A25;
+  --color-am-gold: #D4A853;
+  --color-am-gold-hover: #E4BC6A;
+  --color-am-blue: #60A5FA;
+  --color-am-text: #F4F6F9;
+  --color-am-muted: #9CA3AF;
+  --color-am-border: rgba(255, 255, 255, 0.08);
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: dark;
+  color: #F4F6F9;
+  background-color: #0B0F17;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -15,60 +26,54 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #D4A853;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #E4BC6A;
 }
 
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #0B0F17;
+  color: #F4F6F9;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
   line-height: 1.1;
 }
 
+p {
+  margin: 0;
+}
+
 button {
-  border-radius: 8px;
+  border-radius: 9999px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
+  padding: 0.75rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.2s ease;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #D4A853;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+html {
+  scroll-behavior: smooth;
 }
