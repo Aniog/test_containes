@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email Address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company Name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country"
+    },
+    "product_type": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product Category"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Estimated Quantity"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Project details or message"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
