@@ -4,6 +4,7 @@ import Layout from './Layout';
 import Home from './pages/Home';
 import Products from './pages/Products';
 import Contact from './pages/Contact';
+import About from './pages/About';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="products" element={<Products />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="about" element={<div className="py-24 text-center"><h1 className="text-4xl font-black">About Us</h1><p className="mt-4 text-slate-500">Coming soon...</p></div>} />
+          <Route path="about" element={<About />} />
         </Route>
       </Routes>
     </BrowserRouter>
