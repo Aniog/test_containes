@@ -1,14 +1,25 @@
 import './App.css'
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from './strk-img-config.json'
+import { Header, Hero, Products, About, Contact, Footer } from './components/HomeSections'
 
 function App() {
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
+  }, [])
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <div ref={containerRef} className="min-h-screen">
+      <Header />
+      <Hero />
+      <Products />
+      <About />
+      <Contact />
+      <Footer />
+    </div>
   )
 }
 
