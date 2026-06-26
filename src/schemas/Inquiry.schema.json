@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number with country code"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product they want to source"
+    },
+    "estimated_volume": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order volume or annual quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target price per unit or total budget"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Sourcing", "Factory Verification", "Quality Inspection", "Production Monitoring", "Shipping Coordination", "Contract & Negotiation"]
+      },
+      "description": "Which services the inquirer is interested in"
+    },
+    "how_did_you_hear": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "How they heard about SSourcing China"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
