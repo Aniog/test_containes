@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the buyer contact"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country where the buyer company is based"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Main product the buyer wants to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or purchasing volume"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price or budget information"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier sourcing",
+          "factory verification",
+          "quality inspection",
+          "production follow-up",
+          "shipping coordination"
+        ]
+      },
+      "minItems": 1,
+      "description": "Requested sourcing and supply chain support services"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Project details, specifications, and buyer requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal lead status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was created"
+    }
+  },
+  "required": [
+    "contact_name",
+    "company_name",
+    "email",
+    "country",
+    "product_name",
+    "services_needed",
+    "message",
+    "status",
+    "created_at"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
