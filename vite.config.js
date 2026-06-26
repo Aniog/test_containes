@@ -5,6 +5,7 @@ import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
+// ARTITECT MACHINERY site configuration
 export default defineConfig({
   plugins: [
     // Our plugin runs BEFORE React transform so it sees raw JSX
