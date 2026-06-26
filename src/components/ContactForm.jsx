@@ -7,6 +7,8 @@ import { Mail, Phone, MapPin, Send } from 'lucide-react';
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const ContactForm = () => {
+  console.log('ContactForm rendering');
+
   const [values, setValues] = React.useState({ name: '', email: '', company: '', machine: '', message: '' });
   const [status, setStatus] = React.useState('idle');
   const [error, setError] = React.useState(null);
