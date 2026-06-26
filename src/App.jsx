@@ -1,15 +1,35 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import HomePage from './pages/Home';
+import ServicesPage from './pages/Services';
+import HowItWorksPage from './pages/HowItWorks';
+import ProductsPage from './pages/Products';
+import CaseStudiesPage from './pages/CaseStudies';
+import BlogPage from './pages/Blog';
+import ContactPage from './pages/Contact';
+import './App.css';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
+    <Router>
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-1">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/how-it-works" element={<HowItWorksPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/case-studies" element={<CaseStudiesPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-    </main>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
