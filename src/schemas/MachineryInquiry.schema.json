@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machinery Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or workshop name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Contact phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the machine will be installed"
+    },
+    "interest": {
+      "type": "string",
+      "enum": [
+        "AF-3200 Double Folder",
+        "MF-2500 Sheet Metal Folder",
+        "TF-4000 Long-Bed Folder",
+        "CF-1600 Compact Metal Folder",
+        "Not sure yet"
+      ],
+      "description": "Which machine the customer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Free-form message describing the project, materials and timeline"
+    }
+  },
+  "required": ["name", "email", "interest", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
