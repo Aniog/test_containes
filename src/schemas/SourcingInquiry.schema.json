@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Contact phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Category of product to be sourced"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "factory_verification",
+          "quality_inspection",
+          "production_followup",
+          "shipping_logistics",
+          "full_service"
+        ]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed sourcing request or message"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page from which the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Lead status"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
