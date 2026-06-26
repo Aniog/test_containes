@@ -2,12 +2,9 @@ import './App.css'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
+    <main className="hello-shell">
+      <h1 className="hello-title">Hello World</h1>
+      <p className="hello-subtitle">Welcome to your new website.</p>
     </main>
   )
 }
