@@ -3,10 +3,10 @@ import { createClient } from '@strikingly/sdk'
 const siteId = null
 const token = ''
 const serverUrl = 'https://www.uat.strikingly.com'
-const requestUrl = `${serverUrl}/api/v1/sites/${siteId}/form_entities`
+const _requestUrl = `${serverUrl}/api/v1/sites/${siteId}/form_entities`
 
 export const client = createClient({
-  appId: appId,
+  appId: siteId,
   serverUrl: serverUrl,
   requiresAuth: !!token,
   token: token || undefined,
