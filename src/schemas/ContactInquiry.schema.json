@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Contact phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the inquiring company"
+    },
+    "interest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "sheet-metal-folder",
+        "metal-folding-machine",
+        "service-and-parts",
+        "other"
+      ],
+      "description": "Primary product or topic of interest"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Inquiry details, technical requirements, or questions"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
