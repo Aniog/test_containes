@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quote Request",
+  "type": "object",
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the requester"
+    },
+    "companyName": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country or region"
+    },
+    "machineInterest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "double-folder",
+        "sheet-metal-folder",
+        "sheet-metal-folding-machine",
+        "metal-folder",
+        "metal-folder-machine",
+        "metal-folding-machine",
+        "not-sure"
+      ],
+      "description": "Machine model the requester is interested in"
+    },
+    "material": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Primary material to be folded (e.g. mild steel, stainless, aluminum)"
+    },
+    "thickness": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Material thickness range"
+    },
+    "foldingLength": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Required maximum folding length"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional project details or questions"
+    }
+  },
+  "required": ["fullName", "email", "machineInterest"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}
