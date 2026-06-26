@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address for the response."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or workshop name."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number (optional)."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region of operation."
+    },
+    "machine_interest": {
+      "type": "string",
+      "enum": [
+        "DF-4000 Double Folding Machine",
+        "DF-3200 Double Folder",
+        "SF-2500 Sheet Metal Folder",
+        "MF Pro Metal Folder Machine",
+        "Not sure yet"
+      ],
+      "description": "Which Artitect machine is the inquiry about."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Free-form message describing the project, materials, sheet sizes, and volumes."
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
