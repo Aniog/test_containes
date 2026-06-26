@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Contact person name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_interest": {
+      "type": "string",
+      "description": "Description of products they want to source"
+    },
+    "estimated_volume": {
+      "type": "string",
+      "description": "Estimated annual or per-order volume"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional details or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Time of submission"
+    }
+  },
+  "required": ["name", "email", "product_interest"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}
