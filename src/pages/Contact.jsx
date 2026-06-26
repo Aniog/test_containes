@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DataClient, User } from '@strikingly/sdk';
+import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { MapPin, Mail, Phone, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 
@@ -79,16 +79,6 @@ const Contact = () => {
     setStatus('submitting');
 
     try {
-      const userRecord = await User.upsert({
-        email: values.email,
-        name: values.full_name,
-        role: 'guest',
-      });
-
-      if (!userRecord || !userRecord.id) {
-        throw new Error('Failed to create user record.');
-      }
-
       const payload = {
         data: {
           full_name: values.full_name,
@@ -101,7 +91,6 @@ const Contact = () => {
           target_price: values.target_price || undefined,
           service_needed: values.service_needed || undefined,
           message: values.message || undefined,
-          user_id: userRecord.id,
         },
       };
 
