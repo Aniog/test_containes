@@ -1,74 +1,203 @@
 @import "tailwindcss";
 
+/* =========================================================================
+   ARTITECT MACHINERY — Brand tokens (Tailwind v4 @theme)
+   ========================================================================= */
+@theme {
+  /* Brand palette */
+  --color-navy-950: #0b1220;
+  --color-navy-900: #101a2e;
+  --color-navy-800: #15233d;
+  --color-steel-800: #1e3a5f;
+  --color-steel-700: #2a4870;
+  --color-steel-600: #3d5a80;
+  --color-steel-400: #7d96b6;
+  --color-steel-200: #cbd5e1;
+  --color-steel-100: #dde4ee;
+
+  --color-copper-700: #8a4f2c;
+  --color-copper-600: #a36238;
+  --color-copper-500: #b8754a;
+  --color-copper-400: #c98c63;
+  --color-copper-200: #e1c4ab;
+  --color-copper-100: #f1e2d3;
+
+  --color-ink-900: #0f172a;
+  --color-ink-800: #1e293b;
+  --color-ink-700: #334155;
+  --color-ink-600: #475569;
+  --color-ink-500: #64748b;
+  --color-ink-400: #94a3b8;
+
+  --color-paper-50: #f8f6f2;
+  --color-paper-100: #efebe3;
+  --color-paper-200: #e2dccd;
+  --color-paper-300: #cfc7b3;
+
+  --color-mist-100: #e8ecf2;
+  --color-mist-200: #d4dae4;
+
+  /* Typography */
+  --font-display: "Manrope", "Inter", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+
+  /* Radii */
+  --radius-xl: 14px;
+  --radius-2xl: 18px;
+  --radius-3xl: 24px;
+}
+
+/* =========================================================================
+   Base
+   ========================================================================= */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: var(--color-ink-900);
+  background-color: var(--color-paper-50);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html, body, #root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  background-color: var(--color-paper-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+::selection {
+  background: var(--color-copper-500);
+  color: #fff;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Custom scroll behavior for in-page anchors */
+html {
+  scroll-behavior: smooth;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-copper-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* =========================================================================
+   Reusable utility classes
+   ========================================================================= */
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
   }
 
-  a:hover {
-    color: #747bff;
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .container-x {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    max-width: 1280px;
+  }
+
+  @media (min-width: 768px) {
+    .container-x {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  .hairline {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(15, 23, 42, 0.18),
+      transparent
+    );
+    height: 1px;
+    width: 100%;
+  }
+
+  .hairline-light {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(232, 236, 242, 0.5),
+      transparent
+    );
+    height: 1px;
+    width: 100%;
+  }
+
+  .bg-hero-mesh {
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 80% 20%,
+        rgba(184, 117, 74, 0.18),
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 70% 60% at 0% 80%,
+        rgba(61, 90, 128, 0.35),
+        transparent 60%
+      ),
+      linear-gradient(180deg, #0b1220 0%, #101a2e 60%, #0b1220 100%);
+  }
+
+  .bg-precision-grid {
+    background-image:
+      linear-gradient(rgba(232, 236, 242, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 236, 242, 0.08) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Subtle lift animation for cards */
+  .hover-lift {
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 40px -20px rgba(11, 18, 32, 0.25);
   }
 }
