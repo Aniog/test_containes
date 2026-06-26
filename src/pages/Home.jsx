@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle, Shield, Factory, Truck, Search, Package, Settings, Users, Globe, Award, Star, ChevronRight, MapPin } from 'lucide-react';
+import { ArrowRight, CheckCircle, Shield, Factory, Truck, Search, Package, Settings, Users, Globe, Award, Star, ChevronRight, MapPin, Phone, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Accordion } from '@/components/ui/accordion';
