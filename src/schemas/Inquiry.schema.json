@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address for reply"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Product category or product name to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated quantity or order value"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Additional project details and requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was last updated"
+    }
+  },
+  "required": ["id", "name", "email", "product", "status"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
