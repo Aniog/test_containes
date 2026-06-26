@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "description": "Inbound sourcing inquiry submitted by an overseas buyer.",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or brand name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address used for follow-up."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number or WhatsApp / WeChat handle."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer's country or main market."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category the buyer wants to source."
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or trial order size."
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price range the buyer has in mind."
+    },
+    "services_needed": {
+      "type": "string",
+      "maxLength": 400,
+      "description": "Comma-separated list of services the buyer needs."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Additional notes, specifications or questions."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The page or campaign the inquiry originated from."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal handling status of the inquiry."
+    }
+  },
+  "required": ["full_name", "email", "product_category", "message"],
+  "additionalProperties": false
+}
