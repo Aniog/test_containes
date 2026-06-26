@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machine Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product Name"
+    },
+    "category": {
+      "type": "string",
+      "description": "Product Category (e.g., Folding Machine, Folder)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Technical description of the machine"
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of key features"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "max_width": { "type": "string" },
+        "max_thickness": { "type": "string" },
+        "weight": { "type": "string" }
+      }
+    },
+    "imageUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Product Image"
+    }
+  },
+  "required": ["name", "category", "description"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
