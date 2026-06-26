@@ -1,74 +1,70 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-50: #f8f6f3;
+  --color-brand-100: #eee9e1;
+  --color-brand-200: #ddd2c3;
+  --color-brand-300: #c8b59c;
+  --color-brand-400: #b39776;
+  --color-brand-500: #a3835c;
+  --color-brand-600: #967450;
+  --color-brand-700: #7d5f44;
+  --color-brand-800: #674e3b;
+  --color-brand-900: #554133;
+  --color-brand-950: #2e211a;
+
+  --color-steel-50: #f6f7f8;
+  --color-steel-100: #eceef1;
+  --color-steel-200: #d5dae0;
+  --color-steel-300: #b0bac5;
+  --color-steel-400: #8696a5;
+  --color-steel-500: #677a8b;
+  --color-steel-600: #526273;
+  --color-steel-700: #434f5e;
+  --color-steel-800: #3a444f;
+  --color-steel-900: #343b44;
+  --color-steel-950: #1e2228;
+
+  --color-accent: #c8956c;
+  --color-accent-dark: #a37550;
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #1e2228;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #ffffff;
+  color: #1e2228;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+a {
+  color: inherit;
+  text-decoration: none;
 }
