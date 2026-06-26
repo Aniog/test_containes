@@ -1,20 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useEffect, useRef } from 'react';
 import { ArrowRight, Calendar, User } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { blogPosts } from '@/data/content';
 import { format, parseISO } from 'date-fns';
 
+const blogImages = {
+  'china-sourcing-guide-2024': 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_600/unsplashcom/photo-1454165804606-c3d57bc86b40',
+  'factory-audit-checklist': 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_600/unsplashcom/photo-1589792923942-b8516cd4891d',
+  'avoid-supplier-scams': 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_600/unsplashcom/photo-iStock-1200000000',
+  'quality-inspection-standards': 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_600/unsplashcom/photo-1573757056004-065ad36e2cf4',
+  'shipping-from-china': 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_600/unsplashcom/photo-1659890225562-8d952f7a7e7a',
+};
+
 export default function Blog() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, ref.current);
-  }, []);
-
   return (
-    <div ref={ref}>
+    <div>
       {/* Header */}
       <section className="bg-gradient-to-br from-ss-blue-dark via-ss-blue to-ss-blue-light py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -38,11 +37,7 @@ export default function Blog() {
               >
                 <div className="h-48 bg-gray-100 overflow-hidden">
                   <img
-                    data-strk-img-id={post.imageId}
-                    data-strk-img={`[blog-title-${post.id}]`}
-                    data-strk-img-ratio="16x9"
-                    data-strk-img-width="600"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    src={blogImages[post.id] || 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_600/unsplashcom/photo-1454165804606-c3d57bc86b40'}
                     alt={post.title}
                     className="w-full h-full object-cover"
                   />
@@ -51,7 +46,7 @@ export default function Blog() {
                   <span className="inline-block px-2.5 py-0.5 bg-blue-50 text-ss-blue text-xs font-medium rounded-full mb-3">
                     {post.category}
                   </span>
-                  <h2 id={`blog-title-${post.id}`} className="text-lg font-semibold text-ss-text mb-2 leading-snug">
+                  <h2 className="text-lg font-semibold text-ss-text mb-2 leading-snug">
                     {post.title}
                   </h2>
                   <p className="text-sm text-ss-body leading-relaxed mb-4">
