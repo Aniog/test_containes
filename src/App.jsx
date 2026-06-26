@@ -1,15 +1,29 @@
-import './App.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Layout } from '@/components/layout/Layout'
+import Home from '@/pages/Home'
+import Products from '@/pages/Products'
+import ProductDetail from '@/pages/ProductDetail'
+import About from '@/pages/About'
+import Contact from '@/pages/Contact'
+import NotFound from '@/pages/NotFound'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: 'products', element: <Products /> },
+      { path: 'products/:slug', element: <ProductDetail /> },
+      { path: 'about', element: <About /> },
+      { path: 'contact', element: <Contact /> },
+      { path: '*', element: <NotFound /> },
+    ],
+  },
+])
 
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App

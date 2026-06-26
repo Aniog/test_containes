@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inquiry Requests",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Contact email address."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Contact phone number."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name."
+    },
+    "product_interest": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "The product the inquiry is about."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The inquiry message from the user."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_progress", "closed"],
+      "default": "new",
+      "description": "Processing status of the inquiry."
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
