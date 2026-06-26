@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name (e.g. ARTITECT Double Folder X1)"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double folding machine", "Sheet metal folder", "Metal folding machine"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed product description"
+    },
+    "main_image": {
+      "type": "object",
+      "properties": {
+        "filename": { "type": "string" },
+        "storageKey": { "type": "string" },
+        "mimeType": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Main product image"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications as key-value pairs"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price if applicable"
+    }
+  },
+  "required": ["name", "category", "description"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
