@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name (e.g. Double Folding Machine Model X)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of product features and specs"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folding Machine", "Sheet Metal Folder", "Manual Folder", "Accessories"],
+      "description": "Product category"
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key technical features"
+    },
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "max_thickness": { "type": "string", "description": "Maximum sheet metal thickness" },
+        "working_length": { "type": "string", "description": "Maximum working length" },
+        "weight": { "type": "string", "description": "Machine weight" }
+      },
+      "description": "Technical specifications"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Product image"
+    }
+  },
+  "required": ["name", "category", "description"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
