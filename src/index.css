@@ -1,74 +1,142 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/* ARTITECT MACHINERY — Brand Theme                                    */
+/* ------------------------------------------------------------------ */
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, monospace;
+
+  /* Brand palette */
+  --color-background: #f5f2ec;
+  --color-foreground: #0f172a;
+
+  --color-card: #ffffff;
+  --color-card-foreground: #0f172a;
+
+  --color-muted: #ece7dc;
+  --color-muted-foreground: #5b6473;
+
+  --color-primary: #0e2a47;
+  --color-primary-foreground: #f5f2ec;
+
+  --color-accent: #c8a165;
+  --color-accent-foreground: #0f172a;
+
+  --color-border: #d9d2c2;
+  --color-ring: #0e2a47;
+
+  /* Dark surfaces */
+  --color-ink: #0f172a;
+  --color-ink-foreground: #f5f2ec;
+  --color-ink-muted: #1e293b;
+}
+
+/* ------------------------------------------------------------------ */
+/* Base                                                                */
+/* ------------------------------------------------------------------ */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  color-scheme: light;
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+  font-family: var(--font-sans);
+  line-height: 1.55;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  border-color: var(--color-border);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-accent-foreground);
 }
 
-button:hover {
-  border-color: #646cff;
+/* Smooth scrolling for in-page anchors */
+html {
+  scroll-behavior: smooth;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* ------------------------------------------------------------------ */
+/* Utilities                                                           */
+/* ------------------------------------------------------------------ */
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Hairline divider used as decorative section break */
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-border) 20%,
+    var(--color-border) 80%,
+    transparent
+  );
+}
+
+/* Subtle copper accent dot used beside eyebrows */
+.accent-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  margin-right: 0.75rem;
+  vertical-align: middle;
+}
+
+/* Animated subtle grid overlay for dark surfaces */
+.steel-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Subtle entrance animation for sections as they scroll into view */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
   }
-
-  a:hover {
-    color: #747bff;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.rise-in {
+  animation: rise-in 0.8s ease-out both;
 }
