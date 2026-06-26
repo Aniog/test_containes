@@ -12,6 +12,7 @@ import {
   Users,
   Clock,
   ChevronRight,
+  ArrowRight,
   Star,
   MessageCircle,
   Send,
