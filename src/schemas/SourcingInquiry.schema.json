@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer or contact person"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or business name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer's country or market"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Apparel & Textiles",
+        "Home & Kitchen",
+        "Furniture",
+        "Electronics & Accessories",
+        "Beauty & Personal Care",
+        "Sports & Outdoor",
+        "Industrial & Machinery",
+        "Toys & Baby",
+        "Packaging & Printing",
+        "Other"
+      ],
+      "description": "Main category of the product to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000,
+      "description": "Detailed product description, specs, target price and reference links"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity"
+    },
+    "target_timeline": {
+      "type": "string",
+      "enum": [
+        "ASAP (within 4 weeks)",
+        "1-3 months",
+        "3-6 months",
+        "Exploring options"
+      ],
+      "description": "Timeline for placing the order"
+    },
+    "service_needed": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier sourcing",
+          "Factory verification",
+          "Quality inspection",
+          "Production follow-up",
+          "Shipping & logistics",
+          "Private label / OEM"
+        ]
+      },
+      "description": "Services the buyer needs"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal CRM status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
