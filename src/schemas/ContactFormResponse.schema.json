@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Response",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person inquiring"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 32,
+      "description": "Optional phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region of the inquiry"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "double-folder",
+        "sheet-metal-folder",
+        "sheet-metal-folding-machine",
+        "metal-folder",
+        "metal-folder-machine",
+        "metal-folding-machine",
+        "other"
+      ],
+      "description": "Which machine the visitor is interested in"
+    },
+    "material_thickness_mm": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 25,
+      "description": "Typical material thickness in millimeters"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Free-form project details or questions"
+    }
+  },
+  "required": ["name", "email", "product_interest", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
