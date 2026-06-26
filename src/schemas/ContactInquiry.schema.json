@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Customer Name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer Email"
+    },
+    "company": {
+      "type": "string",
+      "description": "Customer Company"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": ["Double Folding Machine", "Sheet Metal Folder", "Metal Folder Machine", "Other"],
+      "description": "Specific machine interest"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Inquiry Details"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "closed"],
+      "default": "new",
+      "description": "Inquiry status"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}

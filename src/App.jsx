@@ -1,15 +1,24 @@
-import './App.css'
+import React from 'react';
+import Navbar from '@/components/layout/Navbar';
+import Hero from '@/components/Hero';
+import ProductList from '@/components/ProductList';
+import About from '@/components/About';
+import Contact from '@/components/Contact';
+import Footer from '@/components/layout/Footer';
+import { Toaster } from 'sonner';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="min-h-screen">
+      <Navbar />
+      <Hero />
+      <ProductList />
+      <About />
+      <Contact />
+      <Footer />
+      <Toaster position="top-right" richColors />
+    </div>
+  );
 }
 
-export default App
+export default App;
