@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The name of the folding machine or product"
+    },
+    "description": {
+      "type": "string",
+      "description": "A detailed description of the machine's capabilities and specifications"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folding Machine", "Sheet Metal Folder", "Manual Folder", "Automatic Folder"],
+      "description": "Category of the folding machine"
+    },
+    "specifications": {
+      "type": "object",
+      "properties": {
+        "max_thickness": { "type": "string", "description": "Maximum material thickness (e.g. 2.0mm)" },
+        "max_length": { "type": "string", "description": "Maximum folding length (e.g. 3200mm)" },
+        "speed": { "type": "string", "description": "Operating speed" }
+      },
+      "description": "Technical specifications"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Product image"
+    },
+    "price_range": {
+      "type": "string",
+      "description": "Approximate price range for inquiry purposes"
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
