@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up communication"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Category of product to source"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Detailed description of the product requirements"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget_range": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Budget range per unit or total"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Expected timeline for the order"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional message or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was last updated"
+    }
+  },
+  "required": ["id", "name", "email", "product_category", "product_description"],
+  "additionalProperties": false
+}
