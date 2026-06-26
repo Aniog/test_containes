@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name"
+    },
+    "productRequirements": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Product requirements description"
+    },
+    "status": {
+      "type": "string",
+       "enum": ["New", "Contacted", "Closed"],
+       "default": "New",
+       "description": "Status of the lead"
+    }
+  },
+  "required": ["name", "email", "productRequirements"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
