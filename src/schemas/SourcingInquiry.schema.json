@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number, optional"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is located"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Hardware",
+        "Beauty & Personal Care",
+        "Sports & Outdoor",
+        "Toys & Baby",
+        "Auto & Accessories",
+        "Other"
+      ],
+      "description": "Primary product category the buyer wants to source"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping & Logistics",
+        "Full Sourcing Service"
+      ],
+      "description": "Service the buyer is interested in"
+    },
+    "order_volume": {
+      "type": "string",
+      "enum": [
+        "Under $5,000",
+        "$5,000 - $20,000",
+        "$20,000 - $100,000",
+        "$100,000 - $500,000",
+        "Over $500,000"
+      ],
+      "description": "Estimated order value range in USD"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Project details: product description, target price, quantity, timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "product_category", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
