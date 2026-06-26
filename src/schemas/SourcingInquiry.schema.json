@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number with country code"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Category of product being sourced"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Detailed description of the product, specs, and requirements"
+    },
+    "estimated_volume": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Expected order volume or frequency"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region where products will be sold"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Additional questions or context"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["id", "name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
