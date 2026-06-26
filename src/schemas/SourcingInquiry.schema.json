@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number (optional)"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Description of the product(s) the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity or MOQ requirement"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target unit price or budget range"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": ["supplier_sourcing", "factory_audit", "quality_inspection", "production_followup", "shipping", "full_service", "other"],
+      "description": "Primary service the buyer is requesting"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any additional requirements, certifications needed, or notes"
+    },
+    "how_did_you_hear": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "How the buyer found SSourcing China"
+    }
+  },
+  "required": ["full_name", "email", "product_description", "service_needed"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
