@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the response"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number including country code if available"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Message or inquiry details"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the response was created"
+    }
+  },
+  "required": ["id", "name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
