@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp contact"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Kitchen",
+        "Apparel & Textiles",
+        "Furniture",
+        "Industrial & Hardware",
+        "Outdoor & Sports",
+        "Packaging",
+        "Beauty & Personal Care",
+        "Toys & Baby",
+        "Auto Parts",
+        "Other"
+      ],
+      "description": "Primary product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the products the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or MOQ requirement"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target unit price or total budget"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Price Negotiation",
+          "Sample Management",
+          "Quality Inspection",
+          "Production Follow-up",
+          "Shipping & Logistics",
+          "Private Label / OEM"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Services the buyer needs from SSourcing China"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "ASAP (within 2 weeks)",
+        "Within 1 month",
+        "1-3 months",
+        "3+ months",
+        "Just exploring"
+      ],
+      "description": "Project timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "won", "lost"],
+      "default": "new",
+      "description": "Internal lead status"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
