@@ -1,7 +1,6 @@
-import './App.css'
 import React, { useState } from 'react'
 
-function App() {
+const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const scrollToSection = (sectionId) => {
@@ -190,5 +189,4 @@ function App() {
   )
 }
 
-export default App
-
+export default Layout
