@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Case study title"
+    },
+    "client": {
+      "type": "string",
+      "description": "Client industry or location"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "The problem the client faced"
+    },
+    "solution": {
+      "type": "string",
+      "description": "SSourcing China's solution"
+    },
+    "results": {
+      "type": "string",
+      "description": "The outcome (cost savings, quality improvement, etc.)"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Electronics", "Furniture", "Textiles", "Industrial", "Consumer Goods"],
+      "description": "Product category"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Main project image"
+    }
+  },
+  "required": ["title", "challenge", "solution"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
