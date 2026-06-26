@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
-import { ArrowRight, CheckCircle2, ShieldCheck, Gauge, Wrench, Phone, Mail, ChevronDown } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ShieldCheck, Gauge, Wrench, Phone, Mail, ChevronDown, MapPin } from 'lucide-react';
 
 const Home = () => {
   const containerRef = useRef(null);
