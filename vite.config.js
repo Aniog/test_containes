@@ -7,9 +7,8 @@ import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
-    strkImgPlugin(),
-    visualEditPlugin(),
+    // strkImgPlugin(), // Disabled - causing rendering issues
+    // visualEditPlugin(), // Disabled - causing rendering issues
     tailwindcss(),
     react(),
   ],
