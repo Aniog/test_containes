@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #1a3a5c;
+  --color-primary-light: #2a5a8c;
+  --color-primary-dark: #0f2340;
+  --color-accent: #d4942b;
+  --color-accent-light: #f0b84d;
+  --color-accent-dark: #b0781e;
+  --color-surface: #ffffff;
+  --color-surface-alt: #f5f6f8;
+  --color-surface-dark: #1a1a2e;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #5a5a6e;
+  --color-text-muted: #8a8a9e;
+  --color-border: #e2e4ea;
+  --color-success: #2d8a4e;
+  --color-error: #c0392b;
+  --font-sans: Inter, system-ui, -apple-system, sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -32,43 +40,17 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
