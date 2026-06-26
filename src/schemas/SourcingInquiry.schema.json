@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Home & Garden", "Apparel & Textiles", "Machinery & Equipment", "Auto Parts", "Packaging & Printing", "Building Materials", "Health & Beauty", "Sports & Outdoors", "Other"],
+      "description": "Product category of interest"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product to be sourced"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price per unit"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["Urgent (within 2 weeks)", "Standard (2-4 weeks)", "Flexible (1-2 months)", "Just exploring"],
+      "description": "Sourcing timeline"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Sourcing", "Factory Verification", "Quality Inspection", "Production Follow-up", "Shipping Coordination", "Full Service"]
+      },
+      "description": "Services the inquirer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional message or requirements"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
