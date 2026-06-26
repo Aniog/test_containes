@@ -1,0 +1,4 @@
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from './config';
+
+export const SUPABASE_URL = STRK_PROJECT_URL;
+export const SUPABASE_ANON_KEY = STRK_PROJECT_ANON_KEY;

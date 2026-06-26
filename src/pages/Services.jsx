@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Search, ShieldCheck, ClipBoardCheck, Plane, FileCheck2, Handshake } from 'lucide-react';
+import { Search, ShieldCheck, ClipboardCheck, Plane, FileCheck2, Handshake, Box } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 
 const Services = () => {
@@ -38,7 +38,7 @@ const Services = () => {
       id: "production-follow-up",
       title: "Production Follow-up",
       description: "We act as your local project manager, communicating constantly with the factory to prevent delays and solve issues before they become problems.",
-      icon: <ClipBoardCheck className="w-10 h-10 text-primary" />
+      icon: <ClipboardCheck className="w-10 h-10 text-primary" />
     },
     {
       id: "shipping-logistics",
@@ -135,8 +135,5 @@ const Services = () => {
     </div>
   );
 };
-
-// Needs Box icon, not imported previously
-import { Box } from 'lucide-react';
 
 export default Services;
