@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer country or region"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Home & Kitchen",
+        "Consumer Electronics",
+        "Apparel & Textiles",
+        "Beauty & Personal Care",
+        "Furniture & Lighting",
+        "Sporting Goods & Outdoor",
+        "Toys & Baby Products",
+        "Industrial & Hardware",
+        "Promotional & Packaging",
+        "Other"
+      ],
+      "description": "Main product category to source"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier sourcing",
+        "Factory verification",
+        "Quality inspection",
+        "Production follow-up",
+        "Shipping & logistics",
+        "Full end-to-end sourcing"
+      ],
+      "description": "Primary service required"
+    },
+    "order_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or MOQ"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or total budget (USD)"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Product details, specifications and requirements"
+    },
+    "newsletter_opt_in": {
+      "type": "boolean",
+      "default": false,
+      "description": "Subscribe to sourcing newsletter"
+    }
+  },
+  "required": ["full_name", "email", "product_category", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
