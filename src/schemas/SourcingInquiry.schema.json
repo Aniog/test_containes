@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Primary contact name for the sourcing inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for project follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number or messaging contact for the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or region where the buyer is based"
+    },
+    "company_website": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company website or store URL if available"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Primary product category the buyer wants to source"
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Approximate order quantity or buying volume shared by the buyer"
+    },
+    "sourcing_stage": {
+      "type": "string",
+      "enum": ["research", "sampling", "quoting", "ready_to_order", "improving_current_supplier"],
+      "description": "Current sourcing stage of the buyer"
+    },
+    "service_needs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Search", "Factory Verification", "Quality Inspection", "Production Follow-Up", "Shipping Coordination", "Sample & Packaging Review"]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Services requested by the buyer"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "Product requirements, specifications, quality expectations, or project notes"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination market or sales channel for the sourced products"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Requested timeline for sourcing, sampling, or shipment"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal inquiry processing status"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page or context where the inquiry form was submitted"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    },
+    "privacy_consent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the buyer confirmed they want SSourcing China to review the inquiry details"
+    }
+  },
+  "required": [
+    "contact_name",
+    "company_name",
+    "email",
+    "service_needs",
+    "product_details",
+    "status",
+    "source_page",
+    "submitted_at",
+    "privacy_consent"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
