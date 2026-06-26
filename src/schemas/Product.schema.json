@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed product description"
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key features of the machine"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "maxThickness": { "type": "string" },
+        "maxWidth": { "type": "string" },
+        "speed": { "type": "string" },
+        "weight": { "type": "string" }
+      }
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folder", "Sheet Metal Folder", "Folding Machine"],
+      "description": "Product category"
+    },
+    "image": {
+      "type": "object",
+      "description": "Product image",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
+EOF > /workspace/my-app/src/schemas/Product.schema.json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed product description"
+    },
+    "features": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key features of the machine"
+    },
+    "specifications": {
+      "type": "object",
+      "description": "Technical specifications",
+      "properties": {
+        "maxThickness": { "type": "string" },
+        "maxWidth": { "type": "string" },
+        "speed": { "type": "string" },
+        "weight": { "type": "string" }
+      }
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Double Folder", "Sheet Metal Folder", "Folding Machine"],
+      "description": "Product category"
+    },
+    "image": {
+      "type": "object",
+      "description": "Product image",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": ["name", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

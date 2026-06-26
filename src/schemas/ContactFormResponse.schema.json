@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Sender name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Sender email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Sender phone number"
+    },
+    "message": {
+      "type": "string",
+      "description": "Inquiry message"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Name of the product they are interested in"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "x-foreignKey": "users.id",
+      "description": "Linked user record"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "read", "replied"],
+      "default": "new"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
+EOF > /workspace/my-app/src/schemas/ContactFormResponse.schema.json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Sender name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Sender email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Sender phone number"
+    },
+    "message": {
+      "type": "string",
+      "description": "Inquiry message"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Name of the product they are interested in"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "x-foreignKey": "users.id",
+      "description": "Linked user record"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "read", "replied"],
+      "default": "new"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
