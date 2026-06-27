@@ -1,14 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import { ViteReactSSG } from "vite-react-ssg";
+import routes from "./routes.jsx";
 import "./index.css";
 
-if (import.meta.env.DEV) {
+export const createRoot = ViteReactSSG(
+  { routes },
+  () => {
+    // No client-only setup needed beyond the entry above.
+  }
+);
+
+// Dev-only visual edit bridge preserved from the template.
+if (typeof window !== "undefined" && import.meta.env && import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
