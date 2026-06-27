@@ -10,6 +10,18 @@ export default defineConfig({
     // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
+    // Vite plugin to serve /generators static HTML
+    {
+      name: 'static-generators',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url === '/generators' || req.url.startsWith('/generators?')) {
+            req.url = '/generators/index.html';
+          }
+          next();
+        });
+      },
+    },
     tailwindcss(),
     react(),
   ],
