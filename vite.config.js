@@ -4,9 +4,12 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
+import staticGeneratorsPlugin from './plugin/vite-plugin-static-generators.js'
 
 export default defineConfig({
   plugins: [
+    // Serve /generators as a fully static HTML page before SPA fallback
+    staticGeneratorsPlugin(),
     // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
