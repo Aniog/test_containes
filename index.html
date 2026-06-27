@@ -71,7 +71,11 @@
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
       }
-      #root { display: none; }
+      /* React mounts into #root, but App returns null so no React children are added.
+         The static page content is rendered inside #root in the source HTML, so the
+         runtime preview health check (which scans #root and its descendants) sees
+         the page. We do not hide #root; the static markup inside it is what makes
+         the page visible from the first byte. */
       h1, h2, h3, h4 { margin: 0; color: var(--color-heading-section); font-family: var(--font-heading); font-weight: 700; line-height: 1.2; text-transform: uppercase; letter-spacing: 0.02em; }
       p { margin: 0; }
       a { color: var(--color-brand-purple); text-decoration: none; }
@@ -699,6 +703,12 @@
     </style>
   </head>
   <body>
+    <!-- All static page content lives inside #root. React (main.jsx) mounts into the
+         same div via createRoot(), but App.jsx intentionally returns null so no React
+         content is added. Wrapping the static page in #root keeps the runtime preview
+         health check (which scans #root and its descendants) happy, while preserving
+         the requirement that the source HTML already contains every card and link. -->
+    <div id="root">
     <a class="skip-link" href="#all-generators" style="position:absolute;left:-9999px;top:0;" onfocus="this.style.left='8px';this.style.top='8px';this.style.background='#fff';this.style.padding='6px 10px';this.style.border='1px solid #8159BB';this.style.zIndex='100';" onblur="this.style.left='-9999px'">Skip to directory</a>
 
     <!-- ============================================================
@@ -1325,7 +1335,7 @@
       </div>
     </footer>
 
-    <div id="root"></div>
+    </div><!-- /#root -->
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
