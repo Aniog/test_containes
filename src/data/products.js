@@ -1,0 +1,183 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    price: 42,
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    description:
+      'A refined gold ear cuff traced with a delicate crystal accent for day-to-evening glow.',
+    detail:
+      'Designed for a sculptural fit with a luminous crystal finish, this cuff adds polish without requiring a piercing.',
+    care: 'Keep dry, polish gently with a soft cloth, and store in the Velmora pouch between wears.',
+    imgId: 'product-vivid-aura-primary-a81f2c',
+    hoverImgId: 'product-vivid-aura-hover-e93b70',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    price: 68,
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    description:
+      'A multicolor floral crystal necklace made to catch warm light with subtle movement.',
+    detail:
+      'A feminine pendant silhouette set with delicate crystals for gifting, layering, or a soft statement.',
+    care: 'Avoid perfume and moisture directly on stones. Fasten before storing to prevent tangles.',
+    imgId: 'product-majestic-flora-primary-b74d11',
+    hoverImgId: 'product-majestic-flora-hover-c03f8a',
+    titleId: 'product-majestic-flora-title',
+    descId: 'product-majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    price: 38,
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    description:
+      'Chunky gold dome huggie earrings with a smooth, softly rounded shine.',
+    detail:
+      'Lightweight and close-fitting, these huggies bring a modern golden curve to everyday styling.',
+    care: 'Remove before showering, swimming, or sleeping. Store separately to protect the polished dome.',
+    imgId: 'product-golden-sphere-primary-d62c9e',
+    hoverImgId: 'product-golden-sphere-hover-f09a2d',
+    titleId: 'product-golden-sphere-title',
+    descId: 'product-golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    price: 54,
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    description:
+      'Textured gold filigree drop earrings with a warm, heirloom-inspired silhouette.',
+    detail:
+      'Fine openwork catches the light beautifully, giving these drops a romantic vintage texture.',
+    care: 'Wipe after wear and keep away from lotions. Store flat to protect the delicate filigree.',
+    imgId: 'product-amber-lace-primary-f56e31',
+    hoverImgId: 'product-amber-lace-hover-a2c91b',
+    titleId: 'product-amber-lace-title',
+    descId: 'product-amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Sets',
+    price: 95,
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    description:
+      'A gift-boxed earring and necklace set designed for meaningful milestones.',
+    detail:
+      'Presented in a keepsake-ready box, this coordinated set makes gifting feel polished and personal.',
+    care: 'Store in the included box and clean gently with the polishing cloth after each wear.',
+    imgId: 'product-royal-heirloom-primary-c50f48',
+    hoverImgId: 'product-royal-heirloom-hover-e17d4f',
+    titleId: 'product-royal-heirloom-title',
+    descId: 'product-royal-heirloom-desc',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    description: 'Quiet statement drops, cuffs, and everyday shine.',
+    imgId: 'category-earrings-editorial-b8d72a',
+    titleId: 'category-earrings-title',
+    descId: 'category-earrings-desc',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    description: 'Layered pendants and luminous crystal details.',
+    imgId: 'category-necklaces-editorial-d45c12',
+    titleId: 'category-necklaces-title',
+    descId: 'category-necklaces-desc',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    description: 'Close-fitting curves for effortless daily polish.',
+    imgId: 'category-huggies-editorial-a39e6f',
+    titleId: 'category-huggies-title',
+    descId: 'category-huggies-desc',
+  },
+]
+
+export const ugcPosts = [
+  {
+    id: 'morning-stack',
+    caption: 'Morning gold stack',
+    detail: 'Soft hoops and huggies with a silk blouse.',
+    imgId: 'ugc-morning-stack-01-e91b2f',
+    captionId: 'ugc-morning-stack-caption',
+    detailId: 'ugc-morning-stack-detail',
+  },
+  {
+    id: 'neckline-glow',
+    caption: 'A neckline glow',
+    detail: 'Layered necklace catching warm window light.',
+    imgId: 'ugc-neckline-glow-02-f38d7c',
+    captionId: 'ugc-neckline-glow-caption',
+    detailId: 'ugc-neckline-glow-detail',
+  },
+  {
+    id: 'gift-ready',
+    caption: 'Gift-ready moments',
+    detail: 'Velmora pieces styled for dinner plans.',
+    imgId: 'ugc-gift-ready-03-c64a0e',
+    captionId: 'ugc-gift-ready-caption',
+    detailId: 'ugc-gift-ready-detail',
+  },
+  {
+    id: 'weekend-shine',
+    caption: 'Weekend shine',
+    detail: 'Crystal accents with natural makeup.',
+    imgId: 'ugc-weekend-shine-04-b16d50',
+    captionId: 'ugc-weekend-shine-caption',
+    detailId: 'ugc-weekend-shine-detail',
+  },
+  {
+    id: 'desk-to-dinner',
+    caption: 'Desk to dinner',
+    detail: 'Delicate gold jewelry worn close up.',
+    imgId: 'ugc-desk-to-dinner-05-a55f24',
+    captionId: 'ugc-desk-to-dinner-caption',
+    detailId: 'ugc-desk-to-dinner-detail',
+  },
+]
+
+export const testimonials = [
+  {
+    id: 'maya',
+    quote: 'The finish looks far more expensive than the price. I wear the huggies almost daily.',
+    name: 'Maya L.',
+  },
+  {
+    id: 'claire',
+    quote: 'Beautiful packaging, soft gold tone, and no irritation. It felt like a true treat.',
+    name: 'Claire R.',
+  },
+  {
+    id: 'nora',
+    quote: 'I bought the necklace as a gift and came back for one for myself.',
+    name: 'Nora S.',
+  },
+]
+
+export const formatPrice = (price) => `$${price}`
+
+export const getProductById = (id) =>
+  products.find((product) => product.id === id) ?? products[0]
+
+export const getRelatedProducts = (id) =>
+  products.filter((product) => product.id !== id).slice(0, 4)
