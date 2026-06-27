@@ -1,591 +1,70 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
-
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
-
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
-
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
-
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
-
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
-
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
-
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
-
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
-
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
-        });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
-
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
-
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const HEALTH_CHECK_COMMAND = "runtime-error:check-health";
-        const MAX_STRING_LENGTH = 2000;
-        const MAX_RECENT_CONSOLE_ERRORS = 5;
-        const FIRST_PARTY_PATH_PATTERN = /(?:^|[\\/])(?:src|app)(?:[\\/]|$)/i;
-        const IGNORED_PROMISE_PATTERN =
-          /\b(?:aborterror|aborted|cancel(?:led|ed)?|failed to fetch|load failed|networkerror|network request failed|resizeobserver loop)\b/i;
-        const recentConsoleErrors = [];
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const isFirstPartySource = (value) => {
-          if (!value) {
-            return false;
-          }
-
-          if (
-            !/^[a-z][a-z\d+.-]*:/i.test(value) &&
-            FIRST_PARTY_PATH_PATTERN.test(value)
-          ) {
-            return true;
-          }
-
-          try {
-            const sourceUrl = new URL(value, window.location.href);
-            if (sourceUrl.origin !== window.location.origin) {
-              return false;
-            }
-
-            return (
-              FIRST_PARTY_PATH_PATTERN.test(sourceUrl.pathname) ||
-              sourceUrl.pathname === window.location.pathname ||
-              sourceUrl.pathname.startsWith("/assets/")
-            );
-          } catch {
-            return false;
-          }
-        };
-
-        const stackHasFirstPartySource = (stack) =>
-          String(stack || "")
-            .split("\n")
-            .some((line) => {
-              const urlMatch = line.match(/https?:\/\/[^\s)]+/i);
-              if (urlMatch) {
-                return isFirstPartySource(urlMatch[0]);
-              }
-              return FIRST_PARTY_PATH_PATTERN.test(line);
-            });
-
-        const hasFirstPartyEvidence = (normalized) =>
-          isFirstPartySource(normalized.source) ||
-          stackHasFirstPartySource(normalized.stack);
-
-        const rememberConsoleError = (args) => {
-          const summary = truncate(
-            args.map((arg) => stringifyValue(arg)).join(" "),
-          );
-          if (!summary) {
-            return;
-          }
-          recentConsoleErrors.push(summary);
-          if (recentConsoleErrors.length > MAX_RECENT_CONSOLE_ERRORS) {
-            recentConsoleErrors.shift();
-          }
-        };
-
-        const getRecentDiagnostics = () => recentConsoleErrors.slice();
-
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
-
-        let viteOverlayReported = false;
-        let blankPageReported = false;
-        let consecutiveBlankChecks = 0;
-        let healthCheckSequence = 0;
-
-        const getViteOverlayText = (overlay) => {
-          try {
-            return truncate(
-              String(
-                overlay.shadowRoot?.textContent ||
-                  overlay.textContent ||
-                  "Vite error overlay is visible.",
-              ).trim(),
-            );
-          } catch {
-            return "Vite error overlay is visible.";
-          }
-        };
-
-        const reportViteOverlay = () => {
-          const overlay = document.querySelector("vite-error-overlay");
-          if (!overlay || viteOverlayReported) {
-            return Boolean(overlay);
-          }
-
-          viteOverlayReported = true;
-          postToParent({
-            type: "runtime-error",
-            kind: "vite-overlay-error",
-            name: "ViteError",
-            message: getViteOverlayText(overlay),
-            args: getRecentDiagnostics(),
-          });
-          return true;
-        };
-
-        const hasVisiblePageContent = () => {
-          const root = document.querySelector("#root") || document.body;
-          const nodes = [root, ...root.querySelectorAll("*")];
-
-          return nodes.some((element) => {
-            if (
-              !(element instanceof HTMLElement) &&
-              !(element instanceof SVGElement)
-            ) {
-              return false;
-            }
-
-            const tagName = element.tagName.toLowerCase();
-            if (["script", "style", "link", "meta", "noscript"].includes(tagName)) {
-              return false;
-            }
-
-            const style = window.getComputedStyle(element);
-            const rect = element.getBoundingClientRect();
-            if (
-              style.display === "none" ||
-              style.visibility === "hidden" ||
-              Number(style.opacity) === 0 ||
-              rect.width < 2 ||
-              rect.height < 2
-            ) {
-              return false;
-            }
-
-            const isVisualElement = [
-              "img",
-              "svg",
-              "canvas",
-              "video",
-              "iframe",
-              "input",
-              "button",
-            ].includes(tagName);
-            const hasText = String(element.textContent || "").trim().length > 0;
-            const hasBackgroundImage = style.backgroundImage !== "none";
-            return isVisualElement || hasText || hasBackgroundImage;
-          });
-        };
-
-        const checkPageHealth = () => {
-          if (reportViteOverlay()) {
-            return;
-          }
-
-          if (hasVisiblePageContent()) {
-            consecutiveBlankChecks = 0;
-            return;
-          }
-
-          consecutiveBlankChecks += 1;
-          if (consecutiveBlankChecks < 2 || blankPageReported) {
-            return;
-          }
-
-          blankPageReported = true;
-          postToParent({
-            type: "runtime-error",
-            kind: "blank-page",
-            name: "BlankPageError",
-            message: "The preview rendered no visible page content.",
-            args: getRecentDiagnostics(),
-          });
-        };
-
-        const schedulePageHealthChecks = (firstDelay = 1500, secondDelay = 3000) => {
-          healthCheckSequence += 1;
-          const sequence = healthCheckSequence;
-          consecutiveBlankChecks = 0;
-          blankPageReported = false;
-          const runCurrentHealthCheck = () => {
-            if (sequence === healthCheckSequence) {
-              checkPageHealth();
-            }
-          };
-          window.setTimeout(runCurrentHealthCheck, firstDelay);
-          window.setTimeout(runCurrentHealthCheck, secondDelay);
-        };
-
-        if (document.readyState === "complete") {
-          schedulePageHealthChecks();
-        } else {
-          window.addEventListener(
-            "load",
-            () => schedulePageHealthChecks(),
-            { once: true },
-          );
-        }
-
-        window.addEventListener("message", (event) => {
-          if (
-            event.source === window.parent &&
-            event.data?.type === HEALTH_CHECK_COMMAND
-          ) {
-            schedulePageHealthChecks(100, 1600);
-          }
-        });
-
-        const viteOverlayObserver = new MutationObserver((records) => {
-          const overlayAdded = records.some((record) =>
-            Array.from(record.addedNodes).some(
-              (node) =>
-                node instanceof Element &&
-                (node.matches("vite-error-overlay") ||
-                  Boolean(node.querySelector("vite-error-overlay"))),
-            ),
-          );
-          if (overlayAdded && reportViteOverlay()) {
-            viteOverlayObserver.disconnect();
-          }
-        });
-        viteOverlayObserver.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-        });
-
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-              const normalizedTagName = tagName.toLowerCase();
-              const isCriticalResource =
-                normalizedTagName === "script" ||
-                (normalizedTagName === "link" &&
-                  target.rel === "stylesheet" &&
-                  /\.css(?:$|[?#])/i.test(resourceUrl));
-
-              if (isCriticalResource && isFirstPartySource(resourceUrl)) {
-                postToParent({
-                  type: "runtime-error",
-                  kind: "resource-error",
-                  message: `Failed to load ${normalizedTagName} resource.`,
-                  source: resourceUrl,
-                  resourceTagName: normalizedTagName,
-                  resourceUrl,
-                  args: getRecentDiagnostics(),
-                });
-              }
-              return;
-            }
-
-            const normalized = normalizeErrorLike(event.error || event.message);
-            const source = event.filename || normalized.source;
-            if (
-              !isFirstPartySource(source) &&
-              !stackHasFirstPartySource(normalized.stack)
-            ) {
-              return;
-            }
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
-              args: getRecentDiagnostics(),
-            });
-          },
-          true,
-        );
-
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          const combinedMessage = `${normalized.name} ${normalized.message}`;
-          if (
-            IGNORED_PROMISE_PATTERN.test(combinedMessage) ||
-            !hasFirstPartyEvidence(normalized)
-          ) {
-            return;
-          }
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
-            args: getRecentDiagnostics(),
-          });
-        });
-
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          rememberConsoleError(args);
-          originalConsoleError(...args);
-        };
-      })();
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+<meta name="description" content="Browse Strikingly&#x27;s AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.">
+<link rel="canonical" href="https://www.strikingly.com/generators">
+<meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly">
+<meta property="og:description" content="Browse Strikingly&#x27;s AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds.">
+<meta property="og:url" content="https://www.strikingly.com/generators">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Strikingly","item":"https://www.strikingly.com/"},{"@type":"ListItem","position":2,"name":"AI Generators","item":"https://www.strikingly.com/generators"}]}</script>
+<style>
+:root{--brand-purple:#8159BB;--ai-blue:#7671FF;--ai-pink:#CB0C9F;--body-text:#636972;--heading:#4B5056;--hero-heading:#2E2E2F;--card-border:#C6C9CD;--divider:#E2E4E7;--light-bg:#F4F6F8;--white:#FFFFFF;--heading-font:'Josefin Sans','Poppins',sans-serif;--body-font:'Open Sans',Arial,sans-serif;--container:1200px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--body-text);background:var(--white);font-family:var(--body-font);font-size:14px;line-height:1.5}a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid rgba(129,89,187,.45);outline-offset:3px}h1,h2,h3,.logo,.btn,.tag,.category-name,.card-title,.step-title,.why-title,.footer-heading{font-family:var(--heading-font);font-weight:700;text-transform:uppercase;line-height:1.2}h1,h2,h3,p{margin-block:0}h2{color:var(--heading);font-size:clamp(26px,3vw,32px);letter-spacing:.02em}h3{color:var(--heading);font-size:22px;letter-spacing:.02em}.container{max-width:var(--container);margin-inline:auto;padding-inline:20px}.section{padding-block:40px}.section-header{display:grid;gap:10px;margin-block-end:30px}.section-subtitle{color:var(--body-text);max-width:640px}.topbar{background:var(--white);border-block-end:1px solid var(--divider)}.topbar-inner{min-height:60px;display:flex;align-items:center}.logo{color:var(--hero-heading);font-size:22px;letter-spacing:.01em}.logo span{color:var(--brand-purple)}.breadcrumb{padding-block:15px;color:var(--body-text);font-size:13px}.breadcrumb ol{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:0;margin:0;list-style:none}.breadcrumb a{color:var(--body-text);text-decoration:underline;text-underline-offset:3px}.breadcrumb-separator{color:var(--brand-purple)}
+.hero{position:relative;overflow:hidden;padding-block:70px;background:radial-gradient(circle at 85% 20%,rgba(203,12,159,.08),transparent 280px),radial-gradient(circle at 15% 20%,rgba(118,113,255,.08),transparent 260px),var(--white)}.hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,480px);gap:60px;align-items:center}.hero-copy{display:grid;gap:20px}.hero h1{color:var(--hero-heading);font-size:clamp(30px,5vw,48px);letter-spacing:.02em}.hero h1 span{display:block}.gradient-text{color:transparent;background-image:linear-gradient(90deg,var(--ai-blue),var(--ai-pink));-webkit-background-clip:text;background-clip:text}.hero-subhead{max-width:520px;font-size:16px;color:var(--body-text)}.cta-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.btn{min-height:36px;display:inline-flex;align-items:center;justify-content:center;border-radius:4px;padding:9px 15px;border:1px solid transparent;font-size:14px;letter-spacing:.02em;cursor:pointer;transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}.btn-large{min-height:44px;padding-block:10px;padding-inline:20px}.btn-primary{background-image:linear-gradient(90deg,var(--ai-blue),var(--ai-pink));color:var(--white)}.btn-ghost{background:transparent;border-color:var(--brand-purple);color:var(--brand-purple)}.btn:hover{box-shadow:0 8px 20px rgba(75,80,86,.12);transform:translateY(-1px)}.hero-visual{display:flex;justify-content:center;color:var(--brand-purple)}.hero-svg{width:min(100%,480px);height:auto;filter:drop-shadow(0 20px 30px rgba(75,80,86,.1))}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.card{background:var(--white);border:1px solid var(--card-border);border-radius:3px;padding:20px;color:var(--body-text);transition:border-color .18s ease,box-shadow .18s ease,transform .18s ease}.card:hover,.card:focus-within{border-color:var(--brand-purple);box-shadow:0 10px 25px rgba(75,80,86,.1);transform:translateY(-2px)}.card-link,.category-link,.generator-link{display:grid;gap:10px;min-height:100%;color:inherit}.card-title{color:var(--heading);font-size:17px;letter-spacing:.01em}.card-desc{color:var(--body-text)}.tag{justify-self:start;padding:2px 6px;border:1px solid var(--brand-purple);border-radius:3px;color:var(--brand-purple);font-size:11px;line-height:1.4}.category-card{min-height:200px}.card-icon,.directory-thumb,.why-icon{color:var(--brand-purple)}.category-name{color:var(--heading);font-size:18px;letter-spacing:.03em}.category-desc{color:var(--body-text)}.arrow{color:var(--brand-purple);font-size:24px;line-height:1;margin-block-start:auto}
+.all-generators{border-block-start:1px solid var(--divider)}.search-wrap{display:grid;gap:10px;margin-block-end:30px}.search-box{position:relative;max-width:480px}.search-icon{position:absolute;inset-inline-start:15px;inset-block-start:50%;transform:translateY(-50%);color:var(--brand-purple);pointer-events:none}.search-input{width:100%;min-height:44px;border:1px solid var(--card-border);border-radius:4px;padding-block:10px;padding-inline:45px 15px;color:var(--heading);background:var(--white);font:400 14px/1.5 var(--body-font)}.search-input::placeholder{color:#7C828A;opacity:1}.result-count{color:var(--body-text);font-size:13px}.empty-state{max-width:560px;border:1px solid var(--divider);border-radius:3px;padding:20px;background:var(--white);margin-block-end:30px}.empty-state[hidden]{display:none}.empty-title{color:var(--heading);font-weight:700;margin-block-end:5px}.clear-search,.show-toggle{margin-block-start:15px;margin-inline-end:10px;background:var(--white);border:1px solid var(--brand-purple);color:var(--brand-purple);border-radius:4px;min-height:36px;padding:9px 15px;font-family:var(--heading-font);font-weight:700;text-transform:uppercase;cursor:pointer}.builder-text-link{color:var(--brand-purple);text-decoration:underline;text-underline-offset:3px}.directory-category{scroll-margin-block-start:80px;padding-block:30px;border-block-start:1px solid var(--divider)}.directory-category.is-filtered-out{display:none}.directory-heading-row{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-block-end:20px}.directory-heading-row p{margin-block-start:8px;max-width:680px}.directory-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;transition:max-height .26s ease}.js .directory-grid.is-collapsed{overflow:hidden}.generator-card.is-filtered-out{display:none}.directory-thumb{width:64px;height:64px}.show-toggle{margin-block-start:20px}.show-toggle[hidden]{display:none}
+.steps-grid,.why-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.step-card,.why-card{display:grid;gap:10px;padding:20px;border:1px solid var(--divider);border-radius:3px;background:var(--white)}.step-number{width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:var(--brand-purple);color:var(--white);font-family:var(--heading-font);font-weight:700}.step-title,.why-title{color:var(--heading);font-size:16px;letter-spacing:.02em}.faq-list{display:grid;gap:10px}.faq-item{border:1px solid var(--card-border);border-radius:3px;background:var(--white)}.faq-question{width:100%;min-height:44px;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:15px 20px;border:0;background:var(--white);color:var(--heading);font-family:var(--heading-font);font-size:16px;font-weight:700;text-align:start;text-transform:uppercase;cursor:pointer}.faq-symbol{color:var(--brand-purple);font-size:22px;line-height:1}.faq-panel{padding:0 20px 20px;color:var(--body-text)}.faq-panel p+p{margin-block-start:10px}.js .faq-panel[aria-hidden="true"]{display:none}.closing{text-align:center;background:var(--white)}.closing-content{display:grid;justify-items:center;gap:20px}.closing p{max-width:520px}.footer{border-block-start:1px solid var(--divider);padding-block:40px 20px;background:var(--white)}.footer-grid{display:grid;grid-template-columns:1.2fr repeat(4,1fr);gap:20px}.footer-heading{color:var(--heading);font-size:14px;margin-block-end:10px}.footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}.footer a{color:var(--body-text);text-decoration:underline;text-underline-offset:3px}.copyright{margin-block-start:30px;padding-block-start:20px;border-block-start:1px solid var(--divider);font-size:13px}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:40px}.hero-copy{order:1}.hero-visual{order:2}.grid-3,.directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps-grid,.why-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-brand{grid-column:1/-1}}
+@media(max-width:640px){.hero{padding-block:60px}.hero-grid{gap:30px}.hero h1{font-size:clamp(28px,9vw,32px)}.hero-subhead{font-size:14px}.cta-row{align-items:stretch}.btn{width:100%}.grid-3,.directory-grid,.footer-grid{grid-template-columns:1fr}.section{padding-block:40px}.directory-heading-row{display:grid}.faq-question{align-items:flex-start}}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="container topbar-inner"><a class="logo" href="/" aria-label="Strikingly home">strikingly <span>AI</span></a></div></header>
+<nav class="breadcrumb" aria-label="Breadcrumb"><div class="container"><ol><li><a href="/">Strikingly</a></li><li class="breadcrumb-separator" aria-hidden="true">&gt;</li><li aria-current="page">AI Generators</li></ol></div></nav>
+<main>
+<section class="hero" aria-labelledby="page-title"><div class="container hero-grid"><div class="hero-copy"><h1 id="page-title"><span>BUILD ANY KIND OF SITE</span><span class="gradient-text">WITH AI, IN AN INSTANT</span></h1><p class="hero-subhead">Browse the right generator for what you're building, or jump straight into our AI site builder.</p><div class="cta-row"><a class="btn btn-primary btn-large" href="/s/ai_site_builder">START BUILDING - IT'S FREE</a><a class="btn btn-ghost btn-large" href="#all-generators">BROWSE GENERATORS</a></div></div><div class="hero-visual" aria-hidden="true"><svg class="hero-svg" width="480" height="360" viewBox="0 0 480 360" focusable="false"><rect x="52" y="38" width="360" height="250" rx="18" fill="#FFFFFF" stroke="#8159BB" stroke-width="3" opacity=".95"></rect><path d="M52 82h360" stroke="#8159BB" stroke-width="3" opacity=".35"></path><circle cx="82" cy="61" r="6" fill="#8159BB" opacity=".35"></circle><circle cx="104" cy="61" r="6" fill="#8159BB" opacity=".25"></circle><circle cx="126" cy="61" r="6" fill="#8159BB" opacity=".18"></circle><rect x="86" y="116" width="140" height="24" rx="12" fill="#8159BB" opacity=".14"></rect><rect x="86" y="158" width="250" height="10" rx="5" fill="#8159BB" opacity=".18"></rect><rect x="86" y="180" width="210" height="10" rx="5" fill="#8159BB" opacity=".14"></rect><rect x="86" y="220" width="88" height="34" rx="4" fill="#8159BB" opacity=".20"></rect><rect x="190" y="220" width="88" height="34" rx="4" fill="#8159BB" opacity=".14"></rect><rect x="294" y="220" width="88" height="34" rx="4" fill="#8159BB" opacity=".10"></rect><path d="M360 106c28 16 42 40 42 72s-18 57-54 76" fill="none" stroke="#8159BB" stroke-width="3" stroke-linecap="round" opacity=".45"></path><path d="M333 104l33-4-9 32" fill="none" stroke="#8159BB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".45"></path><path d="M57 306c59 22 279 25 365 0" fill="none" stroke="#8159BB" stroke-width="3" stroke-linecap="round" opacity=".16"></path></svg></div></div></section>
+<section class="section" aria-labelledby="featured-heading"><div class="container"><div class="section-header"><h2 id="featured-heading">FEATURED GENERATORS</h2><p class="section-subtitle">A few common starting points.</p></div><div class="grid-3"><article class="feature-card card"><a class="card-link" href="/generators/ai-website-generator"><span class="card-title">AI Website Generator</span><span class="card-desc">Describe your business, get a full site</span><span class="tag">Website</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/free-portfolio-generator"><span class="card-title">Free Portfolio Generator</span><span class="card-desc">For creatives, in minutes, no fee</span><span class="tag">Portfolio</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/ai-landing-page-maker"><span class="card-title">AI Landing Page Maker</span><span class="card-desc">One-page sites built to convert</span><span class="tag">Landing Page</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/online-store-builder"><span class="card-title">Online Store Builder</span><span class="card-desc">Start selling without writing code</span><span class="tag">Store</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/link-in-bio-generator"><span class="card-title">Link-in-Bio Generator</span><span class="card-desc">One link for all your channels</span><span class="tag">Link-in-Bio</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/one-page-website-builder"><span class="card-title">One-Page Website Builder</span><span class="card-desc">Simple sites, single scroll</span><span class="tag">Website</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/wedding-website-generator"><span class="card-title">Wedding Website Generator</span><span class="card-desc">Share your day with guests</span><span class="tag">Website</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/restaurant-website-builder"><span class="card-title">Restaurant Website Builder</span><span class="card-desc">Menu, hours, reservations, done</span><span class="tag">Website</span></a></article>
+<article class="feature-card card"><a class="card-link" href="/generators/blog-generator-for-beginners"><span class="card-title">Blog Generator for Beginners</span><span class="card-desc">Publish-ready in minutes</span><span class="tag">Blog</span></a></article></div></div></section>
+<section class="section" aria-labelledby="browse-heading"><div class="container"><div class="section-header"><h2 id="browse-heading">BROWSE BY CATEGORY</h2></div><div class="grid-3"><article class="category-card card"><a class="category-link" href="/generators#websites"><svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="category-name">Websites</span><span class="category-desc">AI-built business and personal sites for any goal.</span><span class="arrow" aria-hidden="true">→</span></a></article>
+<article class="category-card card"><a class="category-link" href="/generators#landing-pages"><svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="category-name">Landing Pages</span><span class="category-desc">Single-page sites built to convert visitors fast.</span><span class="arrow" aria-hidden="true">→</span></a></article>
+<article class="category-card card"><a class="category-link" href="/generators#portfolios"><svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="category-name">Portfolios</span><span class="category-desc">Showcase your work with a clean, focused site.</span><span class="arrow" aria-hidden="true">→</span></a></article>
+<article class="category-card card"><a class="category-link" href="/generators#blogs"><svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="category-name">Blogs</span><span class="category-desc">Publish-ready blogs with built-in SEO basics.</span><span class="arrow" aria-hidden="true">→</span></a></article>
+<article class="category-card card"><a class="category-link" href="/generators#stores"><svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="category-name">Online Stores</span><span class="category-desc">Sell products online with payments built in.</span><span class="arrow" aria-hidden="true">→</span></a></article>
+<article class="category-card card"><a class="category-link" href="/generators#link-in-bio"><svg class="card-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="category-name">Link-in-Bio</span><span class="category-desc">One link, all your places. Made for creators.</span><span class="arrow" aria-hidden="true">→</span></a></article></div></div></section>
+<section class="section all-generators" id="all-generators" aria-labelledby="all-generators-heading"><div class="container"><div class="section-header"><h2 id="all-generators-heading">ALL GENERATORS</h2><p class="section-subtitle">Sixty-plus generators, organized by what you're building.</p></div><div class="search-wrap"><div class="search-box"><svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg><input id="generator-search" class="search-input" type="search" aria-label="Search generators" placeholder="Search generators..."></div><p id="result-count" class="result-count" aria-live="polite">61 generators match</p></div><div id="empty-state" class="empty-state" hidden><p class="empty-title">No matching generators yet.</p><p>Try a broader search, or start with the AI builder and describe what you need.</p><button class="clear-search" type="button">Clear search</button><a class="builder-text-link" href="/s/ai_site_builder">Can't find it? Start with our AI builder.</a></div><section class="directory-category" id="websites" data-directory-section><div class="directory-heading-row"><div><h3>Websites</h3><p>Start with a full website for your business, project, event, or personal brand.</p></div></div><div class="directory-grid" id="grid-websites" data-collapsible data-visible-count="6"><article class="generator-card card" data-generator-card data-search="ai website generator describe your business and get a complete, ready-to-edit site. websites"><a class="generator-link" href="/generators/ai-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">AI Website Generator</span><span class="card-desc">Describe your business and get a complete, ready-to-edit site.</span></a></article><article class="generator-card card" data-generator-card data-search="one-page website builder launch a simple single-scroll site for any idea or offer. websites"><a class="generator-link" href="/generators/one-page-website-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">One-Page Website Builder</span><span class="card-desc">Launch a simple single-scroll site for any idea or offer.</span></a></article><article class="generator-card card" data-generator-card data-search="wedding website generator share schedules, details, and guest information in one place. websites"><a class="generator-link" href="/generators/wedding-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Wedding Website Generator</span><span class="card-desc">Share schedules, details, and guest information in one place.</span></a></article><article class="generator-card card" data-generator-card data-search="restaurant website builder publish menus, hours, reservations, and location details quickly. websites"><a class="generator-link" href="/generators/restaurant-website-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Restaurant Website Builder</span><span class="card-desc">Publish menus, hours, reservations, and location details quickly.</span></a></article><article class="generator-card card" data-generator-card data-search="free website builder for photographers showcase galleries, packages, and booking links without code. websites"><a class="generator-link" href="/generators/free-website-builder-for-photographers"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Free Website Builder for Photographers</span><span class="card-desc">Showcase galleries, packages, and booking links without code.</span></a></article><article class="generator-card card" data-generator-card data-search="small business website generator create a professional home base for a local business. websites"><a class="generator-link" href="/generators/small-business-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Small Business Website Generator</span><span class="card-desc">Create a professional home base for a local business.</span></a></article><article class="generator-card card" data-generator-card data-search="no-code website builder for coaches present services, testimonials, and calls to action clearly. websites"><a class="generator-link" href="/generators/no-code-website-builder-for-coaches"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">No-Code Website Builder for Coaches</span><span class="card-desc">Present services, testimonials, and calls to action clearly.</span></a></article><article class="generator-card card" data-generator-card data-search="beautiful website generator for salons build a polished service site with hours, pricing, and booking. websites"><a class="generator-link" href="/generators/beautiful-website-generator-for-salons"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Beautiful Website Generator for Salons</span><span class="card-desc">Build a polished service site with hours, pricing, and booking.</span></a></article><article class="generator-card card" data-generator-card data-search="personal website generator create a personal homepage for your work, links, and story. websites"><a class="generator-link" href="/generators/personal-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Personal Website Generator</span><span class="card-desc">Create a personal homepage for your work, links, and story.</span></a></article><article class="generator-card card" data-generator-card data-search="ai website builder for consultants explain your expertise and turn visitors into qualified leads. websites"><a class="generator-link" href="/generators/ai-website-builder-for-consultants"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">AI Website Builder for Consultants</span><span class="card-desc">Explain your expertise and turn visitors into qualified leads.</span></a></article><article class="generator-card card" data-generator-card data-search="website builder for nonprofits share your mission, programs, events, and donation calls to action. websites"><a class="generator-link" href="/generators/website-builder-for-nonprofits"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="46" height="34" rx="3"></rect><path d="M9 23h46M18 18h2M25 18h2M18 31h20M18 38h28"></path></g></svg><span class="card-title">Website Builder for Nonprofits</span><span class="card-desc">Share your mission, programs, events, and donation calls to action.</span></a></article></div><button class="show-toggle" type="button" aria-expanded="false" aria-controls="grid-websites" hidden>Show all 11 generators</button></section>
+<section class="directory-category" id="landing-pages" data-directory-section><div class="directory-heading-row"><div><h3>Landing Pages</h3><p>Focused one-page generators for launches, campaigns, offers, and lead capture.</p></div></div><div class="directory-grid" id="grid-landing-pages" data-collapsible data-visible-count="6"><article class="generator-card card" data-generator-card data-search="ai landing page maker generate a focused page for a campaign, product, or offer. landing pages"><a class="generator-link" href="/generators/ai-landing-page-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">AI Landing Page Maker</span><span class="card-desc">Generate a focused page for a campaign, product, or offer.</span></a></article><article class="generator-card card" data-generator-card data-search="free landing page generator start a conversion-focused page without upfront cost. landing pages"><a class="generator-link" href="/generators/free-landing-page-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">Free Landing Page Generator</span><span class="card-desc">Start a conversion-focused page without upfront cost.</span></a></article><article class="generator-card card" data-generator-card data-search="product launch landing page builder introduce a new product with benefits, proof points, and ctas. landing pages"><a class="generator-link" href="/generators/product-launch-landing-page-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">Product Launch Landing Page Builder</span><span class="card-desc">Introduce a new product with benefits, proof points, and CTAs.</span></a></article><article class="generator-card card" data-generator-card data-search="event landing page generator promote dates, speakers, schedules, and registration details. landing pages"><a class="generator-link" href="/generators/event-landing-page-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">Event Landing Page Generator</span><span class="card-desc">Promote dates, speakers, schedules, and registration details.</span></a></article><article class="generator-card card" data-generator-card data-search="webinar landing page maker turn a session topic into a registration-ready page. landing pages"><a class="generator-link" href="/generators/webinar-landing-page-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">Webinar Landing Page Maker</span><span class="card-desc">Turn a session topic into a registration-ready page.</span></a></article><article class="generator-card card" data-generator-card data-search="app landing page builder explain your app, show key features, and drive downloads. landing pages"><a class="generator-link" href="/generators/app-landing-page-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">App Landing Page Builder</span><span class="card-desc">Explain your app, show key features, and drive downloads.</span></a></article><article class="generator-card card" data-generator-card data-search="lead generation landing page maker capture interest with a clear message and focused offer. landing pages"><a class="generator-link" href="/generators/lead-generation-landing-page-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">Lead Generation Landing Page Maker</span><span class="card-desc">Capture interest with a clear message and focused offer.</span></a></article><article class="generator-card card" data-generator-card data-search="real estate landing page generator highlight properties, neighborhoods, and inquiry paths. landing pages"><a class="generator-link" href="/generators/real-estate-landing-page-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">Real Estate Landing Page Generator</span><span class="card-desc">Highlight properties, neighborhoods, and inquiry paths.</span></a></article><article class="generator-card card" data-generator-card data-search="saas landing page builder frame your software value proposition in a concise one-page flow. landing pages"><a class="generator-link" href="/generators/saas-landing-page-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">SaaS Landing Page Builder</span><span class="card-desc">Frame your software value proposition in a concise one-page flow.</span></a></article><article class="generator-card card" data-generator-card data-search="no-code landing page creator build a campaign page without design or development work. landing pages"><a class="generator-link" href="/generators/no-code-landing-page-creator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="10" width="40" height="44" rx="4"></rect><path d="M20 21h24M20 30h18M20 40h12M37 40h7"></path></g></svg><span class="card-title">No-Code Landing Page Creator</span><span class="card-desc">Build a campaign page without design or development work.</span></a></article></div><button class="show-toggle" type="button" aria-expanded="false" aria-controls="grid-landing-pages" hidden>Show all 10 generators</button></section>
+<section class="directory-category" id="portfolios" data-directory-section><div class="directory-heading-row"><div><h3>Portfolios</h3><p>Portfolio generators for creative work, client proof, resumes, and personal showcases.</p></div></div><div class="directory-grid" id="grid-portfolios" data-collapsible data-visible-count="6"><article class="generator-card card" data-generator-card data-search="free portfolio generator build a clean portfolio for creative work in minutes. portfolios"><a class="generator-link" href="/generators/free-portfolio-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Free Portfolio Generator</span><span class="card-desc">Build a clean portfolio for creative work in minutes.</span></a></article><article class="generator-card card" data-generator-card data-search="portfolio generator for designers present case studies, visuals, roles, and contact details. portfolios"><a class="generator-link" href="/generators/portfolio-generator-for-designers"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Portfolio Generator for Designers</span><span class="card-desc">Present case studies, visuals, roles, and contact details.</span></a></article><article class="generator-card card" data-generator-card data-search="portfolio builder for photographers show galleries, specialties, packages, and inquiry links. portfolios"><a class="generator-link" href="/generators/portfolio-builder-for-photographers"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Portfolio Builder for Photographers</span><span class="card-desc">Show galleries, specialties, packages, and inquiry links.</span></a></article><article class="generator-card card" data-generator-card data-search="artist portfolio website generator create a refined site for artwork, exhibitions, and commissions. portfolios"><a class="generator-link" href="/generators/artist-portfolio-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Artist Portfolio Website Generator</span><span class="card-desc">Create a refined site for artwork, exhibitions, and commissions.</span></a></article><article class="generator-card card" data-generator-card data-search="ux portfolio builder organize process, outcomes, and selected case studies clearly. portfolios"><a class="generator-link" href="/generators/ux-portfolio-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">UX Portfolio Builder</span><span class="card-desc">Organize process, outcomes, and selected case studies clearly.</span></a></article><article class="generator-card card" data-generator-card data-search="writer portfolio generator collect bylines, samples, services, and your author bio. portfolios"><a class="generator-link" href="/generators/writer-portfolio-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Writer Portfolio Generator</span><span class="card-desc">Collect bylines, samples, services, and your author bio.</span></a></article><article class="generator-card card" data-generator-card data-search="architecture portfolio maker show projects, drawings, concepts, and studio contact information. portfolios"><a class="generator-link" href="/generators/architecture-portfolio-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Architecture Portfolio Maker</span><span class="card-desc">Show projects, drawings, concepts, and studio contact information.</span></a></article><article class="generator-card card" data-generator-card data-search="student portfolio generator create a simple showcase for school, internships, and early work. portfolios"><a class="generator-link" href="/generators/student-portfolio-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Student Portfolio Generator</span><span class="card-desc">Create a simple showcase for school, internships, and early work.</span></a></article><article class="generator-card card" data-generator-card data-search="freelance portfolio builder turn your best work into a client-ready services site. portfolios"><a class="generator-link" href="/generators/freelance-portfolio-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Freelance Portfolio Builder</span><span class="card-desc">Turn your best work into a client-ready services site.</span></a></article><article class="generator-card card" data-generator-card data-search="beautiful portfolio generator create a polished visual portfolio with a clean layout. portfolios"><a class="generator-link" href="/generators/beautiful-portfolio-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="18" width="44" height="30" rx="4"></rect><path d="M23 18v-5h18v5M18 30h28M22 39h20"></path></g></svg><span class="card-title">Beautiful Portfolio Generator</span><span class="card-desc">Create a polished visual portfolio with a clean layout.</span></a></article></div><button class="show-toggle" type="button" aria-expanded="false" aria-controls="grid-portfolios" hidden>Show all 10 generators</button></section>
+<section class="directory-category" id="blogs" data-directory-section><div class="directory-heading-row"><div><h3>Blogs</h3><p>Blog generators for creators, businesses, beginners, and niche publishers.</p></div></div><div class="directory-grid" id="grid-blogs" data-collapsible data-visible-count="6"><article class="generator-card card" data-generator-card data-search="blog generator for beginners start a publish-ready blog with a clear structure and topic focus. blogs"><a class="generator-link" href="/generators/blog-generator-for-beginners"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Blog Generator for Beginners</span><span class="card-desc">Start a publish-ready blog with a clear structure and topic focus.</span></a></article><article class="generator-card card" data-generator-card data-search="ai blog website generator turn a topic or niche into a blog site foundation. blogs"><a class="generator-link" href="/generators/ai-blog-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">AI Blog Website Generator</span><span class="card-desc">Turn a topic or niche into a blog site foundation.</span></a></article><article class="generator-card card" data-generator-card data-search="personal blog builder create a home for essays, updates, stories, and personal posts. blogs"><a class="generator-link" href="/generators/personal-blog-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Personal Blog Builder</span><span class="card-desc">Create a home for essays, updates, stories, and personal posts.</span></a></article><article class="generator-card card" data-generator-card data-search="travel blog generator build a travel journal with destinations, guides, and photo sections. blogs"><a class="generator-link" href="/generators/travel-blog-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Travel Blog Generator</span><span class="card-desc">Build a travel journal with destinations, guides, and photo sections.</span></a></article><article class="generator-card card" data-generator-card data-search="food blog website builder share recipes, categories, author notes, and search-friendly posts. blogs"><a class="generator-link" href="/generators/food-blog-website-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Food Blog Website Builder</span><span class="card-desc">Share recipes, categories, author notes, and search-friendly posts.</span></a></article><article class="generator-card card" data-generator-card data-search="business blog generator publish company updates, insights, and educational content. blogs"><a class="generator-link" href="/generators/business-blog-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Business Blog Generator</span><span class="card-desc">Publish company updates, insights, and educational content.</span></a></article><article class="generator-card card" data-generator-card data-search="no-code blog builder launch a blog without installing themes or managing plugins. blogs"><a class="generator-link" href="/generators/no-code-blog-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">No-Code Blog Builder</span><span class="card-desc">Launch a blog without installing themes or managing plugins.</span></a></article><article class="generator-card card" data-generator-card data-search="seo blog website maker create a blog structure designed for discoverable topics. blogs"><a class="generator-link" href="/generators/seo-blog-website-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">SEO Blog Website Maker</span><span class="card-desc">Create a blog structure designed for discoverable topics.</span></a></article><article class="generator-card card" data-generator-card data-search="creator blog generator build a content hub for your audience, updates, and offers. blogs"><a class="generator-link" href="/generators/creator-blog-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Creator Blog Generator</span><span class="card-desc">Build a content hub for your audience, updates, and offers.</span></a></article><article class="generator-card card" data-generator-card data-search="newsletter blog builder pair posts with email signup sections and simple archives. blogs"><a class="generator-link" href="/generators/newsletter-blog-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="10" width="36" height="44" rx="3"></rect><path d="M22 21h20M22 29h20M22 37h15M22 45h12"></path></g></svg><span class="card-title">Newsletter Blog Builder</span><span class="card-desc">Pair posts with email signup sections and simple archives.</span></a></article></div><button class="show-toggle" type="button" aria-expanded="false" aria-controls="grid-blogs" hidden>Show all 10 generators</button></section>
+<section class="directory-category" id="stores" data-directory-section><div class="directory-heading-row"><div><h3>Online Stores</h3><p>Store generators for products, services, restaurants, digital goods, and growing shops.</p></div></div><div class="directory-grid" id="grid-stores" data-collapsible data-visible-count="6"><article class="generator-card card" data-generator-card data-search="online store builder start selling products online with a clean storefront. online stores"><a class="generator-link" href="/generators/online-store-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Online Store Builder</span><span class="card-desc">Start selling products online with a clean storefront.</span></a></article><article class="generator-card card" data-generator-card data-search="online store builder for restaurants sell meals, merch, gift cards, or pickup items online. online stores"><a class="generator-link" href="/generators/online-store-builder-for-restaurants"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Online Store Builder for Restaurants</span><span class="card-desc">Sell meals, merch, gift cards, or pickup items online.</span></a></article><article class="generator-card card" data-generator-card data-search="ai ecommerce website generator create a store structure with products, sections, and checkout paths. online stores"><a class="generator-link" href="/generators/ai-ecommerce-website-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">AI Ecommerce Website Generator</span><span class="card-desc">Create a store structure with products, sections, and checkout paths.</span></a></article><article class="generator-card card" data-generator-card data-search="free online store builder begin building a simple shop without a credit card. online stores"><a class="generator-link" href="/generators/free-online-store-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Free Online Store Builder</span><span class="card-desc">Begin building a simple shop without a credit card.</span></a></article><article class="generator-card card" data-generator-card data-search="handmade goods store builder show craft products, collections, materials, and buying options. online stores"><a class="generator-link" href="/generators/handmade-goods-store-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Handmade Goods Store Builder</span><span class="card-desc">Show craft products, collections, materials, and buying options.</span></a></article><article class="generator-card card" data-generator-card data-search="digital product store generator sell downloads, templates, guides, courses, or creative assets. online stores"><a class="generator-link" href="/generators/digital-product-store-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Digital Product Store Generator</span><span class="card-desc">Sell downloads, templates, guides, courses, or creative assets.</span></a></article><article class="generator-card card" data-generator-card data-search="fashion store website builder create a polished shop for apparel, accessories, or capsule drops. online stores"><a class="generator-link" href="/generators/fashion-store-website-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Fashion Store Website Builder</span><span class="card-desc">Create a polished shop for apparel, accessories, or capsule drops.</span></a></article><article class="generator-card card" data-generator-card data-search="beauty product store builder present products, benefits, routines, and purchase paths clearly. online stores"><a class="generator-link" href="/generators/beauty-product-store-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Beauty Product Store Builder</span><span class="card-desc">Present products, benefits, routines, and purchase paths clearly.</span></a></article><article class="generator-card card" data-generator-card data-search="subscription store generator introduce recurring products, memberships, or service plans. online stores"><a class="generator-link" href="/generators/subscription-store-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">Subscription Store Generator</span><span class="card-desc">Introduce recurring products, memberships, or service plans.</span></a></article><article class="generator-card card" data-generator-card data-search="no-code ecommerce builder build an online shop without writing or managing code. online stores"><a class="generator-link" href="/generators/no-code-ecommerce-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 25h38l-4-11H17l-4 11Z"></path><path d="M17 25v25h30V25M25 50V35h14v15"></path><path d="M20 25v4M32 25v4M44 25v4"></path></g></svg><span class="card-title">No-Code Ecommerce Builder</span><span class="card-desc">Build an online shop without writing or managing code.</span></a></article></div><button class="show-toggle" type="button" aria-expanded="false" aria-controls="grid-stores" hidden>Show all 10 generators</button></section>
+<section class="directory-category" id="link-in-bio" data-directory-section><div class="directory-heading-row"><div><h3>Link-in-Bio</h3><p>Simple link hubs for creators, brands, musicians, podcasts, and social profiles.</p></div></div><div class="directory-grid" id="grid-link-in-bio" data-collapsible data-visible-count="6"><article class="generator-card card" data-generator-card data-search="link-in-bio generator create one simple page for every important link. link-in-bio"><a class="generator-link" href="/generators/link-in-bio-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Link-in-Bio Generator</span><span class="card-desc">Create one simple page for every important link.</span></a></article><article class="generator-card card" data-generator-card data-search="ai link-in-bio builder generate a creator link hub from your profile and goals. link-in-bio"><a class="generator-link" href="/generators/ai-link-in-bio-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">AI Link-in-Bio Builder</span><span class="card-desc">Generate a creator link hub from your profile and goals.</span></a></article><article class="generator-card card" data-generator-card data-search="free link-in-bio website maker make a lightweight link page without upfront cost. link-in-bio"><a class="generator-link" href="/generators/free-link-in-bio-website-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Free Link-in-Bio Website Maker</span><span class="card-desc">Make a lightweight link page without upfront cost.</span></a></article><article class="generator-card card" data-generator-card data-search="creator link page generator bring videos, posts, shops, newsletters, and offers together. link-in-bio"><a class="generator-link" href="/generators/creator-link-page-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Creator Link Page Generator</span><span class="card-desc">Bring videos, posts, shops, newsletters, and offers together.</span></a></article><article class="generator-card card" data-generator-card data-search="instagram bio link builder send profile visitors to your best links from one page. link-in-bio"><a class="generator-link" href="/generators/instagram-bio-link-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Instagram Bio Link Builder</span><span class="card-desc">Send profile visitors to your best links from one page.</span></a></article><article class="generator-card card" data-generator-card data-search="musician link-in-bio builder share songs, tour dates, merch, press, and socials. link-in-bio"><a class="generator-link" href="/generators/musician-link-in-bio-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Musician Link-in-Bio Builder</span><span class="card-desc">Share songs, tour dates, merch, press, and socials.</span></a></article><article class="generator-card card" data-generator-card data-search="podcast link page generator collect episodes, platforms, newsletter links, and sponsor pages. link-in-bio"><a class="generator-link" href="/generators/podcast-link-page-generator"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Podcast Link Page Generator</span><span class="card-desc">Collect episodes, platforms, newsletter links, and sponsor pages.</span></a></article><article class="generator-card card" data-generator-card data-search="tiktok bio link maker turn short-form traffic into visits, signups, and sales. link-in-bio"><a class="generator-link" href="/generators/tiktok-bio-link-maker"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">TikTok Bio Link Maker</span><span class="card-desc">Turn short-form traffic into visits, signups, and sales.</span></a></article><article class="generator-card card" data-generator-card data-search="freelancer link hub builder share services, portfolio links, bookings, and payment pages. link-in-bio"><a class="generator-link" href="/generators/freelancer-link-hub-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">Freelancer Link Hub Builder</span><span class="card-desc">Share services, portfolio links, bookings, and payment pages.</span></a></article><article class="generator-card card" data-generator-card data-search="one-page creator website builder create a compact creator site that works like a link hub. link-in-bio"><a class="generator-link" href="/generators/one-page-creator-website-builder"><svg class="directory-thumb" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="20" r="8"></circle><path d="M18 38h28M20 49h24M24 30h16a8 8 0 0 1 8 8v11H16V38a8 8 0 0 1 8-8Z"></path></g></svg><span class="card-title">One-Page Creator Website Builder</span><span class="card-desc">Create a compact creator site that works like a link hub.</span></a></article></div><button class="show-toggle" type="button" aria-expanded="false" aria-controls="grid-link-in-bio" hidden>Show all 10 generators</button></section></div></section>
+<section class="section" aria-labelledby="how-heading"><div class="container"><div class="section-header"><h2 id="how-heading">HOW IT WORKS</h2></div><div class="steps-grid"><article class="step-card"><span class="step-number" aria-hidden="true">1</span><p class="step-title">PICK A GENERATOR</p><p>Browse by category or search to find one that fits your goal.</p></article><article class="step-card"><span class="step-number" aria-hidden="true">2</span><p class="step-title">DESCRIBE YOUR SITE</p><p>Tell our AI builder about your business in a sentence or two.</p></article><article class="step-card"><span class="step-number" aria-hidden="true">3</span><p class="step-title">GENERATE AND PUBLISH</p><p>Get a fully built site in seconds. Customize anything, then go live.</p></article></div></div></section>
+<section class="section" aria-labelledby="why-heading"><div class="container"><div class="section-header"><h2 id="why-heading">WHY STRIKINGLY</h2></div><div class="why-grid"><article class="why-card"><svg class="why-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="32" cy="34" r="18"></circle><path d="M10 34h44M18 22h28M24 46h16"></path></g></svg><p class="why-title">LIVE IN SECONDS</p><p>Describe your site, we build it. No setup, no learning curve.</p></article><article class="why-card"><svg class="why-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="15" y="12" width="34" height="44" rx="6"></rect><path d="M24 20h16M24 43h16M29 50h6"></path></g></svg><p class="why-title">MOBILE BY DEFAULT</p><p>Every generator produces responsive sites that work on any device.</p></article><article class="why-card"><svg class="why-icon" width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 38h36M20 28l12-12 12 12M22 38v12h20V38"></path><path d="M28 50V38h8v12"></path></g></svg><p class="why-title">FREE TO START</p><p>Generate, customize, and publish without a credit card.</p></article></div></div></section>
+<section class="section" aria-labelledby="faq-heading"><div class="container"><div class="section-header"><h2 id="faq-heading">FREQUENTLY ASKED QUESTIONS</h2></div><div class="faq-list"><article class="faq-item"><button id="faq-button-1" class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-1"><span>What is an AI site generator?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div id="faq-panel-1" class="faq-panel" role="region" aria-labelledby="faq-button-1"><p>An AI site generator is a guided starting point for creating a website with artificial intelligence. Instead of picking a blank page, you choose the kind of site you need and the builder prepares a relevant structure, sections, and starter copy.</p><p>From there, you can edit the design, rewrite text, add images, and publish when everything feels ready.</p></div></article>
+<article class="faq-item"><button id="faq-button-2" class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-2"><span>How is a generator different from a template?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div id="faq-panel-2" class="faq-panel" role="region" aria-labelledby="faq-button-2"><p>A template gives you a fixed layout to customize. A generator starts with your goal, industry, or use case and helps the AI builder create a more tailored first draft.</p><p>You still keep full control over the final site, but the starting point is based on what you are trying to build.</p></div></article>
+<article class="faq-item"><button id="faq-button-3" class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-3"><span>Are these generators free to use?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div id="faq-panel-3" class="faq-panel" role="region" aria-labelledby="faq-button-3"><p>Yes. You can start with a generator and create a site draft for free. You do not need a credit card to try the AI builder and explore the result.</p><p>Some publishing features or upgrades may depend on the plan you choose later.</p></div></article>
+<article class="faq-item"><button id="faq-button-4" class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-4"><span>What kinds of sites can I build?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div id="faq-panel-4" class="faq-panel" role="region" aria-labelledby="faq-button-4"><p>You can build business websites, landing pages, portfolios, blogs, online stores, wedding sites, restaurant sites, link-in-bio pages, and many other practical site types.</p><p>The directory is organized so you can begin with the closest match and then customize the result for your exact project.</p></div></article>
+<article class="faq-item"><button id="faq-button-5" class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-5"><span>Can I customize what the generator produces?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div id="faq-panel-5" class="faq-panel" role="region" aria-labelledby="faq-button-5"><p>Yes. The generated site is only a first draft. You can change the text, colors, sections, images, pages, links, and layout before publishing.</p><p>If you want a different direction, you can also return to the builder and describe the site in a new way.</p></div></article>
+<article class="faq-item"><button id="faq-button-6" class="faq-question" type="button" aria-expanded="true" aria-controls="faq-panel-6"><span>Do generated sites work on mobile?</span><span class="faq-symbol" aria-hidden="true">+</span></button><div id="faq-panel-6" class="faq-panel" role="region" aria-labelledby="faq-button-6"><p>Yes. Strikingly sites are designed to be responsive by default, so your generated site can adapt across phones, tablets, and desktops.</p><p>You should still preview your page before publishing, especially after adding longer text or custom media.</p></div></article></div></div></section>
+<section class="section closing" aria-labelledby="closing-heading"><div class="container closing-content"><h2 id="closing-heading">READY TO BUILD?</h2><p>Pick a generator above, or jump straight into our AI builder.</p><a class="btn btn-primary btn-large" href="/s/ai_site_builder">START WITH AI BUILDER</a></div></section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a class="logo" href="/" aria-label="Strikingly home">strikingly <span>AI</span></a></div><div class="footer-column"><p class="footer-heading">Product</p><ul><li><a href="/templates">Templates</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/support">Support</a></li></ul></div><div class="footer-column"><p class="footer-heading">Company</p><ul><li><a href="/about">About</a></li><li><a href="/blog">Blog</a></li></ul></div><div class="footer-column"><p class="footer-heading">Resources</p><ul><li><a href="/s/ai_site_builder">AI Site Builder</a></li><li><a href="/generators">Website Generators</a></li></ul></div><div class="footer-column"><p class="footer-heading">Legal</p><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li></ul></div></div><p class="copyright">© 2026 Strikingly. All rights reserved.</p></div></footer>
+<script>
+const strings={"en": {"meta": {"title": "AI Website Generators - Build Any Site in Seconds | Strikingly", "description": "Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required.", "ogDescription": "Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds."}, "logo": "strikingly AI", "breadcrumb": {"home": "Strikingly", "current": "AI Generators"}, "hero": {"line1": "BUILD ANY KIND OF SITE", "line2": "WITH AI, IN AN INSTANT", "subheadline": "Browse the right generator for what you're building, or jump straight into our AI site builder.", "primaryCta": "START BUILDING - IT'S FREE", "secondaryCta": "BROWSE GENERATORS"}, "featured": {"heading": "FEATURED GENERATORS", "subheading": "A few common starting points.", "items": [{"name": "AI Website Generator", "description": "Describe your business, get a full site", "category": "Website", "slug": "ai-website-generator"}, {"name": "Free Portfolio Generator", "description": "For creatives, in minutes, no fee", "category": "Portfolio", "slug": "free-portfolio-generator"}, {"name": "AI Landing Page Maker", "description": "One-page sites built to convert", "category": "Landing Page", "slug": "ai-landing-page-maker"}, {"name": "Online Store Builder", "description": "Start selling without writing code", "category": "Store", "slug": "online-store-builder"}, {"name": "Link-in-Bio Generator", "description": "One link for all your channels", "category": "Link-in-Bio", "slug": "link-in-bio-generator"}, {"name": "One-Page Website Builder", "description": "Simple sites, single scroll", "category": "Website", "slug": "one-page-website-builder"}, {"name": "Wedding Website Generator", "description": "Share your day with guests", "category": "Website", "slug": "wedding-website-generator"}, {"name": "Restaurant Website Builder", "description": "Menu, hours, reservations, done", "category": "Website", "slug": "restaurant-website-builder"}, {"name": "Blog Generator for Beginners", "description": "Publish-ready in minutes", "category": "Blog", "slug": "blog-generator-for-beginners"}]}, "browse": {"heading": "BROWSE BY CATEGORY", "categories": [{"id": "websites", "name": "Websites", "short": "AI-built business and personal sites for any goal.", "directory": "Start with a full website for your business, project, event, or personal brand."}, {"id": "landing-pages", "name": "Landing Pages", "short": "Single-page sites built to convert visitors fast.", "directory": "Focused one-page generators for launches, campaigns, offers, and lead capture."}, {"id": "portfolios", "name": "Portfolios", "short": "Showcase your work with a clean, focused site.", "directory": "Portfolio generators for creative work, client proof, resumes, and personal showcases."}, {"id": "blogs", "name": "Blogs", "short": "Publish-ready blogs with built-in SEO basics.", "directory": "Blog generators for creators, businesses, beginners, and niche publishers."}, {"id": "stores", "name": "Online Stores", "short": "Sell products online with payments built in.", "directory": "Store generators for products, services, restaurants, digital goods, and growing shops."}, {"id": "link-in-bio", "name": "Link-in-Bio", "short": "One link, all your places. Made for creators.", "directory": "Simple link hubs for creators, brands, musicians, podcasts, and social profiles."}]}, "allGenerators": {"heading": "ALL GENERATORS", "subheading": "Sixty-plus generators, organized by what you're building.", "searchLabel": "Search generators", "searchPlaceholder": "Search generators...", "resultCount": "generators match", "emptyTitle": "No matching generators yet.", "emptyBody": "Try a broader search, or start with the AI builder and describe what you need.", "clearSearch": "Clear search", "builderLink": "Can't find it? Start with our AI builder.", "showAllPrefix": "Show all", "showAllSuffix": "generators", "showFewer": "Show fewer generators", "items": {"websites": [{"name": "AI Website Generator", "description": "Describe your business and get a complete, ready-to-edit site.", "category": "Websites", "slug": "ai-website-generator"}, {"name": "One-Page Website Builder", "description": "Launch a simple single-scroll site for any idea or offer.", "category": "Websites", "slug": "one-page-website-builder"}, {"name": "Wedding Website Generator", "description": "Share schedules, details, and guest information in one place.", "category": "Websites", "slug": "wedding-website-generator"}, {"name": "Restaurant Website Builder", "description": "Publish menus, hours, reservations, and location details quickly.", "category": "Websites", "slug": "restaurant-website-builder"}, {"name": "Free Website Builder for Photographers", "description": "Showcase galleries, packages, and booking links without code.", "category": "Websites", "slug": "free-website-builder-for-photographers"}, {"name": "Small Business Website Generator", "description": "Create a professional home base for a local business.", "category": "Websites", "slug": "small-business-website-generator"}, {"name": "No-Code Website Builder for Coaches", "description": "Present services, testimonials, and calls to action clearly.", "category": "Websites", "slug": "no-code-website-builder-for-coaches"}, {"name": "Beautiful Website Generator for Salons", "description": "Build a polished service site with hours, pricing, and booking.", "category": "Websites", "slug": "beautiful-website-generator-for-salons"}, {"name": "Personal Website Generator", "description": "Create a personal homepage for your work, links, and story.", "category": "Websites", "slug": "personal-website-generator"}, {"name": "AI Website Builder for Consultants", "description": "Explain your expertise and turn visitors into qualified leads.", "category": "Websites", "slug": "ai-website-builder-for-consultants"}, {"name": "Website Builder for Nonprofits", "description": "Share your mission, programs, events, and donation calls to action.", "category": "Websites", "slug": "website-builder-for-nonprofits"}], "landing-pages": [{"name": "AI Landing Page Maker", "description": "Generate a focused page for a campaign, product, or offer.", "category": "Landing Pages", "slug": "ai-landing-page-maker"}, {"name": "Free Landing Page Generator", "description": "Start a conversion-focused page without upfront cost.", "category": "Landing Pages", "slug": "free-landing-page-generator"}, {"name": "Product Launch Landing Page Builder", "description": "Introduce a new product with benefits, proof points, and CTAs.", "category": "Landing Pages", "slug": "product-launch-landing-page-builder"}, {"name": "Event Landing Page Generator", "description": "Promote dates, speakers, schedules, and registration details.", "category": "Landing Pages", "slug": "event-landing-page-generator"}, {"name": "Webinar Landing Page Maker", "description": "Turn a session topic into a registration-ready page.", "category": "Landing Pages", "slug": "webinar-landing-page-maker"}, {"name": "App Landing Page Builder", "description": "Explain your app, show key features, and drive downloads.", "category": "Landing Pages", "slug": "app-landing-page-builder"}, {"name": "Lead Generation Landing Page Maker", "description": "Capture interest with a clear message and focused offer.", "category": "Landing Pages", "slug": "lead-generation-landing-page-maker"}, {"name": "Real Estate Landing Page Generator", "description": "Highlight properties, neighborhoods, and inquiry paths.", "category": "Landing Pages", "slug": "real-estate-landing-page-generator"}, {"name": "SaaS Landing Page Builder", "description": "Frame your software value proposition in a concise one-page flow.", "category": "Landing Pages", "slug": "saas-landing-page-builder"}, {"name": "No-Code Landing Page Creator", "description": "Build a campaign page without design or development work.", "category": "Landing Pages", "slug": "no-code-landing-page-creator"}], "portfolios": [{"name": "Free Portfolio Generator", "description": "Build a clean portfolio for creative work in minutes.", "category": "Portfolios", "slug": "free-portfolio-generator"}, {"name": "Portfolio Generator for Designers", "description": "Present case studies, visuals, roles, and contact details.", "category": "Portfolios", "slug": "portfolio-generator-for-designers"}, {"name": "Portfolio Builder for Photographers", "description": "Show galleries, specialties, packages, and inquiry links.", "category": "Portfolios", "slug": "portfolio-builder-for-photographers"}, {"name": "Artist Portfolio Website Generator", "description": "Create a refined site for artwork, exhibitions, and commissions.", "category": "Portfolios", "slug": "artist-portfolio-website-generator"}, {"name": "UX Portfolio Builder", "description": "Organize process, outcomes, and selected case studies clearly.", "category": "Portfolios", "slug": "ux-portfolio-builder"}, {"name": "Writer Portfolio Generator", "description": "Collect bylines, samples, services, and your author bio.", "category": "Portfolios", "slug": "writer-portfolio-generator"}, {"name": "Architecture Portfolio Maker", "description": "Show projects, drawings, concepts, and studio contact information.", "category": "Portfolios", "slug": "architecture-portfolio-maker"}, {"name": "Student Portfolio Generator", "description": "Create a simple showcase for school, internships, and early work.", "category": "Portfolios", "slug": "student-portfolio-generator"}, {"name": "Freelance Portfolio Builder", "description": "Turn your best work into a client-ready services site.", "category": "Portfolios", "slug": "freelance-portfolio-builder"}, {"name": "Beautiful Portfolio Generator", "description": "Create a polished visual portfolio with a clean layout.", "category": "Portfolios", "slug": "beautiful-portfolio-generator"}], "blogs": [{"name": "Blog Generator for Beginners", "description": "Start a publish-ready blog with a clear structure and topic focus.", "category": "Blogs", "slug": "blog-generator-for-beginners"}, {"name": "AI Blog Website Generator", "description": "Turn a topic or niche into a blog site foundation.", "category": "Blogs", "slug": "ai-blog-website-generator"}, {"name": "Personal Blog Builder", "description": "Create a home for essays, updates, stories, and personal posts.", "category": "Blogs", "slug": "personal-blog-builder"}, {"name": "Travel Blog Generator", "description": "Build a travel journal with destinations, guides, and photo sections.", "category": "Blogs", "slug": "travel-blog-generator"}, {"name": "Food Blog Website Builder", "description": "Share recipes, categories, author notes, and search-friendly posts.", "category": "Blogs", "slug": "food-blog-website-builder"}, {"name": "Business Blog Generator", "description": "Publish company updates, insights, and educational content.", "category": "Blogs", "slug": "business-blog-generator"}, {"name": "No-Code Blog Builder", "description": "Launch a blog without installing themes or managing plugins.", "category": "Blogs", "slug": "no-code-blog-builder"}, {"name": "SEO Blog Website Maker", "description": "Create a blog structure designed for discoverable topics.", "category": "Blogs", "slug": "seo-blog-website-maker"}, {"name": "Creator Blog Generator", "description": "Build a content hub for your audience, updates, and offers.", "category": "Blogs", "slug": "creator-blog-generator"}, {"name": "Newsletter Blog Builder", "description": "Pair posts with email signup sections and simple archives.", "category": "Blogs", "slug": "newsletter-blog-builder"}], "stores": [{"name": "Online Store Builder", "description": "Start selling products online with a clean storefront.", "category": "Online Stores", "slug": "online-store-builder"}, {"name": "Online Store Builder for Restaurants", "description": "Sell meals, merch, gift cards, or pickup items online.", "category": "Online Stores", "slug": "online-store-builder-for-restaurants"}, {"name": "AI Ecommerce Website Generator", "description": "Create a store structure with products, sections, and checkout paths.", "category": "Online Stores", "slug": "ai-ecommerce-website-generator"}, {"name": "Free Online Store Builder", "description": "Begin building a simple shop without a credit card.", "category": "Online Stores", "slug": "free-online-store-builder"}, {"name": "Handmade Goods Store Builder", "description": "Show craft products, collections, materials, and buying options.", "category": "Online Stores", "slug": "handmade-goods-store-builder"}, {"name": "Digital Product Store Generator", "description": "Sell downloads, templates, guides, courses, or creative assets.", "category": "Online Stores", "slug": "digital-product-store-generator"}, {"name": "Fashion Store Website Builder", "description": "Create a polished shop for apparel, accessories, or capsule drops.", "category": "Online Stores", "slug": "fashion-store-website-builder"}, {"name": "Beauty Product Store Builder", "description": "Present products, benefits, routines, and purchase paths clearly.", "category": "Online Stores", "slug": "beauty-product-store-builder"}, {"name": "Subscription Store Generator", "description": "Introduce recurring products, memberships, or service plans.", "category": "Online Stores", "slug": "subscription-store-generator"}, {"name": "No-Code Ecommerce Builder", "description": "Build an online shop without writing or managing code.", "category": "Online Stores", "slug": "no-code-ecommerce-builder"}], "link-in-bio": [{"name": "Link-in-Bio Generator", "description": "Create one simple page for every important link.", "category": "Link-in-Bio", "slug": "link-in-bio-generator"}, {"name": "AI Link-in-Bio Builder", "description": "Generate a creator link hub from your profile and goals.", "category": "Link-in-Bio", "slug": "ai-link-in-bio-builder"}, {"name": "Free Link-in-Bio Website Maker", "description": "Make a lightweight link page without upfront cost.", "category": "Link-in-Bio", "slug": "free-link-in-bio-website-maker"}, {"name": "Creator Link Page Generator", "description": "Bring videos, posts, shops, newsletters, and offers together.", "category": "Link-in-Bio", "slug": "creator-link-page-generator"}, {"name": "Instagram Bio Link Builder", "description": "Send profile visitors to your best links from one page.", "category": "Link-in-Bio", "slug": "instagram-bio-link-builder"}, {"name": "Musician Link-in-Bio Builder", "description": "Share songs, tour dates, merch, press, and socials.", "category": "Link-in-Bio", "slug": "musician-link-in-bio-builder"}, {"name": "Podcast Link Page Generator", "description": "Collect episodes, platforms, newsletter links, and sponsor pages.", "category": "Link-in-Bio", "slug": "podcast-link-page-generator"}, {"name": "TikTok Bio Link Maker", "description": "Turn short-form traffic into visits, signups, and sales.", "category": "Link-in-Bio", "slug": "tiktok-bio-link-maker"}, {"name": "Freelancer Link Hub Builder", "description": "Share services, portfolio links, bookings, and payment pages.", "category": "Link-in-Bio", "slug": "freelancer-link-hub-builder"}, {"name": "One-Page Creator Website Builder", "description": "Create a compact creator site that works like a link hub.", "category": "Link-in-Bio", "slug": "one-page-creator-website-builder"}]}}, "how": {"heading": "HOW IT WORKS", "steps": [{"title": "PICK A GENERATOR", "body": "Browse by category or search to find one that fits your goal."}, {"title": "DESCRIBE YOUR SITE", "body": "Tell our AI builder about your business in a sentence or two."}, {"title": "GENERATE AND PUBLISH", "body": "Get a fully built site in seconds. Customize anything, then go live."}]}, "why": {"heading": "WHY STRIKINGLY", "items": [{"title": "LIVE IN SECONDS", "body": "Describe your site, we build it. No setup, no learning curve."}, {"title": "MOBILE BY DEFAULT", "body": "Every generator produces responsive sites that work on any device."}, {"title": "FREE TO START", "body": "Generate, customize, and publish without a credit card."}]}, "faq": {"heading": "FREQUENTLY ASKED QUESTIONS", "items": [{"question": "What is an AI site generator?", "answer": "An AI site generator is a guided starting point for creating a website with artificial intelligence. Instead of picking a blank page, you choose the kind of site you need and the builder prepares a relevant structure, sections, and starter copy.\n\nFrom there, you can edit the design, rewrite text, add images, and publish when everything feels ready."}, {"question": "How is a generator different from a template?", "answer": "A template gives you a fixed layout to customize. A generator starts with your goal, industry, or use case and helps the AI builder create a more tailored first draft.\n\nYou still keep full control over the final site, but the starting point is based on what you are trying to build."}, {"question": "Are these generators free to use?", "answer": "Yes. You can start with a generator and create a site draft for free. You do not need a credit card to try the AI builder and explore the result.\n\nSome publishing features or upgrades may depend on the plan you choose later."}, {"question": "What kinds of sites can I build?", "answer": "You can build business websites, landing pages, portfolios, blogs, online stores, wedding sites, restaurant sites, link-in-bio pages, and many other practical site types.\n\nThe directory is organized so you can begin with the closest match and then customize the result for your exact project."}, {"question": "Can I customize what the generator produces?", "answer": "Yes. The generated site is only a first draft. You can change the text, colors, sections, images, pages, links, and layout before publishing.\n\nIf you want a different direction, you can also return to the builder and describe the site in a new way."}, {"question": "Do generated sites work on mobile?", "answer": "Yes. Strikingly sites are designed to be responsive by default, so your generated site can adapt across phones, tablets, and desktops.\n\nYou should still preview your page before publishing, especially after adding longer text or custom media."}]}, "closing": {"heading": "READY TO BUILD?", "subheading": "Pick a generator above, or jump straight into our AI builder.", "cta": "START WITH AI BUILDER"}, "footer": {"columns": [{"title": "Product", "links": [{"href": "/templates", "label": "Templates"}, {"href": "/pricing", "label": "Pricing"}, {"href": "/support", "label": "Support"}]}, {"title": "Company", "links": [{"href": "/about", "label": "About"}, {"href": "/blog", "label": "Blog"}]}, {"title": "Resources", "links": [{"href": "/s/ai_site_builder", "label": "AI Site Builder"}, {"href": "/generators", "label": "Website Generators"}]}, {"title": "Legal", "links": [{"href": "/terms", "label": "Terms"}, {"href": "/privacy", "label": "Privacy"}]}], "copyright": "© 2026 Strikingly. All rights reserved."}}};
+(()=>{const copy=strings.en.allGenerators;const searchInput=document.getElementById('generator-search');const resultCount=document.getElementById('result-count');const emptyState=document.getElementById('empty-state');const clearButton=emptyState.querySelector('.clear-search');const cards=Array.from(document.querySelectorAll('[data-generator-card]'));const sections=Array.from(document.querySelectorAll('[data-directory-section]'));const toggleState=new Map();const totalCards=cards.length;const getGridLimit=grid=>Number.parseInt(grid.dataset.visibleCount||'6',10);const getCollapsedHeight=grid=>{const visibleCount=getGridLimit(grid);const gridTop=grid.getBoundingClientRect().top;const visibleCards=Array.from(grid.querySelectorAll('[data-generator-card]')).slice(0,visibleCount);if(visibleCards.length===0)return 0;return Math.ceil(visibleCards[visibleCards.length-1].getBoundingClientRect().bottom-gridTop)};const setToggleText=(button,total,expanded)=>{button.textContent=expanded?copy.showFewer:`${copy.showAllPrefix} ${total} ${copy.showAllSuffix}`};const setCollapsedCardAccess=(section,expanded)=>{const grid=section.querySelector('[data-collapsible]');if(!grid)return;const limit=getGridLimit(grid);Array.from(section.querySelectorAll('[data-generator-card]')).forEach((card,index)=>{const link=card.querySelector('a');const isExtra=!expanded&&index>=limit;card.setAttribute('aria-hidden',String(isExtra));if(link)link.tabIndex=isExtra?-1:0})};const setGridExpanded=(section,expanded)=>{const grid=section.querySelector('[data-collapsible]');const button=section.querySelector('.show-toggle');const sectionCards=Array.from(section.querySelectorAll('[data-generator-card]'));if(!grid||!button||sectionCards.length<=getGridLimit(grid))return;toggleState.set(section.id,expanded);button.hidden=false;button.setAttribute('aria-expanded',String(expanded));setToggleText(button,sectionCards.length,expanded);setCollapsedCardAccess(section,expanded);if(expanded){grid.classList.remove('is-collapsed');grid.style.maxHeight=`${grid.scrollHeight}px`}else{grid.style.maxHeight=`${getCollapsedHeight(grid)}px`;grid.classList.add('is-collapsed')}};const initializeCollapsibleGrids=()=>{sections.forEach(section=>{const grid=section.querySelector('[data-collapsible]');const button=section.querySelector('.show-toggle');const sectionCards=Array.from(section.querySelectorAll('[data-generator-card]'));if(!grid||!button||sectionCards.length<=getGridLimit(grid))return;button.hidden=false;setGridExpanded(section,Boolean(toggleState.get(section.id)));button.addEventListener('click',()=>setGridExpanded(section,!toggleState.get(section.id)))})};const suspendCollapsibleForSearch=active=>{sections.forEach(section=>{const grid=section.querySelector('[data-collapsible]');const button=section.querySelector('.show-toggle');if(!grid||!button)return;if(active){grid.classList.remove('is-collapsed');grid.style.maxHeight='none';button.hidden=true;Array.from(section.querySelectorAll('[data-generator-card]')).forEach(card=>{card.setAttribute('aria-hidden','false');const link=card.querySelector('a');if(link)link.tabIndex=0})}else{setGridExpanded(section,Boolean(toggleState.get(section.id)))}})};const applySearch=()=>{const query=searchInput.value.trim().toLowerCase();let matches=0;const isSearching=query.length>0;sections.forEach(section=>{let sectionMatches=0;const sectionCards=Array.from(section.querySelectorAll('[data-generator-card]'));sectionCards.forEach(card=>{const matched=!isSearching||card.dataset.search.includes(query);card.classList.toggle('is-filtered-out',!matched);if(matched)sectionMatches+=1});if(isSearching)matches+=sectionMatches;section.classList.toggle('is-filtered-out',isSearching&&sectionMatches===0)});const visibleCount=isSearching?matches:totalCards;resultCount.textContent=`${visibleCount} ${copy.resultCount}`;emptyState.hidden=!(isSearching&&matches===0);suspendCollapsibleForSearch(isSearching)};if(searchInput){initializeCollapsibleGrids();searchInput.addEventListener('input',applySearch);clearButton.addEventListener('click',()=>{searchInput.value='';searchInput.focus();applySearch()});window.addEventListener('resize',()=>{if(!searchInput.value.trim())sections.forEach(section=>setGridExpanded(section,Boolean(toggleState.get(section.id))))})}const faqItems=Array.from(document.querySelectorAll('.faq-item'));faqItems.forEach((item,index)=>{const button=item.querySelector('.faq-question');const panel=item.querySelector('.faq-panel');const symbol=item.querySelector('.faq-symbol');const setExpanded=expanded=>{button.setAttribute('aria-expanded',String(expanded));panel.setAttribute('aria-hidden',String(!expanded));symbol.textContent=expanded?'−':'+'};setExpanded(index===0);button.addEventListener('click',()=>setExpanded(button.getAttribute('aria-expanded')!=='true'))})})();
+</script>
+</body>
 </html>
