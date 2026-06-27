@@ -7,8 +7,20 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+const rootEl = document.getElementById("root");
+
+if (rootEl && rootEl.children.length > 0) {
+  // Static content already present — hydrate
+  ReactDOM.hydrateRoot(
+    rootEl,
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+} else {
+  ReactDOM.createRoot(rootEl).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+}

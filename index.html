@@ -7,7 +7,745 @@
     <title>Vite + React</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><!-- STATIC PRE-RENDER: all content visible without JavaScript -->
+
+<!-- TopBar -->
+<header class="bg-white border-b border-[#E2E4E7] sticky top-0 z-50">
+  <div class="max-w-[1200px] mx-auto px-5 h-[50px] flex items-center">
+    <a href="/" class="font-heading font-bold text-sm uppercase tracking-wide text-[#2E2E2F] no-underline hover:text-brand-purple transition-colors">strikingly AI</a>
+  </div>
+</header>
+
+<main>
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="max-w-[1200px] mx-auto px-5 py-[10px]">
+    <ol class="flex items-center gap-1 m-0 p-0 list-none text-[13px] font-body text-[#636972]">
+      <li><a href="/" class="text-[#636972] no-underline hover:text-brand-purple transition-colors">Strikingly</a></li>
+      <li aria-hidden="true" class="select-none">&gt;</li>
+      <li class="text-[#636972]">AI Generators</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="relative overflow-hidden" style="background: radial-gradient(ellipse 70% 60% at 30% 40%, rgba(118,113,255,0.06), rgba(203,12,159,0.03) 50%, transparent 70%)">
+    <div class="max-w-[1200px] mx-auto px-5 py-[60px] md:py-[80px] flex flex-col md:flex-row items-center gap-10">
+      <div class="flex-1 text-center md:text-start">
+        <h1 class="m-0 mb-5">
+          <span class="block text-[32px] md:text-[48px] font-heading font-bold uppercase leading-[1.2] text-[#2E2E2F]">BUILD ANY KIND OF SITE</span>
+          <span class="block text-[32px] md:text-[48px] font-heading font-bold uppercase leading-[1.2] ai-gradient-text">WITH AI, IN AN INSTANT</span>
+        </h1>
+        <p class="text-[14px] md:text-[16px] leading-[1.5] text-[#636972] max-w-[480px] mb-[30px]">Browse the right generator for what you're building, or jump straight into our AI site builder.</p>
+        <div class="flex flex-col sm:flex-row gap-[10px] justify-center md:justify-start">
+          <a href="/s/ai_site_builder" class="btn-primary btn-lg">START BUILDING - IT'S FREE</a>
+          <a href="#all-generators" class="btn-ghost btn-lg">BROWSE GENERATORS</a>
+        </div>
+      </div>
+      <div class="flex-1 flex justify-center">
+        <svg aria-hidden="true" width="420" height="300" viewBox="0 0 420 300" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-[420px] h-auto">
+          <rect x="40" y="20" width="340" height="240" rx="6" stroke="#8159BB" stroke-width="1.5" fill="white"/>
+          <rect x="40" y="20" width="340" height="40" rx="6" fill="url(#heroGrad)"/>
+          <rect x="40" y="40" width="340" height="20" fill="url(#heroGrad)"/>
+          <circle cx="65" cy="40" r="5" fill="white" opacity="0.8"/>
+          <circle cx="80" cy="40" r="5" fill="white" opacity="0.5"/>
+          <circle cx="95" cy="40" r="5" fill="white" opacity="0.3"/>
+          <rect x="60" y="80" width="140" height="8" rx="4" fill="#E2E4E7"/>
+          <rect x="60" y="96" width="200" height="8" rx="4" fill="#E2E4E7"/>
+          <rect x="60" y="112" width="100" height="8" rx="4" fill="#E2E4E7"/>
+          <rect x="60" y="140" width="300" height="90" rx="4" fill="#F4F6F8"/>
+          <rect x="80" y="155" width="120" height="6" rx="3" fill="#C6C9CD"/>
+          <rect x="80" y="170" width="260" height="6" rx="3" fill="#E2E4E7"/>
+          <rect x="80" y="185" width="200" height="6" rx="3" fill="#E2E4E7"/>
+          <rect x="80" y="200" width="160" height="6" rx="3" fill="#E2E4E7"/>
+          <rect x="280" y="155" width="60" height="16" rx="8" fill="#8159BB" opacity="0.2"/>
+          <defs><linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7671FF"/><stop offset="1" stop-color="#CB0C9F"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Generators -->
+  <section class="max-w-[1200px] mx-auto px-5 py-10">
+    <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[5px]">FEATURED GENERATORS</h2>
+    <p class="text-[14px] text-[#636972] mb-[30px]">A few common starting points.</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+      <a href="/generators/ai-website-generator" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Website</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">AI Website Generator</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">Describe your business, get a full site.</span>
+      </a>
+      <a href="/generators/free-portfolio-generator" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Portfolio</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">Free Portfolio Generator</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">For creatives, in minutes, no fee.</span>
+      </a>
+      <a href="/generators/ai-landing-page-maker" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Landing Page</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">AI Landing Page Maker</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">One-page sites built to convert.</span>
+      </a>
+      <a href="/generators/online-store-builder" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Store</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">Online Store Builder</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">Start selling without writing code.</span>
+      </a>
+      <a href="/generators/link-in-bio-generator" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Link-in-Bio</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">Link-in-Bio Generator</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">One link for all your channels.</span>
+      </a>
+      <a href="/generators/one-page-website-builder" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Website</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">One-Page Website Builder</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">Simple sites, single scroll.</span>
+      </a>
+      <a href="/generators/wedding-website-generator" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Website</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">Wedding Website Generator</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">Share your day with guests.</span>
+      </a>
+      <a href="/generators/restaurant-website-builder" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Website</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">Restaurant Website Builder</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">Menu, hours, reservations, done.</span>
+      </a>
+      <a href="/generators/blog-generator-for-beginners" class="card flex flex-col gap-[10px]">
+        <span class="tag self-start">Blog</span>
+        <span class="font-heading font-bold text-[16px] text-[#2E2E2F] leading-[1.2]">Blog Generator for Beginners</span>
+        <span class="text-[14px] text-[#636972] leading-[1.5]">Publish-ready in minutes.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Browse by Category -->
+  <section class="max-w-[1200px] mx-auto px-5 py-10">
+    <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[30px]">BROWSE BY CATEGORY</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      
+      <a href="/generators#websites" class="card flex items-center gap-4 group">
+        <div class="flex-shrink-0"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="3" y="6" width="34" height="28" rx="3" stroke="#8159BB" stroke-width="1.5"/><line x1="3" y1="14" x2="37" y2="14" stroke="#8159BB" stroke-width="1"/><circle cx="8" cy="10" r="1.5" fill="#8159BB"/><circle cx="12" cy="10" r="1.5" fill="#8159BB"/><circle cx="16" cy="10" r="1.5" fill="#8159BB"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[2px]">Websites</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">AI-built business and personal sites for any goal.</span>
+        </div>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+          <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="/generators#landing-pages" class="card flex items-center gap-4 group">
+        <div class="flex-shrink-0"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="6" y="4" width="28" height="32" rx="3" stroke="#8159BB" stroke-width="1.5"/><rect x="10" y="10" width="20" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="1"/><rect x="10" y="24" width="20" height="3" rx="1.5" fill="#E2E4E7"/><rect x="10" y="29" width="14" height="3" rx="1.5" fill="#E2E4E7"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[2px]">Landing Pages</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Single-page sites built to convert visitors fast.</span>
+        </div>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+          <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="/generators#portfolios" class="card flex items-center gap-4 group">
+        <div class="flex-shrink-0"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="8" width="14" height="12" rx="2" stroke="#8159BB" stroke-width="1.5"/><rect x="22" y="8" width="14" height="12" rx="2" stroke="#8159BB" stroke-width="1.5"/><rect x="4" y="24" width="14" height="12" rx="2" stroke="#8159BB" stroke-width="1.5"/><rect x="22" y="24" width="14" height="12" rx="2" stroke="#8159BB" stroke-width="1.5"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[2px]">Portfolios</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Showcase your work with a clean, focused site.</span>
+        </div>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+          <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="/generators#blogs" class="card flex items-center gap-4 group">
+        <div class="flex-shrink-0"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="5" y="4" width="30" height="32" rx="2" stroke="#8159BB" stroke-width="1.5"/><line x1="10" y1="12" x2="30" y2="12" stroke="#E2E4E7" stroke-width="1.5"/><line x1="10" y1="17" x2="25" y2="17" stroke="#E2E4E7" stroke-width="1.5"/><line x1="10" y1="22" x2="28" y2="22" stroke="#E2E4E7" stroke-width="1.5"/><line x1="10" y1="27" x2="20" y2="27" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[2px]">Blogs</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Publish-ready blogs with built-in SEO basics.</span>
+        </div>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+          <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="/generators#stores" class="card flex items-center gap-4 group">
+        <div class="flex-shrink-0"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M5 10h30l-2 20H7L5 10z" stroke="#8159BB" stroke-width="1.5"/><circle cx="14" cy="16" r="3" stroke="#8159BB" stroke-width="1.5"/><path d="M22 20.5h8" stroke="#E2E4E7" stroke-width="1.5"/><path d="M22 24.5h6" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[2px]">Online Stores</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Sell products online with payments built in.</span>
+        </div>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+          <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="/generators#link-in-bio" class="card flex items-center gap-4 group">
+        <div class="flex-shrink-0"><svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="13" r="4" stroke="#8159BB" stroke-width="1.5"/><path d="M12 30c0-4.418 3.582-8 8-8s8 3.582 8 8" stroke="#8159BB" stroke-width="1.5"/><circle cx="20" cy="20" r="8" stroke="#E2E4E7" stroke-width="1" stroke-dasharray="3 2"/></svg></div>
+        <div class="flex-1 min-w-0">
+          <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[2px]">Link-in-Bio</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">One link, all your places. Made for creators.</span>
+        </div>
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" class="flex-shrink-0 text-[#C6C9CD] group-hover:text-brand-purple transition-colors">
+          <path d="M7 4l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- All Generators -->
+  <section id="all-generators" class="max-w-[1200px] mx-auto px-5 py-10">
+    <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[5px]">ALL GENERATORS</h2>
+    <p class="text-[14px] text-[#636972] mb-[30px]">Sixty-plus generators, organized by what you're building.</p>
+    <div class="flex flex-wrap items-center gap-[10px] mb-[30px]">
+      <div class="search-input-wrap">
+        <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        <input type="search" class="search-input" placeholder="Search generators..." aria-label="Search generators">
+      </div>
+    </div>
+
+    
+    <section id="websites" class="mb-10">
+      <h3 class="text-[20px] md:text-[24px] font-heading font-bold text-[#4B5056] mb-[2px]">Websites</h3>
+      <p class="text-[14px] text-[#636972] mb-[20px]">Complete multi-page websites for businesses, personal brands, and organizations.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <a href="/generators/ai-website-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">AI Website Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">AI Website Generator — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/free-website-builder-for-photographers" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Free Website Builder for Photographers</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Free Website Builder for Photographers — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/one-page-website-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">One-Page Website Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">One-Page Website Builder — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/wedding-website-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Wedding Website Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Wedding Website Generator — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/restaurant-website-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Restaurant Website Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Restaurant Website Builder — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/business-website-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Business Website Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Business Website Generator — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/personal-website-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Personal Website Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Personal Website Maker — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/nonprofit-website-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Nonprofit Website Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Nonprofit Website Builder — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/church-website-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Church Website Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Church Website Generator — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/small-business-website-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Small Business Website Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Small Business Website Builder — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/creative-agency-website-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Creative Agency Website Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Creative Agency Website Maker — AI-built business and personal sites for any goal.</span>
+        </a>
+        <a href="/generators/real-estate-website-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="2" width="44" height="28" rx="3" stroke="#8159BB" stroke-width="1"/><line x1="2" y1="10" x2="46" y2="10" stroke="#8159BB" stroke-width="0.8"/><circle cx="8" cy="6" r="1.5" fill="#8159BB"/><circle cx="12" cy="6" r="1.5" fill="#8159BB"/><circle cx="16" cy="6" r="1.5" fill="#8159BB"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Real Estate Website Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Real Estate Website Generator — AI-built business and personal sites for any goal.</span>
+        </a>
+      </div>
+    </section>
+    <section id="landing-pages" class="mb-10">
+      <h3 class="text-[20px] md:text-[24px] font-heading font-bold text-[#4B5056] mb-[2px]">Landing Pages</h3>
+      <p class="text-[14px] text-[#636972] mb-[20px]">Conversion-optimized landing pages for products, services, and campaigns.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <a href="/generators/ai-landing-page-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">AI Landing Page Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">AI Landing Page Maker — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/product-launch-page-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Product Launch Page Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Product Launch Page Builder — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/saas-landing-page-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">SaaS Landing Page Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">SaaS Landing Page Generator — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/app-landing-page-creator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">App Landing Page Creator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">App Landing Page Creator — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/event-registration-page-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Event Registration Page Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Event Registration Page Maker — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/coming-soon-page-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Coming Soon Page Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Coming Soon Page Generator — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/lead-capture-page-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Lead Capture Page Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Lead Capture Page Builder — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/sales-funnel-landing-page" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Sales Funnel Landing Page</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Sales Funnel Landing Page — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/book-launch-page-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Book Launch Page Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Book Launch Page Generator — Single-page sites built to convert visitors fast.</span>
+        </a>
+        <a href="/generators/course-landing-page-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="8" y="1" width="32" height="30" rx="3" stroke="#8159BB" stroke-width="1"/><rect x="12" y="5" width="24" height="10" rx="2" fill="#F4F6F8" stroke="#E2E4E7" stroke-width="0.8"/><rect x="12" y="18" width="24" height="2.5" rx="1.25" fill="#E2E4E7"/><rect x="12" y="22.5" width="16" height="2.5" rx="1.25" fill="#E2E4E7"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Course Landing Page Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Course Landing Page Builder — Single-page sites built to convert visitors fast.</span>
+        </a>
+      </div>
+    </section>
+    <section id="portfolios" class="mb-10">
+      <h3 class="text-[20px] md:text-[24px] font-heading font-bold text-[#4B5056] mb-[2px]">Portfolios</h3>
+      <p class="text-[14px] text-[#636972] mb-[20px]">Portfolio sites designed to put your work front and center.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <a href="/generators/free-portfolio-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Free Portfolio Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Free Portfolio Generator — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/photography-portfolio-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Photography Portfolio Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Photography Portfolio Builder — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/design-portfolio-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Design Portfolio Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Design Portfolio Maker — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/artist-portfolio-website-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Artist Portfolio Website Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Artist Portfolio Website Generator — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/architecture-portfolio-creator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Architecture Portfolio Creator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Architecture Portfolio Creator — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/model-portfolio-site-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Model Portfolio Site Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Model Portfolio Site Builder — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/writer-portfolio-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Writer Portfolio Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Writer Portfolio Generator — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/videographer-portfolio-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Videographer Portfolio Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Videographer Portfolio Maker — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/makeup-artist-portfolio-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Makeup Artist Portfolio Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Makeup Artist Portfolio Builder — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/developer-portfolio-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Developer Portfolio Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Developer Portfolio Generator — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/fashion-portfolio-website-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Fashion Portfolio Website Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Fashion Portfolio Website Maker — Showcase your work with a clean, focused site.</span>
+        </a>
+        <a href="/generators/illustrator-portfolio-creator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="2" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="4" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="4" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="2" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="18" y="18" width="14" height="10" rx="2" stroke="#8159BB" stroke-width="1"/><rect x="34" y="18" width="12" height="10" rx="2" stroke="#8159BB" stroke-width="1"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Illustrator Portfolio Creator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Illustrator Portfolio Creator — Showcase your work with a clean, focused site.</span>
+        </a>
+      </div>
+    </section>
+    <section id="blogs" class="mb-10">
+      <h3 class="text-[20px] md:text-[24px] font-heading font-bold text-[#4B5056] mb-[2px]">Blogs</h3>
+      <p class="text-[14px] text-[#636972] mb-[20px]">Blogs that look great and are ready for your first post.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <a href="/generators/blog-generator-for-beginners" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Blog Generator for Beginners</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Blog Generator for Beginners — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/personal-blog-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Personal Blog Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Personal Blog Builder — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/travel-blog-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Travel Blog Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Travel Blog Generator — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/food-blog-website-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Food Blog Website Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Food Blog Website Maker — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/fashion-blog-creator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Fashion Blog Creator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Fashion Blog Creator — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/tech-blog-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Tech Blog Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Tech Blog Generator — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/lifestyle-blog-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Lifestyle Blog Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Lifestyle Blog Builder — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/parenting-blog-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Parenting Blog Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Parenting Blog Generator — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/fitness-blog-website-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Fitness Blog Website Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Fitness Blog Website Maker — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+        <a href="/generators/business-blog-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><rect x="3" y="2" width="42" height="28" rx="2" stroke="#8159BB" stroke-width="1"/><line x1="8" y1="8" x2="40" y2="8" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="13" x2="35" y2="13" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="18" x2="38" y2="18" stroke="#E2E4E7" stroke-width="1.5"/><line x1="8" y1="23" x2="28" y2="23" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Business Blog Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Business Blog Generator — Publish-ready blogs with built-in SEO basics.</span>
+        </a>
+      </div>
+    </section>
+    <section id="stores" class="mb-10">
+      <h3 class="text-[20px] md:text-[24px] font-heading font-bold text-[#4B5056] mb-[2px]">Online Stores</h3>
+      <p class="text-[14px] text-[#636972] mb-[20px]">E-commerce stores with product listings, cart, and checkout.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <a href="/generators/online-store-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Online Store Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Online Store Builder — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/online-store-builder-for-restaurants" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Online Store Builder for Restaurants</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Online Store Builder for Restaurants — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/clothing-store-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Clothing Store Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Clothing Store Generator — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/handmade-goods-store-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Handmade Goods Store Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Handmade Goods Store Builder — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/digital-products-store-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Digital Products Store Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Digital Products Store Maker — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/restaurant-online-ordering-store" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Restaurant Online Ordering Store</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Restaurant Online Ordering Store — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/jewelry-store-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Jewelry Store Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Jewelry Store Builder — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/art-print-store-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Art Print Store Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Art Print Store Generator — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/subscription-box-store-creator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Subscription Box Store Creator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Subscription Box Store Creator — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/bookstore-website-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Bookstore Website Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Bookstore Website Builder — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/home-decor-store-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Home Decor Store Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Home Decor Store Generator — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/beauty-products-store-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Beauty Products Store Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Beauty Products Store Maker — Sell products online with payments built in.</span>
+        </a>
+        <a href="/generators/coffee-shop-online-store" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><path d="M5 8h38l-3 20H8L5 8z" stroke="#8159BB" stroke-width="1"/><circle cx="14" cy="14" r="3" stroke="#8159BB" stroke-width="1"/><path d="M24 18h14" stroke="#E2E4E7" stroke-width="1.5"/><path d="M24 22h10" stroke="#E2E4E7" stroke-width="1.5"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Coffee Shop Online Store</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Coffee Shop Online Store — Sell products online with payments built in.</span>
+        </a>
+      </div>
+    </section>
+    <section id="link-in-bio" class="mb-10">
+      <h3 class="text-[20px] md:text-[24px] font-heading font-bold text-[#4B5056] mb-[2px]">Link-in-Bio</h3>
+      <p class="text-[14px] text-[#636972] mb-[20px]">A single page linking to all your content, profiles, and channels.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <a href="/generators/link-in-bio-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Link-in-Bio Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Link-in-Bio Generator — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/creator-link-in-bio-page" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Creator Link-in-Bio Page</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Creator Link-in-Bio Page — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/social-media-bio-link-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Social Media Bio Link Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Social Media Bio Link Builder — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/musician-link-in-bio-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Musician Link-in-Bio Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Musician Link-in-Bio Maker — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/influencer-bio-link-page" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Influencer Bio Link Page</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Influencer Bio Link Page — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/podcaster-link-in-bio-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Podcaster Link-in-Bio Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Podcaster Link-in-Bio Generator — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/freelancer-bio-link-builder" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Freelancer Bio Link Builder</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Freelancer Bio Link Builder — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/coach-link-in-bio-creator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Coach Link-in-Bio Creator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Coach Link-in-Bio Creator — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/artist-bio-link-page-maker" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Artist Bio Link Page Maker</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Artist Bio Link Page Maker — One link, all your places. Made for creators.</span>
+        </a>
+        <a href="/generators/agency-link-in-bio-generator" class="card flex flex-col gap-[8px]">
+          <div class="mb-[4px]"><svg aria-hidden="true" width="48" height="32" viewBox="0 0 48 32" fill="none"><circle cx="24" cy="10" r="4" stroke="#8159BB" stroke-width="1"/><path d="M14 28c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#8159BB" stroke-width="1"/><circle cx="24" cy="17" r="9" stroke="#E2E4E7" stroke-width="0.8" stroke-dasharray="3 2"/></svg></div>
+          <span class="font-heading font-bold text-[15px] text-[#2E2E2F] leading-[1.2]">Agency Link-in-Bio Generator</span>
+          <span class="text-[13px] text-[#636972] leading-[1.5]">Agency Link-in-Bio Generator — One link, all your places. Made for creators.</span>
+        </a>
+      </div>
+    </section>
+  </section>
+
+  <!-- How It Works -->
+  <section class="bg-[#F4F6F8] py-[60px]">
+    <div class="max-w-[1200px] mx-auto px-5">
+      <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[40px] text-center">HOW IT WORKS</h2>
+      <div class="flex flex-col md:flex-row gap-[30px]">
+        
+        <div class="flex-1 flex flex-col items-center text-center gap-[15px]">
+          <div class="w-[48px] h-[48px] rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #7671FF, #CB0C9F)">
+            <span class="font-heading font-bold text-[18px] text-white">1</span>
+          </div>
+          <div>
+            <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[5px]">PICK A GENERATOR</span>
+            <p class="text-[14px] text-[#636972] leading-[1.5] m-0 max-w-[280px] mx-auto">Browse by category or search to find one that fits your goal.</p>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center text-center gap-[15px]">
+          <div class="w-[48px] h-[48px] rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #7671FF, #CB0C9F)">
+            <span class="font-heading font-bold text-[18px] text-white">2</span>
+          </div>
+          <div>
+            <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[5px]">DESCRIBE YOUR SITE</span>
+            <p class="text-[14px] text-[#636972] leading-[1.5] m-0 max-w-[280px] mx-auto">Tell our AI builder about your business in a sentence or two.</p>
+          </div>
+        </div>
+        <div class="flex-1 flex flex-col items-center text-center gap-[15px]">
+          <div class="w-[48px] h-[48px] rounded-full flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #7671FF, #CB0C9F)">
+            <span class="font-heading font-bold text-[18px] text-white">3</span>
+          </div>
+          <div>
+            <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[5px]">GENERATE AND PUBLISH</span>
+            <p class="text-[14px] text-[#636972] leading-[1.5] m-0 max-w-[280px] mx-auto">Get a fully built site in seconds. Customize anything, then go live.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Strikingly -->
+  <section class="max-w-[1200px] mx-auto px-5 py-[60px]">
+    <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[40px] text-center">WHY STRIKINGLY</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-[30px]">
+      
+        <div class="flex flex-col items-center text-center gap-[15px]">
+          <div class="w-[48px] h-[48px] flex items-center justify-center flex-shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-2 8 10-12h-9l2-8z" stroke="#8159BB" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+          <div>
+            <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[5px]">LIVE IN SECONDS</span>
+            <p class="text-[14px] text-[#636972] leading-[1.5] m-0 max-w-[280px] mx-auto">Describe your site, we build it. No setup, no learning curve.</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-[15px]">
+          <div class="w-[48px] h-[48px] flex items-center justify-center flex-shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="#8159BB" stroke-width="1.5"/><line x1="12" y1="18" x2="12" y2="18.01" stroke="#8159BB" stroke-width="2" stroke-linecap="round"/></svg></div>
+          <div>
+            <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[5px]">MOBILE BY DEFAULT</span>
+            <p class="text-[14px] text-[#636972] leading-[1.5] m-0 max-w-[280px] mx-auto">Every generator produces responsive sites that work on any device.</p>
+          </div>
+        </div>
+        <div class="flex flex-col items-center text-center gap-[15px]">
+          <div class="w-[48px] h-[48px] flex items-center justify-center flex-shrink-0"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#8159BB" stroke-width="1.5"/><path d="M8 12l3 3 5-6" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[5px]">FREE TO START</span>
+            <p class="text-[14px] text-[#636972] leading-[1.5] m-0 max-w-[280px] mx-auto">Generate, customize, and publish without a credit card.</p>
+          </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-[760px] mx-auto px-5 py-[60px]">
+    <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[30px]">FREQUENTLY ASKED QUESTIONS</h2>
+    
+    <div class="faq-item">
+      <button type="button" class="faq-button" aria-expanded="true" aria-controls="faq-panel-0">
+        <span>What is an AI site generator?</span>
+        <span class="faq-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div id="faq-panel-0" class="faq-panel open" role="region">
+        <div class="faq-panel-inner">An AI site generator is a tool that builds a complete website for you after you describe what you need. Instead of dragging elements around or choosing from static templates, you tell the AI about your project—your business type, your goals, your style preferences—and it produces a fully structured, ready-to-publish site. Strikingly's generators are tuned for specific site types so the output matches what that kind of site needs.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-button" aria-expanded="false" aria-controls="faq-panel-1">
+        <span>How is a generator different from a template?</span>
+        <span class="faq-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div id="faq-panel-1" class="faq-panel" role="region">
+        <div class="faq-panel-inner">A template is a static layout you fill in yourself. A generator actively builds your site for you based on your description. With a template you start with someone else's design and replace their content with yours. With a generator you describe your business and the AI assembles layout, copy, and structure specifically for your needs. Generators save time and produce more personalized results.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-button" aria-expanded="false" aria-controls="faq-panel-2">
+        <span>Are these generators free to use?</span>
+        <span class="faq-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div id="faq-panel-2" class="faq-panel" role="region">
+        <div class="faq-panel-inner">Yes. You can browse any generator, describe your site, and have Strikingly's AI build a complete site for you without entering a credit card. You only choose a paid plan when you're ready to connect a custom domain or unlock premium features. The entire building and preview experience is free.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-button" aria-expanded="false" aria-controls="faq-panel-3">
+        <span>You can build business websites, landing pages, online stores, portfolios, blogs, link-in-bio pages, wedding sites, restaurant sites, and many more. Our directory is organized by category so you can quickly find a generator tuned for your specific goal.</span>
+        <span class="faq-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div id="faq-panel-3" class="faq-panel" role="region">
+        <div class="faq-panel-inner">undefined</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-button" aria-expanded="false" aria-controls="faq-panel-4">
+        <span>Can I customize what the generator produces?</span>
+        <span class="faq-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div id="faq-panel-4" class="faq-panel" role="region">
+        <div class="faq-panel-inner">Absolutely. After the AI builds your initial site, you can customize every part of it—text, images, colors, layout, pages. The generator gives you a strong starting point. You have full creative control from there. Our editor lets you tweak anything before publishing.</div>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-button" aria-expanded="false" aria-controls="faq-panel-5">
+        <span>Do generated sites work on mobile?</span>
+        <span class="faq-icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8h10" stroke="#8159BB" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </button>
+      <div id="faq-panel-5" class="faq-panel" role="region">
+        <div class="faq-panel-inner">Yes, every site Strikingly generates is responsive by default. Your site will automatically adapt to phones, tablets, and desktops without any extra work from you. You can preview the mobile view in our editor and make mobile-specific adjustments if you like.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Closing CTA -->
+  <section class="text-center py-[60px] max-w-[1200px] mx-auto px-5">
+    <h2 class="text-[26px] md:text-[32px] font-heading font-bold text-[#4B5056] mb-[10px]">READY TO BUILD?</h2>
+    <p class="text-[14px] md:text-[16px] text-[#636972] mb-[30px] max-w-[500px] mx-auto">Pick a generator above, or jump straight into our AI builder.</p>
+    <a href="/s/ai_site_builder" class="btn-primary btn-lg">START WITH AI BUILDER</a>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#F4F6F8] py-[40px]">
+  <div class="max-w-[1200px] mx-auto px-5">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-[30px] mb-[30px]">
+      <div><span class="font-heading font-bold text-[14px] text-[#2E2E2F] block mb-[15px]">strikingly AI</span></div>
+      
+      <div>
+        <span class="font-heading font-bold text-[12px] text-[#2E2E2F] block mb-[12px]">PRODUCT</span>
+        <ul class="list-none m-0 p-0 flex flex-col gap-[8px]">
+          <li><a href="/s/ai_site_builder" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">AI Site Builder</a></li><li><a href="/templates" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Templates</a></li><li><a href="/pricing" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-[12px] text-[#2E2E2F] block mb-[12px]">COMPANY</span>
+        <ul class="list-none m-0 p-0 flex flex-col gap-[8px]">
+          <li><a href="/about" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">About</a></li><li><a href="/blog" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-[12px] text-[#2E2E2F] block mb-[12px]">SUPPORT</span>
+        <ul class="list-none m-0 p-0 flex flex-col gap-[8px]">
+          <li><a href="/support" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Help Center</a></li><li><a href="/support" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <span class="font-heading font-bold text-[12px] text-[#2E2E2F] block mb-[12px]">LEGAL</span>
+        <ul class="list-none m-0 p-0 flex flex-col gap-[8px]">
+          <li><a href="/terms" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Terms</a></li><li><a href="/privacy" class="text-[13px] text-[#636972] no-underline hover:text-brand-purple transition-colors">Privacy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-[#E2E4E7] pt-[20px] text-center text-[12px] text-[#636972]">© 2026 Strikingly, Inc. All rights reserved.</div>
+  </div>
+</footer></div>
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
