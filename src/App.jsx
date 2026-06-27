@@ -1,15 +1,6 @@
-import './App.css'
+import './App.css';
+import GeneratorsHubPage from './components/GeneratorsHubPage.jsx';
 
-function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+export default function App() {
+  return <GeneratorsHubPage />;
 }
-
-export default App
