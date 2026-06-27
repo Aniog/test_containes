@@ -1,74 +1,53 @@
 @import "tailwindcss";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --color-primary-base: #8159bb;
+  --color-primary-dark: #6a499d;
+  --color-text-heading: #4b5056;
+  --color-text-body: #636972;
+  --color-text-dark: #2e2e2f;
+  --color-border: #c6c9cd;
+  --color-divider: #e2e4e7;
+  --color-bg-light: #f4f6f8;
+  
+  --font-heading: 'Brandon Grotesque', 'Josefin Sans', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@layer utilities {
+  .btn-primary {
+    @apply h-[36px] px-[15px] py-[9px] rounded-[4px] bg-gradient-to-r from-[#7671FF] to-[#CB0C9F] text-white font-heading font-bold text-[14px] uppercase flex items-center justify-center transition-opacity hover:opacity-90;
+  }
+  
+  .btn-ghost {
+    @apply h-[36px] px-[15px] py-[9px] rounded-[4px] bg-transparent border border-[#8159BB] text-[#8159BB] font-heading font-bold text-[14px] uppercase flex items-center justify-center hover:bg-[#8159BB]/10 transition-colors;
+  }
+
+  .card-link {
+    @apply bg-white border border-[#C6C9CD] rounded-[3px] p-[20px] transition-all duration-200 hover:shadow-md hover:border-[#8159BB];
+  }
+  
+  .tag-ghost {
+    @apply inline-block px-[6px] py-[2px] rounded-[3px] border border-[#8159BB] text-[#8159BB] font-heading text-[11px] uppercase whitespace-nowrap;
+  }
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  color: var(--color-text-body);
+  background-color: #FFFFFF;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Accordion animation support */
+.faq-answer {
+  will-change: height, opacity, padding;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Grid collapse animation */
+.generator-card {
+  transition: opacity 0.3s ease;
 }
