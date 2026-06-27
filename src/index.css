@@ -1,74 +1,123 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --color-velmora-bg: #0f0d0b;
+  --color-velmora-surface: #1a1714;
+  --color-velmora-card: #211e1a;
+  --color-velmora-border: #2e2a25;
+  --color-velmora-muted: #3a3530;
+  --color-velmora-text: #f5f0eb;
+  --color-velmora-text-secondary: #b8ada3;
+  --color-velmora-gold: #c9a96e;
+  --color-velmora-gold-light: #dfc08a;
+  --color-velmora-gold-dark: #a88b4a;
+  --color-velmora-cream: #f5f0eb;
+  --color-velmora-accent: #c9a96e;
+  --color-velmora-accent-hover: #dfc08a;
+  --color-velmora-star: #c9a96e;
+  --color-velmora-error: #e85d5d;
+  --color-velmora-success: #5dba7d;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-velmora-text);
+  background-color: var(--color-velmora-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: var(--color-velmora-bg);
+  color: var(--color-velmora-text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  background: none;
+  padding: 0;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+input, textarea, select {
+  font-family: inherit;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
 }
+::-webkit-scrollbar-track {
+  background: var(--color-velmora-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-velmora-muted);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-velmora-gold);
+  color: var(--color-velmora-bg);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
