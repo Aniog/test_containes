@@ -1,14 +1,17 @@
+import { useEffect } from 'react'
+import GeneratorsPage, { GeneratorsHead } from './GeneratorsPage.jsx'
 import './App.css'
 
 function App() {
+  useEffect(() => {
+    document.title = 'AI Website Generators - Build Any Site in Seconds | Strikingly'
+  }, [])
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <>
+      <GeneratorsHead />
+      <GeneratorsPage />
+    </>
   )
 }
 
