@@ -1,74 +1,240 @@
 @import "tailwindcss";
 
+@theme {
+  --color-cream: #FAF8F5;
+  --color-ivory: #F5F1EB;
+  --color-charcoal: #1C1917;
+  --color-espresso: #292524;
+  --color-gold: #C9A96E;
+  --color-gold-light: #E8D5B0;
+  --color-gold-dark: #A07840;
+  --color-taupe: #78716C;
+  --color-warm-gray: #A8A29E;
+  --color-border: #E8E3DC;
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Manrope', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1C1917;
+  background-color: #FAF8F5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Manrope', system-ui, sans-serif;
+  background-color: #FAF8F5;
+  color: #1C1917;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #C9A96E;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #E8D5B0;
+  border-radius: 3px;
+}
 
-  button {
-    background-color: #f9f9f9;
+/* Cart drawer animation */
+.cart-drawer-enter {
+  transform: translateX(100%);
+}
+.cart-drawer-enter-active {
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cart-drawer-exit {
+  transform: translateX(0);
+}
+.cart-drawer-exit-active {
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Overlay fade */
+.overlay-fade {
+  transition: opacity 0.3s ease;
+}
+
+/* Product image hover */
+.product-img-wrap img {
+  transition: opacity 0.4s ease, transform 0.5s ease;
+}
+.product-img-wrap:hover .img-primary {
+  opacity: 0;
+}
+.product-img-wrap:hover .img-secondary {
+  opacity: 1;
+}
+.product-img-wrap .img-secondary {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+}
+
+/* Horizontal scroll hide scrollbar */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Accordion transition */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+/* Nav transition */
+.nav-solid {
+  background-color: #FAF8F5 !important;
+  box-shadow: 0 1px 0 #E8E3DC;
+}
+
+/* Star rating */
+.star-filled {
+  color: #C9A96E;
+}
+.star-empty {
+  color: #E8E3DC;
+}
+
+/* Hairline divider */
+.hairline {
+  border-top: 1px solid #E8E3DC;
+}
+
+/* Letter spacing utilities */
+.tracking-luxury {
+  letter-spacing: 0.2em;
+}
+.tracking-wide-xl {
+  letter-spacing: 0.15em;
+}
+
+/* Smooth image loading */
+.img-fade-in {
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Pill variant selector */
+.variant-pill {
+  border: 1px solid #E8E3DC;
+  padding: 0.4rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  color: #1C1917;
+  font-family: 'Manrope', sans-serif;
+}
+.variant-pill:hover {
+  border-color: #C9A96E;
+  color: #C9A96E;
+}
+.variant-pill.active {
+  background: #1C1917;
+  border-color: #1C1917;
+  color: #FAF8F5;
+}
+
+/* Quantity input */
+.qty-btn {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #E8E3DC;
+  background: transparent;
+  font-size: 1rem;
+  color: #1C1917;
+  transition: all 0.2s;
+}
+.qty-btn:hover {
+  border-color: #C9A96E;
+  color: #C9A96E;
+}
+
+/* Trust bar */
+.trust-bar {
+  background: #1C1917;
+  color: #E8D5B0;
+}
+
+/* Section fade-up animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Toast notification */
+.toast-enter {
+  animation: slideInRight 0.3s ease forwards;
+}
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
