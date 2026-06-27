@@ -4,6 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
+import prerenderPlugin from './plugin/vite-plugin-prerender.js'
 
 export default defineConfig({
   plugins: [
@@ -12,6 +13,7 @@ export default defineConfig({
     visualEditPlugin(),
     tailwindcss(),
     react(),
+    prerenderPlugin(),
   ],
   resolve: {
     alias: {
