@@ -1,74 +1,90 @@
 @import "tailwindcss";
 
+@theme {
+  --color-velmora-bg: #f7f4f0;
+  --color-velmora-cream: #f2ebe2;
+  --color-velmora-charcoal: #1e1a17;
+  --color-velmora-warm: #4a3f36;
+  --color-velmora-gold: #b68d40;
+  --color-velmora-gold-hover: #9a7634;
+  --color-velmora-muted: #8b7e72;
+  --color-velmora-border: #e2d8cc;
+  --color-velmora-surface: #ffffff;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: var(--color-velmora-charcoal);
+  background-color: var(--color-velmora-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+html {
+  scroll-behavior: smooth;
 }
 
-a:hover {
-  color: #535bf2;
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-sans);
+  background-color: var(--color-velmora-bg);
+  color: var(--color-velmora-charcoal);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
   line-height: 1.1;
+  letter-spacing: 0.02em;
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: 0.85em 1.75em;
+  font-size: 0.8rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: var(--font-sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.3s ease;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid var(--color-velmora-gold);
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+input, select, textarea {
+  font-family: var(--font-sans);
+}
 
-  a:hover {
-    color: #747bff;
-  }
+::selection {
+  background-color: var(--color-velmora-gold);
+  color: white;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* Hide scrollbar for UGC row but keep functionality */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
