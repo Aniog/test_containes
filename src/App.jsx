@@ -1,14 +1,18 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
+import GeneratorsHub from '@/pages/GeneratorsHub.jsx'
 import './App.css'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/generators" element={<GeneratorsHub />} />
+          <Route path="/" element={<GeneratorsHub />} />
+        </Routes>
+      </BrowserRouter>
+    </HelmetProvider>
   )
 }
 
