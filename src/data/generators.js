@@ -1,0 +1,103 @@
+export const categoryOrder = [
+  'websites',
+  'landing-pages',
+  'portfolios',
+  'blogs',
+  'stores',
+  'link-in-bio',
+];
+
+export const categorySlugs = {
+  websites: 'websites',
+  'landing-pages': 'landing-pages',
+  portfolios: 'portfolios',
+  blogs: 'blogs',
+  stores: 'stores',
+  'link-in-bio': 'link-in-bio',
+};
+
+export const featuredGenerators = [
+  { name: 'AI Website Generator', description: 'Describe your business, get a full site', category: 'Websites', slug: 'ai-website-generator' },
+  { name: 'Free Portfolio Generator', description: 'For creatives, in minutes, no fee', category: 'Portfolio', slug: 'free-portfolio-generator' },
+  { name: 'AI Landing Page Maker', description: 'One-page sites built to convert', category: 'Landing Page', slug: 'ai-landing-page-maker' },
+  { name: 'Online Store Builder', description: 'Start selling without writing code', category: 'Store', slug: 'online-store-builder' },
+  { name: 'Link-in-Bio Generator', description: 'One link for all your channels', category: 'Link-in-Bio', slug: 'link-in-bio-generator' },
+  { name: 'One-Page Website Builder', description: 'Simple sites, single scroll', category: 'Website', slug: 'one-page-website-builder' },
+  { name: 'Wedding Website Generator', description: 'Share your day with guests', category: 'Website', slug: 'wedding-website-generator' },
+  { name: 'Restaurant Website Builder', description: 'Menu, hours, reservations, done', category: 'Website', slug: 'restaurant-website-builder' },
+  { name: 'Blog Generator for Beginners', description: 'Publish-ready in minutes', category: 'Blog', slug: 'blog-generator-for-beginners' },
+];
+
+export const allGenerators = {
+  websites: [
+    { name: 'AI Website Generator', description: 'Describe your business, get a full site', slug: 'ai-website-generator' },
+    { name: 'Free Website Builder', description: 'No cost, no code, launch today', slug: 'free-website-builder' },
+    { name: 'One-Page Website Builder', description: 'Simple sites, single scroll', slug: 'one-page-website-builder' },
+    { name: 'Business Website Generator', description: 'Professional sites for any industry', slug: 'business-website-generator' },
+    { name: 'Personal Website Builder', description: 'Your online presence, made easy', slug: 'personal-website-builder' },
+    { name: 'Wedding Website Generator', description: 'Share your day with guests', slug: 'wedding-website-generator' },
+    { name: 'Restaurant Website Builder', description: 'Menu, hours, reservations, done', slug: 'restaurant-website-builder' },
+    { name: 'Real Estate Website Generator', description: 'Listings and leads, automated', slug: 'real-estate-website-generator' },
+    { name: 'Photographer Website Builder', description: 'Stunning galleries, zero effort', slug: 'photographer-website-builder' },
+    { name: 'Yoga Instructor Website Builder', description: 'Classes, schedules, and booking', slug: 'yoga-instructor-website-builder' },
+    { name: 'Nonprofit Website Generator', description: 'Mission-driven sites that inspire action', slug: 'nonprofit-website-generator' },
+  ],
+  'landing-pages': [
+    { name: 'AI Landing Page Maker', description: 'One-page sites built to convert', slug: 'ai-landing-page-maker' },
+    { name: 'Free Landing Page Builder', description: 'Launch a campaign page at no cost', slug: 'free-landing-page-builder' },
+    { name: 'SaaS Landing Page Generator', description: 'Product pages that drive signups', slug: 'saas-landing-page-generator' },
+    { name: 'Event Landing Page Builder', description: 'Countdown, RSVP, and details', slug: 'event-landing-page-builder' },
+    { name: 'App Launch Page Generator', description: 'Showcase your app before launch', slug: 'app-launch-page-generator' },
+    { name: 'Lead Capture Page Builder', description: 'Forms and CTAs that convert', slug: 'lead-capture-page-builder' },
+    { name: 'Webinar Registration Page Generator', description: 'Signups and reminders, handled', slug: 'webinar-registration-page-generator' },
+    { name: 'Product Launch Landing Page Builder', description: 'Build buzz before you ship', slug: 'product-launch-landing-page-builder' },
+    { name: 'Click-Through Landing Page Generator', description: 'One message, one action', slug: 'click-through-landing-page-generator' },
+  ],
+  portfolios: [
+    { name: 'Free Portfolio Generator', description: 'For creatives, in minutes, no fee', slug: 'free-portfolio-generator' },
+    { name: 'Design Portfolio Builder', description: 'Showcase your best design work', slug: 'design-portfolio-builder' },
+    { name: 'Photography Portfolio Generator', description: 'Beautiful image galleries, fast', slug: 'photography-portfolio-generator' },
+    { name: 'Art Portfolio Website Builder', description: 'Canvas for your creativity online', slug: 'art-portfolio-website-builder' },
+    { name: 'Writer Portfolio Generator', description: 'Clips and bylines, organized', slug: 'writer-portfolio-generator' },
+    { name: 'Student Portfolio Builder', description: 'Academic and project work, presented', slug: 'student-portfolio-builder' },
+    { name: 'Architecture Portfolio Generator', description: 'Blueprints and renders, displayed', slug: 'architecture-portfolio-generator' },
+    { name: 'Fashion Portfolio Website Builder', description: 'Lookbooks and collections, online', slug: 'fashion-portfolio-website-builder' },
+    { name: 'Video Portfolio Generator', description: 'Reels and clips, one clean page', slug: 'video-portfolio-generator' },
+    { name: 'Music Portfolio Builder', description: 'Tracks, tours, and press, all in one place', slug: 'music-portfolio-builder' },
+  ],
+  blogs: [
+    { name: 'Blog Generator for Beginners', description: 'Publish-ready in minutes', slug: 'blog-generator-for-beginners' },
+    { name: 'Free Blog Builder', description: 'Start writing without spending a dime', slug: 'free-blog-builder' },
+    { name: 'Personal Blog Generator', description: 'Your thoughts, beautifully presented', slug: 'personal-blog-generator' },
+    { name: 'Travel Blog Website Builder', description: 'Stories and photos from the road', slug: 'travel-blog-website-builder' },
+    { name: 'Food Blog Generator', description: 'Recipes and reviews, served fresh', slug: 'food-blog-generator' },
+    { name: 'Tech Blog Builder', description: 'Insights and tutorials, published fast', slug: 'tech-blog-builder' },
+    { name: 'Lifestyle Blog Generator', description: 'Curated content, effortless design', slug: 'lifestyle-blog-generator' },
+    { name: 'Fitness Blog Website Builder', description: 'Workouts and wellness, shared', slug: 'fitness-blog-website-builder' },
+    { name: 'News Blog Generator', description: 'Headlines and updates, always current', slug: 'news-blog-generator' },
+  ],
+  stores: [
+    { name: 'Online Store Builder', description: 'Start selling without writing code', slug: 'online-store-builder' },
+    { name: 'Free Online Store Generator', description: 'Open shop at zero cost', slug: 'free-online-store-generator' },
+    { name: 'Ecommerce Website Builder', description: 'Full-featured stores, simple setup', slug: 'ecommerce-website-builder' },
+    { name: 'Clothing Store Website Generator', description: 'Fashion retail, online and on-brand', slug: 'clothing-store-website-generator' },
+    { name: 'Handmade Shop Builder', description: 'Crafts and creations, beautifully sold', slug: 'handmade-shop-builder' },
+    { name: 'Digital Product Store Generator', description: 'Sell downloads, courses, and files', slug: 'digital-product-store-generator' },
+    { name: 'Food and Beverage Store Builder', description: 'Specialty foods, delivered online', slug: 'food-and-beverage-store-builder' },
+    { name: 'Subscription Box Website Generator', description: 'Recurring revenue, recurring delight', slug: 'subscription-box-website-generator' },
+    { name: 'Print-on-Demand Store Builder', description: 'Custom merch, no inventory needed', slug: 'print-on-demand-store-builder' },
+    { name: 'Jewelry Store Website Generator', description: 'Sparkle online with polished design', slug: 'jewelry-store-website-generator' },
+  ],
+  'link-in-bio': [
+    { name: 'Link-in-Bio Generator', description: 'One link for all your channels', slug: 'link-in-bio-generator' },
+    { name: 'Free Link-in-Bio Builder', description: 'All your links, no cost', slug: 'free-link-in-bio-builder' },
+    { name: 'Creator Link Page Generator', description: 'For influencers and content creators', slug: 'creator-link-page-generator' },
+    { name: 'Musician Link-in-Bio Builder', description: 'Streams, shows, and merch, linked', slug: 'musician-link-in-bio-builder' },
+    { name: 'Podcast Link Page Generator', description: 'Episodes and platforms, one URL', slug: 'podcast-link-page-generator' },
+    { name: 'Artist Link-in-Bio Builder', description: 'Portfolio, shop, and social, connected', slug: 'artist-link-in-bio-builder' },
+    { name: 'Small Business Link Page Generator', description: 'Contact, hours, and offers, one tap', slug: 'small-business-link-page-generator' },
+    { name: 'TikTok Link-in-Bio Builder', description: 'From viral to valuable, one link', slug: 'tiktok-link-in-bio-builder' },
+  ],
+};
+
+export const VISIBLE_COUNT = 6;
