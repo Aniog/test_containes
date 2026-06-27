@@ -1,15 +1,11 @@
-import './App.css'
+import GeneratorsPage from './pages/GeneratorsPage';
 
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  // If the static HTML already rendered the full page, do not mount a duplicate.
+  if (typeof window !== 'undefined' && document.querySelector('.generators-page')) {
+    return null;
+  }
+  return <GeneratorsPage />;
 }
 
-export default App
+export default App;
