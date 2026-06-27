@@ -1,15 +1,8 @@
-import './App.css'
-
+// The /generators hub page is a fully static HTML page served from index.html.
+// This React entry is not mounted on this route and is kept only to satisfy
+// the Vite project scaffold. All content lives in index.html.
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  return null
 }
 
 export default App
