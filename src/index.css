@@ -1,74 +1,118 @@
 @import "tailwindcss";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --color-velmora-black: #0f0f0f;
+  --color-velmora-charcoal: #1a1a1a;
+  --color-velmora-ink: #2a2a2a;
+  --color-velmora-warm: #3d3530;
+  --color-velmora-gold: #c9a96e;
+  --color-velmora-gold-light: #d4bc8b;
+  --color-velmora-gold-dark: #a88a4e;
+  --color-velmora-cream: #f7f4ef;
+  --color-velmora-sand: #ede6db;
+  --color-velmora-pearl: #faf8f5;
+  --color-velmora-white: #ffffff;
+  --color-velmora-muted: #8a8279;
+  --color-velmora-border: #e5dfd6;
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", "Manrope", system-ui, sans-serif;
+
+  --animate-fade-in: fade-in 0.6s ease-out;
+  --animate-slide-up: slide-up 0.7s ease-out;
+  --animate-soft-zoom: soft-zoom 0.8s ease-out;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-a:hover {
-  color: #535bf2;
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+@keyframes soft-zoom {
+  from { opacity: 0; transform: scale(1.04); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
-  a:hover {
-    color: #747bff;
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-velmora-charcoal);
+    background-color: var(--color-velmora-pearl);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::selection {
+    background-color: var(--color-velmora-gold);
+    color: var(--color-velmora-white);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
   }
 
   button {
-    background-color: #f9f9f9;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .tracking-ultra-wide {
+    letter-spacing: 0.28em;
+  }
+
+  .tracking-editorial {
+    letter-spacing: 0.12em;
+  }
+
+  .hairline-top {
+    border-top: 1px solid var(--color-velmora-border);
+  }
+
+  .hairline-bottom {
+    border-bottom: 1px solid var(--color-velmora-border);
+  }
+
+  .hairline-left {
+    border-left: 1px solid var(--color-velmora-border);
+  }
+
+  .hairline-right {
+    border-right: 1px solid var(--color-velmora-border);
   }
 }
