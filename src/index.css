@@ -1,74 +1,288 @@
 @import "tailwindcss";
 
+/* ── Brand tokens via Tailwind v4 @theme ──────────────────────── */
+@theme {
+  --font-heading: "Josefin Sans", "Poppins", system-ui, sans-serif;
+  --font-body: "Open Sans", system-ui, sans-serif;
+
+  --color-brand-purple: #8159BB;
+  --color-ai-blue: #7671FF;
+  --color-ai-pink: #CB0C9F;
+  --color-heading: #4B5056;
+  --color-hero-h1: #2E2E2F;
+  --color-body-text: #636972;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-light-bg: #F4F6F8;
+  --color-page-bg: #FFFFFF;
+}
+
+/* ── Global resets ────────────────────────────────────────────── */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-body-text);
+  background-color: var(--color-page-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--color-heading);
+  margin: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Focus styles (accessibility) ─────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 2px;
+}
+
+/* ── AI gradient text utility ─────────────────────────────────── */
+.ai-gradient-text {
+  background: linear-gradient(135deg, var(--color-ai-blue), var(--color-ai-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── AI gradient button fill ──────────────────────────────────── */
+.ai-gradient-bg {
+  background: linear-gradient(135deg, var(--color-ai-blue), var(--color-ai-pink));
+}
+
+/* ── Content width constraint ─────────────────────────────────── */
+.content-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* ── Section spacing ──────────────────────────────────────────── */
+.section-block {
+  padding-block: 40px;
+}
+
+/* ── Card base ────────────────────────────────────────────────── */
+.card-base {
+  background: var(--color-page-bg);
+  border: 1px solid var(--color-card-border);
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-base:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-brand-purple);
+}
+
+/* ── Ghost tag ────────────────────────────────────────────────── */
+.ghost-tag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-brand-purple);
+  border: 1px solid var(--color-brand-purple);
+  display: inline-block;
+  line-height: 1.4;
+}
+
+/* ── Button base ──────────────────────────────────────────────── */
+.btn-base {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 14px;
+  border-radius: 4px;
+  padding: 9px 15px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  text-decoration: none;
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-base:hover {
+  opacity: 0.92;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-base:focus-visible {
+  outline: 2px solid var(--color-ai-blue);
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.btn-lg {
+  height: 44px;
+  padding: 12px 24px;
+  font-size: 15px;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-ai-blue), var(--color-ai-pink));
+  color: #FFFFFF;
+}
 
-  button {
-    background-color: #f9f9f9;
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--color-brand-purple);
+  color: var(--color-brand-purple);
+}
+
+.btn-ghost:hover {
+  background: rgba(129, 89, 187, 0.06);
+}
+
+/* ── Responsive grid helper ───────────────────────────────────── */
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
+
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Show-all collapse animation ──────────────────────────────── */
+.collapse-container {
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+.collapsed {
+  max-height: 0 !important;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.expanded {
+  opacity: 1;
+}
+
+/* ── Search input ─────────────────────────────────────────────── */
+.search-input {
+  width: 100%;
+  max-width: 480px;
+  padding: 10px 14px 10px 40px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  color: var(--color-body-text);
+  background: var(--color-page-bg);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #9ca3af;
+}
+
+.search-input:focus {
+  border-color: var(--color-brand-purple);
+  box-shadow: 0 0 0 3px rgba(129, 89, 187, 0.12);
+}
+
+/* ── FAQ accordion ────────────────────────────────────────────── */
+.faq-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--color-divider);
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--color-heading);
+  text-align: start;
+  line-height: 1.3;
+}
+
+.faq-btn:hover {
+  color: var(--color-brand-purple);
+}
+
+.faq-content {
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+.faq-content-inner {
+  padding-block: 0 20px;
+}
+
+/* ── Skip link (accessibility) ────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 10px;
+  background: var(--color-brand-purple);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  top: 10px;
 }
