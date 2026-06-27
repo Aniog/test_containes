@@ -7,8 +7,12 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+// Use hydrateRoot if the root already has SSR content, otherwise createRoot
+const rootEl = document.getElementById("root");
+const hasSsrContent = rootEl && rootEl.childNodes.length > 0;
+
+if (hasSsrContent) {
+  ReactDOM.hydrateRoot(rootEl, <App />);
+} else {
+  ReactDOM.createRoot(rootEl).render(<App />);
+}
