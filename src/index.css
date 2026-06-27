@@ -1,74 +1,217 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Velmora Fine Jewelry — Design System Tokens
+   Palette: Ivory + Espresso + Brushed Gold (warm, editorial)
+   ============================================================ */
+
+@theme {
+  --color-ivory: #f8f4ee;
+  --color-ivory-soft: #f1ece3;
+  --color-ivory-deep: #ebe4d8;
+
+  --color-espresso: #1f1a17;
+  --color-espresso-soft: #3a322c;
+  --color-espresso-deep: #14110f;
+
+  --color-muted: #8a7e72;
+  --color-muted-soft: #b3a89c;
+
+  --color-gold: #b8956a;
+  --color-gold-soft: #d4b896;
+  --color-gold-deep: #9a7a52;
+
+  --color-rose-clay: #c9a48a;
+
+  --color-hairline: #d9cfc2;
+  --color-hairline-soft: #e8e0d2;
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.55;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: var(--color-espresso);
+  background-color: var(--color-ivory);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--color-ivory);
+  color: var(--color-espresso);
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Editorial typography utilities */
+.font-serif {
+  font-family: var(--font-serif);
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: -0.005em;
+}
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.6875rem;
+  color: var(--color-gold-deep);
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8125rem;
+  color: var(--color-espresso);
+}
+
+.product-name-lg {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background-color: var(--color-hairline);
+  width: 100%;
+}
+
+/* Button base */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.6875rem;
+  padding: 1rem 2rem;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+  border: 1px solid transparent;
+  background: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--color-espresso);
+  color: var(--color-ivory);
+  border-color: var(--color-espresso);
+}
+.btn-primary:hover {
+  background-color: var(--color-espresso-soft);
+  box-shadow: 0 8px 24px rgba(31, 26, 23, 0.18);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-accent {
+  background-color: var(--color-gold);
+  color: var(--color-espresso);
+  border-color: var(--color-gold);
+}
+.btn-accent:hover {
+  background-color: var(--color-gold-deep);
+  border-color: var(--color-gold-deep);
+  color: var(--color-ivory);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-espresso);
+  border-color: var(--color-espresso);
+}
+.btn-outline:hover {
+  background-color: var(--color-espresso);
+  color: var(--color-ivory);
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.btn-outline-light {
+  background-color: transparent;
+  color: var(--color-ivory);
+  border-color: var(--color-ivory);
+}
+.btn-outline-light:hover {
+  background-color: var(--color-ivory);
+  color: var(--color-espresso);
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* Custom scrollbar — restrained */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-hairline);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-soft);
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hide scrollbar utility for the UGC reel */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Subtle hover swap for product image (CSS fallback when JS not ready) */
+.product-image-stack img {
+  transition: opacity 0.6s ease;
+}
+.product-image-stack:hover .product-image-secondary {
+  opacity: 1;
+}
+.product-image-secondary {
+  opacity: 0;
+}
+
+/* Marquee for testimonial subtle accent */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
