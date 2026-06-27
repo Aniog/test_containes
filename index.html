@@ -508,14 +508,17 @@
     </style>
   </head>
   <body>
-    <div id="root"></div>
     <!-- =========================================================
          STATIC PAGE CONTENT — fully server-rendered in source HTML.
-         Every section, every card, every /generators/{slug} link
-         is present in view-source: without JavaScript.
-         JavaScript at the bottom is progressive enhancement only
-         (search filter, FAQ accordion, show-all collapse).
+         The full page lives inside <div id="root"> so it is the
+         visible page body. Every section, every card, every
+         /generators/{slug} link is present in view-source: without
+         JavaScript. main.jsx intentionally does NOT mount a React
+         tree, so this markup is never cleared. JavaScript at the
+         bottom is progressive enhancement only (search, accordion,
+         show-all). With JS off, everything is reachable.
     ========================================================== -->
+    <div id="root">
     <a href="#main" class="visually-hidden" style="position:absolute;left:-9999px;top:auto;">Skip to main content</a>
 
     <!-- Section 0: Top bar -->
@@ -1353,6 +1356,7 @@
         <div class="footer-copy">&copy; 2026 Strikingly, Inc. All rights reserved.</div>
       </div>
     </footer>
+    </div><!-- /#root -->
 
     <!-- ============================================================
          PROGRESSIVE ENHANCEMENT
