@@ -7,7 +7,6 @@ import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
     tailwindcss(),
@@ -27,7 +26,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })

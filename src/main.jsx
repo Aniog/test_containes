@@ -7,7 +7,9 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+// Use createRoot for SPA mode
+const createRoot = ReactDOM.createRoot;
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
