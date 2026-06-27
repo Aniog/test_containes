@@ -6,13 +6,13 @@ export default function HomeHero() {
 
   return (
     <section ref={ref} className="relative h-[100svh] min-h-[600px] w-full overflow-hidden">
-      {/* Background image */}
+      {/* Background image (dark fallback so ivory text stays legible before load) */}
       <div
         data-strk-bg-id="hero-bg-velmora-7f2a9c"
         data-strk-bg="[hero-subtitle] [hero-title] gold jewelry worn on model warm editorial"
         data-strk-bg-ratio="9x16"
         data-strk-bg-width="1600"
-        className="absolute inset-0 bg-cream"
+        className="absolute inset-0 bg-ink"
       />
       {/* Warm overlay for legibility */}
       <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/20 to-ink/55" />
