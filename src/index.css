@@ -1,74 +1,237 @@
 @import "tailwindcss";
 
+/* ─── Brand Tokens ─────────────────────────────────────────────────────────── */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Colors */
+  --color-brand-purple: #8159BB;
+  --color-ai-from: #7671FF;
+  --color-ai-to: #CB0C9F;
+  --color-body-text: #636972;
+  --color-heading: #4B5056;
+  --color-hero-h1: #2E2E2F;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-bg-light: #F4F6F8;
+  --color-white: #FFFFFF;
+
+  /* Gradients */
+  --gradient-ai: linear-gradient(90deg, #7671FF 0%, #CB0C9F 100%);
+
+  /* Typography */
+  --font-heading: 'Josefin Sans', 'Poppins', sans-serif;
+  --font-body: 'Open Sans', system-ui, sans-serif;
+
+  /* Spacing */
+  --space-section: 80px;
+  --space-block: 40px;
+  --space-between: 20px;
+  --max-width: 1200px;
+
+  /* Transitions */
+  --transition-base: 0.2s ease;
+
+  font-family: var(--font-body);
+  font-size: 14px;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-body-text);
+  background-color: var(--color-white);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color-scheme: light;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-body);
+  background-color: var(--color-white);
+  color: var(--color-body-text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: var(--font-heading);
 }
 
-button:hover {
-  border-color: #646cff;
+/* ─── Utility Classes ───────────────────────────────────────────────────────── */
+.strk-container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 20px;
 }
 
-button:focus,
+.strk-heading-font {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.strk-gradient-text {
+  background: var(--gradient-ai);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.strk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 15px;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition-base), box-shadow var(--transition-base);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.strk-btn:focus-visible {
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 2px;
+}
+
+.strk-btn-primary {
+  background: var(--gradient-ai);
+  color: #FFFFFF !important;
+}
+
+.strk-btn-primary:hover {
+  opacity: 0.9;
+  box-shadow: 0 4px 16px rgba(118, 113, 255, 0.35);
+}
+
+.strk-btn-ghost {
+  background: transparent;
+  color: var(--color-brand-purple);
+  border: 1px solid var(--color-brand-purple);
+}
+
+.strk-btn-ghost:hover {
+  background: rgba(129, 89, 187, 0.06);
+}
+
+.strk-btn-lg {
+  height: 44px;
+  padding: 0 24px;
+  font-size: 14px;
+}
+
+/* ─── Card ──────────────────────────────────────────────────────────────────── */
+.strk-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.strk-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.10);
+  border-color: var(--color-brand-purple);
+}
+
+/* ─── Category Tag ──────────────────────────────────────────────────────────── */
+.strk-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-brand-purple);
+  border: 1px solid var(--color-brand-purple);
+  background: transparent;
+}
+
+/* ─── Focus Styles ──────────────────────────────────────────────────────────── */
+a:focus-visible,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
 
-@media (prefers-color-scheme: light) {
+/* ─── Accordion ─────────────────────────────────────────────────────────────── */
+.strk-accordion-content {
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+
+/* ─── Show-all collapse ─────────────────────────────────────────────────────── */
+.strk-cards-overflow {
+  overflow: hidden;
+  transition: height 0.35s ease;
+}
+
+/* ─── Divider ───────────────────────────────────────────────────────────────── */
+.strk-divider {
+  border: none;
+  border-top: 1px solid var(--color-divider);
+  margin: 0;
+}
+
+/* ─── Search ────────────────────────────────────────────────────────────────── */
+.strk-search-wrap {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+
+.strk-search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 44px;
+  border: 1px solid var(--color-card-border);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-hero-h1);
+  background: var(--color-white);
+  transition: border-color var(--transition-base);
+}
+
+.strk-search-input:focus {
+  outline: none;
+  border-color: var(--color-brand-purple);
+}
+
+.strk-search-icon {
+  position: absolute;
+  inset-inline-start: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-body-text);
+  pointer-events: none;
+}
+
+/* ─── Responsive helpers ────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
   :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+    --space-section: 50px;
+    --space-block: 30px;
   }
 }
