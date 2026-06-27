@@ -1,74 +1,85 @@
 @import "tailwindcss";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --font-heading: 'Josefin Sans', 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+
+  --color-brand-purple: #8159BB;
+  --color-brand-text-dark: #2E2E2F;
+  --color-brand-text-heading: #4B5056;
+  --color-brand-text-body: #636972;
+  --color-brand-border: #C6C9CD;
+  --color-brand-divider: #E2E4E7;
+  --color-brand-bg-light: #F4F6F8;
+  --color-ai-start: #7671FF;
+  --color-ai-end: #CB0C9F;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-brand-text-body);
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-brand-text-heading);
+}
+
+a {
   color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  text-decoration: none;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+img {
+  max-inline-size: 100%;
+  block-size: auto;
 }
 
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 2px;
+}
+
+/* Remove default list styles globally */
+ul, ol, menu {
+  list-style: none !important;
+  padding-inline-start: 0 !important;
+  margin-block: 0 !important;
+}
+
+li::marker {
+  content: '' !important;
+}
+
+li {
+  list-style-type: none !important;
+}
+
+/* Reset browser default button styles */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
