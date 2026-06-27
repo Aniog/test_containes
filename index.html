@@ -1,591 +1,1608 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script>
-      (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+  <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required." />
+  <link rel="canonical" href="https://www.strikingly.com/generators" />
+  <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly" />
+  <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds." />
+  <meta property="og:url" content="https://www.strikingly.com/generators" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Strikingly",
+        "item": "https://www.strikingly.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI Generators"
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root {
+      --brand-purple: #8159BB;
+      --ai-gradient-start: #7671FF;
+      --ai-gradient-end: #CB0C9F;
+      --body-text: #636972;
+      --heading-dark: #4B5056;
+      --heading-hero: #2E2E2F;
+      --card-border: #C6C9CD;
+      --divider: #E2E4E7;
+      --light-bg: #F4F6F8;
+      --white: #FFFFFF;
+      --font-heading: 'Josefin Sans', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--body-text);
+      background: var(--white);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section 0: Top Bar */
+    .top-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--divider);
+      padding: 12px 0;
+    }
+
+    .top-bar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .top-bar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--brand-purple);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+    }
+
+    /* Section 1: Breadcrumb */
+    .breadcrumb {
+      padding: 12px 0;
+    }
+
+    .breadcrumb-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .breadcrumb-list {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      gap: 8px;
+    }
+
+    .breadcrumb-item a {
+      color: var(--body-text);
+      text-decoration: none;
+    }
+
+    .breadcrumb-item a:hover {
+      color: var(--brand-purple);
+    }
+
+    .breadcrumb-separator {
+      color: var(--brand-purple);
+    }
+
+    .breadcrumb-item.current {
+      color: var(--body-text);
+    }
+
+    /* Section 2: Hero */
+    .hero {
+      padding: 60px 0 80px;
+      background: linear-gradient(135deg, rgba(118, 113, 255, 0.05) 0%, rgba(203, 12, 159, 0.05) 100%);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 1.2;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-text h1 .line1 {
+      color: var(--heading-hero);
+      display: block;
+    }
+
+    .hero-text h1 .line2 {
+      background: linear-gradient(90deg, var(--ai-gradient-start), var(--ai-gradient-end));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block;
+    }
+
+    .hero-subheadline {
+      font-size: 16px;
+      color: var(--body-text);
+      margin-bottom: 24px;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 36px;
+      padding: 0 15px;
+      border-radius: 4px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--ai-gradient-start), var(--ai-gradient-end));
+      color: var(--white);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--brand-purple);
+      border: 1px solid var(--brand-purple);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(129, 89, 187, 0.1);
+    }
+
+    .btn-large {
+      height: 44px;
+      padding: 0 24px;
+      font-size: 16px;
+    }
+
+    .hero-illustration {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-illustration svg {
+      width: 400px;
+      height: 300px;
+    }
+
+    /* Section 3: Featured Generators */
+    .featured-generators {
+      padding: 60px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 32px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 8px;
+    }
+
+    .section-header p {
+      color: var(--body-text);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .generator-card {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      padding: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .generator-card:hover {
+      border-color: var(--brand-purple);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 3px;
+      border: 1px solid var(--brand-purple);
+      color: var(--brand-purple);
+      margin-bottom: 12px;
+    }
+
+    .generator-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 18px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 8px;
+    }
+
+    .generator-card p {
+      color: var(--body-text);
+      font-size: 14px;
+    }
+
+    /* Section 4: Browse by Category */
+    .browse-categories {
+      padding: 60px 0;
+      background: var(--light-bg);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .category-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      padding: 20px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .category-card:hover {
+      border-color: var(--brand-purple);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .category-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .category-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--brand-purple);
+    }
+
+    .category-content h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 4px;
+    }
+
+    .category-content p {
+      color: var(--body-text);
+      font-size: 13px;
+    }
+
+    .category-arrow {
+      margin-left: auto;
+      color: var(--brand-purple);
+    }
+
+    /* Section 5: All Generators */
+    .all-generators {
+      padding: 60px 0;
+    }
+
+    .search-container {
+      max-width: 480px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 16px 0 44px;
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      font-size: 14px;
+      font-family: var(--font-body);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--brand-purple);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--body-text);
+    }
+
+    .search-results-count {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 14px;
+      color: var(--body-text);
+    }
+
+    .generator-subsection {
+      margin-bottom: 40px;
+    }
+
+    .generator-subsection h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 24px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 8px;
+      padding: 0 20px;
+    }
+
+    .generator-subsection > p {
+      color: var(--body-text);
+      margin-bottom: 20px;
+      padding: 0 20px;
+    }
+
+    .generator-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .generator-grid .generator-card {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .generator-grid .generator-card h3 {
+      font-size: 16px;
+    }
+
+    .show-all-btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--brand-purple);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .show-all-btn:hover {
+      border-color: var(--brand-purple);
+      background: rgba(129, 89, 187, 0.05);
+    }
+
+    .generator-card.hidden {
+      display: none;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .empty-state p {
+      margin-bottom: 16px;
+    }
+
+    /* Section 6: How It Works */
+    .how-it-works {
+      padding: 60px 0;
+      background: var(--light-bg);
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .step-item {
+      text-align: center;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--brand-purple);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+
+    .step-item h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 8px;
+    }
+
+    .step-item p {
+      color: var(--body-text);
+      font-size: 14px;
+    }
+
+    /* Section 7: Why Strikingly */
+    .why-strikingly {
+      padding: 60px 0;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .why-item {
+      text-align: center;
+    }
+
+    .why-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+      color: var(--brand-purple);
+    }
+
+    .why-item h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 8px;
+    }
+
+    .why-item p {
+      color: var(--body-text);
+      font-size: 14px;
+    }
+
+    /* Section 8: FAQ */
+    .faq {
+      padding: 60px 0;
+      background: var(--light-bg);
+    }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--card-border);
+      border-radius: 3px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      padding: 16px 20px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--heading-dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-question:focus {
+      outline: 2px solid var(--brand-purple);
+      outline-offset: -2px;
+    }
+
+    .faq-icon {
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 16px;
+      color: var(--body-text);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    /* Section 9: Closing CTA */
+    .closing-cta {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .closing-cta h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 40px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 12px;
+    }
+
+    .closing-cta p {
+      color: var(--body-text);
+      margin-bottom: 24px;
+    }
+
+    /* Section 10: Footer */
+    .footer {
+      background: var(--light-bg);
+      padding: 60px 0 30px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: var(--heading-dark);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 8px;
+    }
+
+    .footer-col a {
+      color: var(--body-text);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .footer-col a:hover {
+      color: var(--brand-purple);
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      color: var(--brand-purple);
+      margin-bottom: 20px;
+    }
+
+    .footer-copyright {
+      text-align: center;
+      color: var(--body-text);
+      font-size: 13px;
+      padding-top: 20px;
+      border-top: 1px solid var(--divider);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .featured-grid,
+      .category-grid,
+      .generator-grid,
+      .steps-grid,
+      .why-grid,
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-illustration {
+        order: -1;
+      }
+
+      .hero-illustration svg {
+        width: 300px;
+        height: 225px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 32px;
+      }
+
+      .section-header h2,
+      .generator-subsection h3 {
+        font-size: 24px;
+      }
+
+      .featured-grid,
+      .category-grid,
+      .generator-grid,
+      .steps-grid,
+      .why-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-cta h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Section 0: Top Bar -->
+  <header class="top-bar">
+    <div class="top-bar-content">
+      <a href="/" class="top-bar-logo" aria-label="Strikingly Home">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="#8159BB"/>
+          <path d="M2 17L12 22L22 17" stroke="#8159BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="#8159BB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>STRIKINGLY AI</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Section 1: Breadcrumb -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <div class="breadcrumb-content">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="/">Strikingly</a></li>
+        <li class="breadcrumb-separator" aria-hidden="true">&gt;</li>
+        <li class="breadcrumb-item current" aria-current="page">AI Generators</li>
+      </ol>
+    </div>
+  </nav>
+
+  <!-- Section 2: Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>
+          <span class="line1">BUILD ANY KIND OF SITE</span>
+          <span class="line2">WITH AI, IN AN INSTANT</span>
+        </h1>
+        <p class="hero-subheadline">Browse the right generator for what you're building, or jump straight into our AI site builder.</p>
+        <div class="hero-buttons">
+          <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START BUILDING - IT'S FREE</a>
+          <a href="#all-generators" class="btn btn-ghost btn-large">BROWSE GENERATORS</a>
+        </div>
+      </div>
+      <div class="hero-illustration">
+        <svg viewBox="0 0 400 300" fill="none" aria-hidden="true">
+          <rect x="40" y="40" width="320" height="220" rx="8" fill="white" stroke="#C6C9CD" stroke-width="2"/>
+          <rect x="60" y="60" width="120" height="16" rx="2" fill="#F4F6F8"/>
+          <rect x="60" y="86" width="80" height="12" rx="2" fill="#F4F6F8"/>
+          <rect x="60" y="108" width="100" height="12" rx="2" fill="#F4F6F8"/>
+          <rect x="200" y="60" width="140" height="80" rx="4" fill="#F4F6F8"/>
+          <rect x="200" y="150" width="140" height="12" rx="2" fill="#F4F6F8"/>
+          <rect x="200" y="170" width="120" height="12" rx="2" fill="#F4F6F8"/>
+          <rect x="200" y="190" width="80" height="12" rx="2" fill="#F4F6F8"/>
+          <circle cx="320" cy="240" r="20" fill="url(#gradient)"/>
+          <path d="M310 240L317 247L332 232" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="gradient" x1="300" y1="220" x2="340" y2="260" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#7671FF"/>
+              <stop offset="1" stop-color="#CB0C9F"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Featured Generators -->
+  <section class="featured-generators">
+    <div class="section-header">
+      <h2>FEATURED GENERATORS</h2>
+      <p>A few common starting points.</p>
+    </div>
+    <div class="featured-grid">
+      <a href="/generators/ai-website-generator" class="generator-card">
+        <span class="card-tag">WEBSITE</span>
+        <h3>AI WEBSITE GENERATOR</h3>
+        <p>Describe your business, get a full site</p>
+      </a>
+      <a href="/generators/free-portfolio-generator" class="generator-card">
+        <span class="card-tag">PORTFOLIO</span>
+        <h3>FREE PORTFOLIO GENERATOR</h3>
+        <p>For creatives, in minutes, no fee</p>
+      </a>
+      <a href="/generators/ai-landing-page-maker" class="generator-card">
+        <span class="card-tag">LANDING PAGE</span>
+        <h3>AI LANDING PAGE MAKER</h3>
+        <p>One-page sites built to convert</p>
+      </a>
+      <a href="/generators/online-store-builder" class="generator-card">
+        <span class="card-tag">STORE</span>
+        <h3>ONLINE STORE BUILDER</h3>
+        <p>Start selling without writing code</p>
+      </a>
+      <a href="/generators/link-in-bio-generator" class="generator-card">
+        <span class="card-tag">LINK-IN-BIO</span>
+        <h3>LINK-IN-BIO GENERATOR</h3>
+        <p>One link for all your channels</p>
+      </a>
+      <a href="/generators/one-page-website-builder" class="generator-card">
+        <span class="card-tag">WEBSITE</span>
+        <h3>ONE-PAGE WEBSITE BUILDER</h3>
+        <p>Simple sites, single scroll</p>
+      </a>
+      <a href="/generators/wedding-website-generator" class="generator-card">
+        <span class="card-tag">WEBSITE</span>
+        <h3>WEDDING WEBSITE GENERATOR</h3>
+        <p>Share your day with guests</p>
+      </a>
+      <a href="/generators/restaurant-website-builder" class="generator-card">
+        <span class="card-tag">WEBSITE</span>
+        <h3>RESTAURANT WEBSITE BUILDER</h3>
+        <p>Menu, hours, reservations, done</p>
+      </a>
+      <a href="/generators/blog-generator-for-beginners" class="generator-card">
+        <span class="card-tag">BLOG</span>
+        <h3>BLOG GENERATOR FOR BEGINNERS</h3>
+        <p>Publish-ready in minutes</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 4: Browse by Category -->
+  <section class="browse-categories">
+    <div class="section-header">
+      <h2>BROWSE BY CATEGORY</h2>
+    </div>
+    <div class="category-grid">
+      <a href="#websites" class="category-card">
+        <div class="category-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+          </svg>
+        </div>
+        <div class="category-content">
+          <h3>WEBSITES</h3>
+          <p>AI-built business and personal sites for any goal.</p>
+        </div>
+        <div class="category-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </a>
+      <a href="#landing-pages" class="category-card">
+        <div class="category-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <line x1="3" y1="9" x2="21" y2="9"/>
+          </svg>
+        </div>
+        <div class="category-content">
+          <h3>LANDING PAGES</h3>
+          <p>Single-page sites built to convert visitors fast.</p>
+        </div>
+        <div class="category-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </a>
+      <a href="#portfolios" class="category-card">
+        <div class="category-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <div class="category-content">
+          <h3>PORTFOLIOS</h3>
+          <p>Showcase your work with a clean, focused site.</p>
+        </div>
+        <div class="category-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </a>
+      <a href="#blogs" class="category-card">
+        <div class="category-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <div class="category-content">
+          <h3>BLOGS</h3>
+          <p>Publish-ready blogs with built-in SEO basics.</p>
+        </div>
+        <div class="category-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </a>
+      <a href="#stores" class="category-card">
+        <div class="category-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="9" cy="21" r="1"/>
+            <circle cx="20" cy="21" r="1"/>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+          </svg>
+        </div>
+        <div class="category-content">
+          <h3>ONLINE STORES</h3>
+          <p>Sell products online with payments built in.</p>
+        </div>
+        <div class="category-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </a>
+      <a href="#link-in-bio" class="category-card">
+        <div class="category-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+          </svg>
+        </div>
+        <div class="category-content">
+          <h3>LINK-IN-BIO</h3>
+          <p>One link, all your places. Made for creators.</p>
+        </div>
+        <div class="category-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Section 5: All Generators -->
+  <section class="all-generators" id="all-generators">
+    <div class="section-header">
+      <h2>ALL GENERATORS</h2>
+      <p>Sixty-plus generators, organized by what you're building.</p>
+    </div>
+
+    <div class="search-container">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input type="search" class="search-input" id="search-input" placeholder="Search generators..." aria-label="Search generators">
+      <p class="search-results-count" id="search-results-count"></p>
+    </div>
+
+    <!-- Websites Subsection -->
+    <div class="generator-subsection" id="websites">
+      <h3>WEBSITES</h3>
+      <p>AI-built business and personal sites for any goal.</p>
+      <div class="generator-grid">
+        <a href="/generators/ai-website-generator" class="generator-card">
+          <h3>AI WEBSITE GENERATOR</h3>
+          <p>Describe your business, get a full site</p>
+        </a>
+        <a href="/generators/free-website-builder-for-photographers" class="generator-card">
+          <h3>FREE WEBSITE BUILDER FOR PHOTOGRAPHERS</h3>
+          <p>Beautiful photo galleries, built for pros</p>
+        </a>
+        <a href="/generators/one-page-website-builder" class="generator-card">
+          <h3>ONE-PAGE WEBSITE BUILDER</h3>
+          <p>Simple sites, single scroll</p>
+        </a>
+        <a href="/generators/wedding-website-generator" class="generator-card">
+          <h3>WEDDING WEBSITE GENERATOR</h3>
+          <p>Share your day with guests</p>
+        </a>
+        <a href="/generators/restaurant-website-builder" class="generator-card">
+          <h3>RESTAURANT WEBSITE BUILDER</h3>
+          <p>Menu, hours, reservations, done</p>
+        </a>
+        <a href="/generators/yoga-instructor-website-builder" class="generator-card">
+          <h3>YOGA INSTRUCTOR WEBSITE BUILDER</h3>
+          <p>Class schedules, booking, and bio</p>
+        </a>
+        <a href="/generators/free-website-builder-for-nurses" class="generator-card hidden">
+          <h3>FREE WEBSITE BUILDER FOR NURSES</h3>
+          <p>Professional presence for healthcare</p>
+        </a>
+        <a href="/generators/photographer-portfolio-website" class="generator-card hidden">
+          <h3>PHOTOGRAPHER PORTFOLIO WEBSITE</h3>
+          <p>Showcase your photography work</p>
+        </a>
+        <a href="/generators/consultant-website-builder" class="generator-card hidden">
+          <h3>CONSULTANT WEBSITE BUILDER</h3>
+          <p>Services, bio, and contact info</p>
+        </a>
+        <a href="/generators/real-estate-agent-website" class="generator-card hidden">
+          <h3>REAL ESTATE AGENT WEBSITE</h3>
+          <p>Listings and agent profile</p>
+        </a>
+      </div>
+      <button class="show-all-btn" aria-expanded="false" aria-controls="websites">SHOW ALL 10 GENERATORS</button>
+    </div>
+
+    <!-- Landing Pages Subsection -->
+    <div class="generator-subsection" id="landing-pages">
+      <h3>LANDING PAGES</h3>
+      <p>Single-page sites built to convert visitors fast.</p>
+      <div class="generator-grid">
+        <a href="/generators/ai-landing-page-maker" class="generator-card">
+          <h3>AI LANDING PAGE MAKER</h3>
+          <p>One-page sites built to convert</p>
+        </a>
+        <a href="/generators/product-launch-landing-page" class="generator-card">
+          <h3>PRODUCT LAUNCH LANDING PAGE</h3>
+          <p>Announce and sell your new product</p>
+        </a>
+        <a href="/generators/webinar-registration-page" class="generator-card">
+          <h3>WEBINAR REGISTRATION PAGE</h3>
+          <p>Sign-ups for online events</p>
+        </a>
+        <a href="/generators/lead-capture-page" class="generator-card">
+          <h3>LEAD CAPTURE PAGE</h3>
+          <p>Grow your email list fast</p>
+        </a>
+        <a href="/generators/coming-soon-page" class="generator-card">
+          <h3>COMING SOON PAGE</h3>
+          <p>Build hype before you launch</p>
+        </a>
+        <a href="/generators/thank-you-page" class="generator-card">
+          <h3>THANK YOU PAGE</h3>
+          <p>Confirmations that convert</p>
+        </a>
+        <a href="/generators/ebook-download-page" class="generator-card hidden">
+          <h3>EBOOK DOWNLOAD PAGE</h3>
+          <p>Free resource lead magnet</p>
+        </a>
+        <a href="/generators/app-download-landing-page" class="generator-card hidden">
+          <h3>APP DOWNLOAD LANDING PAGE</h3>
+          <p>Mobile app promotion</p>
+        </a>
+        <a href="/generators/video-sales-letter" class="generator-card hidden">
+          <h3>VIDEO SALES LETTER</h3>
+          <p>Video-centric landing page</p>
+        </a>
+      </div>
+      <button class="show-all-btn" aria-expanded="false" aria-controls="landing-pages">SHOW ALL 9 GENERATORS</button>
+    </div>
+
+    <!-- Portfolios Subsection -->
+    <div class="generator-subsection" id="portfolios">
+      <h3>PORTFOLIOS</h3>
+      <p>Showcase your work with a clean, focused site.</p>
+      <div class="generator-grid">
+        <a href="/generators/free-portfolio-generator" class="generator-card">
+          <h3>FREE PORTFOLIO GENERATOR</h3>
+          <p>For creatives, in minutes, no fee</p>
+        </a>
+        <a href="/generators/portfolio-generator-for-designers" class="generator-card">
+          <h3>PORTFOLIO GENERATOR FOR DESIGNERS</h3>
+          <p>Showcase visual work beautifully</p>
+        </a>
+        <a href="/generators/artist-portfolio-builder" class="generator-card">
+          <h3>ARTIST PORTFOLIO BUILDER</h3>
+          <p>Paintings, sculptures, and more</p>
+        </a>
+        <a href="/generators/writer-portfolio-generator" class="generator-card">
+          <h3>WRITER PORTFOLIO GENERATOR</h3>
+          <p>Articles, books, and samples</p>
+        </a>
+        <a href="/generators/musician-portfolio-website" class="generator-card">
+          <h3>MUSICIAN PORTFOLIO WEBSITE</h3>
+          <p>Music, videos, and tour dates</p>
+        </a>
+        <a href="/generators/architect-portfolio-builder" class="generator-card">
+          <h3>ARCHITECT PORTFOLIO BUILDER</h3>
+          <p>Projects and blueprints</p>
+        </a>
+        <a href="/generators/photographer-portfolio-generator" class="generator-card hidden">
+          <h3>PHOTOGRAPHER PORTFOLIO GENERATOR</h3>
+          <p>Professional photo showcase</p>
+        </a>
+        <a href="/generators/freelancer-portfolio" class="generator-card hidden">
+          <h3>FREELANCER PORTFOLIO</h3>
+          <p>Services and client work</p>
+        </a>
+        <a href="/generators/creative-portfolio-template" class="generator-card hidden">
+          <h3>CREATIVE PORTFOLIO TEMPLATE</h3>
+          <p>Versatile creative showcase</p>
+        </a>
+      </div>
+      <button class="show-all-btn" aria-expanded="false" aria-controls="portfolios">SHOW ALL 9 GENERATORS</button>
+    </div>
+
+    <!-- Blogs Subsection -->
+    <div class="generator-subsection" id="blogs">
+      <h3>BLOGS</h3>
+      <p>Publish-ready blogs with built-in SEO basics.</p>
+      <div class="generator-grid">
+        <a href="/generators/blog-generator-for-beginners" class="generator-card">
+          <h3>BLOG GENERATOR FOR BEGINNERS</h3>
+          <p>Publish-ready in minutes</p>
+        </a>
+        <a href="/generators/personal-blog-builder" class="generator-card">
+          <h3>PERSONAL BLOG BUILDER</h3>
+          <p>Share your thoughts with the world</p>
+        </a>
+        <a href="/generators/business-blog-generator" class="generator-card">
+          <h3>BUSINESS BLOG GENERATOR</h3>
+          <p>Content marketing made easy</p>
+        </a>
+        <a href="/generators/travel-blog-builder" class="generator-card">
+          <h3>TRAVEL BLOG BUILDER</h3>
+          <p>Stories and photos from the road</p>
+        </a>
+        <a href="/generators/food-blog-generator" class="generator-card">
+          <h3>FOOD BLOG GENERATOR</h3>
+          <p>Recipes and restaurant reviews</p>
+        </a>
+        <a href="/generators/tech-blog-builder" class="generator-card">
+          <h3>TECH BLOG BUILDER</h3>
+          <p>News, reviews, and tutorials</p>
+        </a>
+        <a href="/generators/fashion-blog-generator" class="generator-card hidden">
+          <h3>FASHION BLOG GENERATOR</h3>
+          <p>Style tips and trends</p>
+        </a>
+        <a href="/generators/fitness-blog-builder" class="generator-card hidden">
+          <h3>FITNESS BLOG BUILDER</h3>
+          <p>Workouts and health tips</p>
+        </a>
+        <a href="/generators/parenting-blog-generator" class="generator-card hidden">
+          <h3>PARENTING BLOG GENERATOR</h3>
+          <p>Family and parenting stories</p>
+        </a>
+      </div>
+      <button class="show-all-btn" aria-expanded="false" aria-controls="blogs">SHOW ALL 9 GENERATORS</button>
+    </div>
+
+    <!-- Online Stores Subsection -->
+    <div class="generator-subsection" id="stores">
+      <h3>ONLINE STORES</h3>
+      <p>Sell products online with payments built in.</p>
+      <div class="generator-grid">
+        <a href="/generators/online-store-builder" class="generator-card">
+          <h3>ONLINE STORE BUILDER</h3>
+          <p>Start selling without writing code</p>
+        </a>
+        <a href="/generators/online-store-builder-for-restaurants" class="generator-card">
+          <h3>ONLINE STORE BUILDER FOR RESTAURANTS</h3>
+          <p>Menu and takeout ordering</p>
+        </a>
+        <a href="/generators/e-commerce-site-for-artists" class="generator-card">
+          <h3>E-COMMERCE SITE FOR ARTISTS</h3>
+          <p>Sell prints and originals</p>
+        </a>
+        <a href="/generators/clothing-store-builder" class="generator-card">
+          <h3>CLOTHING STORE BUILDER</h3>
+          <p>Fashion retail made simple</p>
+        </a>
+        <a href="/generators/digital-products-store" class="generator-card">
+          <h3>DIGITAL PRODUCTS STORE</h3>
+          <p>Ebooks, courses, and downloads</p>
+        </a>
+        <a href="/generators/handmade-goods-marketplace" class="generator-card">
+          <h3>HANDMADE GOODS MARKETPLACE</h3>
+          <p>Crafts and artisan items</p>
+        </a>
+        <a href="/generators/jewelry-store-builder" class="generator-card hidden">
+          <h3>JEWELRY STORE BUILDER</h3>
+          <p>Beautiful jewelry e-commerce</p>
+        </a>
+        <a href="/generators/book-store-builder" class="generator-card hidden">
+          <h3>BOOK STORE BUILDER</h3>
+          <p>Sell books online</p>
+        </a>
+        <a href="/generators/subscription-box-builder" class="generator-card hidden">
+          <h3>SUBSCRIPTION BOX BUILDER</h3>
+          <p>Recurring delivery business</p>
+        </a>
+      </div>
+      <button class="show-all-btn" aria-expanded="false" aria-controls="stores">SHOW ALL 9 GENERATORS</button>
+    </div>
+
+    <!-- Link-in-Bio Subsection -->
+    <div class="generator-subsection" id="link-in-bio">
+      <h3>LINK-IN-BIO</h3>
+      <p>One link, all your places. Made for creators.</p>
+      <div class="generator-grid">
+        <a href="/generators/link-in-bio-generator" class="generator-card">
+          <h3>LINK-IN-BIO GENERATOR</h3>
+          <p>One link for all your channels</p>
+        </a>
+        <a href="/generators/influencer-link-page" class="generator-card">
+          <h3>INFLUENCER LINK PAGE</h3>
+          <p>All your links in one place</p>
+        </a>
+        <a href="/generators/creator-link-in-bio" class="generator-card">
+          <h3>CREATOR LINK IN BIO</h3>
+          <p>Monetize your following</p>
+        </a>
+        <a href="/generators/musician-link-tree" class="generator-card">
+          <h3>MUSICIAN LINK TREE</h3>
+          <p>Music, tour dates, merch</p>
+        </a>
+        <a href="/generators/podcast-link-page" class="generator-card">
+          <h3>PODCAST LINK PAGE</h3>
+          <p>Episodes and show notes</p>
+        </a>
+        <a href="/generators/business-link-in-bio" class="generator-card">
+          <h3>BUSINESS LINK IN BIO</h3>
+          <p>Connect with customers</p>
+        </a>
+        <a href="/generators/tiktok-link-in-bio" class="generator-card hidden">
+          <h3>TIKTOK LINK IN BIO</h3>
+          <p>Link TikTok content</p>
+        </a>
+        <a href="/generators/instagram-link-tree" class="generator-card hidden">
+          <h3>INSTAGRAM LINK TREE</h3>
+          <p>Instagram bio link tool</p>
+        </a>
+      </div>
+      <button class="show-all-btn" aria-expanded="false" aria-controls="link-in-bio">SHOW ALL 8 GENERATORS</button>
+    </div>
+
+    <div class="empty-state" id="empty-state" style="display: none;">
+      <p>No generators match your search.</p>
+      <a href="/s/ai_site_builder" class="btn btn-ghost">Can't find it? Start with our AI builder.</a>
+    </div>
+  </section>
+
+  <!-- Section 6: How It Works -->
+  <section class="how-it-works">
+    <div class="section-header">
+      <h2>HOW IT WORKS</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <h3>PICK A GENERATOR</h3>
+        <p>Browse by category or search to find one that fits your goal.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <h3>DESCRIBE YOUR SITE</h3>
+        <p>Tell our AI builder about your business in a sentence or two.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <h3>GENERATE AND PUBLISH</h3>
+        <p>Get a fully built site in seconds. Customize anything, then go live.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Why Strikingly -->
+  <section class="why-strikingly">
+    <div class="section-header">
+      <h2>WHY STRIKINGLY</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>LIVE IN SECONDS</h3>
+        <p>Describe your site, we build it. No setup, no learning curve.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <h3>MOBILE BY DEFAULT</h3>
+        <p>Every generator produces responsive sites that work on any device.</p>
+      </div>
+      <div class="why-item">
+        <div class="why-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1v22"/>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+        </div>
+        <h3>FREE TO START</h3>
+        <p>Generate, customize, and publish without a credit card.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: FAQ -->
+  <section class="faq">
+    <div class="section-header">
+      <h2>FREQUENTLY ASKED QUESTIONS</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-question" aria-expanded="true" aria-controls="faq-answer-0">
+          What is an AI site generator?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-answer-0">
+          <p>An AI site generator is a tool that uses artificial intelligence to automatically create a website based on your input. Instead of building from scratch or choosing from static templates, you describe what you need—like "a portfolio for my photography business"—and our AI builds a complete, customized site in seconds.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+          How is a generator different from a template?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-answer-1">
+          <p>A template is a pre-designed layout that you fill with your own content. A generator uses AI to create a unique site tailored to your specific needs. When you use a generator, the AI considers your industry, goals, and preferences to build something that fits your exact use case—not just a generic layout.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+          Are these generators free to use?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-answer-2">
+          <p>Yes! You can generate, customize, and publish your site for free. We offer a free plan that lets you build and launch your site without entering any payment information. Premium features and custom domains are available for those who need them.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+          What kinds of sites can I build?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-answer-3">
+          <p>You can build almost any type of website: business sites, portfolios, blogs, online stores, landing pages, wedding websites, restaurant sites, and more. Our generators are specialized for different use cases, so you can find one that matches exactly what you're building.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+          Can I customize what the generator produces?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-answer-4">
+          <p>Absolutely. The AI generates a starting point based on your description, but you have full control to customize everything. Change colors, fonts, images, text, and layout. The editor is intuitive and doesn't require any coding knowledge.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+          Do generated sites work on mobile?
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-answer-5">
+          <p>Yes. Every site generated by Strikingly is fully responsive and looks great on all devices—desktops, tablets, and smartphones. Mobile optimization is built in by default, so you don't need to do anything extra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 9: Closing CTA -->
+  <section class="closing-cta">
+    <h2>READY TO BUILD?</h2>
+    <p>Pick a generator above, or jump straight into our AI builder.</p>
+    <a href="/s/ai_site_builder" class="btn btn-primary btn-large">START WITH AI BUILDER</a>
+  </section>
+
+  <!-- Section 10: Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">STRIKINGLY</div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>PRODUCT</h4>
+          <ul>
+            <li><a href="/templates">Templates</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/features">Features</a></li>
+            <li><a href="/support">Support</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>COMPANY</h4>
+          <ul>
+            <li><a href="/about">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/careers">Careers</a></li>
+            <li><a href="/press">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>RESOURCES</h4>
+          <ul>
+            <li><a href="/support">Help Center</a></li>
+            <li><a href="/community">Community</a></li>
+            <li><a href="/webinars">Webinars</a></li>
+            <li><a href="/api">API</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>LEGAL</h4>
+          <ul>
+            <li><a href="/terms">Terms</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+            <li><a href="/cookies">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-copyright">© 2026 Strikingly. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Search functionality
+    (function() {
+      const searchInput = document.getElementById('search-input');
+      const searchResultsCount = document.getElementById('search-results-count');
+      const emptyState = document.getElementById('empty-state');
+      const subsections = document.querySelectorAll('.generator-subsection');
+
+      function getAllCards() {
+        return document.querySelectorAll('.generator-subsection .generator-card');
+      }
+
+      function performSearch(query) {
+        const normalizedQuery = query.toLowerCase().trim();
+        let totalMatches = 0;
+
+        if (!normalizedQuery) {
+          // Reset: show all cards
+          getAllCards().forEach(card => {
+            card.classList.remove('hidden');
+          });
+          subsections.forEach(sub => {
+            sub.style.display = 'block';
+          });
+          searchResultsCount.textContent = '';
+          emptyState.style.display = 'none';
           return;
         }
 
-        window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
+        // Search through all cards
+        subsections.forEach(sub => {
+          const cards = sub.querySelectorAll('.generator-card');
+          let subsectionMatches = 0;
 
-        const CHANNEL = "strikingly-preview";
-        const VERSION = 1;
+          cards.forEach(card => {
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const desc = card.querySelector('p').textContent.toLowerCase();
+            const category = sub.id;
 
-        const getRoutePayload = (source) => ({
-          url: window.location.href,
-          origin: window.location.origin,
-          path: `${window.location.pathname}${window.location.search}${window.location.hash}`,
-          pathname: window.location.pathname,
-          search: window.location.search,
-          hash: window.location.hash,
-          title: document.title,
-          source,
-          timestamp: Date.now(),
-        });
+            if (title.includes(normalizedQuery) || desc.includes(normalizedQuery) || category.includes(normalizedQuery)) {
+              card.classList.remove('hidden');
+              subsectionMatches++;
+            } else {
+              card.classList.add('hidden');
+            }
+          });
 
-        const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-
-          try {
-            window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
-            );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
-        };
-
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
-
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
-            return result;
-          };
-        };
-
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
-
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
-
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
-
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
+          // Show/hide entire subsection based on matches
+          if (subsectionMatches > 0) {
+            sub.style.display = 'block';
+            totalMatches += subsectionMatches;
           } else {
-            window.history.pushState({}, "", path);
+            sub.style.display = 'none';
           }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
         });
-      })();
-    </script>
-    <script>
-      (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
-          return;
-        }
 
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
-
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const HEALTH_CHECK_COMMAND = "runtime-error:check-health";
-        const MAX_STRING_LENGTH = 2000;
-        const MAX_RECENT_CONSOLE_ERRORS = 5;
-        const FIRST_PARTY_PATH_PATTERN = /(?:^|[\\/])(?:src|app)(?:[\\/]|$)/i;
-        const IGNORED_PROMISE_PATTERN =
-          /\b(?:aborterror|aborted|cancel(?:led|ed)?|failed to fetch|load failed|networkerror|network request failed|resizeobserver loop)\b/i;
-        const recentConsoleErrors = [];
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const isFirstPartySource = (value) => {
-          if (!value) {
-            return false;
-          }
-
-          if (
-            !/^[a-z][a-z\d+.-]*:/i.test(value) &&
-            FIRST_PARTY_PATH_PATTERN.test(value)
-          ) {
-            return true;
-          }
-
-          try {
-            const sourceUrl = new URL(value, window.location.href);
-            if (sourceUrl.origin !== window.location.origin) {
-              return false;
-            }
-
-            return (
-              FIRST_PARTY_PATH_PATTERN.test(sourceUrl.pathname) ||
-              sourceUrl.pathname === window.location.pathname ||
-              sourceUrl.pathname.startsWith("/assets/")
-            );
-          } catch {
-            return false;
-          }
-        };
-
-        const stackHasFirstPartySource = (stack) =>
-          String(stack || "")
-            .split("\n")
-            .some((line) => {
-              const urlMatch = line.match(/https?:\/\/[^\s)]+/i);
-              if (urlMatch) {
-                return isFirstPartySource(urlMatch[0]);
-              }
-              return FIRST_PARTY_PATH_PATTERN.test(line);
-            });
-
-        const hasFirstPartyEvidence = (normalized) =>
-          isFirstPartySource(normalized.source) ||
-          stackHasFirstPartySource(normalized.stack);
-
-        const rememberConsoleError = (args) => {
-          const summary = truncate(
-            args.map((arg) => stringifyValue(arg)).join(" "),
-          );
-          if (!summary) {
-            return;
-          }
-          recentConsoleErrors.push(summary);
-          if (recentConsoleErrors.length > MAX_RECENT_CONSOLE_ERRORS) {
-            recentConsoleErrors.shift();
-          }
-        };
-
-        const getRecentDiagnostics = () => recentConsoleErrors.slice();
-
-        const postToParent = (payload) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-          try {
-            window.parent.postMessage(
-              {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
-                ...payload,
-              },
-              "*",
-            );
-          } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
-          }
-        };
-
-        let viteOverlayReported = false;
-        let blankPageReported = false;
-        let consecutiveBlankChecks = 0;
-        let healthCheckSequence = 0;
-
-        const getViteOverlayText = (overlay) => {
-          try {
-            return truncate(
-              String(
-                overlay.shadowRoot?.textContent ||
-                  overlay.textContent ||
-                  "Vite error overlay is visible.",
-              ).trim(),
-            );
-          } catch {
-            return "Vite error overlay is visible.";
-          }
-        };
-
-        const reportViteOverlay = () => {
-          const overlay = document.querySelector("vite-error-overlay");
-          if (!overlay || viteOverlayReported) {
-            return Boolean(overlay);
-          }
-
-          viteOverlayReported = true;
-          postToParent({
-            type: "runtime-error",
-            kind: "vite-overlay-error",
-            name: "ViteError",
-            message: getViteOverlayText(overlay),
-            args: getRecentDiagnostics(),
-          });
-          return true;
-        };
-
-        const hasVisiblePageContent = () => {
-          const root = document.querySelector("#root") || document.body;
-          const nodes = [root, ...root.querySelectorAll("*")];
-
-          return nodes.some((element) => {
-            if (
-              !(element instanceof HTMLElement) &&
-              !(element instanceof SVGElement)
-            ) {
-              return false;
-            }
-
-            const tagName = element.tagName.toLowerCase();
-            if (["script", "style", "link", "meta", "noscript"].includes(tagName)) {
-              return false;
-            }
-
-            const style = window.getComputedStyle(element);
-            const rect = element.getBoundingClientRect();
-            if (
-              style.display === "none" ||
-              style.visibility === "hidden" ||
-              Number(style.opacity) === 0 ||
-              rect.width < 2 ||
-              rect.height < 2
-            ) {
-              return false;
-            }
-
-            const isVisualElement = [
-              "img",
-              "svg",
-              "canvas",
-              "video",
-              "iframe",
-              "input",
-              "button",
-            ].includes(tagName);
-            const hasText = String(element.textContent || "").trim().length > 0;
-            const hasBackgroundImage = style.backgroundImage !== "none";
-            return isVisualElement || hasText || hasBackgroundImage;
-          });
-        };
-
-        const checkPageHealth = () => {
-          if (reportViteOverlay()) {
-            return;
-          }
-
-          if (hasVisiblePageContent()) {
-            consecutiveBlankChecks = 0;
-            return;
-          }
-
-          consecutiveBlankChecks += 1;
-          if (consecutiveBlankChecks < 2 || blankPageReported) {
-            return;
-          }
-
-          blankPageReported = true;
-          postToParent({
-            type: "runtime-error",
-            kind: "blank-page",
-            name: "BlankPageError",
-            message: "The preview rendered no visible page content.",
-            args: getRecentDiagnostics(),
-          });
-        };
-
-        const schedulePageHealthChecks = (firstDelay = 1500, secondDelay = 3000) => {
-          healthCheckSequence += 1;
-          const sequence = healthCheckSequence;
-          consecutiveBlankChecks = 0;
-          blankPageReported = false;
-          const runCurrentHealthCheck = () => {
-            if (sequence === healthCheckSequence) {
-              checkPageHealth();
-            }
-          };
-          window.setTimeout(runCurrentHealthCheck, firstDelay);
-          window.setTimeout(runCurrentHealthCheck, secondDelay);
-        };
-
-        if (document.readyState === "complete") {
-          schedulePageHealthChecks();
+        // Update results count
+        if (totalMatches > 0) {
+          searchResultsCount.textContent = totalMatches + ' generator' + (totalMatches !== 1 ? 's' : '') + ' match';
+          emptyState.style.display = 'none';
         } else {
-          window.addEventListener(
-            "load",
-            () => schedulePageHealthChecks(),
-            { once: true },
-          );
+          searchResultsCount.textContent = '';
+          emptyState.style.display = 'block';
         }
+      }
 
-        window.addEventListener("message", (event) => {
-          if (
-            event.source === window.parent &&
-            event.data?.type === HEALTH_CHECK_COMMAND
-          ) {
-            schedulePageHealthChecks(100, 1600);
-          }
-        });
+      searchInput.addEventListener('input', function(e) {
+        performSearch(e.target.value);
+      });
+    })();
 
-        const viteOverlayObserver = new MutationObserver((records) => {
-          const overlayAdded = records.some((record) =>
-            Array.from(record.addedNodes).some(
-              (node) =>
-                node instanceof Element &&
-                (node.matches("vite-error-overlay") ||
-                  Boolean(node.querySelector("vite-error-overlay"))),
-            ),
-          );
-          if (overlayAdded && reportViteOverlay()) {
-            viteOverlayObserver.disconnect();
-          }
-        });
-        viteOverlayObserver.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-        });
+    // Show all functionality
+    (function() {
+      const showAllButtons = document.querySelectorAll('.show-all-btn');
 
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-              const normalizedTagName = tagName.toLowerCase();
-              const isCriticalResource =
-                normalizedTagName === "script" ||
-                (normalizedTagName === "link" &&
-                  target.rel === "stylesheet" &&
-                  /\.css(?:$|[?#])/i.test(resourceUrl));
-
-              if (isCriticalResource && isFirstPartySource(resourceUrl)) {
-                postToParent({
-                  type: "runtime-error",
-                  kind: "resource-error",
-                  message: `Failed to load ${normalizedTagName} resource.`,
-                  source: resourceUrl,
-                  resourceTagName: normalizedTagName,
-                  resourceUrl,
-                  args: getRecentDiagnostics(),
-                });
-              }
-              return;
-            }
-
-            const normalized = normalizeErrorLike(event.error || event.message);
-            const source = event.filename || normalized.source;
-            if (
-              !isFirstPartySource(source) &&
-              !stackHasFirstPartySource(normalized.stack)
-            ) {
-              return;
-            }
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
-              args: getRecentDiagnostics(),
-            });
-          },
-          true,
-        );
-
-        window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          const combinedMessage = `${normalized.name} ${normalized.message}`;
-          if (
-            IGNORED_PROMISE_PATTERN.test(combinedMessage) ||
-            !hasFirstPartyEvidence(normalized)
-          ) {
-            return;
-          }
-          postToParent({
-            type: "unhandled-rejection",
-            kind: "promise-rejection",
-            name: normalized.name,
-            message: normalized.message || "Unhandled promise rejection",
-            stack: normalized.stack,
-            source: normalized.source,
-            lineno: normalized.lineno,
-            colno: normalized.colno,
-            reason: stringifyValue(event.reason),
-            args: getRecentDiagnostics(),
+      showAllButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const subsection = this.closest('.generator-subsection');
+          const hiddenCards = subsection.querySelectorAll('.generator-card.hidden');
+          
+          hiddenCards.forEach(card => {
+            card.classList.remove('hidden');
           });
+          
+          this.style.display = 'none';
         });
+      });
+    })();
 
-        const originalConsoleError = console.error.bind(console);
-        console.error = (...args) => {
-          rememberConsoleError(args);
-          originalConsoleError(...args);
-        };
-      })();
-    </script>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+    // FAQ accordion
+    (function() {
+      const faqItems = document.querySelectorAll('.faq-item');
+
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', function() {
+          const isOpen = item.classList.contains('open');
+          
+          // Close all items
+          faqItems.forEach(i => {
+            i.classList.remove('open');
+            i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+          });
+          
+          // Open clicked item if it was closed
+          if (!isOpen) {
+            item.classList.add('open');
+            question.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
 </html>
