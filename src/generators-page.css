@@ -33,8 +33,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Keep the React mount target harmless (page content lives outside #root). */
-#root { display: none; }
+/* The static /generators page content lives inside #root. React mounting is
+   skipped (see main.jsx) so the static markup is never wiped. */
+#root { }
 
 a { color: var(--brand-purple); text-decoration: none; }
 a:hover { text-decoration: underline; }

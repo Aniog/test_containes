@@ -512,10 +512,9 @@ html_out = f'''<!doctype html>
   <body>
     {route_bridge}
     {error_bridge}
-    <div id="root"></div>
-    <main>
+    <div id="root"><main>
 {page_body}
-    </main>
+    </main></div>
     <script>{js}</script>
     {main_script}
   </body>

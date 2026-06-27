@@ -1,14 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 
 if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+// The /generators hub is a fully static page rendered directly in index.html
+// (content lives inside #root). We intentionally do NOT call createRoot().render()
+// here, because that would wipe the static markup. Interactivity is handled by
+// vanilla JS in src/generators-page.js.

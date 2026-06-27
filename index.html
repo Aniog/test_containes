@@ -47,8 +47,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Keep the React mount target harmless (page content lives outside #root). */
-#root { display: none; }
+/* The static /generators page content lives inside #root. React mounting is
+   skipped (see main.jsx) so the static markup is never wiped. */
+#root { }
 
 a { color: var(--brand-purple); text-decoration: none; }
 a:hover { text-decoration: underline; }
@@ -1041,8 +1042,7 @@ body.is-searching .gen-collapsible.is-collapsed { height: auto !important; }
         };
       })();
     </script>
-    <div id="root"></div>
-    <main>
+    <div id="root"><main>
 <header class="gen-topbar">
   <div class="gen-container">
     <div class="gen-topbar__inner">
@@ -1608,7 +1608,7 @@ body.is-searching .gen-collapsible.is-collapsed { height: auto !important; }
     <div class="gen-footer__bottom">&copy; 2026 Strikingly Inc. All rights reserved.</div>
   </div>
 </footer>
-    </main>
+    </main></div>
     <script>/* ===== /generators hub — progressive enhancement (vanilla JS) =====
  * Works on top of the statically-rendered HTML. With JS disabled, every
  * section, card, and link remains visible and reachable.
