@@ -1,74 +1,103 @@
 @import "tailwindcss";
 
+@theme {
+  --font-heading: "Brandon Grotesque", "Josefin Sans", "Poppins", sans-serif;
+  --font-body: "Open Sans", system-ui, -apple-system, sans-serif;
+
+  --color-brand-purple: #8159BB;
+  --color-text-body: #636972;
+  --color-heading: #4B5056;
+  --color-heading-dark: #2E2E2F;
+  --color-border-card: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-bg-light: #F4F6F8;
+  --color-bg-white: #FFFFFF;
+}
+
+@utility ai-gradient-text {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility ai-gradient-bg {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+}
+
+@utility btn {
+  height: 36px;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 9px 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 14px;
+  transition: opacity 0.2s ease;
+}
+
+@utility btn-lg {
+  height: 44px;
+  font-size: 16px;
+  padding: 10px 24px;
+}
+
+@utility btn-primary {
+  @apply ai-gradient-bg;
+  border: none;
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@utility btn-ghost {
+  background-color: transparent;
+  border: 1px solid var(--color-brand-purple);
+  color: var(--color-brand-purple);
+  &:hover {
+    background-color: rgba(129, 89, 187, 0.05);
+  }
+}
+
+@utility card {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-card);
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+@utility card-hover {
+  &:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    border-color: var(--color-brand-purple);
+  }
+}
+
+/* Global styles */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  font-family: var(--font-body);
+  color-scheme: light;
+  color: var(--color-text-body);
+  background-color: var(--color-bg-white);
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-heading);
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+  color: var(--color-heading-dark);
 }
