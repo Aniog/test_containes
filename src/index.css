@@ -1,74 +1,141 @@
 @import "tailwindcss";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@theme {
+  --color-brand-purple: #8159BB;
+  --color-brand-blue-ai: #7671FF;
+  --color-brand-pink-ai: #CB0C9F;
+  --color-body-text: #636972;
+  --color-heading: #4B5056;
+  --color-heading-dark: #2E2E2F;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-light-bg: #F4F6F8;
+  --color-white: #FFFFFF;
+
+  --font-heading: "Josefin Sans", "Poppins", sans-serif;
+  --font-body: "Open Sans", sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-
-  a:hover {
-    color: #747bff;
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #636972;
+    background-color: #FFFFFF;
+    min-height: 100vh;
+    overflow-x: hidden;
   }
-
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: #4B5056;
+    margin: 0;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   button {
-    background-color: #f9f9f9;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    background: none;
   }
+  img, svg {
+    max-width: 100%;
+    display: block;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: linear-gradient(90deg, #7671FF 0%, #CB0C9F 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .gradient-fill {
+    background: linear-gradient(90deg, #7671FF 0%, #CB0C9F 100%);
+    color: #FFFFFF;
+  }
+  .ghost-btn {
+    background: transparent;
+    border: 1px solid #8159BB;
+    color: #8159BB;
+  }
+  .ghost-btn:hover {
+    background: rgba(129, 89, 187, 0.06);
+  }
+  .card-base {
+    background: #FFFFFF;
+    border: 1px solid #C6C9CD;
+    border-radius: 3px;
+    padding: 20px;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .card-base:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: #8159BB;
+  }
+  .tag-ghost {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #8159BB;
+    border: 1px solid #8159BB;
+    border-radius: 3px;
+    padding: 2px 6px;
+    line-height: 1;
+  }
+  .container-main {
+    width: 100%;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+}
+
+@layer utilities {
+  .heading-font {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+  .body-font {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.5;
+    color: #636972;
+  }
+}
+
+/* FAQ no-JS fallback: ensure all content is visible */
+.faq-item .faq-answer {
+  display: block;
+}
+
+/* Show-all progressive enhancement */
+.generator-grid.js-enhanced .generator-card:nth-child(n+7) {
+  display: none;
+}
+.generator-grid.js-enhanced.is-expanded .generator-card:nth-child(n+7) {
+  display: flex;
+}
+
+/* Smooth height transition for accordion */
+.accordion-panel {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
 }

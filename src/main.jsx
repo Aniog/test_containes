@@ -7,8 +7,7 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+const fallback = document.getElementById("static-fallback");
+if (fallback) fallback.style.display = "none";
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
