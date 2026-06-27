@@ -1,74 +1,78 @@
 @import "tailwindcss";
 
+@theme {
+  --font-heading: "Josefin Sans", sans-serif;
+  --font-body: "Open Sans", sans-serif;
+
+  --color-brand-purple: #8159BB;
+  --color-body-gray: #636972;
+  --color-heading-gray: #4B5056;
+  --color-hero-gray: #2E2E2F;
+  --color-card-border: #C6C9CD;
+  --color-subtle-divider: #E2E4E7;
+  --color-bg-light: #F4F6F8;
+  --color-ai-blue: #7671FF;
+  --color-ai-pink: #CB0C9F;
+
+  --image-ai-gradient: linear-gradient(to right, #7671FF, #CB0C9F);
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: var(--color-body-gray);
+  background-color: #FFFFFF;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
+  font-family: var(--font-body);
+  background-color: #FFFFFF;
+  color: var(--color-body-gray);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-heading-gray);
+}
+
+button, .font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+a {
+  text-decoration: none;
   color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.ai-gradient-text {
+  background-image: var(--image-ai-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.ai-gradient-bg {
+  background-image: var(--image-ai-gradient);
+  color: white;
 }
 
-button:hover {
-  border-color: #646cff;
+html {
+  scroll-behavior: smooth;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
