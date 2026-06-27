@@ -5,8 +5,32 @@ import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
+// Serve the static /generators hub page at /generators (without .html).
+// The page is intentionally a single self-contained HTML document so that
+// `view-source:` contains every card and link.
+const generatorsRewritePlugin = () => ({
+  name: 'strk-generators-rewrite',
+  configureServer(server) {
+    server.middlewares.use((req, _res, next) => {
+      if (req.url === '/generators' || req.url === '/generators/') {
+        req.url = '/generators.html'
+      }
+      next()
+    })
+  },
+  configurePreviewServer(server) {
+    server.middlewares.use((req, _res, next) => {
+      if (req.url === '/generators' || req.url === '/generators/') {
+        req.url = '/generators.html'
+      }
+      next()
+    })
+  },
+})
+
 export default defineConfig({
   plugins: [
+    generatorsRewritePlugin(),
     // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
