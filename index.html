@@ -3,8 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+    <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required." />
+    <link rel="canonical" href="https://www.strikingly.com/generators" />
+    <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly" />
+    <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds." />
+    <meta property="og:url" content="https://www.strikingly.com/generators" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Strikingly",
+          "item": "https://www.strikingly.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "AI Generators",
+          "item": "https://www.strikingly.com/generators"
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
@@ -51,514 +79,200 @@
           }
         };
 
-        const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
-        };
+        postRoute("route:bootstrap", "bootstrap");
 
-        const patchHistoryMethod = (methodName) => {
-          const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
+        const wrap = (name) => {
+          if (!window.history[name]) {
             return;
           }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
-            const result = originalMethod.apply(this, args);
-            notifyRouteChanged(methodName);
+          const original = window.history[name].bind(window.history);
+          window.history[name] = (...args) => {
+            const result = original(...args);
+            window.requestAnimationFrame(() => {
+              postRoute(`route:${name}`, name);
+            });
             return result;
           };
         };
 
-        patchHistoryMethod("pushState");
-        patchHistoryMethod("replaceState");
+        wrap("pushState");
+        wrap("replaceState");
 
         window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
+          postRoute("route:popstate", "popstate");
         });
-
         window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
-        window.addEventListener("load", () => {
-          postRoute("route:ready", "load");
-          postRoute("route:changed", "load");
-        });
-
-        window.addEventListener("message", (event) => {
-          const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
-          const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
-          const replace = Boolean(data.payload?.replace);
-          const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
-          if (typeof navigate === "function") {
-            navigate(path, { replace });
-            notifyRouteChanged("navigate-command");
-            return;
-          }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
-          window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
-          notifyRouteChanged("navigate-command");
+          postRoute("route:hashchange", "hashchange");
         });
       })();
     </script>
     <script>
       (() => {
-        if (window.__STRK_RUNTIME_ERROR_BRIDGE__) {
+        if (window.__STRK_PREVIEW_ERROR_BRIDGE__) {
           return;
         }
 
-        window.__STRK_RUNTIME_ERROR_BRIDGE__ = true;
+        window.__STRK_PREVIEW_ERROR_BRIDGE__ = true;
 
-        const BRIDGE_FLAG = "__strkRuntimeErrorBridge";
-        const HEALTH_CHECK_COMMAND = "runtime-error:check-health";
-        const MAX_STRING_LENGTH = 2000;
-        const MAX_RECENT_CONSOLE_ERRORS = 5;
-        const FIRST_PARTY_PATH_PATTERN = /(?:^|[\\/])(?:src|app)(?:[\\/]|$)/i;
-        const IGNORED_PROMISE_PATTERN =
-          /\b(?:aborterror|aborted|cancel(?:led|ed)?|failed to fetch|load failed|networkerror|network request failed|resizeobserver loop)\b/i;
-        const recentConsoleErrors = [];
-
-        const truncate = (value) =>
-          value.length > MAX_STRING_LENGTH
-            ? `${value.slice(0, MAX_STRING_LENGTH)}...`
-            : value;
-
-        const stringifyValue = (value) => {
-          if (value instanceof Error) {
-            return truncate(value.stack || `${value.name}: ${value.message}`);
-          }
-
-          if (typeof value === "string") {
-            return truncate(value);
-          }
-
-          if (
-            typeof value === "number" ||
-            typeof value === "boolean" ||
-            value == null
-          ) {
-            return String(value);
-          }
-
-          if (typeof value === "function") {
-            return `[Function ${value.name || "anonymous"}]`;
-          }
-
-          const seen = new WeakSet();
-
-          try {
-            return truncate(
-              JSON.stringify(value, (_, innerValue) => {
-                if (innerValue instanceof Error) {
-                  return {
-                    name: innerValue.name,
-                    message: innerValue.message,
-                    stack: innerValue.stack,
-                  };
-                }
-
-                if (typeof innerValue === "object" && innerValue !== null) {
-                  if (seen.has(innerValue)) {
-                    return "[Circular]";
-                  }
-                  seen.add(innerValue);
-                }
-
-                if (typeof innerValue === "function") {
-                  return `[Function ${innerValue.name || "anonymous"}]`;
-                }
-
-                return innerValue;
-              }),
-            );
-          } catch {
-            return Object.prototype.toString.call(value);
-          }
-        };
-
-        const normalizeErrorLike = (value) => {
-          if (value instanceof Error) {
-            return {
-              name: value.name || "Error",
-              message: value.message || "Unknown runtime error",
-              stack: value.stack || "",
-              source: value.fileName || value.filename || "",
-              lineno: value.lineNumber || value.lineno || null,
-              colno: value.columnNumber || value.colno || null,
-            };
-          }
-
-          if (typeof value === "string") {
-            return {
-              name: "",
-              message: value,
-              stack: "",
-              source: "",
-              lineno: null,
-              colno: null,
-            };
-          }
-
-          if (value && typeof value === "object") {
-            return {
-              name: typeof value.name === "string" ? value.name : "",
-              message:
-                typeof value.message === "string"
-                  ? value.message
-                  : stringifyValue(value),
-              stack: typeof value.stack === "string" ? value.stack : "",
-              source:
-                typeof value.fileName === "string"
-                  ? value.fileName
-                  : typeof value.filename === "string"
-                    ? value.filename
-                    : "",
-              lineno:
-                typeof value.lineNumber === "number"
-                  ? value.lineNumber
-                  : typeof value.lineno === "number"
-                    ? value.lineno
-                    : null,
-              colno:
-                typeof value.columnNumber === "number"
-                  ? value.columnNumber
-                  : typeof value.colno === "number"
-                    ? value.colno
-                    : null,
-            };
-          }
-
-          return {
-            name: "",
-            message: stringifyValue(value) || "Unknown runtime error",
-            stack: "",
-            source: "",
-            lineno: null,
-            colno: null,
-          };
-        };
-
-        const isFirstPartySource = (value) => {
-          if (!value) {
-            return false;
-          }
-
-          if (
-            !/^[a-z][a-z\d+.-]*:/i.test(value) &&
-            FIRST_PARTY_PATH_PATTERN.test(value)
-          ) {
-            return true;
-          }
-
-          try {
-            const sourceUrl = new URL(value, window.location.href);
-            if (sourceUrl.origin !== window.location.origin) {
-              return false;
-            }
-
-            return (
-              FIRST_PARTY_PATH_PATTERN.test(sourceUrl.pathname) ||
-              sourceUrl.pathname === window.location.pathname ||
-              sourceUrl.pathname.startsWith("/assets/")
-            );
-          } catch {
-            return false;
-          }
-        };
-
-        const stackHasFirstPartySource = (stack) =>
-          String(stack || "")
-            .split("\n")
-            .some((line) => {
-              const urlMatch = line.match(/https?:\/\/[^\s)]+/i);
-              if (urlMatch) {
-                return isFirstPartySource(urlMatch[0]);
-              }
-              return FIRST_PARTY_PATH_PATTERN.test(line);
-            });
-
-        const hasFirstPartyEvidence = (normalized) =>
-          isFirstPartySource(normalized.source) ||
-          stackHasFirstPartySource(normalized.stack);
+        const CHANNEL = "strikingly-preview";
+        const VERSION = 1;
+        const MAX_STACK_LENGTH = 6000;
+        const MAX_RECENT_LOGS = 25;
+        const MAX_RECENT_ARG_LENGTH = 240;
+        const MAX_REASON_LENGTH = 1200;
+        const recentLogs = [];
 
         const rememberConsoleError = (args) => {
-          const summary = truncate(
-            args.map((arg) => stringifyValue(arg)).join(" "),
-          );
-          if (!summary) {
-            return;
-          }
-          recentConsoleErrors.push(summary);
-          if (recentConsoleErrors.length > MAX_RECENT_CONSOLE_ERRORS) {
-            recentConsoleErrors.shift();
+          try {
+            const text = args
+              .map((entry) => {
+                if (entry instanceof Error) {
+                  return entry.stack || entry.message;
+                }
+                if (typeof entry === "string") {
+                  return entry;
+                }
+                try {
+                  return JSON.stringify(entry);
+                } catch {
+                  return String(entry);
+                }
+              })
+              .join(" ")
+              .slice(0, MAX_RECENT_ARG_LENGTH);
+            recentLogs.push({
+              kind: "console-error",
+              text,
+              timestamp: Date.now(),
+            });
+            if (recentLogs.length > MAX_RECENT_LOGS) {
+              recentLogs.shift();
+            }
+          } catch {
+            // Ignore errors while capturing logs.
           }
         };
-
-        const getRecentDiagnostics = () => recentConsoleErrors.slice();
 
         const postToParent = (payload) => {
           if (!window.parent || window.parent === window) {
             return;
           }
+
           try {
             window.parent.postMessage(
               {
-                [BRIDGE_FLAG]: true,
-                href: window.location.href,
-                timestamp: Date.now(),
+                channel: CHANNEL,
+                version: VERSION,
                 ...payload,
               },
               "*",
             );
           } catch {
-            // Ignore bridge failures to avoid hiding the original runtime error.
+            // Bridge failures should never break the app.
           }
         };
 
-        let viteOverlayReported = false;
-        let blankPageReported = false;
-        let consecutiveBlankChecks = 0;
-        let healthCheckSequence = 0;
+        const getRecentDiagnostics = () => recentLogs.slice(-5);
 
-        const getViteOverlayText = (overlay) => {
+        const stringifyValue = (value) => {
+          if (value === undefined) return "undefined";
+          if (value === null) return "null";
+          if (typeof value === "string") return value;
+          if (value instanceof Error) return value.stack || value.message;
           try {
-            return truncate(
-              String(
-                overlay.shadowRoot?.textContent ||
-                  overlay.textContent ||
-                  "Vite error overlay is visible.",
-              ).trim(),
-            );
+            return JSON.stringify(value);
           } catch {
-            return "Vite error overlay is visible.";
+            return String(value);
           }
         };
 
-        const reportViteOverlay = () => {
-          const overlay = document.querySelector("vite-error-overlay");
-          if (!overlay || viteOverlayReported) {
-            return Boolean(overlay);
-          }
-
-          viteOverlayReported = true;
-          postToParent({
-            type: "runtime-error",
-            kind: "vite-overlay-error",
-            name: "ViteError",
-            message: getViteOverlayText(overlay),
-            args: getRecentDiagnostics(),
-          });
-          return true;
+        const normalizeStack = (stack) => {
+          if (!stack) return "";
+          return stack.length > MAX_STACK_LENGTH
+            ? `${stack.slice(0, MAX_STACK_LENGTH)}…`
+            : stack;
         };
 
-        const hasVisiblePageContent = () => {
-          const root = document.querySelector("#root") || document.body;
-          const nodes = [root, ...root.querySelectorAll("*")];
-
-          return nodes.some((element) => {
-            if (
-              !(element instanceof HTMLElement) &&
-              !(element instanceof SVGElement)
-            ) {
-              return false;
-            }
-
-            const tagName = element.tagName.toLowerCase();
-            if (["script", "style", "link", "meta", "noscript"].includes(tagName)) {
-              return false;
-            }
-
-            const style = window.getComputedStyle(element);
-            const rect = element.getBoundingClientRect();
-            if (
-              style.display === "none" ||
-              style.visibility === "hidden" ||
-              Number(style.opacity) === 0 ||
-              rect.width < 2 ||
-              rect.height < 2
-            ) {
-              return false;
-            }
-
-            const isVisualElement = [
-              "img",
-              "svg",
-              "canvas",
-              "video",
-              "iframe",
-              "input",
-              "button",
-            ].includes(tagName);
-            const hasText = String(element.textContent || "").trim().length > 0;
-            const hasBackgroundImage = style.backgroundImage !== "none";
-            return isVisualElement || hasText || hasBackgroundImage;
-          });
-        };
-
-        const checkPageHealth = () => {
-          if (reportViteOverlay()) {
-            return;
+        const normalizeError = (error) => {
+          if (!error) {
+            return {
+              name: "Error",
+              message: "Unknown error",
+              stack: "",
+              source: "",
+              lineno: 0,
+              colno: 0,
+            };
           }
 
-          if (hasVisiblePageContent()) {
-            consecutiveBlankChecks = 0;
-            return;
+          if (error instanceof Error) {
+            return {
+              name: error.name || "Error",
+              message: error.message || "",
+              stack: normalizeStack(error.stack || ""),
+              source: "",
+              lineno: 0,
+              colno: 0,
+            };
           }
 
-          consecutiveBlankChecks += 1;
-          if (consecutiveBlankChecks < 2 || blankPageReported) {
-            return;
-          }
-
-          blankPageReported = true;
-          postToParent({
-            type: "runtime-error",
-            kind: "blank-page",
-            name: "BlankPageError",
-            message: "The preview rendered no visible page content.",
-            args: getRecentDiagnostics(),
-          });
-        };
-
-        const schedulePageHealthChecks = (firstDelay = 1500, secondDelay = 3000) => {
-          healthCheckSequence += 1;
-          const sequence = healthCheckSequence;
-          consecutiveBlankChecks = 0;
-          blankPageReported = false;
-          const runCurrentHealthCheck = () => {
-            if (sequence === healthCheckSequence) {
-              checkPageHealth();
-            }
+          return {
+            name: "Error",
+            message: typeof error === "string" ? error : stringifyValue(error),
+            stack: "",
+            source: "",
+            lineno: 0,
+            colno: 0,
           };
-          window.setTimeout(runCurrentHealthCheck, firstDelay);
-          window.setTimeout(runCurrentHealthCheck, secondDelay);
         };
 
-        if (document.readyState === "complete") {
-          schedulePageHealthChecks();
-        } else {
-          window.addEventListener(
-            "load",
-            () => schedulePageHealthChecks(),
-            { once: true },
-          );
-        }
+        const FIRST_PARTY_PATTERN = /localhost|127\.0\.0\.1|0\.0\.0\.0|modal\.host|strikingly\.com|::1/;
+        const IGNORED_MESSAGE_PATTERN = /ResizeObserver|sourcemap|Failed to load resource|downloadable font|fonts\.gstatic\.com|fonts\.googleapis\.com|net::ERR_ABORTED/i;
+        const IGNORED_PROMISE_PATTERN = /Loading chunk|Loading CSS chunk|Failed to fetch dynamically imported module|dynamic import/i;
 
-        window.addEventListener("message", (event) => {
-          if (
-            event.source === window.parent &&
-            event.data?.type === HEALTH_CHECK_COMMAND
-          ) {
-            schedulePageHealthChecks(100, 1600);
+        const hasFirstPartyEvidence = (normalized) => {
+          const stack = normalized.stack || "";
+          const source = normalized.source || "";
+          if (FIRST_PARTY_PATTERN.test(stack)) return true;
+          if (FIRST_PARTY_PATTERN.test(source)) return true;
+          return false;
+        };
+
+        window.addEventListener("error", (event) => {
+          const normalized = {
+            name: event.error?.name || "Error",
+            message: event.message || event.error?.message || "Unknown error",
+            stack: event.error?.stack || "",
+            source: event.filename || "",
+            lineno: event.lineno || 0,
+            colno: event.colno || 0,
+          };
+
+          if (IGNORED_MESSAGE_PATTERN.test(normalized.message)) {
+            return;
           }
-        });
 
-        const viteOverlayObserver = new MutationObserver((records) => {
-          const overlayAdded = records.some((record) =>
-            Array.from(record.addedNodes).some(
-              (node) =>
-                node instanceof Element &&
-                (node.matches("vite-error-overlay") ||
-                  Boolean(node.querySelector("vite-error-overlay"))),
-            ),
-          );
-          if (overlayAdded && reportViteOverlay()) {
-            viteOverlayObserver.disconnect();
+          if (!hasFirstPartyEvidence(normalized)) {
+            return;
           }
+
+          postToParent({
+            type: "unhandled-error",
+            kind: "window-error",
+            name: normalized.name,
+            message: normalized.message,
+            stack: normalized.stack,
+            source: normalized.source,
+            lineno: normalized.lineno,
+            colno: normalized.colno,
+            args: getRecentDiagnostics(),
+          });
         });
-        viteOverlayObserver.observe(document.documentElement, {
-          childList: true,
-          subtree: true,
-        });
-
-        window.addEventListener(
-          "error",
-          (event) => {
-            const target = event.target;
-            const isResourceError =
-              target && target !== window && target !== document;
-
-            if (isResourceError) {
-              const tagName = target.tagName || "resource";
-              const resourceUrl =
-                target.currentSrc || target.src || target.href || "";
-              const normalizedTagName = tagName.toLowerCase();
-              const isCriticalResource =
-                normalizedTagName === "script" ||
-                (normalizedTagName === "link" &&
-                  target.rel === "stylesheet" &&
-                  /\.css(?:$|[?#])/i.test(resourceUrl));
-
-              if (isCriticalResource && isFirstPartySource(resourceUrl)) {
-                postToParent({
-                  type: "runtime-error",
-                  kind: "resource-error",
-                  message: `Failed to load ${normalizedTagName} resource.`,
-                  source: resourceUrl,
-                  resourceTagName: normalizedTagName,
-                  resourceUrl,
-                  args: getRecentDiagnostics(),
-                });
-              }
-              return;
-            }
-
-            const normalized = normalizeErrorLike(event.error || event.message);
-            const source = event.filename || normalized.source;
-            if (
-              !isFirstPartySource(source) &&
-              !stackHasFirstPartySource(normalized.stack)
-            ) {
-              return;
-            }
-            postToParent({
-              type: "runtime-error",
-              kind: "error",
-              name: normalized.name,
-              message: normalized.message || event.message,
-              stack: normalized.stack,
-              source,
-              lineno: event.lineno || normalized.lineno,
-              colno: event.colno || normalized.colno,
-              args: getRecentDiagnostics(),
-            });
-          },
-          true,
-        );
 
         window.addEventListener("unhandledrejection", (event) => {
-          const normalized = normalizeErrorLike(event.reason);
-          const combinedMessage = `${normalized.name} ${normalized.message}`;
+          const normalized = normalizeError(event.reason);
+          const combinedMessage = `${normalized.name}: ${normalized.message}`;
+
           if (
             IGNORED_PROMISE_PATTERN.test(combinedMessage) ||
             !hasFirstPartyEvidence(normalized)
@@ -574,7 +288,7 @@
             source: normalized.source,
             lineno: normalized.lineno,
             colno: normalized.colno,
-            reason: stringifyValue(event.reason),
+            reason: stringifyValue(event.reason).slice(0, MAX_REASON_LENGTH),
             args: getRecentDiagnostics(),
           });
         });
