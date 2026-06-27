@@ -1,0 +1,88 @@
+const strings = {
+  en: {
+    brandLogo: 'strikingly AI',
+
+    breadcrumbHome: 'Strikingly',
+    breadcrumbCurrent: 'AI Generators',
+
+    heroLine1: 'BUILD ANY KIND OF SITE',
+    heroLine2: 'WITH AI, IN AN INSTANT',
+    heroSub: "Browse the right generator for what you're building, or jump straight into our AI site builder.",
+    heroPrimaryCta: "START BUILDING - IT'S FREE",
+    heroSecondaryCta: 'BROWSE GENERATORS',
+
+    featuredHeading: 'FEATURED GENERATORS',
+    featuredSub: 'A few common starting points.',
+
+    browseHeading: 'BROWSE BY CATEGORY',
+
+    categoryWebsites: 'Websites',
+    categoryWebsitesDesc: 'AI-built business and personal sites for any goal.',
+    categoryLandingPages: 'Landing Pages',
+    categoryLandingPagesDesc: 'Single-page sites built to convert visitors fast.',
+    categoryPortfolios: 'Portfolios',
+    categoryPortfoliosDesc: 'Showcase your work with a clean, focused site.',
+    categoryBlogs: 'Blogs',
+    categoryBlogsDesc: 'Publish-ready blogs with built-in SEO basics.',
+    categoryStores: 'Online Stores',
+    categoryStoresDesc: 'Sell products online with payments built in.',
+    categoryLinkInBio: 'Link-in-Bio',
+    categoryLinkInBioDesc: 'One link, all your places. Made for creators.',
+
+    allGeneratorsHeading: 'ALL GENERATORS',
+    allGeneratorsSub: "Sixty-plus generators, organized by what you're building.",
+    searchPlaceholder: 'Search generators...',
+    searchLabel: 'Search generators',
+    showAll: 'Show all',
+    showLess: 'Show fewer',
+    noResultsTitle: 'No generators match your search.',
+    noResultsAction: "Can't find it? Start with our AI builder.",
+    clearSearch: 'Clear search',
+    resultsCount: '{count} generators match',
+
+    howItWorksHeading: 'HOW IT WORKS',
+    step1Title: 'PICK A GENERATOR',
+    step1Desc: 'Browse by category or search to find one that fits your goal.',
+    step2Title: 'DESCRIBE YOUR SITE',
+    step2Desc: 'Tell our AI builder about your business in a sentence or two.',
+    step3Title: 'GENERATE AND PUBLISH',
+    step3Desc: 'Get a fully built site in seconds. Customize anything, then go live.',
+
+    whyHeading: 'WHY STRIKINGLY',
+    why1Title: 'LIVE IN SECONDS',
+    why1Desc: 'Describe your site, we build it. No setup, no learning curve.',
+    why2Title: 'MOBILE BY DEFAULT',
+    why2Desc: 'Every generator produces responsive sites that work on any device.',
+    why3Title: 'FREE TO START',
+    why3Desc: 'Generate, customize, and publish without a credit card.',
+
+    faqHeading: 'FREQUENTLY ASKED QUESTIONS',
+    faq1Q: 'What is an AI site generator?',
+    faq1A: "An AI site generator is a tool that builds a complete, ready-to-publish website from a short description. Instead of dragging elements around or picking templates, you describe what you need — like \"a portfolio for a wedding photographer\" or \"an online store for handmade ceramics\" — and the AI creates the site structure, design, and content for you. Strikingly's generators are tuned for specific industries and goals, so the output is relevant from the start.",
+    faq2Q: 'How is a generator different from a template?',
+    faq2A: "A template is a static starting point — the same layout, placeholder text, and placeholder images for everyone. A generator actively builds your site: it writes real copy, picks layouts that make sense for your content, and assembles the pages you need. You can adjust anything afterward, but you start with a complete draft rather than an empty shell.",
+    faq3Q: 'Are these generators free to use?',
+    faq3A: "Yes. Every generator on this page is free to use. You can generate a site, preview it, customize it, and publish it under a strikingly.com subdomain without paying anything. Premium features — like connecting a custom domain, removing Strikingly branding, or adding advanced ecommerce tools — are available with paid plans.",
+    faq4Q: 'What kinds of sites can I build?',
+    faq4A: "You can build business websites, landing pages, portfolios, blogs, online stores, link-in-bio pages, and more. Our generators cover broad categories, and within each category there are tools tuned for specific audiences — for example, restaurant websites, wedding sites, and photographer portfolios. If you can describe it in a sentence, there's likely a generator that fits.",
+    faq5Q: 'Can I customize what the generator produces?',
+    faq5A: "Absolutely. Think of the generator as your first draft author. After the AI builds your site, you can edit every element — text, images, colors, layouts, pages, and settings — using the Strikingly editor. The generator saves you the blank-page problem; you take it from there.",
+    faq6Q: 'Do generated sites work on mobile?',
+    faq6A: "Yes. Every site built through Strikingly's generators is responsive by default. Your site will automatically adapt to phones, tablets, and desktops without extra work. You can preview and tweak the mobile view in the editor before publishing.",
+
+    closingHeading: 'READY TO BUILD?',
+    closingSub: 'Pick a generator above, or jump straight into our AI builder.',
+    closingCta: 'START WITH AI BUILDER',
+
+    footerAbout: 'About',
+    footerPricing: 'Pricing',
+    footerTemplates: 'Templates',
+    footerSupport: 'Support',
+    footerBlog: 'Blog',
+    footerTerms: 'Terms',
+    footerPrivacy: 'Privacy',
+    footerCopyright: '\u00a9 {year} Strikingly. All rights reserved.',
+  },
+};
+
+export default strings;
