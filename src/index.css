@@ -1,74 +1,128 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-purple: #8159BB;
+  --color-ai-blue: #7671FF;
+  --color-ai-pink: #CB0C9F;
+  --color-body-text: #636972;
+  --color-heading-dark: #2E2E2F;
+  --color-heading-section: #4B5056;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-bg-light: #F4F6F8;
+  --font-heading: 'Josefin Sans', 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #636972;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-body);
+  background-color: #ffffff;
+  color: #636972;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: var(--font-heading);
 }
 
-button:hover {
-  border-color: #646cff;
+/* Heading font utility */
+.font-heading {
+  font-family: var(--font-heading);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* AI Gradient text */
+.ai-gradient-text {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* AI Gradient button */
+.ai-gradient-btn {
+  background: linear-gradient(to right, #7671FF, #CB0C9F);
+  color: #ffffff !important;
+  border: none;
 }
+
+.ai-gradient-btn:hover {
+  opacity: 0.92;
+}
+
+/* Focus visible styles */
+*:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Card base */
+.strk-card {
+  background: #ffffff;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.strk-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+/* Category tag */
+.strk-tag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  background: transparent;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+/* Show-all collapse animation */
+.generators-overflow {
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+/* FAQ accordion */
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
