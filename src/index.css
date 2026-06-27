@@ -1,74 +1,220 @@
 @import "tailwindcss";
 
+/* Brand typography and tokens for Strikingly Generators Hub */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  --font-heading: 'Josefin Sans', 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  --color-brand-purple: #8159BB;
+  --color-ai-gradient: linear-gradient(90deg, #7671FF 0%, #CB0C9F 100%);
+  --color-body: #636972;
+  --color-heading: #4B5056;
+  --color-hero-h1: #2E2E2F;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-light-bg: #F4F6F8;
+  --color-white: #FFFFFF;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-body);
+  background-color: var(--color-white);
+  color: var(--color-hero-h1);
   min-height: 100vh;
   overflow-x: hidden;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Heading typography - uppercase, bold, geometric */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 40px;
 }
 
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+/* Button base styles */
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.15s ease;
 }
 
-button:hover {
-  border-color: #646cff;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-button:focus,
+/* Card styles */
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-card-border);
+  border-radius: 3px;
+  padding: 20px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card:hover {
+  border-color: var(--color-brand-purple);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Category tag / badge */
+.category-tag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid var(--color-brand-purple);
+  color: var(--color-brand-purple);
+  letter-spacing: 0.5px;
+}
+
+/* Primary CTA - AI gradient with white text */
+.btn-primary {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 4px;
+  color: #FFFFFF;
+  background: var(--color-ai-gradient);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.3px;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.92;
+}
+
+/* Ghost button */
+.btn-ghost {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 4px;
+  border: 1px solid var(--color-brand-purple);
+  color: var(--color-brand-purple);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.3px;
+  transition: background-color 0.15s ease;
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-light-bg);
+}
+
+/* Standard 36px button */
+.btn-standard {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  height: 36px;
+  padding: 0 15px;
+  border-radius: 4px;
+  letter-spacing: 0.3px;
+}
+
+/* Search input */
+.search-input {
+  font-family: var(--font-body);
+  font-size: 14px;
+}
+
+/* Generators grid collapse with height transition */
+.generators-grid {
+  transition: max-height 0.25s ease;
+  overflow: hidden;
+}
+
+.generators-grid.is-collapsed {
+  /* We keep all cards in DOM but visually hide the extra ones via child class */
+}
+
+/* Hidden cards inside collapsed grids - still present in source */
+.generator-card-hidden {
+  display: none;
+}
+
+/* Focus visible styles for accessibility */
+a:focus-visible,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-brand-purple);
+  border-radius: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Ensure white text on gradient fills */
+.btn-primary,
+a[href="/s/ai_site_builder"] {
+  color: #FFFFFF !important;
+}
 
-  a:hover {
-    color: #747bff;
+/* Responsive typography */
+@media (max-width: 767px) {
+  h1 {
+    font-size: 28px;
   }
+  h2 {
+    font-size: 22px;
+  }
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* Line clamp utility for descriptions */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Ensure no horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Breadcrumb styling */
+nav[aria-label="Breadcrumb"] {
+  font-size: 14px;
+}
+
+/* FAQ accordion smooth */
+#faq-answer {
+  transition: max-height 0.2s ease;
+}
+
+/* Footer link hover */
+footer a:hover {
+  color: var(--color-brand-purple);
 }
