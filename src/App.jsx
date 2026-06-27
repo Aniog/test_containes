@@ -1,15 +1,23 @@
-import './App.css'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { CartProvider } from "./context/CartContext";
+import Layout from "./components/layout/Layout";
+import Home from "./pages/Home";
+import Collection from "./pages/Collection";
+import ProductDetail from "./pages/ProductDetail";
 
-function App() {
+export default function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <BrowserRouter>
+      <CartProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/collections/:category" element={<Collection />} />
+            <Route path="/collections" element={<Navigate to="/collections/all" replace />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+          </Route>
+        </Routes>
+      </CartProvider>
+    </BrowserRouter>
+  );
 }
-
-export default App
