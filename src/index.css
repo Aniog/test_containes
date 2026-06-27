@@ -1,74 +1,250 @@
 @import "tailwindcss";
 
+@theme {
+  --font-heading: 'Brandon Grotesque', 'Josefin Sans', Poppins, sans-serif;
+  --font-body: 'Open Sans', system-ui, sans-serif;
+
+  --color-brand-purple: #8159BB;
+  --color-brand-blue: #7671FF;
+  --color-brand-pink: #CB0C9F;
+  --color-text-body: #636972;
+  --color-text-heading: #4B5056;
+  --color-text-h1: #2E2E2F;
+  --color-border-card: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-bg-light: #F4F6F8;
+  --color-white: #FFFFFF;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  color: var(--color-text-body);
+  background-color: var(--color-white);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  color: var(--color-text-h1);
+  font-size: 32px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+@media (min-width: 768px) {
+  h1 {
+    font-size: 48px;
+  }
+}
+
+h2 {
+  color: var(--color-text-heading);
+  font-size: 26px;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 32px;
+  }
+}
+
+h3 {
+  color: var(--color-text-heading);
+  font-size: 20px;
+}
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 24px;
+  }
+}
+
+.gradient-text {
+  background-image: linear-gradient(to right, var(--color-brand-blue), var(--color-brand-pink));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  height: 36px;
+  border-radius: 4px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 9px 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+  text-decoration: none;
+  font-size: 14px;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-lg {
+  height: 44px;
+  padding: 10px 20px;
+  font-size: 16px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary {
+  background-image: linear-gradient(to right, var(--color-brand-blue), var(--color-brand-pink));
+  color: var(--color-white);
+  border: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.btn-primary:hover {
+  opacity: 0.9;
+  color: var(--color-white);
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.btn-ghost {
+  background-color: transparent;
+  border: 1px solid var(--color-brand-purple);
+  color: var(--color-brand-purple);
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-ghost:hover {
+  background-color: rgba(129, 89, 187, 0.05);
+}
+
+.card {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border-card);
+  border-radius: 3px;
+  padding: 20px;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+a.card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-brand-purple);
+  color: inherit;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.card-desc {
+  font-size: 14px;
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+.category-tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--color-brand-purple);
+  border: 1px solid var(--color-brand-purple);
+  background-color: transparent;
+  line-height: 1.2;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 480px;
+  padding-block: 12px;
+  padding-inline-start: 40px;
+  padding-inline-end: 16px;
+  border: 1px solid var(--color-border-card);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--color-text-heading);
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-brand-purple);
+}
+
+.accordion-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.accordion-title {
+  font-family: var(--font-heading);
+  color: var(--color-text-heading);
+  font-size: 16px;
+}
+
+.accordion-icon {
+  color: var(--color-brand-purple);
+  transition: transform 0.2s ease;
+}
+
+.accordion-btn[aria-expanded="true"] .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  overflow: hidden;
+  transition: height 0.3s ease;
+  height: 0;
+}
+
+.accordion-inner {
+  padding: 10px 0 20px 0;
+  font-size: 14px;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.step-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-brand-purple);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.step-title {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  color: var(--color-text-heading);
+  margin-bottom: 8px;
+}
+
+/* Remove default focus outline and replace with custom */
+*:focus-visible {
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 2px;
+}
+
+.generator-section {
+  scroll-margin-top: 80px;
 }
