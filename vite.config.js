@@ -2,20 +2,44 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
+import fs from 'fs'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
+const generatorsHtml = fs.readFileSync(path.resolve(__dirname, 'generators.html'), 'utf-8');
+
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
     tailwindcss(),
     react(),
+    {
+      name: 'serve-generators-page',
+      configureServer(server) {
+        server.middlewares.use('/generators', (req, res, next) => {
+          // Only intercept the exact /generators path (not /generators/something)
+          if (req.url === '/' || req.url === '') {
+            res.writeHead(200, { 'Content-Type': 'text/html' });
+            res.end(generatorsHtml);
+            return;
+          }
+          next();
+        });
+      },
+    },
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        generators: path.resolve(__dirname, 'generators.html'),
+      },
     },
   },
   server: {
@@ -27,7 +51,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })

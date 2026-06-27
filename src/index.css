@@ -1,74 +1,242 @@
 @import "tailwindcss";
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ===== Strikingly Brand Tokens ===== */
+@theme {
+  --color-brand-purple: #8159BB;
+  --color-brand-ai-blue: #7671FF;
+  --color-brand-ai-pink: #CB0C9F;
+  --color-body-text: #636972;
+  --color-heading: #4B5056;
+  --color-heading-dark: #2E2E2F;
+  --color-card-border: #C6C9CD;
+  --color-subtle-divider: #E2E4E7;
+  --color-light-bg: #F4F6F8;
+  --color-white: #FFFFFF;
+
+  --font-heading: 'Josefin Sans', 'Brandon Grotesque', 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* ===== Global Reset ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #636972;
+  background-color: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ===== Typography ===== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 { color: #2E2E2F; }
+h2, h3 { color: #4B5056; }
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img, svg {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* ===== AI Gradient Utilities ===== */
+.ai-gradient-text {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.ai-gradient-bg {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/* ===== Focus Visible ===== */
+:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+/* ===== FAQ Accordion ===== */
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  max-height: 0;
+  opacity: 0;
+}
+.faq-answer.open {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* ===== Show-All collapse transition ===== */
+.generator-collapsible {
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+.generator-collapsible.collapsed {
+  max-height: 0 !important;
+  opacity: 0;
+}
+
+/* ===== Hero background wash ===== */
+.hero-bg-wash {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(118, 113, 255, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 60%, rgba(203, 12, 159, 0.04) 0%, transparent 60%);
+}
+
+/* ===== Card base ===== */
+.generator-card {
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  display: block;
+}
+.generator-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+/* ===== Tag / Badge ===== */
+.category-tag {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+  border-radius: 3px;
+  padding: 2px 6px;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+/* ===== Button system ===== */
+.btn {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 9px 15px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+.btn:hover {
+  filter: brightness(1.08);
+}
+.btn-lg {
+  height: 44px;
+  font-size: 14px;
+  padding: 9px 24px;
+}
+.btn-gradient {
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+}
+.btn-ghost {
+  background: transparent;
+  color: #8159BB;
+  border: 1px solid #8159BB;
+}
+.btn-ghost:hover {
+  background: rgba(129, 89, 187, 0.06);
+}
+
+/* ===== Search input ===== */
+.search-input-wrap {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+.search-input-wrap .search-icon {
+  position: absolute;
+  inset-inline-start: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #636972;
+  pointer-events: none;
+}
+.search-input-wrap input {
+  width: 100%;
+  height: 40px;
+  padding-inline-start: 38px;
+  padding-inline-end: 12px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  background: #FFFFFF;
+  color: #2E2E2F;
+  outline: none;
+}
+.search-input-wrap input::placeholder {
+  color: #C6C9CD;
+}
+.search-input-wrap input:focus {
+  border-color: #8159BB;
+}
+
+/* ===== Numbered steps circle ===== */
+.step-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* ===== Max-width container ===== */
+.content-container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* ===== Section spacing ===== */
+.section {
+  padding-block: 40px;
 }
