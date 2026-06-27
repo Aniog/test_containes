@@ -1,0 +1,31 @@
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import CartDrawer from '@/components/cart/CartDrawer'
+import Hero from '@/components/home/Hero'
+import TrustBar from '@/components/home/TrustBar'
+import Bestsellers from '@/components/home/Bestsellers'
+import UgcReel from '@/components/home/UgcReel'
+import CategoryTiles from '@/components/home/CategoryTiles'
+import BrandStory from '@/components/home/BrandStory'
+import Testimonials from '@/components/home/Testimonials'
+import Newsletter from '@/components/home/Newsletter'
+
+export default function Home() {
+  return (
+    <div className="min-h-screen bg-cream">
+      <Navbar transparent />
+      <main>
+        <Hero />
+        <TrustBar />
+        <Bestsellers />
+        <UgcReel />
+        <CategoryTiles />
+        <BrandStory />
+        <Testimonials />
+        <Newsletter />
+      </main>
+      <Footer />
+      <CartDrawer />
+    </div>
+  )
+}
