@@ -1,74 +1,384 @@
 @import "tailwindcss";
 
+/* Velmora Fine Jewelry - Design System */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Color Palette - Warm Editorial Luxury */
+  --color-cream: #FAF8F5;
+  --color-ivory: #F5F2ED;
+  --color-sand: #E8E2D9;
+  --color-taupe: #9C8E82;
+  --color-warm-gray: #6B5F54;
+  --color-charcoal: #2D2926;
+  --color-espresso: #1A1714;
+  
+  /* Gold Accent Palette */
+  --color-gold-light: #D4AF37;
+  --color-gold: #C5A028;
+  --color-gold-deep: #A68B21;
+  --color-bronze: #8B7355;
+  
+  /* Semantic Colors */
+  --color-text-primary: var(--color-charcoal);
+  --color-text-secondary: var(--color-warm-gray);
+  --color-text-muted: var(--color-taupe);
+  --color-text-inverse: var(--color-cream);
+  --color-bg-primary: var(--color-cream);
+  --color-bg-secondary: var(--color-ivory);
+  --color-bg-accent: var(--color-charcoal);
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(45, 41, 38, 0.05);
+  --shadow-md: 0 4px 12px rgba(45, 41, 38, 0.08);
+  --shadow-lg: 0 8px 24px rgba(45, 41, 38, 0.12);
+  --shadow-xl: 0 16px 48px rgba(45, 41, 38, 0.16);
+  
+  /* Border Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
+/* Typography Classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Serif Headings */
+.heading-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.heading-1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.heading-2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+}
+
+.heading-3 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 400;
+}
+
+.heading-4 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+}
+
+/* Product Name Style */
+.product-name {
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Body Text */
+.body-lg {
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.body-md {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.body-sm {
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.text-muted {
+  color: var(--color-text-muted);
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all var(--transition-base);
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--color-charcoal);
+  color: var(--color-text-inverse);
+  border: 1px solid var(--color-charcoal);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: var(--color-espresso);
+  border-color: var(--color-espresso);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-charcoal);
+  border: 1px solid var(--color-charcoal);
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.btn-secondary:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-text-inverse);
+}
 
-  button {
-    background-color: #f9f9f9;
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-espresso);
+  border: 1px solid var(--color-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-deep);
+  border-color: var(--color-gold-deep);
+}
+
+.btn-outline-gold {
+  background-color: transparent;
+  color: var(--color-gold);
+  border: 1px solid var(--color-gold);
+}
+
+.btn-outline-gold:hover {
+  background-color: var(--color-gold);
+  color: var(--color-espresso);
+}
+
+/* Hairline Divider */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-sand), transparent);
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--space-xl);
   }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 var(--space-2xl);
+  }
+}
+
+/* Section Spacing */
+.section {
+  padding: var(--space-3xl) 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: var(--space-4xl) 0;
+  }
+}
+
+/* Overlay for dark backgrounds */
+.overlay-dark {
+  background: linear-gradient(135deg, rgba(26, 23, 20, 0.8), rgba(45, 41, 38, 0.6));
+}
+
+/* Image hover effect */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform var(--transition-slow);
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+/* Stagger children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-ivory);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-taupe);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-warm-gray);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-gold-light);
+  color: var(--color-espresso);
+}
+
+/* Focus styles */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Aspect Ratios */
+.aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.aspect-vertical {
+  aspect-ratio: 9 / 16;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-gold);
+  color: var(--color-espresso);
+}
+
+/* Star Rating */
+.stars {
+  display: flex;
+  gap: 2px;
+  color: var(--color-gold);
+}
+
+/* Loading skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--color-sand) 25%, var(--color-ivory) 50%, var(--color-sand) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }
