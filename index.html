@@ -3,11 +3,466 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Website Generators - Build Any Site in Seconds | Strikingly</title>
+    <meta name="description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds, no code required." />
+    <link rel="canonical" href="https://www.strikingly.com/generators" />
+    <meta property="og:title" content="AI Website Generators - Build Any Site in Seconds | Strikingly" />
+    <meta property="og:description" content="Browse Strikingly's AI-powered website generators. Choose one for your industry, goal, or site type and create a website in seconds." />
+    <meta property="og:url" content="https://www.strikingly.com/generators" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Strikingly", "item": "https://www.strikingly.com/"}, {"@type": "ListItem", "position": 2, "name": "AI Generators", "item": "https://www.strikingly.com/generators"}]}</script>
+    <style>/* ===== Strikingly /generators hub — inline page styles ===== */
+/* Fonts: Brandon Grotesque (paid) -> Josefin Sans -> Poppins -> system. Body: Open Sans. */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Poppins:wght@600;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --brand-purple: #8159BB;
+  --ai-grad: linear-gradient(135deg, #7671FF 0%, #CB0C9F 100%);
+  --body-text: #636972;
+  --heading-text: #4B5056;
+  --hero-h1: #2E2E2F;
+  --card-border: #C6C9CD;
+  --divider: #E2E4E7;
+  --light-bg: #F4F6F8;
+  --white: #FFFFFF;
+  --maxw: 1200px;
+  --heading-font: "Brandon Grotesque", "Josefin Sans", "Poppins", system-ui, sans-serif;
+  --body-font: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--body-font);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--body-text);
+  background-color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Keep the React mount target harmless (page content lives outside #root). */
+#root { display: none; }
+
+a { color: var(--brand-purple); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4 {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  color: var(--heading-text);
+  margin: 0;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+p { margin: 0; }
+
+img, svg { display: block; max-width: 100%; }
+
+/* ---------- Layout helpers ---------- */
+.gen-container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+.gen-section { padding-block: 40px; }
+.gen-section--hero { padding-block: 70px; }
+
+.gen-section-head { margin-bottom: 20px; }
+.gen-section-head h2 { font-size: 30px; }
+.gen-section-head p { margin-top: 10px; color: var(--body-text); }
+
+/* ---------- Top bar ---------- */
+.gen-topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--divider);
+}
+.gen-topbar__inner {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+.gen-logo {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--heading-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.gen-logo:hover { text-decoration: none; }
+.gen-logo__mark { color: var(--brand-purple); }
+
+/* ---------- Breadcrumb ---------- */
+.gen-breadcrumb { padding-block: 14px; }
+.gen-breadcrumb ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  color: var(--body-text);
+}
+.gen-breadcrumb li { display: inline-flex; align-items: center; gap: 8px; }
+.gen-breadcrumb .sep { color: var(--divider); }
+.gen-breadcrumb [aria-current="page"] { color: var(--heading-text); font-weight: 600; }
+
+/* ---------- Hero ---------- */
+.gen-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 380px at 78% 18%, rgba(118,113,255,0.10), transparent 70%),
+    radial-gradient(700px 360px at 92% 88%, rgba(203,12,159,0.08), transparent 70%),
+    var(--white);
+}
+.gen-hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 40px;
+  align-items: center;
+}
+.gen-hero h1 {
+  font-size: 46px;
+  color: var(--hero-h1);
+  letter-spacing: 0.01em;
+}
+.gen-hero h1 .grad {
+  background: var(--ai-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.gen-hero__sub {
+  margin-top: 18px;
+  font-size: 16px;
+  max-width: 520px;
+  color: var(--body-text);
+}
+.gen-hero__ctas {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.gen-hero__art { display: flex; justify-content: center; }
+.gen-hero__art svg { width: 100%; max-width: 460px; height: auto; }
+
+/* ---------- Buttons ---------- */
+.gen-btn {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  border-radius: 4px;
+  padding: 9px 15px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+.gen-btn:hover { text-decoration: none; }
+.gen-btn--big { height: 44px; padding: 10px 22px; font-size: 15px; }
+.gen-btn--primary {
+  background: var(--ai-grad);
+  color: var(--white);
+}
+.gen-btn--primary:hover { color: var(--white); filter: brightness(1.05); }
+.gen-btn--ghost {
+  background: transparent;
+  color: var(--brand-purple);
+  border-color: var(--brand-purple);
+}
+.gen-btn--ghost:hover { background: rgba(129,89,187,0.06); color: var(--brand-purple); }
+.gen-btn:focus-visible {
+  outline: 3px solid rgba(129,89,187,0.5);
+  outline-offset: 2px;
+}
+
+/* ---------- Cards (shared) ---------- */
+.gen-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--card-border);
+  border-radius: 3px;
+  padding: 20px;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.gen-card:hover {
+  border-color: var(--brand-purple);
+  box-shadow: 0 6px 18px rgba(46,46,47,0.10);
+  text-decoration: none;
+}
+.gen-card:focus-visible {
+  outline: 3px solid rgba(129,89,187,0.5);
+  outline-offset: 2px;
+}
+.gen-card__name {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--heading-text);
+  font-size: 15px;
+  line-height: 1.25;
+}
+.gen-card__desc {
+  margin-top: 8px;
+  color: var(--body-text);
+  font-size: 13px;
+}
+
+/* category tag (ghost badge) */
+.gen-tag {
+  display: inline-block;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--brand-purple);
+  border: 1px solid var(--brand-purple);
+  background: transparent;
+  line-height: 1.4;
+}
+
+/* ---------- Grids ---------- */
+.gen-grid { display: grid; gap: 20px; }
+.gen-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.gen-grid--feat { grid-template-columns: repeat(3, 1fr); }
+
+/* ---------- Featured tiles ---------- */
+.gen-feat__tile { display: flex; flex-direction: column; gap: 10px; }
+.gen-feat__tile .gen-tag { align-self: flex-start; }
+
+/* ---------- Browse by category ---------- */
+.gen-cat__card { display: flex; flex-direction: column; gap: 12px; }
+.gen-cat__icon { width: 44px; height: 44px; color: var(--brand-purple); }
+.gen-cat__name { font-size: 18px; }
+.gen-cat__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.gen-cat__arrow { color: var(--brand-purple); flex-shrink: 0; }
+
+/* ---------- All generators directory ---------- */
+.gen-dir__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.gen-search {
+  position: relative;
+  flex: 1 1 320px;
+  max-width: 480px;
+}
+.gen-search__icon {
+  position: absolute;
+  inset-inline-start: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--body-text);
+  pointer-events: none;
+}
+.gen-search input {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding-inline: 38px 14px;
+  font-family: var(--body-font);
+  font-size: 14px;
+  color: var(--heading-text);
+  background: var(--white);
+}
+.gen-search input::placeholder { color: #9aa0a6; }
+.gen-search input:focus { outline: 3px solid rgba(129,89,187,0.4); border-color: var(--brand-purple); }
+.gen-dir__count { font-size: 13px; color: var(--body-text); }
+.gen-dir__count strong { color: var(--heading-text); }
+
+.gen-subsection { margin-bottom: 40px; scroll-margin-top: 80px; }
+.gen-subsection__head { margin-bottom: 18px; }
+.gen-subsection__head h3 { font-size: 20px; }
+.gen-subsection__head p { margin-top: 6px; font-size: 13px; }
+
+.gen-dir__card { display: flex; flex-direction: column; gap: 10px; }
+.gen-dir__thumb { width: 40px; height: 40px; color: var(--brand-purple); }
+
+/* Collapsible card list (progressive enhancement). Without JS everything stays visible. */
+.gen-collapsible { overflow: hidden; transition: height 0.3s ease; }
+.gen-collapsible.is-collapsed { height: 0 !important; }
+.gen-showall {
+  margin-top: 16px;
+  background: transparent;
+  border: 1px solid var(--card-border);
+  color: var(--brand-purple);
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 8px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.gen-showall:hover { border-color: var(--brand-purple); }
+.gen-showall:focus-visible { outline: 3px solid rgba(129,89,187,0.5); outline-offset: 2px; }
+
+/* search empty state */
+.gen-empty {
+  display: none;
+  padding: 30px;
+  text-align: center;
+  border: 1px dashed var(--card-border);
+  border-radius: 4px;
+  background: var(--light-bg);
+}
+.gen-empty.is-visible { display: block; }
+.gen-empty p { margin-bottom: 14px; color: var(--body-text); }
+
+/* When searching, hide subsections with no matches and dim non-matching cards. */
+body.is-searching .gen-subsection { display: none; }
+body.is-searching .gen-subsection.has-match { display: block; }
+body.is-searching .gen-dir__card.is-hidden { display: none; }
+/* While searching, hide the show-all toggles and collapse controls. */
+body.is-searching .gen-showall,
+body.is-searching .gen-collapsible-extra { display: none !important; }
+body.is-searching .gen-collapsible.is-collapsed { height: auto !important; }
+
+/* ---------- How it works ---------- */
+.gen-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.gen-step__num {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--brand-purple); color: var(--white);
+  font-family: var(--heading-font); font-weight: 700; font-size: 18px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px;
+}
+.gen-step__title { font-size: 16px; margin-bottom: 8px; }
+.gen-step__text { color: var(--body-text); font-size: 13px; }
+
+/* ---------- Why Strikingly ---------- */
+.gen-why__cell { display: flex; flex-direction: column; gap: 12px; }
+.gen-why__icon { width: 40px; height: 40px; color: var(--brand-purple); }
+.gen-why__title { font-size: 16px; }
+.gen-why__text { color: var(--body-text); font-size: 13px; }
+
+/* ---------- FAQ ---------- */
+.gen-faq { max-width: 820px; }
+.gen-faq__item { border-bottom: 1px solid var(--divider); }
+.gen-faq__btn {
+  width: 100%;
+  text-align: start;
+  background: transparent;
+  border: none;
+  padding: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  font-family: var(--heading-font);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--heading-text);
+}
+.gen-faq__btn:hover { color: var(--brand-purple); }
+.gen-faq__btn:focus-visible { outline: 3px solid rgba(129,89,187,0.5); outline-offset: 2px; }
+.gen-faq__icon { flex-shrink: 0; color: var(--brand-purple); transition: transform 0.2s ease; }
+.gen-faq__btn[aria-expanded="true"] .gen-faq__icon { transform: rotate(180deg); }
+.gen-faq__panel { overflow: hidden; }
+.gen-faq__panel-inner { padding: 0 0 18px; color: var(--body-text); font-size: 14px; }
+.gen-faq__panel-inner p + p { margin-top: 10px; }
+/* Without JS, panels are visible. JS toggles a class to collapse. */
+.gen-faq__panel.is-collapsed { display: none; }
+
+/* ---------- Closing CTA ---------- */
+.gen-cta { text-align: center; }
+.gen-cta h2 { font-size: 32px; color: var(--heading-text); }
+.gen-cta p { margin: 12px auto 24px; max-width: 540px; color: var(--body-text); }
+
+/* ---------- Footer ---------- */
+.gen-footer {
+  background: var(--light-bg);
+  border-top: 1px solid var(--divider);
+  padding-block: 40px 24px;
+  margin-top: 40px;
+}
+.gen-footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
+  gap: 30px;
+}
+.gen-footer__col h4 {
+  font-size: 13px;
+  margin-bottom: 14px;
+  color: var(--heading-text);
+}
+.gen-footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.gen-footer__col a, .gen-footer__col span { color: var(--body-text); font-size: 13px; }
+.gen-footer__col a:hover { color: var(--brand-purple); }
+.gen-footer__bottom {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--divider);
+  font-size: 12px;
+  color: var(--body-text);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+  .gen-hero__grid { grid-template-columns: 1fr; }
+  .gen-hero__art { order: -1; }
+  .gen-grid--3, .gen-grid--feat, .gen-steps { grid-template-columns: repeat(2, 1fr); }
+  .gen-footer__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 620px) {
+  .gen-section--hero { padding-block: 50px; }
+  .gen-hero h1 { font-size: 30px; }
+  .gen-section-head h2 { font-size: 24px; }
+  .gen-grid--3, .gen-grid--feat, .gen-steps { grid-template-columns: 1fr; }
+  .gen-hero__ctas { flex-direction: column; align-items: stretch; }
+  .gen-hero__ctas .gen-btn { width: 100%; }
+  .gen-footer__grid { grid-template-columns: 1fr; }
+  .gen-dir__bar { flex-direction: column; align-items: stretch; }
+  .gen-search { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
   </head>
   <body>
-    <div id="root"></div>
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
@@ -586,6 +1041,754 @@
         };
       })();
     </script>
+    <div id="root"></div>
+    <main>
+<header class="gen-topbar">
+  <div class="gen-container">
+    <div class="gen-topbar__inner">
+      <a class="gen-logo" href="/" aria-label="Strikingly home">
+        <span class="gen-logo__mark">strikingly</span> AI
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="gen-breadcrumb" aria-label="Breadcrumb">
+  <div class="gen-container">
+    <ol>
+      <li><a href="/">Strikingly</a><span class="sep" aria-hidden="true">&gt;</span></li>
+      <li><span aria-current="page">AI Generators</span></li>
+    </ol>
+  </div>
+</nav>
+<section class="gen-section gen-section--hero gen-hero" aria-labelledby="hero-heading">
+  <div class="gen-container">
+    <div class="gen-hero__grid">
+      <div class="gen-hero__copy">
+        <h1 id="hero-heading">
+          <span class="line1">BUILD ANY KIND OF SITE</span><br/>
+          <span class="grad">WITH AI, IN AN INSTANT</span>
+        </h1>
+        <p class="gen-hero__sub">Browse the right generator for what you're building, or jump straight into our AI site builder.</p>
+        <div class="gen-hero__ctas">
+          <a class="gen-btn gen-btn--primary gen-btn--big" href="/s/ai_site_builder">START BUILDING - IT'S FREE</a>
+          <a class="gen-btn gen-btn--ghost gen-btn--big" href="#all-generators">BROWSE GENERATORS</a>
+        </div>
+      </div>
+      <div class="gen-hero__art">
+        <svg viewBox="0 0 460 320" width="460" height="320" role="img" aria-label="Illustration of an AI-generated website mockup" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7671FF"/>
+      <stop offset="100%" stop-color="#CB0C9F"/>
+    </linearGradient>
+  </defs>
+  <rect x="20" y="30" width="420" height="260" rx="14" fill="#FFFFFF" stroke="#C6C9CD" stroke-width="1.5"/>
+  <rect x="20" y="30" width="420" height="40" rx="14" fill="#F4F6F8"/>
+  <circle cx="44" cy="50" r="4" fill="#C6C9CD"/>
+  <circle cx="60" cy="50" r="4" fill="#C6C9CD"/>
+  <circle cx="76" cy="50" r="4" fill="#C6C9CD"/>
+  <rect x="40" y="92" width="180" height="20" rx="4" fill="url(#aiGrad)" opacity="0.85"/>
+  <rect x="40" y="122" width="240" height="10" rx="3" fill="#E2E4E7"/>
+  <rect x="40" y="140" width="210" height="10" rx="3" fill="#E2E4E7"/>
+  <rect x="40" y="170" width="90" height="34" rx="6" fill="url(#aiGrad)"/>
+  <rect x="300" y="92" width="110" height="80" rx="8" fill="#F4F6F8" stroke="#E2E4E7"/>
+  <rect x="40" y="220" width="110" height="50" rx="8" fill="#F4F6F8" stroke="#E2E4E7"/>
+  <rect x="160" y="220" width="110" height="50" rx="8" fill="#F4F6F8" stroke="#E2E4E7"/>
+  <rect x="280" y="220" width="110" height="50" rx="8" fill="#F4F6F8" stroke="#E2E4E7"/>
+  <g stroke="url(#aiGrad)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.9">
+    <path d="M392 70 l16 16 -16 16"/>
+    <path d="M408 70 l16 16 -16 16"/>
+  </g>
+</svg>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="gen-section" aria-labelledby="featured-heading">
+  <div class="gen-container">
+    <div class="gen-section-head">
+      <h2 id="featured-heading">FEATURED GENERATORS</h2>
+      <p>A few common starting points.</p>
+    </div>
+    <div class="gen-grid gen-grid--feat">
+      <a class="gen-card gen-feat__tile" href="/generators/ai-website-generator" aria-label="AI Website Generator — Describe your business, get a full site.">
+  <span class="gen-tag">Website</span>
+  <h3 class="gen-card__name">AI Website Generator</h3>
+  <p class="gen-card__desc">Describe your business, get a full site.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/free-portfolio-generator" aria-label="Free Portfolio Generator — For creatives, in minutes, no fee.">
+  <span class="gen-tag">Portfolio</span>
+  <h3 class="gen-card__name">Free Portfolio Generator</h3>
+  <p class="gen-card__desc">For creatives, in minutes, no fee.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/ai-landing-page-maker" aria-label="AI Landing Page Maker — One-page sites built to convert.">
+  <span class="gen-tag">Landing Page</span>
+  <h3 class="gen-card__name">AI Landing Page Maker</h3>
+  <p class="gen-card__desc">One-page sites built to convert.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/online-store-builder" aria-label="Online Store Builder — Start selling without writing code.">
+  <span class="gen-tag">Store</span>
+  <h3 class="gen-card__name">Online Store Builder</h3>
+  <p class="gen-card__desc">Start selling without writing code.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/link-in-bio-generator" aria-label="Link-in-Bio Generator — One link for all your channels.">
+  <span class="gen-tag">Link-in-Bio</span>
+  <h3 class="gen-card__name">Link-in-Bio Generator</h3>
+  <p class="gen-card__desc">One link for all your channels.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/one-page-website-builder" aria-label="One-Page Website Builder — Simple sites, single scroll.">
+  <span class="gen-tag">Website</span>
+  <h3 class="gen-card__name">One-Page Website Builder</h3>
+  <p class="gen-card__desc">Simple sites, single scroll.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/wedding-website-generator" aria-label="Wedding Website Generator — Share your day with guests.">
+  <span class="gen-tag">Website</span>
+  <h3 class="gen-card__name">Wedding Website Generator</h3>
+  <p class="gen-card__desc">Share your day with guests.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/restaurant-website-builder" aria-label="Restaurant Website Builder — Menu, hours, reservations, done.">
+  <span class="gen-tag">Website</span>
+  <h3 class="gen-card__name">Restaurant Website Builder</h3>
+  <p class="gen-card__desc">Menu, hours, reservations, done.</p>
+</a><a class="gen-card gen-feat__tile" href="/generators/blog-generator-for-beginners" aria-label="Blog Generator for Beginners — Publish-ready in minutes.">
+  <span class="gen-tag">Blog</span>
+  <h3 class="gen-card__name">Blog Generator for Beginners</h3>
+  <p class="gen-card__desc">Publish-ready in minutes.</p>
+</a>
+    </div>
+  </div>
+</section>
+<section class="gen-section" aria-labelledby="browse-heading" style="background:var(--light-bg);">
+  <div class="gen-container">
+    <div class="gen-section-head">
+      <h2 id="browse-heading">BROWSE BY CATEGORY</h2>
+      <p>Six ways into the directory. Pick one to jump straight there.</p>
+    </div>
+    <div class="gen-grid gen-grid--3">
+      <a class="gen-card gen-cat__card" href="/generators#websites" aria-label="Browse Websites generators">
+  <svg class="gen-cat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 8h18"/><circle cx="6" cy="6" r="0.6" fill="currentColor"/><circle cx="8" cy="6" r="0.6" fill="currentColor"/></svg>
+  <div class="gen-cat__row">
+    <h3 class="gen-cat__name">Websites</h3>
+    <svg class="gen-cat__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+  <p class="gen-card__desc">AI-built business and personal sites for any goal.</p>
+</a><a class="gen-card gen-cat__card" href="/generators#landing-pages" aria-label="Browse Landing Pages generators">
+  <svg class="gen-cat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.5"/><path d="M7 7h10M7 11h10M7 15h6"/></svg>
+  <div class="gen-cat__row">
+    <h3 class="gen-cat__name">Landing Pages</h3>
+    <svg class="gen-cat__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+  <p class="gen-card__desc">Single-page sites built to convert visitors fast.</p>
+</a><a class="gen-card gen-cat__card" href="/generators#portfolios" aria-label="Browse Portfolios generators">
+  <svg class="gen-cat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><circle cx="9" cy="10" r="2"/><path d="M6 17l4-4 3 3 3-4 4 5"/></svg>
+  <div class="gen-cat__row">
+    <h3 class="gen-cat__name">Portfolios</h3>
+    <svg class="gen-cat__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+  <p class="gen-card__desc">Showcase your work with a clean, focused site.</p>
+</a><a class="gen-card gen-cat__card" href="/generators#blogs" aria-label="Browse Blogs generators">
+  <svg class="gen-cat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" aria-hidden="true"><path d="M4 5h13a3 3 0 0 1 3 3v11l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 9h8M8 12h8M8 15h5"/></svg>
+  <div class="gen-cat__row">
+    <h3 class="gen-cat__name">Blogs</h3>
+    <svg class="gen-cat__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+  <p class="gen-card__desc">Publish-ready blogs with built-in SEO basics.</p>
+</a><a class="gen-card gen-cat__card" href="/generators#stores" aria-label="Browse Online Stores generators">
+  <svg class="gen-cat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="1.5"/><path d="M3 8h18"/><circle cx="6" cy="6" r="0.6" fill="currentColor"/><circle cx="8" cy="6" r="0.6" fill="currentColor"/></svg>
+  <div class="gen-cat__row">
+    <h3 class="gen-cat__name">Online Stores</h3>
+    <svg class="gen-cat__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+  <p class="gen-card__desc">Sell products online with payments built in.</p>
+</a><a class="gen-card gen-cat__card" href="/generators#link-in-bio" aria-label="Browse Link-in-Bio generators">
+  <svg class="gen-cat__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="44" height="44" aria-hidden="true"><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.2 10.8l7.6-3.6M8.2 13.2l7.6 3.6"/></svg>
+  <div class="gen-cat__row">
+    <h3 class="gen-cat__name">Link-in-Bio</h3>
+    <svg class="gen-cat__arrow" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  </div>
+  <p class="gen-card__desc">One link, all your places. Made for creators.</p>
+</a>
+    </div>
+  </div>
+</section>
+<section class="gen-section" aria-labelledby="all-heading" id="all-generators">
+  <div class="gen-container">
+    <div class="gen-section-head">
+      <h2 id="all-heading">ALL GENERATORS</h2>
+      <p>Sixty-plus generators, organized by what you're building.</p>
+    </div>
+    <div class="gen-dir__bar">
+      <div class="gen-search">
+        <svg class="gen-search__icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input id="gen-search-input" type="search" placeholder="Search generators..." aria-label="Search generators" autocomplete="off"/>
+      </div>
+      <span id="gen-search-count" class="gen-dir__count" aria-live="polite"></span>
+    </div>
+    <div class="gen-subsection" id="websites" data-gen-group data-gen-limit="6">
+  <div class="gen-subsection__head">
+    <h3>Websites</h3>
+    <p>Full multi-section sites for businesses and personal brands.</p>
+  </div>
+  <div class="gen-grid gen-grid--3">
+    <a class="gen-card gen-dir__card" href="/generators/ai-website-generator" data-gen-card data-gen-name="AI Website Generator" data-gen-desc="Describe your business, get a full site." data-gen-cat="Websites" aria-label="AI Website Generator — Describe your business, get a full site.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">AI Website Generator</h4>
+  <p class="gen-card__desc">Describe your business, get a full site.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-website-builder-for-photographers" data-gen-card data-gen-name="Free Website Builder for Photographers" data-gen-desc="A clean gallery site to show off your shots." data-gen-cat="Websites" aria-label="Free Website Builder for Photographers — A clean gallery site to show off your shots.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Website Builder for Photographers</h4>
+  <p class="gen-card__desc">A clean gallery site to show off your shots.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/one-page-wedding-website-builder" data-gen-card data-gen-name="One-Page Wedding Website Builder" data-gen-desc="Share your day, schedule, and RSVPs with guests." data-gen-cat="Websites" aria-label="One-Page Wedding Website Builder — Share your day, schedule, and RSVPs with guests.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">One-Page Wedding Website Builder</h4>
+  <p class="gen-card__desc">Share your day, schedule, and RSVPs with guests.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/small-business-website-generator" data-gen-card data-gen-name="Small Business Website Generator" data-gen-desc="Get found and look professional fast." data-gen-cat="Websites" aria-label="Small Business Website Generator — Get found and look professional fast.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Small Business Website Generator</h4>
+  <p class="gen-card__desc">Get found and look professional fast.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/ai-website-builder-for-restaurants" data-gen-card data-gen-name="AI Website Builder for Restaurants" data-gen-desc="Menu, hours, and reservations in one place." data-gen-cat="Websites" aria-label="AI Website Builder for Restaurants — Menu, hours, and reservations in one place.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">AI Website Builder for Restaurants</h4>
+  <p class="gen-card__desc">Menu, hours, and reservations in one place.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/personal-website-generator" data-gen-card data-gen-name="Personal Website Generator" data-gen-desc="A simple site that&#x27;s all about you." data-gen-cat="Websites" aria-label="Personal Website Generator — A simple site that&#x27;s all about you.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Personal Website Generator</h4>
+  <p class="gen-card__desc">A simple site that&#x27;s all about you.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-website-builder-for-yoga-instructors" data-gen-card data-gen-name="Free Website Builder for Yoga Instructors" data-gen-desc="Class schedules and bookings for your studio." data-gen-cat="Websites" aria-label="Free Website Builder for Yoga Instructors — Class schedules and bookings for your studio.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Website Builder for Yoga Instructors</h4>
+  <p class="gen-card__desc">Class schedules and bookings for your studio.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/nonprofit-website-generator" data-gen-card data-gen-name="Nonprofit Website Generator" data-gen-desc="Tell your mission and accept donations." data-gen-cat="Websites" aria-label="Nonprofit Website Generator — Tell your mission and accept donations.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Nonprofit Website Generator</h4>
+  <p class="gen-card__desc">Tell your mission and accept donations.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/real-estate-website-builder" data-gen-card data-gen-name="Real Estate Website Builder" data-gen-desc="Showcase listings and capture leads." data-gen-cat="Websites" aria-label="Real Estate Website Builder — Showcase listings and capture leads.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Real Estate Website Builder</h4>
+  <p class="gen-card__desc">Showcase listings and capture leads.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/beautiful-website-builder-for-coaches" data-gen-card data-gen-name="Beautiful Website Builder for Coaches" data-gen-desc="Book clients with a polished site." data-gen-cat="Websites" aria-label="Beautiful Website Builder for Coaches — Book clients with a polished site.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Beautiful Website Builder for Coaches</h4>
+  <p class="gen-card__desc">Book clients with a polished site.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/no-code-website-generator" data-gen-card data-gen-name="No-Code Website Generator" data-gen-desc="Build a site without touching code." data-gen-cat="Websites" aria-label="No-Code Website Generator — Build a site without touching code.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">No-Code Website Generator</h4>
+  <p class="gen-card__desc">Build a site without touching code.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/ai-website-builder-for-startups" data-gen-card data-gen-name="AI Website Builder for Startups" data-gen-desc="A credible site to launch your startup." data-gen-cat="Websites" aria-label="AI Website Builder for Startups — A credible site to launch your startup.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">AI Website Builder for Startups</h4>
+  <p class="gen-card__desc">A credible site to launch your startup.</p>
+</a>
+  </div>
+</div><div class="gen-subsection" id="landing-pages" data-gen-group data-gen-limit="6">
+  <div class="gen-subsection__head">
+    <h3>Landing Pages</h3>
+    <p>Single-page sites built to convert visitors fast.</p>
+  </div>
+  <div class="gen-grid gen-grid--3">
+    <a class="gen-card gen-dir__card" href="/generators/ai-landing-page-maker" data-gen-card data-gen-name="AI Landing Page Maker" data-gen-desc="A single page tuned to convert visitors." data-gen-cat="Landing Pages" aria-label="AI Landing Page Maker — A single page tuned to convert visitors.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">AI Landing Page Maker</h4>
+  <p class="gen-card__desc">A single page tuned to convert visitors.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-landing-page-generator" data-gen-card data-gen-name="Free Landing Page Generator" data-gen-desc="A free page that converts visitors." data-gen-cat="Landing Pages" aria-label="Free Landing Page Generator — A free page that converts visitors.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Landing Page Generator</h4>
+  <p class="gen-card__desc">A free page that converts visitors.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/one-page-landing-page-builder" data-gen-card data-gen-name="One-Page Landing Page Builder" data-gen-desc="A single scroll tuned to convert." data-gen-cat="Landing Pages" aria-label="One-Page Landing Page Builder — A single scroll tuned to convert.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">One-Page Landing Page Builder</h4>
+  <p class="gen-card__desc">A single scroll tuned to convert.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/app-landing-page-generator" data-gen-card data-gen-name="App Landing Page Generator" data-gen-desc="Drive app installs from one page." data-gen-cat="Landing Pages" aria-label="App Landing Page Generator — Drive app installs from one page.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">App Landing Page Generator</h4>
+  <p class="gen-card__desc">Drive app installs from one page.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/event-landing-page-builder" data-gen-card data-gen-name="Event Landing Page Builder" data-gen-desc="Capture signups for your next event." data-gen-cat="Landing Pages" aria-label="Event Landing Page Builder — Capture signups for your next event.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Event Landing Page Builder</h4>
+  <p class="gen-card__desc">Capture signups for your next event.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/product-launch-landing-page-generator" data-gen-card data-gen-name="Product Launch Landing Page Generator" data-gen-desc="Build buzz for a product launch." data-gen-cat="Landing Pages" aria-label="Product Launch Landing Page Generator — Build buzz for a product launch.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Product Launch Landing Page Generator</h4>
+  <p class="gen-card__desc">Build buzz for a product launch.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/webinar-landing-page-builder" data-gen-card data-gen-name="Webinar Landing Page Builder" data-gen-desc="Get registrations for your webinar." data-gen-cat="Landing Pages" aria-label="Webinar Landing Page Builder — Get registrations for your webinar.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Webinar Landing Page Builder</h4>
+  <p class="gen-card__desc">Get registrations for your webinar.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/lead-capture-landing-page-generator" data-gen-card data-gen-name="Lead Capture Landing Page Generator" data-gen-desc="Turn visitors into qualified leads." data-gen-cat="Landing Pages" aria-label="Lead Capture Landing Page Generator — Turn visitors into qualified leads.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Lead Capture Landing Page Generator</h4>
+  <p class="gen-card__desc">Turn visitors into qualified leads.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/saas-landing-page-builder" data-gen-card data-gen-name="SaaS Landing Page Builder" data-gen-desc="A conversion-ready page for your SaaS." data-gen-cat="Landing Pages" aria-label="SaaS Landing Page Builder — A conversion-ready page for your SaaS.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">SaaS Landing Page Builder</h4>
+  <p class="gen-card__desc">A conversion-ready page for your SaaS.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-landing-page-maker-for-coaches" data-gen-card data-gen-name="Free Landing Page Maker for Coaches" data-gen-desc="A free page that fills your calendar." data-gen-cat="Landing Pages" aria-label="Free Landing Page Maker for Coaches — A free page that fills your calendar.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="1.5"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Landing Page Maker for Coaches</h4>
+  <p class="gen-card__desc">A free page that fills your calendar.</p>
+</a>
+  </div>
+</div><div class="gen-subsection" id="portfolios" data-gen-group data-gen-limit="6">
+  <div class="gen-subsection__head">
+    <h3>Portfolios</h3>
+    <p>Showcase your work with a clean, focused site.</p>
+  </div>
+  <div class="gen-grid gen-grid--3">
+    <a class="gen-card gen-dir__card" href="/generators/free-portfolio-generator" data-gen-card data-gen-name="Free Portfolio Generator" data-gen-desc="Present your projects in a polished layout." data-gen-cat="Portfolios" aria-label="Free Portfolio Generator — Present your projects in a polished layout.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Portfolio Generator</h4>
+  <p class="gen-card__desc">Present your projects in a polished layout.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/portfolio-generator-for-designers" data-gen-card data-gen-name="Portfolio Generator for Designers" data-gen-desc="A focused showcase for your design work." data-gen-cat="Portfolios" aria-label="Portfolio Generator for Designers — A focused showcase for your design work.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Portfolio Generator for Designers</h4>
+  <p class="gen-card__desc">A focused showcase for your design work.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/photography-portfolio-builder" data-gen-card data-gen-name="Photography Portfolio Builder" data-gen-desc="A clean gallery site to show off your shots." data-gen-cat="Portfolios" aria-label="Photography Portfolio Builder — A clean gallery site to show off your shots.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Photography Portfolio Builder</h4>
+  <p class="gen-card__desc">A clean gallery site to show off your shots.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/artist-portfolio-website-generator" data-gen-card data-gen-name="Artist Portfolio Website Generator" data-gen-desc="A gallery layout for your artwork." data-gen-cat="Portfolios" aria-label="Artist Portfolio Website Generator — A gallery layout for your artwork.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Artist Portfolio Website Generator</h4>
+  <p class="gen-card__desc">A gallery layout for your artwork.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/model-portfolio-builder" data-gen-card data-gen-name="Model Portfolio Builder" data-gen-desc="A portfolio that books more shoots." data-gen-cat="Portfolios" aria-label="Model Portfolio Builder — A portfolio that books more shoots.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Model Portfolio Builder</h4>
+  <p class="gen-card__desc">A portfolio that books more shoots.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/freelancer-portfolio-generator" data-gen-card data-gen-name="Freelancer Portfolio Generator" data-gen-desc="Win clients with a focused portfolio." data-gen-cat="Portfolios" aria-label="Freelancer Portfolio Generator — Win clients with a focused portfolio.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Freelancer Portfolio Generator</h4>
+  <p class="gen-card__desc">Win clients with a focused portfolio.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/architecture-portfolio-builder" data-gen-card data-gen-name="Architecture Portfolio Builder" data-gen-desc="Present plans and projects cleanly." data-gen-cat="Portfolios" aria-label="Architecture Portfolio Builder — Present plans and projects cleanly.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Architecture Portfolio Builder</h4>
+  <p class="gen-card__desc">Present plans and projects cleanly.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/writer-portfolio-generator" data-gen-card data-gen-name="Writer Portfolio Generator" data-gen-desc="A portfolio for your articles and clips." data-gen-cat="Portfolios" aria-label="Writer Portfolio Generator — A portfolio for your articles and clips.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Writer Portfolio Generator</h4>
+  <p class="gen-card__desc">A portfolio for your articles and clips.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/video-portfolio-website-builder" data-gen-card data-gen-name="Video Portfolio Website Builder" data-gen-desc="Embed reels and showreels in style." data-gen-cat="Portfolios" aria-label="Video Portfolio Website Builder — Embed reels and showreels in style.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Video Portfolio Website Builder</h4>
+  <p class="gen-card__desc">Embed reels and showreels in style.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/student-portfolio-generator" data-gen-card data-gen-name="Student Portfolio Generator" data-gen-desc="Show your work to schools and employers." data-gen-cat="Portfolios" aria-label="Student Portfolio Generator — Show your work to schools and employers.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="1.5"/><circle cx="9" cy="11" r="2"/><path d="M6 16l4-4 3 3 3-4 4 5"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Student Portfolio Generator</h4>
+  <p class="gen-card__desc">Show your work to schools and employers.</p>
+</a>
+  </div>
+</div><div class="gen-subsection" id="blogs" data-gen-group data-gen-limit="6">
+  <div class="gen-subsection__head">
+    <h3>Blogs</h3>
+    <p>Publish-ready blogs with built-in SEO basics.</p>
+  </div>
+  <div class="gen-grid gen-grid--3">
+    <a class="gen-card gen-dir__card" href="/generators/blog-generator-for-beginners" data-gen-card data-gen-name="Blog Generator for Beginners" data-gen-desc="Start publishing in minutes, no code needed." data-gen-cat="Blogs" aria-label="Blog Generator for Beginners — Start publishing in minutes, no code needed.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Blog Generator for Beginners</h4>
+  <p class="gen-card__desc">Start publishing in minutes, no code needed.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/ai-blog-generator" data-gen-card data-gen-name="AI Blog Generator" data-gen-desc="AI-written posts, ready to publish." data-gen-cat="Blogs" aria-label="AI Blog Generator — AI-written posts, ready to publish.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">AI Blog Generator</h4>
+  <p class="gen-card__desc">AI-written posts, ready to publish.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-blog-builder" data-gen-card data-gen-name="Free Blog Builder" data-gen-desc="A free blog you can launch today." data-gen-cat="Blogs" aria-label="Free Blog Builder — A free blog you can launch today.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Blog Builder</h4>
+  <p class="gen-card__desc">A free blog you can launch today.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/food-blog-website-generator" data-gen-card data-gen-name="Food Blog Website Generator" data-gen-desc="Share recipes with a hungry audience." data-gen-cat="Blogs" aria-label="Food Blog Website Generator — Share recipes with a hungry audience.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Food Blog Website Generator</h4>
+  <p class="gen-card__desc">Share recipes with a hungry audience.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/travel-blog-builder" data-gen-card data-gen-name="Travel Blog Builder" data-gen-desc="Document trips with built-in SEO." data-gen-cat="Blogs" aria-label="Travel Blog Builder — Document trips with built-in SEO.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Travel Blog Builder</h4>
+  <p class="gen-card__desc">Document trips with built-in SEO.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/personal-blog-generator" data-gen-card data-gen-name="Personal Blog Generator" data-gen-desc="A blog that&#x27;s unmistakably yours." data-gen-cat="Blogs" aria-label="Personal Blog Generator — A blog that&#x27;s unmistakably yours.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Personal Blog Generator</h4>
+  <p class="gen-card__desc">A blog that&#x27;s unmistakably yours.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/fashion-blog-website-builder" data-gen-card data-gen-name="Fashion Blog Website Builder" data-gen-desc="Publish looks and style guides fast." data-gen-cat="Blogs" aria-label="Fashion Blog Website Builder — Publish looks and style guides fast.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Fashion Blog Website Builder</h4>
+  <p class="gen-card__desc">Publish looks and style guides fast.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/tech-blog-generator" data-gen-card data-gen-name="Tech Blog Generator" data-gen-desc="Write reviews and tutorials that rank." data-gen-cat="Blogs" aria-label="Tech Blog Generator — Write reviews and tutorials that rank.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Tech Blog Generator</h4>
+  <p class="gen-card__desc">Write reviews and tutorials that rank.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/lifestyle-blog-builder" data-gen-card data-gen-name="Lifestyle Blog Builder" data-gen-desc="A readable home for your stories." data-gen-cat="Blogs" aria-label="Lifestyle Blog Builder — A readable home for your stories.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Lifestyle Blog Builder</h4>
+  <p class="gen-card__desc">A readable home for your stories.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/no-code-blog-generator-for-writers" data-gen-card data-gen-name="No-Code Blog Generator for Writers" data-gen-desc="Write and publish without touching code." data-gen-cat="Blogs" aria-label="No-Code Blog Generator for Writers — Write and publish without touching code.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M4 6h13a3 3 0 0 1 3 3v9l-3-2-3 2-3-2-3 2-3-2z"/><path d="M8 10h8M8 13h6"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">No-Code Blog Generator for Writers</h4>
+  <p class="gen-card__desc">Write and publish without touching code.</p>
+</a>
+  </div>
+</div><div class="gen-subsection" id="stores" data-gen-group data-gen-limit="6">
+  <div class="gen-subsection__head">
+    <h3>Online Stores</h3>
+    <p>Sell products online with payments built in.</p>
+  </div>
+  <div class="gen-grid gen-grid--3">
+    <a class="gen-card gen-dir__card" href="/generators/online-store-builder" data-gen-card data-gen-name="Online Store Builder" data-gen-desc="Start selling with payments built in." data-gen-cat="Online Stores" aria-label="Online Store Builder — Start selling with payments built in.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Online Store Builder</h4>
+  <p class="gen-card__desc">Start selling with payments built in.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/online-store-builder-for-restaurants" data-gen-card data-gen-name="Online Store Builder for Restaurants" data-gen-desc="Menu, hours, and reservations in one place." data-gen-cat="Online Stores" aria-label="Online Store Builder for Restaurants — Menu, hours, and reservations in one place.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Online Store Builder for Restaurants</h4>
+  <p class="gen-card__desc">Menu, hours, and reservations in one place.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-ecommerce-website-generator" data-gen-card data-gen-name="Free Ecommerce Website Generator" data-gen-desc="A full site, free to start." data-gen-cat="Online Stores" aria-label="Free Ecommerce Website Generator — A full site, free to start.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Ecommerce Website Generator</h4>
+  <p class="gen-card__desc">A full site, free to start.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/boutique-store-builder" data-gen-card data-gen-name="Boutique Store Builder" data-gen-desc="A stylish shop for curated goods." data-gen-cat="Online Stores" aria-label="Boutique Store Builder — A stylish shop for curated goods.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Boutique Store Builder</h4>
+  <p class="gen-card__desc">A stylish shop for curated goods.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/digital-product-store-generator" data-gen-card data-gen-name="Digital Product Store Generator" data-gen-desc="Sell downloads and digital files." data-gen-cat="Online Stores" aria-label="Digital Product Store Generator — Sell downloads and digital files.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Digital Product Store Generator</h4>
+  <p class="gen-card__desc">Sell downloads and digital files.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/handmade-store-website-builder" data-gen-card data-gen-name="Handmade Store Website Builder" data-gen-desc="A shop for handmade and craft goods." data-gen-cat="Online Stores" aria-label="Handmade Store Website Builder — A shop for handmade and craft goods.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Handmade Store Website Builder</h4>
+  <p class="gen-card__desc">A shop for handmade and craft goods.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/coffee-shop-online-store-builder" data-gen-card data-gen-name="Coffee Shop Online Store Builder" data-gen-desc="Sell beans and merch online." data-gen-cat="Online Stores" aria-label="Coffee Shop Online Store Builder — Sell beans and merch online.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Coffee Shop Online Store Builder</h4>
+  <p class="gen-card__desc">Sell beans and merch online.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/print-on-demand-store-generator" data-gen-card data-gen-name="Print-on-Demand Store Generator" data-gen-desc="Launch a print-on-demand shop." data-gen-cat="Online Stores" aria-label="Print-on-Demand Store Generator — Launch a print-on-demand shop.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Print-on-Demand Store Generator</h4>
+  <p class="gen-card__desc">Launch a print-on-demand shop.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/subscription-store-builder" data-gen-card data-gen-name="Subscription Store Builder" data-gen-desc="Recurring revenue, built in." data-gen-cat="Online Stores" aria-label="Subscription Store Builder — Recurring revenue, built in.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Subscription Store Builder</h4>
+  <p class="gen-card__desc">Recurring revenue, built in.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/no-code-online-store-generator" data-gen-card data-gen-name="No-Code Online Store Generator" data-gen-desc="Open a store without writing code." data-gen-cat="Online Stores" aria-label="No-Code Online Store Generator — Open a store without writing code.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1.5"/><path d="M3 9h18"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">No-Code Online Store Generator</h4>
+  <p class="gen-card__desc">Open a store without writing code.</p>
+</a>
+  </div>
+</div><div class="gen-subsection" id="link-in-bio" data-gen-group data-gen-limit="6">
+  <div class="gen-subsection__head">
+    <h3>Link-in-Bio</h3>
+    <p>One link, all your places. Made for creators.</p>
+  </div>
+  <div class="gen-grid gen-grid--3">
+    <a class="gen-card gen-dir__card" href="/generators/link-in-bio-generator" data-gen-card data-gen-name="Link-in-Bio Generator" data-gen-desc="One link for all your channels." data-gen-cat="Link-in-Bio" aria-label="Link-in-Bio Generator — One link for all your channels.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Link-in-Bio Generator</h4>
+  <p class="gen-card__desc">One link for all your channels.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-link-in-bio-builder" data-gen-card data-gen-name="Free Link-in-Bio Builder" data-gen-desc="A free link page for all your channels." data-gen-cat="Link-in-Bio" aria-label="Free Link-in-Bio Builder — A free link page for all your channels.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Link-in-Bio Builder</h4>
+  <p class="gen-card__desc">A free link page for all your channels.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/link-in-bio-for-influencers" data-gen-card data-gen-name="Link-in-Bio for Influencers" data-gen-desc="Every channel, one tap away." data-gen-cat="Link-in-Bio" aria-label="Link-in-Bio for Influencers — Every channel, one tap away.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Link-in-Bio for Influencers</h4>
+  <p class="gen-card__desc">Every channel, one tap away.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/musician-link-in-bio-generator" data-gen-card data-gen-name="Musician Link-in-Bio Generator" data-gen-desc="One link to your music and shows." data-gen-cat="Link-in-Bio" aria-label="Musician Link-in-Bio Generator — One link to your music and shows.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Musician Link-in-Bio Generator</h4>
+  <p class="gen-card__desc">One link to your music and shows.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/creator-link-in-bio-builder" data-gen-card data-gen-name="Creator Link-in-Bio Builder" data-gen-desc="All your content, one tap away." data-gen-cat="Link-in-Bio" aria-label="Creator Link-in-Bio Builder — All your content, one tap away.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Creator Link-in-Bio Builder</h4>
+  <p class="gen-card__desc">All your content, one tap away.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/podcast-link-in-bio-generator" data-gen-card data-gen-name="Podcast Link-in-Bio Generator" data-gen-desc="Send fans to every episode." data-gen-cat="Link-in-Bio" aria-label="Podcast Link-in-Bio Generator — Send fans to every episode.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Podcast Link-in-Bio Generator</h4>
+  <p class="gen-card__desc">Send fans to every episode.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/link-in-bio-for-small-businesses" data-gen-card data-gen-name="Link-in-Bio for Small Businesses" data-gen-desc="Point customers to your offers." data-gen-cat="Link-in-Bio" aria-label="Link-in-Bio for Small Businesses — Point customers to your offers.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Link-in-Bio for Small Businesses</h4>
+  <p class="gen-card__desc">Point customers to your offers.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/artist-link-in-bio-builder" data-gen-card data-gen-name="Artist Link-in-Bio Builder" data-gen-desc="Collect your art and shop in one place." data-gen-cat="Link-in-Bio" aria-label="Artist Link-in-Bio Builder — Collect your art and shop in one place.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Artist Link-in-Bio Builder</h4>
+  <p class="gen-card__desc">Collect your art and shop in one place.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/linktree-alternative-generator" data-gen-card data-gen-name="Linktree Alternative Generator" data-gen-desc="A free alternative to Linktree." data-gen-cat="Link-in-Bio" aria-label="Linktree Alternative Generator — A free alternative to Linktree.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Linktree Alternative Generator</h4>
+  <p class="gen-card__desc">A free alternative to Linktree.</p>
+</a><a class="gen-card gen-dir__card" href="/generators/free-link-in-bio-maker-for-streamers" data-gen-card data-gen-name="Free Link-in-Bio Maker for Streamers" data-gen-desc="All your streams, one link." data-gen-cat="Link-in-Bio" aria-label="Free Link-in-Bio Maker for Streamers — All your streams, one link.">
+  <svg class="gen-dir__thumb" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="6" cy="12" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 11l8-4M8 13l8 4"/></svg>
+  <h4 class="gen-card__name" style="font-size:14px;">Free Link-in-Bio Maker for Streamers</h4>
+  <p class="gen-card__desc">All your streams, one link.</p>
+</a>
+  </div>
+</div>
+    <div id="gen-empty" class="gen-empty" role="status">
+      <p>No generators match your search.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button type="button" id="gen-clear-search" class="gen-btn gen-btn--ghost">CLEAR SEARCH</button>
+        <a class="gen-btn gen-btn--primary" href="/s/ai_site_builder">Can't find it? Start with our AI builder.</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="gen-section" aria-labelledby="how-heading" style="background:var(--light-bg);">
+  <div class="gen-container">
+    <div class="gen-section-head"><h2 id="how-heading">HOW IT WORKS</h2></div>
+    <div class="gen-steps"><article class="gen-step">
+  <div class="gen-step__num">1</div>
+  <h3 class="gen-step__title">PICK A GENERATOR</h3>
+  <p class="gen-step__text">Browse by category or search to find one that fits your goal.</p>
+</article><article class="gen-step">
+  <div class="gen-step__num">2</div>
+  <h3 class="gen-step__title">DESCRIBE YOUR SITE</h3>
+  <p class="gen-step__text">Tell our AI builder about your business in a sentence or two.</p>
+</article><article class="gen-step">
+  <div class="gen-step__num">3</div>
+  <h3 class="gen-step__title">GENERATE AND PUBLISH</h3>
+  <p class="gen-step__text">Get a fully built site in seconds. Customize anything, then go live.</p>
+</article></div>
+  </div>
+</section>
+<section class="gen-section" aria-labelledby="why-heading">
+  <div class="gen-container">
+    <div class="gen-section-head"><h2 id="why-heading">WHY STRIKINGLY</h2></div>
+    <div class="gen-grid gen-grid--3"><article class="gen-why__cell gen-card">
+  <svg class="gen-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
+  <h3 class="gen-why__title">LIVE IN SECONDS</h3>
+  <p class="gen-why__text">Describe your site, we build it. No setup, no learning curve.</p>
+</article><article class="gen-why__cell gen-card">
+  <svg class="gen-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+  <h3 class="gen-why__title">MOBILE BY DEFAULT</h3>
+  <p class="gen-why__text">Every generator produces responsive sites that work on any device.</p>
+</article><article class="gen-why__cell gen-card">
+  <svg class="gen-why__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="40" height="40" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg>
+  <h3 class="gen-why__title">FREE TO START</h3>
+  <p class="gen-why__text">Generate, customize, and publish without a credit card.</p>
+</article></div>
+  </div>
+</section>
+<section class="gen-section" aria-labelledby="faq-heading">
+  <div class="gen-container">
+    <div class="gen-section-head"><h2 id="faq-heading">FREQUENTLY ASKED QUESTIONS</h2></div>
+    <div class="gen-faq"><div class="gen-faq__item">
+  <button type="button" class="gen-faq__btn" aria-expanded="true">
+    <span>What is an AI site generator?</span><svg class="gen-faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="gen-faq__panel"><div class="gen-faq__panel-inner"><p>An AI site generator takes a short description of what you want to build and produces a complete, ready-to-edit website in seconds. Instead of starting from a blank canvas or a fixed template, you describe your business, goal, or industry, and the AI assembles the layout, copy, images, and structure for you.</p><p>You can then customize anything before publishing. It&#x27;s the fastest path from an idea to a live site.</p></div></div>
+</div><div class="gen-faq__item">
+  <button type="button" class="gen-faq__btn" aria-expanded="true">
+    <span>How is a generator different from a template?</span><svg class="gen-faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="gen-faq__panel"><div class="gen-faq__panel-inner"><p>A template is a fixed, pre-designed layout that you fill in by hand. Every site built from the same template looks the same until you change it.</p><p>A generator creates a unique starting point based on your description. The AI picks sections, writes copy, and arranges content to match your goal, so you start with something tailored rather than something generic.</p></div></div>
+</div><div class="gen-faq__item">
+  <button type="button" class="gen-faq__btn" aria-expanded="true">
+    <span>Are these generators free to use?</span><svg class="gen-faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="gen-faq__panel"><div class="gen-faq__panel-inner"><p>Yes. You can generate, customize, and publish a site without entering a credit card. Free plans include hosting on a Strikingly domain and the core editing tools.</p><p>Paid plans add custom domains, more storage, and advanced features when you&#x27;re ready to grow.</p></div></div>
+</div><div class="gen-faq__item">
+  <button type="button" class="gen-faq__btn" aria-expanded="true">
+    <span>What kinds of sites can I build?</span><svg class="gen-faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="gen-faq__panel"><div class="gen-faq__panel-inner"><p>The directory covers the most common starting points: full websites, landing pages, portfolios, blogs, online stores, and link-in-bio pages. Within each category you&#x27;ll find generators tailored to specific industries and goals, from restaurants and photographers to yoga studios and wedding couples.</p><p>If you&#x27;re not sure which fits, start with the AI Website Generator and describe what you do.</p></div></div>
+</div><div class="gen-faq__item">
+  <button type="button" class="gen-faq__btn" aria-expanded="true">
+    <span>Can I customize what the generator produces?</span><svg class="gen-faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="gen-faq__panel"><div class="gen-faq__panel-inner"><p>Absolutely. Everything the AI creates is fully editable. You can rewrite copy, swap images, reorder sections, change colors and fonts, and add or remove pages.</p><p>The generator gives you a strong head start; the editor gives you total control over the final result.</p></div></div>
+</div><div class="gen-faq__item">
+  <button type="button" class="gen-faq__btn" aria-expanded="true">
+    <span>Do generated sites work on mobile?</span><svg class="gen-faq__icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+  </button>
+  <div class="gen-faq__panel"><div class="gen-faq__panel-inner"><p>Yes. Every generator produces responsive sites that adapt to phones, tablets, and desktops automatically. You can preview and fine-tune the mobile layout in the editor before you publish.</p></div></div>
+</div></div>
+  </div>
+</section>
+<section class="gen-section gen-cta" aria-labelledby="cta-heading">
+  <div class="gen-container">
+    <h2 id="cta-heading">READY TO BUILD?</h2>
+    <p>Pick a generator above, or jump straight into our AI builder.</p>
+    <a class="gen-btn gen-btn--primary gen-btn--big" href="/s/ai_site_builder">START WITH AI BUILDER</a>
+  </div>
+</section>
+<footer class="gen-footer">
+  <div class="gen-container">
+    <div class="gen-footer__grid"><div class="gen-footer__col"><a class="gen-logo" href="/" aria-label="Strikingly home"><span class="gen-logo__mark">strikingly</span> AI</a><p style="margin-top:12px;font-size:13px;">AI-powered website generators.</p></div><div class="gen-footer__col"><h4>Product</h4><ul><li><a href="/templates">Templates</a></li><li><a href="/pricing">Pricing</a></li><li><a href="/s/ai_site_builder">AI Site Builder</a></li></ul></div><div class="gen-footer__col"><h4>Resources</h4><ul><li><a href="/blog">Blog</a></li><li><a href="/support">Support</a></li></ul></div><div class="gen-footer__col"><h4>Company</h4><ul><li><a href="/about">About</a></li></ul></div><div class="gen-footer__col"><h4>Legal</h4><ul><li><a href="/terms">Terms</a></li><li><a href="/privacy">Privacy</a></li></ul></div></div>
+    <div class="gen-footer__bottom">&copy; 2026 Strikingly Inc. All rights reserved.</div>
+  </div>
+</footer>
+    </main>
+    <script>/* ===== /generators hub — progressive enhancement (vanilla JS) =====
+ * Works on top of the statically-rendered HTML. With JS disabled, every
+ * section, card, and link remains visible and reachable.
+ */
+(function () {
+  'use strict';
+
+  // ---- i18n-ready strings (single object; add strings.es / strings.ja later) ----
+  var strings = {
+    en: {
+      searchPlaceholder: 'Search generators...',
+      searchLabel: 'Search generators',
+      matchCount: function (n) { return n + (n === 1 ? ' generator matches' : ' generators match'); },
+      showAll: function (n) { return 'Show all ' + n + ' generators'; },
+      showLess: 'Show less',
+      clearSearch: 'Clear search',
+      cantFind: "Can't find it? Start with our AI builder."
+    }
+  };
+  var t = strings.en;
+
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    initShowAll();
+    initFaq();
+    initSearch();
+  });
+
+  // ---------- "Show all" toggles (progressive collapse) ----------
+  function initShowAll() {
+    var groups = document.querySelectorAll('[data-gen-group]');
+    groups.forEach(function (group) {
+      var cards = Array.prototype.slice.call(group.querySelectorAll('[data-gen-card]'));
+      var limit = parseInt(group.getAttribute('data-gen-limit') || '6', 10);
+      if (cards.length <= limit) return; // nothing to collapse
+
+      var extra = cards.slice(limit);
+      // Wrap extras in a collapsible container.
+      var wrapper = document.createElement('div');
+      wrapper.className = 'gen-collapsible gen-collapsible-extra is-collapsed';
+      wrapper.setAttribute('data-gen-collapsible', '');
+      var parent = cards[limit].parentNode;
+      parent.insertBefore(wrapper, cards[limit]);
+      extra.forEach(function (c) { parent.removeChild(c); wrapper.appendChild(c); });
+
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'gen-showall';
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-controls', '');
+      btn.textContent = t.showAll(cards.length);
+      parent.appendChild(btn);
+
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        if (expanded) {
+          collapse(wrapper, btn, cards.length);
+        } else {
+          expand(wrapper, btn, cards.length);
+        }
+      });
+    });
+  }
+
+  function expand(wrapper, btn, total) {
+    wrapper.classList.remove('is-collapsed');
+    wrapper.style.height = wrapper.scrollHeight + 'px';
+    btn.setAttribute('aria-expanded', 'true');
+    btn.textContent = t.showLess;
+    var onEnd = function () {
+      wrapper.style.height = 'auto';
+      wrapper.removeEventListener('transitionend', onEnd);
+    };
+    wrapper.addEventListener('transitionend', onEnd);
+  }
+  function collapse(wrapper, btn, total) {
+    wrapper.style.height = wrapper.scrollHeight + 'px';
+    // force reflow
+    void wrapper.offsetHeight;
+    wrapper.style.height = '0px';
+    wrapper.classList.add('is-collapsed');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = t.showAll(total);
+  }
+
+  // ---------- FAQ accordion ----------
+  function initFaq() {
+    var items = document.querySelectorAll('.gen-faq__item');
+    items.forEach(function (item, idx) {
+      var btn = item.querySelector('.gen-faq__btn');
+      var panel = item.querySelector('.gen-faq__panel');
+      if (!btn || !panel) return;
+      var panelId = panel.getAttribute('id') || ('faq-panel-' + idx);
+      panel.setAttribute('id', panelId);
+      btn.setAttribute('aria-controls', panelId);
+
+      // First item expanded by default; rest collapsed (JS enhancement).
+      if (idx === 0) {
+        btn.setAttribute('aria-expanded', 'true');
+        panel.classList.remove('is-collapsed');
+      } else {
+        btn.setAttribute('aria-expanded', 'false');
+        panel.classList.add('is-collapsed');
+      }
+
+      btn.addEventListener('click', function () {
+        var expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        panel.classList.toggle('is-collapsed', expanded);
+      });
+    });
+  }
+
+  // ---------- Search filter ----------
+  function initSearch() {
+    var input = document.getElementById('gen-search-input');
+    var countEl = document.getElementById('gen-search-count');
+    var emptyEl = document.getElementById('gen-empty');
+    var clearBtn = document.getElementById('gen-clear-search');
+    if (!input) return;
+
+    var subsections = Array.prototype.slice.call(document.querySelectorAll('.gen-subsection'));
+    var allCards = Array.prototype.slice.call(document.querySelectorAll('[data-gen-card]'));
+
+    function norm(s) { return (s || '').trim().toLowerCase(); }
+
+    function run(query) {
+      var q = norm(query);
+      if (!q) {
+        // reset
+        document.body.classList.remove('is-searching');
+        allCards.forEach(function (c) { c.classList.remove('is-hidden'); });
+        if (countEl) countEl.textContent = '';
+        if (emptyEl) emptyEl.classList.remove('is-visible');
+        return;
+      }
+
+      document.body.classList.add('is-searching');
+      var totalMatches = 0;
+
+      subsections.forEach(function (sub) {
+        var cards = Array.prototype.slice.call(sub.querySelectorAll('[data-gen-card]'));
+        var matches = 0;
+        cards.forEach(function (card) {
+          var name = norm(card.getAttribute('data-gen-name'));
+          var desc = norm(card.getAttribute('data-gen-desc'));
+          var cat = norm(card.getAttribute('data-gen-cat'));
+          var hit = name.indexOf(q) !== -1 || desc.indexOf(q) !== -1 || cat.indexOf(q) !== -1;
+          card.classList.toggle('is-hidden', !hit);
+          if (hit) matches++;
+        });
+        totalMatches += matches;
+        sub.classList.toggle('has-match', matches > 0);
+      });
+
+      if (countEl) countEl.textContent = t.matchCount(totalMatches);
+      if (emptyEl) emptyEl.classList.toggle('is-visible', totalMatches === 0);
+    }
+
+    var debounceTimer;
+    input.addEventListener('input', function () {
+      clearTimeout(debounceTimer);
+      var val = input.value;
+      debounceTimer = setTimeout(function () { run(val); }, 120);
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
+        input.value = '';
+        run('');
+        input.focus();
+      });
+    }
+  }
+})();
+</script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
