@@ -5,7 +5,7 @@ function App() {
     <main className="app-loading-shell">
       <div className="app-loading-content" role="status" aria-live="polite">
         <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
+          <a href="/generators.html">AI Website Generators</a> &mdash; Build any site with AI, in an instant.
         </p>
       </div>
     </main>
