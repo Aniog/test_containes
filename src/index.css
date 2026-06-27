@@ -1,74 +1,79 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-serif: "Cormorant Garamond", "Cormorant", Georgia, serif;
+
+  --color-cream: #F6F1EA;
+  --color-cream-soft: #EFE7DC;
+  --color-cream-deep: #E8DDCC;
+  --color-espresso: #1B1714;
+  --color-ink: #0F0D0B;
+  --color-ink-soft: #19150F;
+  --color-gold: #B8945F;
+  --color-gold-deep: #8E6F44;
+  --color-gold-light: #D4B98A;
+  --color-muted: #7A6E63;
+  --color-hairline: #D9CDBD;
+  --color-hairline-ink: #2A241F;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  line-height: 1.55;
+  color: #1B1714;
+  background-color: #F6F1EA;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
+  background-color: #F6F1EA;
+  color: #1B1714;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Hide scrollbar on horizontal reel rows but keep functional */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Subtle fade-in for sections */
+@keyframes velmora-rise {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.velmora-rise {
+  animation: velmora-rise 0.9s ease-out both;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Drawer slide */
+@keyframes velmora-slide-in {
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(0); }
 }
+.velmora-slide-in { animation: velmora-slide-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+@keyframes velmora-fade-in {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+.velmora-fade-in { animation: velmora-fade-in 0.3s ease-out both; }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid #B8945F;
+  outline-offset: 2px;
 }
