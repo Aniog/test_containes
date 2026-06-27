@@ -1,74 +1,107 @@
 @import "tailwindcss";
 
+@theme {
+  --color-velmora-cream: #F6F1E8;
+  --color-velmora-ivory: #FBF8F2;
+  --color-velmora-bone: #ECE4D6;
+  --color-velmora-espresso: #1F1A14;
+  --color-velmora-ink: #2B2520;
+  --color-velmora-mocha: #6B5E4E;
+  --color-velmora-stone: #A89B86;
+  --color-velmora-gold: #B08A4A;
+  --color-velmora-goldsoft: #D9B47A;
+  --color-velmora-line: #E4DBC9;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.55;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-velmora-ink);
+  background-color: var(--color-velmora-cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  padding: 0;
+  background-color: var(--color-velmora-cream);
+  color: var(--color-velmora-ink);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body {
+  font-family: var(--font-sans);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-velmora-gold);
+  outline-offset: 2px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Hide horizontal scrollbar on UGC reel */
+.velmora-scroll-x {
+  scrollbar-width: none;
+}
+.velmora-scroll-x::-webkit-scrollbar {
+  display: none;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+/* Subtle reveal-on-scroll */
+@keyframes velmora-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.velmora-fade-up {
+  animation: velmora-fade-up 700ms ease-out both;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+@keyframes velmora-drawer-in {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+.velmora-drawer-in {
+  animation: velmora-drawer-in 400ms ease-out both;
+}
+
+@keyframes velmora-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.velmora-fade-in {
+  animation: velmora-fade-in 300ms ease-out both;
 }
