@@ -1,4 +1,4 @@
-import { Outlet, ScrollRestoration, useLocation } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import { useEffect } from "react"
 import Navbar from "@/components/layout/Navbar"
 import Footer from "@/components/layout/Footer"
@@ -20,7 +20,6 @@ export default function Layout() {
       </main>
       <Footer />
       <CartDrawer />
-      <ScrollRestoration />
     </div>
   )
 }
