@@ -1,0 +1,477 @@
+/* Homepage Styles */
+
+.homepage {
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.2) 0%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  color: white;
+  padding: 0 1.5rem;
+  max-width: 800px;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  margin-bottom: 2.5rem;
+  opacity: 0.9;
+}
+
+.hero-cta {
+  display: inline-block;
+  padding: 1rem 3rem;
+  background-color: white;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 2px solid white;
+}
+
+.hero-cta:hover {
+  background-color: transparent;
+  color: white;
+}
+
+/* Trust Bar */
+.trust-bar {
+  background-color: #faf8f5;
+  border-bottom: 1px solid rgba(138, 133, 128, 0.1);
+  padding: 1rem 0;
+}
+
+.trust-bar-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+  padding: 0 1.5rem;
+}
+
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #8a8580;
+}
+
+/* Section Styles */
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: #1a1a1a;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 0.9375rem;
+  color: #8a8580;
+  margin-bottom: 3rem;
+}
+
+/* Bestsellers */
+.bestsellers-section {
+  padding: 6rem 0;
+  background-color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.section-cta {
+  text-align: center;
+}
+
+/* UGC Section */
+.ugc-section {
+  padding: 6rem 0;
+  background-color: #faf8f5;
+  overflow: hidden;
+}
+
+.ugc-scroll {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 2rem 1.5rem;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ugc-card {
+  flex-shrink: 0;
+  width: 280px;
+  height: 500px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  cursor: pointer;
+}
+
+.ugc-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+/* Categories */
+.categories-section {
+  padding: 6rem 0;
+  background-color: white;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  aspect-ratio: 4/5;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.category-tile:hover .category-image {
+  transform: scale(1.05);
+}
+
+.category-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover .category-tile-overlay {
+  opacity: 1;
+}
+
+.category-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2rem;
+  color: white;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* Brand Story */
+.brand-story-section {
+  padding: 6rem 0;
+  background-color: #faf8f5;
+}
+
+.brand-story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.brand-story-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.brand-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.brand-story-content {
+  padding: 2rem 0;
+}
+
+.brand-story-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.brand-story-text {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #8a8580;
+  margin-bottom: 1.5rem;
+}
+
+/* Testimonials */
+.testimonials-section {
+  padding: 6rem 0;
+  background-color: white;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  padding: 2.5rem;
+  background: #faf8f5;
+  border: 1px solid rgba(138, 133, 128, 0.1);
+}
+
+.testimonial-stars {
+  display: flex;
+  gap: 0.25rem;
+  color: #c9a96e;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+}
+
+.testimonial-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #1a1a1a;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.author-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #c9a96e;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+}
+
+.author-name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+/* Newsletter */
+.newsletter-section {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.newsletter-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.newsletter-subtitle {
+  font-size: 1rem;
+  color: #8a8580;
+  margin-bottom: 2.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.newsletter-form {
+  display: flex;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.newsletter-input {
+  flex-grow: 1;
+  padding: 1rem 1.5rem;
+  border: 1px solid #3d3d3d;
+  background-color: transparent;
+  color: white;
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.newsletter-input:focus {
+  border-color: #c9a96e;
+}
+
+.newsletter-input::placeholder {
+  color: #6d6d6d;
+}
+
+.newsletter-btn {
+  padding: 1rem 2.5rem;
+  background-color: #c9a96e;
+  color: white;
+  border: none;
+  font-size: 0.8125rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+}
+
+.newsletter-btn:hover {
+  background-color: #b8945a;
+}
+
+/* Responsive */
+@media (max-width: 968px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+
+  .brand-story-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .brand-story-image {
+    order: 2;
+  }
+
+  .brand-story-content {
+    order: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .trust-bar-inner {
+    gap: 1.5rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}

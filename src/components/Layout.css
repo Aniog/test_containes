@@ -1,0 +1,100 @@
+/* Layout Styles */
+
+/* Ensure proper z-index stacking */
+header {
+  z-index: 50;
+}
+
+/* Smooth transition for nav background */
+header nav {
+  transition: all 0.3s ease;
+}
+
+/* Mobile menu animation */
+.mobile-menu-enter {
+  animation: slideIn 0.3s ease forwards;
+}
+
+.mobile-menu-exit {
+  animation: slideOut 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+/* Footer link hover */
+footer a {
+  transition: color 0.2s ease;
+}
+
+/* Cart badge pulse animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.cart-badge-pulse {
+  animation: pulse 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  header nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  footer {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Ensure main content is not hidden behind fixed header */
+main {
+  padding-top: 80px;
+}
+
+/* Smooth scroll for the whole page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-velmora-gold);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+  
+  main {
+    padding-top: 0 !important;
+  }
+}
