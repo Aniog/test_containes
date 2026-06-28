@@ -12,6 +12,27 @@ export default defineConfig({
     visualEditPlugin(),
     tailwindcss(),
     react(),
+    {
+      name: 'generators-html-rewrite',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          const url = req.url || ''
+          if (url === '/generators' || url.startsWith('/generators?') || url === '/generators/') {
+            req.url = '/generators/index.html'
+          }
+          next()
+        })
+      },
+      configurePreview(server) {
+        server.middlewares.use((req, res, next) => {
+          const url = req.url || ''
+          if (url === '/generators' || url.startsWith('/generators?') || url === '/generators/') {
+            req.url = '/generators/index.html'
+          }
+          next()
+        })
+      }
+    }
   ],
   resolve: {
     alias: {
