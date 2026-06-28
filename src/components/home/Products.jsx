@@ -12,6 +12,7 @@ export default function Products() {
   const [loading, setLoading] = useState(true)
   const [errorMsg, setErrorMsg] = useState(null)
   const [dataDump, setDataDump] = useState(null)
+  const containerRef = useRef(null)
 
   useEffect(() => {
     async function fetchProducts() {
