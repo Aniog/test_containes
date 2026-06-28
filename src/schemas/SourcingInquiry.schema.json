@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer making the inquiry"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the primary contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country or market the buyer is sourcing for"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product or product category the buyer wants to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity, target MOQ, or expected volume"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "supplier_verification",
+          "factory_audit",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Services requested by the buyer"
+    },
+    "order_stage": {
+      "type": "string",
+      "enum": [
+        "idea",
+        "sampling",
+        "active_sourcing",
+        "comparing_suppliers",
+        "production_ready"
+      ],
+      "description": "Current sourcing stage of the buyer"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected sourcing or shipment timeline"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "Main inquiry details, product specs, requirements, or sourcing challenges"
+    },
+    "consent": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the buyer agrees to be contacted about the inquiry"
+    },
+    "page_context": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Page or section where the inquiry was submitted"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "country",
+    "product_name",
+    "services_needed",
+    "order_stage",
+    "message",
+    "consent"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
+  }
+}
