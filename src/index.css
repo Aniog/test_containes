@@ -1,74 +1,118 @@
 @import "tailwindcss";
 
+@theme {
+  --color-velmora-ink: #0F0E0C;
+  --color-velmora-charcoal: #1A1714;
+  --color-velmora-cream: #F6F1E8;
+  --color-velmora-ivory: #FBF8F2;
+  --color-velmora-bone: #EFE7D9;
+  --color-velmora-gold: #B89B6E;
+  --color-velmora-gold-deep: #8E7448;
+  --color-velmora-taupe: #8A8478;
+  --color-velmora-mist: #C9C2B4;
+  --color-velmora-pearl: #E6DFD0;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: var(--font-sans);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #1A1714;
+  background-color: #F6F1E8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  background-color: #F6F1E8;
+  color: #1A1714;
+  font-family: var(--font-sans);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 1px solid #B89B6E;
+  outline-offset: 2px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Custom scrollbar for horizontal scroll sections */
+.scroll-x {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-x::-webkit-scrollbar {
+  display: none;
+}
 
-  a:hover {
-    color: #747bff;
+/* Fade-up entrance */
+@keyframes velmora-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: velmora-fade-up 0.8s ease-out both;
+}
 
-  button {
-    background-color: #f9f9f9;
+/* Slide in from right (cart drawer) */
+@keyframes velmora-slide-in {
+  from {
+    transform: translateX(100%);
   }
+  to {
+    transform: translateX(0);
+  }
+}
+.slide-in {
+  animation: velmora-slide-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Animated gold link underline */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
 }
