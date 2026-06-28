@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the buyer's company"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Primary contact person's name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Primary business email for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country or region of the buyer"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier sourcing",
+        "Factory verification",
+        "Quality inspection",
+        "Production follow-up",
+        "Shipping coordination",
+        "Full sourcing support"
+      ],
+      "description": "Primary sourcing service requested"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product or category the buyer wants sourced"
+    },
+    "quantity_estimate": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated quantity, MOQ target, or purchasing scale"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price, budget, or cost expectation"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Requested timing for sampling, production, or shipment"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Detailed sourcing inquiry or project brief"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "country",
+    "service_needed",
+    "product_category",
+    "message",
+    "created_at"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
