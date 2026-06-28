@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the sourcing inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquiry contact"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number or WhatsApp contact"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country or region of the buyer"
+    },
+    "product_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Main product category the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity or MOQ target"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "full_sourcing",
+        "supplier_verification",
+        "quality_inspection",
+        "production_follow_up",
+        "shipping_coordination"
+      ],
+      "description": "Primary service requested by the buyer"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target unit price or budget note"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 3000,
+      "description": "Detailed sourcing requirement from the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal workflow status of the inquiry"
+    }
+  },
+  "required": [
+    "name",
+    "company",
+    "email",
+    "country",
+    "product_type",
+    "service_needed",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": {
+      "allow": ["*"]
+    },
+    "read": {
+      "allow": ["admin"]
+    },
+    "update": {
+      "allow": ["admin"]
+    },
+    "delete": {
+      "allow": ["admin"]
+    }
+  }
+}
