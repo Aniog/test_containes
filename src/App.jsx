@@ -1,13 +1,13 @@
-import './App.css'
+import { useEffect } from 'react'
 
 function App() {
+  useEffect(() => {
+    window.location.href = '/generators'
+  }, [])
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
+    <main style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', fontFamily: 'system-ui, sans-serif', color: '#636972' }}>
+      <p>Redirecting to <a href="/generators" style={{ color: '#8159BB' }}>Generators</a>&hellip;</p>
     </main>
   )
 }
