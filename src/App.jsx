@@ -2,13 +2,16 @@ import './App.css'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-8">
+      <div className="max-w-2xl text-center">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          Welcome to Your App
+        </h1>
+        <p className="text-lg text-gray-600">
+          Start building your application by telling Strikingly Agent what you want to create.
         </p>
       </div>
-    </main>
+    </div>
   )
 }
 
