@@ -1,15 +1,9 @@
-import './App.css'
-
+// The /generators hub page is served as a fully static, server-rendered
+// page from index.html (inline CSS + vanilla JS). This React entry is not
+// mounted on this route, so it renders nothing and is kept only to satisfy
+// the build toolchain.
 function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+  return null
 }
 
 export default App
