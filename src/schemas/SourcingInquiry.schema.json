@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer or importing business"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Primary contact person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number or WhatsApp for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80,
+      "description": "Country or market of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product category the buyer wants to source"
+    },
+    "service_interest": {
+      "type": "array",
+      "description": "Requested sourcing services",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier-sourcing",
+          "supplier-verification",
+          "factory-audit",
+          "quality-inspection",
+          "production-follow-up",
+          "shipping-coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "order_volume": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order size, annual volume, or MOQ target"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Indicative target price or budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Desired sourcing or shipping timeline"
+    },
+    "requirements": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "Detailed inquiry brief including specifications, concerns, and sourcing goals"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal inquiry handling status"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "country",
+    "product_category",
+    "service_interest",
+    "requirements"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
