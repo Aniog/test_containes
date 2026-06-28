@@ -1,74 +1,89 @@
 @import "tailwindcss";
 
+@theme {
+  --color-ivory: #f7f3ec;
+  --color-bone: #efe8dc;
+  --color-onyx: #1c1a17;
+  --color-espresso: #2a2622;
+  --color-taupe: #857b6e;
+  --color-taupe-light: #a89e90;
+  --color-hairline: #e8e0d2;
+  --color-hairline-dark: #d8cdb8;
+  --color-gold: #b8935a;
+  --color-gold-deep: #9a7a45;
+  --color-champagne: #d4b585;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+
+  --tracking-editorial: 0.18em;
+  --tracking-wider-editorial: 0.28em;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.55;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-espresso);
+  background-color: var(--color-ivory);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  padding: 0;
+  background-color: var(--color-ivory);
+  color: var(--color-espresso);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+body {
+  font-family: var(--font-sans);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Hide scrollbar but keep functionality for reels row */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  a:hover {
-    color: #747bff;
-  }
+/* Custom keyframes */
+@keyframes velmora-fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: velmora-fade-up 700ms ease-out both; }
 
-  button {
-    background-color: #f9f9f9;
-  }
+@keyframes velmora-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: velmora-fade-in 600ms ease-out both; }
+
+/* Focus styles */
+:where(button, a, input, select, textarea):focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: 1px;
 }
