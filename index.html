@@ -825,7 +825,7 @@
     </style>
   </head>
   <body>
-    <div class="page-shell">
+    <div class="page-shell" id="preview-root" data-preview-root>
       <svg aria-hidden="true" width="0" height="0" focusable="false" class="sr-only">
         <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="11" cy="11" r="7"></circle>
@@ -2220,7 +2220,11 @@
         };
 
         const hasVisiblePageContent = () => {
-          const root = document.querySelector("#root") || document.body;
+          const root =
+            document.querySelector("[data-preview-root]") ||
+            document.querySelector("#root:not([hidden])") ||
+            document.querySelector("#root") ||
+            document.body;
           const nodes = [root, ...root.querySelectorAll("*")];
 
           return nodes.some((element) => {
