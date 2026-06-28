@@ -1,12 +1,38 @@
+import fs from 'node:fs'
+import path from 'path'
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
-import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
+function staticGeneratorsPagePlugin() {
+  return {
+    name: 'static-generators-page',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        const requestUrl = req.url?.split('?')[0] || ''
+        if (!['/generators', '/generators/', '/generators/index.html'].includes(requestUrl)) {
+          next()
+          return
+        }
+
+        const htmlPath = path.resolve(__dirname, 'generators', 'index.html')
+        if (!fs.existsSync(htmlPath)) {
+          next()
+          return
+        }
+
+        res.setHeader('Content-Type', 'text/html; charset=utf-8')
+        res.end(fs.readFileSync(htmlPath, 'utf8'))
+      })
+    },
+  }
+}
+
 export default defineConfig({
   plugins: [
+    staticGeneratorsPagePlugin(),
     // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     visualEditPlugin(),
