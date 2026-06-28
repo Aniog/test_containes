@@ -18,6 +18,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        generators: path.resolve(__dirname, 'generators.html'),
+      }
+    }
+  },
   server: {
     host: '0.0.0.0',
     allowedHosts: true,
@@ -27,7 +35,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
