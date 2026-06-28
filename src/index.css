@@ -1,74 +1,209 @@
 @import "tailwindcss";
 
+@theme {
+  --color-brand-purple: #8159BB;
+  --color-ai-blue: #7671FF;
+  --color-ai-pink: #CB0C9F;
+  --color-body-text: #636972;
+  --color-heading-dark: #2E2E2F;
+  --color-heading-section: #4B5056;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-light-bg: #F4F6F8;
+  --font-heading: 'Josefin Sans', 'Poppins', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #636972;
+  background-color: #FFFFFF;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-body);
+  background-color: #FFFFFF;
+  color: #636972;
   min-height: 100vh;
   overflow-x: hidden;
+  font-size: 14px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-heading-section);
+}
+
+/* AI gradient text */
+.ai-gradient-text {
+  background: linear-gradient(90deg, #7671FF, #CB0C9F);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* AI gradient fill for buttons */
+.ai-gradient-fill {
+  background: linear-gradient(90deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+}
+
+/* Card styles */
+.gen-card {
+  background: #FFFFFF;
+  border: 1px solid #C6C9CD;
+  border-radius: 3px;
+  padding: 20px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.gen-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #8159BB;
+}
+
+/* Ghost tag */
+.ghost-tag {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #8159BB;
+  color: #8159BB;
+  background: transparent;
+  display: inline-block;
+}
+
+/* Ghost button */
+.ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 15px;
+  border: 1px solid #8159BB;
+  border-radius: 4px;
+  background: transparent;
+  color: #8159BB;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
 }
 
-button:hover {
-  border-color: #646cff;
+.ghost-btn:hover {
+  background: #8159BB;
+  color: #FFFFFF;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.ghost-btn:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Primary CTA button */
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #7671FF, #CB0C9F);
+  color: #FFFFFF;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  text-decoration: none;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.primary-btn:hover {
+  opacity: 0.9;
+}
 
-  button {
-    background-color: #f9f9f9;
-  }
+.primary-btn:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* Secondary CTA (smaller) */
+.secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 15px;
+  border: 1px solid #8159BB;
+  border-radius: 4px;
+  background: transparent;
+  color: #8159BB;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+}
+
+.secondary-btn:hover {
+  background: #8159BB;
+  color: #FFFFFF;
+}
+
+.secondary-btn:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* Hidden generator cards (in DOM for SEO, visually hidden) */
+.gen-card-hidden {
+  display: none;
+}
+
+/* FAQ accordion */
+.faq-answer {
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-answer[aria-hidden="true"] {
+  max-height: 0 !important;
+}
+
+/* Focus visible for all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #8159BB;
+  outline-offset: 2px;
+}
+
+/* Hero faint wash */
+.hero-wash {
+  background: radial-gradient(ellipse at 70% 50%, rgba(118, 113, 255, 0.06) 0%, rgba(203, 12, 159, 0.03) 50%, transparent 80%);
 }
