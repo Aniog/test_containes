@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full Name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email Address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone Number"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company Name"
+    },
+    "machine_interest": {
+      "type": "string",
+      "enum": ["general", "foldmaster-pro", "foldmaster-eco", "foldmaster-multi", "custom", "service"],
+      "description": "Subject / Machine of Interest"
+    },
+    "message": {
+      "type": "string",
+      "description": "Your Message"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "resolved"],
+      "default": "new",
+      "description": "Status of Inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
