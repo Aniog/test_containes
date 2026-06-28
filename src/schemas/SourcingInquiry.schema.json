@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquiry contact"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Primary contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number or WhatsApp contact"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product or item the buyer wants sourced"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Broad category of the requested product"
+    },
+    "quantity_moq": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated quantity, MOQ target, or annual volume"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Services the buyer needs support with",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "supplier_verification",
+          "factory_audit",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Main destination market or sales region"
+    },
+    "shipping_terms": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Preferred shipping terms such as FOB, EXW, or DDP"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Desired sourcing or delivery timeline"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Detailed inquiry message with sourcing requirements"
+    }
+  },
+  "required": [
+    "contact_name",
+    "company_name",
+    "email",
+    "product_name",
+    "services_needed",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
+  }
+}
