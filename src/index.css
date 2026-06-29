@@ -1,74 +1,439 @@
 @import "tailwindcss";
 
+/* ============================================
+   Strikingly Brand Tokens
+   ============================================ */
+
+/* Fonts: Brandon Grotesque (commercial) -> Josefin Sans (Google) -> Poppins (Google) */
+@font-face {
+  font-family: 'Brandon Grotesque';
+  font-weight: 700;
+  font-style: normal;
+  src: local('Brandon Grotesque Bold'), local('BrandonGrotesque-Bold');
+  font-display: swap;
+}
+
+/* Google Fonts fallback chain for headings */
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* Brand colors */
+  --color-brand-purple: #8159BB;
+  --color-ai-blue: #7671FF;
+  --color-ai-pink: #CB0C9F;
+  --color-body: #636972;
+  --color-heading: #4B5056;
+  --color-hero-heading: #2E2E2F;
+  --color-card-border: #C6C9CD;
+  --color-divider: #E2E4E7;
+  --color-bg-light: #F4F6F8;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+
+  /* AI gradient */
+  --gradient-ai: linear-gradient(135deg, #7671FF 0%, #CB0C9F 100%);
+
+  /* Typography */
+  --font-heading: 'Brandon Grotesque', 'Josefin Sans', 'Poppins', sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Spacing scale (multiples of 10px, 5px allowed for tight pairs) */
+  --space-5: 5px;
+  --space-10: 10px;
+  --space-15: 15px;
+  --space-20: 20px;
+  --space-30: 30px;
+  --space-40: 40px;
+  --space-60: 60px;
+  --space-80: 80px;
+  --space-100: 100px;
+
+  /* Max content width */
+  --max-width: 1200px;
+
+  /* Button heights */
+  --btn-height: 36px;
+  --btn-height-lg: 44px;
+  --btn-radius: 4px;
+  --btn-padding-x: 15px;
+  --btn-padding-y: 9px;
+
+  /* Card */
+  --card-radius: 3px;
+  --card-padding: 20px;
+  --card-border: 1px solid var(--color-card-border);
+
+  /* Tag */
+  --tag-radius: 3px;
+  --tag-padding-x: 6px;
+  --tag-padding-y: 2px;
+  --tag-font-size: 11px;
+}
+
+/* ============================================
+   Base Reset & Global Styles
+   ============================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-body);
+  background-color: var(--color-white);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
+#root {
+  min-height: 100vh;
+}
+
+/* ============================================
+   Typography
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--color-heading);
+  margin: 0;
+}
+
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: clamp(28px, 4vw, 48px);
+  color: var(--color-hero-heading);
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+h2 {
+  font-size: clamp(22px, 3vw, 32px);
+}
+
+h3 {
+  font-size: clamp(18px, 2.5vw, 24px);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================
+   Focus States (Accessibility)
+   ============================================ */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-brand-purple);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Utility Classes
+   ============================================ */
+
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-20);
+}
+
+.ai-gradient-text {
+  background: var(--gradient-ai);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--btn-height);
+  padding: var(--btn-padding-y) var(--btn-padding-x);
+  border-radius: var(--btn-radius);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background: var(--gradient-ai);
+  color: var(--color-white);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  opacity: 0.92;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-lg {
+  height: var(--btn-height-lg);
+  padding: 12px 24px;
+  font-size: 15px;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-brand-purple);
+  border: 1px solid var(--color-brand-purple);
+}
+
+.btn-ghost:hover {
+  background: rgba(129, 89, 187, 0.06);
+}
+
+/* ============================================
+   Card Styles
+   ============================================ */
+
+.card {
+  background: var(--color-white);
+  border: var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--card-padding);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-link:hover .card,
+.card-link:focus-visible .card {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-brand-purple);
+}
+
+/* ============================================
+   Tag / Badge Styles
+   ============================================ */
+
+.tag {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--tag-font-size);
+  text-transform: uppercase;
+  padding: var(--tag-padding-y) var(--tag-padding-x);
+  border-radius: var(--tag-radius);
+  border: 1px solid var(--color-brand-purple);
+  color: var(--color-brand-purple);
+  background: transparent;
+  letter-spacing: 0.03em;
+}
+
+/* ============================================
+   Section Spacing
+   ============================================ */
+
+.section {
+  padding-block: var(--space-40);
+}
+
+.section-hero {
+  padding-block: var(--space-60);
+}
+
+@media (min-width: 768px) {
+  .section-hero {
+    padding-block: var(--space-80);
   }
+}
 
-  a:hover {
-    color: #747bff;
+/* ============================================
+   Grid Utilities
+   ============================================ */
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
+}
 
-  button {
-    background-color: #f9f9f9;
+@media (min-width: 1024px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid-6 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-20);
+}
+
+@media (min-width: 768px) {
+  .grid-6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   Show All Toggle (Progressive Enhancement)
+   ============================================ */
+
+.generator-grid-collapsed .generator-card:nth-child(n+7) {
+  display: none;
+}
+
+.generator-grid-collapsed .show-all-btn {
+  display: inline-flex;
+}
+
+.generator-grid-expanded .generator-card {
+  display: block;
+}
+
+.generator-grid-expanded .show-all-btn {
+  display: none;
+}
+
+.show-all-btn {
+  display: none;
+  margin-top: var(--space-20);
+}
+
+/* ============================================
+   FAQ Accordion
+   ============================================ */
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-answer[aria-hidden="false"] {
+  max-height: 500px;
+  padding-top: var(--space-10);
+}
+
+.faq-chevron {
+  transition: transform 0.3s ease;
+}
+
+.faq-chevron[data-expanded="true"] {
+  transform: rotate(180deg);
+}
+
+/* ============================================
+   Search Input
+   ============================================ */
+
+.search-input-wrapper {
+  position: relative;
+  max-width: 480px;
+  width: 100%;
+}
+
+.search-input-wrapper svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-body);
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 16px 0 44px;
+  border: 1px solid var(--color-card-border);
+  border-radius: var(--btn-radius);
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-hero-heading);
+  background: var(--color-white);
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-brand-purple);
+}
+
+.search-input::placeholder {
+  color: #9CA3AF;
+}
+
+/* ============================================
+   Hero Background Wash
+   ============================================ */
+
+.hero-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(118, 113, 255, 0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 30% 70%, rgba(203, 12, 159, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================
+   Category Illustration Thumbnails
+   ============================================ */
+
+.category-thumb {
+  width: 100%;
+  height: 120px;
+  border-radius: var(--btn-radius);
+  margin-bottom: var(--space-15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.category-thumb svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   Responsive Helpers
+   ============================================ */
+
+@media (max-width: 767px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .show-mobile-only {
+    display: none !important;
   }
 }
