@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Records",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the city"
+    },
+    "state": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 50,
+      "description": "State or region code"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 10,
+      "description": "Country code (e.g. US)"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather observation (YYYY-MM-DD)"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Stormy", "Snowy", "Foggy"],
+      "description": "General weather condition for the day"
+    },
+    "high": {
+      "type": "number",
+      "description": "Daily high temperature in Fahrenheit"
+    },
+    "low": {
+      "type": "number",
+      "description": "Daily low temperature in Fahrenheit"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Average relative humidity percentage"
+    },
+    "precipitation": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total precipitation in inches"
+    },
+    "wind_speed": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Average wind speed in mph"
+    },
+    "wind_dir": {
+      "type": "string",
+      "maxLength": 3,
+      "description": "Wind direction (e.g. N, NW, SW)"
+    },
+    "uv_index": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 11,
+      "description": "UV index (0-11)"
+    },
+    "visibility": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Visibility in miles"
+    },
+    "pressure": {
+      "type": "integer",
+      "description": "Atmospheric pressure in hPa"
+    }
+  },
+  "required": ["city", "date", "condition", "high", "low"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
