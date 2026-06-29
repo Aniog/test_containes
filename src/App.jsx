@@ -4,8 +4,8 @@ function App() {
   return (
     <main className="app-loading-shell">
       <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
+        <p className="text-xl">
+          Hello! Let me know what you'd like to build today.
         </p>
       </div>
     </main>
