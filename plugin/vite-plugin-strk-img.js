@@ -3662,9 +3662,10 @@ export default function strkImgPlugin() {
     },
 
     // Suppress the HMR full-reload that fires when we ourselves wrote
-    // strk-img-config.json. Compare the on-disk content hash to the hash we
-    // saved at write-time — robust against any disk/IO timing.
+    // strk-img-config.json or .strk-cache.json. Compare the on-disk content
+    // hash to the hash we saved at write-time — robust against any disk/IO timing.
     handleHotUpdate({ file }) {
+      if (file === cachePath) return []
       if (file !== configPath || !_lastWrittenConfigHash) return
       try {
         const cur = md5Hex(fs.readFileSync(file, 'utf-8'))
