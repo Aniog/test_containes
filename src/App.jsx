@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/generators" element={<GeneratorsHub />} />
         <Route path="/" element={<GeneratorsHub />} />
+        <Route path="*" element={<GeneratorsHub />} />
       </Routes>
     </Router>
   )
