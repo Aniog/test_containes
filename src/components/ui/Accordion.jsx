@@ -9,6 +9,10 @@ export function Accordion({ items }) {
     <div className="border-t border-velmora-espresso/10">
       {items.map((item) => {
         const isOpen = open === item.title;
+        const panelId = `accordion-panel-${item.title
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-|-$/g, '')}`;
         return (
           <div
             key={item.title}
@@ -17,6 +21,8 @@ export function Accordion({ items }) {
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : item.title)}
+              aria-expanded={isOpen}
+              aria-controls={panelId}
               className="w-full flex items-center justify-between py-4 text-left group"
             >
               <span className="font-serif text-lg text-velmora-espresso">
@@ -30,6 +36,7 @@ export function Accordion({ items }) {
               />
             </button>
             <div
+              id={panelId}
               className={cn(
                 'grid transition-all duration-300 ease-out',
                 isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'

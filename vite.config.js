@@ -29,5 +29,8 @@ export default defineConfig({
       usePolling: true,
       interval: 100, // Check for changes every 100ms
     },
-  }
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+  },
 })

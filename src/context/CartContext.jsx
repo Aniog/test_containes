@@ -31,6 +31,8 @@ export function CartProvider({ children }) {
           tone,
           quantity,
           imgId: product.imgId,
+          titleId: product.titleId,
+          searchTerms: product.searchTerms,
         },
       ];
     });
