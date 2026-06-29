@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category or type they want to source"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Details of the sourcing request"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
