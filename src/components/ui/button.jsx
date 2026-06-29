@@ -24,6 +24,7 @@ function getSizeClasses(size) {
 }
 
 const Button = React.forwardRef(({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+  // asChild support enabled
   const variantClasses = getVariantClasses(variant)
   const sizeClasses = getSizeClasses(size)
   const finalClassName = cn(
