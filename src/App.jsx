@@ -1,7 +1,7 @@
-import './App.css'
+import GeneratorsPage from './pages/GeneratorsPage'
 
 function App() {
-  return null
+  return <GeneratorsPage />
 }
 
 export default App
