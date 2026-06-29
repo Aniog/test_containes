@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Shield, Search, ClipboardCheck, Ship, Factory, Globe, ArrowRight, CheckCircle, Star, Package, Truck, BarChart3, HeadphonesIcon } from 'lucide-react'
+import { Shield, Search, ClipboardCheck, Ship, Factory, Globe, ArrowRight, CheckCircle, Star, Package, Truck, BarChart3, HeadphonesIcon, ChevronDown } from 'lucide-react'
 import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
 
