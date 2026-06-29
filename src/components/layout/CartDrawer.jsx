@@ -1,10 +1,13 @@
 import { useCart } from "@/context/CartContext";
 import { X, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
 
 export default function CartDrawer() {
   const { items, drawerOpen, toggleDrawer, removeItem, updateQuantity, totalPrice } = useCart();
+  const drawerRef = useRef(null);
 
   const itemList = Object.entries(items);
 
@@ -16,6 +19,17 @@ export default function CartDrawer() {
     }
     return () => { document.body.style.overflow = ""; };
   }, [drawerOpen]);
+
+  useEffect(() => {
+    if (!drawerOpen || !drawerRef.current) return;
+    // Small delay to let the drawer slide in and items render
+    const timer = setTimeout(() => {
+      if (drawerRef.current) {
+        ImageHelper.loadImages(strkImgConfig, drawerRef.current);
+      }
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [drawerOpen, itemList.length]);
 
   return (
     <>
@@ -30,6 +44,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <div
+        ref={drawerRef}
         className={`fixed top-0 right-0 h-full w-full max-w-md bg-velmora-surface z-[90] flex flex-col transition-transform duration-300 ease-out ${
           drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
