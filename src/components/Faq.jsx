@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { strings } from '@/lib/strings'
+import strings from '@/lib/strings'
 
 const FAQS = [
   {

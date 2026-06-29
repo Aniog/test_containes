@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { strings } from '@/lib/strings'
+import strings from '@/lib/strings'
 
 // Helper to generate some plausible fake data
 const generateItems = (category, count) => {

@@ -1,4 +1,4 @@
-import { strings } from '@/lib/strings'
+import strings from '@/lib/strings'
 
 export default function ClosingCta() {
   const { cta } = strings

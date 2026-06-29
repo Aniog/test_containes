@@ -1,4 +1,4 @@
-import { strings } from '@/lib/strings'
+import strings from '@/lib/strings'
 
 const FEATURED_ITEMS = [
   { name: "AI Website Generator", desc: "Describe your business, get a full site", category: "Website", slug: "ai-website-generator" },
