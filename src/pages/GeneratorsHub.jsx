@@ -228,19 +228,14 @@ export default function GeneratorsHub() {
                       <p className="text-body mb-6">{cat.desc}</p>
                       
                       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {catGens.map((gen, idx) => {
+                        {catGens.slice(0, initialCount).map((gen, idx) => {
                           const matches = isMatch(gen, cat.name);
                           const isHiddenBySearch = isSearching && !matches;
-                          const isHiddenByCollapse = !isSearching && !isExpanded && idx >= initialCount;
-                          
-                          // We render the card but hide it visually if needed
-                          // For a CSS height transition, it's better to render all of them and use classes
-                          // but the prompt says they remain in DOM.
                           return (
                             <a 
-                              key={`${cat.id}-${idx}`}
+                              key={`${cat.id}-initial-${idx}`}
                               href={`/generators/${slugify(gen.name)}`}
-                              className={`block bg-white border border-border-card rounded-[3px] p-5 transition-all hover:border-brand-purple hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] focus:outline-none focus:ring-4 focus:ring-brand-purple/20 ${isHiddenBySearch || isHiddenByCollapse ? 'hidden' : 'block'}`}
+                              className={`block bg-white border border-border-card rounded-[3px] p-5 transition-all hover:border-brand-purple hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] focus:outline-none focus:ring-4 focus:ring-brand-purple/20 ${isHiddenBySearch ? 'hidden' : ''}`}
                             >
                               <div className="flex flex-col h-full">
                                 <div className="w-8 h-8 bg-[#FAF8FC] rounded flex items-center justify-center mb-4 text-brand-purple">
@@ -258,7 +253,41 @@ export default function GeneratorsHub() {
                           );
                         })}
                       </div>
-                      
+
+                      {hasMore && (
+                        <div 
+                          className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${isExpanded || isSearching ? 'max-h-[5000px]' : 'max-h-0'}`}
+                          aria-hidden={!isExpanded && !isSearching}
+                        >
+                          <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 ${catGens.slice(0, initialCount).filter(g => !isSearching || isMatch(g, cat.name)).length > 0 ? 'mt-5' : ''}`}>
+                            {catGens.slice(initialCount).map((gen, idx) => {
+                              const matches = isMatch(gen, cat.name);
+                              const isHiddenBySearch = isSearching && !matches;
+                              return (
+                                <a 
+                                  key={`${cat.id}-more-${idx}`}
+                                  href={`/generators/${slugify(gen.name)}`}
+                                  className={`block bg-white border border-border-card rounded-[3px] p-5 transition-all hover:border-brand-purple hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] focus:outline-none focus:ring-4 focus:ring-brand-purple/20 ${isHiddenBySearch ? 'hidden' : ''}`}
+                                >
+                                  <div className="flex flex-col h-full">
+                                    <div className="w-8 h-8 bg-[#FAF8FC] rounded flex items-center justify-center mb-4 text-brand-purple">
+                                      {cat.icon === 'websites' && <LayoutTemplate size={16} aria-hidden="true" />}
+                                      {cat.icon === 'landing-pages' && <Zap size={16} aria-hidden="true" />}
+                                      {cat.icon === 'portfolios' && <div className="w-4 h-4 flex flex-wrap gap-[1px]"><div className="w-[7px] h-[7px] bg-brand-purple rounded-[1px]"></div><div className="w-[7px] h-[7px] bg-brand-purple rounded-[1px]"></div><div className="w-[7px] h-[7px] bg-brand-purple rounded-[1px]"></div><div className="w-[7px] h-[7px] bg-brand-purple rounded-[1px]"></div></div>}
+                                      {cat.icon === 'blogs' && <div className="w-4 h-4 border-2 border-brand-purple rounded-[2px] flex flex-col gap-[2px] items-center justify-center p-[2px]"><div className="w-2 h-[2px] bg-brand-purple"></div><div className="w-2 h-[2px] bg-brand-purple"></div></div>}
+                                      {cat.icon === 'stores' && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>}
+                                      {cat.icon === 'link-in-bio' && <Smartphone size={16} aria-hidden="true" />}
+                                    </div>
+                                    <h4 className="font-bold text-[#2E2E2F] mb-1">{gen.name}</h4>
+                                    <p className="text-sm text-body">{gen.desc}</p>
+                                  </div>
+                                </a>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+
                       {!isSearching && hasMore && (
                         <div className="mt-6">
                           <button 
