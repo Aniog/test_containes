@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Records",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the city for this weather record"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather observation (YYYY-MM-DD)"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Foggy", "Windy", "Thunderstorm", "Clear"],
+      "description": "General weather condition for the day"
+    },
+    "conditionIcon": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Emoji icon representing the weather condition"
+    },
+    "highTempF": {
+      "type": "number",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily high temperature in Fahrenheit"
+    },
+    "lowTempF": {
+      "type": "number",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily low temperature in Fahrenheit"
+    },
+    "avgTempF": {
+      "type": "number",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily average temperature in Fahrenheit"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Relative humidity percentage"
+    },
+    "windSpeedMph": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 200,
+      "description": "Wind speed in miles per hour"
+    },
+    "precipitationIn": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 30,
+      "description": "Total precipitation in inches"
+    },
+    "uvIndex": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 11,
+      "description": "UV index (0-11 scale)"
+    },
+    "visibilityMi": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Visibility in miles"
+    },
+    "pressureHpa": {
+      "type": "number",
+      "minimum": 900,
+      "maximum": 1100,
+      "description": "Atmospheric pressure in hectopascals"
+    },
+    "dewPointF": {
+      "type": "number",
+      "minimum": -60,
+      "maximum": 100,
+      "description": "Dew point temperature in Fahrenheit"
+    }
+  },
+  "required": ["city", "date", "condition", "highTempF", "lowTempF", "avgTempF", "humidity"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
