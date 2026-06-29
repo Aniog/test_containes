@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Factory, ShieldCheck, Ship, Globe, Mail, Phone, MapPin } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 
 const services = [
   { name: 'Supplier Sourcing', href: '/services' },

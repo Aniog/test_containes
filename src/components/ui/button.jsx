@@ -23,7 +23,7 @@ function getSizeClasses(size) {
   return sizes[size] || sizes.default
 }
 
-const Button = React.forwardRef(({ className, variant = "default", size = "default", ...props }, ref) => {
+const Button = React.forwardRef(({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
   const variantClasses = getVariantClasses(variant)
   const sizeClasses = getSizeClasses(size)
   const finalClassName = cn(
@@ -32,6 +32,14 @@ const Button = React.forwardRef(({ className, variant = "default", size = "defau
     sizeClasses,
     className
   )
+
+  if (asChild && React.Children.only(props.children)) {
+    return React.cloneElement(props.children, {
+      className: cn(finalClassName, props.children.props?.className),
+      ref,
+    })
+  }
+
   return React.createElement("button", { className: finalClassName, ref, ...props })
 })
 Button.displayName = "Button"
