@@ -81,7 +81,7 @@ export default function CartDrawer() {
                   {/* Product image placeholder */}
                   <div className="w-20 h-20 bg-velmora-card rounded flex-shrink-0 flex items-center justify-center">
                     <img
-                      data-strk-img-id={`cart-${product.id}`}
+                      data-strk-img-id={`bestseller-${product.id}-1`}
                       data-strk-img={product.name}
                       data-strk-img-ratio="1x1"
                       data-strk-img-width="160"

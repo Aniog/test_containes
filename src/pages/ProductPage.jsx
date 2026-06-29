@@ -38,7 +38,7 @@ function RelatedCard({ product }) {
     <Link to={`/product/${product.id}`} className="group block">
       <div className="relative aspect-[3/4] bg-velmora-card overflow-hidden mb-3">
         <img
-          data-strk-img-id={`related-${product.id}`}
+          data-strk-img-id={`bestseller-${product.id}-1`}
           data-strk-img={`[related-name-${product.id}] gold jewelry elegant`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="400"
@@ -122,7 +122,7 @@ export default function ProductPage() {
             {/* Main image */}
             <div className="aspect-[3/4] bg-velmora-card overflow-hidden mb-4">
               <img
-                data-strk-img-id={`pdp-${product.id}-main-${activeImage}`}
+                data-strk-img-id={`bestseller-${product.id}-${activeImage === 2 ? 1 : activeImage + 1}`}
                 data-strk-img={`[pdp-title] [pdp-variant] gold jewelry product photo elegant`}
                 data-strk-img-ratio="3x4"
                 data-strk-img-width="800"
@@ -133,7 +133,7 @@ export default function ProductPage() {
             </div>
             {/* Thumbnails */}
             <div className="grid grid-cols-3 gap-3">
-              {[0, 1, 2].map((i) => (
+              {[1, 2, 1].map((imgIdx, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImage(i)}
@@ -142,7 +142,7 @@ export default function ProductPage() {
                   }`}
                 >
                   <img
-                    data-strk-img-id={`pdp-${product.id}-thumb-${i}`}
+                    data-strk-img-id={`bestseller-${product.id}-${imgIdx}`}
                     data-strk-img={`[pdp-title] gold jewelry angle ${i + 1}`}
                     data-strk-img-ratio="3x4"
                     data-strk-img-width="200"

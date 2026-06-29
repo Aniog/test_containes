@@ -34,7 +34,7 @@ function ProductCard({ product }) {
     >
       <div className="relative aspect-[3/4] bg-velmora-card overflow-hidden mb-4">
         <img
-          data-strk-img-id={`shop-${product.id}-1`}
+          data-strk-img-id={`bestseller-${product.id}-1`}
           data-strk-img={`[${product.id}-name] gold jewelry elegant product`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="500"
@@ -45,7 +45,7 @@ function ProductCard({ product }) {
           }`}
         />
         <img
-          data-strk-img-id={`shop-${product.id}-2`}
+          data-strk-img-id={`bestseller-${product.id}-2`}
           data-strk-img={`[${product.id}-name] jewelry detail closeup model`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="500"
