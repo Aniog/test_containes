@@ -2,11 +2,25 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import { parse } from '@babel/parser';
 import traverseModule from '@babel/traverse';
-import generateModule from '@babel/generator';
 import * as t from '@babel/types';
 
 const traverse = traverseModule.default || traverseModule;
-const generate = generateModule.default || generateModule;
+
+// @babel/generator is optional — lazy-loaded on first use
+let _generate = null;
+let _generateLoaded = false;
+
+async function getGenerator() {
+  if (_generateLoaded) return _generate;
+  _generateLoaded = true;
+  try {
+    const mod = await import('@babel/generator');
+    _generate = mod.default || mod;
+  } catch {
+    _generate = null;
+  }
+  return _generate;
+}
 
 const SOURCE_EXTENSIONS = new Set(['.js', '.jsx', '.ts', '.tsx']);
 
@@ -42,8 +56,13 @@ export default function visualEditPlugin() {
       root = config.root;
       enabled = config.command === 'serve';
     },
-    transform(code, id) {
+    async transform(code, id) {
       if (!enabled) {
+        return null;
+      }
+
+      const generate = await getGenerator();
+      if (!generate) {
         return null;
       }
 
