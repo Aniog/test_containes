@@ -70,41 +70,39 @@ export default function Dashboard() {
 
   const lastRecord = records[records.length - 1] ?? null;
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="text-center">
-          <RefreshCw className="w-10 h-10 text-sky-400 animate-spin mx-auto mb-4" />
-          <p className="text-slate-400 text-sm">Loading weather data…</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
-        <div className="text-center max-w-sm">
-          <p className="text-rose-400 font-semibold mb-2">Failed to load data</p>
-          <p className="text-slate-500 text-sm mb-4">{error}</p>
-          <button
-            onClick={load}
-            className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white text-sm rounded-lg transition-colors"
-          >
-            Retry
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
         <DashboardHeader city={CITY} lastUpdated={lastUpdated} />
 
+        {/* Loading state — inline so the header is always visible */}
+        {loading && (
+          <div className="flex items-center justify-center py-32">
+            <div className="text-center">
+              <RefreshCw className="w-10 h-10 text-sky-400 animate-spin mx-auto mb-4" />
+              <p className="text-slate-400 text-sm">Loading weather data…</p>
+            </div>
+          </div>
+        )}
+
+        {/* Error state — inline */}
+        {!loading && error && (
+          <div className="flex items-center justify-center py-32">
+            <div className="text-center max-w-sm">
+              <p className="text-rose-400 font-semibold mb-2">Failed to load data</p>
+              <p className="text-slate-500 text-sm mb-4">{error}</p>
+              <button
+                onClick={load}
+                className="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white text-sm rounded-lg transition-colors"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Today's snapshot */}
-        {lastRecord && (
+        {!loading && !error && lastRecord && (
           <div className="bg-slate-800/60 border border-slate-700 rounded-xl p-5 mb-6 flex flex-col sm:flex-row sm:items-center gap-4">
             <div className="flex items-center gap-4">
               <span className="text-5xl">{CONDITION_EMOJI[lastRecord.condition] ?? '🌡️'}</span>
@@ -136,7 +134,7 @@ export default function Dashboard() {
         )}
 
         {/* Stat cards */}
-        {stats && (
+        {!loading && !error && stats && (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
             <StatCard icon={Thermometer} iconColor="text-amber-400" iconBg="bg-amber-500/10" label="Avg High" value={stats.avgHigh} unit="°F" sub={`Peak: ${stats.maxHigh}°F`} />
             <StatCard icon={TrendingUp} iconColor="text-violet-400" iconBg="bg-violet-500/10" label="Min Low" value={stats.minLow} unit="°F" sub="30-day low" />
@@ -148,16 +146,20 @@ export default function Dashboard() {
         )}
 
         {/* Charts */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
-          <div className="lg:col-span-2">
-            <TemperatureChart data={records} />
+        {!loading && !error && records.length > 0 && (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
+            <div className="lg:col-span-2">
+              <TemperatureChart data={records} />
+            </div>
+            <HumidityChart data={records} />
+            <WindChart data={records} />
           </div>
-          <HumidityChart data={records} />
-          <WindChart data={records} />
-        </div>
+        )}
 
         {/* Data table */}
-        <WeatherTable data={records} />
+        {!loading && !error && records.length > 0 && (
+          <WeatherTable data={records} />
+        )}
 
         <p className="text-center text-xs text-slate-600 mt-6">
           Data source: Database · {records.length} days · {CITY.name}, {CITY.state}
