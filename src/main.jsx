@@ -7,7 +7,8 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = document.getElementById("root");
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
