@@ -1,0 +1,72 @@
+export const products = [
+  {
+    id: 'prod-1',
+    handle: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42.00,
+    category: 'Ear Cuffs',
+    material: '18K Gold Plated',
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E",
+    imgId: 'prod-vivid-aura-img',
+    imgQuery: '[vivid-aura-desc] [vivid-aura-name]',
+    descId: 'vivid-aura-desc',
+    nameId: 'vivid-aura-name',
+    description: 'Gold ear cuff with delicate crystal accent. Sits comfortably without piercing.'
+  },
+  {
+    id: 'prod-2',
+    handle: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68.00,
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E",
+    imgId: 'prod-majestic-flora-img',
+    imgQuery: '[majestic-flora-desc] [majestic-flora-name]',
+    descId: 'majestic-flora-desc',
+    nameId: 'majestic-flora-name',
+    description: 'Multicolor floral crystal necklace on a delicate gold chain.'
+  },
+  {
+    id: 'prod-3',
+    handle: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38.00,
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E",
+    imgId: 'prod-golden-sphere-img',
+    imgQuery: '[golden-sphere-desc] [golden-sphere-name]',
+    descId: 'golden-sphere-desc',
+    nameId: 'golden-sphere-name',
+    description: 'Chunky gold dome huggie earrings. A versatile everyday essential.'
+  },
+  {
+    id: 'prod-4',
+    handle: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54.00,
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E",
+    imgId: 'prod-amber-lace-img',
+    imgQuery: '[amber-lace-desc] [amber-lace-name]',
+    descId: 'amber-lace-desc',
+    nameId: 'amber-lace-name',
+    description: 'Textured gold filigree drop earrings with a vintage-inspired design.'
+  },
+  {
+    id: 'prod-5',
+    handle: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95.00,
+    category: 'Sets',
+    material: '18K Gold Plated',
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E",
+    imgId: 'prod-royal-heirloom-img',
+    imgQuery: '[royal-heirloom-desc] [royal-heirloom-name]',
+    descId: 'royal-heirloom-desc',
+    nameId: 'royal-heirloom-name',
+    description: 'Gift-boxed matching earring and necklace set. The perfect premium gift.'
+  }
+];
