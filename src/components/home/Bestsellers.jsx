@@ -1,14 +1,22 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { products } from '@/data/products'
+import { getImage } from '@/data/images'
 import { useCart } from '@/components/cart/CartContext'
+
+const productImageMap = {
+  'vivid-aura-jewels': { primary: 'vivid-aura-primary', secondary: 'vivid-aura-secondary' },
+  'majestic-flora-nectar': { primary: 'majestic-flora-primary', secondary: 'majestic-flora-secondary' },
+  'golden-sphere-huggies': { primary: 'golden-sphere-primary', secondary: 'golden-sphere-secondary' },
+  'amber-lace-earrings': { primary: 'amber-lace-primary', secondary: 'amber-lace-secondary' },
+  'royal-heirloom-set': { primary: 'royal-heirloom-primary', secondary: 'royal-heirloom-secondary' },
+}
 
 const ProductCard = ({ product }) => {
   const [hovered, setHovered] = useState(false)
   const { addItem } = useCart()
+  const imgKeys = productImageMap[product.id] || {}
 
   return (
     <div
@@ -20,21 +28,13 @@ const ProductCard = ({ product }) => {
         <div className="relative aspect-[3/4] overflow-hidden bg-warm-100">
           {/* Primary image */}
           <img
-            data-strk-img-id={`${product.imgId}-primary`}
-            data-strk-img={`[${product.descId}] [${product.titleId}]`}
-            data-strk-img-ratio="3x4"
-            data-strk-img-width="600"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getImage(imgKeys.primary)}
             alt={product.name}
             className={`w-full h-full object-cover transition-opacity duration-700 ${hovered ? 'opacity-0' : 'opacity-100'}`}
           />
           {/* Secondary image (hover) */}
           <img
-            data-strk-img-id={`${product.imgId}-secondary`}
-            data-strk-img={`[${product.descId}] worn [${product.titleId}]`}
-            data-strk-img-ratio="3x4"
-            data-strk-img-width="600"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getImage(imgKeys.secondary)}
             alt={`${product.name} worn`}
             className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${hovered ? 'opacity-100' : 'opacity-0'}`}
           />
@@ -79,14 +79,8 @@ const ProductCard = ({ product }) => {
 }
 
 const Bestsellers = () => {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
   return (
-    <section ref={containerRef} className="py-16 md:py-24 lg:py-28 bg-cream">
+    <section className="py-16 md:py-24 lg:py-28 bg-cream">
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
         <div className="text-center mb-10 md:mb-14">
           <h2 className="font-serif text-3xl md:text-4xl font-light tracking-wide text-charcoal">

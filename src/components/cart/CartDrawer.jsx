@@ -2,6 +2,15 @@ import React from 'react'
 import { X, Plus, Minus } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useCart } from './CartContext'
+import { getImage } from '@/data/images'
+
+const productImageMap = {
+  'vivid-aura-jewels': 'vivid-aura-primary',
+  'majestic-flora-nectar': 'majestic-flora-primary',
+  'golden-sphere-huggies': 'golden-sphere-primary',
+  'amber-lace-earrings': 'amber-lace-primary',
+  'royal-heirloom-set': 'royal-heirloom-primary',
+}
 
 const CartDrawer = () => {
   const { items, drawerOpen, closeDrawer, removeItem, updateQuantity, total } = useCart()
@@ -46,11 +55,7 @@ const CartDrawer = () => {
                   {/* Image */}
                   <div className="w-20 h-24 bg-warm-100 flex-shrink-0 overflow-hidden">
                     <img
-                      data-strk-img-id={`cart-${item.imgId}-${item.tone}`}
-                      data-strk-img={`[${item.descId}] [${item.titleId}]`}
-                      data-strk-img-ratio="3x4"
-                      data-strk-img-width="160"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      src={getImage(productImageMap[item.id])}
                       alt={item.name}
                       className="w-full h-full object-cover"
                     />
