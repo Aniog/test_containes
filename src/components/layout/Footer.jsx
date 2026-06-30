@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Instagram, Facebook, Pinterest } from 'lucide-react'
+import { Instagram, Facebook, Globe } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -21,8 +21,8 @@ export default function Footer() {
               <a href="#" className="text-cream/40 hover:text-gold transition-colors" aria-label="Facebook">
                 <Facebook size={18} />
               </a>
-              <a href="#" className="text-cream/40 hover:text-gold transition-colors" aria-label="Pinterest">
-                <Pinterest size={18} />
+              <a href="#" className="text-cream/40 hover:text-gold transition-colors" aria-label="Website">
+                <Globe size={18} />
               </a>
             </div>
           </div>
