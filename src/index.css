@@ -1,76 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Velmora Fine Jewelry — Global Styles */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Colors from design system */
+  --color-cream: #FAF9F7;
+  --color-surface: #FFFFFF;
+  --color-charcoal: #1A1A1A;
+  --color-warm-gray: #6B6B6B;
+  --color-muted-gray: #9A9A9A;
+  --color-gold: #B8956B;
+  --color-gold-light: #D4B896;
+  --color-gold-dark: #8B7355;
+  --color-gold-hover: #C9A87C;
+  --color-border: #E8E6E3;
+  --color-divider: #F0EEEB;
+  
+  /* Typography */
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
-  overflow-x: hidden;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Typography utilities */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-button:hover {
-  border-color: #646cff;
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Product name styling - uppercase with letter spacing */
+.product-name {
+  @apply font-serif uppercase tracking-widest text-charcoal;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Button base styles */
+.btn-primary {
+  @apply bg-gold text-white font-sans uppercase tracking-wider text-sm font-medium 
+         px-8 py-4 rounded-soft transition-all duration-300 ease-out
+         hover:bg-gold-hover hover:shadow-hover;
+}
+
+.btn-secondary {
+  @apply bg-transparent text-gold font-sans uppercase tracking-wider text-sm font-medium 
+         px-8 py-4 rounded-soft border border-gold transition-all duration-300 ease-out
+         hover:bg-gold hover:text-white;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-charcoal font-sans uppercase tracking-wider text-sm font-medium 
+         px-4 py-2 transition-all duration-300 ease-out
+         hover:text-gold;
+}
+
+/* Hairline divider */
+.divider {
+  @apply w-full h-px bg-border;
+}
+
+/* Overlay for hover effects */
+.overlay {
+  @apply absolute inset-0 bg-overlay opacity-0 transition-opacity duration-400;
+}
+
+/* Image hover zoom effect */
+.img-zoom {
+  @apply transition-transform duration-500 ease-out;
+}
+
+.img-zoom:hover {
+  transform: scale(1.02);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-muted-gray);
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Input focus styles */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-gold-light);
+  color: var(--color-charcoal);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+/* Skeleton loading */
+.skeleton {
+  @apply bg-gradient-to-r from-border via-surface to-border bg-[length:200%_100%] animate-shimmer;
+}
+
+/* Star rating */
+.star-filled {
+  color: var(--color-gold);
+}
+
+.star-empty {
+  color: var(--color-border);
+}
