@@ -1,76 +1,71 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 40% 98%; /* #FDFBF8 */
+    --foreground: 30 5% 15%; /* #2A2826 */
+    --card: 36 29% 95%; /* #F5F2ED */
+    --card-foreground: 30 5% 15%;
+    --popover: 36 29% 95%;
+    --popover-foreground: 30 5% 15%;
+    --primary: 38 35% 59%; /* #BCA173 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 33 8% 42%; /* #736B63 */
+    --secondary-foreground: 40 40% 98%;
+    --muted: 36 30% 88%; /* #E8E2D9 */
+    --muted-foreground: 33 8% 42%; /* #736B63 */
+    --accent: 36 30% 88%;
+    --accent-foreground: 30 5% 15%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 36 30% 88%; /* #E8E2D9 */
+    --input: 36 30% 88%;
+    --ring: 38 35% 59%;
+    --radius: 0.25rem;
+  }
+
+  .dark {
+    /* For now, keep dark mode same or close to light for a consistent brand feel, 
+       or define a dark luxury palette later. Sticking to light UI mostly for jewelry editorial. */
+    --background: 30 5% 15%;
+    --foreground: 40 40% 98%;
+    --card: 30 5% 10%;
+    --card-foreground: 40 40% 98%;
+    --popover: 30 5% 10%;
+    --popover-foreground: 40 40% 98%;
+    --primary: 38 35% 59%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 33 8% 42%;
+    --secondary-foreground: 40 40% 98%;
+    --muted: 30 5% 20%;
+    --muted-foreground: 36 30% 88%;
+    --accent: 30 5% 20%;
+    --accent-foreground: 40 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 5% 20%;
+    --input: 30 5% 20%;
+    --ring: 38 35% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-wide;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+}
