@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const reels = [
   { id: 'ugc-1', caption: 'Everyday gold', user: '@elenam' },
@@ -13,6 +14,7 @@ const reels = [
 
 export default function UGCReelsSection() {
   const containerRef = useRef(null);
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -21,7 +23,12 @@ export default function UGCReelsSection() {
   return (
     <section className="py-16 md:py-24 bg-base">
       <div className="max-w-7xl mx-auto px-6 mb-8">
-        <h2 className="font-serif text-2xl md:text-3xl font-light tracking-wide text-white">
+        <h2
+          ref={titleRef}
+          className={`font-serif text-2xl md:text-3xl font-light tracking-wide text-white transition-all duration-700 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
           Styled by You
         </h2>
       </div>

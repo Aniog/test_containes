@@ -3,9 +3,12 @@ import { ArrowRight } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function BrandStory() {
   const containerRef = useRef(null);
+  const { ref: imageRef, isVisible: imageVisible } = useScrollReveal();
+  const { ref: textRef, isVisible: textVisible } = useScrollReveal();
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -15,7 +18,12 @@ export default function BrandStory() {
     <section id="about" ref={containerRef} className="py-16 md:py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div className="aspect-[4/5] overflow-hidden">
+          <div
+            ref={imageRef}
+            className={`aspect-[4/5] overflow-hidden transition-all duration-1000 ${
+              imageVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            }`}
+          >
             <img
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt="Velmora craftsmanship"
@@ -26,7 +34,12 @@ export default function BrandStory() {
               data-strk-img-width="800"
             />
           </div>
-          <div className="py-4 md:py-8">
+          <div
+            ref={textRef}
+            className={`py-4 md:py-8 transition-all duration-1000 delay-200 ${
+              textVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
+          >
             <p className="text-xs uppercase tracking-[0.2em] text-accent font-medium mb-4">
               Our Story
             </p>
@@ -53,10 +66,10 @@ export default function BrandStory() {
             </p>
             <Link
               to="/shop"
-              className="inline-flex items-center gap-2 mt-8 text-xs uppercase tracking-[0.15em] font-medium text-base hover:text-accent transition-colors"
+              className="inline-flex items-center gap-2 mt-8 text-xs uppercase tracking-[0.15em] font-medium text-base hover:text-accent transition-colors group"
             >
               Explore the Collection
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

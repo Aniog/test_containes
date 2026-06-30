@@ -1,4 +1,5 @@
 import StarRating from '@/components/StarRating';
+import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 const testimonials = [
   {
@@ -22,19 +23,32 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
+  const { ref: titleRef, isVisible: titleVisible } = useScrollReveal();
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollReveal(0.08);
+
   return (
     <section className="py-16 md:py-24 bg-surface">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12 md:mb-16">
+        <div
+          ref={titleRef}
+          className={`text-center mb-12 md:mb-16 transition-all duration-700 ${
+            titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+          }`}
+        >
           <h2 className="font-serif text-2xl md:text-3xl font-light tracking-wide">
             Loved by Thousands
           </h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+        <div
+          ref={cardsRef}
+          className={`grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 transition-all duration-700 delay-150 ${
+            cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {testimonials.map((t) => (
             <div
               key={t.id}
-              className="border border-hairline p-8 md:p-10 flex flex-col"
+              className="border border-hairline p-8 md:p-10 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-400 bg-surface"
             >
               <StarRating rating={t.rating} size={14} />
               <p className="text-sm text-base leading-relaxed mt-5 flex-1">
