@@ -1,0 +1,128 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    description: 'Gold ear cuff with crystal accent',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', primary: 'gold ear cuff with crystal accent on model ear', secondary: 'close up gold ear cuff jewelry detail' },
+      { id: 'vivid-aura-2', primary: 'gold ear cuff side view jewelry', secondary: 'gold ear cuff with sparkle' },
+    ],
+    variants: ['Gold', 'Silver'],
+    fullDescription: 'A sculptural ear cuff that hugs the curve of your ear with effortless elegance. Adorned with a single crystal accent that catches the light with every turn of your head.',
+    materials: '18K gold plated over brass. Crystal accent. Hypoallergenic. Nickel-free.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided velvet pouch. Gently polish with a soft cloth.',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    description: 'Multicolor floral crystal necklace',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'majestic-flora-1', primary: 'multicolor floral crystal necklace on model neck', secondary: 'floral crystal necklace pendant detail' },
+      { id: 'majestic-flora-2', primary: 'gold chain necklace with colorful crystals', secondary: 'floral necklace close up jewelry' },
+    ],
+    variants: ['Gold', 'Silver'],
+    fullDescription: 'A delicate pendant necklace featuring a cluster of multicolor crystals arranged in a blooming floral motif. The fine chain rests gracefully at the collarbone.',
+    materials: '18K gold plated chain. Swarovski crystals in rose, amber, and clear. Adjustable 16-18 inch chain.',
+    care: 'Store flat to prevent tangling. Avoid moisture and chemicals. Clean crystals gently with a dry soft cloth.',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    description: 'Chunky gold dome huggie earrings',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'golden-sphere-1', primary: 'chunky gold dome huggie earrings on ear', secondary: 'gold huggie earrings pair detail' },
+      { id: 'golden-sphere-2', primary: 'gold sphere huggies side view', secondary: 'huggie earrings worn lifestyle' },
+    ],
+    variants: ['Gold', 'Silver'],
+    fullDescription: 'Perfectly proportioned dome huggies that sit close to the earlobe with a satisfying click. The polished gold surface reflects light beautifully for everyday luxury.',
+    materials: '18K gold plated over surgical steel. Secure hinged closure. 12mm diameter.',
+    care: 'Wipe clean after each wear. Store in jewelry box. Avoid swimming or showering while wearing.',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    description: 'Textured gold filigree drop earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', primary: 'textured gold filigree drop earrings on model', secondary: 'gold lace earrings detail close up' },
+      { id: 'amber-lace-2', primary: 'filigree drop earrings side view', secondary: 'gold lace earrings lifestyle shot' },
+    ],
+    variants: ['Gold', 'Silver'],
+    fullDescription: 'Intricate filigree work creates a lace-like pattern in these statement drop earrings. Lightweight despite their dramatic appearance, they move gracefully with you.',
+    materials: '18K gold plated over brass. Openwork filigree design. French wire hooks. 2 inch drop.',
+    care: 'Handle by the wire to avoid bending filigree. Store separately to prevent snagging. Polish gently.',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    description: 'Gift-boxed earring + necklace set',
+    price: 95,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'royal-heirloom-1', primary: 'gift boxed gold earring necklace jewelry set', secondary: 'luxury jewelry set presentation box' },
+      { id: 'royal-heirloom-2', primary: 'gold necklace and earring set on model', secondary: 'jewelry gift set flat lay' },
+    ],
+    variants: ['Gold', 'Silver'],
+    fullDescription: 'A curated pairing of matching drop earrings and a pendant necklace, presented in our signature gift box. The perfect expression of thoughtfulness for someone special — or yourself.',
+    materials: '18K gold plated over brass. Matching design elements across both pieces. Presented in velvet-lined gift box with ribbon.',
+    care: 'Store pieces separately in provided box. Avoid contact with perfumes and lotions. Clean with soft dry cloth.',
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', imageId: 'category-earrings-img', query: 'gold earrings jewelry on model' },
+  { id: 'necklaces', name: 'Necklaces', imageId: 'category-necklaces-img', query: 'gold necklace jewelry on model' },
+  { id: 'huggies', name: 'Huggies', imageId: 'category-huggies-img', query: 'gold huggie earrings jewelry' },
+]
+
+export const testimonials = [
+  {
+    id: 'testimonial-1',
+    name: 'Sarah M.',
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day.',
+    rating: 5,
+  },
+  {
+    id: 'testimonial-2',
+    name: 'Emma L.',
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. She cried. The packaging is beautiful.',
+    rating: 5,
+  },
+  {
+    id: 'testimonial-3',
+    name: 'Jessica R.',
+    text: 'Finally found jewelry that looks expensive without the designer price tag. Obsessed with Velmora.',
+    rating: 5,
+  },
+]
+
+export const ugcPosts = [
+  { id: 'ugc-1', query: 'woman wearing gold earrings close up ear', caption: '@sarahstyles' },
+  { id: 'ugc-2', query: 'woman wearing gold necklace jewelry portrait', caption: '@emmajewels' },
+  { id: 'ugc-3', query: 'gold huggie earrings on ear close up', caption: '@jessicawears' },
+  { id: 'ugc-4', query: 'woman wearing gold drop earrings lifestyle', caption: '@oliviaglam' },
+  { id: 'ugc-5', query: 'gold jewelry layered necklaces woman', caption: '@miachic' },
+  { id: 'ugc-6', query: 'woman wearing gold earrings mirror selfie', caption: '@avastyle' },
+]

@@ -1,14 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
-import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
-    strkImgPlugin(),
-    visualEditPlugin(),
     react(),
   ],
   resolve: {
@@ -17,6 +12,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: 12000,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
@@ -25,7 +21,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
