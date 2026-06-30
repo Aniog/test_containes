@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Todo Items",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "The title or name of the todo task"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional longer description or notes for the task"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["todo", "in_progress", "done"],
+      "default": "todo",
+      "description": "Current status of the task"
+    },
+    "priority": {
+      "type": "string",
+      "enum": ["low", "medium", "high"],
+      "default": "medium",
+      "description": "Priority level of the task"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Optional due date for the task"
+    }
+  },
+  "required": ["title", "status", "priority"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
