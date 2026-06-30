@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly identifier"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "material": {
+      "type": "string",
+      "description": "Primary material"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full product description"
+    },
+    "care": {
+      "type": "string",
+      "description": "Materials and care instructions"
+    },
+    "shipping": {
+      "type": "string",
+      "description": "Shipping and returns info"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "image_query": {
+      "type": "string",
+      "description": "Image search query string"
+    },
+    "images": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Number of product images"
+    },
+    "tone": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available metal tones"
+    }
+  },
+  "required": ["id", "name", "slug", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
