@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Pinterest } from 'lucide-react';
+import { Instagram, Facebook, Globe } from 'lucide-react';
 
 const shopLinks = ['All Jewelry', 'Earrings', 'Necklaces', 'Huggies', 'Gift Sets', 'New Arrivals'];
 const helpLinks = ['Shipping & Returns', 'Materials & Care', 'Size Guide', 'FAQ', 'Contact Us'];
@@ -90,8 +90,8 @@ export default function Footer() {
             <a href="#" className="text-white/40 hover:text-white/70 transition-colors" aria-label="Facebook">
               <Facebook className="w-4.5 h-4.5" strokeWidth={1.5} />
             </a>
-            <a href="#" className="text-white/40 hover:text-white/70 transition-colors" aria-label="Pinterest">
-              <Pinterest className="w-4.5 h-4.5" strokeWidth={1.5} />
+            <a href="#" className="text-white/40 hover:text-white/70 transition-colors" aria-label="Website">
+              <Globe className="w-4.5 h-4.5" strokeWidth={1.5} />
             </a>
           </div>
         </div>
