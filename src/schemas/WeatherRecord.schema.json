@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Records",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "City name"
+    },
+    "state": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "State or region code"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 10,
+      "description": "Country code"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather record (YYYY-MM-DD)"
+    },
+    "temp_high": {
+      "type": "number",
+      "description": "Daily high temperature in Fahrenheit"
+    },
+    "temp_low": {
+      "type": "number",
+      "description": "Daily low temperature in Fahrenheit"
+    },
+    "temp_avg": {
+      "type": "number",
+      "description": "Daily average temperature in Fahrenheit"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Relative humidity percentage"
+    },
+    "wind_speed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Wind speed in mph"
+    },
+    "precipitation": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Precipitation in inches"
+    },
+    "uv_index": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 11,
+      "description": "UV index value (0-11)"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Partly Cloudy", "Foggy", "Overcast", "Rainy"],
+      "description": "General weather condition label"
+    },
+    "icon": {
+      "type": "string",
+      "enum": ["sun", "cloud-sun", "cloud", "cloud-rain"],
+      "description": "Icon key for the weather condition"
+    }
+  },
+  "required": ["city", "date", "temp_high", "temp_low", "temp_avg", "humidity", "wind_speed", "precipitation", "uv_index", "condition", "icon"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

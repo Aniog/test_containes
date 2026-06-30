@@ -1,0 +1,50 @@
+// Sample weather data for San Francisco — 30 days ending 2026-06-30
+export const CITY = {
+  name: 'San Francisco',
+  state: 'CA',
+  country: 'US',
+  lat: 37.7749,
+  lon: -122.4194,
+  timezone: 'America/Los_Angeles',
+};
+
+export const weatherRecords = [
+  { date: '2026-06-01', tempHigh: 68, tempLow: 54, tempAvg: 61, humidity: 72, windSpeed: 12, precipitation: 0.0, uvIndex: 6, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-02', tempHigh: 65, tempLow: 52, tempAvg: 58, humidity: 78, windSpeed: 15, precipitation: 0.1, uvIndex: 4, condition: 'Foggy', icon: 'cloud' },
+  { date: '2026-06-03', tempHigh: 63, tempLow: 51, tempAvg: 57, humidity: 82, windSpeed: 10, precipitation: 0.3, uvIndex: 3, condition: 'Overcast', icon: 'cloud' },
+  { date: '2026-06-04', tempHigh: 70, tempLow: 55, tempAvg: 62, humidity: 68, windSpeed: 9,  precipitation: 0.0, uvIndex: 7, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-05', tempHigh: 74, tempLow: 57, tempAvg: 65, humidity: 63, windSpeed: 8,  precipitation: 0.0, uvIndex: 8, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-06', tempHigh: 72, tempLow: 56, tempAvg: 64, humidity: 65, windSpeed: 11, precipitation: 0.0, uvIndex: 7, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-07', tempHigh: 67, tempLow: 53, tempAvg: 60, humidity: 74, windSpeed: 14, precipitation: 0.0, uvIndex: 5, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-08', tempHigh: 64, tempLow: 51, tempAvg: 57, humidity: 80, windSpeed: 16, precipitation: 0.2, uvIndex: 3, condition: 'Foggy', icon: 'cloud' },
+  { date: '2026-06-09', tempHigh: 66, tempLow: 52, tempAvg: 59, humidity: 77, windSpeed: 13, precipitation: 0.0, uvIndex: 5, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-10', tempHigh: 71, tempLow: 56, tempAvg: 63, humidity: 66, windSpeed: 10, precipitation: 0.0, uvIndex: 7, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-11', tempHigh: 75, tempLow: 58, tempAvg: 66, humidity: 61, windSpeed: 9,  precipitation: 0.0, uvIndex: 9, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-12', tempHigh: 78, tempLow: 60, tempAvg: 69, humidity: 58, windSpeed: 7,  precipitation: 0.0, uvIndex: 9, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-13', tempHigh: 76, tempLow: 59, tempAvg: 67, humidity: 60, windSpeed: 8,  precipitation: 0.0, uvIndex: 8, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-14', tempHigh: 73, tempLow: 57, tempAvg: 65, humidity: 64, windSpeed: 11, precipitation: 0.0, uvIndex: 7, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-15', tempHigh: 69, tempLow: 54, tempAvg: 61, humidity: 70, windSpeed: 13, precipitation: 0.0, uvIndex: 6, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-16', tempHigh: 65, tempLow: 52, tempAvg: 58, humidity: 76, windSpeed: 15, precipitation: 0.1, uvIndex: 4, condition: 'Foggy', icon: 'cloud' },
+  { date: '2026-06-17', tempHigh: 62, tempLow: 50, tempAvg: 56, humidity: 84, windSpeed: 17, precipitation: 0.4, uvIndex: 2, condition: 'Rainy', icon: 'cloud-rain' },
+  { date: '2026-06-18', tempHigh: 60, tempLow: 49, tempAvg: 54, humidity: 88, windSpeed: 18, precipitation: 0.6, uvIndex: 2, condition: 'Rainy', icon: 'cloud-rain' },
+  { date: '2026-06-19', tempHigh: 63, tempLow: 51, tempAvg: 57, humidity: 81, windSpeed: 14, precipitation: 0.2, uvIndex: 3, condition: 'Overcast', icon: 'cloud' },
+  { date: '2026-06-20', tempHigh: 67, tempLow: 53, tempAvg: 60, humidity: 73, windSpeed: 12, precipitation: 0.0, uvIndex: 5, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-21', tempHigh: 71, tempLow: 55, tempAvg: 63, humidity: 67, windSpeed: 10, precipitation: 0.0, uvIndex: 7, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-22', tempHigh: 74, tempLow: 57, tempAvg: 65, humidity: 63, windSpeed: 9,  precipitation: 0.0, uvIndex: 8, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-23', tempHigh: 77, tempLow: 59, tempAvg: 68, humidity: 59, windSpeed: 8,  precipitation: 0.0, uvIndex: 9, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-24', tempHigh: 80, tempLow: 62, tempAvg: 71, humidity: 55, windSpeed: 7,  precipitation: 0.0, uvIndex: 10, condition: 'Sunny', icon: 'sun' },
+  { date: '2026-06-25', tempHigh: 79, tempLow: 61, tempAvg: 70, humidity: 57, windSpeed: 8,  precipitation: 0.0, uvIndex: 9, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-26', tempHigh: 75, tempLow: 58, tempAvg: 66, humidity: 62, windSpeed: 10, precipitation: 0.0, uvIndex: 8, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-27', tempHigh: 72, tempLow: 56, tempAvg: 64, humidity: 65, windSpeed: 11, precipitation: 0.0, uvIndex: 7, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-28', tempHigh: 70, tempLow: 55, tempAvg: 62, humidity: 68, windSpeed: 12, precipitation: 0.0, uvIndex: 6, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-29', tempHigh: 68, tempLow: 54, tempAvg: 61, humidity: 71, windSpeed: 13, precipitation: 0.0, uvIndex: 6, condition: 'Partly Cloudy', icon: 'cloud-sun' },
+  { date: '2026-06-30', tempHigh: 73, tempLow: 57, tempAvg: 65, humidity: 64, windSpeed: 10, precipitation: 0.0, uvIndex: 7, condition: 'Sunny', icon: 'sun' },
+];
+
+export const conditionColors = {
+  Sunny: '#fbbf24',
+  'Partly Cloudy': '#38bdf8',
+  Foggy: '#94a3b8',
+  Overcast: '#64748b',
+  Rainy: '#818cf8',
+};
