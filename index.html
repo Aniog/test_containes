@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Velmora Fine Jewelry</title>
   </head>
   <body>
     <div id="root"></div>
@@ -584,6 +587,81 @@
           rememberConsoleError(args);
           originalConsoleError(...args);
         };
+      })();
+    </script>
+    <script>
+      (() => {
+        if (window.__VELMORA_PRODUCT_IMAGE_BRIDGE__) return;
+        window.__VELMORA_PRODUCT_IMAGE_BRIDGE__ = true;
+
+        const placeholderPattern = /^data:image\//;
+        const catalog = {
+          'vivid-aura-jewels': {
+            name: 'Vivid Aura Jewels',
+            primary: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1671513511423-4ce382bc94d6',
+            styled: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1680789527299-dbf53044f48b',
+          },
+          'majestic-flora-nectar': {
+            name: 'Majestic Flora Nectar',
+            primary: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1648055477428-749f96c20cab',
+            styled: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1644893748093-fc1aff047db9',
+          },
+          'golden-sphere-huggies': {
+            name: 'Golden Sphere Huggies',
+            primary: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1665932358854-8b581eae036e',
+            styled: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1608148370938-67e5a308c1bb',
+          },
+          'amber-lace-earrings': {
+            name: 'Amber Lace Earrings',
+            primary: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1606755612616-e34361faa8a0',
+            styled: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1502723804370-fa1d97a9774e',
+          },
+          'royal-heirloom-set': {
+            name: 'Royal Heirloom Set',
+            primary: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1609252907817-fad418fb02ed',
+            styled: 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1666060518856-724686a6587d',
+          },
+        };
+        const selected = {};
+
+        const getProduct = () => {
+          const match = window.location.pathname.match(/^\/products\/([^/?#]+)/);
+          return match ? { slug: match[1], ...catalog[match[1]] } : null;
+        };
+
+        const setImage = (img, url) => {
+          if (!img || !url || img.src === url) return;
+          img.removeAttribute('srcset');
+          img.src = url;
+        };
+
+        const scan = () => {
+          const product = getProduct();
+          if (!product?.name) return;
+          const section = document.querySelector('main > section:first-of-type');
+          if (!section) return;
+          const activeUrl = selected[product.slug] === 'styled' ? product.styled : product.primary;
+          section.querySelectorAll('img').forEach((img) => {
+            if (img.alt === `${product.name} Studio view`) setImage(img, product.primary);
+            if (img.alt === `${product.name} Styled view`) setImage(img, product.styled);
+            if (img.alt === product.name) {
+              setImage(img, activeUrl);
+            }
+          });
+        };
+
+        const scheduleScan = () => window.requestAnimationFrame(scan);
+        document.addEventListener('click', (event) => {
+          const button = event.target?.closest?.('button[aria-label]');
+          const product = getProduct();
+          if (!button || !product) return;
+          if (button.getAttribute('aria-label') === 'Styled view') selected[product.slug] = 'styled';
+          if (button.getAttribute('aria-label') === 'Studio view') selected[product.slug] = 'primary';
+          scheduleScan();
+        }, true);
+        new MutationObserver(scheduleScan).observe(document.documentElement, { childList: true, subtree: true });
+        window.addEventListener('load', scheduleScan);
+        scheduleScan();
       })();
     </script>
     <script type="module" src="/src/main.jsx"></script>
