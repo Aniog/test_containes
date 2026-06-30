@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { SlidersHorizontal, X, ChevronDown, Check } from 'lucide-react'
 import { PRODUCTS, CATEGORIES, formatPrice } from '@/data/products'
@@ -53,36 +53,28 @@ export default function Shop() {
     )
   }
 
-  const filtered = useMemo(() => {
-    let list = PRODUCTS.filter((p) => {
-      if (selectedCategory !== 'all') {
-        const cat = CATEGORIES.find((c) => c.id === selectedCategory)
-        if (cat && p.type !== cat.type && p.category !== cat.name) return false
-      }
-      if (selectedMaterials.length > 0) {
-        const hasMat = selectedMaterials.some((m) => p.variants.includes(m))
-        if (!hasMat) return false
-      }
-      const range = PRICE_RANGES.find((r) => r.id === priceRange)
-      if (range && (p.price < range.min || p.price > range.max)) return false
-      return true
-    })
-
-    switch (sort) {
-      case 'price-asc':
-        list = [...list].sort((a, b) => a.price - b.price)
-        break
-      case 'price-desc':
-        list = [...list].sort((a, b) => b.price - a.price)
-        break
-      case 'rating':
-        list = [...list].sort((a, b) => b.rating - a.rating)
-        break
-      default:
-        break
+  const filtered = PRODUCTS.filter((p) => {
+    if (selectedCategory !== 'all') {
+      const cat = CATEGORIES.find((c) => c.id === selectedCategory)
+      if (cat && p.type !== cat.type && p.category !== cat.name) return false
     }
-    return list
-  }, [selectedCategory, selectedMaterials, priceRange, sort])
+    if (selectedMaterials.length > 0) {
+      const hasMat = selectedMaterials.some((m) => p.variants.includes(m))
+      if (!hasMat) return false
+    }
+    const range = PRICE_RANGES.find((r) => r.id === priceRange)
+    if (range && (p.price < range.min || p.price > range.max)) return false
+    return true
+  })
+
+  const sorted =
+    sort === 'price-asc'
+      ? [...filtered].sort((a, b) => a.price - b.price)
+      : sort === 'price-desc'
+        ? [...filtered].sort((a, b) => b.price - a.price)
+        : sort === 'rating'
+          ? [...filtered].sort((a, b) => b.rating - a.rating)
+          : filtered
 
   const clearAll = () => {
     setSelectedCategory('all')
@@ -224,7 +216,7 @@ export default function Shop() {
             {/* Toolbar */}
             <div className="flex items-center justify-between mb-8 pb-4 border-b border-line">
               <p className="text-xs tracking-[0.14em] uppercase text-stone">
-                {filtered.length} {filtered.length === 1 ? 'Piece' : 'Pieces'}
+                {sorted.length} {sorted.length === 1 ? 'Piece' : 'Pieces'}
               </p>
               <div className="flex items-center gap-3">
                 <button
@@ -263,7 +255,7 @@ export default function Shop() {
             </div>
 
             {/* Grid */}
-            {filtered.length === 0 ? (
+            {sorted.length === 0 ? (
               <div className="py-24 text-center">
                 <p className="font-serif text-2xl text-ink">No pieces match your filters</p>
                 <p className="mt-2 text-sm text-stone">Try adjusting or clearing your selection.</p>
@@ -277,7 +269,7 @@ export default function Shop() {
               </div>
             ) : (
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 md:gap-x-6">
-                {filtered.map((product) => (
+                {sorted.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
@@ -313,7 +305,7 @@ export default function Shop() {
                 onClick={() => setMobileFiltersOpen(false)}
                 className="w-full bg-ink text-cream text-[11px] tracking-[0.2em] uppercase py-4"
               >
-                Show {filtered.length} Results
+                Show {sorted.length} Results
               </button>
             </div>
           </div>

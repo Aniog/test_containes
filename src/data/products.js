@@ -23,6 +23,12 @@ export const PRODUCTS = [
     imgIdAlt: 'prod-vivid-aura-b2',
     titleId: 'prod-vivid-aura-title',
     descId: 'prod-vivid-aura-desc',
+    gallery: [
+      { imgId: 'prod-vivid-aura-a1', query: '[prod-vivid-aura-desc] [prod-vivid-aura-title]' },
+      { imgId: 'prod-vivid-aura-b2', query: '[prod-vivid-aura-desc] Vivid Aura Jewels worn styled' },
+      { imgId: 'prod-vivid-aura-a1-g3', query: '[prod-vivid-aura-desc] Vivid Aura Jewels detail close up gold' },
+      { imgId: 'prod-vivid-aura-a1-g4', query: '[prod-vivid-aura-desc] Vivid Aura Jewels on neutral background' },
+    ],
   },
   {
     id: 'majestic-flora-nectar',
@@ -45,6 +51,12 @@ export const PRODUCTS = [
     imgIdAlt: 'prod-majestic-flora-b2',
     titleId: 'prod-majestic-flora-title',
     descId: 'prod-majestic-flora-desc',
+    gallery: [
+      { imgId: 'prod-majestic-flora-a1', query: '[prod-majestic-flora-desc] [prod-majestic-flora-title]' },
+      { imgId: 'prod-majestic-flora-b2', query: '[prod-majestic-flora-desc] Majestic Flora Nectar worn styled' },
+      { imgId: 'prod-majestic-flora-a1-g3', query: '[prod-majestic-flora-desc] Majestic Flora Nectar detail close up gold' },
+      { imgId: 'prod-majestic-flora-a1-g4', query: '[prod-majestic-flora-desc] Majestic Flora Nectar on neutral background' },
+    ],
   },
   {
     id: 'golden-sphere-huggies',
@@ -67,6 +79,12 @@ export const PRODUCTS = [
     imgIdAlt: 'prod-golden-sphere-b2',
     titleId: 'prod-golden-sphere-title',
     descId: 'prod-golden-sphere-desc',
+    gallery: [
+      { imgId: 'prod-golden-sphere-a1', query: '[prod-golden-sphere-desc] [prod-golden-sphere-title]' },
+      { imgId: 'prod-golden-sphere-b2', query: '[prod-golden-sphere-desc] Golden Sphere Huggies worn styled' },
+      { imgId: 'prod-golden-sphere-a1-g3', query: '[prod-golden-sphere-desc] Golden Sphere Huggies detail close up gold' },
+      { imgId: 'prod-golden-sphere-a1-g4', query: '[prod-golden-sphere-desc] Golden Sphere Huggies on neutral background' },
+    ],
   },
   {
     id: 'amber-lace-earrings',
@@ -89,6 +107,12 @@ export const PRODUCTS = [
     imgIdAlt: 'prod-amber-lace-b2',
     titleId: 'prod-amber-lace-title',
     descId: 'prod-amber-lace-desc',
+    gallery: [
+      { imgId: 'prod-amber-lace-a1', query: '[prod-amber-lace-desc] [prod-amber-lace-title]' },
+      { imgId: 'prod-amber-lace-b2', query: '[prod-amber-lace-desc] Amber Lace Earrings worn styled' },
+      { imgId: 'prod-amber-lace-a1-g3', query: '[prod-amber-lace-desc] Amber Lace Earrings detail close up gold' },
+      { imgId: 'prod-amber-lace-a1-g4', query: '[prod-amber-lace-desc] Amber Lace Earrings on neutral background' },
+    ],
   },
   {
     id: 'royal-heirloom-set',
@@ -111,6 +135,12 @@ export const PRODUCTS = [
     imgIdAlt: 'prod-royal-heirloom-b2',
     titleId: 'prod-royal-heirloom-title',
     descId: 'prod-royal-heirloom-desc',
+    gallery: [
+      { imgId: 'prod-royal-heirloom-a1', query: '[prod-royal-heirloom-desc] [prod-royal-heirloom-title]' },
+      { imgId: 'prod-royal-heirloom-b2', query: '[prod-royal-heirloom-desc] Royal Heirloom Set worn styled' },
+      { imgId: 'prod-royal-heirloom-a1-g3', query: '[prod-royal-heirloom-desc] Royal Heirloom Set detail close up gold' },
+      { imgId: 'prod-royal-heirloom-a1-g4', query: '[prod-royal-heirloom-desc] Royal Heirloom Set on neutral background' },
+    ],
   },
 ]
 

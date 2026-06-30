@@ -3,10 +3,12 @@ import { X, Plus, Minus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/data/products'
 import ProductImage, { PLACEHOLDER_SVG } from '@/components/ui/ProductImage'
+import { useImageLoader } from '@/lib/useImageLoader'
 import { cn } from '@/lib/utils'
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, count } = useCart()
+  const drawerRef = useImageLoader([isOpen, items.length])
 
   return (
     <>
@@ -22,6 +24,7 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <aside
+        ref={drawerRef}
         className={cn(
           'fixed top-0 right-0 z-[70] h-full w-full max-w-md bg-cream flex flex-col transition-transform duration-400 ease-out',
           isOpen ? 'translate-x-0' : 'translate-x-full',

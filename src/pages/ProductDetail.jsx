@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Plus, Minus, ChevronDown, ShoppingBag, Check } from 'lucide-react'
-import { getProductById, getRelatedProducts, formatPrice } from '@/data/products'
+import { PRODUCTS, formatPrice } from '@/data/products'
 import { useCart } from '@/context/CartContext'
 import { useImageLoader } from '@/lib/useImageLoader'
 import StarRating from '@/components/ui/StarRating'
@@ -20,7 +20,7 @@ const SHIPPING_TEXT =
 
 export default function ProductDetail() {
   const { id } = useParams()
-  const product = getProductById(id)
+  const product = PRODUCTS.find((p) => p.id === id)
   const { addItem } = useCart()
   const containerRef = useImageLoader([id])
 
@@ -45,15 +45,9 @@ export default function ProductDetail() {
     )
   }
 
-  const related = getRelatedProducts(product.id, 4)
+  const related = PRODUCTS.filter((p) => p.id !== product.id).slice(0, 4)
 
-  // Build gallery: primary + alt + a couple of contextual shots.
-  const gallery = [
-    { imgId: product.imgId, query: `[${product.descId}] [${product.titleId}]` },
-    { imgId: product.imgIdAlt, query: `[${product.descId}] ${product.name} worn styled` },
-    { imgId: `${product.imgId}-g3`, query: `[${product.descId}] ${product.name} detail close up gold` },
-    { imgId: `${product.imgId}-g4`, query: `[${product.descId}] ${product.name} on neutral background` },
-  ]
+  const gallery = product.gallery
 
   const handleAdd = () => {
     addItem(product, { variant, quantity })
