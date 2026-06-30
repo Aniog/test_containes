@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Records",
+  "type": "object",
+  "properties": {
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "The date of the weather observation (YYYY-MM-DD)"
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the city"
+    },
+    "state": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "State or region abbreviation"
+    },
+    "temp_high": {
+      "type": "integer",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily high temperature in degrees Fahrenheit"
+    },
+    "temp_low": {
+      "type": "integer",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily low temperature in degrees Fahrenheit"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Relative humidity percentage"
+    },
+    "wind_speed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 250,
+      "description": "Wind speed in miles per hour"
+    },
+    "precipitation": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 50,
+      "description": "Total precipitation in inches"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Partly Cloudy", "Cloudy", "Foggy", "Rainy", "Thunderstorm", "Windy"],
+      "description": "General weather condition for the day"
+    },
+    "uv_index": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 11,
+      "description": "UV index value (0-11)"
+    }
+  },
+  "required": ["date", "city", "temp_high", "temp_low", "humidity", "wind_speed", "precipitation", "condition", "uv_index"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
