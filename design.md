@@ -1,43 +1,40 @@
-# Velmora Fine Jewelry Design Direction
+# Velmora Fine Jewelry Design System
 
-## Brand mood
-Quiet luxury, warm editorial, refined demi-fine jewelry. The site should feel intimate and premium without looking cold, loud, sale-driven, or generic.
+Velmora uses a quiet-luxury editorial direction: warm ivory surfaces, espresso typography, champagne-gold accents, soft taupe dividers, and restrained movement. The overall mood should feel premium, warm, feminine, and calm rather than promotional.
 
 ## Palette
-Use a deep espresso editorial base with warm ivory surfaces and restrained antique-gold accents.
+- Ivory background: `#F8F1E8` (`ivory`) for primary page surfaces.
+- Porcelain cards: `#FFFDF8` (`porcelain`) for cards and inputs.
+- Rose beige: `#EFE3D5` (`rose-beige`) for image placeholders and soft panels.
+- Espresso: `#241914` (`espresso`) for primary text and dark buttons.
+- Sable: `#5F4A3D` (`sable`) for body copy.
+- Taupe: `#D8C7B2` (`taupe`) for hairline borders.
+- Champagne: `#C9A15F` (`champagne`) for metallic accents and primary CTAs.
+- Deep umber: `#3A2A22` (`umber`) for hover states.
 
-- Espresso: `#241914` for hero overlays, footer, dark sections, and high-contrast text.
-- Sable: `#3A2A22` for secondary dark surfaces and borders on deep backgrounds.
-- Ivory: `#F8F1E8` for main page background.
-- Porcelain: `#FFFDF8` for cards, forms, drawers, and light surfaces.
-- Champagne: `#C9A15F` for premium CTAs, subtle rules, icons, and accents.
-- Soft taupe: `#D8C7B2` for dividers and muted surface borders.
-- Rose beige: `#EFE3D5` for quiet highlight blocks.
-
-Always pair dark surfaces with ivory text and light surfaces with espresso text. Muted text must remain readable.
+Use strong contrast for all text. Important surfaces must explicitly set text colors.
 
 ## Typography
-- Headings and product names: Cormorant Garamond, elegant serif. Product names should be uppercase with wide letter spacing.
-- Body and UI: Manrope, clean sans-serif.
-- Hero headlines should be large, airy, and editorial.
+- Headings, logo, product names: Cormorant Garamond, elegant serif.
+- Body/UI: Manrope or Inter-style sans-serif.
+- Product names: uppercase with generous tracking (`tracking-[0.14em]` to `tracking-[0.18em]`).
+- Section eyebrow labels: small uppercase, bold, wide tracking.
 
-## Layout and spacing
-- Mobile-first, with spacious stacked layouts on small screens and balanced two/three-column layouts on desktop.
-- Use generous padding, thin hairline dividers, and ample breathing room around product cards.
-- Avoid dense sale-like grids and loud badges.
+## Layout & UI
+- Generous whitespace and editorial proportions.
+- Thin hairline dividers using taupe borders.
+- Cards use subtle shadows only on hover.
+- Buttons: rounded-full, uppercase, wide tracking. Primary champagne; secondary espresso or outlined.
+- Transitions should be subtle: opacity, translate, scale, border color.
+- Mobile-first layouts; desktop can use multi-column editorial grids.
 
-## Components
-- Buttons: rounded-full, refined letter spacing, champagne solid or espresso outline. Subtle hover transitions.
-- Cards: porcelain or transparent surfaces, soft shadows only when needed, hairline taupe borders.
-- Navigation: transparent over hero, solid ivory/espresso text after scroll, sticky with backdrop blur.
-- Cart drawer: porcelain background, explicit espresso text, clear quantity controls.
+## Do
+- Use warm jewelry imagery and neutral backgrounds.
+- Keep merchandising copy concise and elevated.
+- Preserve image aspect ratios with soft neutral placeholders.
+- Use consistent serif/sans pairings.
 
-## Imagery
-Use the Strikingly stock image system for warm gold jewelry editorials, close-ups on models, and neutral/dark backgrounds. Image queries should reference nearby text IDs rather than hardcoded plain text.
-
-## Do / Don't
-- Do keep contrast strong and text explicit on every surface.
-- Do use restrained animations and hover states.
-- Do keep a high-end editorial look with large imagery.
-- Don't use discount colors, bright neon, heavy drop shadows, or cluttered merchandising labels.
-- Don't hardcode arbitrary image URLs or inconsistent colors in components.
+## Don't
+- Avoid bright sale colors, heavy gradients, loud badges, and discount-style UI.
+- Avoid low-contrast text on beige or dark surfaces.
+- Avoid arbitrary mismatched colors outside the palette.

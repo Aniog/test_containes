@@ -6,13 +6,14 @@ export const products = [
     price: 42,
     material: '18K Gold Plated',
     tone: ['Gold', 'Silver'],
-    description:
-      'A refined gold ear cuff traced with a delicate crystal accent for day-to-evening glow.',
-    detail:
-      'Designed for a sculptural fit with a luminous crystal finish, this cuff adds polish without requiring a piercing.',
+    description: 'A refined gold ear cuff traced with a delicate crystal accent for day-to-evening glow.',
+    detail: 'Designed for a sculptural fit with a luminous crystal finish, this cuff adds polish without requiring a piercing.',
     care: 'Keep dry, polish gently with a soft cloth, and store in the Velmora pouch between wears.',
     imgId: 'product-vivid-aura-primary-a81f2c',
     hoverImgId: 'product-vivid-aura-hover-e93b70',
+    detailImgId: 'product-vivid-aura-detail-f22a61',
+    wornImgId: 'product-vivid-aura-worn-b83e19',
+    macroImgId: 'product-vivid-aura-macro-c45d90',
     titleId: 'product-vivid-aura-title',
     descId: 'product-vivid-aura-desc',
   },
@@ -23,13 +24,14 @@ export const products = [
     price: 68,
     material: '18K Gold Plated',
     tone: ['Gold'],
-    description:
-      'A multicolor floral crystal necklace made to catch warm light with subtle movement.',
-    detail:
-      'A feminine pendant silhouette set with delicate crystals for gifting, layering, or a soft statement.',
+    description: 'A multicolor floral crystal necklace made to catch warm light with subtle movement.',
+    detail: 'A feminine pendant silhouette set with delicate crystals for gifting, layering, or a soft statement.',
     care: 'Avoid perfume and moisture directly on stones. Fasten before storing to prevent tangles.',
     imgId: 'product-majestic-flora-primary-b74d11',
     hoverImgId: 'product-majestic-flora-hover-c03f8a',
+    detailImgId: 'product-majestic-flora-detail-a31c58',
+    wornImgId: 'product-majestic-flora-worn-f92d70',
+    macroImgId: 'product-majestic-flora-macro-e14b62',
     titleId: 'product-majestic-flora-title',
     descId: 'product-majestic-flora-desc',
   },
@@ -40,13 +42,14 @@ export const products = [
     price: 38,
     material: '18K Gold Plated',
     tone: ['Gold', 'Silver'],
-    description:
-      'Chunky gold dome huggie earrings with a smooth, softly rounded shine.',
-    detail:
-      'Lightweight and close-fitting, these huggies bring a modern golden curve to everyday styling.',
+    description: 'Chunky gold dome huggie earrings with a smooth, softly rounded shine.',
+    detail: 'Lightweight and close-fitting, these huggies bring a modern golden curve to everyday styling.',
     care: 'Remove before showering, swimming, or sleeping. Store separately to protect the polished dome.',
     imgId: 'product-golden-sphere-primary-d62c9e',
     hoverImgId: 'product-golden-sphere-hover-f09a2d',
+    detailImgId: 'product-golden-sphere-detail-d70f16',
+    wornImgId: 'product-golden-sphere-worn-a49c82',
+    macroImgId: 'product-golden-sphere-macro-b93e05',
     titleId: 'product-golden-sphere-title',
     descId: 'product-golden-sphere-desc',
   },
@@ -57,13 +60,14 @@ export const products = [
     price: 54,
     material: '18K Gold Plated',
     tone: ['Gold'],
-    description:
-      'Textured gold filigree drop earrings with a warm, heirloom-inspired silhouette.',
-    detail:
-      'Fine openwork catches the light beautifully, giving these drops a romantic vintage texture.',
+    description: 'Textured gold filigree drop earrings with a warm, heirloom-inspired silhouette.',
+    detail: 'Fine openwork catches the light beautifully, giving these drops a romantic vintage texture.',
     care: 'Wipe after wear and keep away from lotions. Store flat to protect the delicate filigree.',
     imgId: 'product-amber-lace-primary-f56e31',
     hoverImgId: 'product-amber-lace-hover-a2c91b',
+    detailImgId: 'product-amber-lace-detail-c57a04',
+    wornImgId: 'product-amber-lace-worn-e28f63',
+    macroImgId: 'product-amber-lace-macro-f31b75',
     titleId: 'product-amber-lace-title',
     descId: 'product-amber-lace-desc',
   },
@@ -74,13 +78,14 @@ export const products = [
     price: 95,
     material: '18K Gold Plated',
     tone: ['Gold'],
-    description:
-      'A gift-boxed earring and necklace set designed for meaningful milestones.',
-    detail:
-      'Presented in a keepsake-ready box, this coordinated set makes gifting feel polished and personal.',
+    description: 'A gift-boxed earring and necklace set designed for meaningful milestones.',
+    detail: 'Presented in a keepsake-ready box, this coordinated set makes gifting feel polished and personal.',
     care: 'Store in the included box and clean gently with the polishing cloth after each wear.',
     imgId: 'product-royal-heirloom-primary-c50f48',
     hoverImgId: 'product-royal-heirloom-hover-e17d4f',
+    detailImgId: 'product-royal-heirloom-detail-e91c26',
+    wornImgId: 'product-royal-heirloom-worn-b42a38',
+    macroImgId: 'product-royal-heirloom-macro-a60f19',
     titleId: 'product-royal-heirloom-title',
     descId: 'product-royal-heirloom-desc',
   },
@@ -114,70 +119,19 @@ export const categories = [
 ]
 
 export const ugcPosts = [
-  {
-    id: 'morning-stack',
-    caption: 'Morning gold stack',
-    detail: 'Soft hoops and huggies with a silk blouse.',
-    imgId: 'ugc-morning-stack-01-e91b2f',
-    captionId: 'ugc-morning-stack-caption',
-    detailId: 'ugc-morning-stack-detail',
-  },
-  {
-    id: 'neckline-glow',
-    caption: 'A neckline glow',
-    detail: 'Layered necklace catching warm window light.',
-    imgId: 'ugc-neckline-glow-02-f38d7c',
-    captionId: 'ugc-neckline-glow-caption',
-    detailId: 'ugc-neckline-glow-detail',
-  },
-  {
-    id: 'gift-ready',
-    caption: 'Gift-ready moments',
-    detail: 'Velmora pieces styled for dinner plans.',
-    imgId: 'ugc-gift-ready-03-c64a0e',
-    captionId: 'ugc-gift-ready-caption',
-    detailId: 'ugc-gift-ready-detail',
-  },
-  {
-    id: 'weekend-shine',
-    caption: 'Weekend shine',
-    detail: 'Crystal accents with natural makeup.',
-    imgId: 'ugc-weekend-shine-04-b16d50',
-    captionId: 'ugc-weekend-shine-caption',
-    detailId: 'ugc-weekend-shine-detail',
-  },
-  {
-    id: 'desk-to-dinner',
-    caption: 'Desk to dinner',
-    detail: 'Delicate gold jewelry worn close up.',
-    imgId: 'ugc-desk-to-dinner-05-a55f24',
-    captionId: 'ugc-desk-to-dinner-caption',
-    detailId: 'ugc-desk-to-dinner-detail',
-  },
+  { id: 'morning-stack', caption: 'Morning gold stack', detail: 'Soft hoops and huggies with a silk blouse.', imgId: 'ugc-morning-stack-01-e91b2f', captionId: 'ugc-morning-stack-caption', detailId: 'ugc-morning-stack-detail' },
+  { id: 'neckline-glow', caption: 'A neckline glow', detail: 'Layered necklace catching warm window light.', imgId: 'ugc-neckline-glow-02-f38d7c', captionId: 'ugc-neckline-glow-caption', detailId: 'ugc-neckline-glow-detail' },
+  { id: 'gift-ready', caption: 'Gift-ready moments', detail: 'Velmora pieces styled for dinner plans.', imgId: 'ugc-gift-ready-03-c64a0e', captionId: 'ugc-gift-ready-caption', detailId: 'ugc-gift-ready-detail' },
+  { id: 'weekend-shine', caption: 'Weekend shine', detail: 'Crystal accents with natural makeup.', imgId: 'ugc-weekend-shine-04-b16d50', captionId: 'ugc-weekend-shine-caption', detailId: 'ugc-weekend-shine-detail' },
+  { id: 'desk-to-dinner', caption: 'Desk to dinner', detail: 'Delicate gold jewelry worn close up.', imgId: 'ugc-desk-to-dinner-05-a55f24', captionId: 'ugc-desk-to-dinner-caption', detailId: 'ugc-desk-to-dinner-detail' },
 ]
 
 export const testimonials = [
-  {
-    id: 'maya',
-    quote: 'The finish looks far more expensive than the price. I wear the huggies almost daily.',
-    name: 'Maya L.',
-  },
-  {
-    id: 'claire',
-    quote: 'Beautiful packaging, soft gold tone, and no irritation. It felt like a true treat.',
-    name: 'Claire R.',
-  },
-  {
-    id: 'nora',
-    quote: 'I bought the necklace as a gift and came back for one for myself.',
-    name: 'Nora S.',
-  },
+  { id: 'maya', quote: 'The finish looks far more expensive than the price. I wear the huggies almost daily.', name: 'Maya L.' },
+  { id: 'claire', quote: 'Beautiful packaging, soft gold tone, and no irritation. It felt like a true treat.', name: 'Claire R.' },
+  { id: 'nora', quote: 'I bought the necklace as a gift and came back for one for myself.', name: 'Nora S.' },
 ]
 
 export const formatPrice = (price) => `$${price}`
-
-export const getProductById = (id) =>
-  products.find((product) => product.id === id) ?? products[0]
-
-export const getRelatedProducts = (id) =>
-  products.filter((product) => product.id !== id).slice(0, 4)
+export const getProductById = (id) => products.find((product) => product.id === id) ?? products[0]
+export const getRelatedProducts = (id) => products.filter((product) => product.id !== id).slice(0, 4)
