@@ -15,11 +15,36 @@ const Dashboard = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
-        <div className="flex flex-col items-center gap-3 text-slate-500">
-          <Loader2 className="w-8 h-8 animate-spin text-blue-500" />
-          <p className="text-sm font-medium">Loading weather data…</p>
-        </div>
+      <div className="min-h-screen bg-slate-100">
+        <header className="bg-white border-b border-slate-200 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-600 rounded-lg">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-slate-800">Weather Dashboard</h1>
+                <p className="text-xs text-slate-500">Monthly climate data</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-slate-400">
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <span className="hidden sm:inline">Loading…</span>
+            </div>
+          </div>
+        </header>
+        <main className="max-w-7xl mx-auto px-4 md:px-6 py-6 space-y-6">
+          <div className="rounded-xl bg-gradient-to-r from-blue-600 to-sky-500 h-40 animate-pulse" />
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="bg-white rounded-xl border border-slate-200 h-24 animate-pulse" />
+            ))}
+          </div>
+          <div className="bg-white rounded-xl border border-slate-200 h-72 animate-pulse" />
+          <div className="bg-white rounded-xl border border-slate-200 h-64 animate-pulse" />
+        </main>
       </div>
     );
   }
