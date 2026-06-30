@@ -1,50 +1,79 @@
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
+  background: #f4f6f8;
 }
 
-.app-loading-shell {
+.app-redirect-shell {
   display: flex;
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+  padding: 20px;
+  background:
+    radial-gradient(circle at top right, rgba(118, 113, 255, 0.12), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(203, 12, 159, 0.08), transparent 30%),
+    #f4f6f8;
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
+.app-redirect-card {
+  width: min(100%, 520px);
+  border: 1px solid #c6c9cd;
+  border-radius: 3px;
+  background: #ffffff;
+  padding: 30px;
+  color: #636972;
+  text-align: center;
+  box-shadow: 0 10px 24px rgba(75, 80, 86, 0.08);
+}
+
+.app-redirect-eyebrow,
+.app-redirect-title,
+.app-redirect-link {
+  font-family: 'Josefin Sans', 'Poppins', sans-serif;
+  text-transform: uppercase;
+}
+
+.app-redirect-eyebrow {
+  margin: 0 0 10px;
+  color: #8159bb;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.app-redirect-title {
+  margin: 0;
+  color: #2e2e2f;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.app-redirect-copy {
+  margin: 20px 0;
+  color: #636972;
+  font-family: 'Open Sans', Arial, sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.app-redirect-link {
+  display: inline-flex;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+  padding: 9px 15px;
+  border-radius: 4px;
+  background-image: linear-gradient(135deg, #7671ff, #cb0c9f);
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-decoration: none;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
-}
-
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
-}
-
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
+.app-redirect-link:focus-visible,
+.app-redirect-link:hover {
+  box-shadow: 0 0 0 4px rgba(118, 113, 255, 0.18);
+  outline: none;
 }
