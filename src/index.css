@@ -1,76 +1,185 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --velmora-bg: #FAF8F5;
+    --velmora-bg-secondary: #F3F0EB;
+    --velmora-text: #1A1A1A;
+    --velmora-text-muted: #6B6560;
+    --velmora-text-light: #9B9590;
+    --velmora-accent: #B8956A;
+    --velmora-accent-hover: #A6845A;
+    --velmora-border: #E8E4DF;
+    --velmora-border-light: #F0EDE8;
+    --velmora-white: #FFFFFF;
+    --velmora-cream: #F7F4EF;
+    --velmora-dark: #2C2825;
+    --velmora-gold-light: #D4B896;
+    --velmora-gold-dark: #8B7355;
+    --velmora-star: #C9A96E;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--velmora-bg);
+    color: var(--velmora-text);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+@layer components {
+  .font-serif-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-sans-ui {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .text-uppercase-wide {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .btn-primary {
+    @apply bg-[var(--velmora-accent)] text-white px-8 py-3 text-sm uppercase tracking-widest font-sans-ui font-medium transition-all duration-300 hover:bg-[var(--velmora-accent-hover)];
+  }
+
+  .btn-outline {
+    @apply border border-[var(--velmora-text)] text-[var(--velmora-text)] px-8 py-3 text-sm uppercase tracking-widest font-sans-ui font-medium transition-all duration-300 hover:bg-[var(--velmora-text)] hover:text-white;
+  }
+
+  .btn-ghost {
+    @apply text-[var(--velmora-text)] px-4 py-2 text-sm uppercase tracking-widest font-sans-ui font-medium transition-all duration-300 hover:text-[var(--velmora-accent)];
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .hairline-divider {
+    @apply h-px bg-[var(--velmora-border)] w-full;
+  }
+
+  .product-card {
+    @apply cursor-pointer;
+  }
+
+  .product-card-image {
+    @apply aspect-[3/4] overflow-hidden bg-[var(--velmora-bg-secondary)] transition-all duration-500;
+  }
+
+  .product-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-700 group-hover:scale-105;
+  }
+
+  .product-card-title {
+    @apply font-serif-display text-lg md:text-xl mt-4 text-[var(--velmora-text)] uppercase tracking-wider;
+  }
+
+  .product-card-price {
+    @apply font-sans-ui text-sm text-[var(--velmora-text-muted)] mt-1;
+  }
+
+  .accordion-trigger {
+    @apply w-full flex items-center justify-between py-4 text-left font-sans-ui text-sm uppercase tracking-widest text-[var(--velmora-text)] border-b border-[var(--velmora-border)] transition-colors duration-200 hover:text-[var(--velmora-accent)];
+  }
+
+  .accordion-content {
+    @apply py-4 font-sans-ui text-sm text-[var(--velmora-text-muted)] leading-relaxed;
+  }
+
+  .star-rating {
+    @apply flex items-center gap-0.5;
+  }
+
+  .star-rating svg {
+    @apply w-4 h-4 fill-[var(--velmora-star)] text-[var(--velmora-star)];
+  }
+
+  .nav-link {
+    @apply font-sans-ui text-xs uppercase tracking-widest text-[var(--velmora-text)] transition-colors duration-200 hover:text-[var(--velmora-accent)];
+  }
+
+  .input-elegant {
+    @apply w-full px-4 py-3 bg-transparent border border-[var(--velmora-border)] font-sans-ui text-sm text-[var(--velmora-text)] placeholder:text-[var(--velmora-text-light)] focus:outline-none focus:border-[var(--velmora-accent)] transition-colors duration-200;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
