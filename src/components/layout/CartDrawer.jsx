@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { X } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import { currency } from '@/data/products'
@@ -7,6 +8,11 @@ import { useCart } from '@/context/CartContext'
 
 const CartDrawer = () => {
   const { items, isOpen, closeCart, subtotal, removeItem, updateQuantity } = useCart()
+  const location = useLocation()
+
+  useEffect(() => {
+    closeCart()
+  }, [closeCart, location.pathname])
 
   return (
     <>
@@ -74,7 +80,7 @@ const CartDrawer = () => {
                         <div>
                           <p
                             id={cartTitleId}
-                            className="font-serif text-lg uppercase tracking-[0.28em] text-stone-900"
+                            className="font-serif text-base uppercase leading-snug tracking-[0.18em] text-stone-900 sm:text-lg sm:tracking-[0.22em]"
                           >
                             {item.name}
                           </p>

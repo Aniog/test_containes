@@ -1,12 +1,19 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import strkImgConfig from '@/strk-img-config.json'
 import { placeholderSrc } from '@/data/storefront'
 
 const ProductGallery = ({ product }) => {
-  const gallery = useMemo(
-    () => [product.imageIds.primary, product.imageIds.secondary, ...product.imageIds.gallery],
-    [product.imageIds.gallery, product.imageIds.primary, product.imageIds.secondary],
-  )
-  const [activeImage, setActiveImage] = useState(gallery[0])
+  const gallery = useMemo(() => {
+    const imageIds = [product.imageIds.primary, product.imageIds.secondary, ...product.imageIds.gallery]
+
+    return [...new Set(imageIds)].filter((imageId) => Boolean(strkImgConfig?.[imageId]))
+  }, [product.imageIds.gallery, product.imageIds.primary, product.imageIds.secondary])
+
+  const [activeImage, setActiveImage] = useState(gallery[0] ?? product.imageIds.primary)
+
+  useEffect(() => {
+    setActiveImage(gallery[0] ?? product.imageIds.primary)
+  }, [gallery, product.imageIds.primary])
 
   return (
     <div>

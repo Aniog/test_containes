@@ -49,7 +49,7 @@ const ProductCard = ({ product, scope = 'grid', onAddToCart }) => {
         <div className="flex items-start justify-between gap-3">
           <div>
             <Link to={`/product/${product.slug}`}>
-              <h3 id={titleId} className="font-serif text-lg uppercase tracking-[0.3em] text-stone-900 transition-colors duration-300 group-hover:text-amber-700">
+              <h3 id={titleId} className="font-serif text-base uppercase leading-snug tracking-[0.18em] text-stone-900 transition-colors duration-300 group-hover:text-amber-700 sm:text-lg sm:tracking-[0.24em]">
                 {product.name}
               </h3>
             </Link>

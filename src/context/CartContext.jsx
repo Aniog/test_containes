@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'velmora-cart'
@@ -79,6 +79,14 @@ export function CartProvider({ children }) {
     setItems((current) => current.filter((item) => item.cartKey !== cartKey))
   }
 
+  const openCart = useCallback(() => {
+    setIsOpen(true)
+  }, [])
+
+  const closeCart = useCallback(() => {
+    setIsOpen(false)
+  }, [])
+
   const value = useMemo(() => {
     const cartCount = items.reduce((sum, item) => sum + item.quantity, 0)
     const subtotal = items.reduce(
@@ -94,10 +102,10 @@ export function CartProvider({ children }) {
       addItem,
       removeItem,
       updateQuantity,
-      openCart: () => setIsOpen(true),
-      closeCart: () => setIsOpen(false),
+      openCart,
+      closeCart,
     }
-  }, [isOpen, items])
+  }, [closeCart, isOpen, items, openCart])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
