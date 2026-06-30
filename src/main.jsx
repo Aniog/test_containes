@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import App from "./App.jsx?t=velmora-main-nav-final-20260630";
 import "./index.css";
 
 if (import.meta.env.DEV) {
