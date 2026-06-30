@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly product slug"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "compare_at_price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Original price before discount"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Short product description"
+    },
+    "materials": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Materials and care information"
+    },
+    "shipping_info": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Shipping and returns information"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Secondary hover image URL"
+    },
+    "gallery": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Product gallery image URLs"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "multipleOf": 0.1,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Product tags for filtering"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether product is a bestseller"
+    },
+    "new": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether product is new arrival"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "description": "Available color variants"
+    }
+  },
+  "required": ["name", "slug", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
