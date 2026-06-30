@@ -7,7 +7,56 @@
     <title>Vite + React</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <style>
+        #root-loading {
+          display: flex;
+          min-height: 100vh;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+          font-family: Inter, system-ui, sans-serif;
+        }
+        #root-loading-inner {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 16px;
+        }
+        #root-loading-logo {
+          width: 48px;
+          height: 48px;
+          background-color: #16a34a;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        #root-loading-title {
+          font-size: 1.5rem;
+          font-weight: 800;
+          color: #15803d;
+          margin: 0;
+        }
+        #root-loading-sub {
+          font-size: 0.95rem;
+          color: #4ade80;
+          margin: 0;
+        }
+      </style>
+      <div id="root-loading">
+        <div id="root-loading-inner">
+          <div id="root-loading-logo">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/>
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+            </svg>
+          </div>
+          <p id="root-loading-title">GreenLife</p>
+          <p id="root-loading-sub">自然 · 健康 · 可持续</p>
+        </div>
+      </div>
+    </div>
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
