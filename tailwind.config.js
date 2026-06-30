@@ -9,11 +9,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        velmora: {
-          cream: '#FCFAF7',
-          obsidian: '#1A1A1A',
-          gold: '#D4AF37',
-        },
+        'velmora-gold': '#C5A059',
+        'velmora-cream': '#F9F7F2',
+        'velmora-obsidian': '#1A1A1A',
+        'velmora-stone': '#8C8C8C',
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'serif'],
