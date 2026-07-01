@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "URL-friendly product handle"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Current selling price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["earrings", "necklaces", "huggies", "sets"],
+      "description": "Primary product category"
+    },
+    "material": {
+      "type": "string",
+      "enum": ["18k gold plated", "sterling silver", "mixed metals"],
+      "description": "Primary material or finish"
+    },
+    "short_description": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Brief product summary shown on cards"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Full product description"
+    },
+    "care": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Materials and care instructions"
+    },
+    "shipping": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Shipping and returns policy copy"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag for homepage bestsellers section"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["gold", "silver"]
+      },
+      "description": "Available tone variants"
+    }
+  },
+  "required": ["id", "name", "slug", "price", "category", "material", "short_description", "description", "care", "shipping", "rating", "review_count", "variants"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
