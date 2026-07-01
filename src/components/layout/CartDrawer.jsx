@@ -78,8 +78,8 @@ export default function CartDrawer() {
                   {/* Product image placeholder */}
                   <div className="w-20 h-20 bg-velmora-stone flex-shrink-0 overflow-hidden">
                     <img
-                      data-strk-img-id={`cart-${item.key}-img`}
-                      data-strk-img={`[cart-item-${item.key}-name]`}
+                      data-strk-img-id={`shop-${item.product.imgId}`}
+                      data-strk-img={`[shop-${item.product.descId}] [shop-${item.product.titleId}] gold jewelry`}
                       data-strk-img-ratio="1x1"
                       data-strk-img-width="160"
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"

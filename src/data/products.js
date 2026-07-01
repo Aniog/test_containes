@@ -78,7 +78,7 @@ export const products = [
       'Intricate textured gold filigree drop earrings inspired by antique lace patterns. Each piece is hand-finished for a one-of-a-kind quality.',
     shortDescription: 'Textured gold filigree drop earrings',
     variants: ['Gold Tone', 'Silver Tone'],
-    tags: ['new'],
+    tags: ['bestseller', 'new'],
     imgId: 'product-amber-lace-main-s1t2u3',
     imgId2: 'product-amber-lace-alt-v4w5x6',
     titleId: 'product-amber-lace-title',

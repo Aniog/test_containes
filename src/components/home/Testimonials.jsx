@@ -28,7 +28,7 @@ function StarRating({ count }) {
   return (
     <div className="flex items-center gap-0.5">
       {Array.from({ length: count }).map((_, i) => (
-        <Star key={i} size={13} className="text-velmora-gold fill-velmora-gold" />
+        <Star key={i} size={13} className="text-velmora-gold" fill="currentColor" />
       ))}
     </div>
   );
@@ -77,7 +77,7 @@ export default function Testimonials() {
         <div className="text-center mt-12">
           <div className="flex items-center justify-center gap-2 mb-2">
             {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={16} className="text-velmora-gold fill-velmora-gold" />
+              <Star key={i} size={16} className="text-velmora-gold" fill="currentColor" />
             ))}
           </div>
           <p className="text-sm text-velmora-muted font-sans">

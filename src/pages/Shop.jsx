@@ -113,7 +113,7 @@ function ShopProductCard({ product }) {
       <div className="flex items-center justify-between">
         <span className="font-sans text-sm font-semibold text-velmora-ink">${product.price}</span>
         <div className="flex items-center gap-1">
-          <Star size={11} className="text-velmora-gold fill-velmora-gold" />
+          <Star size={11} className="text-velmora-gold" fill="currentColor" />
           <span className="text-xs text-velmora-muted font-sans">{product.rating}</span>
         </div>
       </div>
