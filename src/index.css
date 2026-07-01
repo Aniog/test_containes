@@ -1,76 +1,694 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================
+   VELMORA FINE JEWELRY - QUIET LUXURY DESIGN
+   ============================================ */
+
+:root {
+  /* Color Palette - Warm Editorial */
+  --velmora-bg: #F8F5F0;
+  --velmora-bg-alt: #F5F2EB;
+  --velmora-text: #1A1816;
+  --velmora-text-muted: #5C5650;
+  --velmora-text-light: #8B8178;
+  --velmora-gold: #B89778;
+  --velmora-gold-dark: #9A7A5C;
+  --velmora-gold-light: #D4B896;
+  --velmora-border: #E5DFD4;
+  --velmora-border-light: #EDE8DF;
+  --velmora-white: #FFFFFF;
+  --velmora-overlay: rgba(26, 24, 22, 0.6);
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--velmora-bg);
+  color: var(--velmora-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+.body-text {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--velmora-gold);
+}
+
+/* Buttons - Premium Feel */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-white);
+  border-color: var(--velmora-gold);
+}
+
+.btn-primary:hover {
+  background-color: var(--velmora-gold-dark);
+  border-color: var(--velmora-gold-dark);
+  color: var(--velmora-white);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--velmora-text);
+  border-color: var(--velmora-text);
+}
+
+.btn-outline:hover {
+  background-color: var(--velmora-text);
+  color: var(--velmora-white);
+  border-color: var(--velmora-text);
+}
+
+.btn-gold {
+  background-color: transparent;
+  color: var(--velmora-gold);
+  border-color: var(--velmora-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-white);
+  border-color: var(--velmora-gold);
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Hairline Dividers */
+.divider {
+  height: 1px;
+  background-color: var(--velmora-border);
+}
+
+.divider-gold {
+  height: 1px;
+  background-color: var(--velmora-gold);
+  opacity: 0.3;
+}
+
+/* Cards */
+.card {
+  background-color: var(--velmora-white);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -15px rgba(26, 24, 22, 0.1);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--velmora-white);
+}
+
+.product-card-image {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background-color: var(--velmora-bg-alt);
+}
+
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.product-card:hover .product-card-image img {
+  transform: scale(1.03);
+}
+
+.product-card-image .product-image-secondary {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.product-card-info {
+  padding: 1rem 0;
+}
+
+.product-card-name {
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.25rem;
+}
+
+.product-card-price {
+  font-size: 0.875rem;
+  color: var(--velmora-gold);
+  font-weight: 500;
+}
+
+.product-card-quick-add {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 10;
+}
+
+.product-card:hover .product-card-quick-add {
+  opacity: 1;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background-color: var(--velmora-bg-alt);
+}
+
+.category-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-tile-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, transparent, rgba(26, 24, 22, 0.4));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.category-tile:hover .category-tile-label {
+  opacity: 1;
+}
+
+.category-tile-label span {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: var(--velmora-white);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  flex-shrink: 0;
+  width: 180px;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 9 / 16;
+  background-color: var(--velmora-bg-alt);
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.75), transparent);
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: var(--velmora-white);
+  letter-spacing: 0.05em;
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+}
+
+/* Testimonials */
+.testimonial {
+  padding: 2rem;
+  background-color: var(--velmora-white);
+}
+
+.testimonial-stars {
+  color: var(--velmora-gold);
+  margin-bottom: 1rem;
+}
+
+.testimonial-text {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.testimonial-author {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+}
+
+/* Newsletter */
+.newsletter-block {
+  background-color: var(--velmora-text);
+  color: var(--velmora-white);
+}
+
+.newsletter-block input {
+  background-color: var(--velmora-white);
+  border: none;
+  padding: 14px 20px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--velmora-text);
+  flex: 1;
+  min-width: 0;
+}
+
+.newsletter-block input::placeholder {
+  color: var(--velmora-text-light);
+}
+
+.newsletter-block input:focus {
+  outline: none;
+}
+
+/* Navigation */
+.nav {
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.nav.scrolled {
+  background-color: var(--velmora-white);
+  border-bottom: 1px solid var(--velmora-border);
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--velmora-gold);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Logo */
+.logo {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--velmora-white);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Product Detail */
+.gallery-thumb {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--velmora-border);
+  transition: border-color var(--transition-fast);
+}
+
+.gallery-thumb.active,
+.gallery-thumb:hover {
+  border-color: var(--velmora-gold);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.variant-pill {
+  padding: 10px 20px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--velmora-border);
+  background-color: var(--velmora-white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.variant-pill.active,
+.variant-pill:hover {
+  border-color: var(--velmora-gold);
+  color: var(--velmora-gold);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--velmora-border);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding-bottom: 1rem;
+}
+
+/* Filters */
+.filter-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--velmora-text-muted);
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.filter-option input {
+  accent-color: var(--velmora-gold);
+}
+
+/* Sort Dropdown */
+.sort-select {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border: 1px solid var(--velmora-border);
+  background-color: var(--velmora-white);
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+/* Form Inputs */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  border: 1px solid var(--velmora-border);
+  background-color: var(--velmora-white);
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+/* Footer */
+.footer-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--velmora-text-light);
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--velmora-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.75rem;
+  }
+  
+  .product-card-quick-add {
+    opacity: 1;
+  }
+}
+
+/* Utility */
+.container-custom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+/* Icon Buttons */
+.icon-btn {
+  padding: 8px;
+  transition: color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  color: var(--velmora-gold);
+}
+
+/* Quantity Selector */
+.qty-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--velmora-border);
+}
+
+.qty-btn {
+  padding: 8px 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.qty-btn:hover {
+  background-color: var(--velmora-bg-alt);
+}
+
+.qty-value {
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  border-left: 1px solid var(--velmora-border);
+  border-right: 1px solid var(--velmora-border);
+  min-width: 48px;
+  text-align: center;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.empty-state-icon {
+  color: var(--velmora-border);
+  margin-bottom: 1rem;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--velmora-text);
+  color: var(--velmora-white);
+  padding: 14px 28px;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 200;
+  animation: toastSlide 0.3s ease, toastFade 0.3s ease 2.5s forwards;
+}
+
+@keyframes toastSlide {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes toastFade {
+  to { opacity: 0; visibility: hidden; }
+}
+
