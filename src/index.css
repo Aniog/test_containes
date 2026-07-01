@@ -1,76 +1,512 @@
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
+/* Typography */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Color Palette - Warm Editorial Luxury */
+  --color-bg: #F8F5F1;           /* Warm cream base */
+  --color-bg-alt: #F1EDE6;       /* Slightly deeper cream */
+  --color-text: #2C2522;         /* Deep warm brown */
+  --color-text-muted: #6B6058;   /* Muted warm gray */
+  --color-gold: #B89778;         /* Warm refined gold */
+  --color-gold-dark: #8C6F52;    /* Deeper gold accent */
+  --color-gold-light: #D4C4A8;   /* Soft gold highlight */
+  --color-border: #D9D0C4;       /* Hairline divider */
+  --color-white: #FFFFFF;
+  --color-black: #1A1715;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  
+  /* Shadows */
+  --shadow-soft: 0 2px 8px rgba(44, 37, 34, 0.08);
+  --shadow-card: 0 4px 16px rgba(44, 37, 34, 0.06);
+  
+  font-family: var(--font-sans);
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-a:hover {
-  color: #535bf2;
+/* Base Styles */
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.product-name {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-gold-dark);
+}
+
+/* Buttons - Premium Feel */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all var(--transition-base);
+  white-space: nowrap;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+  color: var(--color-white);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-text);
+  color: var(--color-white);
+  border-color: var(--color-text);
+}
+
+.btn-gold {
+  background-color: transparent;
+  color: var(--color-gold-dark);
+  border-color: var(--color-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
+}
+
+/* Hairline Dividers */
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Cards */
+.card {
+  background: var(--color-white);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.product-card img {
+  transition: opacity var(--transition-slow);
+  pointer-events: none;
+}
+
+.product-card .product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.product-card .quick-add {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  z-index: 20;
+  transition: all var(--transition-base);
+  pointer-events: auto;
+}
+
+/* Desktop: hide until hover */
+@media (min-width: 768px) {
+  .product-card .quick-add {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+    pointer-events: none;
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  .product-card:hover .quick-add {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Variant Pills */
+.variant-pill {
+  padding: 0.5rem 1.25rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.variant-pill.active,
+.variant-pill:hover {
+  border-color: var(--color-gold-dark);
+  background: var(--color-gold);
+  color: var(--color-white);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  background: none;
+  text-align: left;
+}
+
+.accordion-content {
+  padding: 1rem 0;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 5rem;
+  right: 0;
+  height: calc(100vh - 5rem);
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  overflow-y: auto;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  top: 5rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Sticky Nav */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 105;
+  transition: all var(--transition-base);
+}
+
+.nav.transparent {
+  background: rgba(248, 245, 241, 0.85);
+  backdrop-filter: blur(12px);
+}
+
+.nav.solid {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Transparent nav for homepage hero */
+.nav.transparent-home {
+  background: transparent;
+  border-bottom: none;
+}
+
+.nav.transparent-home .logo,
+.nav.transparent-home a {
+  color: #fff;
+}
+
+.nav.transparent-home a:hover {
+  color: var(--color-gold-light);
+}
+
+/* Search */
+.search-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  width: 200px;
+  transition: border-color var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Search input on transparent nav (homepage) */
+.nav.transparent-home .search-input {
+  border-color: rgba(255, 255, 255, 0.5);
+  color: #fff;
+}
+
+.nav.transparent-home .search-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.nav.transparent-home .search-input:focus {
+  border-color: #fff;
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.filter-option input {
+  accent-color: var(--color-gold);
+}
+
+/* UGC Reel */
+.ugc-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  overflow: hidden;
+}
+
+.ugc-card img {
+  transition: transform var(--transition-slow);
+}
+
+.ugc-card:hover img {
+  transform: scale(1.05);
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(44,37,34,0.75), transparent);
+  color: var(--color-white);
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform var(--transition-slow);
+}
+
+.category-tile:hover img {
+  transform: scale(1.03);
+}
+
+.category-tile .label {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+.category-tile:hover .label {
+  opacity: 1;
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--color-bg-alt);
+}
+
+/* Testimonials */
+.testimonial {
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+}
+
+/* Stars */
+.stars {
+  color: var(--color-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-input {
+    width: 140px;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+  
+  .ugc-card {
+    width: 140px;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus States for Accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Loading States */
+.skeleton {
+  background: linear-gradient(90deg, var(--color-bg-alt) 25%, var(--color-border) 50%, var(--color-bg-alt) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
