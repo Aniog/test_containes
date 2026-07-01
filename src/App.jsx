@@ -1,9 +1,11 @@
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './contexts/CartContext';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import CartDrawer from './components/cart/CartDrawer';
 import HomePage from './pages/HomePage';
+import './index.css'
 
 function App() {
   return (
@@ -23,7 +25,8 @@ function App() {
         </div>
       </Router>
     </CartProvider>
-  );
+  )
 }
 
-export default App;
+export default App
+
