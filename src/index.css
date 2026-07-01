@@ -74,3 +74,167 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Colors */
+  --color-bg: #FAF8F6;
+  --color-bg-card: #FFFFFF;
+  --color-text-primary: #1A1814;
+  --color-text-secondary: #6B635A;
+  --color-accent-gold: #C9A962;
+  --color-accent-gold-hover: #B8954F;
+  --color-border: #E8E4DF;
+  --color-overlay: rgba(26, 24, 20, 0.6);
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Shadows */
+  --shadow-soft: 0 4px 20px rgba(26, 24, 20, 0.08);
+  --shadow-hover: 0 8px 30px rgba(26, 24, 20, 0.12);
+  
+  /* Transitions */
+  --transition-base: 300ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Product name styling - uppercase with wide letter spacing */
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+/* Button base styles */
+.btn-primary {
+  @apply bg-[#C9A962] text-white px-8 py-3 uppercase tracking-widest text-sm font-medium transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-[#B8954F];
+}
+
+.btn-secondary {
+  @apply border border-[#C9A962] text-[#C9A962] px-8 py-3 uppercase tracking-widest text-sm font-medium transition-all duration-300 bg-transparent;
+}
+
+.btn-secondary:hover {
+  @apply bg-[#C9A962] text-white;
+}
+
+/* Hairline divider */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* Section spacing */
+.section-padding {
+  @apply py-12 md:py-20;
+}
+
+/* Container */
+.container-main {
+  @apply max-w-[1400px] mx-auto px-4 md:px-8;
+}
+
+/* Image aspect ratios */
+.aspect-portrait {
+  aspect-ratio: 4 / 5;
+}
+
+.aspect-reel {
+  aspect-ratio: 9 / 16;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth image hover */
+.img-hover-swap {
+  @apply transition-opacity duration-300;
+}
+
+/* Custom focus styles */
+a:focus-visible,
+button:focus-visible {
+  @apply outline-2 outline-offset-2 outline-[#C9A962];
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease forwards;
+}
+
+/* Stagger children animations */
+.stagger-children > * {
+  opacity: 0;
+  animation: slideUp 0.6s ease forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
