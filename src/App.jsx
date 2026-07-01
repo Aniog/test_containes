@@ -1,15 +1,27 @@
-import './App.css'
+import './App.css';
+import Navbar from './components/komodo/Navbar';
+import Hero from './components/komodo/Hero';
+import About from './components/komodo/About';
+import Attractions from './components/komodo/Attractions';
+import BestTime from './components/komodo/BestTime';
+import TravelTips from './components/komodo/TravelTips';
+import Gallery from './components/komodo/Gallery';
+import Footer from './components/komodo/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="font-sans bg-mist text-stone">
+      <Navbar />
+      <Hero />
+      <About />
+      <Attractions />
+      <BestTime />
+      <TravelTips />
+      <Gallery />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
+
