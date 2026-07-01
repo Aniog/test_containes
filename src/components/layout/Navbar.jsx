@@ -36,7 +36,9 @@ export default function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="font-inter text-sm font-medium text-charcoal hover:text-ember transition-colors"
+              className={`font-inter text-sm font-medium transition-colors ${
+                scrolled ? 'text-charcoal hover:text-ember' : 'text-white/90 hover:text-white'
+              }`}
             >
               {l.label}
             </a>
@@ -51,7 +53,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-charcoal bg-transparent border-0 p-1"
+          className={`md:hidden bg-transparent border-0 p-1 transition-colors ${scrolled ? 'text-charcoal' : 'text-white'}`}
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
