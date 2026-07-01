@@ -6,11 +6,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ['Manrope', 'system-ui', 'sans-serif'],
+      serif: ['"Playfair Display"', 'Georgia', 'serif'],
+    },
     extend: {
-      fontFamily: {
-        sans: ['Manrope', 'system-ui', 'sans-serif'],
-        serif: ['"Playfair Display"', 'Georgia', 'serif'],
-      },
       colors: {
         velmora: {
           dark: '#1C1917',

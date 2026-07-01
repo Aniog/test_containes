@@ -35,13 +35,17 @@
     --radius: 0rem; /* Elegant square corners by default for luxury feel */
   }
 
-  * {
-    @apply border-border;
-  }
+  /* Remove global border-border to fix Tailwind error */
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Manrope', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif tracking-tight text-velmora-dark;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.025em;
+    color: theme('colors.velmora.dark');
   }
 }
