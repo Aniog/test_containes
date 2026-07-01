@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import products from '../../data/products';
+import { useCart } from '../contexts/CartContext';
+import products from '../data/products';
 
 export default function HomePage() {
   const bestsellers = products.filter(p => p.featured);

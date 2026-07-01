@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
-import { useCart } from '../../contexts/CartContext';
-import { SlidersHorizontal, Grid3x3, LayoutList, ChevronDown } from 'lucide-react';
-import products from '../../data/products';
+import { useCart } from '../contexts/CartContext';
+import { SlidersHorizontal } from 'lucide-react';
+import products from '../data/products';
 
 export default function ShopPage() {
   const [searchParams, setSearchParams] = useSearchParams();

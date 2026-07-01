@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useCart } from '../../contexts/CartContext';
+import { useCart } from '../contexts/CartContext';
 import { Star, Minus, Plus, ShoppingBag, ChevronRight } from 'lucide-react';
-import products from '../../data/products';
+import products from '../data/products';
 
 export default function ProductDetailPage() {
   const { id } = useParams();
