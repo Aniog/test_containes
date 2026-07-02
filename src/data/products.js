@@ -35,7 +35,7 @@ export const products = [
     category: 'huggies',
     material: 'gold',
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80',
       'https://images.unsplash.com/photo-1629224316810-9d8805b95e76?w=800&q=80',
     ],
     rating: 4.6,
@@ -49,8 +49,8 @@ export const products = [
     category: 'earrings',
     material: 'gold',
     images: [
-      'https://images.unsplash.com/photo-1611107683227-e9061e3d6e50?w=800&q=80',
-      'https://images.unsplash.com/photo-1603975217912-1c8fd0de8f3a?w=800&q=80',
+      'https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
     ],
     rating: 4.8,
     reviewCount: 67,
@@ -63,8 +63,8 @@ export const products = [
     category: 'sets',
     material: 'gold',
     images: [
-      'https://images.unsplash.com/photo-1515562141589-677acb0d3fb0?w=800&q=80',
-      'https://images.unsplash.com/photo-1602751584552-8ba73a1a1d8a?w=800&q=80',
+      'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80',
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
     ],
     rating: 5.0,
     reviewCount: 42,
@@ -74,7 +74,7 @@ export const products = [
 export const categories = [
   { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80' },
-  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=600&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=600&q=80' },
 ]
 
 export const testimonials = [

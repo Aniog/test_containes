@@ -27,15 +27,9 @@ const footerLinks = {
   ],
 }
 
-const paymentIcons = [
-  { name: 'Visa', url: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/icons/visa.svg' },
-  { name: 'Mastercard', url: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/icons/mastercard.svg' },
-  { name: 'Amex', url: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/icons/amex.svg' },
-  { name: 'PayPal', url: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/icons/paypal.svg' },
-  { name: 'Apple Pay', url: 'https://cdn.jsdelivr.net/npm/payment-icons@1.0.0/icons/applepay.svg' },
-]
-
 export default function Footer() {
+  const paymentMethods = ['Visa', 'Mastercard', 'Amex', 'PayPal', 'Apple Pay']
+
   return (
     <footer className="bg-charcoal text-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-14 md:py-18">
@@ -87,14 +81,13 @@ export default function Footer() {
         {/* Bottom */}
         <div className="hairline border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            {paymentIcons.map((icon) => (
-              <img
-                key={icon.name}
-                src={icon.url}
-                alt={icon.name}
-                className="h-5 opacity-50 grayscale"
-                onError={(e) => { e.target.style.display = 'none' }}
-              />
+            {paymentMethods.map((name) => (
+              <span
+                key={name}
+                className="text-[10px] tracking-[0.15em] uppercase text-white/40 font-medium px-2 py-1 border border-white/10 rounded"
+              >
+                {name}
+              </span>
             ))}
           </div>
           <p className="text-white/30 text-xs">
