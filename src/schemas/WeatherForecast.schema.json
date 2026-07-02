@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Forecast",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "City name for the weather data"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather forecast"
+    },
+    "temperature_high": {
+      "type": "number",
+      "description": "High temperature in Celsius"
+    },
+    "temperature_low": {
+      "type": "number",
+      "description": "Low temperature in Celsius"
+    },
+    "conditions": {
+      "type": "string",
+      "enum": ["sunny", "partly_cloudy", "cloudy", "rainy", "stormy", "snowy", "foggy", "windy"],
+      "description": "Weather conditions"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Humidity percentage"
+    },
+    "wind_speed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Wind speed in km/h"
+    },
+    "precipitation_chance": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Chance of precipitation percentage"
+    }
+  },
+  "required": ["city", "date", "temperature_high", "temperature_low", "conditions", "humidity", "wind_speed", "precipitation_chance"],
+  "additionalProperties": false
+}
