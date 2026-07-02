@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Data",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "description": "Name of the city"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather record"
+    },
+    "temperature_high": {
+      "type": "number",
+      "description": "High temperature in Celsius"
+    },
+    "temperature_low": {
+      "type": "number",
+      "description": "Low temperature in Celsius"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Humidity percentage"
+    },
+    "precipitation": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Precipitation in millimeters"
+    },
+    "wind_speed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Wind speed in km/h"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Cloudy", "Rainy", "Partly Cloudy", "Thunderstorm", "Clear"],
+      "description": "Weather condition"
+    }
+  },
+  "required": ["city", "date", "temperature_high", "temperature_low", "humidity", "precipitation", "wind_speed", "condition"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
