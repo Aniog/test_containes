@@ -1,76 +1,100 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-velmora-50 text-charcoal-950 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-charcoal-950 text-velmora-50 text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:bg-gold-600 hover:text-charcoal-950 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3 border border-charcoal-950 text-charcoal-950 text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:bg-charcoal-950 hover:text-velmora-50;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-gold-500 text-charcoal-950 text-xs font-medium tracking-widest uppercase transition-all duration-300 hover:bg-gold-600 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl text-charcoal-950 tracking-wide;
+  }
+
+  .section-subtitle {
+    @apply text-sm text-charcoal-500 tracking-wider uppercase mt-3;
+  }
+
+  .hairline {
+    @apply border-t border-velmora-200;
+  }
+
+  .product-card {
+    @apply cursor-pointer;
+  }
+
+  .product-card-image {
+    @apply relative overflow-hidden bg-velmora-100 aspect-[3/4];
+  }
+
+  .product-card-image img {
+    @apply w-full h-full object-cover transition-transform duration-700 group-hover:scale-105;
+  }
+
+  .product-card-secondary {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100;
+  }
+
+  .product-card-secondary img {
+    @apply w-full h-full object-cover;
+  }
+
+  .product-card-title {
+    @apply font-serif text-lg text-charcoal-950 mt-4 tracking-wide uppercase;
+  }
+
+  .product-card-price {
+    @apply text-sm text-charcoal-600 mt-1;
+  }
+
+  .product-card-add {
+    @apply absolute bottom-4 left-4 right-4 opacity-0 translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0;
+  }
+
+  .accordion-trigger {
+    @apply flex items-center justify-between w-full py-4 text-left text-sm font-medium tracking-wider uppercase text-charcoal-950 border-b border-velmora-200 transition-colors hover:text-gold-600;
+  }
+
+  .accordion-content {
+    @apply py-4 text-sm text-charcoal-600 leading-relaxed;
+  }
+
+  .nav-link {
+    @apply text-xs tracking-widest uppercase text-charcoal-700 transition-colors hover:text-gold-600;
+  }
+
+  .nav-link-active {
+    @apply text-gold-600;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

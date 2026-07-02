@@ -1,0 +1,153 @@
+export const products = [
+  {
+    id: 1,
+    name: 'Vivid Aura Jewels',
+    slug: 'vivid-aura-jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural ear cuff adorned with a delicate crystal accent. Designed to catch the light with every movement, this piece embodies effortless elegance.',
+    materials: '18K gold plated over brass. Crystal accent. Hypoallergenic. Nickel-free.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided velvet pouch. Gently polish with a soft cloth.',
+    variants: [
+      { id: 'gold', name: 'Gold Tone', available: true },
+      { id: 'silver', name: 'Silver Tone', available: true },
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1630019852982-fa387b3e8e1a?w=800&q=80',
+    ],
+    related: [2, 4, 5],
+  },
+  {
+    id: 2,
+    name: 'Majestic Flora Nectar',
+    slug: 'majestic-flora-nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    description: 'A cascading floral pendant featuring multicolor crystals set in warm gold. Inspired by the delicate beauty of a garden in full bloom.',
+    materials: '18K gold plated over brass. Multicolor Swarovski crystals. Adjustable chain 16-18 inches.',
+    care: 'Store flat in the provided box. Avoid moisture and chemicals. Clean gently with a dry soft cloth.',
+    variants: [
+      { id: 'gold', name: 'Gold Tone', available: true },
+      { id: 'silver', name: 'Silver Tone', available: false },
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1515562141589-67f0d569b6c2?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    related: [1, 3, 5],
+  },
+  {
+    id: 3,
+    name: 'Golden Sphere Huggies',
+    slug: 'golden-sphere-huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky gold dome huggie earrings that hug the earlobe with understated luxury. The perfect everyday statement piece.',
+    materials: '18K gold plated over brass. Secure hinged closure. 12mm diameter. Hypoallergenic.',
+    care: 'Wipe clean after each wear. Store separately to avoid scratching. Keep away from perfumes and lotions.',
+    variants: [
+      { id: 'gold', name: 'Gold Tone', available: true },
+      { id: 'silver', name: 'Silver Tone', available: true },
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80',
+      'https://images.unsplash.com/photo-1630019852982-fa387b3e8e1a?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    related: [1, 4, 2],
+  },
+  {
+    id: 4,
+    name: 'Amber Lace Earrings',
+    slug: 'amber-lace-earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.6,
+    reviews: 67,
+    description: 'Textured gold filigree drop earrings that evoke the intricate patterns of antique lace. Lightweight yet statement-making.',
+    materials: '18K gold plated over brass. French hook closure. Drop length 45mm. Hypoallergenic.',
+    care: 'Handle with care due to delicate filigree work. Store flat in provided pouch. Avoid moisture.',
+    variants: [
+      { id: 'gold', name: 'Gold Tone', available: true },
+      { id: 'silver', name: 'Silver Tone', available: true },
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1630019852982-fa387b3e8e1a?w=800&q=80',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+    ],
+    related: [1, 3, 5],
+  },
+  {
+    id: 5,
+    name: 'Royal Heirloom Set',
+    slug: 'royal-heirloom-set',
+    price: 95,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 5.0,
+    reviews: 45,
+    description: 'A beautifully gift-boxed set featuring matching earrings and necklace. The ultimate expression of refined taste — perfect for gifting or treating yourself.',
+    materials: '18K gold plated over brass. Set includes: pendant necklace (16-18" adjustable chain) and matching stud earrings. Presented in luxury gift box.',
+    care: 'Store each piece separately in the provided compartments. Avoid contact with water and cosmetics. Polish gently.',
+    variants: [
+      { id: 'gold', name: 'Gold Tone', available: true },
+      { id: 'silver', name: 'Silver Tone', available: true },
+    ],
+    images: [
+      'https://images.unsplash.com/photo-1515562141589-67f0d569b6c2?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+    ],
+    related: [1, 2, 4],
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 2 },
+  { id: 'huggies', name: 'Huggies', count: 1 },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my Vivid Aura cuffs every single day — they look just as beautiful as pieces I\'ve paid three times more for.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging was gorgeous and she absolutely loved it. Will definitely be ordering again.',
+  },
+  {
+    id: 3,
+    name: 'Priya K.',
+    rating: 5,
+    text: 'Finally found jewelry that feels luxurious without the luxury markup. The Golden Sphere Huggies are my new everyday staple. So many compliments!',
+  },
+]
+
+export const ugcPosts = [
+  { id: 1, caption: 'Everyday elegance', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80' },
+  { id: 2, caption: 'Golden hour glow', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80' },
+  { id: 3, caption: 'Stacked & styled', image: 'https://images.unsplash.com/photo-1630019852982-fa387b3e8e1a?w=400&q=80' },
+  { id: 4, caption: 'The perfect gift', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80' },
+  { id: 5, caption: 'Layered love', image: 'https://images.unsplash.com/photo-1515562141589-67f0d569b6c2?w=400&q=80' },
+  { id: 6, caption: 'Details matter', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&q=80' },
+]
