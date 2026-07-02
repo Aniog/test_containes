@@ -64,11 +64,11 @@ const Footer = () => {
         <p className="text-[10px] text-zinc-400 uppercase tracking-widest">
           &copy; {new Date().getFullYear()} Velmora Fine Jewelry. All Rights Reserved.
         </p>
-        <div className="flex gap-6 grayscale opacity-50">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" className="h-4" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" className="h-4" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-4" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Apple_Pay_logo.svg" alt="Apple Pay" className="h-4" />
+        <div className="flex gap-4 opacity-50 grayscale hover:grayscale-0 transition-all items-center">
+          <span className="text-[8px] font-bold tracking-tighter border border-zinc-400 px-1 py-0.5">VISA</span>
+          <span className="text-[8px] font-bold tracking-tighter border border-zinc-400 px-1 py-0.5">MC</span>
+          <span className="text-[8px] font-bold tracking-tighter border border-zinc-400 px-1 py-0.5">AMEX</span>
+          <span className="text-[8px] font-bold tracking-tighter border border-zinc-400 px-1 py-0.5">APPLE PAY</span>
         </div>
       </div>
     </footer>

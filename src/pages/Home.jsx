@@ -10,7 +10,7 @@ import Newsletter from '../components/home/Newsletter';
 
 const Home = () => {
   return (
-    <div className="animate-in fade-in duration-1000">
+    <div>
       <Hero />
       <TrustBar />
       <Bestsellers />
