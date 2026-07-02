@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-safe product identifier"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Current selling price in USD"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product detail description"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and composition details"
+    },
+    "care": {
+      "type": "string",
+      "description": "Care instructions"
+    },
+    "shipping": {
+      "type": "string",
+      "description": "Shipping and returns information"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available finish variants such as Gold or Silver"
+    },
+    "image_query": {
+      "type": "string",
+      "description": "Stock image search query used for product cards"
+    },
+    "gallery_queries": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Stock image search queries used for product detail gallery"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product appears in the bestsellers section"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["name", "slug", "category", "price"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
