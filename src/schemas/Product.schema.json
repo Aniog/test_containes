@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Unique product identifier"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "URL-friendly product slug"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product display name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["earrings", "necklaces", "huggies", "sets"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating from 0 to 5"
+    },
+    "reviews": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "material": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Primary material description"
+    },
+    "tone": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["gold", "silver", "rose-gold"]
+      },
+      "description": "Available metal tones"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description for detail pages"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "shipping": {
+      "type": "string",
+      "description": "Shipping and returns information"
+    },
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "hoverImage": {
+      "type": "string",
+      "format": "uri",
+      "description": "Secondary hover image URL"
+    },
+    "isBestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is a bestseller"
+    }
+  },
+  "required": ["id", "slug", "name", "category", "price"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
