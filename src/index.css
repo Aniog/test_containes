@@ -1,76 +1,122 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --velmora-ivory: #F7F1E8;
+    --velmora-cream: #FFF9F0;
+    --velmora-ink: #1B2A24;
+    --velmora-forest: #243B32;
+    --velmora-sage: #A8B5A2;
+    --velmora-gold: #B88945;
+    --velmora-champagne: #E8D2AE;
+    --velmora-clay: #9A6B53;
+    --velmora-line: #D8C8AE;
+    font-family: Manrope, Inter, system-ui, sans-serif;
+    color: var(--velmora-ink);
+    background: var(--velmora-ivory);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: var(--velmora-ivory);
+    color: var(--velmora-ink);
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--velmora-champagne);
+    color: var(--velmora-ink);
+  }
+}
+
+@layer utilities {
+  .text-velmora-ivory,
+  .text-velmora-ivory\/70,
+  .text-velmora-ivory\/75,
+  .text-velmora-ivory\/85,
+  .text-velmora-ivory\/90,
+  .text-velmora-cream,
+  .text-velmora-champagne,
+  .text-velmora-clay,
+  .text-velmora-ink,
+  .text-velmora-forest,
+  .text-velmora-forest\/70,
+  .text-velmora-forest\/75,
+  .text-velmora-forest\/78,
+  .text-velmora-forest\/80,
+  .text-velmora-gold {
+    color: var(--velmora-text-override, currentColor);
+  }
+
+  .text-velmora-ivory { --velmora-text-override: var(--velmora-ivory); }
+  .text-velmora-ivory\/70 { --velmora-text-override: rgb(247 241 232 / 0.70); }
+  .text-velmora-ivory\/75 { --velmora-text-override: rgb(247 241 232 / 0.75); }
+  .text-velmora-ivory\/85 { --velmora-text-override: rgb(247 241 232 / 0.85); }
+  .text-velmora-ivory\/90 { --velmora-text-override: rgb(247 241 232 / 0.90); }
+  .text-velmora-cream { --velmora-text-override: var(--velmora-cream); }
+  .text-velmora-champagne { --velmora-text-override: var(--velmora-champagne); }
+  .text-velmora-clay { --velmora-text-override: var(--velmora-clay); }
+  .text-velmora-ink { --velmora-text-override: var(--velmora-ink); }
+  .text-velmora-forest { --velmora-text-override: var(--velmora-forest); }
+  .text-velmora-forest\/70 { --velmora-text-override: rgb(36 59 50 / 0.70); }
+  .text-velmora-forest\/75 { --velmora-text-override: rgb(36 59 50 / 0.75); }
+  .text-velmora-forest\/78 { --velmora-text-override: rgb(36 59 50 / 0.78); }
+  .text-velmora-forest\/80 { --velmora-text-override: rgb(36 59 50 / 0.80); }
+  .text-velmora-gold { --velmora-text-override: var(--velmora-gold); }
+
+  .velmora-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.velmora.gold') theme('colors.velmora.ivory');
+  }
+
+  .velmora-scrollbar::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  .velmora-scrollbar::-webkit-scrollbar-track {
+    background: theme('colors.velmora.ivory');
+  }
+
+  .velmora-scrollbar::-webkit-scrollbar-thumb {
+    background: theme('colors.velmora.gold');
+    border-radius: 999px;
+  }
+}
