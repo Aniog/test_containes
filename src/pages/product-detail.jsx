@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useParams, Link } from "react-router-dom"
 import { products } from "@/data/products"
-import { useCart } from "@/context/cart-context"
+import { useCart } from "@/hooks/use-cart"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion"
 import { StarRating } from "@/components/product/star-rating"

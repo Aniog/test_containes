@@ -1,14 +1,5 @@
-import React, { createContext, useContext, useState, useCallback, useMemo } from "react"
-
-const CartContext = createContext(null)
-
-const useCartHook = () => {
-  const context = useContext(CartContext)
-  if (!context) throw new Error("useCart must be used within a CartProvider")
-  return context
-}
-
-export const useCart = useCartHook
+import React, { useState, useCallback, useMemo } from "react"
+import { CartContext } from "./cart-types"
 
 export const CartProvider = ({ children }) => {
   const [items, setItems] = useState([])

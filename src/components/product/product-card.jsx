@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
-import { useCart } from "@/context/cart-context"
+import { useCart } from "@/hooks/use-cart"
 import { StrkImg } from "@/components/strk-img"
 import { cn } from "@/lib/utils"
 
