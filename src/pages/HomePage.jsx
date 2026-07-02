@@ -1,13 +1,50 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Truck, RotateCcw, Shield, Heart } from 'lucide-react'
 import { products, testimonials, ugcPosts, categories } from '@/lib/products'
 import { useCart } from '@/lib/cart-context'
 import { Star } from 'lucide-react'
 
+// Scroll-triggered animation hook
+function useInView(options = {}) {
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsVisible(true)
+        observer.unobserve(entry.target)
+      }
+    }, { threshold: 0.1, ...options })
+
+    if (ref.current) observer.observe(ref.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return [ref, isVisible]
+}
+
+function AnimatedSection({ children, className = '', delay = 0 }) {
+  const [ref, isVisible] = useInView()
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ${className}`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
+        transitionDelay: `${delay}ms`,
+      }}
+    >
+      {children}
+    </div>
+  )
+}
+
 function HeroSection() {
   return (
-    <section className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[500px] md:min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
@@ -20,14 +57,14 @@ function HeroSection() {
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto animate-slide-up">
-        <p className="text-sm tracking-[0.3em] uppercase mb-4 text-white/80">Demi-Fine Gold Jewelry</p>
-        <h1 className="serif-heading text-5xl md:text-7xl lg:text-8xl mb-6 leading-tight">
+        <p className="text-xs md:text-sm tracking-[0.3em] uppercase mb-3 md:mb-4 text-white/80">Demi-Fine Gold Jewelry</p>
+        <h1 className="serif-heading text-4xl sm:text-5xl md:text-7xl lg:text-8xl mb-4 md:mb-6 leading-tight">
           Crafted to be<br />Treasured
         </h1>
-        <p className="text-lg md:text-xl text-white/90 mb-10 max-w-xl mx-auto font-light">
+        <p className="text-base md:text-lg lg:text-xl text-white/90 mb-8 md:mb-10 max-w-xl mx-auto font-light leading-relaxed">
           Everyday luxury pieces designed for the modern woman. 18K gold plated, hypoallergenic, and made to last.
         </p>
-        <Link to="/shop" className="inline-block bg-[var(--color-velmora-accent)] text-white px-10 py-4 text-sm tracking-widest uppercase transition-all duration-300 hover:bg-[var(--color-velmora-accent-hover)] hover:scale-105">
+        <Link to="/shop" className="inline-block bg-[var(--color-velmora-accent)] text-white px-8 md:px-10 py-3 md:py-4 text-xs md:text-sm tracking-widest uppercase transition-all duration-300 hover:bg-[var(--color-velmora-accent-hover)] hover:scale-105">
           Shop the Collection
         </Link>
       </div>
@@ -86,7 +123,8 @@ function ProductCard({ product, onCartOpen }) {
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className={`absolute bottom-4 left-4 right-4 transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        {/* Always visible on mobile, hover-reveal on desktop */}
+        <div className="absolute bottom-4 left-4 right-4 transition-all duration-300 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 opacity-100 translate-y-0">
           <button
             onClick={handleAddToCart}
             className="w-full bg-white/95 text-[var(--color-velmora-text)] py-3 text-sm tracking-widest uppercase hover:bg-[var(--color-velmora-accent)] hover:text-white transition-colors"
@@ -106,7 +144,7 @@ function ProductCard({ product, onCartOpen }) {
 
 function Bestsellers({ onCartOpen }) {
   return (
-    <section className="section-padding bg-[var(--color-velmora-bg)]">
+    <AnimatedSection className="section-padding bg-[var(--color-velmora-bg)]">
       <div className="container-padding">
         <div className="text-center mb-12">
           <p className="text-sm tracking-[0.2em] uppercase text-[var(--color-velmora-text-muted)] mb-2">Most Loved</p>
@@ -118,13 +156,13 @@ function Bestsellers({ onCartOpen }) {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   )
 }
 
 function UGCRow() {
   return (
-    <section className="py-16 bg-[var(--color-velmora-bg-alt)] overflow-hidden">
+    <AnimatedSection className="py-16 bg-[var(--color-velmora-bg-alt)] overflow-hidden">
       <div className="container-padding mb-8">
         <p className="text-sm tracking-[0.2em] uppercase text-[var(--color-velmora-text-muted)] text-center mb-2">@velmorajewelry</p>
         <h2 className="serif-heading text-3xl md:text-4xl text-center">As Worn By You</h2>
@@ -149,13 +187,13 @@ function UGCRow() {
           </div>
         ))}
       </div>
-    </section>
+    </AnimatedSection>
   )
 }
 
 function CategoryTiles() {
   return (
-    <section className="section-padding bg-[var(--color-velmora-bg)]">
+    <AnimatedSection className="section-padding bg-[var(--color-velmora-bg)]">
       <div className="container-padding">
         <div className="text-center mb-12">
           <h2 className="serif-heading text-4xl md:text-5xl">Shop by Category</h2>
@@ -182,13 +220,13 @@ function CategoryTiles() {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   )
 }
 
 function BrandStory() {
   return (
-    <section className="section-padding bg-[var(--color-velmora-cream)]">
+    <AnimatedSection className="section-padding bg-[var(--color-velmora-cream)]">
       <div className="container-padding">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
           <div className="aspect-[4/5] rounded overflow-hidden">
@@ -215,13 +253,13 @@ function BrandStory() {
           </div>
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   )
 }
 
 function Testimonials() {
   return (
-    <section className="section-padding bg-[var(--color-velmora-bg)]">
+    <AnimatedSection className="section-padding bg-[var(--color-velmora-bg)]">
       <div className="container-padding">
         <div className="text-center mb-12">
           <p className="text-sm tracking-[0.2em] uppercase text-[var(--color-velmora-text-muted)] mb-2">Reviews</p>
@@ -244,7 +282,7 @@ function Testimonials() {
           ))}
         </div>
       </div>
-    </section>
+    </AnimatedSection>
   )
 }
 
@@ -261,7 +299,7 @@ function Newsletter() {
   }
 
   return (
-    <section className="py-16 bg-[var(--color-velmora-dark)] text-white">
+    <AnimatedSection className="py-16 bg-[var(--color-velmora-dark)] text-white">
       <div className="container-padding text-center max-w-2xl mx-auto">
         <h2 className="serif-heading text-4xl md:text-5xl mb-4">Join for 10% Off</h2>
         <p className="text-white/70 mb-8">
@@ -287,7 +325,7 @@ function Newsletter() {
           </form>
         )}
       </div>
-    </section>
+    </AnimatedSection>
   )
 }
 

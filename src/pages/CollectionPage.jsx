@@ -31,7 +31,8 @@ function ProductCard({ product, onCartOpen }) {
           alt={product.name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <div className={`absolute bottom-4 left-4 right-4 transition-all duration-300 ${isHovered ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        {/* Always visible on mobile, hover-reveal on desktop */}
+        <div className="absolute bottom-4 left-4 right-4 transition-all duration-300 md:opacity-0 md:translate-y-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 opacity-100 translate-y-0">
           <button
             onClick={handleAddToCart}
             className="w-full bg-white/95 text-[var(--color-velmora-text)] py-3 text-sm tracking-widest uppercase hover:bg-[var(--color-velmora-accent)] hover:text-white transition-colors"
@@ -115,7 +116,7 @@ export default function CollectionPage({ onCartOpen }) {
           <div className="lg:hidden flex items-center justify-between mb-6">
             <button
               onClick={() => setFiltersOpen(!filtersOpen)}
-              className="flex items-center gap-2 text-sm"
+              className="flex items-center gap-2 text-sm px-4 py-2 border border-[var(--color-velmora-border)] rounded"
             >
               <Filter className="w-4 h-4" />
               Filters
@@ -138,7 +139,7 @@ export default function CollectionPage({ onCartOpen }) {
 
           {/* Sidebar Filters */}
           <aside className={`lg:w-64 ${filtersOpen ? 'block' : 'hidden lg:block'}`}>
-            <div className="sticky top-24 space-y-8">
+            <div className="lg:sticky lg:top-24 space-y-8">
               {/* Category */}
               <div>
                 <h3 className="text-sm tracking-widest uppercase mb-4 font-medium">Category</h3>

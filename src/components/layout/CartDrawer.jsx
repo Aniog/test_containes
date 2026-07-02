@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/lib/cart-context'
 import { Link } from 'react-router-dom'
 
 export default function CartDrawer({ isOpen, onClose }) {
   const { items, totalItems, totalPrice, removeItem, updateQuantity } = useCart()
+  const drawerRef = useRef(null)
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   if (!isOpen) return null
 
@@ -17,17 +29,23 @@ export default function CartDrawer({ isOpen, onClose }) {
       />
 
       {/* Drawer */}
-      <div className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[var(--color-velmora-bg)] shadow-2xl animate-slide-up flex flex-col">
+      <div
+        ref={drawerRef}
+        className="absolute right-0 top-0 bottom-0 w-full max-w-md bg-[var(--color-velmora-bg)] shadow-2xl flex flex-col"
+        style={{
+          animation: 'slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+        }}
+      >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-[var(--color-velmora-border)]">
-          <h2 className="serif-heading text-2xl">Your Cart ({totalItems})</h2>
+        <div className="flex items-center justify-between p-5 md:p-6 border-b border-[var(--color-velmora-border)]">
+          <h2 className="serif-heading text-xl md:text-2xl">Your Cart ({totalItems})</h2>
           <button onClick={onClose} className="p-2 hover:text-[var(--color-velmora-accent)] transition-colors" aria-label="Close cart">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Items */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-5 md:p-6">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full text-center">
               <ShoppingBag className="w-16 h-16 text-[var(--color-velmora-border)] mb-4" />
@@ -46,10 +64,10 @@ export default function CartDrawer({ isOpen, onClose }) {
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-20 h-24 object-cover rounded"
+                    className="w-20 h-24 object-cover rounded flex-shrink-0"
                   />
-                  <div className="flex-1">
-                    <h3 className="product-name text-sm mb-1">{item.name}</h3>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="product-name text-sm mb-1 truncate">{item.name}</h3>
                     <p className="text-xs text-[var(--color-velmora-text-muted)] mb-2">
                       {item.variant} tone
                     </p>
@@ -86,7 +104,7 @@ export default function CartDrawer({ isOpen, onClose }) {
 
         {/* Footer */}
         {items.length > 0 && (
-          <div className="border-t border-[var(--color-velmora-border)] p-6 space-y-4">
+          <div className="border-t border-[var(--color-velmora-border)] p-5 md:p-6 space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm">Subtotal</span>
               <span className="serif-heading text-xl">${totalPrice.toFixed(2)}</span>

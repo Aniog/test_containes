@@ -23,7 +23,7 @@ function ProductGallery({ images, name }) {
   const [activeImage, setActiveImage] = useState(0)
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3 md:space-y-4">
       <div className="aspect-[3/4] rounded overflow-hidden bg-[var(--color-velmora-bg-alt)]">
         <img
           src={images[activeImage]}
@@ -31,12 +31,12 @@ function ProductGallery({ images, name }) {
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="flex gap-3">
+      <div className="flex gap-2 md:gap-3 overflow-x-auto pb-1">
         {images.map((img, index) => (
           <button
             key={index}
             onClick={() => setActiveImage(index)}
-            className={`w-20 h-24 rounded overflow-hidden border-2 transition-colors ${
+            className={`flex-shrink-0 w-16 h-20 md:w-20 md:h-24 rounded overflow-hidden border-2 transition-colors ${
               activeImage === index ? 'border-[var(--color-velmora-accent)]' : 'border-transparent'
             }`}
           >
@@ -91,7 +91,7 @@ export default function ProductPage({ onCartOpen }) {
           {/* Product Info */}
           <div className="lg:sticky lg:top-24 lg:self-start">
             <div className="mb-6">
-              <h1 className="product-name text-2xl md:text-3xl mb-2">{product.name}</h1>
+              <h1 className="product-name text-xl sm:text-2xl md:text-3xl mb-2">{product.name}</h1>
               <div className="flex items-center gap-3 mb-4">
                 <div className="flex items-center gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -105,7 +105,7 @@ export default function ProductPage({ onCartOpen }) {
                   {product.rating} ({product.reviews} reviews)
                 </span>
               </div>
-              <p className="serif-heading text-3xl mb-4">${product.price}</p>
+              <p className="serif-heading text-2xl md:text-3xl mb-4">${product.price}</p>
               <p className="text-[var(--color-velmora-text-muted)] leading-relaxed">{product.description}</p>
             </div>
 
@@ -117,7 +117,7 @@ export default function ProductPage({ onCartOpen }) {
                   <button
                     key={variant}
                     onClick={() => setSelectedVariant(variant)}
-                    className={`px-6 py-2 rounded-full text-sm tracking-wide capitalize transition-all ${
+                    className={`px-5 md:px-6 py-2 rounded-full text-sm tracking-wide capitalize transition-all ${
                       selectedVariant === variant
                         ? 'bg-[var(--color-velmora-accent)] text-white'
                         : 'border border-[var(--color-velmora-border)] text-[var(--color-velmora-text-muted)] hover:border-[var(--color-velmora-accent)]'
@@ -152,17 +152,17 @@ export default function ProductPage({ onCartOpen }) {
             </div>
 
             {/* Add to Cart */}
-            <div className="flex gap-4 mb-8">
+            <div className="flex gap-3 mb-8">
               <button
                 onClick={handleAddToCart}
-                className="flex-1 btn-primary"
+                className="flex-1 btn-primary py-3 md:py-3.5"
               >
                 {added ? 'Added to Cart!' : 'Add to Cart'}
               </button>
-              <button className="p-3 border border-[var(--color-velmora-border)] rounded hover:border-[var(--color-velmora-accent)] transition-colors" aria-label="Add to wishlist">
+              <button className="p-2.5 md:p-3 border border-[var(--color-velmora-border)] rounded hover:border-[var(--color-velmora-accent)] transition-colors" aria-label="Add to wishlist">
                 <Heart className="w-5 h-5" />
               </button>
-              <button className="p-3 border border-[var(--color-velmora-border)] rounded hover:border-[var(--color-velmora-accent)] transition-colors" aria-label="Share">
+              <button className="p-2.5 md:p-3 border border-[var(--color-velmora-border)] rounded hover:border-[var(--color-velmora-accent)] transition-colors" aria-label="Share">
                 <Share2 className="w-5 h-5" />
               </button>
             </div>
