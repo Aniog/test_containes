@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Instagram, Facebook, Pinterest, Twitter } from 'lucide-react'
+import { Instagram, Globe, Twitter } from 'lucide-react'
 
 const footerLinks = {
   Shop: [
@@ -50,7 +50,7 @@ export default function Footer() {
               Demi-fine gold jewelry crafted for the moments that matter. Quiet luxury, enduring quality.
             </p>
             <div className="flex gap-4 mt-6">
-              {[Instagram, Facebook, Pinterest, Twitter].map((Icon, i) => (
+              {[Instagram, Globe, Twitter].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"
