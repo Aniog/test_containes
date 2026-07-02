@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed description of the product"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storageKey": { "type": "string" },
+          "filename": { "type": "string" }
+        }
+      },
+      "description": "Array of product images from stock system or uploads"
+    },
+    "materials": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["18K Gold Plated", "Sterling Silver"]
+      },
+      "description": "Available material variants"
+    },
+    "isBestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag for homepage bestsellers"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "default": 100,
+      "description": "Available inventory"
+    }
+  },
+  "required": ["name", "slug", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
