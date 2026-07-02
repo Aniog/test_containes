@@ -1,76 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: Manrope, Inter, system-ui, sans-serif;
+  color: #191613;
+  background-color: #F8F1E7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F8F1E7;
+  color: #191613;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #B98745;
+  outline-offset: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #B98745;
+  color: #191613;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+@layer utilities {
+  .bg-velmora-ink { background-color: #191613; }
+  .bg-velmora-espresso { background-color: #2A211B; }
+  .bg-velmora-cream { background-color: #F8F1E7; }
+  .bg-velmora-linen { background-color: #EFE3D2; }
+  .bg-velmora-parchment { background-color: #FCF8F1; }
+  .bg-velmora-gold { background-color: #B98745; }
+  .bg-velmora-bronze { background-color: #7A5730; }
+  .bg-velmora-rose { background-color: #C8A28D; }
+  .bg-velmora-mist { background-color: #D8C8B7; }
+  .text-velmora-ink { color: #191613; }
+  .text-velmora-espresso { color: #2A211B; }
+  .text-velmora-cream { color: #F8F1E7; }
+  .text-velmora-linen { color: #EFE3D2; }
+  .text-velmora-parchment { color: #FCF8F1; }
+  .text-velmora-gold { color: #B98745; }
+  .text-velmora-bronze { color: #7A5730; }
+  .text-velmora-rose { color: #C8A28D; }
+  .text-velmora-mist { color: #D8C8B7; }
+  .border-velmora-ink { border-color: #191613; }
+  .border-velmora-espresso { border-color: #2A211B; }
+  .border-velmora-cream { border-color: #F8F1E7; }
+  .border-velmora-linen { border-color: #EFE3D2; }
+  .border-velmora-parchment { border-color: #FCF8F1; }
+  .border-velmora-gold { border-color: #B98745; }
+  .border-velmora-bronze { border-color: #7A5730; }
+  .border-velmora-rose { border-color: #C8A28D; }
+  .border-velmora-mist { border-color: #D8C8B7; }
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-sans { font-family: Manrope, Inter, system-ui, sans-serif; }
+  .shadow-velvet { box-shadow: 0 24px 70px rgba(42, 33, 27, 0.14); }
+  .shadow-jewel { box-shadow: 0 18px 44px rgba(42, 33, 27, 0.12); }
+  .tracking-jewel { letter-spacing: 0.22em; }
+  .tracking-brand { letter-spacing: 0.18em; }
+  .tracking-luxe { letter-spacing: 0.16em; }
+  .text-nano { font-size: 0.65rem; line-height: 0.9rem; }
+  .text-micro { font-size: 0.68rem; line-height: 1rem; }
+  .text-trust { font-size: 0.7rem; line-height: 1rem; }
+  .h-18 { height: 4.5rem; }
+  .w-drawer { width: 28rem; }
+  .aspect-portrait { aspect-ratio: 3 / 4; }
+  .aspect-editorial { aspect-ratio: 4 / 5; }
+  .aspect-landscape { aspect-ratio: 4 / 3; }
+  .aspect-reel { aspect-ratio: 9 / 16; }
+  .grid-cols-footer { grid-template-columns: 1.2fr 2fr; }
+  .grid-cols-newsletter { grid-template-columns: 1fr 1.1fr; }
+  .grid-cols-shop { grid-template-columns: 17rem 1fr; }
+  .grid-cols-product { grid-template-columns: 1.1fr 0.9fr; }
+  .grid-cols-gallery { grid-template-columns: 5rem 1fr; }
+  .bg-velmora-ink\/45 { background-color: rgba(25, 22, 19, 0.45); }
+  .bg-velmora-ink\/75 { background-color: rgba(25, 22, 19, 0.75); }
+  .bg-velmora-ink\/20 { background-color: rgba(25, 22, 19, 0.2); }
+  .bg-velmora-ink\/5 { background-color: rgba(25, 22, 19, 0.05); }
+  .bg-velmora-espresso\/45 { background-color: rgba(42, 33, 27, 0.45); }
+  .bg-velmora-espresso\/85 { background-color: rgba(42, 33, 27, 0.85); }
+  .bg-velmora-parchment\/95 { background-color: rgba(252, 248, 241, 0.95); }
+  .bg-velmora-gold\/15 { background-color: rgba(185, 135, 69, 0.15); }
+  .border-velmora-gold\/20 { border-color: rgba(185, 135, 69, 0.2); }
+  .border-velmora-gold\/25 { border-color: rgba(185, 135, 69, 0.25); }
+  .border-velmora-gold\/30 { border-color: rgba(185, 135, 69, 0.3); }
+  .border-velmora-gold\/35 { border-color: rgba(185, 135, 69, 0.35); }
+  .border-velmora-gold\/40 { border-color: rgba(185, 135, 69, 0.4); }
+  .border-velmora-ink\/20 { border-color: rgba(25, 22, 19, 0.2); }
+  .from-velmora-ink\/45 { --tw-gradient-from: rgba(25, 22, 19, 0.45) var(--tw-gradient-from-position); --tw-gradient-to: rgba(25, 22, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/70 { --tw-gradient-from: rgba(25, 22, 19, 0.70) var(--tw-gradient-from-position); --tw-gradient-to: rgba(25, 22, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/75 { --tw-gradient-from: rgba(25, 22, 19, 0.75) var(--tw-gradient-from-position); --tw-gradient-to: rgba(25, 22, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-velmora-espresso\/45 { --tw-gradient-to: rgba(42, 33, 27, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(42, 33, 27, 0.45) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-ink\/5 { --tw-gradient-to: rgba(25, 22, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(25, 22, 19, 0.05) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-velmora-espresso\/85 { --tw-gradient-to: rgba(42, 33, 27, 0.85) var(--tw-gradient-to-position); }
+  .to-transparent { --tw-gradient-to: transparent var(--tw-gradient-to-position); }
+  .placeholder\:text-velmora-bronze::placeholder { color: #7A5730; }
+  .hover\:bg-velmora-gold:hover { background-color: #B98745; }
+  .hover\:bg-velmora-cream:hover { background-color: #F8F1E7; }
+  .hover\:bg-velmora-bronze:hover { background-color: #7A5730; }
+  .hover\:bg-velmora-espresso:hover { background-color: #2A211B; }
+  .hover\:bg-velmora-linen:hover { background-color: #EFE3D2; }
+  .hover\:text-velmora-gold:hover { color: #B98745; }
+  .hover\:text-velmora-bronze:hover { color: #7A5730; }
+  .hover\:text-velmora-cream:hover { color: #F8F1E7; }
+  .hover\:text-velmora-ink:hover { color: #191613; }
+  .hover\:border-velmora-gold:hover { border-color: #B98745; }
+  .focus\:border-velmora-gold:focus { border-color: #B98745; }
+  .focus\:border-velmora-ink:focus { border-color: #191613; }
+  .fill-current { fill: currentColor; }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@media (min-width: 640px) {
+  .sm\:w-drawer { width: 28rem; }
+}
+
+@media (min-width: 1024px) {
+  .lg\:grid-cols-footer { grid-template-columns: 1.2fr 2fr; }
+  .lg\:grid-cols-newsletter { grid-template-columns: 1fr 1.1fr; }
+  .lg\:grid-cols-shop { grid-template-columns: 17rem 1fr; }
+  .lg\:grid-cols-product { grid-template-columns: 1.1fr 0.9fr; }
+  .lg\:grid-cols-gallery { grid-template-columns: 5rem 1fr; }
+}
+
