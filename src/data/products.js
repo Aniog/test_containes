@@ -1,0 +1,191 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    displayName: 'VIVID AURA JEWELS',
+    price: 42,
+    rating: 4.9,
+    reviews: 128,
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    metalOptions: ['Gold Tone', 'Silver Tone'],
+    shortDescription: 'A sculptural ear cuff with crystal light play for elevated everyday styling.',
+    description: 'Designed to frame the ear with a refined shimmer, this cuff layers beautifully with studs and huggies while still making a statement on its own.',
+    care: 'Store in the Velmora pouch, avoid moisture, and polish gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on orders over $75. Easy 30-day returns and exchanges.',
+    imgId: 'velmora-product-vivid-aura-7b3f1c',
+    altId: 'velmora-product-vivid-aura-alt-2c4d6e',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    displayName: 'MAJESTIC FLORA NECTAR',
+    price: 68,
+    rating: 4.8,
+    reviews: 94,
+    category: 'Necklaces',
+    material: 'Crystal & Gold Vermeil',
+    metalOptions: ['Gold Tone', 'Silver Tone'],
+    shortDescription: 'A floral crystal necklace that catches warm light with an heirloom mood.',
+    description: 'Faceted multicolor stones bloom across a graceful chain, bringing a romantic editorial finish to open necklines and gifting moments alike.',
+    care: 'Keep away from perfume and lotions. Wipe after wear and store flat to preserve shine.',
+    shipping: 'Complimentary gift-ready packaging and 30-day returns on unworn items.',
+    imgId: 'velmora-product-majestic-flora-a13f8d',
+    altId: 'velmora-product-majestic-flora-alt-e9a4c1',
+    titleId: 'product-majestic-flora-title',
+    descId: 'product-majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    displayName: 'GOLDEN SPHERE HUGGIES',
+    price: 38,
+    rating: 4.9,
+    reviews: 176,
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    metalOptions: ['Gold Tone', 'Silver Tone'],
+    shortDescription: 'Chunky dome huggies with a glossy curve that feels both timeless and modern.',
+    description: 'These softly rounded huggies bring quiet polish to every day and stack effortlessly with cuffs, hoops, and fine studs.',
+    care: 'Remove before showering or swimming. Keep in a dry place and avoid abrasive surfaces.',
+    shipping: 'Ships within 1–2 business days with free worldwide delivery over $75.',
+    imgId: 'velmora-product-golden-sphere-b8d2f4',
+    altId: 'velmora-product-golden-sphere-alt-c7e5a2',
+    titleId: 'product-golden-sphere-title',
+    descId: 'product-golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    displayName: 'AMBER LACE EARRINGS',
+    price: 54,
+    rating: 4.7,
+    reviews: 83,
+    category: 'Earrings',
+    material: 'Textured Gold Finish',
+    metalOptions: ['Gold Tone', 'Silver Tone'],
+    shortDescription: 'Filigree-inspired drop earrings with a graceful elongated silhouette.',
+    description: 'Textural detailing and a delicate drop create an easy occasion piece that still feels understated enough for everyday wear.',
+    care: 'Protect from humidity and store separately to avoid tangling or scratching.',
+    shipping: '30-day returns, tracked delivery, and complimentary gift notes at checkout later.',
+    imgId: 'velmora-product-amber-lace-5f1a2e',
+    altId: 'velmora-product-amber-lace-alt-84be3d',
+    titleId: 'product-amber-lace-title',
+    descId: 'product-amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    displayName: 'ROYAL HEIRLOOM SET',
+    price: 95,
+    rating: 5,
+    reviews: 62,
+    category: 'Sets',
+    material: 'Gift-Boxed Gold Set',
+    metalOptions: ['Gold Tone', 'Silver Tone'],
+    shortDescription: 'A gift-ready pairing of necklace and earrings wrapped for instant giving.',
+    description: 'Thoughtfully matched for effortless styling, this set is made for celebrations, self-gifting, and elevated everyday rituals.',
+    care: 'Store pieces separately inside the box insert and avoid direct contact with water or creams.',
+    shipping: 'Includes a signature gift box, free worldwide shipping, and easy returns within 30 days.',
+    imgId: 'velmora-product-royal-heirloom-9e4b7a',
+    altId: 'velmora-product-royal-heirloom-alt-1ad73c',
+    titleId: 'product-royal-heirloom-title',
+    descId: 'product-royal-heirloom-desc',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    description: 'Sculptural studs, cuffs, and drop silhouettes in warm finishes.',
+    imgId: 'velmora-category-earrings-14c9d2',
+    titleId: 'category-earrings-title',
+    descId: 'category-earrings-desc',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    description: 'Layering chains and heirloom-inspired pendants for soft shine.',
+    imgId: 'velmora-category-necklaces-63a1ef',
+    titleId: 'category-necklaces-title',
+    descId: 'category-necklaces-desc',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    description: 'Rounded everyday hoops that sit close and feel effortless.',
+    imgId: 'velmora-category-huggies-c241ab',
+    titleId: 'category-huggies-title',
+    descId: 'category-huggies-desc',
+  },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    quote: 'The finish feels far more expensive than the price. I wear my huggies daily and they still look luminous.',
+    name: 'Amelia R.',
+  },
+  {
+    id: 2,
+    quote: 'Gifted the heirloom set to my sister and the packaging alone felt so special. Beautiful quality.',
+    name: 'Nina T.',
+  },
+  {
+    id: 3,
+    quote: 'Velmora nails that polished, editorial look without feeling overdone. Instant staple pieces.',
+    name: 'Claire M.',
+  },
+]
+
+export const ugcMoments = [
+  {
+    id: 'ugc-1',
+    title: 'Soft glow, every day',
+    subtitle: 'Layered ear stack for morning light.',
+    imgId: 'velmora-ugc-soft-glow-11ca8d',
+    titleId: 'ugc-soft-glow-title',
+    descId: 'ugc-soft-glow-desc',
+  },
+  {
+    id: 'ugc-2',
+    title: 'Golden hour gift',
+    subtitle: 'A close-up necklace moment with warm skin tones.',
+    imgId: 'velmora-ugc-golden-hour-22bf4e',
+    titleId: 'ugc-golden-hour-title',
+    descId: 'ugc-golden-hour-desc',
+  },
+  {
+    id: 'ugc-3',
+    title: 'Weekend uniform',
+    subtitle: 'Dome huggies styled with soft tailoring.',
+    imgId: 'velmora-ugc-weekend-33cd9f',
+    titleId: 'ugc-weekend-title',
+    descId: 'ugc-weekend-desc',
+  },
+  {
+    id: 'ugc-4',
+    title: 'For evening plans',
+    subtitle: 'Warm-lit drops with a refined profile.',
+    imgId: 'velmora-ugc-evening-44de1a',
+    titleId: 'ugc-evening-title',
+    descId: 'ugc-evening-desc',
+  },
+]
+
+export const filterOptions = {
+  categories: ['All', 'Earrings', 'Necklaces', 'Huggies', 'Sets'],
+  price: ['All', 'Under $50', '$50 to $80', '$80+'],
+  material: ['All', '18K Gold Plated', 'Crystal & Gold Vermeil', 'Textured Gold Finish', 'Gift-Boxed Gold Set'],
+}
+
+export function getProductById(id) {
+  return products.find((product) => product.id === id)
+}
+
+export function getRelatedProducts(currentId) {
+  return products.filter((product) => product.id !== currentId).slice(0, 4)
+}
