@@ -1,76 +1,360 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #FAF8F5;
+  color: #2C2825;
+  min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/* Elegant Serif Typography */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Product Names - Uppercase with wide letter-spacing */
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
 }
 
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Premium Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  border-radius: 0;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: #C5A46E;
+  color: #FAF8F5;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: #8C6F4D;
+  transform: translateY(-1px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-outline {
+  background-color: transparent;
+  color: #2C2825;
+  border: 1px solid #2C2825;
+}
+
+.btn-outline:hover {
+  background-color: #2C2825;
+  color: #FAF8F5;
+}
+
+.btn-gold {
+  background-color: #C5A46E;
+  color: #1A1816;
+}
+
+.btn-gold:hover {
+  background-color: #B89778;
+}
+
+/* Hairline Dividers */
+.divider {
+  border-top: 1px solid #EDE8E0;
+}
+
+/* Card Styles */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #F5F2ED;
+}
+
+.product-image {
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image.primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image.secondary {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+/* Quick Add Button */
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  background-color: #FAF8F5;
+  color: #2C2825;
+  padding: 10px 24px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid #2C2825;
+  white-space: nowrap;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.quick-add:hover {
+  background-color: #2C2825;
+  color: #FAF8F5;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.85), transparent);
+  color: #FAF8F5;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  flex-shrink: 0;
+  width: 180px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ugc-card img {
+  transition: transform 0.6s ease;
+}
+
+.ugc-card:hover img {
+  transform: scale(1.03);
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 16px;
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.75), transparent);
+  color: #FAF8F5;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* Testimonial Cards */
+.testimonial {
+  border-left: 1px solid #C5A46E;
+  padding-left: 24px;
+}
+
+/* Newsletter Block */
+.newsletter {
+  background-color: #2C2825;
+  color: #FAF8F5;
+}
+
+/* Sticky Nav */
+.nav {
+  transition: all 0.3s ease;
+}
+
+.nav.solid {
+  background-color: #FAF8F5;
+  border-bottom: 1px solid #EDE8E0;
+}
+
+.nav.transparent {
+  background-color: transparent;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid #D4CFC4;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill.active {
+  border-color: #2C2825;
+  background-color: #2C2825;
+  color: #FAF8F5;
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: #2C2825;
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #EDE8E0;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+}
+
+/* Product Gallery */
+.gallery-thumb {
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.gallery-thumb.active {
+  border-color: #C5A46E;
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8C6F4D;
+  margin-bottom: 12px;
+}
+
+/* Price Range */
+input[type="range"] {
+  accent-color: #C5A46E;
+}
+
+/* Modal / Drawer Backdrop */
+.backdrop {
+  background-color: rgba(26, 24, 22, 0.6);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #EDE8E0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C5A46E;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8C6F4D;
+}
+
+/* Focus States for Accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid #C5A46E;
+  outline-offset: 2px;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 13px;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  
+  .product-name {
+    letter-spacing: 0.06em;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
