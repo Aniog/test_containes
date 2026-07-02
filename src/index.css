@@ -1,76 +1,140 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #1a1714;
+    --color-bg-elevated: #2d2820;
+    --color-surface: #3a3430;
+    --color-text-primary: #faf9f7;
+    --color-text-secondary: #c7bfb2;
+    --color-text-muted: #8f8373;
+    --color-gold: #d4952b;
+    --color-gold-light: #edc874;
+    --color-gold-dark: #97591d;
+    --color-cream: #fbf8f3;
+    --color-border: rgba(199, 191, 178, 0.15);
+    --color-border-hover: rgba(212, 149, 43, 0.3);
+
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--color-text-primary);
+    background-color: var(--color-bg);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--color-bg);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  input, textarea {
+    font-family: inherit;
+  }
+
+  ::selection {
+    background-color: rgba(212, 149, 43, 0.25);
+    color: var(--color-text-primary);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-text-muted);
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-gold-500 text-obsidian-950 font-sans font-semibold text-sm tracking-widest-xl uppercase transition-all duration-300 hover:bg-gold-400 active:bg-gold-600;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-gold-500/60 text-gold-400 font-sans font-medium text-sm tracking-widest-xl uppercase transition-all duration-300 hover:bg-gold-500/10 hover:border-gold-400;
+  }
+
+  .section-title {
+    @apply font-serif text-display text-center;
+  }
+
+  .section-subtitle {
+    @apply font-sans text-sm tracking-widest-xl uppercase text-obsidian-400;
+  }
+
+  .hairline {
+    @apply border-t border-obsidian-200/10;
+  }
+
+  .product-name {
+    @apply font-serif text-lg uppercase tracking-widest-xl text-cream-100;
+  }
+
+  .price {
+    @apply font-sans text-base font-medium text-gold-400;
+  }
+
+  /* Smooth image reveal */
+  .img-reveal {
+    @apply transition-all duration-700 ease-out;
+  }
+  .img-reveal[data-loaded="true"] {
+    @apply opacity-100;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
