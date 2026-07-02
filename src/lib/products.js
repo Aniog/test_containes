@@ -74,7 +74,7 @@ export const products = [
     reviews: 42,
     images: [
       'https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?w=800&h=1000&fit=crop',
-      'https://images.unsplash.com/photo-1611652022419-a9419f75331e?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
     inStock: true,
@@ -131,7 +131,7 @@ export const ugcPosts = [
   },
   {
     id: 5,
-    image: 'https://images.unsplash.com/photo-1611652022419-a9419f75331e?w=400&h=700&fit=crop',
+    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=700&fit=crop',
     caption: 'Gift of gold',
   },
   {
