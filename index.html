@@ -11,6 +11,20 @@
   <body>
     <div id="root"></div>
     <script>
+      window.addEventListener('error', function(e) {
+        var p = document.createElement('pre');
+        p.style.cssText = 'white-space:pre-wrap;word-break:break-word;padding:20px;color:red;background:#fee;font-family:monospace';
+        p.textContent = 'ERROR: ' + e.message + '\n' + (e.error && e.error.stack ? e.error.stack : '');
+        document.body.appendChild(p);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var p = document.createElement('pre');
+        p.style.cssText = 'white-space:pre-wrap;word-break:break-word;padding:20px;color:red;background:#fee;font-family:monospace';
+        p.textContent = 'UNHANDLED PROMISE: ' + e.reason + '\n' + (e.reason && e.reason.stack ? e.reason.stack : '');
+        document.body.appendChild(p);
+      });
+    </script>
+    <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
           return;
