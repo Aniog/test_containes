@@ -5,7 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'red-england': '#CF0A2C',
+        'navy-fa': '#1C3F6E',
+        'gold-accent': '#C9A84C',
+      },
+      fontFamily: {
+        display: ['Oswald', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
