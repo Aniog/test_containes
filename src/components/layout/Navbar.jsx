@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Search, ShoppingBag, Menu, X } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 
-const Navbar = () => {
+const Navbar = ({ onOpenCart }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems } = useCart();
@@ -57,8 +57,9 @@ const Navbar = () => {
           >
             <Search className="h-5 w-5" />
           </button>
-          <Link
-            to="/cart"
+          <button
+            type="button"
+            onClick={onOpenCart}
             className="relative inline-flex items-center justify-center rounded-full p-2 text-ink hover:bg-black/5"
             aria-label="Open cart"
           >
@@ -68,7 +69,7 @@ const Navbar = () => {
                 {totalItems}
               </span>
             )}
-          </Link>
+          </button>
         </div>
       </div>
 
