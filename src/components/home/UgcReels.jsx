@@ -8,17 +8,17 @@ const reels = [
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1599643478518-a86e580c5e4a?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=600&q=80',
     caption: 'Layered for the weekend.',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80',
     caption: 'Gift-ready elegance.',
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80',
     caption: 'Quiet confidence.',
   },
   {

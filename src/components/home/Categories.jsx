@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const categories = [
   { id: 'earrings', label: 'Earrings', image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80' },
-  { id: 'necklaces', label: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a86e580c5e4a?w=800&q=80' },
+  { id: 'necklaces', label: 'Necklaces', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80' },
   { id: 'huggies', label: 'Huggies', image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80' },
 ];
 
