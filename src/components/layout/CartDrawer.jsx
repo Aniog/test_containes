@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/context/CartContext';
 
 const CartDrawer = () => {
   const { items, isOpen, closeCart, removeItem, updateQuantity, cartTotal, clearCart } = useCart();

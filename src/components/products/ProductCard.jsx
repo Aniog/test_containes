@@ -4,23 +4,15 @@ import { useCart } from '@/context/CartContext';
 import Button from '@/components/ui/Button';
 
 const ProductCard = ({ product }) => {
-  const [hovered, setHovered] = useState(false);
   const [added, setAdded] = useState(false);
-  const { addItem, openDrawer } = useCart();
+  const { addItem, toggleCart } = useCart();
 
   const handleAdd = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem({
-      productId: product.id,
-      name: product.name,
-      price: product.price,
-      variant: product.variants[0],
-      image: product.images[0],
-      quantity: 1,
-    });
+    addItem(product, product.variants?.[0] || 'gold', 1);
     setAdded(true);
-    openDrawer();
+    toggleCart();
     setTimeout(() => setAdded(false), 1200);
   };
 
@@ -28,8 +20,6 @@ const ProductCard = ({ product }) => {
     <Link
       to={`/product/${product.id}`}
       className="group block"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
     >
       <div className="relative overflow-hidden rounded-sm bg-surface-alt aspect-[4/5]">
         <img

@@ -1,21 +1,21 @@
 import { Routes, Route } from 'react-router-dom';
-import Navbar from '@/components/layout/Navbar';
+import Nav from '@/components/layout/Nav';
 import Footer from '@/components/layout/Footer';
-import CartDrawer from '@/components/cart/CartDrawer';
+import CartDrawer from '@/components/layout/CartDrawer';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
-import ProductDetail from '@/pages/ProductDetail';
+import Product from '@/pages/Product';
 import About from '@/pages/About';
 
 function App() {
   return (
     <div className="min-h-screen bg-surface text-ink antialiased">
-      <Navbar />
+      <Nav />
       <CartDrawer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/product/:slug" element={<Product />} />
         <Route path="/about" element={<About />} />
       </Routes>
       <Footer />

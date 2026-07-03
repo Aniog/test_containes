@@ -1,21 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
-import { CartProvider } from "@/context/CartContext";
-import App from "./App.jsx";
-import "./index.css";
-
-if (import.meta.env.DEV) {
-  import("./visual-edit/index.js");
-}
 
 function Root() {
   return (
-    <CartProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </CartProvider>
+    <div style={{ padding: 40, fontFamily: 'sans-serif' }}>
+      <h1>VELMORA TEST</h1>
+      <p>If you see this, React is mounting.</p>
+    </div>
   );
 }
 
