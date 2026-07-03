@@ -1,76 +1,179 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Velmora Fine Jewelry - Design System */
+
+:root {
+  /* Color Palette - Warm Editorial Luxury */
+  --color-cream: #FAF7F2;
+  --color-ivory: #F5F1EB;
+  --color-warm-white: #FFFDF9;
+  --color-sand: #E8E2D9;
+  --color-taupe: #C4B8A9;
+  --color-warm-gray: #9A8E82;
+  --color-charcoal: #3D3833;
+  --color-espresso: #2A2520;
+  --color-gold-light: #D4AF7A;
+  --color-gold: #C9A66B;
+  --color-gold-dark: #A68B5B;
+  --color-gold-deep: #8B7355;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-[#FAF7F2] text-[#3D3833] antialiased;
+    font-family: var(--font-sans);
+    line-height: 1.6;
+  }
+
+  /* Serif Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    @apply font-medium leading-tight;
+  }
+
+  /* Custom selection */
+  ::selection {
+    @apply bg-[#C9A66B] text-white;
+  }
+}
+
+@layer components {
+  /* Typography Classes */
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  /* Product Name Style - Uppercase with wide tracking */
+  .product-name {
+    @apply uppercase tracking-[0.15em] font-medium;
+  }
+
+  /* Container */
+  .container-wide {
+    @apply max-w-[1440px] mx-auto px-4 md:px-8;
+  }
+
+  .container-narrow {
+    @apply max-w-[1200px] mx-auto px-4 md:px-8;
+  }
+
+  /* Hairline Divider */
+  .hairline {
+    @apply h-px bg-[#E8E2D9] w-full;
+  }
+
+  /* Accent Button - Primary */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-[#3D3833] text-white font-sans font-medium text-sm tracking-wide transition-all duration-300;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-[#2A2520] shadow-lg;
+  }
+
+  /* Accent Button - Outlined */
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-transparent border border-[#3D3833] text-[#3D3833] font-sans font-medium text-sm tracking-wide transition-all duration-300;
+  }
+  
+  .btn-outline:hover {
+    @apply bg-[#3D3833] text-white;
+  }
+
+  /* Gold Accent Button */
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-4 bg-[#C9A66B] text-white font-sans font-medium text-sm tracking-wide transition-all duration-300;
+  }
+  
+  .btn-gold:hover {
+    @apply bg-[#A68B5B] shadow-lg;
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply shadow-xl;
+    transform: translateY(-4px);
+  }
+
+  /* Image Reveal on Hover */
+  .img-reveal {
+    @apply relative overflow-hidden;
+  }
+
+  .img-reveal img {
+    @apply transition-all duration-700 ease-out;
+  }
+
+  .img-reveal:hover img {
+    @apply scale-105;
+  }
+
+  /* Fade In Animation */
+  .fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F1EB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4B8A9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9A8E82;
+}
+
+/* Hide scrollbar for horizontal scroll sections */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
