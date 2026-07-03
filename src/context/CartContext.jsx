@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useMemo } from "react";
+import { resolveStrkImageUrl } from "@/lib/strkImage";
 
 const CartContext = createContext(null);
 
@@ -33,6 +34,7 @@ export function CartProvider({ children }) {
           titleId: product.titleId,
           descId: product.descId,
           subtitle: product.subtitle,
+          imageUrl: resolveStrkImageUrl(`${product.imgId}-main`),
         },
       ];
     });

@@ -11,17 +11,6 @@
   </head>
   <body>
     <div id="root"></div>
-    <div id="boot-error" style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#b91c1c;color:#fff;font:13px/1.5 monospace;padding:12px;display:none;white-space:pre-wrap;word-break:break-word;"></div>
-    <script>
-      window.addEventListener("error", (e) => {
-        const el = document.getElementById("boot-error");
-        if (el) { el.style.display = "block"; el.textContent += "\n[ERROR] " + (e.error && e.error.stack ? e.error.stack : e.message); }
-      });
-      window.addEventListener("unhandledrejection", (e) => {
-        const el = document.getElementById("boot-error");
-        if (el) { el.style.display = "block"; el.textContent += "\n[PROMISE] " + (e.reason && e.reason.stack ? e.reason.stack : e.reason); }
-      });
-    </script>
     <script>
       (() => {
         if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {

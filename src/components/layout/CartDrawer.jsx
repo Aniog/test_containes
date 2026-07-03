@@ -3,6 +3,7 @@ import { X, Plus, Minus, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/utils";
 import { useStrkImages } from "@/lib/useStrkImages";
+import { resolveStrkImageUrl } from "@/lib/strkImage";
 
 const PLACEHOLDER =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
@@ -65,15 +66,9 @@ export default function CartDrawer() {
                     <div className="relative h-24 w-20 overflow-hidden bg-sand">
                       <img
                         alt={item.name}
-                        data-strk-img-id={`cart-${item.imgId}`}
-                        data-strk-img={`[${item.descId}] [${item.titleId}]`}
-                        data-strk-img-ratio="4x5"
-                        data-strk-img-width="200"
-                        src={PLACEHOLDER}
+                        src={item.imageUrl || resolveStrkImageUrl(`${item.imgId}-main`) || PLACEHOLDER}
                         className="h-full w-full object-cover"
                       />
-                      <span id={item.titleId} className="sr-only">{item.name}</span>
-                      <span id={item.descId} className="sr-only">{item.subtitle}</span>
                     </div>
                   </Link>
                   <div className="flex flex-1 flex-col">
