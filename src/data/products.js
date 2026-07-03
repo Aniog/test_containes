@@ -61,7 +61,7 @@ export const products = [
     material: 'gold',
     images: [
       'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&h=800&fit=crop',
-      'https://images.unsplash.com/photo-1635767798638-3e252a018695?w=600&h=800&fit=crop'
+      'https://images.unsplash.com/photo-1630019852942-f89202989a51?w=600&h=800&fit=crop'
     ],
     rating: 5,
     reviews: 72,
