@@ -74,3 +74,149 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-cream: #F7F4F0;
+  --color-sand: #E8E2DA;
+  --color-taupe: #A69F94;
+  --color-charcoal: #2C2C2C;
+  --color-gold: #C9A962;
+  --color-gold-light: #D4BC7D;
+  --color-gold-dark: #A68B4B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.uppercase-tracking {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-sand);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-taupe);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-charcoal);
+}
+
+/* Button base styles */
+.btn-primary {
+  @apply bg-velmora-charcoal text-white px-8 py-3 uppercase tracking-widest text-sm transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-velmora-gold;
+}
+
+.btn-outline {
+  @apply border border-velmora-charcoal text-velmora-charcoal px-8 py-3 uppercase tracking-widest text-sm transition-all duration-300 bg-transparent;
+}
+
+.btn-outline:hover {
+  @apply bg-velmora-charcoal text-white;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-taupe), transparent);
+}
+
+/* Product card hover effect */
+.product-card {
+  @apply transition-all duration-500 ease-out;
+}
+
+.product-card:hover {
+  @apply shadow-xl;
+}
+
+/* Image overlay */
+.img-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+/* Smooth image reveal */
+.img-reveal {
+  animation: imgReveal 0.8s ease-out forwards;
+}
+
+@keyframes imgReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Cart drawer animation */
+.cart-drawer-enter {
+  transform: translateX(100%);
+}
+
+.cart-drawer-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-out;
+}
+
+.cart-drawer-exit {
+  transform: translateX(0);
+}
+
+.cart-drawer-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease-in;
+}
