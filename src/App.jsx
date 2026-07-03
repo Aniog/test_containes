@@ -1,14 +1,26 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { CartProvider } from './context/CartContext'
+import Layout from './Layout'
+import HomePage from './components/home/HomePage'
+import ProductDetail from './components/product/ProductDetail'
+import ShopPage from './components/shop/ShopPage'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <CartProvider>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/about" element={<div className="min-h-screen pt-24 flex items-center justify-center"><p className="text-velmora-text-secondary">About page coming soon</p></div>} />
+            <Route path="/journal" element={<div className="min-h-screen pt-24 flex items-center justify-center"><p className="text-velmora-text-secondary">Journal page coming soon</p></div>} />
+            <Route path="/collections" element={<ShopPage />} />
+          </Routes>
+        </Layout>
+      </Router>
+    </CartProvider>
   )
 }
 

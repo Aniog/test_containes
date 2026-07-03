@@ -1,76 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Velmora Fine Jewelry - Global Styles */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Velmora brand colors - quiet luxury palette */
+  --color-cream: #FAF8F5;
+  --color-beige: #F5EDE4;
+  --color-charcoal: #2C2C2C;
+  --color-gold: #C9A96E;
+  --color-gold-light: #D4B87A;
+  --color-gold-dark: #B8945A;
+  --color-warm: #8B7355;
+  --color-text-primary: #2C2C2C;
+  --color-text-secondary: #6B6B6B;
+  --color-text-light: #999999;
+  --color-border: #E5E5E5;
+  --color-border-light: #F0F0F0;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  background: none;
+  font-family: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Product name styling */
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 400;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Smooth transitions */
+.transition-premium {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hairline divider */
+.divider-hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold) 80%,
+    transparent
+  );
+}
+
+/* Premium button styles */
+.btn-premium {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  padding: 1rem 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.btn-premium-solid {
+  background-color: var(--color-charcoal);
+  color: white;
+  border: 2px solid var(--color-charcoal);
+}
+
+.btn-premium-solid:hover {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.btn-premium-outline {
+  background-color: transparent;
+  color: var(--color-charcoal);
+  border: 2px solid var(--color-charcoal);
+}
+
+.btn-premium-outline:hover {
+  background-color: var(--color-charcoal);
+  color: white;
+}
+
+.btn-premium-gold {
+  background-color: var(--color-gold);
+  color: white;
+  border: 2px solid var(--color-gold);
+}
+
+.btn-premium-gold:hover {
+  background-color: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+}
+
+/* Hide scrollbar for horizontal scroll */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Image hover zoom */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.6s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Cart drawer animation */
+.cart-drawer {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Accordion animation */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+/* Container */
+.container-premium {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container-premium {
+    padding: 0 1rem;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
