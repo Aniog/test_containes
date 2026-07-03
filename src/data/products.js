@@ -111,7 +111,7 @@ export const categories = [
     id: 'earrings',
     name: 'Earrings',
     description: 'Ear cuffs, studs, and drop earrings',
-    image: 'https://images.unsplash.com/photo-1535632066927-cfa0a8d5a7e8?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1589128777073-263566ae5e4d?w=800&q=80',
     count: 2
   },
   {
@@ -178,7 +178,7 @@ export const ugcPosts = [
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1535632066927-cfa0a8d5a7e8?w=600&q=80',
+    image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80',
     caption: 'Gold season',
     username: '@daily.gold'
   },
