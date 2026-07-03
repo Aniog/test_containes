@@ -1,8 +1,10 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, ChevronDown } from 'lucide-react'
 import ProductCard from '@/components/products/ProductCard'
 import { products, categories } from '@/data/products'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 const sortOptions = [
   { value: 'featured', label: 'Featured' },
@@ -18,6 +20,14 @@ export default function Shop() {
   const [priceRange, setPriceRange] = useState([0, 150])
   const [material, setMaterial] = useState('all')
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [categoryParam, sort, priceRange, material])
 
   const filtered = useMemo(() => {
     let result = [...products]
@@ -43,7 +53,7 @@ export default function Shop() {
     categoryParam === 'all' ? 'All' : categories.find((c) => c.id === categoryParam)?.name || 'All'
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+    <div ref={containerRef} className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex items-end justify-between">
         <div>
           <h1 className="font-serif text-3xl sm:text-4xl">Shop</h1>
