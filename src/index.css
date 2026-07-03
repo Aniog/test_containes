@@ -2,30 +2,40 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: dark;
+  color: #e8f4f8;
+  background-color: #050a14;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Cosmos color palette — RGB channel values for Tailwind opacity support */
+  --cosmos-bg: 5 10 20;
+  --cosmos-surface: 13 26 46;
+  --cosmos-elevated: 17 34 64;
+  --cosmos-teal: 0 212 200;
+  --cosmos-violet: 124 58 237;
+  --cosmos-green: 57 211 83;
+  --cosmos-text: 232 244 248;
+  --cosmos-muted: 138 180 200;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #00d4c8;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #00d4c8cc;
 }
 
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #050a14;
+  color: #e8f4f8;
   min-height: 100vh;
   overflow-x: hidden;
 }
@@ -42,35 +52,81 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Cosmos color utilities (applied via HMR, no config rebuild needed) ── */
+@layer utilities {
+  /* Backgrounds */
+  .bg-cosmos-bg      { background-color: rgb(5 10 20); }
+  .bg-cosmos-surface { background-color: rgb(13 26 46); }
+  .bg-cosmos-elevated{ background-color: rgb(17 34 64); }
+
+  /* Text */
+  .text-cosmos-text   { color: rgb(232 244 248); }
+  .text-cosmos-muted  { color: rgb(138 180 200); }
+  .text-cosmos-teal   { color: rgb(0 212 200); }
+  .text-cosmos-violet { color: rgb(124 58 237); }
+  .text-cosmos-bg     { color: rgb(5 10 20); }
+
+  /* Borders */
+  .border-cosmos-teal { border-color: rgb(0 212 200); }
+
+  /* Background opacity variants */
+  .bg-cosmos-bg\/40  { background-color: rgba(5,10,20,0.4); }
+  .bg-cosmos-bg\/60  { background-color: rgba(5,10,20,0.6); }
+  .bg-cosmos-bg\/70  { background-color: rgba(5,10,20,0.7); }
+  .bg-cosmos-bg\/80  { background-color: rgba(5,10,20,0.8); }
+  .bg-cosmos-bg\/90  { background-color: rgba(5,10,20,0.9); }
+  .bg-cosmos-teal\/10{ background-color: rgba(0,212,200,0.1); }
+  .bg-cosmos-teal\/20{ background-color: rgba(0,212,200,0.2); }
+  .bg-cosmos-surface\/80 { background-color: rgba(13,26,46,0.8); }
+  .bg-cosmos-elevated\/80{ background-color: rgba(17,34,64,0.8); }
+
+  /* Border opacity variants */
+  .border-cosmos-teal\/10{ border-color: rgba(0,212,200,0.1); }
+  .border-cosmos-teal\/20{ border-color: rgba(0,212,200,0.2); }
+  .border-cosmos-teal\/30{ border-color: rgba(0,212,200,0.3); }
+  .border-cosmos-teal\/40{ border-color: rgba(0,212,200,0.4); }
+  .border-cosmos-teal\/50{ border-color: rgba(0,212,200,0.5); }
+
+  /* Violet opacity */
+  .bg-cosmos-violet\/10{ background-color: rgba(124,58,237,0.1); }
+
+  /* Gradient from/via/to */
+  .from-cosmos-bg    { --tw-gradient-from: rgb(5 10 20) var(--tw-gradient-from-position); --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-cosmos-bg\/60{ --tw-gradient-from: rgba(5,10,20,0.6) var(--tw-gradient-from-position); --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-cosmos-bg\/40{ --tw-gradient-from: rgba(5,10,20,0.4) var(--tw-gradient-from-position); --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-cosmos-bg\/90{ --tw-gradient-from: rgba(5,10,20,0.9) var(--tw-gradient-from-position); --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-cosmos-teal\/40{ --tw-gradient-from: rgba(0,212,200,0.4) var(--tw-gradient-from-position); --tw-gradient-to: rgba(0,212,200,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+
+  .via-cosmos-bg\/40 { --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(5,10,20,0.4) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-cosmos-bg\/20 { --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(5,10,20,0.2) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-cosmos-bg\/50 { --tw-gradient-to: rgba(5,10,20,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(5,10,20,0.5) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-cosmos-teal\/10{ --tw-gradient-to: rgba(0,212,200,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(0,212,200,0.1) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-cosmos-teal\/30{ --tw-gradient-to: rgba(0,212,200,0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(0,212,200,0.3) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+
+  .to-cosmos-bg      { --tw-gradient-to: rgb(5 10 20) var(--tw-gradient-to-position); }
+  .to-cosmos-surface\/80 { --tw-gradient-to: rgba(13,26,46,0.8) var(--tw-gradient-to-position); }
+  .to-cosmos-surface\/90 { --tw-gradient-to: rgba(13,26,46,0.9) var(--tw-gradient-to-position); }
+  .to-cosmos-elevated\/80{ --tw-gradient-to: rgba(17,34,64,0.8) var(--tw-gradient-to-position); }
+
+  /* Shadows */
+  .shadow-glow-teal   { box-shadow: 0 0 30px rgba(0,212,200,0.15); }
+  .shadow-glow-teal-lg{ box-shadow: 0 0 60px rgba(0,212,200,0.25); }
+  .shadow-glow-violet { box-shadow: 0 0 30px rgba(124,58,237,0.2); }
+
+  /* Animations */
+  .animate-pulse-slow { animation: pulse 4s cubic-bezier(0.4,0,0.6,1) infinite; }
+  .animate-float      { animation: float 6s ease-in-out infinite; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-10px); }
+}
