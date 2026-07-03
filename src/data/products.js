@@ -1,0 +1,113 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { alt: 'Vivid Aura Jewels gold ear cuff', imgId: 'vivid-aura-1-a7b3', descId: 'vivid-aura-desc-1', titleId: 'vivid-aura-title-1' },
+      { alt: 'Vivid Aura Jewels worn on ear', imgId: 'vivid-aura-2-c4d5', descId: 'vivid-aura-desc-2', titleId: 'vivid-aura-title-2' },
+    ],
+    variants: ['Gold', 'Silver'],
+    details: 'A sculptural ear cuff that wraps elegantly around the cartilage, adorned with a single crystal accent that catches the light with every turn. No piercing required — simply slide on and go.',
+    materials: '18K gold plated over brass. Crystal accent. Nickel-free and hypoallergenic.',
+    care: 'Store in the provided pouch. Avoid contact with water, perfume, and lotions. Gently wipe with a soft cloth after wearing.',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { alt: 'Majestic Flora Nectar floral crystal necklace', imgId: 'majestic-flora-1-e8f2', descId: 'majestic-flora-desc-1', titleId: 'majestic-flora-title-1' },
+      { alt: 'Majestic Flora Nectar worn on neck', imgId: 'majestic-flora-2-g3h4', descId: 'majestic-flora-desc-2', titleId: 'majestic-flora-title-2' },
+    ],
+    variants: ['Gold', 'Silver'],
+    details: 'A delicate chain necklace featuring a bouquet of multicolor crystal flowers. Each petal is hand-set, creating a garden of light that rests gracefully at the collarbone.',
+    materials: '18K gold plated over brass. Multicolor crystal accents. Adjustable chain length 16–18 inches. Nickel-free and hypoallergenic.',
+    care: 'Store in the provided pouch. Avoid contact with water, perfume, and lotions. Gently wipe with a soft cloth after wearing.',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { alt: 'Golden Sphere Huggies chunky dome earrings', imgId: 'golden-sphere-1-i5j6', descId: 'golden-sphere-desc-1', titleId: 'golden-sphere-title-1' },
+      { alt: 'Golden Sphere Huggies worn', imgId: 'golden-sphere-2-k7l8', descId: 'golden-sphere-desc-2', titleId: 'golden-sphere-title-2' },
+    ],
+    variants: ['Gold', 'Silver'],
+    details: 'Chunky dome huggie earrings that hug the earlobe with a bold, sculptural presence. The polished sphere catches light from every angle for an effortlessly elevated look.',
+    materials: '18K gold plated over brass. Snap-closure huggie. Nickel-free and hypoallergenic.',
+    care: 'Store in the provided pouch. Avoid contact with water, perfume, and lotions. Gently wipe with a soft cloth after wearing.',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 67,
+    images: [
+      { alt: 'Amber Lace Earrings filigree drop earrings', imgId: 'amber-lace-1-m9n0', descId: 'amber-lace-desc-1', titleId: 'amber-lace-title-1' },
+      { alt: 'Amber Lace Earrings worn', imgId: 'amber-lace-2-o1p2', descId: 'amber-lace-desc-2', titleId: 'amber-lace-title-2' },
+    ],
+    variants: ['Gold', 'Silver'],
+    details: 'Intricate filigree drop earrings inspired by antique lacework. The openwork design is both airy and ornate, moving gracefully with every step.',
+    materials: '18K gold plated over brass. Fishhook closure. Drop length: 2 inches. Nickel-free and hypoallergenic.',
+    care: 'Store in the provided pouch. Avoid contact with water, perfume, and lotions. Gently wipe with a soft cloth after wearing.',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set',
+    price: 95,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 5.0,
+    reviews: 42,
+    images: [
+      { alt: 'Royal Heirloom Set earring and necklace gift set', imgId: 'royal-heirloom-1-q3r4', descId: 'royal-heirloom-desc-1', titleId: 'royal-heirloom-title-1' },
+      { alt: 'Royal Heirloom Set worn together', imgId: 'royal-heirloom-2-s5t6', descId: 'royal-heirloom-desc-2', titleId: 'royal-heirloom-title-2' },
+    ],
+    variants: ['Gold', 'Silver'],
+    details: 'A perfectly paired earring and necklace set, presented in a signature gift box. The matching design features delicate chains and polished accents — an heirloom in the making.',
+    materials: '18K gold plated over brass. Necklace: adjustable 16–18 inches. Earrings: fishhook closure, 1.5 inch drop. Nickel-free and hypoallergenic. Arrives in signature Velmora gift box.',
+    care: 'Store in the provided pouch and gift box. Avoid contact with water, perfume, and lotions. Gently wipe with a soft cloth after wearing.',
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', imgId: 'cat-earrings-u7v8', descId: 'cat-earrings-desc', titleId: 'cat-earrings-title' },
+  { id: 'necklaces', name: 'Necklaces', imgId: 'cat-necklaces-w9x0', descId: 'cat-necklaces-desc', titleId: 'cat-necklaces-title' },
+  { id: 'huggies', name: 'Huggies', imgId: 'cat-huggies-y1z2', descId: 'cat-huggies-desc', titleId: 'cat-huggies-title' },
+]
+
+export const testimonials = [
+  { id: 1, name: 'Sarah M.', rating: 5, text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every day — they still look brand new after months.' },
+  { id: 2, name: 'Emily R.', rating: 5, text: 'Bought the Royal Heirloom Set as a gift and it arrived in the most beautiful packaging. My sister absolutely loved it.' },
+  { id: 3, name: 'Jessica K.', rating: 5, text: 'Finally, jewelry that looks luxurious without the luxury price tag. The Amber Lace Earrings get me compliments every time.' },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', imgId: 'ugc-1-a1b2', caption: 'Everyday elegance', descId: 'ugc-desc-1', titleId: 'ugc-title-1' },
+  { id: 'ugc-2', imgId: 'ugc-2-c3d4', caption: 'Golden hour glow', descId: 'ugc-desc-2', titleId: 'ugc-title-2' },
+  { id: 'ugc-3', imgId: 'ugc-3-e5f6', caption: 'Stacked & styled', descId: 'ugc-desc-3', titleId: 'ugc-title-3' },
+  { id: 'ugc-4', imgId: 'ugc-4-g7h8', caption: 'Date night ready', descId: 'ugc-desc-4', titleId: 'ugc-title-4' },
+  { id: 'ugc-5', imgId: 'ugc-5-i9j0', caption: 'Minimal magic', descId: 'ugc-desc-5', titleId: 'ugc-title-5' },
+  { id: 'ugc-6', imgId: 'ugc-6-k1l2', caption: 'Gift worthy', descId: 'ugc-desc-6', titleId: 'ugc-title-6' },
+]
