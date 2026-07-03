@@ -12,8 +12,8 @@ export const products = [
     care: 'Store in a dry place. Clean with a soft polishing cloth. Avoid contact with perfumes and lotions.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day easy returns.',
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f6a?w=800&q=80',
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+      'https://picsum.photos/id/1015/800/1000',
+      'https://picsum.photos/id/1025/800/1000',
     ],
     variants: ['gold', 'silver'],
     badge: 'Bestseller',
@@ -31,8 +31,8 @@ export const products = [
     care: 'Store in a dry place. Clean with a soft polishing cloth. Avoid contact with perfumes and lotions.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day easy returns.',
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a86e2dc465b0?w=800&q=80',
-      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+      'https://picsum.photos/id/1025/800/1000',
+      'https://picsum.photos/id/1026/800/1000',
     ],
     variants: ['gold', 'silver'],
     badge: 'New',
@@ -50,8 +50,8 @@ export const products = [
     care: 'Store in a dry place. Clean with a soft polishing cloth. Avoid contact with perfumes and lotions.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day easy returns.',
     images: [
-      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+      'https://picsum.photos/id/1035/800/1000',
+      'https://picsum.photos/id/1036/800/1000',
     ],
     variants: ['gold', 'silver'],
     badge: null,
@@ -69,8 +69,8 @@ export const products = [
     care: 'Store in a dry place. Clean with a soft polishing cloth. Avoid contact with perfumes and lotions.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day easy returns.',
     images: [
-      'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=800&q=80',
-      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f6a?w=800&q=80',
+      'https://picsum.photos/id/1045/800/1000',
+      'https://picsum.photos/id/1055/800/1000',
     ],
     variants: ['gold', 'silver'],
     badge: null,
@@ -88,8 +88,8 @@ export const products = [
     care: 'Store in a dry place. Clean with a soft polishing cloth. Avoid contact with perfumes and lotions.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day easy returns.',
     images: [
-      'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80',
-      'https://images.unsplash.com/photo-1599643478518-a86e2dc465b0?w=800&q=80',
+      'https://picsum.photos/id/1055/800/1000',
+      'https://picsum.photos/id/1056/800/1000',
     ],
     variants: ['gold', 'silver'],
     badge: 'Limited',
@@ -97,9 +97,9 @@ export const products = [
 ];
 
 export const categories = [
-  { name: 'Earrings', href: '/shop?category=Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f6a?w=800&q=80' },
-  { name: 'Necklaces', href: '/shop?category=Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a86e2dc465b0?w=800&q=80' },
-  { name: 'Huggies', href: '/shop?category=Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80' },
+  { name: 'Earrings', href: '/shop?category=Earrings', image: 'https://picsum.photos/id/1015/800/1000' },
+  { name: 'Necklaces', href: '/shop?category=Necklaces', image: 'https://picsum.photos/id/1025/800/1000' },
+  { name: 'Huggies', href: '/shop?category=Huggies', image: 'https://picsum.photos/id/1035/800/1000' },
 ];
 
 export const testimonials = [

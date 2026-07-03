@@ -6,7 +6,7 @@ const Hero = () => {
     <section className="relative min-h-[92vh] w-full overflow-hidden bg-[#1c1917]">
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1600&q=80"
+          src="https://picsum.photos/id/1070/1600/1000"
           alt="Gold jewelry editorial"
           className="h-full w-full object-cover opacity-80"
         />

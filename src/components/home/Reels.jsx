@@ -2,11 +2,11 @@ import React from 'react';
 import { reels } from '../../data/products';
 
 const reelImages = [
-  'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80',
-  'https://images.unsplash.com/photo-1599643478518-a86e2dc465b0?w=600&q=80',
-  'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80',
-  'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=600&q=80',
-  'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=600&q=80',
+  'https://picsum.photos/id/1015/600/800',
+  'https://picsum.photos/id/1025/600/800',
+  'https://picsum.photos/id/1035/600/800',
+  'https://picsum.photos/id/1045/600/800',
+  'https://picsum.photos/id/1055/600/800',
 ];
 
 const Reels = () => {

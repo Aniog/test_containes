@@ -7,7 +7,7 @@ const BrandStory = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
         <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#1c1917]">
           <img
-            src="https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=900&q=80"
+            src="https://picsum.photos/id/1060/900/1100"
             alt="Velmora brand story"
             className="h-full w-full object-cover opacity-80"
           />
