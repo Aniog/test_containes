@@ -45,6 +45,8 @@ export default function CartDrawer() {
       <aside
         role="dialog"
         aria-label="Shopping bag"
+        aria-hidden={!isOpen}
+        inert={!isOpen ? "" : undefined}
         className={cn(
           "fixed top-0 right-0 z-50 h-full w-full sm:w-[440px] bg-bg shadow-xl flex flex-col transition-transform duration-500",
           isOpen ? "translate-x-0" : "translate-x-full"
