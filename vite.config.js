@@ -5,9 +5,10 @@ import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 import checkImgPlugin from './plugin/vite-plugin-check-img.js'
 
+const port = Number(process.env.VITE_PORT) || 12000
+
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     checkImgPlugin(),
     visualEditPlugin(),
@@ -20,6 +21,7 @@ export default defineConfig({
   },
   server: {
     host: '0.0.0.0',
+    port,
     allowedHosts: true,
     cors: true,
     hmr: {
@@ -27,7 +29,13 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
+  },
+  preview: {
+    host: '0.0.0.0',
+    port,
+    allowedHosts: true,
+    cors: true,
   }
 })
