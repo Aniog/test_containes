@@ -1,24 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Color Palette - Quiet Luxury */
+  --color-charcoal: #1A1816;
+  --color-cream: #F8F5F1;
+  --color-gold: #C5A26F;
+  --color-gold-dark: #A68A5A;
+  --color-taupe: #8B8178;
+  --color-white: #FFFFFF;
+  --color-offwhite: #FAF8F5;
+  --color-border: #E5E0D8;
+  --color-text: #2C2825;
+  --color-text-light: #6B655F;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-text);
+  background-color: var(--color-cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -30,47 +33,362 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Typography */
+h1, h2, h3, h4, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.product-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: 'Inter', sans-serif;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-charcoal);
+  border: 1px solid var(--color-charcoal);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  border-color: var(--color-charcoal);
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-dark);
+}
+
+/* Form Inputs */
+.input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  transition: border-color 0.2s ease;
+  font-family: 'Inter', sans-serif;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Hairline Dividers */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* Product Cards */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-white);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.product-card:hover .product-image.primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image.secondary {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.product-image.secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+/* Quick Add Button */
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 8px 20px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-white);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.variant-pill.active {
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+  border-color: var(--color-charcoal);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-gold);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.accordion-content {
+  padding: 16px 0;
+  font-size: 14px;
+  color: var(--color-text-light);
+  line-height: 1.8;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--color-white);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  overflow-y: auto;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  background-color: var(--color-charcoal);
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ugc-card:hover img {
+  transform: scale(1.08);
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px 20px;
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.85), transparent);
+  color: var(--color-white);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.category-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+
+.category-tile:hover img {
+  transform: scale(1.08);
+}
+
+.category-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 24px;
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.75), transparent);
+  color: var(--color-white);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: var(--color-taupe);
+}
+
+/* Newsletter */
+.newsletter {
+  background-color: var(--color-charcoal);
+  color: var(--color-white);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-offwhite);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Star Rating */
+.stars {
+  color: var(--color-gold);
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 13px;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  
+  .product-card:hover {
+    transform: none;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus Styles */
+*:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
