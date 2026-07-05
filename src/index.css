@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for Velmora Fine Jewelry */
+:root {
+  --color-cream: #FAF7F2;
+  --color-warm: #F5EDE3;
+  --color-taupe: #D4C5B5;
+  --color-gold: #C9A96E;
+  --color-gold-light: #D4B87A;
+  --color-gold-dark: #A88A4E;
+  --color-charcoal: #2C2C2C;
+  --color-slate: #3D3D3D;
+  --color-ivory: #FFFFF8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--color-charcoal);
+  background-color: var(--color-ivory);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-taupe);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
+
+/* Smooth transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Image hover zoom */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.6s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-taupe), transparent);
+}
+
+/* Premium button styles */
+.btn-primary {
+  @apply bg-velmora-charcoal text-white px-8 py-3 font-sans text-sm uppercase tracking-wider;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  @apply bg-velmora-gold;
+}
+
+.btn-secondary {
+  @apply border border-velmora-charcoal text-velmora-charcoal px-8 py-3 font-sans text-sm uppercase tracking-wider bg-transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  @apply bg-velmora-charcoal text-white;
+}
+
+/* Product card styles */
+.product-card {
+  @apply relative overflow-hidden bg-white;
+}
+
+.product-card img {
+  @apply w-full h-full object-cover;
+  transition: transform 0.6s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Accordion styles */
+.accordion-item {
+  @apply border-b border-velmora-taupe;
+}
+
+.accordion-trigger {
+  @apply w-full flex items-center justify-between py-4 text-left font-sans text-sm uppercase tracking-wider text-velmora-charcoal;
+}
+
+/* Cart drawer animation */
+.cart-drawer {
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-drawer.closed {
+  transform: translateX(100%);
+}
+
+/* Overlay */
+.overlay {
+  transition: opacity 0.3s ease;
+}
+
+/* Newsletter input */
+.newsletter-input {
+  @apply w-full px-4 py-3 border border-velmora-taupe font-sans text-sm;
+  @apply focus:outline-none focus:border-velmora-gold;
+}
+
+/* Star rating */
+.star-rating {
+  @apply flex gap-1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  h1 {
+    @apply text-3xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+}
