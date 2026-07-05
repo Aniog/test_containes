@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Newsletter Subscribers",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254,
+      "description": "Email address submitted for Velmora newsletter updates"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 80,
+      "default": "homepage_newsletter",
+      "description": "Signup source or placement where the email was captured"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the newsletter signup was submitted"
+    }
+  },
+  "required": ["email", "source", "created_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
