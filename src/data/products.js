@@ -10,7 +10,7 @@ export const products = [
     rating: 4.8,
     reviewCount: 124,
     images: [
-      'https://images.unsplash.com/photo-1630018825809-2935a2932625?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
       'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
     ],
     variants: [
@@ -73,8 +73,8 @@ export const products = [
     rating: 4.6,
     reviewCount: 67,
     images: [
-      'https://images.unsplash.com/photo-1588444837495-6c529159a5ae?w=800&q=80',
-      'https://images.unsplash.com/photo-1573408301185-9146fe637ad7?w=800&q=80',
+      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&q=80',
+      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80',
     ],
     variants: [
       { id: 'gold', name: 'Gold', available: true },
@@ -94,8 +94,8 @@ export const products = [
     rating: 5.0,
     reviewCount: 45,
     images: [
-      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&q=80',
       'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
     ],
     variants: [
       { id: 'gold', name: 'Gold', available: true },
@@ -107,7 +107,7 @@ export const products = [
 ]
 
 export const categories = [
-  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1630018825809-2935a2932625?w=600&q=80' },
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80' },
   { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=600&q=80' },
 ]
@@ -134,10 +134,10 @@ export const testimonials = [
 ]
 
 export const ugcPosts = [
-  { id: 1, caption: 'Ear stack goals', image: 'https://images.unsplash.com/photo-1630018825809-2935a2932625?w=400&q=80' },
+  { id: 1, caption: 'Ear stack goals', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80' },
   { id: 2, caption: 'Golden hour glow', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80' },
   { id: 3, caption: 'Layered perfection', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80' },
-  { id: 4, caption: 'Everyday elegance', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80' },
-  { id: 5, caption: 'Stacked & styled', image: 'https://images.unsplash.com/photo-1588444837495-6c529159a5ae?w=400&q=80' },
-  { id: 6, caption: 'Gift of gold', image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80' },
+  { id: 4, caption: 'Everyday elegance', image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&q=80' },
+  { id: 5, caption: 'Stacked & styled', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=400&q=80' },
+  { id: 6, caption: 'Gift of gold', image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80' },
 ]
