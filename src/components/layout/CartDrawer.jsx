@@ -56,7 +56,7 @@ export default function CartDrawer() {
                   />
                   <div className="flex-1">
                     <h3 className="font-serif text-sm tracking-wider uppercase">{item.name}</h3>
-                    <p className="text-xs text-[#6b6560] mt-1">{item.variant}</p>
+                    <p className="text-xs text-[#6b6560] mt-1 capitalize">{item.variant}</p>
                     <p className="text-sm font-medium mt-2">${item.price}</p>
                     <div className="flex items-center gap-3 mt-3">
                       <button
