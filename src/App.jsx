@@ -1,15 +1,16 @@
-import './App.css'
+import { BrowserRouter as Router } from 'react-router-dom';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <Router>
+      <Layout>
+        <div style={{ padding: '40px' }}>
+          <h1>Testing Layout component...</h1>
+        </div>
+      </Layout>
+    </Router>
+  );
 }
 
-export default App
+export default App;
