@@ -1,76 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color-scheme: light;
+  color: #1B1410;
+  background-color: #FBF8F2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html, body, #root {
+  min-height: 100%;
+  background-color: #FBF8F2;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1B1410;
+  background-color: #FBF8F2;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    color: #1B1410;
+    letter-spacing: -0.005em;
   }
+  a { color: inherit; text-decoration: none; }
+  ::selection { background: #B08A52; color: #FBF8F2; }
+  button { font-family: inherit; }
+}
 
-  a:hover {
-    color: #747bff;
+@layer components {
+  .eyebrow {
+    @apply text-[11px] uppercase tracking-[0.32em] text-taupe font-medium;
   }
-
-  button {
-    background-color: #f9f9f9;
+  .product-name {
+    @apply text-[11px] uppercase tracking-[0.22em] font-medium text-espresso;
+  }
+  .hairline {
+    @apply h-px w-full bg-hairline;
+  }
+  .hairline-dark {
+    @apply h-px w-full bg-white/15;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-gold text-ivory px-8 py-3.5 text-[11px] uppercase tracking-[0.22em] font-medium hover:bg-gold-deep transition-colors duration-300;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center border border-espresso text-espresso px-8 py-3.5 text-[11px] uppercase tracking-[0.22em] font-medium hover:bg-espresso hover:text-ivory transition-colors duration-300;
+  }
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center border border-ivory/70 text-ivory px-8 py-3.5 text-[11px] uppercase tracking-[0.22em] font-medium hover:bg-ivory hover:text-noir transition-colors duration-300;
+  }
+  .link-underline {
+    @apply relative inline-block text-espresso;
+  }
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 -bottom-1 h-px w-full bg-espresso origin-left scale-x-100 transition-transform duration-300;
+  }
+  .link-underline:hover::after { @apply bg-gold; }
+  .container-page {
+    @apply max-w-page mx-auto px-6 md:px-10 lg:px-16;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Hide scrollbar utility for horizontal reel */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Tighter image rendering for product photos */
+img { color: transparent; }
