@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #F8F5F2;
+  color: #2C1E18;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+@layer components {
+  .heading-serif {
+    @apply font-serif font-medium tracking-tight text-espresso;
+  }
+  .product-name {
+    @apply font-serif uppercase tracking-widest text-sm md:text-base text-espresso;
+  }
+  .hairline {
+    @apply border-t border-stonehair;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-accent text-white px-8 py-3.5 text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:bg-accent-hover;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center border border-espresso text-espresso px-8 py-3.5 text-sm font-medium tracking-wide uppercase transition-all duration-300 hover:bg-espresso hover:text-white;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar for UGC row */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
