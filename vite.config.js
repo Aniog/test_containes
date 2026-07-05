@@ -19,6 +19,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: Number(process.env.VITE_PORT || 8080),
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
