@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Product price"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "details": {
+      "type": "string",
+      "description": "Full product details (Materials & Care)"
+    },
+    "image_primary": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Primary product image"
+    },
+    "image_secondary": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Hover reveal image"
+    },
+    "variant": {
+      "type": "string",
+      "enum": ["Gold", "Silver", "Both"],
+      "default": "Gold",
+      "description": "Available metal tone"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show in bestseller grid"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
