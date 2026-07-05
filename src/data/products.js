@@ -1,0 +1,136 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A delicate gold ear cuff with a single crystal accent that catches the light with every turn.',
+    details: '18K gold-plated brass with a crystal accent. Hypoallergenic and tarnish-resistant.',
+    materials: '18K gold-plated brass, crystal',
+    care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-10 business days.',
+    returns: '30-day hassle-free returns. Items must be unworn and in original packaging.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    variants: [
+      { name: 'Gold Tone', value: 'gold' },
+      { name: 'Silver Tone', value: 'silver' },
+    ],
+    bestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A multicolor floral crystal necklace that blooms with vibrant elegance.',
+    details: '18K gold-plated chain with multicolor floral crystal pendant. Adjustable length.',
+    materials: '18K gold-plated brass, multicolor crystals',
+    care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-10 business days.',
+    returns: '30-day hassle-free returns. Items must be unworn and in original packaging.',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    variants: [
+      { name: 'Gold Tone', value: 'gold' },
+      { name: 'Silver Tone', value: 'silver' },
+    ],
+    bestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 203,
+    description: 'Chunky gold dome huggie earrings that make a quiet statement.',
+    details: '18K gold-plated brass. Hypoallergenic posts. Lightweight and comfortable for all-day wear.',
+    materials: '18K gold-plated brass',
+    care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-10 business days.',
+    returns: '30-day hassle-free returns. Items must be unworn and in original packaging.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    variants: [
+      { name: 'Gold Tone', value: 'gold' },
+      { name: 'Silver Tone', value: 'silver' },
+    ],
+    bestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    price: 54,
+    rating: 4.8,
+    reviewCount: 67,
+    description: 'Textured gold filigree drop earrings inspired by vintage lace.',
+    details: '18K gold-plated brass with intricate filigree detailing. Hypoallergenic posts.',
+    materials: '18K gold-plated brass',
+    care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-10 business days.',
+    returns: '30-day hassle-free returns. Items must be unworn and in original packaging.',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    variants: [
+      { name: 'Gold Tone', value: 'gold' },
+      { name: 'Silver Tone', value: 'silver' },
+    ],
+    bestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 42,
+    description: 'A gift-boxed earring and necklace set fit for a modern heirloom.',
+    details: '18K gold-plated brass. Includes matching earrings and necklace. Presented in a signature gift box.',
+    materials: '18K gold-plated brass',
+    care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-10 business days.',
+    returns: '30-day hassle-free returns. Items must be unworn and in original packaging.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    variants: [
+      { name: 'Gold Tone', value: 'gold' },
+      { name: 'Silver Tone', value: 'silver' },
+    ],
+    bestseller: true,
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80' },
+]
+
+export const testimonials = [
+  { id: 1, name: 'Sophia M.', rating: 5, text: 'The quality is incredible for the price. I get compliments every time I wear my Vivid Aura earrings.' },
+  { id: 2, name: 'Emma R.', rating: 5, text: 'Beautiful packaging and even more beautiful jewelry. The Golden Sphere Huggies are my new everyday staple.' },
+  { id: 3, name: 'Olivia K.', rating: 5, text: 'I bought the Royal Heirloom Set as a gift and it was absolutely perfect. Will definitely order again.' },
+]
+
+export const ugcItems = [
+  { id: 1, handle: '@sophia.style', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', caption: 'Weekend elegance' },
+  { id: 2, handle: '@emma.looks', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80', caption: 'Gold hour' },
+  { id: 3, handle: '@olivia.wears', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80', caption: 'Layered love' },
+  { id: 4, handle: '@chloe.jewels', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&q=80', caption: 'Demi-fine daily' },
+]
