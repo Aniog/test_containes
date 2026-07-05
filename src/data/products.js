@@ -1,0 +1,113 @@
+export const PRODUCTS = [
+  {
+    id: 1,
+    name: "Vivid Aura Jewels",
+    category: "earrings",
+    material: "gold",
+    price: 42,
+    description: "Gold ear cuff with a luminous crystal accent. Designed to catch the light from every angle.",
+    details: "Handcrafted in 18K gold-plated brass with a genuine cubic zirconia crystal. Adjustable fit for most ear shapes.",
+    care: "Avoid contact with water, perfumes, and lotions. Store in a dry place. Gently polish with a soft cloth.",
+    shipping: "Free worldwide shipping on all orders. Estimated delivery: 5–10 business days. 30-day hassle-free returns.",
+    rating: 4.8,
+    reviewCount: 124,
+    images: [
+      "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80",
+      "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80",
+    ],
+    altImage: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80",
+  },
+  {
+    id: 2,
+    name: "Majestic Flora Nectar",
+    category: "necklaces",
+    material: "gold",
+    price: 68,
+    description: "A multicolor floral crystal necklace that blooms with every movement.",
+    details: "18K gold-plated chain with hand-set multicolor crystal flowers. Adjustable chain from 16 to 18 inches. Secured with a lobster clasp.",
+    care: "Avoid contact with water, perfumes, and lotions. Store flat in a jewelry box to prevent tangling.",
+    shipping: "Free worldwide shipping on all orders. Estimated delivery: 5–10 business days. 30-day hassle-free returns.",
+    rating: 4.9,
+    reviewCount: 89,
+    images: [
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80&flip=1",
+    ],
+    altImage: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+  },
+  {
+    id: 3,
+    name: "Golden Sphere Huggies",
+    category: "huggies",
+    material: "gold",
+    price: 38,
+    description: "Chunky gold dome huggie earrings that make a quiet statement.",
+    details: "18K gold-plated brass with a polished dome finish. Hinge hoop design for easy wear. Diameter: 12mm.",
+    care: "Avoid contact with water, perfumes, and lotions. Store in a dry place. Gently polish with a soft cloth.",
+    shipping: "Free worldwide shipping on all orders. Estimated delivery: 5–10 business days. 30-day hassle-free returns.",
+    rating: 4.7,
+    reviewCount: 203,
+    images: [
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80&flip=1",
+    ],
+    altImage: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+  },
+  {
+    id: 4,
+    name: "Amber Lace Earrings",
+    category: "earrings",
+    material: "gold",
+    price: 54,
+    description: "Textured gold filigree drop earrings with an heirloom feel.",
+    details: "Intricate filigree pattern in 18K gold-plated brass. Drop length: 1.5 inches. Post backing for pierced ears.",
+    care: "Avoid contact with water, perfumes, and lotions. Store in a dry place. Handle with care to preserve the filigree detail.",
+    shipping: "Free worldwide shipping on all orders. Estimated delivery: 5–10 business days. 30-day hassle-free returns.",
+    rating: 4.9,
+    reviewCount: 67,
+    images: [
+      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=800&q=80",
+      "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80",
+    ],
+    altImage: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=800&q=80",
+  },
+  {
+    id: 5,
+    name: "Royal Heirloom Set",
+    category: "set",
+    material: "gold",
+    price: 95,
+    description: "A gift-boxed earring and necklace set in an elegant keepsake box.",
+    details: "Complete set featuring a pendant necklace and matching stud earrings. 18K gold-plated brass with polished finish. Necklace chain: 18 inches. Earring post: 8mm. Presented in a velvet-lined gift box.",
+    care: "Avoid contact with water, perfumes, and lotions. Store in the provided gift box to maintain finish.",
+    shipping: "Free worldwide shipping on all orders. Estimated delivery: 5–10 business days. 30-day hassle-free returns.",
+    rating: 5.0,
+    reviewCount: 42,
+    images: [
+      "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80",
+      "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=800&q=80",
+    ],
+    altImage: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+  },
+]
+
+export const CATEGORIES = [
+  { id: "earrings", name: "Earrings", image: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&q=80" },
+  { id: "necklaces", name: "Necklaces", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80" },
+  { id: "huggies", name: "Huggies", image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80" },
+]
+
+export const REVIEWS = [
+  { name: "Sophia M.", rating: 5, text: "Absolutely stunning quality. The金色 pieces look even more beautiful in person. I've received countless compliments." },
+  { name: "Emma K.", rating: 5, text: "Bought the Royal Heirloom Set as a gift and she was speechless. The packaging is exquisite — truly feels like a luxury brand." },
+  { name: "Olivia R.", rating: 5, text: "Fast shipping, beautiful pieces, and the customer service was wonderful when I needed to exchange sizes. Will definitely be a repeat customer." },
+]
+
+export const UGC_ITEMS = [
+  { id: 1, caption: "My daily go-to studs", image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&q=80" },
+  { id: 2, caption: "Layered with Velmora", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80" },
+  { id: 3, caption: "Gold on gold ✨", image: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80" },
+  { id: 4, caption: "Bought these for myself", image: "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?w=400&q=80" },
+  { id: 5, caption: "Gift from my partner", image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&q=80" },
+  { id: 6, caption: "Perfect for everyday", image: "https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&q=80" },
+]
