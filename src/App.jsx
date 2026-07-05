@@ -1,15 +1,5 @@
-import './App.css'
+import React from 'react';
 
-function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+export default function App() {
+  return <div style={{ padding: 40, color: 'red', fontSize: 32 }}>HELLO WORLD - TESTING</div>;
 }
-
-export default App

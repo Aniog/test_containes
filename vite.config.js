@@ -8,9 +8,9 @@ import checkImgPlugin from './plugin/vite-plugin-check-img.js'
 export default defineConfig({
   plugins: [
     // Our plugin runs BEFORE React transform so it sees raw JSX
-    strkImgPlugin(),
-    checkImgPlugin(),
-    visualEditPlugin(),
+    // strkImgPlugin(),
+    // checkImgPlugin(),
+    // visualEditPlugin(),
     react(),
   ],
   resolve: {

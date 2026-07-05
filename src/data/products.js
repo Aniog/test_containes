@@ -1,0 +1,121 @@
+const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    category: 'earrings',
+    material: 'gold',
+    description: 'A sculptural ear cuff with a luminous crystal accent. Designed to be worn alone or stacked for a curated ear, this piece catches light from every angle.',
+    details: '18K gold-plated brass with cubic zirconia accent. Hypoallergenic posts. Sold as a single.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided Velmora pouch. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on all orders. 30-day hassle-free returns. All pieces arrive in Velmora signature packaging.',
+    images: [
+      'vivid-aura-1',
+      'vivid-aura-2',
+      'vivid-aura-3',
+    ],
+    features: ['18K Gold Plated', 'Hypoallergenic', 'Crystal Accent'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A statement floral pendant adorned with multicolor crystals. The intricate petal work captures the essence of a garden in full bloom, suspended on a delicate chain.',
+    details: '18K gold-plated brass with multicolor crystal settings. Adjustable chain: 16"-18". Lobster clasp closure.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided Velmora pouch. Clean gently with a soft jewelry cloth.',
+    shipping: 'Free worldwide shipping on all orders. 30-day hassle-free returns. All pieces arrive in Velmora signature packaging.',
+    images: [
+      'majestic-flora-1',
+      'majestic-flora-2',
+      'majestic-flora-3',
+    ],
+    features: ['18K Gold Plated', 'Multicolor Crystals', 'Adjustable Chain'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 203,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Chunky dome huggies with a high-polish finish. These everyday essentials add instant warmth to any look. Lightweight enough for all-day wear.',
+    details: '18K gold-plated brass. Diameter: 12mm. Hinge closure with snap post. Sold as a pair.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided Velmora pouch. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on all orders. 30-day hassle-free returns. All pieces arrive in Velmora signature packaging.',
+    images: [
+      'golden-sphere-1',
+      'golden-sphere-2',
+      'golden-sphere-3',
+    ],
+    features: ['18K Gold Plated', 'Hypoallergenic', 'Lightweight'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    rating: 4.6,
+    reviewCount: 67,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Textured filigree drop earrings inspired by vintage lace patterns. The intricate openwork design creates a delicate play of light and shadow.',
+    details: '18K gold-plated brass with filigree openwork. Drop length: 35mm. French hook closure. Sold as a pair.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided Velmora pouch. Use a soft brush for detailed cleaning.',
+    shipping: 'Free worldwide shipping on all orders. 30-day hassle-free returns. All pieces arrive in Velmora signature packaging.',
+    images: [
+      'amber-lace-1',
+      'amber-lace-2',
+      'amber-lace-3',
+    ],
+    features: ['18K Gold Plated', 'Filigree Design', 'Drop Earrings'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 42,
+    category: 'sets',
+    material: 'gold',
+    description: 'A beautifully gift-boxed earring and necklace set. The matching duo features a timeless design that transitions effortlessly from day to evening.',
+    details: '18K gold-plated brass. Set includes matching pendant necklace (16"-18" chain) and stud earrings. Gift box included.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided Velmora pouch. Clean gently with a soft jewelry cloth.',
+    shipping: 'Free worldwide shipping on all orders. 30-day hassle-free returns. All pieces arrive in Velmora signature packaging.',
+    images: [
+      'royal-heirloom-1',
+      'royal-heirloom-2',
+      'royal-heirloom-3',
+    ],
+    features: ['18K Gold Plated', 'Gift Boxed', 'Matching Set'],
+  },
+];
+
+export default products;
+
+export const categories = [
+  { id: 'all', name: 'All' },
+  { id: 'earrings', name: 'Earrings' },
+  { id: 'necklaces', name: 'Necklaces' },
+  { id: 'sets', name: 'Sets' },
+];
+
+export const reviews = [
+  { id: 1, name: 'Sarah M.', text: 'Absolutely stunning. The quality far exceeded my expectations, and the packaging made it feel like such a special gift to myself.', rating: 5 },
+  { id: 2, name: 'Rebecca K.', text: 'I wear my Golden Sphere Huggies every single day. They still look brand new after months. Already planning my next purchase.', rating: 5 },
+  { id: 3, name: 'Jennifer L.', text: 'The customer service is impeccable. My order arrived beautifully wrapped and the necklace is even more gorgeous in person.', rating: 5 },
+];
+
+export const ugcItems = [
+  { id: 1, caption: 'Golden hour with my Velmora stack ✨', username: '@sophie.m' },
+  { id: 2, caption: 'The perfect anniversary gift 💛', username: '@emma.r' },
+  { id: 3, caption: 'Obsessed with these layers', username: '@olivia.j' },
+  { id: 4, caption: 'Everyday elegance', username: '@maya.k' },
+  { id: 5, caption: 'New season, new jewels', username: '@lara.n' },
+  { id: 6, caption: 'Sunday brunch details', username: '@amelia.t' },
+];
