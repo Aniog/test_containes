@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Twitter, Pinterest, Youtube } from "lucide-react";
+import { Instagram, Twitter, ExternalLink, Youtube } from "lucide-react";
 
 const footerColumns = [
   {
@@ -71,7 +71,7 @@ export default function Footer() {
                 className="text-secondary hover:text-accent transition-colors"
                 aria-label="Pinterest"
               >
-                <Pinterest className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4" />
               </a>
               <a
                 href="#"
