@@ -1,0 +1,145 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    slug: 'vivid-aura-jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 127,
+    description: 'A striking gold ear cuff adorned with a delicate crystal accent. Effortlessly chic, this piece adds a touch of radiance without the need for a piercing.',
+    longDescription: 'The Vivid Aura Jewels ear cuff is designed for the modern woman who appreciates understated elegance. Crafted from premium 18K gold-plated stainless steel, this cuff features a single faceted crystal that catches the light beautifully. No piercing required — simply slide it onto your ear and adjust for a comfortable, secure fit.',
+    materials: '18K gold-plated stainless steel, AAA-grade cubic zirconia crystal. Nickel-free, lead-free, hypoallergenic.',
+    care: 'Store in the included pouch when not wearing. Avoid contact with perfume, lotions, and water. Clean gently with a soft cloth.',
+    shipping: 'Free worldwide shipping. Estimated delivery: 5–10 business days. 30-day hassle-free returns.',
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A84C' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    images: [
+      { id: 1, alt: 'Vivid Aura Jewels ear cuff front view' },
+      { id: 2, alt: 'Vivid Aura Jewels ear cuff side detail' },
+      { id: 3, alt: 'Vivid Aura Jewels ear cuff being worn' },
+    ],
+    bestseller: true,
+    imgId: 'vivid-aura-main',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    slug: 'majestic-flora-nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 203,
+    description: 'A multicolor floral crystal necklace that blooms with vibrant elegance. Each petal catches the light in a different hue.',
+    longDescription: 'Inspired by the delicate beauty of a wildflower meadow, the Majestic Flora Nectar necklace features hand-set multicolor crystals arranged in a stunning floral pendant. The 18K gold chain drapes gracefully, adjustable from 16" to 20" for the perfect fit. A statement piece that transitions effortlessly from day to evening.',
+    materials: '18K gold-plated brass, multicolor AAA-grade cubic zirconia crystals. Hypoallergenic, tarnish-resistant coating.',
+    care: 'Avoid exposure to water, perfume, and chemicals. Store flat in the provided jewelry box. Polish with a dry microfiber cloth.',
+    shipping: 'Free worldwide shipping. Estimated delivery: 5–10 business days. 30-day hassle-free returns.',
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A84C' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    images: [
+      { id: 1, alt: 'Majestic Flora Nectar necklace front view' },
+      { id: 2, alt: 'Majestic Flora Nectar crystal detail' },
+      { id: 3, alt: 'Majestic Flora Nectar being worn' },
+    ],
+    bestseller: true,
+    imgId: 'majestic-flora-main',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    slug: 'golden-sphere-huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 315,
+    description: 'Chunky gold dome huggie earrings that hug your lobes with bold, sculptural elegance. A modern essential.',
+    longDescription: 'The Golden Sphere Huggies are the ultimate everyday luxury. Their chunky dome shape creates a bold yet refined silhouette that flatters every face shape. Crafted with a smooth, polished finish and secure click-close mechanism, these huggies are designed to be worn from morning to midnight without discomfort.',
+    materials: '18K gold-plated stainless steel with high-polish finish. Waterproof, sweat-proof, tarnish-resistant. Hypoallergenic.',
+    care: 'These huggies are designed for everyday wear. Clean with mild soap and water if needed. Dry thoroughly before storing.',
+    shipping: 'Free worldwide shipping. Estimated delivery: 5–10 business days. 30-day hassle-free returns.',
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A84C' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    images: [
+      { id: 1, alt: 'Golden Sphere Huggies front view' },
+      { id: 2, alt: 'Golden Sphere Huggies close-up' },
+      { id: 3, alt: 'Golden Sphere Huggies being worn' },
+    ],
+    bestseller: true,
+    imgId: 'golden-sphere-main',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    slug: 'amber-lace-earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.6,
+    reviewCount: 89,
+    description: 'Textured gold filigree drop earrings with an intricate lace-like pattern. Vintage-inspired with a modern edge.',
+    longDescription: 'The Amber Lace Earrings draw inspiration from antique lacework, translated into shimmering gold filigree. Each pair is meticulously crafted with an openwork design that allows light to pass through, creating a beautiful play of shadow and shine. The lightweight drop style ensures all-day comfort while making a sophisticated statement.',
+    materials: '18K gold-plated brass with filigree detailing. Nickel-free, hypoallergenic. Lever-back closure for secure wear.',
+    care: 'Handle with care due to delicate filigree work. Store in a soft pouch away from other jewelry. Avoid water and chemicals.',
+    shipping: 'Free worldwide shipping. Estimated delivery: 5–10 business days. 30-day hassle-free returns.',
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A84C' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    images: [
+      { id: 1, alt: 'Amber Lace Earrings front view' },
+      { id: 2, alt: 'Amber Lace Earrings filigree detail' },
+      { id: 3, alt: 'Amber Lace Earrings being worn' },
+    ],
+    bestseller: false,
+    imgId: 'amber-lace-main',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    slug: 'royal-heirloom-set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 64,
+    description: 'A gift-boxed earring and necklace set fit for royalty. The perfect present for someone special — or yourself.',
+    longDescription: 'The Royal Heirloom Set is our most luxurious gift offering. Presented in a velvet-lined keepsake box, this curated set pairs our bestselling Golden Sphere Huggies with a matching pendant necklace featuring a single brilliant crystal. Together, they create a cohesive look that exudes quiet confidence and timeless elegance.',
+    materials: '18K gold-plated stainless steel, AAA-grade cubic zirconia. All pieces are hypoallergenic, waterproof, and tarnish-resistant.',
+    care: 'Each piece can be worn daily. Clean gently with a soft cloth. Store in the included keepsake box when not wearing.',
+    shipping: 'Free worldwide shipping in signature gift packaging. Estimated delivery: 5–10 business days. 30-day hassle-free returns.',
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A84C' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    images: [
+      { id: 1, alt: 'Royal Heirloom Set gift box' },
+      { id: 2, alt: 'Royal Heirloom Set earring detail' },
+      { id: 3, alt: 'Royal Heirloom Set necklace detail' },
+    ],
+    bestseller: true,
+    imgId: 'royal-heirloom-main',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 1 },
+  { id: 'huggies', name: 'Huggies', count: 1 },
+  { id: 'sets', name: 'Sets', count: 1 },
+];
+
+export const priceRanges = [
+  { id: 'under-50', label: 'Under $50', min: 0, max: 50 },
+  { id: '50-75', label: '$50 – $75', min: 50, max: 75 },
+  { id: 'over-75', label: '$75+', min: 75, max: Infinity },
+];
+
+export const getProductBySlug = (slug) => products.find((p) => p.slug === slug);
+
+export const getRelatedProducts = (product, limit = 4) =>
+  products.filter((p) => p.id !== product.id).slice(0, limit);
