@@ -1,76 +1,150 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #2A2018;
+    background-color: #F5EFE6;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html, body, #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-family: inherit;
+    background-color: #F5EFE6;
+    color: #2A2018;
+    overflow-x: hidden;
+  }
+
+  /* Default links: warm, refined, no harsh colors */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Focus visible: tasteful gold ring, no chunky browser default */
+  :focus-visible {
+    outline: 2px solid #B8954A;
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Hide scrollbar utility (for horizontal reels) */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Selection: warm gold */
+  ::selection {
+    background: #B8954A;
+    color: #1A1410;
+  }
+}
+
+@layer components {
+  .container-velmora {
+    @apply max-w-[1280px] mx-auto px-5 md:px-10;
+  }
+
+  .eyebrow {
+    @apply text-[10px] md:text-xs font-sans uppercase tracking-[0.3em] text-gold;
+  }
+
+  .display-headline {
+    @apply font-serif font-light leading-[1.05] tracking-[-0.01em];
+  }
+
+  .product-name {
+    @apply font-serif font-medium uppercase tracking-[0.18em];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4
+      bg-ink text-text-on-dark
+      text-[11px] font-sans uppercase tracking-[0.25em]
+      transition-all duration-300 ease-elegant
+      hover:bg-ink-soft;
+  }
+
+  .btn-primary-on-dark {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4
+      bg-cream text-ink
+      text-[11px] font-sans uppercase tracking-[0.25em]
+      transition-all duration-300 ease-elegant
+      hover:bg-gold hover:text-ink;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4
+      bg-gold text-ink
+      text-[11px] font-sans uppercase tracking-[0.25em]
+      transition-all duration-300 ease-elegant
+      hover:bg-gold-deep hover:text-cream;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4
+      border border-ink text-ink bg-transparent
+      text-[11px] font-sans uppercase tracking-[0.25em]
+      transition-all duration-300 ease-elegant
+      hover:bg-ink hover:text-cream;
+  }
+
+  .btn-outline-on-dark {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4
+      border border-cream/60 text-cream bg-transparent
+      text-[11px] font-sans uppercase tracking-[0.25em]
+      transition-all duration-300 ease-elegant
+      hover:bg-cream hover:text-ink;
+  }
+
+  .text-link {
+    @apply relative inline-block text-[11px] font-sans uppercase tracking-[0.25em] text-gold
+      transition-colors duration-300;
+  }
+  .text-link::after {
+    content: "";
+    @apply absolute left-0 -bottom-1 h-px w-full origin-left scale-x-0 bg-gold
+      transition-transform duration-500 ease-elegant;
+  }
+  .text-link:hover::after { @apply scale-x-100; }
+
+  .hairline-dark {
+    @apply border-t border-gold/20;
+  }
+  .hairline-light {
+    @apply border-t border-ink/10;
+  }
+}
+
+/* Reveal-on-scroll utility */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero entrance animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 1.1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
