@@ -1,76 +1,68 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 20% 97%;
+    --foreground: 0 0% 9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 9%;
+    --primary: 36 38% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 36 24% 92%;
+    --secondary-foreground: 36 38% 30%;
+    --muted: 36 12% 92%;
+    --muted-foreground: 36 8% 45%;
+    --accent: 36 38% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 36 12% 84%;
+    --input: 36 12% 84%;
+    --ring: 36 38% 55%;
+    --radius: 0rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .hairline {
+    @apply border-t border-[hsl(var(--border))]/40;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-[#b68860] text-white 
+           font-sans text-sm font-medium tracking-[0.05em] uppercase
+           transition-all duration-300 hover:bg-[#a87655] 
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b68860]/50;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3 
+           border border-[#b68860] text-[#b68860]
+           font-sans text-sm font-medium tracking-[0.05em] uppercase
+           transition-all duration-300 hover:bg-[#b68860] hover:text-white
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#b68860]/50;
+  }
+
+  .product-name {
+    @apply font-serif text-xs tracking-[0.15em] uppercase;
+  }
+}
