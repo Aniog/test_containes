@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Pinterest, Youtube } from 'lucide-react';
+import { Instagram, Youtube } from 'lucide-react';
 
 const shopLinks = ['All Jewelry', 'Earrings', 'Necklaces', 'Huggies', 'Gift Sets', 'New Arrivals'];
 const helpLinks = ['Shipping & Returns', 'Size Guide', 'Jewelry Care', 'FAQ', 'Contact Us'];
@@ -22,8 +22,8 @@ export default function Footer() {
               <a href="#" className="text-white/40 hover:text-velmora-gold transition-colors" aria-label="Instagram">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="text-white/40 hover:text-velmora-gold transition-colors" aria-label="Pinterest">
-                <Pinterest className="w-4 h-4" />
+              <a href="#" className="text-white/40 hover:text-velmora-gold transition-colors" aria-label="Twitter">
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
               </a>
               <a href="#" className="text-white/40 hover:text-velmora-gold transition-colors" aria-label="Youtube">
                 <Youtube className="w-4 h-4" />

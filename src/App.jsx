@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from '@/context/CartContext';
 import Layout from '@/components/Layout';
-import HomePage from '@/pages/HomePage';
-import ShopPage from '@/pages/ShopPage';
-import ProductDetailPage from '@/pages/ProductDetailPage';
+
+function HomeTest() { return <h1 style={{color: 'black', padding: '40px'}}>Home Test OK</h1>; }
+function ShopTest() { return <h1 style={{color: 'black', padding: '40px'}}>Shop Test OK</h1>; }
+function PDPTest() { return <h1 style={{color: 'black', padding: '40px'}}>PDP Test OK</h1>; }
 
 export default function App() {
   return (
@@ -11,9 +12,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/shop" element={<ShopPage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route index element={<HomeTest />} />
+            <Route path="/shop" element={<ShopTest />} />
+            <Route path="/product/:id" element={<PDPTest />} />
           </Route>
         </Routes>
       </BrowserRouter>
