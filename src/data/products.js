@@ -1,0 +1,143 @@
+export const products = [
+  {
+    id: 1,
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 124,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'vivid-aura-1',
+      'vivid-aura-2',
+    ],
+    imgId: 'vivid-aura-main-a1b2c3',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+  },
+  {
+    id: 2,
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 89,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'majestic-flora-1',
+      'majestic-flora-2',
+    ],
+    imgId: 'majestic-flora-main-d4e5f6',
+    titleId: 'product-majestic-flora-title',
+    descId: 'product-majestic-flora-desc',
+  },
+  {
+    id: 3,
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    rating: 4.7,
+    reviews: 203,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'golden-sphere-1',
+      'golden-sphere-2',
+    ],
+    imgId: 'golden-sphere-main-g7h8i9',
+    titleId: 'product-golden-sphere-title',
+    descId: 'product-golden-sphere-desc',
+  },
+  {
+    id: 4,
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.6,
+    reviews: 67,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'amber-lace-1',
+      'amber-lace-2',
+    ],
+    imgId: 'amber-lace-main-j1k2l3',
+    titleId: 'product-amber-lace-title',
+    descId: 'product-amber-lace-desc',
+  },
+  {
+    id: 5,
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set',
+    price: 95,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 5.0,
+    reviews: 42,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'royal-heirloom-1',
+      'royal-heirloom-2',
+    ],
+    imgId: 'royal-heirloom-main-m4n5o6',
+    titleId: 'product-royal-heirloom-title',
+    descId: 'product-royal-heirloom-desc',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    imgId: 'cat-earrings-p7q8r9',
+    titleId: 'cat-earrings-title',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    imgId: 'cat-necklaces-s1t2u3',
+    titleId: 'cat-necklaces-title',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    imgId: 'cat-huggies-v4w5x6',
+    titleId: 'cat-huggies-title',
+  },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every day and they still look brand new.',
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift and the packaging alone was stunning. My sister absolutely loved it.',
+  },
+  {
+    id: 3,
+    name: 'Jessica L.',
+    rating: 5,
+    text: 'Finally, jewelry that looks luxurious without the luxury price tag. The Amber Lace Earrings are my new go-to.',
+  },
+]
+
+export const ugcItems = [
+  { id: 1, caption: 'Everyday elegance', imgId: 'ugc-1-a7b8c9', captionId: 'ugc-caption-1' },
+  { id: 2, caption: 'Golden hour glow', imgId: 'ugc-2-d0e1f2', captionId: 'ugc-caption-2' },
+  { id: 3, caption: 'Stacked & styled', imgId: 'ugc-3-g3h4i5', captionId: 'ugc-caption-3' },
+  { id: 4, caption: 'Gift ready', imgId: 'ugc-4-j6k7l8', captionId: 'ugc-caption-4' },
+  { id: 5, caption: 'Minimal magic', imgId: 'ugc-5-m9n0o1', captionId: 'ugc-caption-5' },
+  { id: 6, caption: 'Date night look', imgId: 'ugc-6-p2q3r4', captionId: 'ugc-caption-6' },
+]
