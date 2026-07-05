@@ -7,11 +7,10 @@ import checkImgPlugin from './plugin/vite-plugin-check-img.js'
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
+    react(),
     strkImgPlugin(),
     checkImgPlugin(),
     visualEditPlugin(),
-    react(),
   ],
   resolve: {
     alias: {
@@ -27,7 +26,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
