@@ -1,76 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: Manrope, Inter, system-ui, sans-serif;
+  color: #211814;
+  background: #F7F1E8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
+  background: #F7F1E8;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: #F7F1E8;
+  color: #211814;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #B98A45;
+  outline-offset: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #B98A45;
+  color: #FFFDF8;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.scrollbar-hide {
+  scrollbar-width: none;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --velmora-ivory: 247 241 232;
+  --velmora-espresso: 33 24 20;
+  --velmora-taupe: 185 169 154;
+  --velmora-champagne: 239 226 207;
+  --velmora-gold: 185 138 69;
+  --velmora-bronze: 110 75 46;
+  --velmora-pearl: 255 253 248;
+}
+
+.font-serif { font-family: "Playfair Display", Georgia, serif; }
+.font-sans { font-family: Manrope, Inter, system-ui, sans-serif; }
+
+.bg-velmora-ivory { background-color: rgb(var(--velmora-ivory)); }
+.bg-velmora-ivory\/95 { background-color: rgb(var(--velmora-ivory) / 0.95); }
+.bg-velmora-espresso { background-color: rgb(var(--velmora-espresso)); }
+.bg-velmora-espresso\/45 { background-color: rgb(var(--velmora-espresso) / 0.45); }
+.bg-velmora-champagne { background-color: rgb(var(--velmora-champagne)); }
+.bg-velmora-champagne\/60 { background-color: rgb(var(--velmora-champagne) / 0.60); }
+.bg-velmora-champagne\/70 { background-color: rgb(var(--velmora-champagne) / 0.70); }
+.bg-velmora-champagne\/75 { background-color: rgb(var(--velmora-champagne) / 0.75); }
+.bg-velmora-gold { background-color: rgb(var(--velmora-gold)); }
+.bg-velmora-bronze { background-color: rgb(var(--velmora-bronze)); }
+.bg-velmora-pearl { background-color: rgb(var(--velmora-pearl)); }
+.bg-velmora-taupe { background-color: rgb(var(--velmora-taupe)); }
+.bg-transparent { background-color: transparent; }
+
+.text-velmora-espresso { color: rgb(var(--velmora-espresso)); }
+.text-velmora-espresso\/75 { color: rgb(var(--velmora-espresso) / 0.75); }
+.text-velmora-espresso\/72 { color: rgb(var(--velmora-espresso) / 0.72); }
+.text-velmora-espresso\/70 { color: rgb(var(--velmora-espresso) / 0.70); }
+.text-velmora-espresso\/68 { color: rgb(var(--velmora-espresso) / 0.68); }
+.text-velmora-espresso\/65 { color: rgb(var(--velmora-espresso) / 0.65); }
+.text-velmora-espresso\/62 { color: rgb(var(--velmora-espresso) / 0.62); }
+.text-velmora-espresso\/60 { color: rgb(var(--velmora-espresso) / 0.60); }
+.text-velmora-espresso\/58 { color: rgb(var(--velmora-espresso) / 0.58); }
+.text-velmora-espresso\/55 { color: rgb(var(--velmora-espresso) / 0.55); }
+.text-velmora-espresso\/50 { color: rgb(var(--velmora-espresso) / 0.50); }
+.text-velmora-gold { color: rgb(var(--velmora-gold)); }
+.text-velmora-bronze { color: rgb(var(--velmora-bronze)); }
+.text-velmora-pearl { color: rgb(var(--velmora-pearl)); }
+.text-velmora-pearl\/78 { color: rgb(var(--velmora-pearl) / 0.78); }
+.text-velmora-pearl\/75 { color: rgb(var(--velmora-pearl) / 0.75); }
+.text-velmora-pearl\/72 { color: rgb(var(--velmora-pearl) / 0.72); }
+.text-velmora-pearl\/70 { color: rgb(var(--velmora-pearl) / 0.70); }
+.text-velmora-pearl\/62 { color: rgb(var(--velmora-pearl) / 0.62); }
+.text-velmora-pearl\/55 { color: rgb(var(--velmora-pearl) / 0.55); }
+
+.border-velmora-taupe\/25 { border-color: rgb(var(--velmora-taupe) / 0.25); }
+.border-velmora-taupe\/30 { border-color: rgb(var(--velmora-taupe) / 0.30); }
+.border-velmora-taupe\/35 { border-color: rgb(var(--velmora-taupe) / 0.35); }
+.border-velmora-taupe\/40 { border-color: rgb(var(--velmora-taupe) / 0.40); }
+.border-velmora-taupe\/45 { border-color: rgb(var(--velmora-taupe) / 0.45); }
+.border-velmora-taupe\/50 { border-color: rgb(var(--velmora-taupe) / 0.50); }
+.border-velmora-pearl\/15 { border-color: rgb(var(--velmora-pearl) / 0.15); }
+.border-velmora-pearl\/20 { border-color: rgb(var(--velmora-pearl) / 0.20); }
+.border-velmora-pearl\/25 { border-color: rgb(var(--velmora-pearl) / 0.25); }
+.border-velmora-pearl\/45 { border-color: rgb(var(--velmora-pearl) / 0.45); }
+.border-velmora-gold { border-color: rgb(var(--velmora-gold)); }
+.border-velmora-espresso { border-color: rgb(var(--velmora-espresso)); }
+
+.from-velmora-espresso\/50 { --tw-gradient-from: rgb(var(--velmora-espresso) / 0.50) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--velmora-espresso) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/78 { --tw-gradient-from: rgb(var(--velmora-espresso) / 0.78) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--velmora-espresso) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/82 { --tw-gradient-from: rgb(var(--velmora-espresso) / 0.82) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--velmora-espresso) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-espresso\/10 { --tw-gradient-to: rgb(var(--velmora-espresso) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--velmora-espresso) / 0.10) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.via-velmora-espresso\/28 { --tw-gradient-to: rgb(var(--velmora-espresso) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--velmora-espresso) / 0.28) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.to-velmora-espresso\/82 { --tw-gradient-to: rgb(var(--velmora-espresso) / 0.82) var(--tw-gradient-to-position); }
+
+.ring-velmora-gold { --tw-ring-color: rgb(var(--velmora-gold)); }
+.ring-velmora-gold\/30 { --tw-ring-color: rgb(var(--velmora-gold) / 0.30); }
+.ring-offset-velmora-ivory { --tw-ring-offset-color: rgb(var(--velmora-ivory)); }
+.shadow-soft { --tw-shadow: 0 18px 45px rgb(var(--velmora-espresso) / 0.12); --tw-shadow-colored: 0 18px 45px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+.shadow-drawer { --tw-shadow: -24px 0 80px rgb(var(--velmora-espresso) / 0.22); --tw-shadow-colored: -24px 0 80px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+
+.hover\:bg-velmora-gold:hover { background-color: rgb(var(--velmora-gold)); }
+.hover\:bg-velmora-bronze:hover { background-color: rgb(var(--velmora-bronze)); }
+.hover\:bg-velmora-champagne:hover { background-color: rgb(var(--velmora-champagne)); }
+.hover\:bg-velmora-champagne\/70:hover { background-color: rgb(var(--velmora-champagne) / 0.70); }
+.hover\:text-velmora-gold:hover { color: rgb(var(--velmora-gold)); }
+.hover\:text-velmora-bronze:hover { color: rgb(var(--velmora-bronze)); }
+.hover\:text-velmora-pearl:hover { color: rgb(var(--velmora-pearl)); }
+.hover\:text-velmora-espresso:hover { color: rgb(var(--velmora-espresso)); }
+.hover\:border-velmora-gold:hover { border-color: rgb(var(--velmora-gold)); }
+.hover\:border-velmora-gold\/70:hover { border-color: rgb(var(--velmora-gold) / 0.70); }
+.disabled\:bg-velmora-taupe:disabled { background-color: rgb(var(--velmora-taupe)); }
+.placeholder\:text-velmora-espresso\/45::placeholder { color: rgb(var(--velmora-espresso) / 0.45); }
+.focus\:border-velmora-gold:focus { border-color: rgb(var(--velmora-gold)); }
+.focus\:ring-velmora-gold\/30:focus { --tw-ring-color: rgb(var(--velmora-gold) / 0.30); }
+
+@keyframes velmora-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes velmora-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-up { animation: velmora-fade-up 700ms ease-out both; }
+.animate-fade-in { animation: velmora-fade-in 420ms ease-out both; }
+
