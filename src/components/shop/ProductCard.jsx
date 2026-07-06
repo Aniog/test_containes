@@ -7,8 +7,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div className="group flex flex-col">
-      <Link to={`/product/${product.id}`} className="block relative overflow-hidden bg-sand aspect-[3/4]">
-        {/* Primary image */}
+      <Link to={`/product/${product.id}`} className="block relative overflow-hidden bg-blush aspect-[3/4]">
         <img
           data-strk-img-id={product.imgId}
           data-strk-img={`[${product.descId}] [${product.titleId}]`}
@@ -18,7 +17,6 @@ export default function ProductCard({ product }) {
           alt={product.name}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
-        {/* Hover image */}
         <img
           data-strk-img-id={product.imgId2}
           data-strk-img={`[${product.titleId}] gold jewelry worn model`}
@@ -29,14 +27,10 @@ export default function ProductCard({ product }) {
           className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
 
-        {/* Quick add */}
         <div className="absolute bottom-0 left-0 right-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
           <button
-            onClick={(e) => {
-              e.preventDefault();
-              addItem(product);
-            }}
-            className="w-full bg-charcoal text-cream font-inter text-xs uppercase tracking-widest py-3.5 flex items-center justify-center gap-2 hover:bg-gold-dark transition-colors"
+            onClick={(e) => { e.preventDefault(); addItem(product); }}
+            className="w-full bg-obsidian text-ivory font-sans text-xs uppercase tracking-widest2 py-3.5 flex items-center justify-center gap-2 hover:bg-gold-dark transition-colors"
           >
             <ShoppingBag size={13} strokeWidth={1.5} />
             Quick Add
@@ -44,7 +38,7 @@ export default function ProductCard({ product }) {
         </div>
 
         {product.tags.includes('bestseller') && (
-          <div className="absolute top-3 left-3 bg-gold text-charcoal font-inter text-[9px] uppercase tracking-widest px-2 py-1">
+          <div className="absolute top-3 left-3 bg-gold text-ivory font-sans text-[9px] uppercase tracking-widest2 px-2 py-1">
             Bestseller
           </div>
         )}
@@ -53,26 +47,22 @@ export default function ProductCard({ product }) {
       <div className="pt-4 flex flex-col gap-1">
         <div className="flex items-center gap-1">
           {Array.from({ length: 5 }).map((_, i) => (
-            <Star
-              key={i}
-              size={10}
-              className={i < Math.floor(product.rating) ? 'fill-gold text-gold' : 'text-divider fill-divider'}
-            />
+            <Star key={i} size={10} className={i < Math.floor(product.rating) ? 'fill-gold text-gold' : 'text-divider fill-divider'} />
           ))}
-          <span className="font-inter text-[10px] text-taupe ml-1">({product.reviewCount})</span>
+          <span className="font-sans text-[10px] text-stone ml-1">({product.reviewCount})</span>
         </div>
         <Link to={`/product/${product.id}`}>
           <h3
             id={product.titleId}
-            className="font-cormorant text-base font-medium uppercase tracking-widest text-charcoal hover:text-gold transition-colors leading-tight"
+            className="font-serif text-base font-medium uppercase tracking-widest2 text-obsidian hover:text-gold transition-colors leading-tight"
           >
             {product.name}
           </h3>
         </Link>
-        <p id={product.descId} className="font-inter text-xs text-taupe leading-relaxed line-clamp-2 hidden">
+        <p id={product.descId} className="font-sans text-xs text-stone leading-relaxed line-clamp-2 hidden">
           {product.shortDescription}
         </p>
-        <p className="font-inter text-sm font-medium text-charcoal">${product.price}</p>
+        <p className="font-sans text-sm font-medium text-obsidian">${product.price}</p>
       </div>
     </div>
   );

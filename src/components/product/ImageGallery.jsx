@@ -7,10 +7,10 @@ export default function ImageGallery({ product }) {
   const containerRef = useRef(null);
 
   const images = [
-    { id: product.imgId, titleId: product.titleId, descId: product.descId, query: `[${product.descId}] [${product.titleId}]` },
-    { id: product.imgId2, titleId: `${product.titleId}-2`, descId: `${product.descId}-2`, query: `[${product.titleId}] gold jewelry worn model close up` },
-    { id: `${product.imgId}-3`, titleId: `${product.titleId}-3`, descId: `${product.descId}-3`, query: `[${product.titleId}] gold jewelry detail texture` },
-    { id: `${product.imgId}-4`, titleId: `${product.titleId}-4`, descId: `${product.descId}-4`, query: `[${product.titleId}] gold jewelry flat lay editorial` },
+    { id: product.imgId, query: `[${product.descId}] [${product.titleId}]` },
+    { id: product.imgId2, query: `[${product.titleId}] gold jewelry worn model close up` },
+    { id: `${product.imgId}-3`, query: `[${product.titleId}] gold jewelry detail texture` },
+    { id: `${product.imgId}-4`, query: `[${product.titleId}] gold jewelry flat lay editorial` },
   ];
 
   useEffect(() => {
@@ -19,14 +19,13 @@ export default function ImageGallery({ product }) {
 
   return (
     <div ref={containerRef} className="flex flex-col-reverse md:flex-row gap-3 md:gap-4">
-      {/* Thumbnails */}
       <div className="flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible scrollbar-hide">
         {images.map((img, idx) => (
           <button
             key={img.id}
             onClick={() => setActiveIdx(idx)}
             className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 overflow-hidden border-2 transition-colors ${
-              activeIdx === idx ? 'border-charcoal' : 'border-transparent hover:border-divider'
+              activeIdx === idx ? 'border-obsidian' : 'border-transparent hover:border-divider'
             }`}
           >
             <img
@@ -42,8 +41,7 @@ export default function ImageGallery({ product }) {
         ))}
       </div>
 
-      {/* Main image */}
-      <div className="flex-1 relative aspect-square md:aspect-[3/4] overflow-hidden bg-sand">
+      <div className="flex-1 relative aspect-square md:aspect-[3/4] overflow-hidden bg-blush">
         {images.map((img, idx) => (
           <img
             key={img.id}

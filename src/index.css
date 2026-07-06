@@ -2,65 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: 'Inter', system-ui, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light;
-  color: #1C1917;
-  background-color: #FAF7F2;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans:  'Manrope', system-ui, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: #FAF7F2;
+    color: #1C1917;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-serif);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
+@layer components {
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-gold text-ivory font-sans text-xs tracking-widest2 uppercase transition-all duration-300 hover:bg-gold-dark;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center px-8 py-3 border border-gold text-gold font-sans text-xs tracking-widest2 uppercase transition-all duration-300 hover:bg-gold hover:text-ivory;
+  }
+
+  .hairline {
+    @apply border-t border-divider;
+  }
+
+  .product-name {
+    @apply font-serif text-obsidian uppercase tracking-widest2;
+  }
+
+  .section-label {
+    @apply font-sans text-xs text-stone uppercase tracking-widest3;
+  }
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: #FAF7F2; }
+::-webkit-scrollbar-thumb { background: #E8E2D9; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #B8965A; }
+
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #FAF7F2;
-  color: #1C1917;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: inherit; }
+img { display: block; max-width: 100%; }
 
-button {
-  cursor: pointer;
-  font-family: inherit;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #F0EAE0;
-}
-::-webkit-scrollbar-thumb {
-  background: #C9A96E;
-  border-radius: 2px;
-}
-
-/* Hide scrollbar for UGC row */
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

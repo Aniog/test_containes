@@ -9,13 +9,13 @@ const items = [
 
 export default function TrustBar() {
   return (
-    <div className="bg-sand border-y border-divider">
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+    <div className="bg-blush border-y border-divider">
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
         <div className="flex flex-wrap items-center justify-center md:justify-between gap-4 py-4">
           {items.map(({ icon: Icon, label }) => (
             <div key={label} className="flex items-center gap-2">
               <Icon size={13} strokeWidth={1.5} className="text-gold flex-shrink-0" />
-              <span className="font-inter text-xs uppercase tracking-widest text-charcoal whitespace-nowrap">
+              <span className="font-sans text-xs uppercase tracking-widest2 text-obsidian whitespace-nowrap">
                 {label}
               </span>
             </div>
