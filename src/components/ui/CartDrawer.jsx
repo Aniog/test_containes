@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import { useCart } from "@/contexts/CartContext";
 import { formatPrice } from "@/data/products";
 import { ProductImage } from "./ProductImage";
+import { useImageLoader } from "@/hooks/useImageLoader";
 import { cn } from "@/lib/utils";
 
 export function CartDrawer() {
   const { isOpen, setIsOpen, items, updateQuantity, removeItem, subtotal, shipping, total, count } =
     useCart();
+  const containerRef = useImageLoader([items, isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -33,6 +35,7 @@ export function CartDrawer() {
         />
       )}
       <div
+        ref={containerRef}
         className={cn(
           "fixed inset-y-0 right-0 z-50 w-full max-w-md bg-cream shadow-2xl transition-transform duration-500 ease-out",
           isOpen ? "translate-x-0" : "translate-x-full"
