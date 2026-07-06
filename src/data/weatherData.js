@@ -1,0 +1,36 @@
+// Sample weather data for San Francisco — 30 days
+export const CITY = "San Francisco";
+export const CITY_COUNTRY = "CA, USA";
+
+export const weatherData = [
+  { date: "2026-06-07", condition: "Sunny",         high: 72, low: 55, humidity: 58, wind: 12, precip: 0.0, uv: 8 },
+  { date: "2026-06-08", condition: "Partly Cloudy", high: 68, low: 53, humidity: 63, wind: 14, precip: 0.0, uv: 6 },
+  { date: "2026-06-09", condition: "Cloudy",        high: 64, low: 51, humidity: 72, wind: 16, precip: 0.1, uv: 3 },
+  { date: "2026-06-10", condition: "Rainy",         high: 59, low: 49, humidity: 88, wind: 20, precip: 0.6, uv: 1 },
+  { date: "2026-06-11", condition: "Rainy",         high: 57, low: 48, humidity: 91, wind: 22, precip: 0.9, uv: 1 },
+  { date: "2026-06-12", condition: "Cloudy",        high: 61, low: 50, humidity: 80, wind: 18, precip: 0.2, uv: 2 },
+  { date: "2026-06-13", condition: "Partly Cloudy", high: 65, low: 52, humidity: 70, wind: 15, precip: 0.0, uv: 5 },
+  { date: "2026-06-14", condition: "Sunny",         high: 70, low: 54, humidity: 60, wind: 11, precip: 0.0, uv: 8 },
+  { date: "2026-06-15", condition: "Sunny",         high: 74, low: 56, humidity: 55, wind: 10, precip: 0.0, uv: 9 },
+  { date: "2026-06-16", condition: "Sunny",         high: 76, low: 57, humidity: 52, wind: 9,  precip: 0.0, uv: 9 },
+  { date: "2026-06-17", condition: "Partly Cloudy", high: 73, low: 55, humidity: 61, wind: 13, precip: 0.0, uv: 7 },
+  { date: "2026-06-18", condition: "Cloudy",        high: 67, low: 52, humidity: 74, wind: 17, precip: 0.0, uv: 3 },
+  { date: "2026-06-19", condition: "Foggy",         high: 62, low: 51, humidity: 85, wind: 8,  precip: 0.0, uv: 2 },
+  { date: "2026-06-20", condition: "Foggy",         high: 60, low: 50, humidity: 87, wind: 7,  precip: 0.0, uv: 2 },
+  { date: "2026-06-21", condition: "Partly Cloudy", high: 66, low: 53, humidity: 68, wind: 12, precip: 0.0, uv: 6 },
+  { date: "2026-06-22", condition: "Sunny",         high: 71, low: 55, humidity: 59, wind: 11, precip: 0.0, uv: 8 },
+  { date: "2026-06-23", condition: "Sunny",         high: 75, low: 57, humidity: 54, wind: 10, precip: 0.0, uv: 9 },
+  { date: "2026-06-24", condition: "Rainy",         high: 63, low: 50, humidity: 89, wind: 21, precip: 0.7, uv: 1 },
+  { date: "2026-06-25", condition: "Stormy",        high: 58, low: 47, humidity: 94, wind: 28, precip: 1.2, uv: 1 },
+  { date: "2026-06-26", condition: "Rainy",         high: 60, low: 49, humidity: 90, wind: 24, precip: 0.8, uv: 1 },
+  { date: "2026-06-27", condition: "Cloudy",        high: 63, low: 51, humidity: 78, wind: 16, precip: 0.1, uv: 3 },
+  { date: "2026-06-28", condition: "Partly Cloudy", high: 67, low: 53, humidity: 66, wind: 13, precip: 0.0, uv: 6 },
+  { date: "2026-06-29", condition: "Sunny",         high: 72, low: 55, humidity: 57, wind: 11, precip: 0.0, uv: 8 },
+  { date: "2026-06-30", condition: "Sunny",         high: 74, low: 56, humidity: 55, wind: 10, precip: 0.0, uv: 9 },
+  { date: "2026-07-01", condition: "Sunny",         high: 77, low: 58, humidity: 50, wind: 9,  precip: 0.0, uv: 10 },
+  { date: "2026-07-02", condition: "Partly Cloudy", high: 74, low: 57, humidity: 58, wind: 12, precip: 0.0, uv: 7 },
+  { date: "2026-07-03", condition: "Sunny",         high: 78, low: 59, humidity: 48, wind: 8,  precip: 0.0, uv: 10 },
+  { date: "2026-07-04", condition: "Sunny",         high: 80, low: 60, humidity: 46, wind: 7,  precip: 0.0, uv: 10 },
+  { date: "2026-07-05", condition: "Partly Cloudy", high: 76, low: 58, humidity: 55, wind: 11, precip: 0.0, uv: 8 },
+  { date: "2026-07-06", condition: "Sunny",         high: 79, low: 60, humidity: 49, wind: 9,  precip: 0.0, uv: 9 },
+];

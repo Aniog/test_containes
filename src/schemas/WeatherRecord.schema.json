@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Weather Records",
+  "type": "object",
+  "properties": {
+    "city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Name of the city"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Country or state/region code (e.g. CA, USA)"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the weather record (YYYY-MM-DD)"
+    },
+    "condition": {
+      "type": "string",
+      "enum": ["Sunny", "Partly Cloudy", "Cloudy", "Rainy", "Stormy", "Foggy"],
+      "description": "General weather condition for the day"
+    },
+    "high": {
+      "type": "integer",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily high temperature in degrees Fahrenheit"
+    },
+    "low": {
+      "type": "integer",
+      "minimum": -60,
+      "maximum": 150,
+      "description": "Daily low temperature in degrees Fahrenheit"
+    },
+    "humidity": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Average relative humidity percentage for the day"
+    },
+    "wind": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 200,
+      "description": "Average wind speed in miles per hour"
+    },
+    "precip": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 50,
+      "description": "Total precipitation in inches"
+    },
+    "uv": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 11,
+      "description": "UV index (0-11 scale)"
+    }
+  },
+  "required": ["city", "date", "condition", "high", "low", "humidity", "wind", "precip", "uv"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
