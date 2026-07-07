@@ -11,7 +11,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={containerRef} className="relative h-screen min-h-[600px] max-h-[900px] flex items-center justify-center overflow-hidden">
+    <section ref={containerRef} className="relative h-screen min-h-[600px] max-h-[900px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-stone-800 via-stone-700 to-charcoal">
       {/* Background image */}
       <div
         className="absolute inset-0"

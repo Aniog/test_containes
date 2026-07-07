@@ -11,7 +11,10 @@ const Toaster = () => {
           borderRadius: '2px',
           border: '1px solid #E8D5B0',
           padding: '12px 16px',
+          background: '#FAF7F2',
+          color: '#1C1917',
         },
+        duration: 2500,
       }}
     />
   )

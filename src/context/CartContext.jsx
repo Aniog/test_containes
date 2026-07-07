@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, useCallback } from 'react'
+import { toast } from 'sonner'
 
 const CartContext = createContext(null)
 
@@ -59,6 +60,7 @@ export function CartProvider({ children }) {
       payload: { id: product.id, name: product.name, price: product.price, tone, quantity, category: product.category },
     })
     dispatch({ type: 'OPEN_DRAWER' })
+    toast.success(`${product.name} added to bag`, { duration: 2000 })
   }, [])
 
   const removeItem = useCallback((id, tone = 'gold') => {

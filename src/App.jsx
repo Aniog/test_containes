@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { CartProvider } from '@/context/CartContext'
+import { Toaster } from '@/components/ui/sonner'
 import Nav from '@/components/layout/Nav'
 import Footer from '@/components/layout/Footer'
 import CartDrawer from '@/components/layout/CartDrawer'
@@ -27,6 +28,7 @@ function App() {
         <div className="min-h-screen flex flex-col bg-cream">
           <Nav />
           <CartDrawer />
+          <Toaster />
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<HomePage />} />

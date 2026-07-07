@@ -15,10 +15,10 @@ const footerColumns = [
   {
     title: 'Help',
     links: [
-      { label: 'Shipping & Returns', to: '#' },
-      { label: 'Care Guide', to: '#' },
-      { label: 'FAQ', to: '#' },
-      { label: 'Contact Us', to: '#' },
+      { label: 'Shipping & Returns', to: '/shop' },
+      { label: 'Care Guide', to: '/shop' },
+      { label: 'FAQ', to: '/shop' },
+      { label: 'Contact Us', to: '/shop' },
     ],
   },
   {
@@ -26,8 +26,8 @@ const footerColumns = [
     links: [
       { label: 'Our Story', to: '/about' },
       { label: 'Journal', to: '/journal' },
-      { label: 'Sustainability', to: '#' },
-      { label: 'Careers', to: '#' },
+      { label: 'Sustainability', to: '/about' },
+      { label: 'Careers', to: '/about' },
     ],
   },
 ]
@@ -46,13 +46,13 @@ export default function Footer() {
               Demi-fine jewelry crafted to be treasured. 18K gold plated, hypoallergenic, and designed for everyday elegance.
             </p>
             <div className="flex items-center gap-4 mt-6">
-              <a href="#" className="text-cream/60 hover:text-gold transition-colors" aria-label="Instagram">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-cream/60 hover:text-gold transition-colors" aria-label="Instagram">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-cream/60 hover:text-gold transition-colors" aria-label="Facebook">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-cream/60 hover:text-gold transition-colors" aria-label="Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="text-cream/60 hover:text-gold transition-colors" aria-label="Twitter">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-cream/60 hover:text-gold transition-colors" aria-label="Twitter">
                 <Twitter className="w-5 h-5" />
               </a>
             </div>
