@@ -58,7 +58,7 @@ export const products = [
     material: "18K Gold Plated Brass",
     images: {
       gold: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
-      silver: "https://images.unsplash.com/photo-1535632787350-4e68b0bdad41?w=800&q=80"
+      silver: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80"
     },
     variants: [
       { id: "gold", label: "Gold", value: "gold" },
