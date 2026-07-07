@@ -1,6 +1,4 @@
-import { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { getImageSrc } from '@/lib/images';
 
 const reels = [
   { id: 'ugc-1', imgId: 'ugc-reel-1', titleId: 'ugc-title-1', title: 'Ear stack season' },
@@ -11,17 +9,9 @@ const reels = [
   { id: 'ugc-6', imgId: 'ugc-reel-6', titleId: 'ugc-title-6', title: 'Fine details' },
 ];
 
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
-
 export function UgcReelSection() {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, []);
-
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-cream-dark overflow-hidden">
+    <section className="py-16 md:py-24 bg-cream-dark overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-8 md:mb-10">
         <h2 className="font-serif text-3xl md:text-4xl text-ink">@velmora on you</h2>
       </div>
@@ -34,11 +24,7 @@ export function UgcReelSection() {
               className="relative w-48 md:w-60 aspect-[9/16] flex-shrink-0 overflow-hidden group cursor-pointer"
             >
               <img
-                data-strk-img-id={reel.imgId}
-                data-strk-img={`[${reel.titleId}]`}
-                data-strk-img-ratio="9x16"
-                data-strk-img-width="500"
-                src={placeholder}
+                src={getImageSrc(reel.imgId)}
                 alt={reel.title}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

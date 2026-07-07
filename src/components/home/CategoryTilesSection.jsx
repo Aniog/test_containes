@@ -1,7 +1,5 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+import { getImageSrc } from '@/lib/images';
 
 const tiles = [
   { id: 'earrings', name: 'Earrings', imgId: 'category-earrings', titleId: 'cat-title-earrings' },
@@ -9,17 +7,9 @@ const tiles = [
   { id: 'huggies', name: 'Huggies', imgId: 'category-huggies', titleId: 'cat-title-huggies' },
 ];
 
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
-
 export function CategoryTilesSection() {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, []);
-
   return (
-    <section ref={containerRef} className="py-20 md:py-28 bg-cream">
+    <section className="py-20 md:py-28 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-ink">Shop by Category</h2>
@@ -33,11 +23,7 @@ export function CategoryTilesSection() {
               className="group relative aspect-[4/5] overflow-hidden bg-sand"
             >
               <img
-                data-strk-img-id={tile.imgId}
-                data-strk-img={`[${tile.titleId}]`}
-                data-strk-img-ratio="4x5"
-                data-strk-img-width="700"
-                src={placeholder}
+                src={getImageSrc(tile.imgId)}
                 alt={tile.name}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />

@@ -1,29 +1,15 @@
-import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
-
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
+import { getImageSrc } from '@/lib/images';
 
 export function BrandStorySection() {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, []);
-
   return (
-    <section ref={containerRef} className="py-20 md:py-0 bg-cream">
+    <section className="py-20 md:py-0 bg-cream">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-0 items-stretch">
           <div className="relative aspect-[4/5] md:aspect-auto md:min-h-[600px] overflow-hidden bg-sand">
             <img
-              data-strk-img-id="brand-story-image"
-              data-strk-img="[brand-story-title] [brand-story-subtitle]"
-              data-strk-img-ratio="3x4"
-              data-strk-img-width="900"
-              src={placeholder}
+              src={getImageSrc('brand-story-image')}
               alt="Velmora brand story"
               className="absolute inset-0 w-full h-full object-cover"
             />

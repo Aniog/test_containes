@@ -1,38 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { getProductById, getRelatedProducts, formatPrice } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/Button';
 import { Accordion } from '@/components/ui/Accordion';
 import { StarRating } from '@/components/ui/StarRating';
 import { ProductCard } from '@/components/ui/ProductCard';
+import { getImageSrc } from '@/lib/images';
 import { Minus, Plus, ChevronLeft } from 'lucide-react';
 
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
 const tones = ['gold', 'silver'];
 
 export default function ProductDetail() {
   const { productId } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
-  const containerRef = useRef(null);
 
   const product = getProductById(productId);
   const [selectedTone, setSelectedTone] = useState('gold');
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState('main');
   const [added, setAdded] = useState(false);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      const frame = window.requestAnimationFrame(() => {
-        ImageHelper.loadImages(strkImgConfig, containerRef.current);
-      });
-      return () => window.cancelAnimationFrame(frame);
-    }
-  }, [productId, activeImage]);
 
   if (!product) {
     return (
@@ -60,7 +48,7 @@ export default function ProductDetail() {
   ];
 
   return (
-    <div ref={containerRef} className="bg-cream min-h-screen pt-20 md:pt-24">
+    <div className="bg-cream min-h-screen pt-20 md:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <button
           onClick={() => navigate(-1)}
@@ -75,11 +63,7 @@ export default function ProductDetail() {
           <div className="space-y-4">
             <div className="relative aspect-[4/5] bg-sand overflow-hidden">
               <img
-                data-strk-img-id={activeImage === 'main' ? product.imgId : product.hoverImgId}
-                data-strk-img={`[${product.descId}] [${product.titleId}]`}
-                data-strk-img-ratio="3x4"
-                data-strk-img-width="900"
-                src={placeholder}
+                src={getImageSrc(activeImage === 'main' ? product.imgId : product.hoverImgId)}
                 alt={product.name}
                 className="w-full h-full object-cover"
               />
@@ -92,11 +76,7 @@ export default function ProductDetail() {
                 }`}
               >
                 <img
-                  data-strk-img-id={`${product.imgId}-thumb`}
-                  data-strk-img={`[${product.titleId}]`}
-                  data-strk-img-ratio="3x4"
-                  data-strk-img-width="200"
-                  src={placeholder}
+                  src={getImageSrc(`${product.imgId}-thumb`)}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
@@ -108,11 +88,7 @@ export default function ProductDetail() {
                 }`}
               >
                 <img
-                  data-strk-img-id={`${product.hoverImgId}-thumb`}
-                  data-strk-img={`[${product.titleId}]`}
-                  data-strk-img-ratio="3x4"
-                  data-strk-img-width="200"
-                  src={placeholder}
+                  src={getImageSrc(`${product.hoverImgId}-thumb`)}
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />

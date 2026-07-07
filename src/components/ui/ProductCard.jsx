@@ -3,11 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/contexts/CartContext';
+import { getImageSrc } from '@/lib/images';
 import { StarRating } from './StarRating';
 import { Button } from './Button';
 import { formatPrice } from '@/data/products';
-
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
 
 export function ProductCard({ product, className }) {
   const navigate = useNavigate();
@@ -28,22 +27,13 @@ export function ProductCard({ product, className }) {
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-sand mb-4">
         <img
-          data-strk-img-id={product.imgId}
-          data-strk-img={`[${product.descId}] [${product.titleId}]`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src={placeholder}
+          src={getImageSrc(product.imgId)}
           alt={product.name}
-          id={product.imgId}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: isHovered ? 0 : 1 }}
         />
         <img
-          data-strk-img-id={product.hoverImgId}
-          data-strk-img={`[${product.titleId}] [${product.descId}]`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src={placeholder}
+          src={getImageSrc(product.hoverImgId)}
           alt={product.name}
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
           style={{ opacity: isHovered ? 1 : 0 }}
