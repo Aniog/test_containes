@@ -1,76 +1,190 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #FAF7F2;
+    --color-cream: #F5F0E8;
+    --color-warmStone: #E8E0D5;
+    --color-gold: #D4A853;
+    --color-charcoal: #1A1714;
+    --color-richBlack: #0F0D0B;
+    --color-warmGray-400: #B8A99A;
+    --color-warmGray-200: #E5DDD4;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans;
+    background-color: #FAF7F2;
+    color: #1A1714;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #FAF7F2;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4C9BC;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B8A99A;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: #D4A853;
+    color: #FAF7F2;
+  }
+}
+
+@layer components {
+  /* Section containers */
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Hairline divider */
+  .hairline {
+    @apply border-t border-warmGray-200;
+  }
+
+  /* Serif heading utility */
+  .heading-serif {
+    @apply font-serif font-light leading-tight;
+  }
+
+  /* Product name uppercase */
+  .product-name {
+    @apply font-serif font-medium uppercase tracking-ultra-wide;
+  }
+
+  /* Nav link style */
+  .nav-link {
+    @apply font-sans text-xs font-medium uppercase tracking-extra-wide text-charcoal relative
+           after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-gold
+           hover:after:w-full after:transition-all after:duration-300;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center
+           bg-charcoal text-ivory font-sans text-xs font-semibold uppercase tracking-extra-wide
+           px-8 py-3.5
+           transition-all duration-300 ease-out
+           hover:bg-gold hover:text-charcoal
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center
+           border border-charcoal text-charcoal font-sans text-xs font-semibold uppercase tracking-extra-wide
+           px-8 py-3.5
+           transition-all duration-300 ease-out
+           hover:bg-charcoal hover:text-ivory
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  /* Gold accent button */
+  .btn-gold {
+    @apply inline-flex items-center justify-center
+           bg-gold text-charcoal font-sans text-xs font-semibold uppercase tracking-extra-wide
+           px-8 py-3.5
+           transition-all duration-300 ease-out
+           hover:bg-charcoal hover:text-ivory
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2
+           disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center
+           text-charcoal font-sans text-xs font-medium uppercase tracking-extra-wide
+           px-4 py-2
+           transition-colors duration-300
+           hover:text-gold
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold;
+  }
+
+  /* Product card */
+  .product-card {
+    @apply relative overflow-hidden bg-white
+           transition-all duration-300 ease-out;
+  }
+  .product-card:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* Input underline style */
+  .input-underline {
+    @apply w-full border-b border-warmGray-300 bg-transparent
+           py-2 px-1 text-charcoal font-sans text-sm
+           placeholder:text-warmGray-400 placeholder:italic
+           focus:outline-none focus:border-charcoal
+           transition-colors duration-300;
+  }
+
+  /* Accordion item */
+  .accordion-content {
+    @apply overflow-hidden transition-all duration-300 ease-out;
+  }
+
+  /* Star rating */
+  .star-filled {
+    color: #D4A853;
+  }
+  .star-empty {
+    color: #E5DDD4;
+  }
+}
+
+/* Animations */
+@layer utilities {
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  .animate-in {
+    animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+
+  .animate-fade {
+    animation: fadeIn 0.4s ease-out forwards;
+    opacity: 0;
+  }
+}
+
+/* Image hover second-image reveal */
+.product-card-img {
+  @apply transition-opacity duration-500;
+}
+.product-card-img-secondary {
+  @apply absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500;
+}
+.product-card:hover .product-card-img-primary {
+  @apply opacity-0;
+}
+.product-card:hover .product-card-img-secondary {
+  @apply opacity-100;
+}
+
