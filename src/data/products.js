@@ -10,7 +10,7 @@ export const products = [
     reviews: 124,
     images: [
       'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop',
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60901?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
     badge: 'Bestseller',
@@ -42,7 +42,7 @@ export const products = [
     reviews: 203,
     images: [
       'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&h=1000&fit=crop',
-      'https://images.unsplash.com/photo-1588444837495-665c5f89d998?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
     badge: 'Bestseller',
@@ -57,7 +57,7 @@ export const products = [
     rating: 4.6,
     reviews: 67,
     images: [
-      'https://images.unsplash.com/photo-1588444837495-665c5f89d998?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=1000&fit=crop',
       'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
@@ -108,10 +108,10 @@ export const testimonials = [
 ]
 
 export const ugcPosts = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60901?w=400&h=700&fit=crop', caption: 'Everyday elegance ✨' },
+  { id: 1, image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&h=700&fit=crop', caption: 'Everyday elegance ✨' },
   { id: 2, image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=700&fit=crop', caption: 'Stacked & styled' },
   { id: 3, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=700&fit=crop', caption: 'Golden hour glow' },
   { id: 4, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=700&fit=crop', caption: 'Layered perfection' },
   { id: 5, image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&h=700&fit=crop', caption: 'Huggie love' },
-  { id: 6, image: 'https://images.unsplash.com/photo-1588444837495-665c5f89d998?w=400&h=700&fit=crop', caption: 'Details matter' },
+  { id: 6, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&h=700&fit=crop', caption: 'Details matter' },
 ]

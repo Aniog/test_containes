@@ -21,7 +21,7 @@ const journalPosts = [
     id: 3,
     title: 'Gift Guide: Jewelry for Every Occasion',
     excerpt: 'From birthdays to anniversaries, find the perfect piece for the women in your life.',
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60901?w=600&h=400&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=400&fit=crop',
     date: 'June 1, 2026',
     category: 'Gifting',
   },
