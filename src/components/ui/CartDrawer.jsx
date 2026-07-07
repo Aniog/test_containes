@@ -1,6 +1,5 @@
-import { X, Plus, Minus, ShoppingBag, Trash2 } from 'lucide-react';
+import { X, Plus, Minus, ShoppingBag, Trash2, Gem } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
-import { StrkImg } from './StrkImg';
 import { formatPrice } from '@/data/products';
 
 export function CartDrawer() {
@@ -55,15 +54,8 @@ export function CartDrawer() {
               <ul className="space-y-5">
                 {items.map((item) => (
                   <li key={item.cartItemId} className="flex gap-4">
-                    <div className="h-24 w-20 flex-shrink-0 overflow-hidden bg-velmora-champagne">
-                      <StrkImg
-                        id={`cart-${item.cartItemId}`}
-                        query={`[product-${item.id}-name] gold jewelry product`}
-                        ratio="4x5"
-                        width={200}
-                        alt={item.name}
-                        className="h-full w-full object-cover"
-                      />
+                    <div className="flex h-24 w-20 flex-shrink-0 items-center justify-center overflow-hidden bg-velmora-champagne">
+                      <Gem size={24} className="text-velmora-gold-dark" aria-hidden="true" />
                     </div>
                     <div className="flex flex-1 flex-col justify-between">
                       <div>

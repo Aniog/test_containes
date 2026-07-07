@@ -64,7 +64,7 @@ export function ProductPage() {
             <div className="flex gap-3 overflow-x-auto lg:flex-col lg:overflow-visible">
               {product.images.map((img, idx) => (
                 <button
-                  key={img.id}
+                  key={img.thumbId}
                   type="button"
                   onClick={() => setSelectedImage(idx)}
                   className={`relative h-20 w-20 flex-shrink-0 overflow-hidden bg-velmora-champagne md:h-24 md:w-24 ${
@@ -73,7 +73,7 @@ export function ProductPage() {
                   aria-label={`View image ${idx + 1}`}
                 >
                   <StrkImg
-                    id={`${img.id}-thumb`}
+                    id={img.thumbId}
                     query={img.query}
                     ratio={img.ratio}
                     width={200}
@@ -85,15 +85,20 @@ export function ProductPage() {
             </div>
 
             <div className="relative aspect-[4/5] flex-1 overflow-hidden bg-velmora-champagne">
-              <StrkImg
-                id={`${product.images[selectedImage].id}-main`}
-                query={product.images[selectedImage].query}
-                ratio="4x5"
-                width={900}
-                alt={product.name}
-                className="h-full w-full object-cover"
-                lazy={false}
-              />
+              {product.images.map((img, idx) => (
+                <StrkImg
+                  key={img.mainId}
+                  id={img.mainId}
+                  query={img.query}
+                  ratio="4x5"
+                  width={900}
+                  alt={product.name}
+                  className={`h-full w-full object-cover transition-opacity duration-500 ${
+                    selectedImage === idx ? 'relative opacity-100' : 'absolute inset-0 opacity-0'
+                  }`}
+                  lazy={false}
+                />
+              ))}
               <span id={`product-${product.id}-name`} className="sr-only">
                 {product.name}
               </span>

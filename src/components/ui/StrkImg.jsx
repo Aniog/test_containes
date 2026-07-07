@@ -1,4 +1,4 @@
-export const SVG_PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
+const TRANSPARENT_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 
 export function StrkImg({
   id,
@@ -18,7 +18,7 @@ export function StrkImg({
       data-strk-img-ratio={ratio}
       data-strk-img-width={width}
       loading={lazy ? 'lazy' : 'eager'}
-      src={SVG_PLACEHOLDER}
+      src={TRANSPARENT_PIXEL}
     />
   );
 }
