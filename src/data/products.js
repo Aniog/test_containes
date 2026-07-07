@@ -1,0 +1,115 @@
+export const categories = [
+  { id: 'earrings', name: 'Earrings' },
+  { id: 'necklaces', name: 'Necklaces' },
+  { id: 'huggies', name: 'Huggies' },
+];
+
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    shortDescription: 'A sculptural gold ear cuff finished with a single luminous crystal accent. No piercing required.',
+    description: 'The Vivid Aura Jewels ear cuff catches light from every angle. Sculpted in 18k gold-plated brass and set with a brilliant crystal accent, it hugs the ear for a floating-jewel effect. Designed for comfortable all-day wear without a piercing.',
+    materials: ['18k gold-plated brass', 'Cubic zirconia crystal', 'Hypoallergenic, nickel-free', 'Water-resistant coating'],
+    care: 'Store in a dry pouch. Avoid perfumes, lotions, and prolonged water exposure. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 business days available at checkout.',
+    returns: 'We accept returns within 30 days of delivery. Items must be unworn and in original packaging. Exchanges welcome.',
+    imgId: 'product-vivid-aura-main',
+    hoverImgId: 'product-vivid-aura-hover',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    shortDescription: 'A delicate necklace strung with hand-set multicolor floral crystals on a fine gold chain.',
+    description: 'Inspired by wildflower meadows at golden hour, the Majestic Flora Nectar necklace features a garden of hand-set multicolor crystals blooming along a dainty 18k gold-plated chain. The perfect statement of quiet femininity.',
+    materials: ['18k gold-plated brass chain', 'Hand-set enamel and crystal petals', 'Lobster clasp', 'Adjustable 16–18 inch length'],
+    care: 'Lay flat to store. Avoid contact with water and harsh chemicals. Clean with a soft, dry cloth only.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 business days available at checkout.',
+    returns: 'We accept returns within 30 days of delivery. Items must be unworn and in original packaging. Exchanges welcome.',
+    imgId: 'product-majestic-flora-main',
+    hoverImgId: 'product-majestic-flora-hover',
+    titleId: 'product-majestic-flora-title',
+    descId: 'product-majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviews: 215,
+    shortDescription: 'Chunky dome huggie earrings with a polished, molten-gold finish.',
+    description: 'Bold yet wearable, the Golden Sphere Huggies feature a chunky dome silhouette with a mirror-polished 18k gold-plated finish. Their hinged closure makes them effortless to put on and impossible to lose.',
+    materials: ['18k gold-plated brass', 'Hinged huggie closure', 'Nickel-free, hypoallergenic posts', '12mm diameter'],
+    care: 'Keep away from moisture and beauty products. Store separately to avoid scratches. Polish with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 business days available at checkout.',
+    returns: 'We accept returns within 30 days of delivery. Items must be unworn and in original packaging. Exchanges welcome.',
+    imgId: 'product-golden-sphere-main',
+    hoverImgId: 'product-golden-sphere-hover',
+    titleId: 'product-golden-sphere-title',
+    descId: 'product-golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 76,
+    shortDescription: 'Textured filigree drop earrings inspired by antique lace and golden light.',
+    description: 'The Amber Lace Earrings drape like vintage filigree caught in sunlight. Their intricate texture is cast in 18k gold-plated brass and finished by hand for an heirloom feel at an everyday price.',
+    materials: ['18k gold-plated brass', 'Surgical steel posts', 'Filigree cast texture', 'Lightweight design'],
+    care: 'Handle with care to protect delicate details. Avoid water and store flat in provided pouch.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 business days available at checkout.',
+    returns: 'We accept returns within 30 days of delivery. Items must be unworn and in original packaging. Exchanges welcome.',
+    imgId: 'product-amber-lace-main',
+    hoverImgId: 'product-amber-lace-hover',
+    titleId: 'product-amber-lace-title',
+    descId: 'product-amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'earrings',
+    material: 'gold',
+    rating: 5.0,
+    reviews: 52,
+    shortDescription: 'A curated gift set of matching earrings and necklace, boxed and ready to give.',
+    description: 'The Royal Heirloom Set is our signature gift: a perfectly paired earring and necklace duo, finished in warm 18k gold and nestled in a Velmora gift box. Designed for celebrations, anniversaries, or simply because.',
+    materials: ['18k gold-plated brass earrings and pendant', 'Matching cable chain necklace', 'Velmora gift box and polishing cloth', 'Hypoallergenic posts'],
+    care: 'Store in the provided gift box. Keep dry and away from perfumes. Wipe clean with included cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 business days available at checkout.',
+    returns: 'We accept returns within 30 days of delivery. Items must be unworn and in original packaging. Exchanges welcome.',
+    imgId: 'product-royal-heirloom-main',
+    hoverImgId: 'product-royal-heirloom-hover',
+    titleId: 'product-royal-heirloom-title',
+    descId: 'product-royal-heirloom-desc',
+  },
+];
+
+export function getProductById(id) {
+  return products.find((p) => p.id === id);
+}
+
+export function getRelatedProducts(currentId, limit = 4) {
+  return products.filter((p) => p.id !== currentId).slice(0, limit);
+}
+
+export function formatPrice(price) {
+  return `$${price}`;
+}
