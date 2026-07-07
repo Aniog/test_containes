@@ -1,76 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for Velmora Fine Jewelry */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+
+  color-scheme: light;
+  color: #2C2C2C;
+  background-color: #FAF8F5;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAF8F5;
+  color: #2C2C2C;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Custom scrollbar for luxury feel */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
 }
 
-button:hover {
-  border-color: #646cff;
+::-webkit-scrollbar-thumb {
+  background: #C9A96E;
+  border-radius: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::-webkit-scrollbar-thumb:hover {
+  background: #B8945A;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Smooth transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Product image hover effect */
+.product-card img {
+  transition: transform 0.6s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Hairline dividers */
+.hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #C9A96E, transparent);
+}
+
+/* Premium button styles */
+.btn-primary {
+  @apply bg-gold text-white px-8 py-3 font-sans text-sm tracking-wider uppercase hover:bg-gold-dark transition-colors duration-300;
+}
+
+.btn-secondary {
+  @apply border-2 border-gold text-gold px-8 py-3 font-sans text-sm tracking-wider uppercase hover:bg-gold hover:text-white transition-colors duration-300;
+}
+
+/* Serif heading styles */
+.serif-heading {
+  @apply font-serif font-light tracking-wide;
+}
+
+/* Uppercase product names */
+.product-name {
+  @apply font-sans text-sm tracking-widest uppercase;
+}
+
+/* Star rating */
+.star-rating {
+  color: #C9A96E;
+}
+
+/* Trust badge icons */
+.trust-icon {
+  width: 20px;
+  height: 20px;
+  stroke: #C9A96E;
+}
+
+/* Newsletter input focus */
+.newsletter-input:focus {
+  outline: none;
+  border-color: #C9A96E;
+}
+
+/* Accordion animation */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-content.open {
+  max-height: 500px;
+}
+
+/* Category tile overlay */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+}
+
+.category-tile:hover::after {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Testimonial card */
+.testimonial-card {
+  background: linear-gradient(to bottom, #FAF8F5, #FFFFFF);
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
   }
-
-  a:hover {
-    color: #747bff;
+  
+  h2 {
+    font-size: 1.5rem;
   }
-
-  button {
-    background-color: #f9f9f9;
+  
+  .product-name {
+    font-size: 0.75rem;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
