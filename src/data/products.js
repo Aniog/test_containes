@@ -1,0 +1,123 @@
+export const CATEGORIES = ['earrings', 'necklaces', 'huggies', 'sets']
+
+export const MATERIALS = ['18K Gold Plated', 'Sterling Silver', 'Mixed Metals']
+
+export const PRODUCTS = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    slug: 'vivid-aura-jewels',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    tone: 'gold',
+    shortDescription: 'A sculptural gold ear cuff finished with a single crystal accent for quiet glamour.',
+    description: 'The Vivid Aura Jewels ear cuff wraps the ear in a fluid ribbon of 18K gold plating, anchored by a single light-catching crystal. Designed for everyday elevation, it requires no piercing and layers beautifully with studs and huggies.',
+    materialsCare: '18K gold-plated brass with a cubic zirconia accent. Avoid contact with perfume, lotion, and water. Store in the provided pouch to preserve the finish.',
+    shippingReturns: 'Complimentary worldwide shipping on orders over $50. Returns accepted within 30 days of delivery in original, unworn condition.',
+    rating: 4.8,
+    reviewsCount: 124,
+    bestseller: true,
+    featured: true,
+    imgId: 'product-vivid-aura-jewels-primary',
+    hoverImgId: 'product-vivid-aura-jewels-hover',
+    titleId: 'product-title-vivid-aura-jewels',
+    descId: 'product-desc-vivid-aura-jewels',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    slug: 'majestic-flora-nectar',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    tone: 'gold',
+    shortDescription: 'A delicate necklace of hand-set multicolor crystals arranged in a blooming floral silhouette.',
+    description: 'The Majestic Flora Nectar necklace captures the warmth of a wildflower garden in miniature. Each petal is hand-set with softly colored crystals along an 18K gold-plated chain — the perfect statement of romantic, everyday luxury.',
+    materialsCare: '18K gold-plated brass chain with glass crystal accents. Store flat and away from moisture to maintain brilliance.',
+    shippingReturns: 'Complimentary worldwide shipping on orders over $50. Returns accepted within 30 days of delivery in original, unworn condition.',
+    rating: 4.9,
+    reviewsCount: 89,
+    bestseller: true,
+    featured: true,
+    imgId: 'product-majestic-flora-nectar-primary',
+    hoverImgId: 'product-majestic-flora-nectar-hover',
+    titleId: 'product-title-majestic-flora-nectar',
+    descId: 'product-desc-majestic-flora-nectar',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    slug: 'golden-sphere-huggies',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    tone: 'gold',
+    shortDescription: 'Chunky dome huggies with a polished, mirror-like finish that catches every light.',
+    description: 'Golden Sphere Huggies are the ultimate wardrobe staple: a rounded, polished silhouette that feels both modern and timeless. Their hinge closure sits flush against the lobe for all-day comfort.',
+    materialsCare: '18K gold-plated brass with a surgical steel post. Hypoallergenic and nickel-free. Clean gently with a soft cloth.',
+    shippingReturns: 'Complimentary worldwide shipping on orders over $50. Returns accepted within 30 days of delivery in original, unworn condition.',
+    rating: 4.7,
+    reviewsCount: 156,
+    bestseller: true,
+    featured: true,
+    imgId: 'product-golden-sphere-huggies-primary',
+    hoverImgId: 'product-golden-sphere-huggies-hover',
+    titleId: 'product-title-golden-sphere-huggies',
+    descId: 'product-desc-golden-sphere-huggies',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    slug: 'amber-lace-earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    tone: 'gold',
+    shortDescription: 'Textured filigree drops inspired by antique lace, finished in warm gold.',
+    description: 'Amber Lace Earrings balance intricate filigree detailing with a lightweight drop shape. Inspired by vintage textiles, they bring warmth and movement to every look — from daytime linen to evening silk.',
+    materialsCare: '18K gold-plated brass with surgical steel posts. Avoid direct contact with water, oils, and fragrance. Store hanging or flat.',
+    shippingReturns: 'Complimentary worldwide shipping on orders over $50. Returns accepted within 30 days of delivery in original, unworn condition.',
+    rating: 4.9,
+    reviewsCount: 72,
+    bestseller: true,
+    featured: true,
+    imgId: 'product-amber-lace-earrings-primary',
+    hoverImgId: 'product-amber-lace-earrings-hover',
+    titleId: 'product-title-amber-lace-earrings',
+    descId: 'product-desc-amber-lace-earrings',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    slug: 'royal-heirloom-set',
+    price: 95,
+    category: 'sets',
+    material: '18K Gold Plated',
+    tone: 'gold',
+    shortDescription: 'A gift-boxed pairing of coordinating earrings and necklace for a complete moment.',
+    description: 'The Royal Heirloom Set is designed for gifting — and for keeping. This coordinated pair of earrings and necklace arrives in a Velmora gift box, ready for birthdays, anniversaries, or a quiet personal milestone.',
+    materialsCare: '18K gold-plated brass with cubic zirconia and glass crystal accents. Includes a polishing cloth and gift pouch.',
+    shippingReturns: 'Complimentary worldwide shipping on orders over $50. Returns accepted within 30 days of delivery in original, unworn condition. Gift packaging included.',
+    rating: 5.0,
+    reviewsCount: 47,
+    bestseller: true,
+    featured: true,
+    imgId: 'product-royal-heirloom-set-primary',
+    hoverImgId: 'product-royal-heirloom-set-hover',
+    titleId: 'product-title-royal-heirloom-set',
+    descId: 'product-desc-royal-heirloom-set',
+  },
+]
+
+export function getProductBySlug(slug) {
+  return PRODUCTS.find((p) => p.slug === slug) || null
+}
+
+export function getRelatedProducts(slug, limit = 4) {
+  return PRODUCTS.filter((p) => p.slug !== slug).slice(0, limit)
+}
+
+export function formatPrice(price) {
+  return `$${price}`
+}
