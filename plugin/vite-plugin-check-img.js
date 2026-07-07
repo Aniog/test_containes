@@ -1010,7 +1010,8 @@ function collectLiteralDataUses(modules, usageByModule) {
   for (const info of modules.values()) {
     if (!isLiteralDataFile(info.filePath)) continue
 
-    const pages = usageByModule.get(info.filePath) || [{
+    const pagesList = usageByModule.get(info.filePath) || []
+    const pages = pagesList.length > 0 ? pagesList : [{
       page: 'Data',
       route: null,
     }]
