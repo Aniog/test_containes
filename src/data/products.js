@@ -49,7 +49,7 @@ export const products = [
       'Chunky dome huggie earrings in polished 18K gold plate. The satisfying weight and mirror finish make these an everyday essential that elevates any look.',
     shortDescription: 'Chunky gold dome huggie earrings',
     material: '18K gold plated brass',
-    variants: ['Gold Tone', 'Silver Tone', 'Rose Gold'],
+    variants: ['Gold Tone', 'Silver Tone'],
     tags: ['bestseller', 'popular'],
     imgId: 'product-3-main-e4c1d9',
     imgId2: 'product-3-alt-f8b2a5',
@@ -100,3 +100,97 @@ export const getProductBySlug = (slug) => products.find((p) => p.slug === slug);
 export const getProductsByCategory = (category) =>
   category === 'all' ? products : products.filter((p) => p.category === category);
 export const getBestsellers = () => products.filter((p) => p.tags.includes('bestseller'));
+
+export const categories = [
+  {
+    id: 'earrings',
+    label: 'Earrings',
+    imgId: 'cat-earrings-img-e1f2g3',
+    titleId: 'cat-earrings-title',
+    descId: 'cat-earrings-desc',
+    description: 'Sculptural drops, studs & ear cuffs',
+    href: '/shop?category=earrings',
+  },
+  {
+    id: 'necklaces',
+    label: 'Necklaces',
+    imgId: 'cat-necklaces-img-h4i5j6',
+    titleId: 'cat-necklaces-title',
+    descId: 'cat-necklaces-desc',
+    description: 'Delicate chains & statement pendants',
+    href: '/shop?category=necklaces',
+  },
+  {
+    id: 'huggies',
+    label: 'Huggies',
+    imgId: 'cat-huggies-img-k7l8m9',
+    titleId: 'cat-huggies-title',
+    descId: 'cat-huggies-desc',
+    description: 'Everyday dome & hoop huggies',
+    href: '/shop?category=huggies',
+  },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sophia R.',
+    rating: 5,
+    text: 'The Golden Sphere Huggies are absolutely stunning. I wear them every single day — they go with everything and I get compliments constantly. Worth every penny.',
+  },
+  {
+    id: 2,
+    name: 'Camille T.',
+    rating: 5,
+    text: 'Ordered the Royal Heirloom Set as a birthday gift for my sister. The packaging alone made her cry. The quality is incredible for the price point.',
+  },
+  {
+    id: 3,
+    name: 'Isabelle M.',
+    rating: 5,
+    text: 'I was skeptical about gold-plated jewelry but Velmora has completely changed my mind. Three months in and the Majestic Flora Nectar still looks brand new.',
+  },
+];
+
+export const ugcItems = [
+  {
+    id: 'ugc-1',
+    caption: 'Morning light, golden hour',
+    imgId: 'ugc-1-img-n1o2p3',
+    titleId: 'ugc-1-title',
+    descId: 'ugc-1-desc',
+    description: 'Gold huggie earrings worn close up on ear',
+  },
+  {
+    id: 'ugc-2',
+    caption: 'Effortless every day',
+    imgId: 'ugc-2-img-q4r5s6',
+    titleId: 'ugc-2-title',
+    descId: 'ugc-2-desc',
+    description: 'Delicate gold necklace on neck editorial',
+  },
+  {
+    id: 'ugc-3',
+    caption: 'Stacked & styled',
+    imgId: 'ugc-3-img-t7u8v9',
+    titleId: 'ugc-3-title',
+    descId: 'ugc-3-desc',
+    description: 'Multiple gold earrings stacked on ear',
+  },
+  {
+    id: 'ugc-4',
+    caption: 'The gift she wanted',
+    imgId: 'ugc-4-img-w1x2y3',
+    titleId: 'ugc-4-title',
+    descId: 'ugc-4-desc',
+    description: 'Jewelry gift box with gold earrings',
+  },
+  {
+    id: 'ugc-5',
+    caption: 'Quiet luxury',
+    imgId: 'ugc-5-img-z4a5b6',
+    titleId: 'ugc-5-title',
+    descId: 'ugc-5-desc',
+    description: 'Gold ear cuff crystal close up portrait',
+  },
+];

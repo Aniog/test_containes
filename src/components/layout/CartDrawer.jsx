@@ -30,7 +30,7 @@ export default function CartDrawer() {
               Your Cart
             </span>
             {items.length > 0 && (
-              <span className="font-manrope text-xs text-velmora-mist ml-1">
+              <span className="font-inter text-xs text-velmora-mist ml-1">
                 ({items.length})
               </span>
             )}
@@ -50,13 +50,13 @@ export default function CartDrawer() {
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
               <ShoppingBag size={40} strokeWidth={1} className="text-velmora-sand" />
               <p className="font-cormorant text-xl text-velmora-mist">Your cart is empty</p>
-              <p className="font-manrope text-xs text-velmora-mist">
+              <p className="font-inter text-xs text-velmora-mist">
                 Discover our curated collection
               </p>
               <Link
                 to="/shop"
                 onClick={() => setIsOpen(false)}
-                className="mt-2 font-manrope text-xs tracking-[0.12em] uppercase border border-velmora-gold text-velmora-gold px-6 py-3 hover:bg-velmora-gold hover:text-velmora-obsidian transition-colors duration-300"
+                className="mt-2 font-inter text-xs tracking-[0.12em] uppercase border border-velmora-gold text-velmora-gold px-6 py-3 hover:bg-velmora-gold hover:text-velmora-obsidian transition-colors duration-300"
               >
                 Shop Now
               </Link>
@@ -82,10 +82,10 @@ export default function CartDrawer() {
                     >
                       {item.product.name}
                     </Link>
-                    <p className="font-manrope text-xs text-velmora-mist mt-0.5">
+                    <p className="font-inter text-xs text-velmora-mist mt-0.5">
                       {item.variant}
                     </p>
-                    <p className="font-manrope text-sm font-medium text-velmora-text mt-1">
+                    <p className="font-inter text-sm font-medium text-velmora-text mt-1">
                       {formatPrice(item.product.price)}
                     </p>
 
@@ -98,7 +98,7 @@ export default function CartDrawer() {
                       >
                         <Minus size={10} />
                       </button>
-                      <span className="font-manrope text-xs w-4 text-center text-velmora-text">
+                      <span className="font-inter text-xs w-4 text-center text-velmora-text">
                         {item.quantity}
                       </span>
                       <button
@@ -128,22 +128,22 @@ export default function CartDrawer() {
         {items.length > 0 && (
           <div className="border-t border-velmora-stone/20 px-6 py-6 space-y-4">
             <div className="flex justify-between items-center">
-              <span className="font-manrope text-xs tracking-[0.1em] uppercase text-velmora-mist">
+              <span className="font-inter text-xs tracking-[0.1em] uppercase text-velmora-mist">
                 Subtotal
               </span>
               <span className="font-cormorant text-xl text-velmora-text">
                 {formatPrice(subtotal)}
               </span>
             </div>
-            <p className="font-manrope text-xs text-velmora-mist">
+            <p className="font-inter text-xs text-velmora-mist">
               Shipping & taxes calculated at checkout
             </p>
-            <button className="w-full bg-velmora-gold text-velmora-obsidian font-manrope text-xs tracking-[0.15em] uppercase py-4 hover:bg-velmora-gold-light transition-colors duration-300">
+            <button className="w-full bg-velmora-gold text-velmora-obsidian font-inter text-xs tracking-[0.15em] uppercase py-4 hover:bg-velmora-gold-light transition-colors duration-300">
               Proceed to Checkout
             </button>
             <button
               onClick={() => setIsOpen(false)}
-              className="w-full border border-velmora-stone/40 text-velmora-mist font-manrope text-xs tracking-[0.12em] uppercase py-3 hover:border-velmora-gold hover:text-velmora-gold transition-colors duration-300"
+              className="w-full border border-velmora-stone/40 text-velmora-mist font-inter text-xs tracking-[0.12em] uppercase py-3 hover:border-velmora-gold hover:text-velmora-gold transition-colors duration-300"
             >
               Continue Shopping
             </button>

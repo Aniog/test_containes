@@ -22,6 +22,7 @@ export default {
       },
       fontFamily: {
         cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        inter: ['Inter', 'system-ui', 'sans-serif'],
         manrope: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {

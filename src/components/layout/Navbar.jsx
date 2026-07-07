@@ -55,7 +55,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className={`font-manrope text-xs tracking-[0.12em] uppercase ${textColor} hover:text-velmora-gold transition-colors duration-300`}
+                  className={`font-inter text-xs tracking-[0.12em] uppercase ${textColor} hover:text-velmora-gold transition-colors duration-300`}
                 >
                   {link.label}
                 </Link>
@@ -78,7 +78,7 @@ export default function Navbar() {
               >
                 <ShoppingBag size={18} strokeWidth={1.5} />
                 {totalItems > 0 && (
-                  <span className="absolute -top-1.5 -right-1.5 bg-velmora-gold text-velmora-obsidian text-[9px] font-manrope font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute -top-1.5 -right-1.5 bg-velmora-gold text-velmora-obsidian text-[9px] font-inter font-semibold w-4 h-4 rounded-full flex items-center justify-center leading-none">
                     {totalItems}
                   </span>
                 )}
@@ -104,7 +104,7 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   to={link.href}
-                  className="font-manrope text-xs tracking-[0.15em] uppercase text-velmora-text-light hover:text-velmora-gold transition-colors duration-300"
+                  className="font-inter text-xs tracking-[0.15em] uppercase text-velmora-text-light hover:text-velmora-gold transition-colors duration-300"
                 >
                   {link.label}
                 </Link>
