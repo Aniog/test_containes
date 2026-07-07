@@ -9,8 +9,8 @@ export const products = [
     rating: 4.8,
     reviews: 124,
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60901?w=800&h=1000&fit=crop',
       'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60901?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
     badge: 'Bestseller',
@@ -25,8 +25,8 @@ export const products = [
     rating: 4.9,
     reviews: 89,
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
       'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
     badge: 'New',
@@ -72,8 +72,8 @@ export const products = [
     rating: 5.0,
     reviews: 45,
     images: [
-      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=1000&fit=crop',
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=1000&fit=crop',
     ],
     variants: ['gold', 'silver'],
     badge: 'Gift Set',
@@ -81,7 +81,7 @@ export const products = [
 ]
 
 export const categories = [
-  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60901?w=600&h=800&fit=crop' },
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=800&fit=crop' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=800&fit=crop' },
   { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=800&fit=crop' },
 ]
