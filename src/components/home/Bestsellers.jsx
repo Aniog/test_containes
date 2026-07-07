@@ -52,7 +52,7 @@ export default function Bestsellers() {
   }
 
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-base">
+    <section className="py-16 md:py-24 bg-base">
       <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-16">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="font-serif text-3xl md:text-4xl text-foreground">Bestsellers</h2>
