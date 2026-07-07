@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import { ImageHelper } from '@strikingly/sdk'
+import { useCart } from '../context/CartContext'
 import strkImgConfig from '@/strk-img-config.json'
 
 const FILTERS = {
@@ -34,6 +35,9 @@ export const Shop = () => {
   const [sortBy, setSortBy] = useState('featured')
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
   const containerRef = useRef(null)
+  
+  const { addItem } = useCart()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (initialCategory) {
@@ -188,7 +192,7 @@ export const Shop = () => {
           {/* Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-10 md:gap-x-8 md:gap-y-12">
             {sortedProducts.map((product) => (
-              <Link key={product.id} to={`/product/${product.id}`} className="group block">
+              <div key={product.id} className="group block cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
                 <div className="relative aspect-[3/4] mb-4 overflow-hidden bg-secondary">
                   <img 
                     data-strk-img-id={`shop-${product.id}-1`}
@@ -213,7 +217,8 @@ export const Shop = () => {
                     className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-sm text-foreground py-2 text-xs font-serif uppercase tracking-widest opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 active:bg-primary active:text-primary-foreground"
                     onClick={(e) => { 
                       e.preventDefault(); 
-                      /* Add to cart logic here */ 
+                      e.stopPropagation();
+                      addItem(product);
                     }}
                   >
                     Quick Add
@@ -230,7 +235,7 @@ export const Shop = () => {
                     {product.material}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
           

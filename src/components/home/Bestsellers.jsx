@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useCart } from '../../context/CartContext'
 
 const BESTSELLERS = [
   {
@@ -34,6 +35,9 @@ const BESTSELLERS = [
 ]
 
 export const Bestsellers = () => {
+  const { addItem } = useCart()
+  const navigate = useNavigate()
+
   return (
     <section className="py-24 bg-background">
       <div className="container mx-auto px-4">
@@ -46,7 +50,11 @@ export const Bestsellers = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
           {BESTSELLERS.map((product) => (
-            <div key={product.id} className="group cursor-pointer">
+            <div 
+              key={product.id} 
+              className="group cursor-pointer"
+              onClick={() => navigate(`/product/${product.id}`)}
+            >
               <div className="relative aspect-[3/4] mb-4 overflow-hidden bg-secondary w-full">
                 {/* Primary Image */}
                 <img 
@@ -72,7 +80,11 @@ export const Bestsellers = () => {
                 {/* Quick Add Button */}
                 <button 
                   className="absolute bottom-4 left-4 right-4 bg-background/90 backdrop-blur-sm text-foreground py-2 text-xs font-serif uppercase tracking-widest opacity-0 transform translate-y-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 active:bg-primary active:text-primary-foreground"
-                  onClick={(e) => { e.preventDefault(); /* Add to cart logic later */ }}
+                  onClick={(e) => { 
+                    e.preventDefault()
+                    e.stopPropagation() 
+                    addItem(product) 
+                  }}
                 >
                   Quick Add
                 </button>

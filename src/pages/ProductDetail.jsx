@@ -37,9 +37,13 @@ const PRODUCTS = [
   },
 ]
 
+import { useCart } from '../context/CartContext'
+
 export const ProductDetail = () => {
   const { id } = useParams()
   const product = PRODUCTS.find(p => p.id === id) || PRODUCTS[0]
+  
+  const { addItem } = useCart()
   
   const [activeImage, setActiveImage] = useState(0)
   const [quantity, setQuantity] = useState(1)
@@ -156,7 +160,10 @@ export const ProductDetail = () => {
             </div>
             
             {/* Add to Cart */}
-            <button className="flex-1 h-12 bg-primary text-primary-foreground font-serif uppercase tracking-[0.2em] text-sm hover:bg-primary/90 transition-colors">
+            <button 
+              className="flex-1 h-12 bg-primary text-primary-foreground font-serif uppercase tracking-[0.2em] text-sm hover:bg-primary/90 transition-colors"
+              onClick={() => addItem(product, quantity, activeTone)}
+            >
               Add to Cart - ${product.price * quantity}
             </button>
           </div>
@@ -209,12 +216,33 @@ export const ProductDetail = () => {
         </div>
       </div>
       
-      {/* Related Products placeholder */}
+      {/* Related Products */}
       <div className="border-t border-border pt-16">
         <h3 className="font-serif text-2xl text-center mb-10 text-foreground">You May Also Like</h3>
-         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 opacity-80">
-            {/* We can just duplicate the bestsellers UI mapping logic here for 4 items, pointing to the shop */}
-            <p className="font-sans text-center col-span-full text-muted-foreground text-sm italic">Related items placeholder row...</p>
+         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {PRODUCTS.slice(0, 4).map((item) => (
+                <div 
+                   key={item.id} 
+                   className="group cursor-pointer"
+                   onClick={() => window.location.href = `/product/${item.id}`} // Force reload or use navigate
+                >
+                    <div className="relative aspect-[3/4] mb-4 overflow-hidden bg-secondary w-full">
+                        <img 
+                          data-strk-img-id={`pdp-related-${item.id}`}
+                          data-strk-img={item.images[0]}
+                          data-strk-img-ratio="3x4"
+                          data-strk-img-width="400"
+                          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                          alt={item.name}
+                          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:scale-105"
+                        />
+                    </div>
+                    <div className="text-center">
+                        <h4 id={`pdp-related-${item.id}-title`} className="font-serif text-xs md:text-sm uppercase tracking-widest mb-1">{item.name}</h4>
+                        <p id={`pdp-related-${item.id}-desc`} className="font-sans text-sm text-muted-foreground">${item.price}</p>
+                    </div>
+                </div>
+            ))}
          </div>
       </div>
     </div>
