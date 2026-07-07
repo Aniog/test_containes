@@ -19,11 +19,7 @@ export default function CategoryTiles() {
             className="group relative aspect-[4/5] bg-bronze-100 overflow-hidden no-underline"
           >
             {/* Image placeholder */}
-            <div className="absolute inset-0 bg-bronze-200 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-              <span className="text-sm tracking-[0.25em] uppercase text-bronze-400">
-                {cat.name}
-              </span>
-            </div>
+            <div className="absolute inset-0 bg-bronze-200 transition-transform duration-700 group-hover:scale-105" />
 
             {/* Dark overlay on hover */}
             <div className="absolute inset-0 bg-bronze-950/0 group-hover:bg-bronze-950/30 transition-all duration-500" />
