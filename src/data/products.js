@@ -20,6 +20,8 @@ export const products = [
     tones: ["Gold", "Silver"],
     badge: "Bestseller",
     cartImgId: "cart-vivid-aura-jewels-a1",
+    cardImgId: "pcard-vivid-aura-jewels-main",
+    cardImgIdAlt: "pcard-vivid-aura-jewels-alt",
   },
   {
     id: "majestic-flora-nectar",
@@ -39,6 +41,8 @@ export const products = [
     tones: ["Gold"],
     badge: "New",
     cartImgId: "cart-majestic-flora-nectar-b2",
+    cardImgId: "pcard-majestic-flora-nectar-main",
+    cardImgIdAlt: "pcard-majestic-flora-nectar-alt",
   },
   {
     id: "golden-sphere-huggies",
@@ -58,6 +62,8 @@ export const products = [
     tones: ["Gold", "Silver"],
     badge: "Bestseller",
     cartImgId: "cart-golden-sphere-huggies-c3",
+    cardImgId: "pcard-golden-sphere-huggies-main",
+    cardImgIdAlt: "pcard-golden-sphere-huggies-alt",
   },
   {
     id: "amber-lace-earrings",
@@ -76,6 +82,8 @@ export const products = [
     reviews: 64,
     tones: ["Gold"],
     cartImgId: "cart-amber-lace-earrings-d4",
+    cardImgId: "pcard-amber-lace-earrings-main",
+    cardImgIdAlt: "pcard-amber-lace-earrings-alt",
   },
   {
     id: "royal-heirloom-set",
@@ -95,6 +103,8 @@ export const products = [
     tones: ["Gold"],
     badge: "Gift Edit",
     cartImgId: "cart-royal-heirloom-set-e5",
+    cardImgId: "pcard-royal-heirloom-set-main",
+    cardImgIdAlt: "pcard-royal-heirloom-set-alt",
   },
 ]
 

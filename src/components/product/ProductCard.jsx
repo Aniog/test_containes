@@ -2,9 +2,30 @@ import { Link } from "react-router-dom"
 import { useCart } from "@/context/CartContext"
 import { formatPrice } from "@/lib/utils"
 import { StarRating } from "@/components/ui/StarRating"
+import { products } from "@/data/products"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+// Static registry so the strk-img plugin can statically resolve card image IDs
+// (it cannot trace runtime prop values). Rendered hidden.
+const CARD_IMG_REGISTRY = products.map((p) => (
+  <span key={`registry-${p.id}`} className="hidden" aria-hidden="true">
+    <img
+      alt={p.name}
+      data-strk-img-id={p.cardImgId}
+      data-strk-img={`[pcard-${p.id}-title] gold jewelry product`}
+      data-strk-img-ratio="4x5"
+      data-strk-img-width="600"
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+    />
+    <img
+      alt={`${p.name} worn`}
+      data-strk-img-id={p.cardImgIdAlt}
+      data-strk-img={`[pcard-${p.id}-title] gold jewelry worn on model`}
+      data-strk-img-ratio="4x5"
+      data-strk-img-width="600"
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+    />
+  </span>
+))
 
 export default function ProductCard({ product, index = 0 }) {
   const { addItem } = useCart()
@@ -22,11 +43,12 @@ export default function ProductCard({ product, index = 0 }) {
       to={`/product/${product.id}`}
       className="group block"
     >
+      {CARD_IMG_REGISTRY}
       <div className="relative overflow-hidden bg-sand aspect-[4/5]">
         {/* Primary image */}
         <img
           alt={product.name}
-          data-strk-img-id={`pcard-${product.id}-main`}
+          data-strk-img-id={product.cardImgId}
           data-strk-img={`[${descId}] [${titleId}] gold jewelry product`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
@@ -36,7 +58,7 @@ export default function ProductCard({ product, index = 0 }) {
         {/* Secondary (hover) image */}
         <img
           alt={`${product.name} worn`}
-          data-strk-img-id={`pcard-${product.id}-alt`}
+          data-strk-img-id={product.cardImgIdAlt}
           data-strk-img={`[${titleId}] gold jewelry worn on model`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
