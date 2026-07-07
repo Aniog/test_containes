@@ -21,7 +21,8 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0',
+    port: 12000,
+    host: true,
     allowedHosts: true,
     cors: true,
     hmr: {
@@ -29,7 +30,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
