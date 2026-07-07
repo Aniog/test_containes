@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils"
 
 const navLinks = [
   { label: "Shop", href: "/shop" },
-  { label: "Collections", href: "/collections" },
-  { label: "About", href: "/about" },
-  { label: "Journal", href: "/journal" },
+  { label: "Collections", href: "/shop" },
+  { label: "About", href: "/#story" },
+  { label: "Journal", href: "/#journal" },
 ]
 
 export default function Navbar() {
@@ -20,6 +20,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40)
+    handleScroll()
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -91,7 +92,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div
         className={cn(
           "overflow-hidden bg-cream transition-all duration-500 md:hidden",
