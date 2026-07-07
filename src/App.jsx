@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { CartProvider } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
@@ -10,30 +10,34 @@ import ProductDetail from "@/pages/ProductDetail";
 import { ImageHelper } from "@strikingly/sdk";
 import strkImgConfig from "@/strk-img-config.json";
 
-function ImageLoader() {
-  const ref = useRef(null);
+function AppContent() {
+  const containerRef = useRef(null);
+  const location = useLocation();
+
   useEffect(() => {
-    if (!ref.current) return;
-    return ImageHelper.loadImages(strkImgConfig, ref.current);
-  }, []);
-  return <div ref={ref} className="contents" />;
+    if (!containerRef.current) return;
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, [location.pathname]);
+
+  return (
+    <div ref={containerRef} className="relative">
+      <Navbar />
+      <CartDrawer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <div className="relative">
-          <ImageLoader />
-          <Navbar />
-          <CartDrawer />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-          </Routes>
-          <Footer />
-        </div>
+        <AppContent />
       </CartProvider>
     </BrowserRouter>
   );
