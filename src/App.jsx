@@ -4,6 +4,8 @@ import Layout from '@/components/layout/Layout'
 import Home from '@/pages/Home'
 import Shop from '@/pages/Shop'
 import Product from '@/pages/Product'
+import About from '@/pages/About'
+import Journal from '@/pages/Journal'
 
 function App() {
   return (
@@ -15,8 +17,8 @@ function App() {
             <Route path="shop" element={<Shop />} />
             <Route path="products/:slug" element={<Product />} />
             <Route path="collections" element={<Shop />} />
-            <Route path="about" element={<Home />} />
-            <Route path="journal" element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="journal" element={<Journal />} />
           </Route>
         </Routes>
       </CartProvider>

@@ -12,9 +12,14 @@ export default function ProductImage({
   width = 600,
   className = '',
   alt,
+  titleId,
+  descId,
+  renderTextRefs = false,
 }) {
   const containerRef = useRef(null)
   const imgId = variant === 'hover' ? product.hoverImgId : product.imgId
+  const resolvedTitleId = titleId || product.titleId
+  const resolvedDescId = descId || product.descId
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
@@ -22,9 +27,19 @@ export default function ProductImage({
 
   return (
     <div ref={containerRef} className={`overflow-hidden ${className}`}>
+      {renderTextRefs && (
+        <>
+          <span id={resolvedTitleId} className="sr-only">
+            {product.name}
+          </span>
+          <span id={resolvedDescId} className="sr-only">
+            {product.shortDescription || product.name}
+          </span>
+        </>
+      )}
       <img
         data-strk-img-id={imgId}
-        data-strk-img={`[${product.descId}] [${product.titleId}]`}
+        data-strk-img={`[${resolvedDescId}] [${resolvedTitleId}]`}
         data-strk-img-ratio={ratio}
         data-strk-img-width={width}
         src={PLACEHOLDER}

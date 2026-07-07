@@ -21,30 +21,33 @@ export default function ProductCard({ product, showQuickAdd = true }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Link
-        to={`/products/${product.slug}`}
-        className="block relative aspect-[4/5] bg-champagne/30 overflow-hidden"
-      >
-        <div className="absolute inset-0 transition-opacity duration-700" style={{ opacity: isHovered ? 0 : 1 }}>
-          <ProductImage
-            product={product}
-            variant="primary"
-            ratio="4x5"
-            width={600}
-            className="w-full h-full"
-          />
-        </div>
-        <div className="absolute inset-0 transition-opacity duration-700" style={{ opacity: isHovered ? 1 : 0 }}>
-          <ProductImage
-            product={product}
-            variant="hover"
-            ratio="4x5"
-            width={600}
-            className="w-full h-full"
-          />
-        </div>
+      <div className="relative aspect-[4/5] bg-champagne/30 overflow-hidden">
+        <Link
+          to={`/products/${product.slug}`}
+          className="block absolute inset-0"
+          aria-label={product.name}
+        >
+          <div className="absolute inset-0 transition-opacity duration-700" style={{ opacity: isHovered ? 0 : 1 }}>
+            <ProductImage
+              product={product}
+              variant="primary"
+              ratio="4x5"
+              width={600}
+              className="w-full h-full"
+            />
+          </div>
+          <div className="absolute inset-0 transition-opacity duration-700" style={{ opacity: isHovered ? 1 : 0 }}>
+            <ProductImage
+              product={product}
+              variant="hover"
+              ratio="4x5"
+              width={600}
+              className="w-full h-full"
+            />
+          </div>
+        </Link>
         {product.bestseller && (
-          <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest font-sans text-cream bg-espresso/80 px-2.5 py-1">
+          <span className="absolute top-3 left-3 z-10 text-[10px] uppercase tracking-widest font-sans text-cream bg-espresso/80 px-2.5 py-1">
             Bestseller
           </span>
         )}
@@ -52,14 +55,14 @@ export default function ProductCard({ product, showQuickAdd = true }) {
           <button
             type="button"
             onClick={handleQuickAdd}
-            className="absolute bottom-4 left-4 right-4 flex items-center justify-center gap-2 bg-cream text-espresso py-3 text-xs uppercase tracking-widest font-sans opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hover:bg-gold hover:text-espresso"
+            className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-center gap-2 bg-cream text-espresso py-3 text-xs uppercase tracking-widest font-sans opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 hover:bg-gold hover:text-espresso"
             aria-label={`Add ${product.name} to cart`}
           >
             <ShoppingBag size={14} strokeWidth={1.5} />
             Quick Add
           </button>
         )}
-      </Link>
+      </div>
       <div className="pt-4 text-center">
         <h3
           id={product.titleId}

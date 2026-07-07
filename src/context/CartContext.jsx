@@ -1,10 +1,28 @@
-import { createContext, useContext, useState, useCallback, useMemo } from 'react'
+import { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react'
 
 const CartContext = createContext(null)
+const CART_STORAGE_KEY = 'velmora_cart_v1'
+
+function readStoredCart() {
+  if (typeof window === 'undefined') return []
+  try {
+    const raw = window.localStorage.getItem(CART_STORAGE_KEY)
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
+  } catch {
+    return []
+  }
+}
 
 export function CartProvider({ children }) {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState(readStoredCart)
   const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
+  }, [items])
 
   const openCart = useCallback(() => setIsOpen(true), [])
   const closeCart = useCallback(() => setIsOpen(false), [])
@@ -33,6 +51,10 @@ export function CartProvider({ children }) {
           tone,
           quantity,
           imgId: product.imgId,
+          hoverImgId: product.hoverImgId,
+          shortDescription: product.shortDescription,
+          titleId: product.titleId,
+          descId: product.descId,
         },
       ]
     })
