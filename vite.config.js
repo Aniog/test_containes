@@ -1,18 +1,18 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
-import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
-import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
-import checkImgPlugin from './plugin/vite-plugin-check-img.js'
-import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-img.js'
+const useStrkPlugins = process.env.ENABLE_STRK_DEV_PLUGINS !== 'false'
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
-    strkImgPlugin(),
-    checkImgPlugin(),
-    checkPlaceholderImgPlugin(),
-    visualEditPlugin(),
+    ...(useStrkPlugins
+      ? [
+          (await import('./plugin/vite-plugin-strk-img.js')).default(),
+          (await import('./plugin/vite-plugin-check-img.js')).default(),
+          (await import('./plugin/vite-plugin-check-placeholder-img.js')).default(),
+          (await import('./plugin/vite-plugin-visual-edit.js')).default(),
+        ]
+      : []),
     react(),
   ],
   resolve: {
