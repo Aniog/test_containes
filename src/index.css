@@ -1,76 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2C2824;
+  background-color: #FAF8F5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+::-webkit-scrollbar-thumb {
+  background: #C9A96E;
+  border-radius: 3px;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background-color: #C9A96E;
+  color: #1A1714;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #E8E0D5, transparent);
+}
+
+/* Premium button styles */
+.btn-primary {
+  @apply bg-velmora-gold text-velmora-base font-sans text-xs tracking-wide-luxury uppercase px-8 py-3 transition-all duration-300 hover:bg-velmora-gold-dark;
+}
+
+.btn-outline {
+  @apply border border-velmora-gold text-velmora-gold font-sans text-xs tracking-wide-luxury uppercase px-8 py-3 transition-all duration-300 hover:bg-velmora-gold hover:text-velmora-base;
+}
+
+/* Product card hover effect */
+.product-card {
+  @apply group relative overflow-hidden;
+}
+
+.product-card .product-image-secondary {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100;
+}
+
+.product-card .product-image-primary {
+  @apply transition-opacity duration-500 group-hover:opacity-0;
+}
+
+/* Accordion styles */
+.accordion-content {
+  @apply max-h-0 overflow-hidden transition-all duration-300;
+}
+
+.accordion-content.open {
+  @apply max-h-96;
+}
+
+/* Cart drawer animation */
+.cart-drawer {
+  @apply fixed inset-y-0 right-0 w-full max-w-md bg-velmora-cream shadow-2xl transform translate-x-full transition-transform duration-300 z-50;
+}
+
+.cart-drawer.open {
+  @apply translate-x-0;
+}
+
+/* UGC card styles */
+.ugc-card {
+  @apply relative flex-shrink-0 w-48 md:w-56 aspect-[9/16] rounded-lg overflow-hidden;
+}
+
+.ugc-card .ugc-caption {
+  @apply absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-velmora-base/80 to-transparent;
+}
+
+/* Newsletter section */
+.newsletter-section {
+  @apply bg-velmora-base text-velmora-cream;
+}
+
+/* Trust bar */
+.trust-bar {
+  @apply bg-velmora-surface border-y border-velmora-warm/50;
+}
+
+/* Star rating */
+.star-rating {
+  @apply flex gap-0.5;
+}
+
+.star-rating .star {
+  @apply text-velmora-gold;
+}
+
+/* Pill variant buttons */
+.variant-pill {
+  @apply px-4 py-2 text-xs tracking-wide-luxury uppercase border transition-all duration-200;
+}
+
+.variant-pill.active {
+  @apply bg-velmora-gold border-velmora-gold text-velmora-base;
+}
+
+.variant-pill:not(.active) {
+  @apply border-velmora-warm text-velmora-text-light hover:border-velmora-gold;
+}
+
+/* Filter sidebar */
+.filter-section {
+  @apply border-b border-velmora-warm/50 pb-4 mb-4;
+}
+
+.filter-section:last-child {
+  @apply border-b-0;
+}
+
+/* Sort dropdown */
+.sort-dropdown {
+  @apply appearance-none bg-transparent border border-velmora-warm px-4 py-2 text-sm font-sans cursor-pointer;
+}
+
+/* Loading shimmer */
+.shimmer {
+  @apply bg-gradient-to-r from-velmora-warm/20 via-velmora-warm/40 to-velmora-warm/20 bg-[length:200%_100%] animate-shimmer;
+}
