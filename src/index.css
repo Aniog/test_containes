@@ -1,24 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Quiet luxury palette - deep refined base with warm gold accents */
+  --color-bg: #F8F5F1;
+  --color-bg-dark: #1A1816;
+  --color-surface: #FFFFFF;
+  --color-text: #2C2825;
+  --color-text-muted: #6B665F;
+  --color-gold: #B8976E;
+  --color-gold-dark: #8B6F47;
+  --color-gold-light: #D4B896;
+  --color-border: #E5E0D8;
+  --color-border-light: #F0EBE3;
+  
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
 
 body {
@@ -30,47 +33,321 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Typography */
+h1, h2, h3, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.product-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Premium button styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: var(--color-gold);
+  color: var(--color-bg-dark);
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary:hover {
+  background-color: var(--color-gold-dark);
+  transform: translateY(-1px);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-outline:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+/* Hairline dividers */
+.divider {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Product card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: var(--color-bg-dark);
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Category tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.category-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(26,24,22,0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 32px;
+}
+
+.category-label {
+  color: white;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+}
+
+/* UGC Reel cards */
+.ugc-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  background: var(--color-bg-dark);
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px 20px;
+  background: linear-gradient(to top, rgba(26,24,22,0.85) 0%, rgba(26,24,22,0) 100%);
+  color: white;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+.nav-transparent {
+  background: transparent;
+}
+
+.nav-solid {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Cart drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: -4px 0 24px rgba(0,0,0,0.1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Variant pills */
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.variant-pill.active {
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+  color: var(--color-bg-dark);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-text);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding-bottom: 18px;
+}
+
+/* Filter sidebar */
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
