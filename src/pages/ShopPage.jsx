@@ -2,6 +2,7 @@ import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react';
 import { ProductCard } from '@/components/ui/ProductCard';
+import { useStrkImages } from '@/hooks/useStrkImages';
 import { PRODUCTS } from '@/data/products';
 
 const PRICE_RANGES = [
@@ -110,6 +111,7 @@ export function ShopPage() {
   }, [selectedCategories, selectedPrices, selectedMaterials, sortBy]);
 
   const activeFilterCount = selectedCategories.length + selectedPrices.length + selectedMaterials.length;
+  const containerRef = useStrkImages([filteredProducts.length]);
 
   const FilterContent = () => (
     <div className="space-y-8">
@@ -183,7 +185,7 @@ export function ShopPage() {
   );
 
   return (
-    <div className="min-h-screen bg-velmora-cream px-6 pb-20 pt-28 md:pt-32">
+    <div ref={containerRef} className="min-h-screen bg-velmora-cream px-6 pb-20 pt-28 md:pt-32">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
           <p className="mb-3 font-display text-xs font-medium uppercase tracking-superwide text-velmora-gold-dark">
