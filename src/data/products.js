@@ -51,9 +51,9 @@ export const products = [
     rating: 4.7,
     reviewCount: 156,
     images: [
-      "https://images.unsplash.com/photo-1535632787350-4e68b0f9b8b7?w=800&q=80",
       "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80",
-      "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80"
+      "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80",
+      "https://images.unsplash.com/photo-1506630448388-4e683c67ddb0?w=800&q=80"
     ],
     variants: ["Gold", "Silver"],
     inStock: true,

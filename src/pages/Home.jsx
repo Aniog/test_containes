@@ -18,7 +18,7 @@ const Home = () => {
   const categories = [
     { name: "Earrings", image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80", slug: "Earrings" },
     { name: "Necklaces", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80", slug: "Necklaces" },
-    { name: "Huggies", image: "https://images.unsplash.com/photo-1535632787350-4e68b0f9b8b7?w=800&q=80", slug: "Huggies" },
+    { name: "Huggies", image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80", slug: "Huggies" },
   ];
 
   return (
