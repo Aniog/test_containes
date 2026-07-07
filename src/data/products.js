@@ -57,8 +57,8 @@ const products = [
     shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-8 business days. Express delivery available at checkout.',
     returns: '30-day return policy. Items must be returned in original condition and packaging. Free returns on all domestic orders.',
     images: [
-      'https://images.unsplash.com/photo-1635767798638-3665c5b2c3b6?w=800&q=80',
-      'https://images.unsplash.com/photo-1635767798638-3665c5b2c3b6?w=400&q=80',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80',
     ],
     variants: [
       { name: 'Gold Tone', value: 'gold' },
@@ -79,8 +79,8 @@ const products = [
     shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5-8 business days. Express delivery available at checkout.',
     returns: '30-day return policy. Items must be returned in original condition and packaging. Free returns on all domestic orders.',
     images: [
-      'https://images.unsplash.com/photo-1617038220302-7db14f2df4f2?w=800&q=80',
-      'https://images.unsplash.com/photo-1617038220302-7db14f2df4f2?w=400&q=80',
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=800&q=80',
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=80',
     ],
     variants: [
       { name: 'Gold Tone', value: 'gold' },
@@ -114,7 +114,7 @@ const products = [
 export const categories = [
   { id: 'earrings', name: 'Earrings', count: 3, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80' },
   { id: 'necklaces', name: 'Necklaces', count: 1, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80' },
-  { id: 'huggies', name: 'Huggies', count: 1, image: 'https://images.unsplash.com/photo-1635767798638-3665c5b2c3b6?w=600&q=80' },
+  { id: 'huggies', name: 'Huggies', count: 1, image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80' },
 ];
 
 export const testimonials = [

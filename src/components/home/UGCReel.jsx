@@ -1,12 +1,12 @@
 import { ugcReels } from '@/data/products';
 
 const reelImages = [
-  'https://images.unsplash.com/photo-1617038220302-7db14f2df4f2?w=400&q=85',
-  'https://images.unsplash.com/photo-1635767798638-3665c5b2c3b6?w=400&q=85',
+  'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=85',
+  'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=85',
   'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=85',
   'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=85',
   'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=85',
-  'https://images.unsplash.com/photo-1617038220302-7db14f2df4f2?w=400&q=85',
+  'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=85',
 ];
 
 export default function UGCReel() {
