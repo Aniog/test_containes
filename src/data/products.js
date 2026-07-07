@@ -40,7 +40,7 @@ export const products = [
     material: '18K Gold Plated',
     images: [
       'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
-      'https://images.unsplash.com/photo-1573408301185-9519f94816b5?w=800&q=80',
+      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
     ],
     rating: 4.7,
     reviews: 203,
@@ -109,13 +109,13 @@ export const getRelatedProducts = (productId, limit = 4) => {
 export const ugcContent = [
   {
     id: 'ugc-1',
-    image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80',
     caption: 'Everyday elegance',
     author: 'Sarah M.',
   },
   {
     id: 'ugc-2',
-    image: 'https://images.unsplash.com/photo-1612966809234-f7f1f8b0b6b5?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&q=80',
     caption: 'Golden hour glow',
     author: 'Emily R.',
   },
@@ -139,7 +139,7 @@ export const ugcContent = [
   },
   {
     id: 'ugc-6',
-    image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&q=80',
     caption: 'Gift ready',
     author: 'Michelle D.',
   },
