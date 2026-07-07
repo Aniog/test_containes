@@ -18,8 +18,7 @@ export function ProductCard({ product, className }) {
   };
 
   return (
-    <Link
-      to={`/products/${product.id}`}
+    <div
       className={cn('group block', className)}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -50,13 +49,18 @@ export function ProductCard({ product, className }) {
           </span>
         )}
         <div className="absolute inset-x-0 bottom-0 flex translate-y-full justify-center pb-4 transition-transform duration-300 ease-premium group-hover:translate-y-0">
-          <Button size="sm" onClick={handleQuickAdd} className="shadow-soft">
+          <Button
+            size="sm"
+            onClick={handleQuickAdd}
+            className="shadow-soft"
+            type="button"
+          >
             <ShoppingBag className="mr-2 h-3.5 w-3.5" />
             Quick Add
           </Button>
         </div>
       </div>
-      <div className="mt-4 text-center">
+      <Link to={`/products/${product.id}`} className="mt-4 block text-center">
         <h3
           id={`${product.imageId}-title`}
           className="font-serif text-sm font-medium uppercase tracking-[0.15em] text-charcoal"
@@ -69,7 +73,7 @@ export function ProductCard({ product, className }) {
         <p className="mt-1.5 text-sm font-medium text-warm-gray">
           ${product.price.toFixed(2)}
         </p>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 }
