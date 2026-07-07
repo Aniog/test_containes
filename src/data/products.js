@@ -96,7 +96,7 @@ export const PRODUCTS = [
     shipping:
       "Free worldwide shipping on orders over $75. 30-day returns on unworn pieces in original packaging. Orders ship within 1–2 business days.",
     image:
-      "https://images.unsplash.com/photo-1635767582909-345c4f0aa0a0?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1633934542430-0905ccb5f050?auto=format&fit=crop&w=1200&q=80",
     imageAlt:
       "Golden Sphere Huggies — chunky gold dome huggie earrings on a soft surface",
   },
@@ -172,8 +172,8 @@ export const EDITORIAL = {
   },
   categoryEarrings: {
     image:
-      "https://images.unsplash.com/photo-1535632066274-66c2dc55a166?auto=format&fit=crop&w=900&q=85",
-    alt: "Earrings collection — gold studs and drops on a warm neutral surface",
+      "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=85",
+    alt: "Earrings collection — gold cuffs and studs on a warm neutral surface",
   },
   categoryNecklaces: {
     image:
@@ -182,13 +182,13 @@ export const EDITORIAL = {
   },
   categoryHuggies: {
     image:
-      "https://images.unsplash.com/photo-1635767582909-345c4f0aa0a0?auto=format&fit=crop&w=900&q=85",
-    alt: "Huggies collection — chunky gold huggie earrings on neutral backdrop",
+      "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=85",
+    alt: "Huggies collection — gold huggie earrings in a soft gift box",
   },
   ugc: [
     {
       image:
-        "https://images.unsplash.com/photo-1631982690923-4f50b30d4e2a?auto=format&fit=crop&w=900&q=85",
+        "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=85",
       caption: "The huggies I never take off",
       handle: "@maya.k",
     },
@@ -212,7 +212,7 @@ export const EDITORIAL = {
     },
     {
       image:
-        "https://images.unsplash.com/photo-1605493725784-56d4a7a18f8c?auto=format&fit=crop&w=900&q=85",
+        "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=85",
       caption: "My forever cuff",
       handle: "@jules.e",
     },
