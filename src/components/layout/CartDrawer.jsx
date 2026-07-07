@@ -1,11 +1,23 @@
 import { Link } from 'react-router-dom';
 import { Minus, Plus, Trash2, ShoppingBag } from 'lucide-react';
+import strkImgConfig from '@/strk-img-config.json';
 import { Drawer } from '@/components/ui/Drawer';
 import { Button } from '@/components/ui/Button';
 import { useCart } from '@/contexts/CartContext';
 import { formatPrice } from '@/data/products';
 
 const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
+
+function getPickedImageUrl(imgId) {
+  const entry = strkImgConfig[imgId];
+  if (!entry || !entry.results) return null;
+  const pickedId = entry.picked;
+  if (pickedId) {
+    const picked = entry.results.find((r) => r.id === pickedId);
+    if (picked) return picked.url;
+  }
+  return entry.results[0]?.url || null;
+}
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeFromCart, subtotal, count } = useCart();
@@ -32,11 +44,7 @@ export function CartDrawer() {
                   className="w-20 h-24 bg-sand flex-shrink-0 overflow-hidden"
                 >
                   <img
-                    data-strk-img-id={`cart-${item.id}`}
-                    data-strk-img={`[${item.descId}] [${item.titleId}]`}
-                    data-strk-img-ratio="3x4"
-                    data-strk-img-width="200"
-                    src={placeholder}
+                    src={getPickedImageUrl(item.imgId) || placeholder}
                     alt={item.name}
                     className="w-full h-full object-cover"
                   />
@@ -44,12 +52,13 @@ export function CartDrawer() {
                 <div className="flex-1 min-w-0">
                   <Link
                     to={`/products/${item.id}`}
+                    id={item.titleId}
                     onClick={closeCart}
                     className="font-serif text-base uppercase tracking-brand text-ink hover:text-gold transition-colors"
                   >
                     {item.name}
                   </Link>
-                  <p className="text-xs text-taupe font-sans mt-0.5 capitalize">{item.variant} tone</p>
+                  <p id={item.descId} className="text-xs text-taupe font-sans mt-0.5 capitalize">{item.variant} tone</p>
                   <p className="text-sm font-sans text-ink mt-1">{formatPrice(item.price)}</p>
 
                   <div className="flex items-center justify-between mt-3">
@@ -92,9 +101,13 @@ export function CartDrawer() {
             <Button variant="primary" size="md" className="w-full">
               Checkout
             </Button>
-            <Button variant="outline" size="sm" className="w-full" onClick={closeCart} asChild>
-              <Link to="/shop">Continue Shopping</Link>
-            </Button>
+            <Link
+              to="/shop"
+              onClick={closeCart}
+              className="inline-flex items-center justify-center w-full px-5 py-2 text-xs uppercase tracking-brand font-sans font-medium border border-ink text-ink bg-transparent hover:bg-ink hover:text-cream transition-all duration-300"
+            >
+              Continue Shopping
+            </Link>
           </div>
         </div>
       )}
