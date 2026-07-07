@@ -4,37 +4,37 @@ const REELS = [
   {
     id: 1,
     image:
-      'https://images.unsplash.com/photo-1617038220319-276d3d3e6824?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1600721391776-b5cd0e0048f9?auto=format&fit=crop&w=600&q=80',
     caption: 'Everyday gold, elevated',
   },
   {
     id: 2,
     image:
-      'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1671644730555-916aa8d8157f?auto=format&fit=crop&w=600&q=80',
     caption: 'Layered & loved',
   },
   {
     id: 3,
     image:
-      'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1610214354095-684029c14300?auto=format&fit=crop&w=600&q=80',
     caption: 'Gift-worthy moments',
   },
   {
     id: 4,
     image:
-      'https://images.unsplash.com/photo-1617038224557-69d61629fd8e?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1781366636403-744da32d23d5?auto=format&fit=crop&w=600&q=80',
     caption: 'Delicate details',
   },
   {
     id: 5,
     image:
-      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1720944518547-93ae4d5f90b7?auto=format&fit=crop&w=600&q=80',
     caption: 'Evening light',
   },
   {
     id: 6,
     image:
-      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80',
+      'https://images.unsplash.com/photo-1762344350577-be64e295f2d1?auto=format&fit=crop&w=600&q=80',
     caption: 'Styled by you',
   },
 ]

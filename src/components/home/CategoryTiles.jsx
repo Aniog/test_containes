@@ -4,17 +4,17 @@ const CATEGORIES = [
   {
     name: 'Earrings',
     image:
-      'https://images.unsplash.com/photo-1617038220319-276d3d3e6824?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1680789526908-782654d363ae?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'Necklaces',
     image:
-      'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1651651438921-8bc6036055b3?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'Huggies',
     image:
-      'https://images.unsplash.com/photo-1617038224557-69d61629fd8e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1771173652661-8245a9d94095?auto=format&fit=crop&w=800&q=80',
   },
 ]
 

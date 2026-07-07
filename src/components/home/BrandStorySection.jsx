@@ -8,7 +8,7 @@ export function BrandStorySection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="relative aspect-[4/5] overflow-hidden bg-velvet-secondary">
             <img
-              src="https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=1200&q=85"
+              src="https://images.unsplash.com/photo-1624588057318-5f1b2eb81012?auto=format&fit=crop&w=1200&q=85"
               alt="Velmora jewelry craftsmanship"
               loading="lazy"
               className="h-full w-full object-cover"

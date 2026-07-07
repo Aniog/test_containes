@@ -30,16 +30,16 @@ export const PRODUCTS = [
     ],
     images: {
       gold: [
-        'https://images.unsplash.com/photo-1617038220319-276d3d3e6824?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1617038224557-69d61629fd8e?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1560577938-a5ed9b19fe12?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1684616290729-347a70d05d26?auto=format&fit=crop&w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1575990255913-ae2580577263?auto=format&fit=crop&w=800&q=80',
         'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
       ],
     },
     hoverImage:
-      'https://images.unsplash.com/photo-1617038220319-276d3d3e6824?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1575990255913-ae2580577263?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'majestic-flora-nectar',
@@ -53,7 +53,7 @@ export const PRODUCTS = [
       'A delicate collar of multicolor floral crystals suspended on a fine gold chain. Wear it as a single statement or layer it with your favorite pendant.',
     details: [
       '18K gold-plated chain',
-      ' handset pastel crystals',
+      'Handset pastel crystals',
       'Lobster clasp closure',
       'Length: 16 in / 40 cm with 2 in extender',
     ],
@@ -70,16 +70,16 @@ export const PRODUCTS = [
     ],
     images: {
       gold: [
-        'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1651651438921-8bc6036055b3?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1689117687726-6c9bc809597c?auto=format&fit=crop&w=800&q=80',
       ],
       silver: [
+        'https://images.unsplash.com/photo-1606723325540-b7dac72d3cec?auto=format&fit=crop&w=800&q=80',
         'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
       ],
     },
     hoverImage:
-      'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1651651438921-8bc6036055b3?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'golden-sphere-huggies',
@@ -110,16 +110,16 @@ export const PRODUCTS = [
     ],
     images: {
       gold: [
-        'https://images.unsplash.com/photo-1617038224557-69d61629fd8e?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1617038220319-276d3d3e6824?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1771173652661-8245a9d94095?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1626784215021-2e39ccf971cd?auto=format&fit=crop&w=800&q=80',
         'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
       ],
     },
     hoverImage:
-      'https://images.unsplash.com/photo-1617038224557-69d61629fd8e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1771173652661-8245a9d94095?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'amber-lace-earrings',
@@ -150,16 +150,16 @@ export const PRODUCTS = [
     ],
     images: {
       gold: [
-        'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1617038220319-276d3d3e6824?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1680789526908-782654d363ae?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1680789527299-dbf53044f48b?auto=format&fit=crop&w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1765233200117-1cb460a71fa9?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
       ],
     },
     hoverImage:
-      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1680789527299-dbf53044f48b?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'royal-heirloom-set',
@@ -190,16 +190,16 @@ export const PRODUCTS = [
     ],
     images: {
       gold: [
-        'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=800&q=80',
-        'https://images.unsplash.com/photo-1599643478518-17488fbbcd75?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1686575131650-e02f84970212?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1758995115659-06a6cb5787eb?auto=format&fit=crop&w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1759651037868-eb8039c79ed1?auto=format&fit=crop&w=800&q=80',
         'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
       ],
     },
     hoverImage:
-      'https://images.unsplash.com/photo-1602751584552-8ba420552259?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1686575131650-e02f84970212?auto=format&fit=crop&w=800&q=80',
   },
 ]
 
