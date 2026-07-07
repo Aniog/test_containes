@@ -78,7 +78,6 @@ export const CartProvider = ({ children }) => {
             id,
             name: product.name,
             price: product.price,
-            illustration: product.illustrations.primary,
             qty,
             variant,
           },

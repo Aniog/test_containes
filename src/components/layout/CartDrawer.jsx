@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { X, Plus, Minus, Trash2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useCart } from "@/context/CartContext.jsx";
+import { getProductById } from "@/data/products.js";
 import Button from "@/components/ui/Button.jsx";
 import Hairline from "@/components/ui/Hairline.jsx";
 import { formatPrice } from "@/lib/utils.js";
@@ -86,10 +87,15 @@ const CartDrawer = () => {
             </div>
           ) : (
             <ul className="divide-y divide-ink/10">
-              {lines.map((line) => (
+              {lines.map((line) => {
+                const product = getProductById(line.id);
+                const illustration = product ? (
+                  React.cloneElement(product.illustrations.primary, { key: `cart-illo-${line.key}` })
+                ) : null;
+                return (
                 <li key={line.key} className="py-5 flex gap-4">
                   <div className="w-20 h-24 flex-shrink-0 rounded-sm overflow-hidden">
-                    {line.illustration}
+                    {illustration}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-start justify-between gap-2">
@@ -140,7 +146,8 @@ const CartDrawer = () => {
                     </div>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           )}
         </div>

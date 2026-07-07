@@ -89,7 +89,7 @@ const ProductPage = () => {
               </div>
               {gallery.length > 1 && (
                 <div className="mt-4 flex gap-3">
-                  {gallery.map((Illo, i) => (
+                  {gallery.map((img, i) => (
                     <button
                       key={i}
                       type="button"
@@ -100,7 +100,7 @@ const ProductPage = () => {
                       )}
                       aria-label={`View image ${i + 1}`}
                     >
-                      <Illo />
+                      {img}
                     </button>
                   ))}
                 </div>
