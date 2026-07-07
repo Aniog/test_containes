@@ -14,7 +14,7 @@ export default function Hero() {
         data-strk-img="[hero-subtitle] [hero-title] gold jewelry worn on model warm light"
         data-strk-img-ratio="16x9"
         data-strk-img-width="1600"
-        src={PLACEHOLDER}
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
         className="absolute inset-0 h-full w-full object-cover"
       />
       {/* Warm overlay for legibility */}

@@ -4,27 +4,6 @@ import { categories } from "@/data/products"
 const PLACEHOLDER =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 
-const TILES = [
-  {
-    ...categories[0],
-    imgId: "cat-earrings-tile-f1",
-    query: "gold earrings jewelry editorial",
-    to: "/shop?category=Earrings",
-  },
-  {
-    ...categories[1],
-    imgId: "cat-necklaces-tile-f2",
-    query: "gold necklace jewelry editorial",
-    to: "/shop?category=Necklaces",
-  },
-  {
-    ...categories[2],
-    imgId: "cat-huggies-tile-f3",
-    query: "gold huggie hoop earrings jewelry",
-    to: "/shop?category=Earrings",
-  },
-]
-
 export default function CategoryTiles() {
   return (
     <section className="py-20 md:py-28">
@@ -39,7 +18,7 @@ export default function CategoryTiles() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {TILES.map((tile) => {
+          {categories.map((tile) => {
             const labelId = `cat-${tile.id}-label`
             return (
               <Link
@@ -53,7 +32,7 @@ export default function CategoryTiles() {
                   data-strk-img={`[${labelId}] ${tile.query}`}
                   data-strk-img-ratio="4x5"
                   data-strk-img-width="700"
-                  src={PLACEHOLDER}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent opacity-90" />

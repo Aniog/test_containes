@@ -32,7 +32,7 @@ export default function ReelStrip() {
                   data-strk-img={`[${captionId}] gold jewelry worn close up`}
                   data-strk-img-ratio="9x16"
                   data-strk-img-width="500"
-                  src={PLACEHOLDER}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />

@@ -26,21 +26,21 @@ export default function ProductCard({ product, index = 0 }) {
         {/* Primary image */}
         <img
           alt={product.name}
-          data-strk-img-id={`pcard-${product.id}-main-${index}`}
+          data-strk-img-id={`pcard-${product.id}-main`}
           data-strk-img={`[${descId}] [${titleId}] gold jewelry product`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
         {/* Secondary (hover) image */}
         <img
           alt={`${product.name} worn`}
-          data-strk-img-id={`pcard-${product.id}-alt-${index}`}
+          data-strk-img-id={`pcard-${product.id}-alt`}
           data-strk-img={`[${titleId}] gold jewelry worn on model`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
 

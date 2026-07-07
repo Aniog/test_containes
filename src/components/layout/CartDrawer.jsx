@@ -3,17 +3,46 @@ import { X, Plus, Minus, ShoppingBag } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 import { formatPrice } from "@/lib/utils"
 import { Button } from "@/components/ui/Button"
+import { products } from "@/data/products"
+import { useStrkImages } from "@/hooks/useStrkImages"
 
 const PLACEHOLDER =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 
+// Static registry so the strk-img plugin can statically resolve cart image IDs
+// (it cannot trace runtime values from context state). Rendered hidden.
+const CART_IMG_REGISTRY = products.map((p) => (
+  <img
+    key={`registry-${p.id}`}
+    alt={p.name}
+    data-strk-img-id={p.cartImgId}
+    data-strk-img={`[cart-${p.id}-title] gold jewelry`}
+    data-strk-img-ratio="3x4"
+    data-strk-img-width="200"
+    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+    className="hidden"
+    aria-hidden="true"
+  />
+))
+
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, subtotal, count } = useCart()
+  const imgRef = useStrkImages([isOpen, items.length])
+
+  // Resolve the canonical cart image ID from the product catalogue at render
+  // time, so the image loads even for items persisted in localStorage before
+  // the cartImgId field existed.
+  const cartImgIdFor = (productId) => {
+    const product = products.find((p) => p.id === productId)
+    return product?.cartImgId || `product-${productId}-cart`
+  }
 
   if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 z-[60]">
+      {/* Static registry for strk-img plugin resolution (hidden) */}
+      <div className="hidden" aria-hidden="true">{CART_IMG_REGISTRY}</div>
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-ink/40 animate-overlay-in"
@@ -21,7 +50,7 @@ export default function CartDrawer() {
       />
 
       {/* Panel */}
-      <aside className="absolute right-0 top-0 h-full w-full max-w-md bg-cream shadow-2xl animate-drawer-in flex flex-col">
+      <aside ref={imgRef} className="absolute right-0 top-0 h-full w-full max-w-md bg-cream shadow-2xl animate-drawer-in flex flex-col">
         <div className="flex items-center justify-between px-6 py-5 border-b border-ink/10">
           <h2 className="font-serif text-xl tracking-wide text-ink">
             Your Cart{" "}
@@ -57,11 +86,11 @@ export default function CartDrawer() {
                     <div className="w-20 h-24 shrink-0 bg-sand overflow-hidden">
                       <img
                         alt={item.name}
-                        data-strk-img-id={item.imgId}
+                        data-strk-img-id={cartImgIdFor(item.productId)}
                         data-strk-img={`[cart-${item.productId}-title] gold jewelry`}
                         data-strk-img-ratio="3x4"
                         data-strk-img-width="200"
-                        src={PLACEHOLDER}
+                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                         className="h-full w-full object-cover"
                       />
                       <span id={`cart-${item.productId}-title`} className="hidden">

@@ -46,7 +46,7 @@ export function CartProvider({ children }) {
           price: product.price,
           tone: tone || product.tones[0],
           quantity,
-          imgId: product.imgId || `product-${product.id}-cart`,
+          imgId: product.cartImgId || product.imgId || `product-${product.id}-cart`,
           titleId: `cart-${product.id}-title`,
         },
       ]

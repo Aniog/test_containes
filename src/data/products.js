@@ -19,6 +19,7 @@ export const products = [
     reviews: 126,
     tones: ["Gold", "Silver"],
     badge: "Bestseller",
+    cartImgId: "cart-vivid-aura-jewels-a1",
   },
   {
     id: "majestic-flora-nectar",
@@ -37,6 +38,7 @@ export const products = [
     reviews: 88,
     tones: ["Gold"],
     badge: "New",
+    cartImgId: "cart-majestic-flora-nectar-b2",
   },
   {
     id: "golden-sphere-huggies",
@@ -55,6 +57,7 @@ export const products = [
     reviews: 214,
     tones: ["Gold", "Silver"],
     badge: "Bestseller",
+    cartImgId: "cart-golden-sphere-huggies-c3",
   },
   {
     id: "amber-lace-earrings",
@@ -72,6 +75,7 @@ export const products = [
     rating: 4.8,
     reviews: 64,
     tones: ["Gold"],
+    cartImgId: "cart-amber-lace-earrings-d4",
   },
   {
     id: "royal-heirloom-set",
@@ -90,6 +94,7 @@ export const products = [
     reviews: 41,
     tones: ["Gold"],
     badge: "Gift Edit",
+    cartImgId: "cart-royal-heirloom-set-e5",
   },
 ]
 
@@ -98,16 +103,25 @@ export const categories = [
     id: "earrings",
     name: "Earrings",
     description: "Huggies, cuffs & drops",
+    imgId: "cat-earrings-tile-f1",
+    query: "gold earrings jewelry editorial",
+    to: "/shop?category=Earrings",
   },
   {
     id: "necklaces",
     name: "Necklaces",
     description: "Pendants & chains",
+    imgId: "cat-necklaces-tile-f2",
+    query: "gold necklace jewelry editorial",
+    to: "/shop?category=Necklaces",
   },
   {
     id: "huggies",
     name: "Huggies",
     description: "Everyday essentials",
+    imgId: "cat-huggies-tile-f3",
+    query: "gold huggie hoop earrings jewelry",
+    to: "/shop?category=Earrings",
   },
 ]
 

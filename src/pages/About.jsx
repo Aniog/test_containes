@@ -16,7 +16,7 @@ export default function About() {
           data-strk-img="[about-heading] gold jewelry studio craftsmanship warm"
           data-strk-img-ratio="16x9"
           data-strk-img-width="1600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-ink/40" />
