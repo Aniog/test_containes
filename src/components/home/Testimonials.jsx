@@ -1,0 +1,35 @@
+import { Star } from 'lucide-react'
+import { testimonials } from '@/data/products'
+
+export default function Testimonials() {
+  return (
+    <section className="py-20 md:py-28">
+      <div className="max-w-8xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-12">
+          <h2 className="font-serif text-3xl md:text-4xl tracking-[0.05em] text-stone-900">
+            What Our Customers Say
+          </h2>
+          <div className="w-12 h-px bg-gold mx-auto mt-4" />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          {testimonials.map((t) => (
+            <div key={t.id} className="text-center">
+              <div className="flex items-center justify-center gap-1 mb-4">
+                {[...Array(t.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 text-gold fill-gold" />
+                ))}
+              </div>
+              <p className="text-sm md:text-base text-stone-600 font-sans leading-relaxed italic mb-4">
+                "{t.text}"
+              </p>
+              <p className="text-xs tracking-[0.1em] uppercase font-sans font-medium text-stone-900">
+                {t.name}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
