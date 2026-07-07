@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly product slug"
+    },
+    "price": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "compare_at_price": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "description": "Original price for sale display"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["earrings", "necklaces", "huggies", "sets"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "shipping_info": {
+      "type": "string",
+      "description": "Shipping and returns information"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "image_hover_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Secondary hover image URL"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available variants (e.g. gold, silver)"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average star rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is a bestseller"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["id", "name", "slug", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
