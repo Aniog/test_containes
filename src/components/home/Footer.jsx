@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Youtube, Pinterest } from 'lucide-react';
+import { Instagram, Youtube, Globe } from 'lucide-react';
 
 const footerColumns = [
   {
@@ -33,7 +33,7 @@ export default function Footer() {
               Demi-fine gold jewelry crafted to be treasured. Each piece is designed for the woman who values quiet elegance.
             </p>
             <div className="flex gap-4 mt-6">
-              {[Instagram, Youtube, Pinterest].map((Icon, i) => (
+              {[Instagram, Youtube, Globe].map((Icon, i) => (
                 <a
                   key={i}
                   href="#"

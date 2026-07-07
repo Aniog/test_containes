@@ -54,9 +54,9 @@ export default function ProductPage() {
           <div className="space-y-4">
             <div className="aspect-[4/5] bg-warm-border/20 overflow-hidden rounded-sm">
               <img
-                src={product.images[0]}
+                src={product.images[selectedImage]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover transition-opacity duration-300"
               />
             </div>
             <div className="flex gap-3">

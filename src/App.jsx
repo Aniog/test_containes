@@ -10,7 +10,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <CartProvider>
-        <div className="min-h-screen bg-cream text-warm-dark font-sans flex flex-col">
+        <div className="min-h-screen flex flex-col bg-cream">
           <Navbar />
           <div className="flex-1">
             <Routes>
