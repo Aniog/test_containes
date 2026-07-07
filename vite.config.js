@@ -5,6 +5,7 @@ import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 import checkImgPlugin from './plugin/vite-plugin-check-img.js'
 import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-img.js'
+import reactPreambleFixPlugin from './plugin/vite-plugin-react-preamble-fix.js'
 
 export default defineConfig({
   plugins: [
@@ -13,6 +14,7 @@ export default defineConfig({
     checkImgPlugin(),
     checkPlaceholderImgPlugin(),
     visualEditPlugin(),
+    reactPreambleFixPlugin(),
     react(),
   ],
   resolve: {

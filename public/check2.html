@@ -1,0 +1,34 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>check2</title></head>
+<body>
+<div id="out">Loading...</div>
+<script type="module">
+const out = document.getElementById('out')
+const errs = []
+window.addEventListener('error', e => errs.push('ERR: ' + e.message + ' @ ' + e.filename + ':' + e.lineno + ':' + e.colno))
+window.addEventListener('unhandledrejection', e => errs.push('REJ: ' + (e.reason?.message || String(e.reason))))
+
+// Just try to import React and ReactDOM
+try {
+  const r = await import('/node_modules/.vite/deps/react.js?v=3369c056')
+  errs.push('react: ' + (r.default ? 'ok' : 'no default'))
+} catch (e) { errs.push('react import: ' + e.message) }
+
+try {
+  const r = await import('/node_modules/.vite/deps/react-dom_client.js?v=3369c056')
+  errs.push('react-dom: ' + (r.default ? 'ok' : 'no default'))
+} catch (e) { errs.push('react-dom import: ' + e.message) }
+
+try {
+  const r = await import('/src/App.jsx?t=1783466642721')
+  errs.push('App import: ok -> ' + typeof r.default)
+} catch (e) { errs.push('App import: ' + e.message) }
+
+try {
+  const r = await import('/src/visual-edit/index.js')
+  errs.push('visual-edit: ok -> ' + Object.keys(r).join(','))
+} catch (e) { errs.push('visual-edit import: ' + e.message) }
+
+out.textContent = JSON.stringify(errs, null, 2)
+</script>
+</body></html>
