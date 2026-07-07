@@ -1,11 +1,9 @@
-import { useState, useMemo, useEffect, useRef } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, ChevronDown } from 'lucide-react';
 import FilterSidebar from '@/components/shop/FilterSidebar';
 import ShopGrid from '@/components/shop/ShopGrid';
 import products from '@/data/products';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
@@ -23,16 +21,11 @@ const Shop = () => {
   });
   const [sort, setSort] = useState('featured');
   const [mobileFilters, setMobileFilters] = useState(false);
-  const containerRef = useRef(null);
 
   useEffect(() => {
     const cat = searchParams.get('category');
     if (cat) setFilters((f) => ({ ...f, category: cat }));
   }, [searchParams]);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, [filters, sort]);
 
   const filtered = useMemo(() => {
     let result = [...products];
@@ -71,7 +64,7 @@ const Shop = () => {
   const categoryLabel = filters.category === 'all' ? 'All Jewelry' : filters.category.charAt(0).toUpperCase() + filters.category.slice(1);
 
   return (
-    <div ref={containerRef} className="pt-20 md:pt-24">
+    <div className="pt-20 md:pt-24">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Page header */}
         <div className="mb-10">

@@ -1,18 +1,9 @@
-import { useEffect, useRef } from 'react';
 import ProductCard from './ProductCard';
 import products from '@/data/products';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const Bestsellers = () => {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, []);
-
   return (
-    <section ref={containerRef} className="py-20 md:py-28">
+    <section className="py-20 md:py-28">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="text-center mb-14">
           <h2 className="section-title mb-3">Bestsellers</h2>

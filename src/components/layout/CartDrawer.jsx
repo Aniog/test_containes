@@ -70,11 +70,7 @@ const CartDrawer = () => {
                   <div key={`${item.id}-${item.tone}`} className="flex gap-4 pb-5 border-b border-charcoal-100">
                     <div className="w-20 h-20 bg-charcoal-100 flex-shrink-0 flex items-center justify-center">
                       <img
-                        data-strk-img-id={`cart-${item.id}`}
-                        data-strk-img={`[cart-prod-name-${item.id}]`}
-                        data-strk-img-ratio="1x1"
-                        data-strk-img-width="160"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                        src={item.imageUrl}
                         alt={item.name}
                         className="w-full h-full object-cover"
                       />

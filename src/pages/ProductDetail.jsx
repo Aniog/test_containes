@@ -1,24 +1,17 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import ProductGallery from '@/components/product/ProductGallery';
 import ProductInfo from '@/components/product/ProductInfo';
 import RelatedProducts from '@/components/product/RelatedProducts';
 import products from '@/data/products';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const product = products.find((p) => p.id === id);
-  const containerRef = useRef(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [id]);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, [id]);
 
   if (!product) {
@@ -35,7 +28,7 @@ const ProductDetail = () => {
   }
 
   return (
-    <div ref={containerRef} className="pt-20 md:pt-24">
+    <div className="pt-20 md:pt-24">
       <div className="max-w-[1440px] mx-auto px-6 md:px-10 lg:px-16">
         {/* Breadcrumb */}
         <div className="mb-8">
