@@ -83,12 +83,19 @@ const Bestsellers = () => {
                   data-strk-img-width="600"
                 />
                 
-                {/* Quick Add Overlay */}
-                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <Button className="w-full uppercase tracking-wider font-serif rounded-none bg-white text-primary hover:bg-velmora-gold hover:text-white border-none shadow-sm">
-                    Add to Cart
-                  </Button>
-                </div>
+                        <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                          <Button 
+                            className="w-full uppercase tracking-wider font-serif rounded-none bg-white text-primary hover:bg-velmora-gold hover:text-white border-none shadow-sm"
+                            onClick={(e) => {
+                                e.preventDefault(); // Prevent Link navigation
+                                import('@/store/useCart').then(({ addToCart }) => {
+                                    addToCart(product, 1, 'gold');
+                                });
+                            }}
+                          >
+                            Add to Cart
+                          </Button>
+                        </div>
               </Link>
 
               <div className="text-center flex flex-col flex-grow">

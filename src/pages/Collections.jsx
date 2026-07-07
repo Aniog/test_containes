@@ -145,7 +145,15 @@ const Collections = () => {
                                             data-strk-img-width="400"
                                         />
                                         <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                                            <Button className="w-full uppercase tracking-wider font-serif rounded-none bg-white text-primary hover:bg-velmora-gold hover:text-white border-none shadow-sm text-xs py-2 h-auto">
+                                            <Button 
+                                              className="w-full uppercase tracking-wider font-serif rounded-none bg-white text-primary hover:bg-velmora-gold hover:text-white border-none shadow-sm text-xs py-2 h-auto"
+                                              onClick={(e) => {
+                                                  e.preventDefault(); // Prevent Link navigation
+                                                  import('@/store/useCart').then(({ addToCart }) => {
+                                                      addToCart(product, 1, 'gold');
+                                                  });
+                                              }}
+                                            >
                                                 Add
                                             </Button>
                                         </div>

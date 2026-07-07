@@ -138,7 +138,15 @@ const Product = () => {
                             </div>
                         </div>
 
-                        <Button className="w-full uppercase tracking-widest font-serif py-6 rounded-none bg-primary hover:bg-velmora-gold transition-colors mb-12">
+                        <Button 
+                            className="w-full uppercase tracking-widest font-serif py-6 rounded-none bg-primary hover:bg-velmora-gold transition-colors mb-12"
+                            onClick={() => {
+                                import('@/store/useCart').then(({ addToCart }) => {
+                                    addToCart(product, quantity, tone);
+                                    // Optional: open cart drawer here if we passed a prop or used a global store for UI state
+                                });
+                            }}
+                        >
                             Add to Cart — ${(product.price * quantity).toFixed(2)}
                         </Button>
 

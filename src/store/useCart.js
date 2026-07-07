@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 // Very basic local state for the cart for demonstration purposes.
 // In a real app, you'd use Zustand, Redux, or Context API.
