@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
 import { products } from '@/data/products';
+import { useCart } from '@/context/CartContext';
 
 const Bestsellers = () => {
+  const { addToCart } = useCart();
   const bestsellerProducts = products.filter(p => p.isBestseller).slice(0, 5);
 
   return (
@@ -37,7 +39,7 @@ const Bestsellers = () => {
                   className="absolute bottom-4 left-4 right-4 bg-white text-black py-3 text-[10px] uppercase tracking-widest opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center space-x-2"
                   onClick={(e) => {
                     e.preventDefault();
-                    // Add to cart logic would go here
+                    addToCart(product);
                   }}
                 >
                   <ShoppingBag className="w-3 h-3" />

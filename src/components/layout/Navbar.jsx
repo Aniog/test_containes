@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Search, ShoppingBag, Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useCart } from '@/context/CartContext';
 
 const Navbar = ({ onCartClick }) => {
+  const { cartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
@@ -51,7 +53,11 @@ const Navbar = ({ onCartClick }) => {
         </button>
         <button className="hover:text-accent transition-colors relative" onClick={onCartClick}>
           <ShoppingBag className="w-5 h-5" />
-          <span className="absolute -top-1 -right-1 bg-accent text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center font-bold">0</span>
+          {cartCount > 0 && (
+            <span className="absolute -top-1 -right-1 bg-accent text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center font-bold animate-in zoom-in">
+              {cartCount}
+            </span>
+          )}
         </button>
       </div>
 
