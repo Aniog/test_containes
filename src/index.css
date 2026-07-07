@@ -1,76 +1,217 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ink: #1a1612;
+    --color-ivory: #faf6f0;
+    --color-gold: #b08856;
+    --color-cream: #f1e9dd;
+    --color-muted: #6f655a;
+    --color-hairline: #e5dccd;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #faf6f0;
+    color: #1a1612;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+    color: #1a1612;
+    font-weight: 500;
+  }
+
+  /* Headings get a more elegant feel */
+  .font-display {
+    font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Eyebrow / product label style */
+  .eyebrow {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 11px;
+    color: #6f655a;
+  }
+
+  /* Premium product name style */
+  .product-name {
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    color: #1a1612;
+  }
+
+  /* Hairline divider */
+  .hairline {
+    height: 1px;
+    width: 100%;
+    background-color: #e5dccd;
+  }
+
+  /* Soft underline that grows on hover */
+  .underline-grow {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 350ms ease;
+    padding-bottom: 2px;
+  }
+  .underline-grow:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Scrollbar refinements */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Selection */
+  ::selection { background: #b08856; color: #faf6f0; }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    transition: all 300ms ease;
+    cursor: pointer;
+    user-select: none;
+  }
+  .btn:disabled { opacity: 0.5; pointer-events: none; }
+
+  .btn-primary {
+    background-color: #1a1612;
+    color: #faf6f0;
+    padding: 16px 28px;
+  }
+  .btn-primary:hover { background-color: #2a241e; }
+
+  .btn-accent {
+    background-color: #b08856;
+    color: #faf6f0;
+    padding: 16px 28px;
+  }
+  .btn-accent:hover { background-color: #8a6a3f; }
+
+  .btn-outline {
+    border: 1px solid #1a1612;
+    color: #1a1612;
+    padding: 16px 28px;
+    background-color: transparent;
+  }
+  .btn-outline:hover { background-color: #1a1612; color: #faf6f0; }
+
+  .btn-ghost {
+    color: #1a1612;
+    padding: 12px 16px;
+    background-color: transparent;
+  }
+  .btn-ghost:hover { color: #8a6a3f; }
+
+  .link-arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 11px;
+    color: #1a1612;
+  }
+  .link-arrow .underline-grow,
+  .underline-grow {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 350ms ease;
+    padding-bottom: 2px;
+  }
+  .link-arrow:hover .underline-grow,
+  .underline-grow:hover { background-size: 100% 1px; }
+
+  .input-bare {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #e5dccd;
+    padding: 12px 0;
+    color: #1a1612;
+    outline: none;
+    transition: border-color 300ms ease;
+    font-family: inherit;
+  }
+  .input-bare::placeholder { color: rgba(111, 101, 90, 0.7); }
+  .input-bare:focus { border-color: #1a1612; }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid #e5dccd;
+    padding: 8px 20px;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 12px;
+    color: #1a1612;
+    background-color: transparent;
+    transition: all 300ms ease;
+    cursor: pointer;
+  }
+  .pill:hover { border-color: #1a1612; }
+  .pill-active {
+    background-color: #1a1612;
+    color: #faf6f0;
+    border-color: #1a1612;
+  }
+
+  .container-wrap {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1440px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  @media (min-width: 640px) {
+    .container-wrap { padding-left: 32px; padding-right: 32px; }
+  }
+  @media (min-width: 1024px) {
+    .container-wrap { padding-left: 48px; padding-right: 48px; }
+  }
+
+  .section-pad {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  @media (min-width: 640px) {
+    .section-pad { padding-top: 96px; padding-bottom: 96px; }
+  }
+  @media (min-width: 1024px) {
+    .section-pad { padding-top: 128px; padding-bottom: 128px; }
+  }
+}
