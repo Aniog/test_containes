@@ -5,8 +5,8 @@ const products = [
     description: "A stunning gold ear cuff with crystal accent that catches the light with every movement. Perfect for adding a touch of elegance to any outfit, day or night.",
     price: 42,
     images: [
-      "https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=800&q=80",
-      "https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=800&q=80"
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80"
     ],
     category: "Earrings",
     material: "18K Gold Plated",
@@ -61,8 +61,8 @@ const products = [
     description: "Textured gold filigree drop earrings with intricate detailing that evokes vintage craftsmanship. Light and airy, they move beautifully with you.",
     price: 54,
     images: [
-      "https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=800&q=80",
-      "https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=800&q=80"
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80"
     ],
     category: "Earrings",
     material: "18K Gold Plated",

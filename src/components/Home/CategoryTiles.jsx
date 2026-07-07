@@ -6,7 +6,7 @@ const CategoryTiles = () => {
     {
       id: 'earrings',
       name: 'Earrings',
-      image: 'https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=800&q=80',
+      image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
       link: '/shop?category=earrings',
     },
     {

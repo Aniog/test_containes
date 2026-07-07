@@ -3,10 +3,10 @@ import React from 'react';
 const UGCSection = () => {
   const ugcItems = [
     { id: 1, image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&q=80', caption: 'Golden hour vibes ✨' },
-    { id: 2, image: 'https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=400&q=80', caption: 'Everyday elegance' },
+    { id: 2, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80', caption: 'Everyday elegance' },
     { id: 3, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80', caption: 'Stacked to perfection' },
     { id: 4, image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&q=80', caption: 'Gifted with love 💝' },
-    { id: 5, image: 'https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb8?w=400&q=80', caption: 'Minimal & chic' },
+    { id: 5, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80', caption: 'Minimal & chic' },
     { id: 6, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80', caption: 'Office to evening ✨' },
   ];
 
