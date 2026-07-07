@@ -70,16 +70,13 @@ export default function CartDrawer() {
                 {items.map((item) => (
                   <li key={`${item.id}-${item.variant}`} className="flex gap-4 pb-5 border-b border-velmora-border">
                     {/* Image */}
-                    <div className="w-20 h-24 flex-shrink-0 bg-velmora-creme rounded-sm overflow-hidden">
-                      <img
-                        data-strk-img-id={`cart-${item.id}`}
-                        data-strk-img={`[cart-name-${item.id}] gold jewelry`}
-                        data-strk-img-ratio="3x4"
-                        data-strk-img-width="200"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-20 h-24 flex-shrink-0 bg-velmora-creme rounded-sm overflow-hidden flex items-center justify-center">
+                      <div className="w-full h-full flex items-center justify-center text-velmora-gold/30">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5" className="w-8 h-8">
+                          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z" />
+                          <circle cx="12" cy="12" r="3" />
+                        </svg>
+                      </div>
                     </div>
 
                     {/* Info */}
