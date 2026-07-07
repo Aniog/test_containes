@@ -1,0 +1,131 @@
+import React, { useEffect, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Search, ShoppingBag, Menu, X } from 'lucide-react'
+import { useCart } from '@/context/CartContext'
+import { cn } from '@/lib/utils'
+
+const NAV_LINKS = [
+  { label: 'Shop', to: '/shop' },
+  { label: 'Collections', to: '/shop' },
+  { label: 'About', to: '/about' },
+  { label: 'Journal', to: '/journal' },
+]
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+  const { count, openCart } = useCart()
+  const location = useLocation()
+
+  // Transparent only over the homepage hero; solid elsewhere.
+  const isHome = location.pathname === '/'
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [location.pathname])
+
+  const solid = scrolled || !isHome || mobileOpen
+
+  return (
+    <header
+      className={cn(
+        'fixed inset-x-0 top-0 z-50 transition-all duration-500',
+        solid
+          ? 'bg-ivory/95 backdrop-blur-md border-b border-sand/70 shadow-[0_1px_0_rgba(0,0,0,0.02)]'
+          : 'bg-transparent'
+      )}
+    >
+      <nav className="mx-auto flex max-w-8xl items-center justify-between px-5 md:px-8 h-16 md:h-20">
+        {/* Left: mobile menu + logo */}
+        <div className="flex items-center gap-3 flex-1">
+          <button
+            type="button"
+            aria-label="Open menu"
+            className="md:hidden -ml-1 p-1"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? (
+              <X className={cn('h-5 w-5', solid ? 'text-ink' : 'text-ivory')} />
+            ) : (
+              <Menu className={cn('h-5 w-5', solid ? 'text-ink' : 'text-ivory')} />
+            )}
+          </button>
+
+          <Link
+            to="/"
+            className={cn(
+              'font-serif text-2xl md:text-3xl tracking-[0.3em] transition-colors',
+              solid ? 'text-ink' : 'text-ivory'
+            )}
+          >
+            VELMORA
+          </Link>
+        </div>
+
+        {/* Center: nav links */}
+        <div className="hidden md:flex items-center gap-10">
+          {NAV_LINKS.map((link) => (
+            <NavLink
+              key={link.label}
+              to={link.to}
+              className={cn(
+                'text-[11px] uppercase tracking-[0.25em] transition-colors hover:text-gold',
+                solid ? 'text-ink-soft' : 'text-ivory/90'
+              )}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+
+        {/* Right: icons */}
+        <div className="flex items-center justify-end gap-4 md:gap-5 flex-1">
+          <button
+            type="button"
+            aria-label="Search"
+            className={cn('transition-colors hover:text-gold', solid ? 'text-ink' : 'text-ivory')}
+          >
+            <Search className="h-[18px] w-[18px]" strokeWidth={1.5} />
+          </button>
+          <button
+            type="button"
+            aria-label="Open cart"
+            onClick={openCart}
+            className={cn('relative transition-colors hover:text-gold', solid ? 'text-ink' : 'text-ivory')}
+          >
+            <ShoppingBag className="h-[18px] w-[18px]" strokeWidth={1.5} />
+            {count > 0 && (
+              <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] font-medium text-ivory">
+                {count}
+              </span>
+            )}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden border-t border-sand/70 bg-ivory">
+          <div className="flex flex-col px-5 py-4">
+            {NAV_LINKS.map((link) => (
+              <NavLink
+                key={link.label}
+                to={link.to}
+                className="py-3 text-sm uppercase tracking-[0.25em] text-ink-soft border-b border-sand/50 last:border-0"
+              >
+                {link.label}
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      )}
+    </header>
+  )
+}
