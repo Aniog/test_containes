@@ -284,11 +284,7 @@ export default function ShopPage() {
             ) : (
               <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 xl:grid-cols-3">
                 {filtered.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    query={`[product-name-${product.id}]`}
-                  />
+                  <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             )}

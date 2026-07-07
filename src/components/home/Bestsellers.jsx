@@ -26,11 +26,7 @@ export default function Bestsellers() {
 
         <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {products.map((product) => (
-            <ProductCard
-              key={product.id}
-              product={product}
-              query={`[product-name-${product.id}] [bestsellers-title] [section-subtitle]`}
-            />
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
       </div>
@@ -42,11 +38,6 @@ export default function Bestsellers() {
       <span id="section-subtitle" className="sr-only">
         Demi-Fine Gold Jewelry
       </span>
-      {products.map((product) => (
-        <span key={product.id} id={`product-name-${product.id}`} className="sr-only">
-          {product.name}
-        </span>
-      ))}
     </section>
   )
 }

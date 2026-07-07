@@ -4,8 +4,9 @@ import { ShoppingBag } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/data/products'
 import StarRating from '@/components/ui/StarRating'
+import ProductImageSlot from './ProductImageSlot'
 
-export default function ProductCard({ product, query }) {
+export default function ProductCard({ product }) {
   const { addToCart } = useCart()
   const [hovered, setHovered] = useState(false)
 
@@ -23,12 +24,10 @@ export default function ProductCard({ product, query }) {
     >
       <Link to={`/products/${product.id}`} className="block">
         <div className="relative aspect-[3/4] overflow-hidden bg-champagne">
-          <img
-            data-strk-img-id={`product-card-${product.id}`}
-            data-strk-img={query}
-            data-strk-img-ratio="3x4"
-            data-strk-img-width="600"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+          <ProductImageSlot
+            productId={product.id}
+            ratio="3x4"
+            width="600"
             alt={product.name}
             className={`h-full w-full object-cover transition-transform duration-500 ${
               hovered ? 'scale-105' : 'scale-100'
@@ -40,7 +39,7 @@ export default function ProductCard({ product, query }) {
             </span>
           )}
 
-          {/* Hover second image simulation + quick add */}
+          {/* Hover quick add */}
           <div
             className={`absolute inset-0 flex flex-col items-center justify-end p-4 transition-opacity duration-300 ${
               hovered ? 'opacity-100' : 'opacity-0'

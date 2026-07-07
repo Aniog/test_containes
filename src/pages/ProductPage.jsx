@@ -110,8 +110,8 @@ export default function ProductPage() {
           <div className="space-y-4">
             <div className="relative aspect-[4/5] overflow-hidden bg-champagne">
               <img
-                data-strk-img-id={`product-main-${product.id}-${activeImage}`}
-                data-strk-img={`[product-name-${product.id}]`}
+                data-strk-img-id={product.galleryImgIds[activeImage]}
+                data-strk-img={`[${product.titleId}]`}
                 data-strk-img-ratio="4x5"
                 data-strk-img-width="900"
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -138,8 +138,8 @@ export default function ProductPage() {
                   aria-label={`View image ${index + 1}`}
                 >
                   <img
-                    data-strk-img-id={`product-thumb-${product.id}-${index}`}
-                    data-strk-img={`[product-name-${product.id}]`}
+                    data-strk-img-id={product.galleryImgIds[index]}
+                    data-strk-img={`[${product.titleId}]`}
                     data-strk-img-ratio="1x1"
                     data-strk-img-width="200"
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -153,7 +153,7 @@ export default function ProductPage() {
 
           {/* Product info */}
           <div className="flex flex-col lg:py-10">
-            <span id={`product-name-${product.id}`} className="sr-only">
+            <span id={product.titleId} className="sr-only">
               {product.name}
             </span>
             <h1 className="text-product font-serif text-3xl font-medium text-ink md:text-4xl">
@@ -254,7 +254,7 @@ export default function ProductPage() {
         </h2>
         <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((p) => (
-            <ProductCard key={p.id} product={p} query={`[product-name-${p.id}]`} />
+            <ProductCard key={p.id} product={p} />
           ))}
         </div>
       </section>

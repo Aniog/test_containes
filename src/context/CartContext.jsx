@@ -29,6 +29,8 @@ export function CartProvider({ children }) {
           tone,
           quantity,
           image: product.images[0],
+          imgId: product.imgId,
+          titleId: product.titleId,
         },
       ]
     })

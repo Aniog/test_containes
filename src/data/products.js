@@ -34,6 +34,14 @@ export const products = [
       'Express delivery available at checkout',
       '30-day hassle-free returns',
     ],
+    imgId: 'product-card-vivid-aura-jewels',
+    titleId: 'product-title-vivid-aura-jewels',
+    descId: 'product-desc-vivid-aura-jewels',
+    galleryImgIds: [
+      'product-main-vivid-aura-jewels-0',
+      'product-main-vivid-aura-jewels-1',
+      'product-main-vivid-aura-jewels-2',
+    ],
     images: [
       'gold-ear-cuff-crystal-close-up',
       'gold-ear-cuff-ear-shot',
@@ -68,6 +76,14 @@ export const products = [
       'Standard delivery: 5–8 business days',
       'Express delivery available at checkout',
       '30-day hassle-free returns',
+    ],
+    imgId: 'product-card-majestic-flora-nectar',
+    titleId: 'product-title-majestic-flora-nectar',
+    descId: 'product-desc-majestic-flora-nectar',
+    galleryImgIds: [
+      'product-main-majestic-flora-nectar-0',
+      'product-main-majestic-flora-nectar-1',
+      'product-main-majestic-flora-nectar-2',
     ],
     images: [
       'multicolor-floral-crystal-necklace',
@@ -104,6 +120,14 @@ export const products = [
       'Express delivery available at checkout',
       '30-day hassle-free returns',
     ],
+    imgId: 'product-card-golden-sphere-huggies',
+    titleId: 'product-title-golden-sphere-huggies',
+    descId: 'product-desc-golden-sphere-huggies',
+    galleryImgIds: [
+      'product-main-golden-sphere-huggies-0',
+      'product-main-golden-sphere-huggies-1',
+      'product-main-golden-sphere-huggies-2',
+    ],
     images: [
       'chunky-gold-dome-huggie-earrings',
       'gold-huggies-worn',
@@ -139,6 +163,14 @@ export const products = [
       'Express delivery available at checkout',
       '30-day hassle-free returns',
     ],
+    imgId: 'product-card-amber-lace-earrings',
+    titleId: 'product-title-amber-lace-earrings',
+    descId: 'product-desc-amber-lace-earrings',
+    galleryImgIds: [
+      'product-main-amber-lace-earrings-0',
+      'product-main-amber-lace-earrings-1',
+      'product-main-amber-lace-earrings-2',
+    ],
     images: [
       'textured-gold-filigree-drop-earrings',
       'amber-lace-earrings-worn',
@@ -173,6 +205,14 @@ export const products = [
       'Standard delivery: 5–8 business days',
       'Express delivery available at checkout',
       '30-day hassle-free returns',
+    ],
+    imgId: 'product-card-royal-heirloom-set',
+    titleId: 'product-title-royal-heirloom-set',
+    descId: 'product-desc-royal-heirloom-set',
+    galleryImgIds: [
+      'product-main-royal-heirloom-set-0',
+      'product-main-royal-heirloom-set-1',
+      'product-main-royal-heirloom-set-2',
     ],
     images: [
       'gold-jewelry-gift-box-set',
