@@ -1,76 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #1C1714;
+  background-color: #F6F1E9;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
+  background-color: #F6F1E9;
+  color: #1C1714;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::selection {
+  background-color: #B8893E;
+  color: #FBF8F2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Thin elegant scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #EDE5D8;
+}
+::-webkit-scrollbar-thumb {
+  background: #B8AFA3;
+  border-radius: 999px;
+  border: 2px solid #EDE5D8;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8A7F73;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Hide scrollbar for horizontal reels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer components {
+  .container-editorial {
+    @apply mx-auto w-full px-5 sm:px-8 lg:px-12;
+    max-width: 1400px;
   }
-
-  a:hover {
-    color: #747bff;
+  .heading-serif {
+    @apply font-serif font-light tracking-tight;
   }
-
-  button {
-    background-color: #f9f9f9;
+  .eyebrow {
+    @apply font-sans text-xs uppercase tracking-ultra text-stone;
+  }
+  .product-name {
+    @apply font-sans text-sm uppercase tracking-widest;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center bg-gold px-8 py-3.5 font-sans text-xs uppercase tracking-widest text-ivory transition-all duration-300 ease-elegant hover:bg-gold-deep hover:shadow-soft disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center border border-ink/30 px-8 py-3.5 font-sans text-xs uppercase tracking-widest text-ink transition-all duration-300 ease-elegant hover:border-gold hover:text-gold;
+  }
+  .hairline {
+    @apply h-px w-full bg-ink/10;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

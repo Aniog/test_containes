@@ -4687,7 +4687,20 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
       ? entries.filter(entry => entry?.kind === 'img' && entry.imgId).map(entry => entry.imgId)
       : [],
   )
+  // Build the runtime lookup map from ALL resolved config entries (not just
+  // this file's entries). Component files like ProductCard.jsx reference
+  // `data-strk-img-id={product.imgId}` where `product` is a prop that can
+  // only be resolved when a parent inlines the component call. Such files
+  // extract zero entries on their own, so scoping the map to this file's
+  // entries would leave `dynamicUrlMap` empty and the dynamic src patch
+  // would never be pushed — leaving the placeholder SVG in the build.
+  // Using the full config map lets the injected `__strkImgSrc(id, fallback)`
+  // helper resolve any imgId at runtime.
   const dynamicUrlMap = {}
+  for (const imgId of Object.keys(configData || {})) {
+    const url = getImgUrl(imgId)
+    if (url) dynamicUrlMap[imgId] = url
+  }
   for (const imgId of entryIds) {
     const url = getImgUrl(imgId)
     if (url) dynamicUrlMap[imgId] = url
@@ -4716,10 +4729,23 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
     if (typeof expr.start !== 'number' || typeof expr.end !== 'number') return null
     return code.slice(expr.start, expr.end)
   }
+  // Module-level const string bindings (e.g. `const PLACEHOLDER = "data:..."`)
+  // so `src={PLACEHOLDER}` can be resolved to its literal value for the
+  // dynamic-replacement fallback. Without this, an Identifier src falls
+  // through and the dynamic src patch is never pushed, leaving the
+  // placeholder SVG in the build output.
+  const moduleStaticValues = collectLocalStaticValues(ast)
   const literalSrcFallback = attr => {
     if (!attr) return null
     if (attr.value?.type === 'StringLiteral') return attr.value.value
     if (attr.value?.expression?.type === 'StringLiteral') return attr.value.expression.value
+    if (attr.value?.expression?.type === 'Identifier') {
+      const name = attr.value.expression.name
+      if (Object.prototype.hasOwnProperty.call(moduleStaticValues, name)) {
+        const value = moduleStaticValues[name]
+        if (typeof value === 'string') return value
+      }
+    }
     return null
   }
 
@@ -4877,11 +4903,16 @@ export default function strkImgPlugin() {
       } else {
         entries = extractStrkEntries(code, extractionOptions)
       }
-      if (!entries.length) return null
+      if (!entries.length && !_isBuild) return null
 
       await processEntries(entries)
       if (_dirty) scheduleFlush(server)
       if (_isBuild) {
+        // Even when this file extracts zero entries on its own (e.g. a
+        // component like ProductCard.jsx whose `data-strk-img-id={product.imgId}`
+        // can only be resolved via parent inlining), it may still contain
+        // dynamic src attributes that need the runtime `__strkImgSrc` helper
+        // injected. Run the inlining pass whenever the file has strk markers.
         const transformed = inlineBuildImageSourcesFromAst(code, ast, entries)
         if (transformed !== code) return { code: transformed, map: null }
       }
