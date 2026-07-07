@@ -21,7 +21,7 @@ export default defineConfig({
     },
   },
   server: {
-    port: 8080,
+    port: 12000,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
