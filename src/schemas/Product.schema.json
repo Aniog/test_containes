@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "URL-friendly product slug"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["earrings", "necklaces", "huggies", "sets"],
+      "description": "Product category"
+    },
+    "material": {
+      "type": "string",
+      "enum": ["18k gold plated", "sterling silver", "mixed"],
+      "description": "Primary material"
+    },
+    "tone": {
+      "type": "string",
+      "enum": ["gold", "silver"],
+      "description": "Default metal tone"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "multipleOf": 0.1,
+      "description": "Average customer rating"
+    },
+    "reviews": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "details": {
+      "type": "string",
+      "description": "Materials and care details"
+    },
+    "shipping": {
+      "type": "string",
+      "description": "Shipping and returns details"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is featured as a bestseller"
+    },
+    "image_query": {
+      "type": "string",
+      "description": "Search query for product imagery"
+    }
+  },
+  "required": ["id", "name", "slug", "price", "category", "tone"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
