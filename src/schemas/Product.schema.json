@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly product slug"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Product price in USD"
+    },
+    "compare_at_price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Original compare-at price"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product description"
+    },
+    "materials": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Materials and care instructions"
+    },
+    "shipping_info": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Shipping and returns info"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average star rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of reviews"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Product tags"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Bestseller flag"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available variant options"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Hover product image URL"
+    },
+    "gallery_urls": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Gallery image URLs"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["id", "name", "slug", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
