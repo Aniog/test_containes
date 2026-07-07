@@ -1,76 +1,86 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, sans-serif;
+    color-scheme: light;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply m-0 min-h-screen bg-porcelain font-sans text-espresso;
+  }
+
+  * {
+    @apply border-mist;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    @apply font-sans;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  ::selection {
+    @apply bg-champagne text-obsidian;
+  }
+}
+
+@layer components {
+  .container-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-shell {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .eyebrow {
+    @apply font-sans text-xs font-semibold uppercase tracking-widest text-rose;
+  }
+
+  .section-title {
+    @apply font-serif text-4xl leading-none text-obsidian sm:text-5xl;
+  }
+
+  .section-copy {
+    @apply max-w-2xl text-base leading-7 text-espresso/80 sm:text-lg;
+  }
+
+  .premium-button {
+    @apply inline-flex items-center justify-center rounded-full bg-champagne px-6 py-3 text-sm font-semibold uppercase tracking-widest text-obsidian transition duration-300 ease-out hover:bg-champagne/90;
+  }
+
+  .premium-button-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-obsidian px-6 py-3 text-sm font-semibold uppercase tracking-widest text-obsidian transition duration-300 ease-out hover:bg-obsidian hover:text-porcelain;
+  }
+
+  .product-name {
+    @apply font-serif text-lg uppercase tracking-widest text-obsidian;
+  }
+
+  .panel-surface {
+    @apply rounded-3xl border border-mist/70 bg-sand shadow-lg shadow-obsidian/5;
+  }
+
+  .input-shell {
+    @apply h-12 w-full rounded-full border border-mist bg-porcelain px-5 text-sm text-espresso outline-none transition duration-300 placeholder:text-espresso/45 focus:border-champagne;
+  }
+}
