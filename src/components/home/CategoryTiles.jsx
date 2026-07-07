@@ -16,7 +16,7 @@ const CategoryTiles = () => {
     {
       name: "Huggies",
       slug: "Huggies",
-      img: "https://images.unsplash.com/photo-1611085583191-a3b181a88483?w=800&q=80",
+      img: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
     },
   ]
 
