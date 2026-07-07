@@ -14,6 +14,15 @@ export const products = [
     care: "Store in a dry pouch. Avoid contact with perfumes, lotions, and water. Clean gently with a soft cloth to maintain brilliance.",
     images: 2,
     tag: "Bestseller",
+    imgId: "product-vivid-aura-jewels",
+    imageUrl:
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1668987523075-24cf28946d05",
+    thumbUrls: [
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1596904731483-234a29ef6cc6",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1666556277774-ff9b3876bd72",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1658402954365-112cc5ad47a9",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1616922445805-ea2595856e40",
+    ],
   },
   {
     id: "majestic-flora-nectar",
@@ -30,6 +39,15 @@ export const products = [
     care: "Keep away from moisture and harsh chemicals. Store flat to prevent tangling. Polish with a microfiber cloth.",
     images: 2,
     tag: "New",
+    imgId: "product-majestic-flora-nectar",
+    imageUrl:
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1664943952699-70cc58e08fea",
+    thumbUrls: [
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1664189237800-e7c02a840ece",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1679457488795-6c89bb8082dc",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1540545891839-57f75349393b",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1631333400991-3495d9bbb3f6",
+    ],
   },
   {
     id: "golden-sphere-huggies",
@@ -46,6 +64,15 @@ export const products = [
     care: "Wipe after each wear. Avoid sleeping or showering in your huggies. Store in the included Velmora pouch.",
     images: 2,
     tag: null,
+    imgId: "product-golden-sphere-huggies",
+    imageUrl:
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1665577300593-761039dca939",
+    thumbUrls: [
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1656337211097-d11746b7946b",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1507558723868-106445ef7445",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1584839404042-8bc21d240e91",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1519814482364-3318b412886e",
+    ],
   },
   {
     id: "amber-lace-earrings",
@@ -62,6 +89,15 @@ export const products = [
     care: "Handle by the post to preserve the filigree shape. Store in a jewelry box or pouch. Avoid moisture.",
     images: 2,
     tag: "Bestseller",
+    imgId: "product-amber-lace-earrings",
+    imageUrl:
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1658472022691-f969a893f12d",
+    thumbUrls: [
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1549655397-9ec01cb3ee82",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1549655397-658f57c15654",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1675181344017-c0c9a6dbd392",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1665194132409-36fc84b2fe87",
+    ],
   },
   {
     id: "royal-heirloom-set",
@@ -78,6 +114,15 @@ export const products = [
     care: "Store in the provided gift box. Clean each piece individually with a soft cloth. Avoid contact with water.",
     images: 2,
     tag: "Gift Set",
+    imgId: "product-royal-heirloom-set",
+    imageUrl:
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1586280756233-6998f448b3a5",
+    thumbUrls: [
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1582561879362-0450a86181cf",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1634695738712-520d1e32aa8c",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1626499468102-b328e39ce9ee",
+      "https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom/photo-1585224107331-e0b0e2116806",
+    ],
   },
 ];
 

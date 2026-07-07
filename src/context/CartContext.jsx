@@ -30,6 +30,8 @@ export function CartProvider({ children }) {
           price: product.price,
           variant,
           quantity,
+          imgId: product.imgId,
+          imageUrl: product.imageUrl,
         },
       ];
     });

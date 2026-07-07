@@ -54,11 +54,11 @@ export default function CartDrawer() {
                 <div key={`${item.id}-${item.variant}`} className="flex gap-4">
                   <div className="h-20 w-20 flex-shrink-0 bg-velmora-beige rounded overflow-hidden">
                     <img
-                      data-strk-img-id={`cart-${item.id}`}
+                      data-strk-img-id={item.imgId}
                       data-strk-img={`[product-name-${item.id}]`}
                       data-strk-img-ratio="1x1"
                       data-strk-img-width="200"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      src={item.imageUrl}
                       alt={item.name}
                       className="h-full w-full object-cover"
                     />
