@@ -1,76 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  --color-gold-50: #fdf9f0;
+  --color-gold-100: #f9f0d9;
+  --color-gold-200: #f2deb0;
+  --color-gold-300: #e8c67a;
+  --color-gold-400: #d4a84e;
+  --color-gold-500: #c4943a;
+  --color-gold-600: #a67528;
+  --color-charcoal: #1a1714;
+  --color-charcoal-light: #2a2520;
+  --color-charcoal-medium: #3a3530;
+  --color-charcoal-border: #4a4540;
+  --color-ivory: #faf7f2;
+  --color-ivory-warm: #f5f0e8;
+  --color-ivory-dark: #e8e0d4;
+  --color-copper: #b87333;
+  --color-copper-light: #d4935a;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply m-0 font-sans antialiased overflow-x-hidden;
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    min-height: 100vh;
   }
 
-  a:hover {
-    color: #747bff;
+  a {
+    text-decoration: none;
+    color: inherit;
   }
 
-  button {
-    background-color: #f9f9f9;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  ::selection {
+    background-color: var(--color-gold-200);
+    color: var(--color-charcoal);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ivory-warm);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gold-300);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gold-400);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 font-sans text-sm font-medium uppercase tracking-[0.12em] border transition-all duration-300 ease-luxury active:scale-[0.98];
+    background-color: var(--color-gold-600);
+    color: white;
+    border-color: var(--color-gold-600);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-gold-700);
+    border-color: var(--color-gold-700);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-transparent font-sans text-sm font-medium uppercase tracking-[0.12em] border transition-all duration-300 ease-luxury active:scale-[0.98];
+    color: var(--color-charcoal);
+    border-color: var(--color-charcoal);
+  }
+  .btn-outline:hover {
+    background-color: var(--color-charcoal);
+    color: var(--color-ivory);
+  }
+
+  .btn-gold-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-transparent font-sans text-sm font-medium uppercase tracking-[0.12em] border transition-all duration-300 ease-luxury active:scale-[0.98];
+    color: var(--color-gold-600);
+    border-color: var(--color-gold-600);
+  }
+  .btn-gold-outline:hover {
+    background-color: var(--color-gold-600);
+    color: white;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .product-name {
+    @apply font-serif text-base lg:text-lg uppercase leading-tight;
+    letter-spacing: 0.08em;
+    color: var(--color-charcoal);
+  }
+
+  .product-price {
+    @apply font-sans text-sm font-medium;
+    color: var(--color-gold-600);
+  }
+}
