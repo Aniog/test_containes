@@ -1,76 +1,256 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles for Velmora Fine Jewelry */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2D2D2D;
+  background-color: #FAF9F6;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
+  background-color: #FAF9F6;
+  color: #2D2D2D;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+::-webkit-scrollbar-track {
+  background: #FAF9F6;
 }
 
-button:hover {
-  border-color: #646cff;
+::-webkit-scrollbar-thumb {
+  background: #C9A96E;
+  border-radius: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::-webkit-scrollbar-thumb:hover {
+  background: #B8945A;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Premium button styles */
+@layer components {
+  .btn-primary {
+    @apply bg-velmora-gold text-white px-8 py-3 font-sans text-sm font-medium tracking-wider uppercase transition-all duration-300 hover:bg-velmora-gold-dark hover:shadow-premium;
   }
 
-  a:hover {
-    color: #747bff;
+  .btn-secondary {
+    @apply border-2 border-velmora-gold text-velmora-gold px-8 py-3 font-sans text-sm font-medium tracking-wider uppercase transition-all duration-300 hover:bg-velmora-gold hover:text-white;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .btn-outline {
+    @apply border border-velmora-charcoal text-velmora-charcoal px-8 py-3 font-sans text-sm font-medium tracking-wider uppercase transition-all duration-300 hover:bg-velmora-charcoal hover:text-white;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Product card hover effects */
+.product-card {
+  @apply transition-all duration-300;
+}
+
+.product-card:hover {
+  @apply shadow-premium;
+}
+
+.product-card .product-image {
+  @apply transition-transform duration-700;
+}
+
+.product-card:hover .product-image {
+  @apply scale-105;
+}
+
+/* Elegant dividers */
+.divider-thin {
+  @apply h-px bg-velmora-border;
+}
+
+.divider-gold {
+  @apply h-px bg-velmora-gold;
+}
+
+/* Typography helpers */
+.text-display {
+  @apply font-serif font-light tracking-wide;
+}
+
+.text-product-name {
+  @apply font-serif text-lg font-medium tracking-widest uppercase;
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Cart badge */
+.cart-badge {
+  @apply absolute -top-2 -right-2 bg-velmora-gold text-white text-xs font-medium rounded-full w-5 h-5 flex items-center justify-center;
+}
+
+/* Quick add overlay */
+.quick-add-overlay {
+  @apply absolute inset-0 bg-black bg-opacity-0 transition-all duration-300 flex items-end justify-center pb-6;
+}
+
+.product-card:hover .quick-add-overlay {
+  @apply bg-opacity-20;
+}
+
+/* Category tile hover */
+.category-tile {
+  @apply relative overflow-hidden cursor-pointer;
+}
+
+.category-tile .category-label {
+  @apply absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 transition-all duration-300;
+}
+
+.category-tile:hover .category-label {
+  @apply bg-opacity-40;
+}
+
+.category-tile .category-text {
+  @apply text-white font-serif text-2xl font-light tracking-widest uppercase opacity-0 transition-opacity duration-300;
+}
+
+.category-tile:hover .category-text {
+  @apply opacity-100;
+}
+
+/* Accordion styles */
+.accordion-item {
+  @apply border-b border-velmora-border;
+}
+
+.accordion-trigger {
+  @apply w-full flex items-center justify-between py-4 text-left font-sans text-sm font-medium tracking-wide uppercase hover:text-velmora-gold transition-colors duration-300;
+}
+
+.accordion-content {
+  @apply overflow-hidden transition-all duration-300;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  @apply bg-white p-8 shadow-premium;
+}
+
+/* Newsletter input */
+.newsletter-input {
+  @apply w-full px-6 py-3 border border-velmora-border font-sans text-sm focus:outline-none focus:border-velmora-gold transition-colors duration-300;
+}
+
+/* Trust bar */
+.trust-bar-item {
+  @apply flex items-center gap-2 font-sans text-xs tracking-wide uppercase;
+}
+
+/* Star rating */
+.star-rating {
+  @apply flex items-center gap-1;
+}
+
+/* Image gallery thumbnail */
+.gallery-thumbnail {
+  @apply w-20 h-20 object-cover cursor-pointer border-2 border-transparent transition-all duration-300;
+}
+
+.gallery-thumbnail.active {
+  @apply border-velmora-gold;
+}
+
+/* Variant pill */
+.variant-pill {
+  @apply px-6 py-2 border font-sans text-sm tracking-wide uppercase transition-all duration-300 cursor-pointer;
+}
+
+.variant-pill.active {
+  @apply bg-velmora-charcoal text-white border-velmora-charcoal;
+}
+
+.variant-pill:not(.active) {
+  @apply border-velmora-border hover:border-velmora-charcoal;
+}
+
+/* Cart drawer */
+.cart-drawer {
+  @apply fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-premium-lg transform transition-transform duration-300 z-50;
+}
+
+.cart-drawer.closed {
+  @apply translate-x-full;
+}
+
+.cart-drawer.open {
+  @apply translate-x-0;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  @apply fixed inset-0 bg-white z-40 transform transition-transform duration-300;
+}
+
+.mobile-menu.closed {
+  @apply -translate-x-full;
+}
+
+.mobile-menu.open {
+  @apply translate-x-0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .text-product-name {
+    @apply text-base;
+  }
+  
+  .btn-primary,
+  .btn-secondary,
+  .btn-outline {
+    @apply px-6 py-2.5 text-xs;
+  }
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-velmora-border-light;
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-velmora-gold;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-velmora-gold text-white;
+}
