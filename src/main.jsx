@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import App from "./App.jsx?velmora=20260707";
 import "./index.css";
 
 if (import.meta.env.DEV) {
