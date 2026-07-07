@@ -1,19 +1,4 @@
-import { createClient } from '@strikingly/sdk'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
 
-const siteId = null
-const token = ''
-const serverUrl = 'https://www.uat.strikingly.com'
-const requestUrl = `${serverUrl}/api/v1/sites/${siteId}/form_entities`
-
-export const client = createClient({
-  appId: appId,
-  serverUrl: serverUrl,
-  requiresAuth: !!token,
-  token: token || undefined,
-  serviceToken: undefined,
-  headers: token
-    ? {
-        Authorization: `Bearer ${token}`,
-      }
-    : {},
-})
+export const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)

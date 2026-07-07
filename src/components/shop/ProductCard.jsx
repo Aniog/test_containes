@@ -4,7 +4,7 @@ import { ShoppingBag } from 'lucide-react'
 import { ImageHelper } from '@strikingly/sdk'
 import { useCart } from '@/contexts/CartContext'
 import { StarRating } from '@/components/ui/StarRating'
-import { formatPrice, cn } from '@/lib/utils'
+import { formatPrice, cn, getStrkImageUrl } from '@/lib/utils'
 import strkImgConfig from '@/strk-img-config.json'
 
 export default function ProductCard({ product, showQuickAdd = true }) {
@@ -37,7 +37,7 @@ export default function ProductCard({ product, showQuickAdd = true }) {
             data-strk-img={product.image.query}
             data-strk-img-ratio={product.image.ratio}
             data-strk-img-width={product.image.width}
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getStrkImageUrl(product.image.imgId) || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"}
             className={cn(
               'h-full w-full object-cover transition-transform duration-700',
               hovered && 'scale-105'
@@ -49,7 +49,7 @@ export default function ProductCard({ product, showQuickAdd = true }) {
             data-strk-img={product.hoverImage.query}
             data-strk-img-ratio={product.hoverImage.ratio}
             data-strk-img-width={product.hoverImage.width}
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getStrkImageUrl(product.hoverImage.imgId) || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"}
             className={cn(
               'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
               hovered ? 'opacity-100' : 'opacity-0'

@@ -1,19 +1,12 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { X, Plus, Minus, ShoppingBag, Trash2 } from 'lucide-react'
-import { ImageHelper } from '@strikingly/sdk'
 import { useCart } from '@/contexts/CartContext'
 import { formatPrice, cn } from '@/lib/utils'
-import strkImgConfig from '@/strk-img-config.json'
 
 export default function CartDrawer() {
   const { isOpen, closeCart, items, updateQuantity, removeItem, subtotal, shipping, total, itemCount } = useCart()
   const drawerRef = useRef(null)
-
-  useEffect(() => {
-    if (!isOpen || !drawerRef.current) return
-    return ImageHelper.loadImages(strkImgConfig, drawerRef.current)
-  }, [isOpen, items])
 
   useEffect(() => {
     if (!isOpen) return
@@ -79,17 +72,10 @@ export default function CartDrawer() {
                       className="relative h-24 w-20 flex-shrink-0 overflow-hidden bg-parchment"
                     >
                       <img
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                        src={item.imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"}
                         alt={item.name}
-                        data-strk-img-id={`cart-thumb-${item.id}`}
-                        data-strk-img={`[cart-product-${item.id}-name] gold jewelry`}
-                        data-strk-img-ratio="3x4"
-                        data-strk-img-width="200"
                         className="h-full w-full object-cover"
                       />
-                      <span id={`cart-product-${item.id}-name`} className="sr-only">
-                        {item.name}
-                      </span>
                     </Link>
                     <div className="flex flex-1 flex-col justify-between">
                       <div>

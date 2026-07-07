@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useCallback, useMemo } from 'react'
+import { getStrkImageUrl } from '@/lib/utils'
 
 const CartContext = createContext(null)
 
@@ -34,7 +35,7 @@ export function CartProvider({ children }) {
           price: product.price,
           tone,
           quantity,
-          image: product.image,
+          imageUrl: getStrkImageUrl(product.image?.imgId),
         },
       ]
     })

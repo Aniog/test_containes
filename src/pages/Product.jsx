@@ -9,7 +9,7 @@ import { Accordion } from '@/components/ui/Accordion'
 import { StarRating } from '@/components/ui/StarRating'
 import { QuantitySelector } from '@/components/ui/QuantitySelector'
 import ProductCard from '@/components/shop/ProductCard'
-import { formatPrice, cn } from '@/lib/utils'
+import { formatPrice, cn, getStrkImageUrl } from '@/lib/utils'
 import strkImgConfig from '@/strk-img-config.json'
 
 const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -87,7 +87,7 @@ export default function Product() {
                   data-strk-img={img.query}
                   data-strk-img-ratio={img.ratio}
                   data-strk-img-width={img.width}
-                  src={PLACEHOLDER_SVG}
+                  src={getStrkImageUrl(img.imgId) || PLACEHOLDER_SVG}
                   className={cn(
                     'absolute inset-0 h-full w-full object-cover transition-opacity duration-500',
                     activeImage === key ? 'opacity-100' : 'opacity-0'
@@ -113,7 +113,7 @@ export default function Product() {
                     data-strk-img={img.query}
                     data-strk-img-ratio={img.ratio}
                     data-strk-img-width="200"
-                    src={PLACEHOLDER_SVG}
+                    src={getStrkImageUrl(`${img.imgId}-thumb`) || PLACEHOLDER_SVG}
                     className="h-full w-full object-cover"
                   />
                 </button>
