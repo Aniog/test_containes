@@ -1,76 +1,86 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bone: #F5EFE6;
+    --color-cocoa: #2A1F1A;
+    --color-sand: #E8DCC9;
+    --color-gold: #B08D57;
+    --color-line: #D9CCB5;
+  }
+
+  html, body {
+    margin: 0;
+    background-color: var(--color-bone);
+    color: var(--color-cocoa);
+    font-family: Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  /* Product / nav labels: uppercase, wide tracking */
+  .eyebrow {
+    font-family: Inter, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  /* Hairline divider used sitewide */
+  .hairline {
+    height: 1px;
+    background-color: var(--color-line);
+  }
+
+  /* Smooth focus rings with brand color */
+  *:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  /* Hide scrollbar on horizontal scrollers (UGC reel, related row) */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 transition-all duration-300 ease-out
+           tracking-widest2 uppercase text-[11px] font-medium;
+  }
+  .btn-primary {
+    @apply btn bg-cocoa text-bone px-8 py-4 hover:bg-gold-300 hover:text-cocoa;
+  }
+  .btn-accent {
+    @apply btn bg-gold-300 text-cocoa px-8 py-4 hover:bg-cocoa hover:text-bone;
+  }
+  .btn-outline {
+    @apply btn border border-cocoa text-cocoa px-8 py-4 hover:bg-cocoa hover:text-bone;
+  }
+  .btn-ghost {
+    @apply btn text-cocoa px-2 py-1 hover:text-gold-300;
+  }
+
+  .product-name {
+    @apply font-sans uppercase tracking-widest2 text-[12px] font-medium;
+  }
+
+  .editorial-heading {
+    @apply font-serif text-cocoa;
+    line-height: 1.05;
+  }
+}
