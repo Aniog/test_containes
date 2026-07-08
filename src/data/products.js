@@ -1,0 +1,150 @@
+export const products = [
+  {
+    id: 1,
+    slug: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    material: 'gold',
+    description:
+      'A sculptural ear cuff adorned with a faceted crystal accent that catches the light beautifully. Designed to sit effortlessly on the upper ear without piercing.',
+    shortDescription: 'Gold ear cuff with crystal accent',
+    tags: ['bestseller', 'new'],
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'vivid-aura-img1', titleId: 'vivid-aura-title', descId: 'vivid-aura-desc', ratio: '3x4', width: 600 },
+      { id: 'vivid-aura-img2', titleId: 'vivid-aura-title', descId: 'vivid-aura-desc', ratio: '3x4', width: 600 },
+    ],
+    materials: '18K gold plated brass, cubic zirconia crystal',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch.',
+    shipping: 'Free worldwide shipping. Delivered in 3–7 business days.',
+  },
+  {
+    id: 2,
+    slug: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    material: 'gold',
+    description:
+      'A delicate necklace featuring a hand-set multicolor floral crystal pendant on a fine 18-inch chain. Each petal is individually set with a different pastel crystal for a garden-fresh effect.',
+    shortDescription: 'Multicolor floral crystal necklace',
+    tags: ['bestseller'],
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'flora-img1', titleId: 'flora-title', descId: 'flora-desc', ratio: '3x4', width: 600 },
+      { id: 'flora-img2', titleId: 'flora-title', descId: 'flora-desc', ratio: '3x4', width: 600 },
+    ],
+    materials: '18K gold plated sterling silver, multicolor cubic zirconia',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch.',
+    shipping: 'Free worldwide shipping. Delivered in 3–7 business days.',
+  },
+  {
+    id: 3,
+    slug: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 203,
+    material: 'gold',
+    description:
+      'Chunky dome huggie earrings with a polished gold finish. The satisfying weight and close-fitting design make these an everyday essential that elevates any look.',
+    shortDescription: 'Chunky gold dome huggie earrings',
+    tags: ['bestseller', 'popular'],
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'sphere-img1', titleId: 'sphere-title', descId: 'sphere-desc', ratio: '3x4', width: 600 },
+      { id: 'sphere-img2', titleId: 'sphere-title', descId: 'sphere-desc', ratio: '3x4', width: 600 },
+    ],
+    materials: '18K gold plated brass',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch.',
+    shipping: 'Free worldwide shipping. Delivered in 3–7 business days.',
+  },
+  {
+    id: 4,
+    slug: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.6,
+    reviewCount: 67,
+    material: 'gold',
+    description:
+      'Intricate textured filigree drop earrings inspired by antique lace patterns. The warm gold tone catches the light at every angle, creating a romantic, heirloom-quality effect.',
+    shortDescription: 'Textured gold filigree drop earrings',
+    tags: ['new'],
+    variants: ['gold'],
+    images: [
+      { id: 'amber-img1', titleId: 'amber-title', descId: 'amber-desc', ratio: '3x4', width: 600 },
+      { id: 'amber-img2', titleId: 'amber-title', descId: 'amber-desc', ratio: '3x4', width: 600 },
+    ],
+    materials: '18K gold plated brass, hand-finished filigree',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch.',
+    shipping: 'Free worldwide shipping. Delivered in 3–7 business days.',
+  },
+  {
+    id: 5,
+    slug: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 41,
+    material: 'gold',
+    description:
+      'A curated gift-boxed set pairing our signature stud earrings with a matching pendant necklace. Presented in a luxe velvet box with a handwritten gift card — the perfect gift for someone special.',
+    shortDescription: 'Gift-boxed earring + necklace set',
+    tags: ['bestseller', 'gift'],
+    variants: ['gold'],
+    images: [
+      { id: 'royal-img1', titleId: 'royal-title', descId: 'royal-desc', ratio: '3x4', width: 600 },
+      { id: 'royal-img2', titleId: 'royal-title', descId: 'royal-desc', ratio: '3x4', width: 600 },
+    ],
+    materials: '18K gold plated brass, velvet gift box included',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided velvet box.',
+    shipping: 'Free worldwide shipping. Delivered in 3–7 business days. Gift wrapping included.',
+  },
+]
+
+export const categories = [
+  { id: 'earrings', label: 'Earrings', titleId: 'cat-earrings-title', descId: 'cat-earrings-desc', bgId: 'cat-earrings-bg', description: 'Statement and everyday earrings' },
+  { id: 'necklaces', label: 'Necklaces', titleId: 'cat-necklaces-title', descId: 'cat-necklaces-desc', bgId: 'cat-necklaces-bg', description: 'Delicate chains and pendants' },
+  { id: 'huggies', label: 'Huggies', titleId: 'cat-huggies-title', descId: 'cat-huggies-desc', bgId: 'cat-huggies-bg', description: 'Close-fitting huggie earrings' },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'My everyday stack', username: '@sofiaml', titleId: 'ugc-1-title', descId: 'ugc-1-desc', imgId: 'ugc-img-1', description: 'gold earrings worn on ear close up lifestyle' },
+  { id: 'ugc-2', caption: 'The perfect gift', username: '@emmaw', titleId: 'ugc-2-title', descId: 'ugc-2-desc', imgId: 'ugc-img-2', description: 'gold necklace worn on neck lifestyle portrait' },
+  { id: 'ugc-3', caption: 'Obsessed with these huggies', username: '@clairebt', titleId: 'ugc-3-title', descId: 'ugc-3-desc', imgId: 'ugc-img-3', description: 'huggie earrings close up ear gold jewelry' },
+  { id: 'ugc-4', caption: 'Brunch ready ✨', username: '@nataliep', titleId: 'ugc-4-title', descId: 'ugc-4-desc', imgId: 'ugc-img-4', description: 'woman wearing gold jewelry brunch outfit' },
+  { id: 'ugc-5', caption: 'Gifted myself this set', username: '@laurak', titleId: 'ugc-5-title', descId: 'ugc-5-desc', imgId: 'ugc-img-5', description: 'gold jewelry set earrings necklace flat lay' },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    text: 'I ordered the Amber Lace Earrings for my birthday and they exceeded every expectation. The quality is incredible for the price — they look like fine jewelry.',
+    author: 'Isabelle M.',
+    rating: 5,
+    product: 'Amber Lace Earrings',
+  },
+  {
+    id: 2,
+    text: 'The Royal Heirloom Set arrived in the most beautiful packaging. I gave it as a gift and my friend cried. Will absolutely be ordering again.',
+    author: 'Charlotte R.',
+    rating: 5,
+    product: 'Royal Heirloom Set',
+  },
+  {
+    id: 3,
+    text: 'These huggies are my everyday staple now. They\'re comfortable, they don\'t tarnish, and I get compliments every single time I wear them.',
+    author: 'Priya S.',
+    rating: 5,
+    product: 'Golden Sphere Huggies',
+  },
+]
