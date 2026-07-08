@@ -12,8 +12,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f14?w=800&q=80',
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+      'https://picsum.photos/seed/vivid-aura-1/800/1000',
+      'https://picsum.photos/seed/vivid-aura-2/800/1000',
     ],
     variants: ['gold', 'silver'],
   },
@@ -30,8 +30,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a86e2dc271b0?w=800&q=80',
-      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+      'https://picsum.photos/seed/majestic-flora-1/800/1000',
+      'https://picsum.photos/seed/majestic-flora-2/800/1000',
     ],
     variants: ['gold', 'silver'],
   },
@@ -48,8 +48,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
     images: [
-      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
-      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
+      'https://picsum.photos/seed/golden-sphere-1/800/1000',
+      'https://picsum.photos/seed/golden-sphere-2/800/1000',
     ],
     variants: ['gold', 'silver'],
   },
@@ -66,8 +66,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
     images: [
-      'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=800&q=80',
-      'https://images.unsplash.com/photo-1573408302455-802a8b6b4f5c?w=800&q=80',
+      'https://picsum.photos/seed/amber-lace-1/800/1000',
+      'https://picsum.photos/seed/amber-lace-2/800/1000',
     ],
     variants: ['gold', 'silver'],
   },
@@ -84,17 +84,17 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
     images: [
-      'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80',
-      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+      'https://picsum.photos/seed/royal-heirloom-1/800/1000',
+      'https://picsum.photos/seed/royal-heirloom-2/800/1000',
     ],
     variants: ['gold', 'silver'],
   },
 ];
 
 export const categories = [
-  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f14?w=600&q=80' },
-  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a86e2dc271b0?w=600&q=80' },
-  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80' },
+  { id: 'earrings', name: 'Earrings', image: 'https://picsum.photos/seed/category-earrings/600/750' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://picsum.photos/seed/category-necklaces/600/750' },
+  { id: 'huggies', name: 'Huggies', image: 'https://picsum.photos/seed/category-huggies/600/750' },
 ];
 
 export const testimonials = [
@@ -104,9 +104,9 @@ export const testimonials = [
 ];
 
 export const ugcItems = [
-  { id: 1, handle: '@sophia.style', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80', caption: 'Everyday luxury' },
-  { id: 2, handle: '@emma.looks', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&q=80', caption: 'Gift ready' },
-  { id: 3, handle: '@olivia.wears', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&q=80', caption: 'New favorite' },
-  { id: 4, handle: '@jane.daily', image: 'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=400&q=80', caption: 'Date night' },
-  { id: 5, handle: '@lily.gold', image: 'https://images.unsplash.com/photo-1573408302455-802a8b6b4f5c?w=400&q=80', caption: 'Weekend edit' },
+  { id: 1, handle: '@sophia.style', image: 'https://picsum.photos/seed/ugc-1/400/700', caption: 'Everyday luxury' },
+  { id: 2, handle: '@emma.looks', image: 'https://picsum.photos/seed/ugc-2/400/700', caption: 'Gift ready' },
+  { id: 3, handle: '@olivia.wears', image: 'https://picsum.photos/seed/ugc-3/400/700', caption: 'New favorite' },
+  { id: 4, handle: '@jane.daily', image: 'https://picsum.photos/seed/ugc-4/400/700', caption: 'Date night' },
+  { id: 5, handle: '@lily.gold', image: 'https://picsum.photos/seed/ugc-5/400/700', caption: 'Weekend edit' },
 ];

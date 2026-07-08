@@ -6,7 +6,7 @@ const Hero = () => {
     <section className="relative h-[90vh] md:h-screen min-h-[640px] overflow-hidden">
       <div
         className="absolute inset-0 bg-cover bg-center"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1600&q=80')" }}
+        style={{ backgroundImage: "url('https://picsum.photos/seed/velmora-hero/1600/900')" }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
 
