@@ -11,9 +11,9 @@ export const products = [
     rating: 4.8,
     reviews: 124,
     images: [
-      "https://images.unsplash.com/photo-1630019852942-f892a04d4e6a?w=800&h=1000&fit=crop",
       "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop",
       "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop",
     ],
     variants: [
       { name: "Gold Tone", value: "gold" },
@@ -61,9 +61,9 @@ export const products = [
     rating: 4.7,
     reviews: 203,
     images: [
-      "https://images.unsplash.com/photo-1630019852942-f892a04d4e6a?w=800&h=1000&fit=crop&q=80",
       "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop&q=80",
       "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop&q=80",
     ],
     variants: [
       { name: "Gold Tone", value: "gold" },
@@ -87,8 +87,8 @@ export const products = [
     reviews: 67,
     images: [
       "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop",
-      "https://images.unsplash.com/photo-1630019852942-f892a04d4e6a?w=800&h=1000&fit=crop",
       "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop",
     ],
     variants: [
       { name: "Gold Tone", value: "gold" },
@@ -156,7 +156,7 @@ export const testimonials = [
 export const ugcPosts = [
   { id: 1, caption: "Everyday elegance", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=700&fit=crop" },
   { id: 2, caption: "Golden hour glow", image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=700&fit=crop" },
-  { id: 3, caption: "Stacked & styled", image: "https://images.unsplash.com/photo-1630019852942-f892a04d4e6a?w=400&h=700&fit=crop" },
+  { id: 3, caption: "Stacked & styled", image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&h=700&fit=crop" },
   { id: 4, caption: "Date night ready", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=700&fit=crop" },
   { id: 5, caption: "Layered perfection", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=700&fit=crop" },
   { id: 6, caption: "Minimalist magic", image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&h=700&fit=crop" },

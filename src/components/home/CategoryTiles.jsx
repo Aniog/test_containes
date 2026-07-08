@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { categories } from '../../data/products';
 
 const categoryImages = {
-  earrings: 'https://images.unsplash.com/photo-1630019852942-f892a04d4e6a?w=800&h=1000&fit=crop',
+  earrings: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop',
   necklaces: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
-  huggies: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop',
+  huggies: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop',
 };
 
 export default function CategoryTiles() {
