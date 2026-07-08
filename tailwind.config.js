@@ -53,6 +53,10 @@ export default {
         slideInLeft: 'slideInLeft 0.35s ease-out forwards',
         shimmer: 'shimmer 2s infinite linear',
       },
+      transitionDuration: {
+        '350': '350ms',
+        '400': '400ms',
+      },
     },
   },
   plugins: [],
