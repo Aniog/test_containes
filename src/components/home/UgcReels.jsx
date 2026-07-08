@@ -1,3 +1,4 @@
+import { getStockImageSource } from '@/lib/images'
 import SectionHeading from './SectionHeading'
 
 export default function UgcReels({ moments }) {
@@ -16,7 +17,7 @@ export default function UgcReels({ moments }) {
               data-strk-img-ratio="9x16"
               data-strk-img-width="500"
               className="h-full w-full object-cover opacity-90 transition duration-700 group-hover:scale-105"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src={getStockImageSource(moment.imgId)}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-velmora-ink/70 via-transparent to-transparent" />
             <p id={moment.titleId} className="absolute inset-x-5 bottom-5 font-serif text-2xl leading-tight text-velmora-ivory drop-shadow">{moment.caption}</p>

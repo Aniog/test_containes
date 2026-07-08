@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getStockImageSource } from '@/lib/images'
 import SectionHeading from './SectionHeading'
 
 export default function CategoryTiles({ categories }) {
@@ -16,7 +17,7 @@ export default function CategoryTiles({ categories }) {
                 data-strk-img-ratio="3x4"
                 data-strk-img-width="800"
                 className="absolute inset-0 h-full w-full object-cover opacity-78 transition duration-700 group-hover:scale-105 group-hover:opacity-95"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                src={getStockImageSource(category.imgId)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-velmora-ink/80 via-velmora-ink/10 to-transparent" />
               <div className="absolute inset-x-0 bottom-0 translate-y-5 p-7 transition duration-500 group-hover:translate-y-0">

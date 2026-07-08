@@ -4,6 +4,7 @@ import { ChevronDown, Minus, Plus, Star } from 'lucide-react'
 import ProductCard from '@/components/products/ProductCard'
 import { getProductBySlug, products } from '@/data/products'
 import { formatPrice } from '@/lib/cart'
+import { getStockImageSource } from '@/lib/images'
 import { useImageLoader } from '@/hooks/useImageLoader'
 
 const tones = ['Gold', 'Silver']
@@ -30,9 +31,9 @@ export default function ProductDetail({ onAddToCart }) {
   if (!product) return <Navigate to="/shop" replace />
 
   const gallery = [
-    { id: `${product.id}-front`, label: product.name, ratio: '3x4' },
-    { id: `${product.id}-worn`, label: `${product.name} styling`, ratio: '3x4' },
-    { id: `${product.id}-detail`, label: `${product.name} detail`, ratio: '1x1' },
+    { id: `${product.id}-front`, imageId: `thumb-${product.id}-front`, label: product.name, ratio: '3x4' },
+    { id: `${product.id}-worn`, imageId: `thumb-${product.id}-worn`, label: `${product.name} styling`, ratio: '3x4' },
+    { id: `${product.id}-detail`, imageId: `thumb-${product.id}-detail`, label: `${product.name} detail`, ratio: '1x1' },
   ]
   const activeGallery = gallery[selectedImage]
 
@@ -54,12 +55,12 @@ export default function ProductDetail({ onAddToCart }) {
                   <button key={image.id} onClick={() => setSelectedImage(index)} className={`overflow-hidden rounded-full border p-1 transition lg:rounded-none ${selectedImage === index ? 'border-velmora-champagne' : 'border-velmora-mist hover:border-velmora-champagne'}`} aria-label={`View ${image.label}`}>
                     <img
                       alt={image.label}
-                      data-strk-img-id={`thumb-${image.id}`}
+                      data-strk-img-id={image.imageId}
                       data-strk-img={`[${product.descId}] [${product.titleId}]`}
                       data-strk-img-ratio="1x1"
                       data-strk-img-width="180"
                       className="h-20 w-20 rounded-full object-cover lg:rounded-none"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      src={getStockImageSource(image.imageId)}
                     />
                   </button>
                 ))}
@@ -67,12 +68,12 @@ export default function ProductDetail({ onAddToCart }) {
               <div className="order-1 overflow-hidden bg-velmora-pearl lg:order-2">
                 <img
                   alt={activeGallery.label}
-                  data-strk-img-id={`detail-main-${activeGallery.id}`}
+                  data-strk-img-id={activeGallery.imageId}
                   data-strk-img={`[${product.descId}] [${product.titleId}]`}
                   data-strk-img-ratio={activeGallery.ratio}
                   data-strk-img-width="1100"
                   className="aspect-[3/4] w-full object-cover"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  src={getStockImageSource(activeGallery.imageId)}
                 />
               </div>
             </div>

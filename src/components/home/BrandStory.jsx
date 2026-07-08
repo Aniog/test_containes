@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getStockImageSource } from '@/lib/images'
 
 export default function BrandStory() {
   return (
@@ -12,7 +13,7 @@ export default function BrandStory() {
             data-strk-img-ratio="3x4"
             data-strk-img-width="900"
             className="aspect-[3/4] w-full object-cover lg:absolute lg:inset-0 lg:h-full"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getStockImageSource('brand-story-jewelry-craft-91bc7e')}
           />
         </div>
         <div className="lg:px-10">

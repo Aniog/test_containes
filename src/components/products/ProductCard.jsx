@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ShoppingBag, Star } from 'lucide-react'
 import { formatPrice } from '@/lib/cart'
+import { getStockImageSource } from '@/lib/images'
 
 export default function ProductCard({ product, onAddToCart, compact = false }) {
   return (
@@ -14,7 +15,7 @@ export default function ProductCard({ product, onAddToCart, compact = false }) {
             data-strk-img-ratio="3x4"
             data-strk-img-width="700"
             className="aspect-[3/4] w-full object-cover transition duration-700 group-hover:scale-105 group-hover:opacity-0"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getStockImageSource(product.imgId)}
           />
           <img
             alt={`${product.name} worn detail`}
@@ -23,10 +24,10 @@ export default function ProductCard({ product, onAddToCart, compact = false }) {
             data-strk-img-ratio="3x4"
             data-strk-img-width="700"
             className="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getStockImageSource(product.hoverImgId)}
           />
         </Link>
-        <button onClick={() => onAddToCart(product)} className="absolute inset-x-4 bottom-4 translate-y-4 rounded-full bg-velmora-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.22em] text-velmora-ivory opacity-0 shadow-xl transition duration-300 hover:bg-velmora-champagne hover:text-velmora-ink group-hover:translate-y-0 group-hover:opacity-100">
+        <button onClick={() => onAddToCart(product)} className="absolute inset-x-4 bottom-4 translate-y-0 rounded-full bg-velmora-ink px-5 py-3 text-xs font-bold uppercase tracking-[0.22em] text-velmora-ivory opacity-100 shadow-xl transition duration-300 hover:bg-velmora-champagne hover:text-velmora-ink md:translate-y-4 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
           Add to Cart
         </button>
       </div>

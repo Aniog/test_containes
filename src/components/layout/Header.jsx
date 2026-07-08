@@ -4,7 +4,7 @@ import { Menu, Search, ShoppingBag, X } from 'lucide-react'
 
 const navItems = [
   { label: 'Shop', to: '/shop' },
-  { label: 'Collections', to: '/shop#collections' },
+  { label: 'Collections', to: '/#collections' },
   { label: 'About', to: '/#story' },
   { label: 'Journal', to: '/#journal' },
 ]

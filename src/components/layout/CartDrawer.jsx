@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
 import { formatPrice, getCartSubtotal } from '@/lib/cart'
+import { getStockImageSource } from '@/lib/images'
 
 export default function CartDrawer({ open, items, onClose, onRemove, onQuantityChange }) {
   const subtotal = getCartSubtotal(items)
@@ -39,7 +40,7 @@ export default function CartDrawer({ open, items, onClose, onRemove, onQuantityC
                         data-strk-img-ratio="1x1"
                         data-strk-img-width="220"
                         className="aspect-square h-full w-full object-cover"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                        src={getStockImageSource(item.product.imgId)}
                       />
                     </div>
                     <div>
