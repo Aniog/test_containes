@@ -1,50 +1,36 @@
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
+  background-color: #FAF7F2;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+/* Smooth scrolling for horizontal scroll containers */
+.scroll-smooth-x {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+::-webkit-scrollbar-track {
+  background: #F5EFE7;
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+::-webkit-scrollbar-thumb {
+  background: #D4C9B8;
+  border-radius: 3px;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
+::-webkit-scrollbar-thumb:hover {
+  background: #B08D57;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+/* Focus visible for keyboard navigation */
+*:focus-visible {
+  outline: 2px solid #B08D57;
+  outline-offset: 2px;
 }
