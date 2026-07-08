@@ -1,76 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --color-cream: #FAF7F2;
+  --color-sand: #F5EFE6;
+  --color-taupe: #D4C5B5;
+  --color-bronze: #B08D6E;
+  --color-gold: #C9A962;
+  --color-gold-light: #E8D5A8;
+  --color-charcoal: #2C2C2C;
+  --color-dark: #1A1A1A;
+  --color-warm-black: #0F0E0D;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-button:hover {
-  border-color: #646cff;
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+::-webkit-scrollbar-track {
+  background: var(--color-sand);
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+::-webkit-scrollbar-thumb {
+  background: var(--color-taupe);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-bronze);
+}
+
+/* Utility classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Animation delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Image hover transitions */
+.img-hover-scale {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-velmora-gold text-velmora-warmBlack px-8 py-3 font-sans text-sm tracking-widest uppercase transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-velmora-bronze;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201, 169, 98, 0.3);
+}
+
+.btn-outline {
+  @apply border border-velmora-gold text-velmora-gold px-8 py-3 font-sans text-sm tracking-widest uppercase transition-all duration-300 bg-transparent;
+}
+
+.btn-outline:hover {
+  @apply bg-velmora-gold text-velmora-warmBlack;
+}
+
+/* Hairline divider */
+.hairline {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-taupe), transparent);
+}
+
+/* Product card hover effect */
+.product-card {
+  @apply transition-all duration-500 ease-out;
+}
+
+.product-card:hover .product-image-secondary {
+  @apply opacity-100;
+}
+
+.product-card:hover .product-image-primary {
+  @apply opacity-0;
+}
+
+/* Smooth image transitions */
+.product-image-primary,
+.product-image-secondary {
+  @apply transition-opacity duration-500 ease-out;
+}
+
+/* Cart drawer animation */
+.cart-drawer-enter {
+  transform: translateX(100%);
+}
+
+.cart-drawer-enter-active {
+  transform: translateX(0);
+  transition: transform 300ms ease-out;
+}
+
+.cart-drawer-exit {
+  transform: translateX(0);
+}
+
+.cart-drawer-exit-active {
+  transform: translateX(100%);
+  transition: transform 300ms ease-in;
+}
+
+/* UGC scroll container */
+.ugc-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Accordion styles */
+.accordion-content {
+  @apply overflow-hidden transition-all duration-300 ease-out;
+}
+
+/* Star rating */
+.star-rating {
+  @apply text-velmora-gold;
+}
+
+/* Input focus styles */
+input:focus,
+textarea:focus {
+  @apply outline-none ring-1 ring-velmora-gold;
+}
+
+/* Link hover underline animation */
+.link-underline {
+  @apply relative;
+}
+
+.link-underline::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-px bg-velmora-gold transition-all duration-300;
+}
+
+.link-underline:hover::after {
+  @apply w-full;
+}
