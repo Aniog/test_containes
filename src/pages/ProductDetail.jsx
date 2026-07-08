@@ -144,6 +144,7 @@ export default function ProductDetail() {
                       key={v.id}
                       type="button"
                       onClick={() => setVariant(v.id)}
+                      aria-pressed={variant === v.id}
                       className={cn(
                         'flex items-center gap-2 pl-2 pr-4 py-2 border text-sm font-sans transition-all',
                         variant === v.id
