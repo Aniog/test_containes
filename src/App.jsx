@@ -1,14 +1,21 @@
 import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/layout/Layout'
+import HomePage from './pages/HomePage'
+import ProductDetail from './pages/ProductDetail'
+import ShopPage from './pages/ShopPage'
+import CartDrawer from './components/cart/CartDrawer'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <Layout>
+      <CartDrawer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/shop" element={<ShopPage />} />
+      </Routes>
+    </Layout>
   )
 }
 
