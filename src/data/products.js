@@ -1,0 +1,112 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural ear cuff with a single crystal accent that catches the light with every turn.',
+    details: '18K gold-plated brass. Crystal accent. Hypoallergenic. One size fits most.',
+    care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f14?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    description: 'A multicolor floral crystal necklace that blooms across the décolletage.',
+    details: '18K gold-plated brass. Multicolor crystals. Adjustable chain 16"-18". Hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a86e2dc271b0?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky gold dome huggie earrings with a satisfying weight and quiet shine.',
+    details: '18K gold-plated brass. Hinge closure. Hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
+      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.6,
+    reviews: 67,
+    description: 'Textured gold filigree drop earrings inspired by antique lace patterns.',
+    details: '18K gold-plated brass. Filigree detail. Hypoallergenic. Drop length 1.5".',
+    care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
+    images: [
+      'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=800&q=80',
+      'https://images.unsplash.com/photo-1573408302455-802a8b6b4f5c?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    price: 95,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 5.0,
+    reviews: 42,
+    description: 'A gift-boxed earring and necklace set fit for a modern heirloom.',
+    details: '18K gold-plated brass. Gift box included. Hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes and lotions. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. 30-day returns.',
+    images: [
+      'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f14?w=600&q=80' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a86e2dc271b0?w=600&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80' },
+];
+
+export const testimonials = [
+  { id: 1, name: 'Sophia M.', text: 'The quality is unreal for the price. I wear my Golden Sphere Huggies every single day.', rating: 5 },
+  { id: 2, name: 'Emma R.', text: 'Bought the Royal Heirloom Set for my sister and she cried. The packaging alone is worth it.', rating: 5 },
+  { id: 3, name: 'Olivia K.', text: 'Finally jewelry that feels expensive but does not break the bank. Obsessed.', rating: 5 },
+];
+
+export const ugcItems = [
+  { id: 1, handle: '@sophia.style', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80', caption: 'Everyday luxury' },
+  { id: 2, handle: '@emma.looks', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&q=80', caption: 'Gift ready' },
+  { id: 3, handle: '@olivia.wears', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&q=80', caption: 'New favorite' },
+  { id: 4, handle: '@jane.daily', image: 'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=400&q=80', caption: 'Date night' },
+  { id: 5, handle: '@lily.gold', image: 'https://images.unsplash.com/photo-1573408302455-802a8b6b4f5c?w=400&q=80', caption: 'Weekend edit' },
+];
