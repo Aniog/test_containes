@@ -1,10 +1,30 @@
-import React, { createContext, useContext, useState, useCallback } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 
 const CartContext = createContext();
 
+// Helper function to load cart from localStorage
+const loadCartFromStorage = () => {
+  try {
+    const savedCart = localStorage.getItem('velmora_cart');
+    return savedCart ? JSON.parse(savedCart) : [];
+  } catch (error) {
+    console.error('Error loading cart from localStorage:', error);
+    return [];
+  }
+};
+
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => loadCartFromStorage());
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    try {
+      localStorage.setItem('velmora_cart', JSON.stringify(cartItems));
+    } catch (error) {
+      console.error('Error saving cart to localStorage:', error);
+    }
+  }, [cartItems]);
 
   const addToCart = useCallback((product, quantity = 1, variant = 'Gold') => {
     setCartItems(prev => {
