@@ -37,7 +37,7 @@ export const products = [
     description: 'Chunky gold dome huggie earrings. The perfect everyday essential with a modern twist.',
     price: 38,
     category: 'huggies',
-    image: 'https://images.unsplash.com/photo-1635767798638-3e252a018695?w=600&h=750&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=750&fit=crop',
     imageSecondary: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=750&fit=crop',
     rating: 4,
     reviews: 215,
@@ -95,7 +95,7 @@ export const categories = [
   {
     id: 'huggies',
     name: 'Huggies',
-    image: 'https://images.unsplash.com/photo-1635767798638-3e252a018695?w=600&h=800&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=800&fit=crop',
   },
 ];
 
@@ -138,7 +138,7 @@ export const ugcContent = [
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1635767798638-3e252a018695?w=400&h=711&fit=crop',
+    image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&h=711&fit=crop',
     caption: 'Effortless style',
   },
   {
