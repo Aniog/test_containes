@@ -9,7 +9,7 @@ export default {
   	extend: {
   		fontFamily: {
   			serif: [
-  				'Cormorant Garamond"',
+  				'Cormorant Garamond',
   				'Georgia',
   				'serif'
   			],
