@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "关联的用户 ID（外键）",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "联系人姓名"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "联系人邮箱"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "联系人电话"
+    },
+    "subject": {
+      "type": "string",
+      "enum": ["business", "support", "partnership", "other"],
+      "description": "咨询主题：business=商务合作, support=技术支持, partnership=战略合作, other=其他"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "留言内容"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "replied", "closed"],
+      "default": "pending",
+      "description": "处理状态：pending=待处理, replied=已回复, closed=已关闭"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

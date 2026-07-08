@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Project Cases",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "项目标题"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["ecommerce", "fintech", "healthcare", "education", "enterprise", "other"],
+      "description": "项目类别"
+    },
+    "client": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "客户名称"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "项目描述"
+    },
+    "result": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "项目成果（如：转化率提升45%）"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "项目标签列表"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "archived"],
+      "default": "draft",
+      "description": "发布状态"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "是否为精选案例"
+    },
+    "cover_image": {
+      "type": "object",
+      "description": "封面图片",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    }
+  },
+  "required": ["title", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["admin"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
