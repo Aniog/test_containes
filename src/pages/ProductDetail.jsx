@@ -1,12 +1,10 @@
-import { useState, useRef, useEffect, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, ChevronDown, Minus, Plus, Truck, RotateCcw, Shield } from 'lucide-react';
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { formatPrice, cn } from '@/lib/utils';
 import ProductCard from '@/components/product/ProductCard';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 const accordionItems = [
   {
@@ -32,15 +30,8 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [openAccordion, setOpenAccordion] = useState('description');
-  const containerRef = useRef(null);
 
   const product = products.find((p) => p.id === id);
-
-  useEffect(() => {
-    if (containerRef.current) {
-      return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    }
-  }, [id]);
 
   const relatedProducts = useMemo(() => {
     if (!product) return [];
@@ -61,7 +52,7 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="pt-20 md:pt-24" ref={containerRef}>
+    <div className="pt-20 md:pt-24">
       <div className="max-w-7xl mx-auto section-padding py-8 md:py-14">
         {/* Breadcrumb */}
         <nav className="mb-8">
@@ -80,11 +71,7 @@ export default function ProductDetail() {
           <div className="space-y-4">
             <div className="aspect-[3/4] bg-brand-cream overflow-hidden">
               <img
-                data-strk-img-id={product.detailImgId}
-                data-strk-img={`[${product.id}-detail-name] [${product.id}-detail-desc] gold jewelry product elegant closeup`}
-                data-strk-img-ratio="3x4"
-                data-strk-img-width="800"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                src={product.imageUrl}
                 alt={product.imgAlt}
                 className="w-full h-full object-cover"
               />

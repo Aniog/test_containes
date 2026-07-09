@@ -17,6 +17,7 @@ export const products = [
     material: '18K Gold Plated',
     priceRange: '30-50',
     imgId: 'vivid-aura-jewels',
+    imageUrl: 'https://images.unsplash.com/photo-1666800715562-a7859650f782?w=600&h=800&fit=crop&q=80',
     imgAlt: 'Vivid Aura Jewels gold ear cuff with crystal accent',
   },
   {
@@ -37,6 +38,7 @@ export const products = [
     material: '18K Gold Plated',
     priceRange: '50-80',
     imgId: 'majestic-flora-nectar',
+    imageUrl: 'https://images.unsplash.com/photo-1565645289095-a5d91c9f9e0f?w=600&h=800&fit=crop&q=80',
     imgAlt: 'Majestic Flora Nectar multicolor floral crystal necklace',
   },
   {
@@ -57,6 +59,7 @@ export const products = [
     material: '18K Gold Plated',
     priceRange: '30-50',
     imgId: 'golden-sphere-huggies',
+    imageUrl: 'https://images.unsplash.com/photo-1582756825287-a250e1e432d9?w=600&h=800&fit=crop&q=80',
     imgAlt: 'Golden Sphere Huggies chunky gold dome huggie earrings',
   },
   {
@@ -77,6 +80,7 @@ export const products = [
     material: '18K Gold Plated',
     priceRange: '50-80',
     imgId: 'amber-lace-earrings',
+    imageUrl: 'https://images.unsplash.com/photo-1651160670627-2896ddf7822f?w=600&h=800&fit=crop&q=80',
     imgAlt: 'Amber Lace textured gold filigree drop earrings',
   },
   {
@@ -97,6 +101,7 @@ export const products = [
     material: '18K Gold Plated',
     priceRange: '80-120',
     imgId: 'royal-heirloom-set',
+    imageUrl: 'https://images.unsplash.com/photo-1501425242579-43d364303e9c?w=600&h=800&fit=crop&q=80',
     imgAlt: 'Royal Heirloom Set gift-boxed earring and necklace set',
   },
 ];

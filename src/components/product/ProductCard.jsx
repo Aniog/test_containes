@@ -4,7 +4,7 @@ import { Star } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/utils';
 
-export default function ProductCard({ product, imageSrc }) {
+export default function ProductCard({ product }) {
   const [hovered, setHovered] = useState(false);
   const { addItem } = useCart();
 
@@ -12,8 +12,6 @@ export default function ProductCard({ product, imageSrc }) {
     e.preventDefault();
     addItem(product, product.colors[0].name);
   };
-
-  const fallbackSrc = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"/%3E';
 
   return (
     <Link
@@ -25,7 +23,7 @@ export default function ProductCard({ product, imageSrc }) {
       {/* Image */}
       <div className="relative aspect-[3/4] bg-brand-cream overflow-hidden">
         <img
-          src={imageSrc || fallbackSrc}
+          src={product.imageUrl}
           alt={product.imgAlt}
           className={`w-full h-full object-cover transition-transform duration-700 ${
             hovered ? 'scale-105' : 'scale-100'
