@@ -81,7 +81,7 @@ export default function Shop({ onAddToCart }) {
               Filters
             </h2>
           </div>
-          <FilterGroup title="Category" options={['All', ...categories, 'Sets']} value={category} onChange={setCategory} />
+          <FilterGroup title="Category" options={['All', ...categories]} value={category} onChange={setCategory} />
           <FilterGroup title="Price" options={priceRanges.map((item) => item.label)} value={price} onChange={setPrice} />
           <FilterGroup title="Material" options={['All materials', '18K Gold Plated']} value={material} onChange={setMaterial} />
         </aside>

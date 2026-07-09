@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getConfiguredImageUrl } from '../../lib/strk-images.js'
 
 export default function BrandStory() {
   return (
@@ -10,7 +11,7 @@ export default function BrandStory() {
             data-strk-img="[brand-story-copy] [brand-story-title]"
             data-strk-img-ratio="4x3"
             data-strk-img-width="900"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={getConfiguredImageUrl('brand-story-studio-719e2b')}
             alt="Velmora jewelry studio"
             className="h-full w-full object-cover"
           />

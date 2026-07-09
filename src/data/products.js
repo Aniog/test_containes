@@ -96,7 +96,7 @@ export const products = [
   },
 ]
 
-export const categories = ['Earrings', 'Necklaces', 'Huggies']
+export const categories = ['Earrings', 'Necklaces', 'Huggies', 'Sets']
 
 export const formatPrice = (price) => `$${price}`
 
