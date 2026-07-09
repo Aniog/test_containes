@@ -11,11 +11,15 @@ const HeroSection = () => {
 
   return (
     <section ref={containerRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hidden descriptor for background image query */}
+      <span id="hero-bg-desc" className="sr-only">
+        fluorescent microscopy glowing cells bacteria abstract dark background deep space biology neon colors
+      </span>
       {/* Background image */}
       <div
         className="absolute inset-0 z-0"
         data-strk-bg-id="hero-bg-mc001"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg="[hero-bg-desc]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1920"
         style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
