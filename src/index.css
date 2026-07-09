@@ -1,76 +1,479 @@
+/* ============================================
+   VELMORA FINE JEWELRY — Quiet Luxury Design System
+   ============================================ */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Color Palette — Warm Editorial Luxury */
+  --color-bg: #F8F5F0;           /* Warm off-white */
+  --color-surface: #F5F2ED;      /* Soft cream surface */
+  --color-deep: #1C1917;         /* Warm charcoal */
+  --color-text: #2C2824;         /* Rich dark text */
+  --color-muted: #6B645E;        /* Muted text */
+  --color-gold: #B8976A;         /* Refined warm gold */
+  --color-gold-dark: #A17F4E;    /* Darker gold for hover */
+  --color-gold-light: #D4B896;   /* Lighter gold accent */
+  --color-border: #E5DFD6;       /* Hairline divider */
+  --color-white: #FFFFFF;
+  --color-overlay: rgba(28, 25, 23, 0.6);
+
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1.25rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4.5rem;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Typography */
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  line-height: 1.2;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.heading-xl {
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  letter-spacing: -0.01em;
+}
+
+.heading-lg {
+  font-size: clamp(1.875rem, 4vw, 2.75rem);
+  letter-spacing: -0.01em;
+}
+
+.heading-md {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.body-lg {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* Buttons — Premium Feel */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 0;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all var(--transition-base);
+  text-transform: none;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--color-deep);
+  color: var(--color-white);
+  border-color: var(--color-deep);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-white);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-deep);
+  border-color: var(--color-deep);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-deep);
+  color: var(--color-white);
+  border-color: var(--color-deep);
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-white);
+  border-color: var(--color-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
+}
+
+.btn-sm {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.8125rem;
+}
+
+/* Hairline Dividers */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* Cards */
+.card {
+  background: var(--color-white);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+/* Product Card Specific */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-white);
+}
+
+.product-card img {
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.product-card:hover img.primary {
+  opacity: 0;
+}
+
+.product-card:hover img.secondary {
+  opacity: 1;
+}
+
+.product-card .quick-add {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all var(--transition-base);
+  pointer-events: auto;
+  z-index: 20;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.variant-pill.active {
+  border-color: var(--color-deep);
+  background: var(--color-deep);
+  color: var(--color-white);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-gold);
+}
+
+/* Accordions */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.accordion-content {
+  padding: 1rem 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-white);
+  box-shadow: -10px 0 30px -15px rgb(0 0 0 / 0.2);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all var(--transition-base);
+}
+
+.navbar.transparent {
+  background: transparent;
+}
+
+.navbar.solid {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav-link {
+  position: relative;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-gold);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* UGC Reel */
+.ugc-scroll {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 1rem;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ugc-card {
+  flex: 0 0 160px;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+}
+
+.ugc-card img {
+  transition: transform var(--transition-slow);
+}
+
+.ugc-card:hover img {
+  transform: scale(1.05);
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem 1rem 0.75rem;
+  background: linear-gradient(to top, rgba(28,25,23,0.75), transparent);
+  color: var(--color-white);
+  font-family: var(--font-serif);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.category-tile img {
+  transition: transform var(--transition-slow);
+}
+
+.category-tile:hover img {
+  transform: scale(1.08);
+}
+
+.category-tile .label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(28, 25, 23, 0.35);
+  color: var(--color-white);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.category-tile:hover .label {
+  opacity: 1;
+}
+
+/* Testimonials */
+.testimonial {
+  border-left: 1px solid var(--color-gold);
+  padding-left: 1.5rem;
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--color-deep);
+  color: var(--color-white);
+}
+
+/* Footer */
+.footer {
+  background: var(--color-deep);
+  color: #A8A29E;
+}
+
+.footer a:hover {
+  color: var(--color-gold-light);
+}
+
+/* Form Inputs */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-center {
+    display: none;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  
+  .mobile-menu {
+    display: block;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Utility */
+.gold-text {
+  color: var(--color-gold);
+}
+
+.hairline {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Image placeholders */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth focus */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
