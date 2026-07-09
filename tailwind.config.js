@@ -5,7 +5,34 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        obsidian: '#1A1714',
+        charcoal: '#2C2825',
+        stone: '#3D3835',
+        parchment: '#F5F0E8',
+        cream: '#FAF7F2',
+        linen: '#EDE8DF',
+        gold: '#C9A96E',
+        'gold-light': '#DFC08A',
+        'gold-dark': '#A8854A',
+        ink: '#1A1714',
+        mist: '#6B6460',
+        whisper: '#9C9490',
+        divider: '#E8E3DA',
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        widest: '0.25em',
+        wider: '0.15em',
+      },
+      transitionDuration: {
+        '400': '400ms',
+      },
+    },
   },
   plugins: [],
 }
