@@ -1,76 +1,156 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #faf8f5;
+    --color-bg-secondary: #f5f0e8;
+    --color-text: #2d211d;
+    --color-text-secondary: #7d5e50;
+    --color-accent: #b8915a;
+    --color-accent-hover: #a67a4a;
+    --color-border: #ebe0cf;
+    --color-gold: #d98f2a;
+    --color-gold-light: #f0c05e;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .heading-display {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl font-light tracking-wide;
+    color: var(--color-text);
+  }
+
+  .heading-section {
+    @apply font-serif text-3xl md:text-4xl font-light tracking-wide;
+    color: var(--color-text);
+  }
+
+  .heading-product {
+    @apply font-serif text-xl md:text-2xl font-medium uppercase tracking-ultra-wide;
+    color: var(--color-text);
+  }
+
+  .body-text {
+    @apply font-sans text-base leading-relaxed;
+    color: var(--color-text-secondary);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 font-sans text-sm font-semibold uppercase tracking-ultra-wide transition-all duration-300;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border: 1px solid var(--color-accent);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-accent-hover);
+    border-color: var(--color-accent-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(184, 145, 90, 0.3);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 font-sans text-sm font-semibold uppercase tracking-ultra-wide transition-all duration-300;
+    background-color: transparent;
+    color: var(--color-accent);
+    border: 1px solid var(--color-accent);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .divider {
+    @apply w-full;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .product-name {
+    @apply font-serif text-lg md:text-xl font-medium uppercase tracking-ultra-wide leading-tight;
+    color: var(--color-text);
+  }
+
+  .price-text {
+    @apply font-sans text-lg font-semibold;
+    color: var(--color-accent);
+  }
+
+  .star-rating {
+    @apply flex items-center gap-0.5;
+    color: var(--color-gold);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
