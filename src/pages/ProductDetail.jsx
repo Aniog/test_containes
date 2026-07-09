@@ -50,16 +50,19 @@ export default function ProductDetail({ onAddToCart }) {
               </button>
             ))}
           </div>
-          <div className="order-1 aspect-[4/5] overflow-hidden bg-amber-200 shadow-2xl md:order-2">
-            <ProductImage
-              product={product}
-              mode={activeImage}
-              instance={`gallery-${activeImage}`}
-              className="h-full w-full"
-              imgClassName="h-full w-full object-cover"
-              ratio="3x4"
-              width="1100"
-            />
+          <div className="relative order-1 aspect-[4/5] overflow-hidden bg-amber-200 shadow-2xl md:order-2">
+            {['primary', 'secondary'].map((mode) => (
+              <ProductImage
+                key={mode}
+                product={product}
+                mode={mode}
+                instance={`gallery-${mode}`}
+                className={`absolute inset-0 transition duration-500 ${activeImage === mode ? 'opacity-100' : 'opacity-0'}`}
+                imgClassName="h-full w-full object-cover"
+                ratio="3x4"
+                width="1100"
+              />
+            ))}
           </div>
         </div>
 

@@ -70,7 +70,7 @@ export default function CartDrawer({
                   <div className="aspect-[3/4] overflow-hidden bg-amber-200/50">
                     <ProductImage
                       product={item}
-                      instance={`cart-${item.tone}`}
+                      instance="thumb-primary"
                       className="h-full w-full"
                       imgClassName="h-full w-full object-cover"
                       width="300"
