@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Pinterest } from 'lucide-react';
+import { Instagram, Facebook, Twitter } from 'lucide-react';
 
 const shopLinks = ['All Jewelry', 'Earrings', 'Necklaces', 'Huggies', 'Gift Sets', 'New Arrivals'];
 const helpLinks = ['Shipping & Returns', 'Size Guide', 'Jewelry Care', 'FAQ', 'Contact Us'];
@@ -21,7 +21,7 @@ export default function Footer() {
             <div className="flex gap-4 mt-6">
               <SocialIcon icon={Instagram} />
               <SocialIcon icon={Facebook} />
-              <SocialIcon icon={Pinterest} />
+              <SocialIcon icon={Twitter} />
             </div>
           </div>
 
