@@ -89,7 +89,11 @@ function ProductCard({ product }) {
       <div className="pt-3">
         <div className="flex items-center gap-1 mb-1.5">
           {[1, 2, 3, 4, 5].map(i => (
-            <Star key={i} size={9} className={i <= Math.round(product.rating) ? 'text-gold fill-gold' : 'text-sand fill-sand'} />
+            <Star
+              key={i}
+              size={9}
+              style={{ fill: i <= Math.round(product.rating) ? '#C9A96E' : '#E8DFD0', color: i <= Math.round(product.rating) ? '#C9A96E' : '#E8DFD0' }}
+            />
           ))}
           <span className="font-sans text-[10px] text-muted ml-1">({product.reviewCount})</span>
         </div>

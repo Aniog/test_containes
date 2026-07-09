@@ -13,7 +13,7 @@ function StarRating({ rating }) {
         <Star
           key={i}
           size={10}
-          className={i <= Math.round(rating) ? 'text-gold fill-gold' : 'text-sand fill-sand'}
+          style={{ fill: i <= Math.round(rating) ? '#C9A96E' : '#E8DFD0', color: i <= Math.round(rating) ? '#C9A96E' : '#E8DFD0' }}
         />
       ))}
     </div>

@@ -5,7 +5,7 @@ function StarRow() {
   return (
     <div className="flex items-center gap-0.5 mb-4">
       {[1, 2, 3, 4, 5].map(i => (
-        <Star key={i} size={12} className="text-gold fill-gold" />
+        <Star key={i} size={12} style={{ fill: '#C9A96E', color: '#C9A96E' }} />
       ))}
     </div>
   );
