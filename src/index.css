@@ -1,76 +1,398 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #251B16;
+  background-color: #F7F2EA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F7F2EA;
+  color: #251B16;
+  font-family: Inter, sans-serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  min-height: 100vh;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #B89465;
+  color: #FFFDF9;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+:root {
+  --canvas: #F7F2EA;
+  --surface: #FBF7F1;
+  --panel: #EFE5D8;
+  --border: #D8CAB8;
+  --ink: #251B16;
+  --truffle: #4E3D34;
+  --muted: #7B6A5D;
+  --accent: #B89465;
+  --accent-deep: #8E6A3A;
+  --accent-soft: #E2D2BA;
+  --cream: #FFFDF9;
+  --shadow: #1E1510;
+  --shadow-soft: 0 24px 70px -30px rgba(37, 27, 22, 0.22);
+  --shadow-card: 0 14px 45px -25px rgba(37, 27, 22, 0.18);
+}
+
+.page-shell {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-button:hover {
-  border-color: #646cff;
+.accent-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 200ms ease;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.accent-link:hover {
+  color: var(--accent-deep);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.premium-input {
+  height: 3rem;
+  width: 100%;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background-color: var(--cream);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  font-size: 0.875rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.premium-input::placeholder,
+[class~="placeholder:text-muted"]::placeholder {
+  color: var(--muted);
+}
+
+.premium-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(184, 148, 101, 0.2);
+}
+
+.divider {
+  height: 1px;
+  width: 100%;
+  background-color: rgba(216, 202, 184, 0.8);
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.font-display,
+[class~="font-display"] {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+[class~="tracking-brand"] {
+  letter-spacing: 0.32em;
+}
+
+[class~="tracking-product"] {
+  letter-spacing: 0.24em;
+}
+
+[class~="tracking-micro"] {
+  letter-spacing: 0.18em;
+}
+
+[class~="aspect-card"] {
+  aspect-ratio: 3 / 4;
+}
+
+[class~="aspect-editorial"] {
+  aspect-ratio: 4 / 5;
+}
+
+[class~="aspect-reel"] {
+  aspect-ratio: 9 / 16;
+}
+
+[class~="bg-canvas"] {
+  background-color: var(--canvas);
+}
+
+[class~="bg-canvas/95"] {
+  background-color: rgba(247, 242, 234, 0.95);
+}
+
+[class~="bg-surface"] {
+  background-color: var(--surface);
+}
+
+[class~="bg-panel"] {
+  background-color: var(--panel);
+}
+
+[class~="bg-panel/50"] {
+  background-color: rgba(239, 229, 216, 0.5);
+}
+
+[class~="bg-panel/60"] {
+  background-color: rgba(239, 229, 216, 0.6);
+}
+
+[class~="bg-panel/70"] {
+  background-color: rgba(239, 229, 216, 0.7);
+}
+
+[class~="bg-accent"] {
+  background-color: var(--accent);
+}
+
+[class~="bg-accent-soft"] {
+  background-color: var(--accent-soft);
+}
+
+[class~="bg-cream"] {
+  background-color: var(--cream);
+}
+
+[class~="bg-cream/10"] {
+  background-color: rgba(255, 253, 249, 0.1);
+}
+
+[class~="bg-shadow"] {
+  background-color: var(--shadow);
+}
+
+[class~="bg-shadow/40"] {
+  background-color: rgba(30, 21, 16, 0.4);
+}
+
+[class~="bg-shadow/88"] {
+  background-color: rgba(30, 21, 16, 0.88);
+}
+
+[class~="text-ink"] {
+  color: var(--ink);
+}
+
+[class~="text-truffle"] {
+  color: var(--truffle);
+}
+
+[class~="text-truffle/60"] {
+  color: rgba(78, 61, 52, 0.6);
+}
+
+[class~="text-muted"] {
+  color: var(--muted);
+}
+
+[class~="text-accent"] {
+  color: var(--accent);
+}
+
+[class~="text-cream"] {
+  color: var(--cream);
+}
+
+[class~="text-cream/60"] {
+  color: rgba(255, 253, 249, 0.6);
+}
+
+[class~="text-cream/70"] {
+  color: rgba(255, 253, 249, 0.7);
+}
+
+[class~="text-cream/75"] {
+  color: rgba(255, 253, 249, 0.75);
+}
+
+[class~="text-cream/80"] {
+  color: rgba(255, 253, 249, 0.8);
+}
+
+[class~="text-cream/85"] {
+  color: rgba(255, 253, 249, 0.85);
+}
+
+[class~="border-border"] {
+  border-color: var(--border);
+}
+
+[class~="border-cream/15"] {
+  border-color: rgba(255, 253, 249, 0.15);
+}
+
+[class~="border-cream/20"] {
+  border-color: rgba(255, 253, 249, 0.2);
+}
+
+[class~="border-cream/30"] {
+  border-color: rgba(255, 253, 249, 0.3);
+}
+
+[class~="shadow-card"] {
+  box-shadow: var(--shadow-card);
+}
+
+[class~="shadow-soft"] {
+  box-shadow: var(--shadow-soft);
+}
+
+[class~="from-shadow"] {
+  --tw-gradient-from: var(--shadow) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(30, 21, 16, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+[class~="from-shadow/90"] {
+  --tw-gradient-from: rgba(30, 21, 16, 0.9) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(30, 21, 16, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+[class~="via-shadow/20"] {
+  --tw-gradient-to: rgba(30, 21, 16, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(30, 21, 16, 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+[class~="via-shadow/70"] {
+  --tw-gradient-to: rgba(30, 21, 16, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgba(30, 21, 16, 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+[class~="to-shadow/35"] {
+  --tw-gradient-to: rgba(30, 21, 16, 0.35) var(--tw-gradient-to-position);
+}
+
+[class~="hover:bg-accent-deep"]:hover {
+  background-color: var(--accent-deep);
+}
+
+[class~="hover:bg-shadow"]:hover {
+  background-color: var(--shadow);
+}
+
+[class~="hover:bg-shadow/90"]:hover {
+  background-color: rgba(30, 21, 16, 0.9);
+}
+
+[class~="hover:text-accent"]:hover {
+  color: var(--accent);
+}
+
+[class~="hover:text-ink"]:hover {
+  color: var(--ink);
+}
+
+[class~="hover:border-accent"]:hover {
+  border-color: var(--accent);
+}
+
+[class~="hover:shadow-soft"]:hover {
+  box-shadow: var(--shadow-soft);
+}
+
+[class~="focus:border-shadow"]:focus {
+  border-color: var(--shadow);
+}
+
+[class~="focus:ring-accent"]:focus {
+  --tw-ring-color: rgba(184, 148, 101, 0.35);
+  box-shadow: 0 0 0 3px var(--tw-ring-color);
+}
+
+.group:hover [class~="group-hover:bg-accent"] {
+  background-color: var(--accent);
+}
+
+.group:hover [class~="group-hover:border-accent"] {
+  border-color: var(--accent);
+}
+
+.group:hover [class~="group-hover:text-accent"] {
+  color: var(--accent);
+}
+
+@media (min-width: 640px) {
+  .page-shell {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@media (min-width: 1024px) {
+  .page-shell {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
