@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Layout from '@/components/layout/Layout'
 import PreviewBridge from '@/components/layout/PreviewBridge'
+import RuntimeThemeStyles from '@/components/layout/RuntimeThemeStyles'
 import { CartProvider } from '@/context/CartContext'
 import HomePage from '@/pages/HomePage'
 import ProductPage from '@/pages/ProductPage'
@@ -11,6 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <CartProvider>
+        <RuntimeThemeStyles />
         <PreviewBridge />
         <Routes>
           <Route element={<Layout />}>

@@ -4682,14 +4682,14 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
     patches.push({ start, end, text })
   }
   const getImgUrl = imgId => selectedConfigImageUrl(configData[imgId])
-  const entryIds = new Set(
-    Array.isArray(entries)
-      ? entries.filter(entry => entry?.kind === 'img' && entry.imgId).map(entry => entry.imgId)
-      : [],
-  )
+  // Reusable components often receive item data via props, so this file-level
+  // build transform cannot always statically resolve `data-strk-img-id`
+  // template expressions from the local AST alone. Use the full generated image
+  // config map for dynamic `src` helpers so shared components like product cards,
+  // category tiles, and galleries still replace placeholder SVGs during build.
   const dynamicUrlMap = {}
-  for (const imgId of entryIds) {
-    const url = getImgUrl(imgId)
+  for (const [imgId, entry] of Object.entries(configData || {})) {
+    const url = selectedConfigImageUrl(entry)
     if (url) dynamicUrlMap[imgId] = url
   }
   const helperBase = '__strkImgSrc'
@@ -4877,7 +4877,14 @@ export default function strkImgPlugin() {
       } else {
         entries = extractStrkEntries(code, extractionOptions)
       }
-      if (!entries.length) return null
+
+      if (!entries.length) {
+        if (_isBuild && hasStrkMarkers(code)) {
+          const transformed = inlineBuildImageSourcesFromAst(code, ast, entries)
+          if (transformed !== code) return { code: transformed, map: null }
+        }
+        return null
+      }
 
       await processEntries(entries)
       if (_dirty) scheduleFlush(server)

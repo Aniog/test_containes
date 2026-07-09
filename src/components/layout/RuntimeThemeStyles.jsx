@@ -1,0 +1,77 @@
+import { useEffect } from 'react'
+
+const runtimeThemeCss = `
+.font-display { font-family: 'Cormorant Garamond', serif; }
+.shadow-card { --tw-shadow: 0 18px 40px rgba(28, 20, 18, 0.08); --tw-shadow-colored: 0 18px 40px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+.shadow-luxe { --tw-shadow: 0 24px 60px rgba(28, 20, 18, 0.16); --tw-shadow-colored: 0 24px 60px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+.divide-velmora-line > :not([hidden]) ~ :not([hidden]) { --tw-divide-opacity: 1; border-color: rgb(219 203 189 / var(--tw-divide-opacity, 1)); }
+.border-velmora-gold { --tw-border-opacity: 1; border-color: rgb(214 180 122 / var(--tw-border-opacity, 1)); }
+.border-velmora-ivory\\/25 { border-color: #fffaf540; }
+.border-velmora-ivory\\/30 { border-color: #fffaf54d; }
+.border-velmora-line { --tw-border-opacity: 1; border-color: rgb(219 203 189 / var(--tw-border-opacity, 1)); }
+.border-velmora-line\\/70 { border-color: #dbcbbdb3; }
+.bg-velmora-blush { --tw-bg-opacity: 1; background-color: rgb(238 229 219 / var(--tw-bg-opacity, 1)); }
+.bg-velmora-bronze { --tw-bg-opacity: 1; background-color: rgb(140 105 71 / var(--tw-bg-opacity, 1)); }
+.bg-velmora-gold { --tw-bg-opacity: 1; background-color: rgb(214 180 122 / var(--tw-bg-opacity, 1)); }
+.bg-velmora-ink { --tw-bg-opacity: 1; background-color: rgb(28 20 18 / var(--tw-bg-opacity, 1)); }
+.bg-velmora-ink\\/60 { background-color: #1c141299; }
+.bg-velmora-ink\\/70 { background-color: #1c1412b3; }
+.bg-velmora-ink\\/95 { background-color: #1c1412f2; }
+.bg-velmora-ivory { --tw-bg-opacity: 1; background-color: rgb(255 250 245 / var(--tw-bg-opacity, 1)); }
+.bg-velmora-ivory\\/5 { background-color: #fffaf50d; }
+.bg-velmora-panel { --tw-bg-opacity: 1; background-color: rgb(252 247 242 / var(--tw-bg-opacity, 1)); }
+.bg-velmora-panel\\/85 { background-color: #fcf7f2d9; }
+.bg-velmora-paper { --tw-bg-opacity: 1; background-color: rgb(245 239 232 / var(--tw-bg-opacity, 1)); }
+.bg-\\[linear-gradient\\(180deg\\,rgba\\(28\\,20\\,18\\,0\\.62\\)\\,rgba\\(28\\,20\\,18\\,0\\.78\\)_45\\%\\,rgba\\(28\\,20\\,18\\,0\\.92\\)\\)\\] { background-image: linear-gradient(180deg, #1c14129e, #1c1412c7 45%, #1c1412eb); }
+.from-velmora-ink { --tw-gradient-from: #1c1412 var(--tw-gradient-from-position); --tw-gradient-to: rgb(28 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-ink\\/20 { --tw-gradient-to: rgb(28 20 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(28 20 18 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.text-velmora-bronze { --tw-text-opacity: 1; color: rgb(140 105 71 / var(--tw-text-opacity, 1)); }
+.text-velmora-cocoa { --tw-text-opacity: 1; color: rgb(53 40 37 / var(--tw-text-opacity, 1)); }
+.text-velmora-gold { --tw-text-opacity: 1; color: rgb(214 180 122 / var(--tw-text-opacity, 1)); }
+.text-velmora-gold-deep { --tw-text-opacity: 1; color: rgb(184 141 77 / var(--tw-text-opacity, 1)); }
+.text-velmora-gold-soft { --tw-text-opacity: 1; color: rgb(235 209 163 / var(--tw-text-opacity, 1)); }
+.text-velmora-ivory { --tw-text-opacity: 1; color: rgb(255 250 245 / var(--tw-text-opacity, 1)); }
+.text-velmora-ivory\\/80 { color: #fffaf5cc; }
+.text-velmora-muted { --tw-text-opacity: 1; color: rgb(155 140 130 / var(--tw-text-opacity, 1)); }
+.text-velmora-stone { --tw-text-opacity: 1; color: rgb(111 96 88 / var(--tw-text-opacity, 1)); }
+.placeholder\\:text-velmora-stone::placeholder, .placeholder\\:text-velmora-stone::-moz-placeholder { --tw-text-opacity: 1; color: rgb(111 96 88 / var(--tw-text-opacity, 1)); }
+.hover\\:border-velmora-gold:hover { --tw-border-opacity: 1; border-color: rgb(214 180 122 / var(--tw-border-opacity, 1)); }
+.hover\\:border-velmora-gold\\/60:hover { border-color: #d6b47a99; }
+.hover\\:border-velmora-line:hover { --tw-border-opacity: 1; border-color: rgb(219 203 189 / var(--tw-border-opacity, 1)); }
+.hover\\:bg-velmora-cocoa:hover { --tw-bg-opacity: 1; background-color: rgb(53 40 37 / var(--tw-bg-opacity, 1)); }
+.hover\\:bg-velmora-gold-soft:hover { --tw-bg-opacity: 1; background-color: rgb(235 209 163 / var(--tw-bg-opacity, 1)); }
+.hover\\:bg-velmora-ivory:hover { --tw-bg-opacity: 1; background-color: rgb(255 250 245 / var(--tw-bg-opacity, 1)); }
+.hover\\:bg-velmora-ivory\\/10:hover { background-color: #fffaf51a; }
+.hover\\:bg-velmora-ivory\\/5:hover { background-color: #fffaf50d; }
+.hover\\:text-velmora-bronze:hover { --tw-text-opacity: 1; color: rgb(140 105 71 / var(--tw-text-opacity, 1)); }
+.hover\\:text-velmora-gold:hover { --tw-text-opacity: 1; color: rgb(214 180 122 / var(--tw-text-opacity, 1)); }
+.hover\\:text-velmora-ivory:hover { --tw-text-opacity: 1; color: rgb(255 250 245 / var(--tw-text-opacity, 1)); }
+.hover\\:shadow-luxe:hover { --tw-shadow: 0 24px 60px rgba(28, 20, 18, 0.16); --tw-shadow-colored: 0 24px 60px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+.focus\\:border-velmora-gold:focus { --tw-border-opacity: 1; border-color: rgb(214 180 122 / var(--tw-border-opacity, 1)); }
+.focus\\:ring-velmora-gold:focus { --tw-ring-opacity: 1; --tw-ring-color: rgb(214 180 122 / var(--tw-ring-opacity, 1)); }
+.group:hover .group-hover\\:text-velmora-bronze { --tw-text-opacity: 1; color: rgb(140 105 71 / var(--tw-text-opacity, 1)); }
+`
+
+const STYLE_ID = 'velmora-runtime-theme'
+
+export default function RuntimeThemeStyles() {
+  useEffect(() => {
+    let styleTag = document.getElementById(STYLE_ID)
+
+    if (!styleTag) {
+      styleTag = document.createElement('style')
+      styleTag.id = STYLE_ID
+      document.head.appendChild(styleTag)
+    }
+
+    styleTag.textContent = runtimeThemeCss
+
+    return () => {
+      if (styleTag?.parentNode) {
+        styleTag.parentNode.removeChild(styleTag)
+      }
+    }
+  }, [])
+
+  return null
+}
