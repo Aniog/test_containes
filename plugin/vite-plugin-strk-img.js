@@ -4748,7 +4748,7 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
         const idExpr = expressionSource(idAttr)
         const srcAttr = getAttrNode('src')
         const fallback = literalSrcFallback(srcAttr)
-        if (idExpr && srcAttr?.value && fallback != null && Object.keys(dynamicUrlMap).length) {
+        if (idExpr && srcAttr?.value && fallback != null && Object.keys(dynamicUrlMap).length > 0) {
           dynamicSrcPatches.push({
             start: srcAttr.value.start,
             end: srcAttr.value.end,
