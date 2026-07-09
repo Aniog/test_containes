@@ -464,7 +464,7 @@ function looksLikeImageUrl(raw) {
 function looksLikeImageUrlInImageContext(raw) {
   const value = normalizeUrlCandidate(raw)
   if (looksLikeImageUrl(value)) return true
-  if (!value || /^(data|blob):/i.test(value)) return false
+  if (!value || value === '/' || /^(data|blob):/i.test(value)) return false
   if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return false
   return /^(\/(?!\/)|\.{1,2}\/|@\/)/.test(value)
 }

@@ -34,7 +34,7 @@ const ProductCard = ({ product, priority = false }) => {
             data-strk-img-id={`${product.slug}-card-main`}
             data-strk-img-ratio="3x4"
             data-strk-img-width="900"
-            fetchPriority={priority ? 'high' : 'auto'}
+            fetchpriority={priority ? 'high' : 'auto'}
             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           />
           <div className="pointer-events-none absolute inset-x-4 bottom-4 flex justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">

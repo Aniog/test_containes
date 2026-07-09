@@ -213,6 +213,9 @@ function pushRecord(records, record) {
 function inspectImageProps({ records, props, tagName, fileName, code, constants }) {
   if (tagName !== 'img' && tagName !== 'source') return
 
+  const hasStrkImageContract = !!getObjectProp(props, 'data-strk-img-id') || !!getObjectProp(props, 'data-strk-img')
+  if (hasStrkImageContract) return
+
   for (const attrName of ['src', 'srcSet']) {
     const prop = getObjectProp(props, attrName)
     if (!prop || !valueContainsPlaceholder(prop.value, constants)) continue

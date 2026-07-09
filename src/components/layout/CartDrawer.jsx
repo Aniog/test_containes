@@ -20,8 +20,9 @@ const CartDrawer = () => {
         isOpen ? 'pointer-events-auto bg-velvet/35 opacity-100' : 'pointer-events-none bg-transparent opacity-0'
       }`}
       aria-hidden={!isOpen}
-      aria-modal="true"
-      role="dialog"
+      aria-modal={isOpen ? 'true' : undefined}
+      inert={isOpen ? undefined : ''}
+      role={isOpen ? 'dialog' : undefined}
     >
       <button
         type="button"
