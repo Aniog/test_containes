@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Enterprise Infos",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "企业/组织名称"
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "所属行业，如互联网、金融、制造业等"
+    },
+    "business_type": {
+      "type": "string",
+      "enum": ["startup", "sme", "enterprise", "government", "ngo", "other"],
+      "description": "企业类型：初创公司、中小企业、大型企业、政府机构、非营利组织、其他"
+    },
+    "company_size": {
+      "type": "string",
+      "enum": ["1-10", "11-50", "51-200", "201-500", "501-1000", "1000+"],
+      "description": "员工规模"
+    },
+    "founded_year": {
+      "type": "integer",
+      "minimum": 1800,
+      "maximum": 2100,
+      "description": "成立年份"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "企业官网地址"
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "详细地址"
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "所在城市"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "所在国家/地区"
+    },
+    "contact_person": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "联系人姓名"
+    },
+    "contact_email": {
+      "type": "string",
+      "format": "email",
+      "description": "联系人邮箱"
+    },
+    "contact_phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "联系人电话"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "企业简介"
+    },
+    "demands": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "企业需求或合作意向"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "pending"],
+      "default": "pending",
+      "description": "状态：活跃、停用、待审核"
+    }
+  },
+  "required": ["company_name"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Users, Search, RefreshCw } from 'lucide-react'
-import ProfileCard from '../components/profiles/ProfileCard.jsx'
-import ProfileForm from '../components/profiles/ProfileForm.jsx'
+import { Building2, Plus, Search, RefreshCw } from 'lucide-react'
+import EnterpriseCard from '../components/enterprises/EnterpriseCard.jsx'
+import EnterpriseForm from '../components/enterprises/EnterpriseForm.jsx'
 import Modal from '../components/ui/Modal.jsx'
 import ConfirmDialog from '../components/ui/ConfirmDialog.jsx'
 import Toast from '../components/ui/Toast.jsx'
-import { fetchProfiles, createProfile, updateProfile, deleteProfile } from '../api/userProfiles.js'
+import { fetchEnterprises, createEnterprise, updateEnterprise, deleteEnterprise } from '../api/enterpriseInfos.js'
 
 const STATUS_FILTERS = [
   { value: 'all', label: '全部' },
@@ -14,8 +14,8 @@ const STATUS_FILTERS = [
   { value: 'inactive', label: '停用' },
 ]
 
-export default function ProfilesPage({ triggerAdd = 0 }) {
-  const [profiles, setProfiles] = useState([])
+export default function EnterprisesPage({ triggerAdd = 0 }) {
+  const [enterprises, setEnterprises] = useState([])
   const [total, setTotal] = useState(0)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
@@ -32,15 +32,15 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
 
   const showToast = (message, type = 'success') => setToast({ message, type })
 
-  const loadProfiles = useCallback(async () => {
+  const loadEnterprises = useCallback(async () => {
     setLoading(true)
     try {
-      const { rows, total: t } = await fetchProfiles({ limit: 50 })
-      setProfiles(rows)
+      const { rows, total: t } = await fetchEnterprises({ limit: 50 })
+      setEnterprises(rows)
       setTotal(t)
-      console.log('[Profiles] Loaded', rows.length, 'profiles')
+      console.log('[Enterprises] Loaded', rows.length, 'records')
     } catch (err) {
-      console.error('[Profiles] Load error:', err)
+      console.error('[Enterprises] Load error:', err)
       showToast('加载数据失败：' + err.message, 'error')
     } finally {
       setLoading(false)
@@ -48,8 +48,8 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
   }, [])
 
   useEffect(() => {
-    loadProfiles()
-  }, [loadProfiles])
+    loadEnterprises()
+  }, [loadEnterprises])
 
   // Open add modal when parent header button is clicked
   useEffect(() => {
@@ -59,15 +59,15 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
   const handleCreate = async (data) => {
     setSubmitting(true)
     try {
-      const created = await createProfile(data)
-      console.log('[Profiles] Created:', created)
-      setProfiles((prev) => [created, ...prev])
+      const created = await createEnterprise(data)
+      console.log('[Enterprises] Created:', created)
+      setEnterprises((prev) => [created, ...prev])
       setTotal((t) => t + 1)
       setShowAddModal(false)
-      showToast('用户信息已成功保存！')
-      await loadProfiles()
+      showToast('企业信息已成功保存！')
+      await loadEnterprises()
     } catch (err) {
-      console.error('[Profiles] Create error:', err)
+      console.error('[Enterprises] Create error:', err)
       showToast('保存失败：' + err.message, 'error')
     } finally {
       setSubmitting(false)
@@ -78,14 +78,14 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
     if (!editTarget) return
     setSubmitting(true)
     try {
-      const updated = await updateProfile(editTarget.id, data)
-      console.log('[Profiles] Updated:', updated)
-      setProfiles((prev) => prev.map((p) => (p.id === updated.id ? updated : p)))
+      const updated = await updateEnterprise(editTarget.id, data)
+      console.log('[Enterprises] Updated:', updated)
+      setEnterprises((prev) => prev.map((e) => (e.id === updated.id ? updated : e)))
       setEditTarget(null)
-      showToast('用户信息已更新！')
-      await loadProfiles()
+      showToast('企业信息已更新！')
+      await loadEnterprises()
     } catch (err) {
-      console.error('[Profiles] Update error:', err)
+      console.error('[Enterprises] Update error:', err)
       showToast('更新失败：' + err.message, 'error')
     } finally {
       setSubmitting(false)
@@ -96,27 +96,27 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
     if (!deleteTarget) return
     setDeleting(true)
     try {
-      await deleteProfile(deleteTarget.id)
-      console.log('[Profiles] Deleted:', deleteTarget.id)
-      setProfiles((prev) => prev.filter((p) => p.id !== deleteTarget.id))
+      await deleteEnterprise(deleteTarget.id)
+      console.log('[Enterprises] Deleted:', deleteTarget.id)
+      setEnterprises((prev) => prev.filter((e) => e.id !== deleteTarget.id))
       setTotal((t) => t - 1)
       setDeleteTarget(null)
-      showToast('用户信息已删除')
-      await loadProfiles()
+      showToast('企业信息已删除')
+      await loadEnterprises()
     } catch (err) {
-      console.error('[Profiles] Delete error:', err)
+      console.error('[Enterprises] Delete error:', err)
       showToast('删除失败：' + err.message, 'error')
     } finally {
       setDeleting(false)
     }
   }
 
-  const filtered = profiles.filter((p) => {
-    const fields = p.data || {}
+  const filtered = enterprises.filter((e) => {
+    const d = e.data || {}
     const q = search.toLowerCase()
-    const matchSearch = !q || [fields.name, fields.email, fields.company, fields.job_title]
+    const matchSearch = !q || [d.company_name, d.contact_email, d.industry, d.city, d.contact_person]
       .some((v) => v && v.toLowerCase().includes(q))
-    const matchStatus = statusFilter === 'all' || fields.status === statusFilter
+    const matchStatus = statusFilter === 'all' || d.status === statusFilter
     return matchSearch && matchStatus
   })
 
@@ -126,10 +126,10 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: '总用户数', value: total, color: 'text-indigo-600' },
-            { label: '活跃用户', value: profiles.filter(p => (p.data?.status || 'active') === 'active').length, color: 'text-emerald-600' },
-            { label: '待审核', value: profiles.filter(p => p.data?.status === 'pending').length, color: 'text-amber-600' },
-            { label: '停用用户', value: profiles.filter(p => p.data?.status === 'inactive').length, color: 'text-slate-500' },
+            { label: '总企业数', value: total, color: 'text-indigo-600' },
+            { label: '活跃企业', value: enterprises.filter(e => e.data?.status === 'active').length, color: 'text-emerald-600' },
+            { label: '待审核', value: enterprises.filter(e => (e.data?.status ?? 'pending') === 'pending').length, color: 'text-amber-600' },
+            { label: '停用企业', value: enterprises.filter(e => e.data?.status === 'inactive').length, color: 'text-slate-500' },
           ].map((stat) => (
             <div key={stat.label} className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm">
               <p className="text-xs text-slate-500 mb-1">{stat.label}</p>
@@ -145,7 +145,7 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="搜索姓名、邮箱、公司..."
+              placeholder="搜索企业名称、行业、城市..."
               className="w-full pl-9 pr-4 py-2 rounded-lg border border-slate-200 bg-white text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition"
             />
           </div>
@@ -164,7 +164,7 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
               </button>
             ))}
             <button
-              onClick={loadProfiles}
+              onClick={loadEnterprises}
               className="px-3 py-2 rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition"
               title="刷新"
             >
@@ -184,14 +184,14 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
         ) : filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 gap-4">
             <div className="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center">
-              <Users className="w-8 h-8 text-slate-300" />
+              <Building2 className="w-8 h-8 text-slate-300" />
             </div>
             <div className="text-center">
               <p className="text-base font-medium text-slate-700">
-                {search || statusFilter !== 'all' ? '没有找到匹配的用户' : '暂无用户信息'}
+                {search || statusFilter !== 'all' ? '没有找到匹配的企业' : '暂无企业信息'}
               </p>
               <p className="text-sm text-slate-400 mt-1">
-                {search || statusFilter !== 'all' ? '请尝试调整搜索条件' : '点击右上角"添加用户"开始收集信息'}
+                {search || statusFilter !== 'all' ? '请尝试调整搜索条件' : '点击右上角"添加企业"开始收集信息'}
               </p>
             </div>
             {!search && statusFilter === 'all' && (
@@ -200,7 +200,7 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
                 className="flex items-center gap-2 px-4 py-2 rounded-lg bg-indigo-500 hover:bg-indigo-600 text-white text-sm font-medium transition"
               >
                 <Plus className="w-4 h-4" />
-                添加第一个用户
+                添加第一个企业
               </button>
             )}
           </div>
@@ -211,10 +211,10 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
               {(search || statusFilter !== 'all') && total !== filtered.length && `（共 ${total} 条）`}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {filtered.map((profile) => (
-                <ProfileCard
-                  key={profile.id}
-                  profile={profile}
+              {filtered.map((enterprise) => (
+                <EnterpriseCard
+                  key={enterprise.id}
+                  enterprise={enterprise}
                   onEdit={setEditTarget}
                   onDelete={setDeleteTarget}
                 />
@@ -226,8 +226,8 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
 
       {/* Add Modal */}
       {showAddModal && (
-        <Modal title="添加用户信息" onClose={() => setShowAddModal(false)}>
-          <ProfileForm
+        <Modal title="添加企业信息" onClose={() => setShowAddModal(false)}>
+          <EnterpriseForm
             onSubmit={handleCreate}
             onCancel={() => setShowAddModal(false)}
             loading={submitting}
@@ -237,9 +237,9 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
 
       {/* Edit Modal */}
       {editTarget && (
-        <Modal title="编辑用户信息" onClose={() => setEditTarget(null)}>
-          <ProfileForm
-            initialData={editTarget.data || {}}
+        <Modal title="编辑企业信息" onClose={() => setEditTarget(null)}>
+          <EnterpriseForm
+            initial={editTarget.data || {}}
             onSubmit={handleUpdate}
             onCancel={() => setEditTarget(null)}
             loading={submitting}
@@ -250,7 +250,7 @@ export default function ProfilesPage({ triggerAdd = 0 }) {
       {/* Delete Confirm */}
       {deleteTarget && (
         <ConfirmDialog
-          message={`确定要删除用户「${deleteTarget.data?.name || ''}」的信息吗？此操作不可撤销。`}
+          message={`确定要删除企业「${deleteTarget.data?.company_name || ''}」的信息吗？此操作不可撤销。`}
           onConfirm={handleDelete}
           onCancel={() => setDeleteTarget(null)}
           loading={deleting}
