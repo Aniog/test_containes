@@ -1,0 +1,83 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviews: 124,
+    description: 'A statement ear cuff adorned with a single crystal accent, catching light with every movement. Designed for the modern woman who appreciates understated elegance.',
+    material: '18K Gold Plated Brass · Cubic Zirconia',
+    variants: ['gold', 'silver'],
+    images: [
+      'gold-ear-cuff-crystal',
+      'gold-ear-cuff-crystal-side',
+    ],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviews: 89,
+    description: 'A delicate chain adorned with multicolor floral crystal clusters, evoking a garden in full bloom. The perfect layering piece or standalone statement.',
+    material: '18K Gold Plated Sterling Silver · Natural Crystals',
+    variants: ['gold', 'silver'],
+    images: [
+      'floral-crystal-necklace-gold',
+      'floral-crystal-necklace-worn',
+    ],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky dome huggie earrings with a polished gold finish. Their sculptural silhouette adds instant sophistication to any look.',
+    material: '18K Gold Plated Brass · Hypoallergenic Posts',
+    variants: ['gold'],
+    images: [
+      'chunky-gold-dome-huggie',
+      'chunky-gold-dome-huggie-pair',
+    ],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.8,
+    reviews: 156,
+    description: 'Textured gold filigree drop earrings inspired by vintage lace patterns. Lightweight yet impactful, they move gracefully with you.',
+    material: '18K Gold Plated Brass · Surgical Steel Posts',
+    variants: ['gold', 'silver'],
+    images: [
+      'gold-filigree-drop-earrings',
+      'gold-filigree-drop-earrings-model',
+    ],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'necklaces',
+    price: 95,
+    rating: 5.0,
+    reviews: 67,
+    description: 'A curated gift set featuring our signature drop earrings paired with a matching pendant necklace. Presented in a luxe velvet box — the perfect gift.',
+    material: '18K Gold Plated Sterling Silver · Gift Box Included',
+    variants: ['gold'],
+    images: [
+      'gold-jewelry-gift-set-box',
+      'gold-jewelry-gift-set-worn',
+    ],
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 2 },
+  { id: 'huggies', name: 'Huggies', count: 1 },
+];
