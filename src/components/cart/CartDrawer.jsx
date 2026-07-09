@@ -1,14 +1,19 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/utils';
 
+// Gradient palette for cart thumbnails — cycles through warm tones
+const THUMB_GRADIENTS = [
+  'from-[#C9A96E]/30 to-[#E8D5B0]/60',
+  'from-[#B8956A]/25 to-[#D4B896]/55',
+  'from-[#A67C52]/20 to-[#C9A96E]/50',
+  'from-[#D4B896]/30 to-[#EDE0CC]/60',
+  'from-[#C2956C]/25 to-[#DFC4A0]/55',
+];
+
 export default function CartDrawer() {
   const { items, removeItem, updateQty, subtotal, isOpen, setIsOpen } = useCart();
-  const itemsRef = useRef(null);
 
   // Lock body scroll when open
   useEffect(() => {
@@ -19,15 +24,6 @@ export default function CartDrawer() {
     }
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
-
-  // Load images whenever drawer opens or items change
-  useEffect(() => {
-    if (!isOpen || !itemsRef.current) return;
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, itemsRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [isOpen, items]);
 
   return (
     <>
@@ -63,7 +59,7 @@ export default function CartDrawer() {
         </div>
 
         {/* Items */}
-        <div ref={itemsRef} className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
               <ShoppingBag size={40} strokeWidth={1} className="text-stone/40" />
@@ -78,27 +74,20 @@ export default function CartDrawer() {
             </div>
           ) : (
             <ul className="space-y-5">
-              {items.map(item => (
+              {items.map((item, idx) => (
                 <li key={item.key} className="flex gap-4 py-4 border-b border-stone/10 last:border-0">
-                  {/* Thumbnail */}
-                  <div className="w-20 h-20 bg-parchment flex-shrink-0 overflow-hidden">
-                    <img
-                      data-strk-img-id={`cart-thumb-${item.key}`}
-                      data-strk-img={`[cart-name-${item.key}]`}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="160"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.product.name}
-                      className="w-full h-full object-cover"
-                    />
+                  {/* Thumbnail — warm gradient swatch (cart items are runtime-dynamic) */}
+                  <div
+                    className={`w-20 h-20 flex-shrink-0 bg-gradient-to-br ${THUMB_GRADIENTS[idx % THUMB_GRADIENTS.length]} flex items-center justify-center`}
+                  >
+                    <span className="font-serif text-lg text-gold/70 select-none">
+                      {item.product.name.charAt(0)}
+                    </span>
                   </div>
 
                   {/* Info */}
                   <div className="flex-1 min-w-0">
-                    <p
-                      id={`cart-name-${item.key}`}
-                      className="font-serif text-sm uppercase tracking-[0.1em] text-espresso leading-tight mb-1"
-                    >
+                    <p className="font-serif text-sm uppercase tracking-[0.1em] text-espresso leading-tight mb-1">
                       {item.product.name}
                     </p>
                     <p className="font-sans text-[11px] text-stone capitalize mb-3">
