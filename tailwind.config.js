@@ -5,7 +5,50 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'velmora-obsidian': '#1A1714',
+        'velmora-ivory': '#FAF7F2',
+        'velmora-cream': '#F2EDE4',
+        'velmora-gold': '#C9A96E',
+        'velmora-gold-light': '#E8D5A3',
+        'velmora-gold-dark': '#A07840',
+        'velmora-mink': '#8B7355',
+        'velmora-stone': '#D4C9B8',
+        'velmora-charcoal': '#3D3530',
+      },
+      fontFamily: {
+        cormorant: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        manrope: ['Manrope', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        'widest-xl': '0.25em',
+        'widest-2xl': '0.35em',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeInFast: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideInRight: {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.6s ease-out forwards',
+        fadeInFast: 'fadeInFast 0.3s ease-out forwards',
+        slideInRight: 'slideInRight 0.35s ease-out forwards',
+      },
+    },
   },
   plugins: [],
 }
