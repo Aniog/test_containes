@@ -7,10 +7,14 @@ export default function Hero() {
       <div
         className="absolute inset-0"
         data-strk-bg-id="hero-bg-7f3a9c"
-        data-strk-bg="[hero-subtitle] [hero-title]"
+        data-strk-bg="[hero-bg-desc] [hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />
+      {/* Hidden descriptive text used to drive the background image query */}
+      <span id="hero-bg-desc" className="sr-only">
+        glowing bioluminescent microorganisms and microscopic cells under a dark microscope lens
+      </span>
       {/* Gradient overlays for legibility */}
       <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
       <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-transparent to-ink/40" />
