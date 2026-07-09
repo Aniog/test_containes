@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "material": {
+      "type": "string",
+      "description": "Material (e.g. 18K Gold Plated)"
+    },
+    "main_image": {
+      "type": "object",
+      "description": "Primary product image",
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "hover_image": {
+      "type": "object",
+      "description": "Image shown on hover",
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "gallery": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "x-upload": true,
+        "x-fileType": "image"
+      },
+      "description": "Additional product images"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is a bestseller"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
