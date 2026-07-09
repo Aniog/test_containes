@@ -1,76 +1,96 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #1a1714;
+    background-color: #fdfaf5;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+  }
+}
+
+@layer components {
+  .velmora-container {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .velmora-section {
+    @apply py-16 md:py-24;
+  }
+
+  .velmora-heading {
+    @apply font-serif text-foreground;
+  }
+
+  .velmora-overline {
+    @apply font-sans text-overline uppercase tracking-widest text-muted-foreground;
+  }
+
+  .velmora-btn-primary {
+    @apply inline-flex items-center justify-center
+           bg-gold text-velvet-950 font-sans font-semibold
+           text-sm tracking-widest uppercase
+           px-8 py-4
+           transition-all duration-300
+           hover:bg-gold-700 active:scale-[0.98];
+  }
+
+  .velmora-btn-outline {
+    @apply inline-flex items-center justify-center
+           border border-velvet-900 text-velvet-900 font-sans font-semibold
+           text-sm tracking-widest uppercase
+           px-8 py-4
+           transition-all duration-300
+           hover:bg-velvet-900 hover:text-cream;
+  }
+
+  .velmora-divider {
+    @apply w-full h-px bg-border;
+  }
+
+  .velmora-card {
+    @apply bg-card rounded-sm shadow-soft overflow-hidden transition-all duration-350;
+  }
+
+  .velmora-card:hover {
+    @apply shadow-lifted;
+  }
+}
