@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials used"
+    },
+    "care_instructions": {
+      "type": "string",
+      "description": "Care guidelines"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Main product image URL"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Hover secondary image URL"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a best selling product"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Current stock quantity"
+    },
+    "color_variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "description": "Available color tones"
+    }
+  },
+  "required": ["name", "price", "category", "image_url"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
