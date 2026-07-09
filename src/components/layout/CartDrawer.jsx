@@ -1,20 +1,17 @@
 import { Minus, Plus, ShoppingBag, X } from 'lucide-react'
-import StrkImage from '@/components/common/StrkImage'
 import AccentButton from '@/components/common/AccentButton'
 import { formatPrice } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { useImageLoader } from '@/hooks/useImageLoader'
+import { getConfiguredImageUrl } from '@/lib/image-config'
 
 export default function CartDrawer() {
   const { items, subtotal, isCartOpen, setIsCartOpen, updateQuantity, removeFromCart } = useCart()
-  const drawerRef = useImageLoader([isCartOpen, items.length])
-
   if (!isCartOpen) return null
 
   return (
     <div className="fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-label="Shopping cart">
       <button type="button" aria-label="Close cart" className="absolute inset-0 bg-velmora-espresso/55 backdrop-blur-sm" onClick={() => setIsCartOpen(false)} />
-      <aside ref={drawerRef} className="absolute right-0 top-0 flex h-full w-full max-w-md animate-drawer-in flex-col bg-velmora-porcelain text-velmora-espresso shadow-velvet">
+      <aside className="absolute right-0 top-0 flex h-full w-full max-w-md animate-drawer-in flex-col bg-velmora-porcelain text-velmora-espresso shadow-velvet">
         <div className="flex items-center justify-between border-b border-velmora-sand px-5 py-5">
           <div>
             <p className="text-xs font-bold uppercase tracking-[0.24em] text-velmora-umber">Your cart</p>
@@ -39,17 +36,17 @@ export default function CartDrawer() {
                 <div key={item.key} className="grid grid-cols-[88px_1fr] gap-4 border-b border-velmora-sand pb-5">
                   <StrkImage
                     id={`cart-${item.product.id}-${item.tone}`}
-                    query={`[${item.product.descId}] [${item.product.titleId}]`}
+                    query={`[cart-tone-${item.key}] [cart-title-${item.key}]`}
                     ratio="1x1"
                     width="240"
                     alt={item.product.name}
-                    className="h-22 w-22 rounded-2xl bg-velmora-mist object-cover"
+                    className="h-20 w-20 rounded-2xl bg-velmora-mist object-cover"
                   />
                   <div>
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <h3 className="font-serif text-base font-semibold uppercase tracking-[0.14em] text-velmora-espresso">{item.product.name}</h3>
-                        <p className="mt-1 text-xs uppercase tracking-[0.18em] text-velmora-umber">{item.tone} tone</p>
+                        <h3 id={`cart-title-${item.key}`} className="font-serif text-base font-semibold uppercase tracking-[0.14em] text-velmora-espresso">{item.product.name}</h3>
+                        <p id={`cart-tone-${item.key}`} className="mt-1 text-xs uppercase tracking-[0.18em] text-velmora-umber">{item.tone} tone</p>
                       </div>
                       <p className="font-bold text-velmora-espresso">{formatPrice(item.product.price * item.quantity)}</p>
                     </div>

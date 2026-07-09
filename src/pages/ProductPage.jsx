@@ -29,14 +29,16 @@ export default function ProductPage() {
   if (!product) return <Navigate to="/shop" replace />
 
   const gallery = [
-    { label: 'Editorial product view', query: `[detail-${product.descId}] [detail-${product.titleId}] warm gold jewelry editorial still life`, ratio: '4x3' },
-    { label: 'Worn close-up', query: `[detail-${product.titleId}] jewelry worn by model close-up warm light`, ratio: '4x3' },
-    { label: 'Gift detail', query: `[detail-${product.titleId}] luxury jewelry gift box detail`, ratio: '4x3' },
+    { label: 'Editorial product view', query: `[detail-${product.descId}] [detail-${product.titleId}]`, ratio: '4x3' },
+    { label: 'Worn close-up', query: `[detail-${product.descId}] [detail-${product.titleId}]`, ratio: '4x3' },
+    { label: 'Gift detail', query: `[detail-${product.descId}] [detail-${product.titleId}]`, ratio: '4x3' },
   ]
 
   return (
     <main ref={productRef} className="bg-velmora-ivory pt-28 text-velmora-espresso">
       <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-16">
+        <p id="gallery-worn-note" className="sr-only">Jewelry worn close-up on model</p>
+        <p id="gallery-gift-note" className="sr-only">Luxury jewelry gift box detail</p>
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
           <div className="grid gap-4 lg:grid-cols-[92px_1fr]">
             <div className="order-2 flex gap-3 overflow-x-auto lg:order-1 lg:block lg:space-y-3 lg:overflow-visible">
