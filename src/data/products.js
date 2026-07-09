@@ -1,0 +1,152 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    slug: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.9,
+    reviewCount: 128,
+    material: 'gold',
+    description:
+      'A delicate ear cuff adorned with a luminous crystal accent. Designed to hug the upper ear with effortless elegance — no piercing required.',
+    shortDesc: 'Gold ear cuff with crystal accent',
+    details:
+      'Crafted from 18K gold-plated brass with a hand-set crystal stone. Adjustable cuff fits most ear sizes. Hypoallergenic and nickel-free.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Wipe gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    imgId: 'product-vivid-aura-img-a1b2c3',
+    imgId2: 'product-vivid-aura-img2-d4e5f6',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    slug: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.8,
+    reviewCount: 94,
+    material: 'gold',
+    description:
+      'A statement necklace featuring a cascade of multicolor floral crystals on a fine gold chain. Inspired by blooming gardens at golden hour.',
+    shortDesc: 'Multicolor floral crystal necklace',
+    details:
+      '18K gold-plated chain with hand-assembled floral crystal pendant. Chain length: 16" + 2" extender. Lobster clasp closure.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Wipe gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    imgId: 'product-flora-img-g7h8i9',
+    imgId2: 'product-flora-img2-j1k2l3',
+    titleId: 'product-flora-title',
+    descId: 'product-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    slug: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.9,
+    reviewCount: 211,
+    material: 'gold',
+    description:
+      'Chunky gold dome huggie earrings that sit close to the earlobe for a modern, architectural look. A wardrobe staple that elevates any outfit.',
+    shortDesc: 'Chunky gold dome huggie earrings',
+    details:
+      '18K gold-plated brass huggie hoops with polished dome finish. Inner diameter: 10mm. Secure click-in closure. Hypoallergenic.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Wipe gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    imgId: 'product-huggies-img-m4n5o6',
+    imgId2: 'product-huggies-img2-p7q8r9',
+    titleId: 'product-huggies-title',
+    descId: 'product-huggies-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    slug: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.7,
+    reviewCount: 76,
+    material: 'gold',
+    description:
+      'Intricate textured gold filigree drop earrings inspired by antique lace. Each piece is a miniature work of art that catches the light beautifully.',
+    shortDesc: 'Textured gold filigree drop earrings',
+    details:
+      '18K gold-plated brass with hand-crafted filigree detailing. Drop length: 35mm. Butterfly back closure. Hypoallergenic.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Wipe gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    imgId: 'product-amber-img-s1t2u3',
+    imgId2: 'product-amber-img2-v4w5x6',
+    titleId: 'product-amber-title',
+    descId: 'product-amber-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    slug: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'necklaces',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 58,
+    material: 'gold',
+    description:
+      'A curated gift-boxed set pairing a delicate gold necklace with matching stud earrings. Presented in our signature velvet box — the perfect gift.',
+    shortDesc: 'Gift-boxed earring + necklace set',
+    details:
+      '18K gold-plated brass necklace (16" + 2" extender) and stud earrings. Arrives in a Velmora signature velvet gift box with ribbon.',
+    care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Wipe gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    imgId: 'product-heirloom-img-y7z8a9',
+    imgId2: 'product-heirloom-img2-b1c2d3',
+    titleId: 'product-heirloom-title',
+    descId: 'product-heirloom-desc',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', label: 'Earrings', imgId: 'cat-earrings-img-e4f5g6', titleId: 'cat-earrings-title', descId: 'cat-earrings-desc', desc: 'Gold earrings, studs, drops, ear cuffs' },
+  { id: 'necklaces', label: 'Necklaces', imgId: 'cat-necklaces-img-h7i8j9', titleId: 'cat-necklaces-title', descId: 'cat-necklaces-desc', desc: 'Delicate gold necklaces and pendants' },
+  { id: 'huggies', label: 'Huggies', imgId: 'cat-huggies-img-k1l2m3', titleId: 'cat-huggies-title', descId: 'cat-huggies-desc', desc: 'Gold huggie hoop earrings' },
+];
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'My everyday gold', imgId: 'ugc-img-n4o5p6', titleId: 'ugc-1-title', descId: 'ugc-1-desc', desc: 'Woman wearing gold earrings close up portrait' },
+  { id: 'ugc-2', caption: 'Gifted & obsessed', imgId: 'ugc-img-q7r8s9', titleId: 'ugc-2-title', descId: 'ugc-2-desc', desc: 'Gold necklace on neck close up editorial' },
+  { id: 'ugc-3', caption: 'Stack season', imgId: 'ugc-img-t1u2v3', titleId: 'ugc-3-title', descId: 'ugc-3-desc', desc: 'Stacked gold jewelry on wrist and ear' },
+  { id: 'ugc-4', caption: 'Quiet luxury', imgId: 'ugc-img-w4x5y6', titleId: 'ugc-4-title', descId: 'ugc-4-desc', desc: 'Minimalist gold jewelry editorial portrait' },
+  { id: 'ugc-5', caption: 'The perfect gift', imgId: 'ugc-img-z7a8b9', titleId: 'ugc-5-title', descId: 'ugc-5-desc', desc: 'Jewelry gift box with gold earrings' },
+];
+
+export const testimonials = [
+  {
+    id: 't1',
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'Absolutely stunning quality. The Golden Sphere Huggies are my everyday staple — I get compliments every single time I wear them.',
+  },
+  {
+    id: 't2',
+    name: 'Priya K.',
+    rating: 5,
+    text: 'Ordered the Royal Heirloom Set as a birthday gift and she was completely speechless. The packaging alone is worth it.',
+  },
+  {
+    id: 't3',
+    name: 'Camille R.',
+    rating: 5,
+    text: 'I was skeptical about gold-plated jewelry but Velmora has changed my mind. Still looks perfect after months of daily wear.',
+  },
+];
