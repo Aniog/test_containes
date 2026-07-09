@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "URL-friendly product identifier"
+    },
+    "price": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "minimum": 0,
+      "description": "Product price in USD"
+    },
+    "compare_at_price": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "minimum": 0,
+      "description": "Original price before discount"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "material": {
+      "type": "string",
+      "enum": ["18K Gold Plated", "Sterling Silver", "Gold Vermeil"],
+      "description": "Primary material"
+    },
+    "tone": {
+      "type": "string",
+      "enum": ["Gold", "Silver"],
+      "description": "Metal tone variant"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Long product description"
+    },
+    "short_description": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Short product summary"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Secondary hover image URL"
+    },
+    "image": {
+      "type": "object",
+      "description": "Primary product image upload",
+      "properties": {
+        "filename": { "type": "string", "minLength": 1 },
+        "size": { "type": "integer", "minimum": 0 },
+        "storageKey": { "type": "string" },
+        "storage": { "type": "string" },
+        "mimeType": { "type": "string" },
+        "width": { "type": "integer", "minimum": 0 },
+        "height": { "type": "integer", "minimum": 0 }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "x-allowedExtensions": [".jpg", ".jpeg", ".png", ".webp"],
+      "x-maxFileSize": 5242880,
+      "x-mimeTypes": ["image/jpeg", "image/png", "image/webp"]
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "multipleOf": 0.1,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured on bestsellers section"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "Product tags"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "required": ["id", "name", "slug", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}

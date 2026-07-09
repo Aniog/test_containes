@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Reviews",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique review identifier"
+    },
+    "product_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated product",
+      "x-foreignKey": "products.id"
+    },
+    "author_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Reviewer first name"
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Star rating"
+    },
+    "body": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Review text"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Review timestamp"
+    }
+  },
+  "required": ["id", "author_name", "rating", "body"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] }
+  }
+}

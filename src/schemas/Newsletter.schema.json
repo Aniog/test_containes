@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Newsletter Subscriptions",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique subscription identifier"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Subscriber email address"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Subscription timestamp"
+    }
+  },
+  "required": ["id", "email"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}
