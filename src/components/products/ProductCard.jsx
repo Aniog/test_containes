@@ -22,10 +22,10 @@ const ProductCard = ({ product }) => {
         {/* Main Image */}
         <img
           data-strk-img-id={`prod-main-${product.id}`}
-          data-strk-img={stockQuery}
+          data-strk-img={`[prod-title-${product.id}] [site-brand-name] [site-mood]`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+          src="https://placehold.co/600x800/FCFAFA/242424?text=VELMORA"
           alt={name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
@@ -34,10 +34,10 @@ const ProductCard = ({ product }) => {
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
            <img
             data-strk-img-id={`prod-hover-${product.id}`}
-            data-strk-img={`Lifestyle shot of ${name} jewelry worn on clear skin`}
+            data-strk-img={`[prod-title-${product.id}] [site-mood] lifestyle`}
             data-strk-img-ratio="4x5"
             data-strk-img-width="600"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src="https://placehold.co/600x800/FCFAFA/242424?text=VELMORA"
             alt={`${name} lifestyle`}
             className="w-full h-full object-cover"
           />
@@ -57,10 +57,10 @@ const ProductCard = ({ product }) => {
       </Link>
 
       <div className="mt-6 text-center">
-        <h3 className="uppercase tracking-[0.2em] text-sm font-medium mb-1">
+        <h3 id={`prod-title-${product.id}`} className="uppercase tracking-[0.2em] text-sm font-medium mb-1">
           {name}
         </h3>
-        <p className="text-velmora-charcoal/60 text-sm font-light">
+        <p id={`prod-price-${product.id}`} className="text-velmora-charcoal/60 text-sm font-light">
           ${price.toFixed(2)}
         </p>
       </div>

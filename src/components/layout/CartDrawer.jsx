@@ -51,10 +51,10 @@ const CartDrawer = () => {
                 <div className="w-24 h-32 bg-velmora-cream overflow-hidden">
                   <img
                     data-strk-img-id={`cart-img-${item.id}`}
-                    data-strk-img={item.data?.stock_image_query || item.stock_image_query}
+                    data-strk-img={`[cart-title-${item.id}] [site-mood]`}
                     data-strk-img-ratio="3x4"
                     data-strk-img-width="200"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    src="https://placehold.co/200x266/FCFAFA/242424?text=JEWELRY"
                     alt={item.data?.name || item.name}
                     className="w-full h-full object-cover"
                   />
@@ -62,7 +62,7 @@ const CartDrawer = () => {
                 <div className="flex-1 space-y-2">
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="uppercase tracking-widest text-sm font-medium">
+                      <h3 id={`cart-title-${item.id}`} className="uppercase tracking-widest text-sm font-medium">
                         {item.data?.name || item.name}
                       </h3>
                       <p className="text-xs text-velmora-charcoal/60 uppercase tracking-tighter">

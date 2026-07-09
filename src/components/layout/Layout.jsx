@@ -26,6 +26,8 @@ const Layout = () => {
 
   return (
     <div ref={containerRef} className="min-h-screen flex flex-col bg-velmora-cream/20">
+      <div id="site-brand-name" className="hidden">Velmora Fine Jewelry</div>
+      <div id="site-mood" className="hidden">Luxury demi-fine gold jewelry lifestyle editorial</div>
       <Navbar />
       <CartDrawer />
       <main className="flex-1">

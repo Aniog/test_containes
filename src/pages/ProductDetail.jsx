@@ -112,10 +112,10 @@ const ProductDetail = () => {
           <div className="aspect-[4/5] bg-velmora-cream overflow-hidden group">
             <img
               data-strk-img-id={`pdp-main-${id}`}
-              data-strk-img={data.stock_image_query}
+              data-strk-img={`[pdp-title-${id}] [site-mood]`}
               data-strk-img-ratio="4x5"
               data-strk-img-width="1200"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src="https://placehold.co/1200x1600/FCFAFA/242424?text=VELMORA"
               alt={data.name}
               className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
             />
@@ -126,10 +126,10 @@ const ProductDetail = () => {
                 <div key={i} className="aspect-[4/5] bg-velmora-cream overflow-hidden">
                    <img
                     data-strk-img-id={`pdp-alt-${id}-${i}`}
-                    data-strk-img={`Close up macro detail of ${data.name} jewelry gold texture`}
+                    data-strk-img={`[pdp-title-${id}] [site-mood] macro detail`}
                     data-strk-img-ratio="4x5"
                     data-strk-img-width="400"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    src="https://placehold.co/400x533/FCFAFA/242424?text=DETAIL"
                     alt={`${data.name} detail`}
                     className="w-full h-full object-cover"
                   />
@@ -145,8 +145,8 @@ const ProductDetail = () => {
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
               <span className="text-[10px] text-velmora-charcoal/40 uppercase tracking-widest ml-2">(24 Reviews)</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-serif uppercase tracking-widest leading-tight">{data.name}</h1>
-            <p className="text-2xl font-light text-velmora-charcoal/80">${data.price.toFixed(2)}</p>
+            <h1 id={`pdp-title-${id}`} className="text-4xl md:text-5xl font-serif uppercase tracking-widest leading-tight">{data.name}</h1>
+            <p id={`pdp-price-${id}`} className="text-2xl font-light text-velmora-charcoal/80">${data.price.toFixed(2)}</p>
             <p className="text-velmora-charcoal/60 leading-relaxed font-light text-sm max-w-md italic">{data.description}</p>
           </div>
 
