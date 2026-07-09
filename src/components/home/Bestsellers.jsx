@@ -96,7 +96,7 @@ export default function Bestsellers() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 bg-parchment">
+    <section ref={containerRef} className="py-16 md:py-20 bg-parchment">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">

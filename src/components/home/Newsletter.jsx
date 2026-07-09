@@ -13,7 +13,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className="py-20 md:py-28 bg-obsidian">
+    <section className="py-16 md:py-20 bg-obsidian">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         <div className="max-w-2xl mx-auto text-center">
           <p className="font-manrope text-xs font-medium tracking-[0.2em] uppercase text-gold mb-4">

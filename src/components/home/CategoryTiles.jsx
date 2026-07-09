@@ -41,7 +41,7 @@ export default function CategoryTiles() {
   }, []);
 
   return (
-    <section ref={containerRef} className="py-20 md:py-28 bg-parchment">
+    <section ref={containerRef} className="py-16 md:py-20 bg-parchment">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         <div className="text-center mb-12">
           <p className="font-manrope text-xs font-medium tracking-[0.2em] uppercase text-gold mb-3">

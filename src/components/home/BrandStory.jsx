@@ -11,7 +11,7 @@ export default function BrandStory() {
   }, []);
 
   return (
-    <section ref={containerRef} id="story" className="py-20 md:py-28 bg-cream">
+    <section ref={containerRef} id="story" className="py-16 md:py-20 bg-cream">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
           {/* Image */}
