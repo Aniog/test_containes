@@ -7,9 +7,6 @@ import { useImageLoader } from '@/hooks/useImageLoader'
 import StarRating from '@/components/StarRating'
 import ProductCard from '@/components/ProductCard'
 
-const PLACEHOLDER_SRC =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 function Accordion({ title, children }) {
   const [open, setOpen] = useState(false)
   return (
@@ -98,15 +95,15 @@ export default function ProductDetail() {
           <div className="space-y-4">
             <div className="relative aspect-[4/5] bg-stone-200 overflow-hidden">
               {imageIds.map((idx) => (
-                <img
+                <div
                   key={idx}
-                  data-strk-img-id={`product-${product.id}-img-${idx}`}
-                  data-strk-img={`[product-${product.id}-title] [product-${product.id}-desc] gold jewelry`}
-                  data-strk-img-ratio="4x5"
-                  data-strk-img-width="900"
-                  src={PLACEHOLDER_SRC}
-                  alt={`${product.name} view ${idx + 1}`}
-                  className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+                  data-strk-bg-id={`product-${product.id}-img-${idx}`}
+                  data-strk-bg={`[product-${product.id}-title] [product-${product.id}-desc] gold jewelry`}
+                  data-strk-bg-ratio="4x5"
+                  data-strk-bg-width="900"
+                  role="img"
+                  aria-label={`${product.name} view ${idx + 1}`}
+                  className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
                     activeImage === idx ? 'opacity-100' : 'opacity-0'
                   }`}
                 />
@@ -124,14 +121,14 @@ export default function ProductDetail() {
                       : 'border-transparent'
                   }`}
                 >
-                  <img
-                    data-strk-img-id={`product-${product.id}-thumb-${idx}`}
-                    data-strk-img={`[product-${product.id}-title] gold jewelry`}
-                    data-strk-img-ratio="4x5"
-                    data-strk-img-width="200"
-                    src={PLACEHOLDER_SRC}
-                    alt={`${product.name} thumbnail ${idx + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
+                  <div
+                    data-strk-bg-id={`product-${product.id}-thumb-${idx}`}
+                    data-strk-bg={`[product-${product.id}-title] gold jewelry`}
+                    data-strk-bg-ratio="4x5"
+                    data-strk-bg-width="200"
+                    role="img"
+                    aria-label={`${product.name} thumbnail ${idx + 1}`}
+                    className="absolute inset-0 bg-cover bg-center"
                   />
                 </button>
               ))}

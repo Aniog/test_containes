@@ -21,7 +21,6 @@ const sortOptions = [
 
 export default function Collection() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const containerRef = useImageLoader()
 
   const [selectedCategory, setSelectedCategory] = useState(
     searchParams.get('category') || 'all'
@@ -82,6 +81,8 @@ export default function Collection() {
     (selectedCategory !== 'all' ? 1 : 0) +
     (selectedPrice !== 'all' ? 1 : 0) +
     (selectedMaterial !== 'all' ? 1 : 0)
+
+  const containerRef = useImageLoader([filtered])
 
   const Filters = () => (
     <div className="space-y-10">

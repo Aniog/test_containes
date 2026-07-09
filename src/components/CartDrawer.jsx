@@ -1,6 +1,7 @@
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/data/products'
+import { useImageLoader } from '@/hooks/useImageLoader'
 
 export default function CartDrawer() {
   const {
@@ -11,6 +12,7 @@ export default function CartDrawer() {
     removeItem,
     subtotal,
   } = useCart()
+  const containerRef = useImageLoader([items])
 
   if (!isOpen) return null
 
@@ -50,19 +52,30 @@ export default function CartDrawer() {
           </div>
         ) : (
           <>
-            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-8">
+            <div
+              ref={containerRef}
+              className="flex-1 overflow-y-auto px-6 py-6 space-y-8"
+            >
               {items.map((item) => {
                 const variant = item.product.variants.find(
                   (v) => v.id === item.variantId
                 )
+                const titleId = `cart-title-${item.product.id}`
                 return (
                   <div key={`${item.product.id}-${item.variantId}`} className="flex gap-4">
                     <div className="w-20 h-24 bg-stone-200 shrink-0 overflow-hidden">
-                      <img
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.product.name}
-                        className="w-full h-full object-cover"
+                      <div
+                        data-strk-bg-id={`cart-thumb-${item.product.id}-${item.variantId}`}
+                        data-strk-bg={`[${titleId}]`}
+                        data-strk-bg-ratio="3x4"
+                        data-strk-bg-width="200"
+                        role="img"
+                        aria-label={item.product.name}
+                        className="w-full h-full bg-cover bg-center"
                       />
+                      <span id={titleId} className="sr-only">
+                        {item.product.name}
+                      </span>
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-serif text-base tracking-wide truncate">

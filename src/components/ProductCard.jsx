@@ -5,9 +5,6 @@ import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/data/products'
 import StarRating from './StarRating'
 
-const PLACEHOLDER_SRC =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 export default function ProductCard({ product, queryIds = {} }) {
   const { addItem } = useCart()
   const [hovered, setHovered] = useState(false)
@@ -28,25 +25,25 @@ export default function ProductCard({ product, queryIds = {} }) {
       onMouseLeave={() => setHovered(false)}
     >
       <div className="relative aspect-[3/4] overflow-hidden bg-stone-200 mb-4">
-        <img
-          data-strk-img-id={`product-card-${product.id}`}
-          data-strk-img={`[${descId}] [${titleId}]`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src={PLACEHOLDER_SRC}
-          alt={product.name}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+        <div
+          data-strk-bg-id={`product-card-${product.id}`}
+          data-strk-bg={`[${descId}] [${titleId}]`}
+          data-strk-bg-ratio="3x4"
+          data-strk-bg-width="600"
+          role="img"
+          aria-label={product.name}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
             hovered ? 'opacity-0' : 'opacity-100'
           }`}
         />
-        <img
-          data-strk-img-id={`product-card-alt-${product.id}`}
-          data-strk-img={`[${titleId}] jewelry on model`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src={PLACEHOLDER_SRC}
-          alt={`${product.name} worn`}
-          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
+        <div
+          data-strk-bg-id={`product-card-alt-${product.id}`}
+          data-strk-bg={`[${titleId}] jewelry on model`}
+          data-strk-bg-ratio="3x4"
+          data-strk-bg-width="600"
+          role="img"
+          aria-label={`${product.name} worn`}
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
             hovered ? 'opacity-100' : 'opacity-0'
           }`}
         />
