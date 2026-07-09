@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique product identifier"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-safe product identifier"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["earrings", "necklaces", "huggies", "sets"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Current selling price in USD"
+    },
+    "compare_price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Original price for comparison, if any"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product description shown on detail page"
+    },
+    "materials": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Materials and care information"
+    },
+    "shipping_returns": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Shipping and returns policy"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "tone_variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available metal tone variants, e.g. gold, silver"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product appears in bestsellers"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["name", "slug", "category", "price", "description", "materials", "shipping_returns", "rating", "review_count", "tone_variants"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
