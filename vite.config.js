@@ -14,6 +14,21 @@ export default defineConfig({
     checkPlaceholderImgPlugin(),
     visualEditPlugin(),
     react(),
+    {
+      name: 'strk-heartbeat',
+      configureServer(server) {
+        server.middlewares.use('/heartbeat', (_req, res) => {
+          res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.end(JSON.stringify({ status: 'ok', timestamp: Date.now() }));
+        });
+        server.middlewares.use('/run', (_req, res) => {
+          res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.end(JSON.stringify({ status: 'ok' }));
+        });
+      },
+    },
   ],
   resolve: {
     alias: {
@@ -29,7 +44,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
