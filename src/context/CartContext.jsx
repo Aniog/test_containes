@@ -3,22 +3,46 @@ import { createContext, useContext, useEffect, useMemo, useReducer } from 'react
 const CartContext = createContext(null)
 const STORAGE_KEY = 'velmora-cart'
 
-function readStoredCart() {
+function canUseLocalStorage() {
   if (typeof window === 'undefined') {
-    return []
+    return false
   }
 
-  const raw = window.localStorage.getItem(STORAGE_KEY)
+  try {
+    return typeof window.localStorage !== 'undefined'
+  } catch {
+    return false
+  }
+}
 
-  if (!raw) {
+function readStoredCart() {
+  if (!canUseLocalStorage()) {
     return []
   }
 
   try {
+    const raw = window.localStorage.getItem(STORAGE_KEY)
+
+    if (!raw) {
+      return []
+    }
+
     const parsed = JSON.parse(raw)
     return Array.isArray(parsed) ? parsed : []
   } catch {
     return []
+  }
+}
+
+function persistCart(items) {
+  if (!canUseLocalStorage()) {
+    return
+  }
+
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
+  } catch {
+    // Ignore storage write failures in restricted preview contexts.
   }
 }
 
@@ -77,7 +101,7 @@ export function CartProvider({ children }) {
   })
 
   useEffect(() => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items))
+    persistCart(state.items)
   }, [state.items])
 
   const value = useMemo(() => {
