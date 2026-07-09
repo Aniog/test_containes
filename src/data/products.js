@@ -26,9 +26,9 @@ export const products = [
     reviews: 89,
     images: [
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
-      'https://images.unsplash.com/photo-1515562141589-47e7307c2a69?w=800&q=80',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1515562141589-47e7307c2a69?w=800&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
     badge: 'Editor\'s Pick',
   },
   {
@@ -41,10 +41,10 @@ export const products = [
     rating: 4.7,
     reviews: 203,
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=800&q=80',
-      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
+      'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800&q=80',
+      'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&q=80',
     badge: null,
   },
   {
@@ -57,10 +57,10 @@ export const products = [
     rating: 4.6,
     reviews: 67,
     images: [
-      'https://images.unsplash.com/photo-1611117775350-3a7066b0aeff?w=800&q=80',
-      'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=800&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
     badge: 'New',
   },
   {
@@ -74,9 +74,9 @@ export const products = [
     reviews: 42,
     images: [
       'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
-      'https://images.unsplash.com/photo-1602751584552-8ba73a1d1d4a?w=800&q=80',
+      'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1602751584552-8ba73a1d1d4a?w=800&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&q=80',
     badge: 'Best Value',
   },
 ]
@@ -84,7 +84,7 @@ export const products = [
 export const categories = [
   { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=600&q=80', count: '12 styles' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', count: '8 styles' },
-  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=600&q=80', count: '10 styles' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1596704017254-9b121068fb31?w=600&q=80', count: '10 styles' },
 ]
 
 export const testimonials = [
@@ -96,32 +96,32 @@ export const testimonials = [
 export const ugcItems = [
   {
     id: 'ugc-1',
-    image: 'https://images.unsplash.com/photo-1583241800696-ce6c9e5f90e5?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
     caption: 'Golden hour with my Vivid Aura cuff',
   },
   {
     id: 'ugc-2',
-    image: 'https://images.unsplash.com/photo-1587752277512-8d0e0964e5c0?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80',
     caption: 'Layer love with Flora Nectar',
   },
   {
     id: 'ugc-3',
-    image: 'https://images.unsplash.com/photo-1583241800696-0e9c9a1c0f9b?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80',
     caption: 'Huggies are my new obsession',
   },
   {
     id: 'ugc-4',
-    image: 'https://images.unsplash.com/photo-1587752277512-8d0e0964e5c0?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80',
     caption: 'Amber Lace for date night',
   },
   {
     id: 'ugc-5',
-    image: 'https://images.unsplash.com/photo-1583241800696-0e9c9a1c0f9b?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80',
     caption: 'Heirloom Set — the perfect gift',
   },
   {
     id: 'ugc-6',
-    image: 'https://images.unsplash.com/photo-1587752277512-8d0e0964e5c0?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=80',
     caption: 'Everyday elegance with Velmora',
   },
 ]

@@ -8,7 +8,7 @@ export default function BrandStory() {
           {/* Image */}
           <div className="aspect-[4/5] bg-velmora-warm-light overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1589671779220-1505db34cbde?w=800&q=80"
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800&q=80"
               alt="Velmora jewelry craftsmanship"
               className="w-full h-full object-cover"
             />
