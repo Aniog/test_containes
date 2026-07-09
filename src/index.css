@@ -79,3 +79,108 @@ html {
   background: #C9A96E;
   color: #1A1714;
 }
+
+/* ─── Custom brand color utilities ─────────────────────────────────────────── */
+/* These mirror tailwind.config.js theme.extend.colors so they are always      */
+/* available even when the Vite PostCSS pipeline hasn't reloaded the config.   */
+@layer utilities {
+  /* backgrounds */
+  .bg-obsidian   { background-color: #1A1714; }
+  .bg-espresso   { background-color: #2C2420; }
+  .bg-parchment  { background-color: #F5F0E8; }
+  .bg-cream      { background-color: #FAF7F2; }
+  .bg-linen      { background-color: #EDE8DF; }
+  .bg-gold       { background-color: #C9A96E; }
+  .bg-gold-light { background-color: #DFC08A; }
+  .bg-gold-dark  { background-color: #A8854A; }
+  .bg-ink        { background-color: #1A1714; }
+  .bg-muted      { background-color: #6B6259; }
+  .bg-whisper    { background-color: #9E9189; }
+
+  /* background opacity variants */
+  .bg-obsidian\/10  { background-color: rgb(26 23 20 / 0.10); }
+  .bg-obsidian\/30  { background-color: rgb(26 23 20 / 0.30); }
+  .bg-obsidian\/55  { background-color: rgb(26 23 20 / 0.55); }
+  .bg-parchment\/50 { background-color: rgb(245 240 232 / 0.50); }
+
+  /* text */
+  .text-obsidian    { color: #1A1714; }
+  .text-espresso    { color: #2C2420; }
+  .text-parchment   { color: #F5F0E8; }
+  .text-cream       { color: #FAF7F2; }
+  .text-linen       { color: #EDE8DF; }
+  .text-gold        { color: #C9A96E; }
+  .text-gold-light  { color: #DFC08A; }
+  .text-gold-dark   { color: #A8854A; }
+  .text-ink         { color: #1A1714; }
+  .text-muted       { color: #6B6259; }
+  .text-whisper     { color: #9E9189; }
+
+  /* text opacity variants */
+  .text-gold\/40      { color: rgb(201 169 110 / 0.40); }
+  .text-parchment\/30 { color: rgb(245 240 232 / 0.30); }
+  .text-parchment\/40 { color: rgb(245 240 232 / 0.40); }
+  .text-parchment\/50 { color: rgb(245 240 232 / 0.50); }
+  .text-parchment\/60 { color: rgb(245 240 232 / 0.60); }
+  .text-parchment\/70 { color: rgb(245 240 232 / 0.70); }
+  .text-parchment\/80 { color: rgb(245 240 232 / 0.80); }
+  .text-parchment\/90 { color: rgb(245 240 232 / 0.90); }
+
+  /* borders */
+  .border-obsidian    { border-color: #1A1714; }
+  .border-espresso    { border-color: #2C2420; }
+  .border-parchment   { border-color: #F5F0E8; }
+  .border-linen       { border-color: #EDE8DF; }
+  .border-gold        { border-color: #C9A96E; }
+  .border-ink         { border-color: #1A1714; }
+  .border-muted       { border-color: #6B6259; }
+  .border-parchment\/10 { border-color: rgb(245 240 232 / 0.10); }
+  .border-parchment\/20 { border-color: rgb(245 240 232 / 0.20); }
+  .border-parchment\/60 { border-color: rgb(245 240 232 / 0.60); }
+
+  /* fill / stroke (for SVG icons) */
+  .fill-gold  { fill: #C9A96E; }
+  .fill-linen { fill: #EDE8DF; }
+
+  /* gradients */
+  .from-obsidian\/70 {
+    --tw-gradient-from: rgb(26 23 20 / 0.70) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(26 23 20 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  .from-linen {
+    --tw-gradient-from: #EDE8DF var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(237 232 223 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+  .to-parchment { --tw-gradient-to: #F5F0E8 var(--tw-gradient-to-position); }
+  .via-obsidian\/40 {
+    --tw-gradient-to: rgb(26 23 20 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), rgb(26 23 20 / 0.40) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+
+  /* placeholder */
+  .placeholder-parchment\/30::placeholder { color: rgb(245 240 232 / 0.30); }
+
+  /* hover states */
+  .hover\:bg-espresso:hover      { background-color: #2C2420; }
+  .hover\:bg-gold:hover          { background-color: #C9A96E; }
+  .hover\:bg-gold-light:hover    { background-color: #DFC08A; }
+  .hover\:bg-linen:hover         { background-color: #EDE8DF; }
+  .hover\:bg-parchment\/10:hover { background-color: rgb(245 240 232 / 0.10); }
+  .hover\:border-gold:hover      { border-color: #C9A96E; }
+  .hover\:border-muted:hover     { border-color: #6B6259; }
+  .hover\:border-obsidian:hover  { border-color: #1A1714; }
+  .hover\:text-gold:hover        { color: #C9A96E; }
+  .hover\:text-ink:hover         { color: #1A1714; }
+  .hover\:text-obsidian:hover    { color: #1A1714; }
+
+  /* custom fonts */
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-sans  { font-family: 'Manrope', 'Inter', system-ui, sans-serif; }
+
+  /* custom shadows */
+  .shadow-card       { box-shadow: 0 8px 32px rgba(26,23,20,0.08); }
+  .shadow-card-hover { box-shadow: 0 16px 48px rgba(26,23,20,0.14); }
+  .shadow-drawer     { box-shadow: -4px 0 24px rgba(26,23,20,0.12); }
+}

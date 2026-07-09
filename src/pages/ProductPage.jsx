@@ -101,31 +101,64 @@ export default function ProductPage() {
   const [selectedVariant, setSelectedVariant] = useState('gold');
   const [quantity, setQuantity] = useState(1);
   const [activeThumb, setActiveThumb] = useState(0);
+  // mainSrc mirrors the active thumbnail's loaded src so React never resets it
+  const [mainSrc, setMainSrc] = useState(null);
   const { addItem } = useCart();
   const containerRef = useRef(null);
+  const thumbRefs = useRef([]);
+
+  const thumbImages = [
+    { id: `pdp-main-${product.imgId}`,   query: `[pdp-desc-${product.id}] [pdp-title-${product.id}]` },
+    { id: `pdp-alt-${product.imgId2}`,   query: `[pdp-title-${product.id}] gold jewelry worn editorial` },
+    { id: `pdp-detail-${product.imgId}`, query: `[pdp-title-${product.id}] jewelry detail close up` },
+  ];
 
   useEffect(() => {
     window.scrollTo(0, 0);
     setActiveThumb(0);
+    setMainSrc(null);
     setQuantity(1);
     setSelectedVariant('gold');
   }, [slug]);
 
+  // Load all thumbnail images; then mirror the active thumb's src into mainSrc
   useEffect(() => {
+    let observer;
     const frameId = window.requestAnimationFrame(() => {
       ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [slug, activeThumb]);
 
-  const thumbImages = [
-    { id: `pdp-main-${product.imgId}`, query: `[pdp-desc-${product.id}] [pdp-title-${product.id}]` },
-    { id: `pdp-alt-${product.imgId2}`, query: `[pdp-title-${product.id}] gold jewelry worn editorial` },
-    { id: `pdp-detail-${product.imgId}`, query: `[pdp-title-${product.id}] jewelry detail close up` },
-  ];
+      // Watch for the ImageHelper setting src on the active thumbnail
+      const thumbEl = thumbRefs.current[activeThumb];
+      if (!thumbEl) return;
+
+      const syncMain = () => {
+        const src = thumbEl.src;
+        const placeholder = 'data:image/svg+xml';
+        if (src && !src.startsWith(placeholder)) {
+          setMainSrc(src);
+        }
+      };
+
+      // Sync immediately if already loaded
+      syncMain();
+
+      // Otherwise observe attribute mutations
+      observer = new MutationObserver(syncMain);
+      observer.observe(thumbEl, { attributes: true, attributeFilter: ['src'] });
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      if (observer) observer.disconnect();
+    };
+  }, [slug, activeThumb]);
 
   return (
     <div className="bg-parchment min-h-screen pt-16 md:pt-20" ref={containerRef}>
+      {/* Hidden text nodes for image queries — must be inside containerRef */}
+      <span id={`pdp-title-${product.id}`} className="sr-only">{product.name}</span>
+      <span id={`pdp-desc-${product.id}`} className="sr-only">{product.description}</span>
+
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="flex items-center gap-2">
@@ -143,7 +176,7 @@ export default function ProductPage() {
 
           {/* Left: Image Gallery */}
           <div className="flex flex-col-reverse md:flex-row gap-4">
-            {/* Thumbnails */}
+            {/* Thumbnails — ImageHelper loads these; MutationObserver mirrors src to mainSrc */}
             <div className="flex md:flex-col gap-2 overflow-x-auto md:overflow-visible">
               {thumbImages.map((thumb, i) => (
                 <button
@@ -154,6 +187,7 @@ export default function ProductPage() {
                   }`}
                 >
                   <img
+                    ref={el => { thumbRefs.current[i] = el; }}
                     data-strk-img-id={`thumb-${i}-${thumb.id}`}
                     data-strk-img={thumb.query}
                     data-strk-img-ratio="3x4"
@@ -166,21 +200,17 @@ export default function ProductPage() {
               ))}
             </div>
 
-            {/* Main image */}
-            <div className="flex-1 relative aspect-[3/4] overflow-hidden bg-linen">
-              <img
-                data-strk-img-id={thumbImages[activeThumb].id}
-                data-strk-img={thumbImages[activeThumb].query}
-                data-strk-img-ratio="3x4"
-                data-strk-img-width="800"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                id={`pdp-main-img-${product.id}`}
-                alt={product.name}
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              {/* Hidden text for image queries */}
-              <span id={`pdp-title-${product.id}`} className="sr-only">{product.name}</span>
-              <span id={`pdp-desc-${product.id}`} className="sr-only">{product.description}</span>
+            {/* Main image — driven by mainSrc state, never reset by React */}
+            <div className="flex-1 overflow-hidden bg-linen" style={{ aspectRatio: '3/4' }}>
+              {mainSrc ? (
+                <img
+                  src={mainSrc}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-linen animate-pulse" />
+              )}
             </div>
           </div>
 
