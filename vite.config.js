@@ -14,6 +14,16 @@ export default defineConfig({
     checkPlaceholderImgPlugin(),
     visualEditPlugin(),
     react(),
+    {
+      name: 'heartbeat-middleware',
+      configureServer(server) {
+        server.middlewares.use('/heartbeat', (_req, res) => {
+          res.setHeader('Content-Type', 'application/json');
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.end(JSON.stringify({ status: 'ok', timestamp: Date.now() }));
+        });
+      },
+    },
   ],
   resolve: {
     alias: {
@@ -21,6 +31,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: 8080,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
@@ -29,7 +40,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
