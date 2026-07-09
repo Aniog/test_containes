@@ -1,76 +1,137 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream-50: #fefdf8;
+    --color-cream-100: #fdf9ee;
+    --color-cream-200: #faf0d0;
+    --color-charcoal-900: #2d2925;
+    --color-charcoal-800: #3e3730;
+    --color-gold: #b8956a;
+    --color-gold-light: #d4a574;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #2d2925;
+    background-color: #fefdf8;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  /* Product name styling */
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 500;
+  }
+
+  /* Hairline dividers */
+  .divider-hairline {
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(45, 41, 37, 0.15),
+      transparent
+    );
+  }
+
+  /* Premium button styles */
+  .btn-premium {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    padding: 0.875rem 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .btn-premium-solid {
+    background-color: #2d2925;
+    color: #fefdf8;
+    border: 1px solid #2d2925;
+  }
+
+  .btn-premium-solid:hover {
+    background-color: #3e3730;
+    border-color: #3e3730;
+  }
+
+  .btn-premium-outline {
+    background-color: transparent;
+    color: #2d2925;
+    border: 1px solid #2d2925;
+  }
+
+  .btn-premium-outline:hover {
+    background-color: #2d2925;
+    color: #fefdf8;
+  }
+
+  .btn-premium-gold {
+    background-color: #b8956a;
+    color: #fefdf8;
+    border: 1px solid #b8956a;
+  }
+
+  .btn-premium-gold:hover {
+    background-color: #d4a574;
+    border-color: #d4a574;
+  }
+
+  /* Image hover zoom */
+  .img-hover-zoom {
+    overflow: hidden;
+  }
+
+  .img-hover-zoom img {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .img-hover-zoom:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@layer utilities {
+  /* Star rating */
+  .star-filled {
+    color: #b8956a;
+  }
+
+  .star-empty {
+    color: #d6d0c6;
+  }
+}
