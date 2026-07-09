@@ -27,7 +27,7 @@ export default function Navigation() {
 
   useEffect(() => setMenuOpen(false), [location.pathname, location.search])
 
-  const textClass = transparent ? 'text-white' : 'text-velmora-espresso'
+  const textClass = transparent ? 'text-white drop-shadow-[0_1px_10px_rgba(33,25,21,0.65)]' : 'text-velmora-espresso'
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition duration-500 ${transparent ? 'bg-transparent' : 'border-b border-velmora-sand/80 bg-velmora-ivory/95 shadow-sm backdrop-blur-xl'}`}>

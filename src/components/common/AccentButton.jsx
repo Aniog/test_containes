@@ -4,13 +4,13 @@ const baseClass = 'inline-flex items-center justify-center rounded-full px-6 py-
 const variants = {
   solid: 'bg-velmora-champagne text-velmora-espresso shadow-glow hover:-translate-y-0.5 hover:bg-velmora-sand',
   outline: 'border border-velmora-champagne text-velmora-espresso hover:bg-velmora-champagne hover:text-velmora-espresso',
-  darkOutline: 'border border-white/35 text-white hover:border-velmora-champagne hover:bg-velmora-champagne hover:text-velmora-espresso',
+  darkOutline: 'border border-white/55 bg-velmora-espresso/35 text-white shadow-lg backdrop-blur-sm hover:border-velmora-champagne hover:bg-velmora-champagne hover:text-velmora-espresso',
 }
 
 export default function AccentButton({ children, to, className = '', variant = 'solid', ...props }) {
   const classes = `${baseClass} ${variants[variant]} ${className}`
   if (to) {
-    return <Link to={to} className={classes}>{children}</Link>
+    return <Link to={to} className={classes} {...props}>{children}</Link>
   }
   return <button className={classes} {...props}>{children}</button>
 }
