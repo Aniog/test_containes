@@ -1,31 +1,23 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { formatPrice } from '@/lib/utils';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
-export default function ProductCard({ product }) {
+export default function ProductCard({ product, imageSrc }) {
   const [hovered, setHovered] = useState(false);
   const { addItem } = useCart();
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    if (cardRef.current) {
-      return ImageHelper.loadImages(strkImgConfig, cardRef.current);
-    }
-  }, [hovered]);
 
   const handleQuickAdd = (e) => {
     e.preventDefault();
     addItem(product, product.colors[0].name);
   };
 
+  const fallbackSrc = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"/%3E';
+
   return (
     <Link
       to={`/product/${product.id}`}
-      ref={cardRef}
       className="group block"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -33,11 +25,7 @@ export default function ProductCard({ product }) {
       {/* Image */}
       <div className="relative aspect-[3/4] bg-brand-cream overflow-hidden">
         <img
-          data-strk-img-id={`${product.imgId}-card`}
-          data-strk-img={`[${product.id}-card-name] gold jewelry product elegant`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+          src={imageSrc || fallbackSrc}
           alt={product.imgAlt}
           className={`w-full h-full object-cover transition-transform duration-700 ${
             hovered ? 'scale-105' : 'scale-100'

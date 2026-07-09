@@ -16,7 +16,7 @@ export const products = [
     ],
     material: '18K Gold Plated',
     priceRange: '30-50',
-    imgId: 'product-vivid-aura-main',
+    imgId: 'vivid-aura-jewels',
     imgAlt: 'Vivid Aura Jewels gold ear cuff with crystal accent',
   },
   {
@@ -36,7 +36,7 @@ export const products = [
     ],
     material: '18K Gold Plated',
     priceRange: '50-80',
-    imgId: 'product-flora-nectar-main',
+    imgId: 'majestic-flora-nectar',
     imgAlt: 'Majestic Flora Nectar multicolor floral crystal necklace',
   },
   {
@@ -56,7 +56,7 @@ export const products = [
     ],
     material: '18K Gold Plated',
     priceRange: '30-50',
-    imgId: 'product-sphere-huggies-main',
+    imgId: 'golden-sphere-huggies',
     imgAlt: 'Golden Sphere Huggies chunky gold dome huggie earrings',
   },
   {
@@ -76,7 +76,7 @@ export const products = [
     ],
     material: '18K Gold Plated',
     priceRange: '50-80',
-    imgId: 'product-amber-lace-main',
+    imgId: 'amber-lace-earrings',
     imgAlt: 'Amber Lace textured gold filigree drop earrings',
   },
   {
@@ -96,7 +96,7 @@ export const products = [
     ],
     material: '18K Gold Plated',
     priceRange: '80-120',
-    imgId: 'product-royal-heirloom-main',
+    imgId: 'royal-heirloom-set',
     imgAlt: 'Royal Heirloom Set gift-boxed earring and necklace set',
   },
 ];
