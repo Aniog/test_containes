@@ -1,13 +1,18 @@
 import './App.css'
+import HeroSection from './components/home/HeroSection'
+import GallerySection from './components/home/GallerySection'
+import CategoriesSection from './components/home/CategoriesSection'
+import FeaturedSection from './components/home/FeaturedSection'
+import FooterSection from './components/home/FooterSection'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
+    <main className="app">
+      <HeroSection />
+      <GallerySection />
+      <FeaturedSection />
+      <CategoriesSection />
+      <FooterSection />
     </main>
   )
 }
