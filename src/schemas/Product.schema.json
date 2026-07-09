@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "full_description": {
+      "type": "string",
+      "description": "Detailed product description for accordions"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storageKey": { "type": "string" },
+          "filename": { "type": "string" },
+          "mimeType": { "type": "string" }
+        }
+      },
+      "description": "Product images"
+    },
+    "stock_image_query": {
+      "type": "string",
+      "description": "Search query for stock images if no real images provided"
+    },
+    "tones": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "default": ["Gold"],
+      "description": "Available metal tones"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["published", "draft", "archived"],
+      "default": "published",
+      "description": "Product status"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag for bestseller section"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
