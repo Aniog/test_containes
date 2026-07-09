@@ -26,6 +26,15 @@ export default {
       letterSpacing: {
         'widest-plus': '0.2em',
       },
+      keyframes: {
+        'slide-in-right': {
+          '0%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'translateX(0)' },
+        },
+      },
+      animation: {
+        'slide-in': 'slide-in-right 0.3s ease-out',
+      },
     },
   },
   plugins: [],

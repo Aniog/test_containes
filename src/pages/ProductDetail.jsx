@@ -110,7 +110,8 @@ const ProductDetail = () => {
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'fill-brand-gold text-brand-gold' : 'text-brand-gold-muted/40'}`}
+                    className={`w-4 h-4 ${i < Math.floor(product.rating) ? 'text-brand-gold' : 'text-brand-gold-muted/40'}`}
+                    fill={i < Math.floor(product.rating) ? 'currentColor' : 'none'}
                   />
                 ))}
               </div>
@@ -215,7 +216,17 @@ const ProductDetail = () => {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {relatedProducts.map(p => (
-              <ProductCard key={p.id} product={p} />
+              <ProductCard key={p.id} product={p}>
+                <img
+                  data-strk-img-id={p.imgId}
+                  data-strk-img={`[${p.descId}] [${p.titleId}]`}
+                  data-strk-img-ratio="3x4"
+                  data-strk-img-width="400"
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  alt={p.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </ProductCard>
             ))}
           </div>
         </div>
