@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { categories } from "@/data/products"
+import { strkBgUrl } from "@/lib/strk-images"
 import { useStrkImages } from "@/hooks/useStrkImages"
 import Reveal from "@/components/ui/Reveal"
 
@@ -23,11 +24,12 @@ export default function CategoryTiles() {
             <Link to={`/shop?category=${cat.name}`} className="group block">
               <div className="img-zoom relative aspect-[4/5] overflow-hidden bg-cream-deep md:aspect-[3/4]">
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 bg-cover bg-center"
                   data-strk-bg-id={cat.bgId}
                   data-strk-bg={`[${cat.descId}] [${cat.titleId}] gold jewelry editorial`}
                   data-strk-bg-ratio="3x4"
                   data-strk-bg-width="600"
+                  style={strkBgUrl(cat.bgId) ? { backgroundImage: `url(${strkBgUrl(cat.bgId)})` } : undefined}
                 />
                 <div className="absolute inset-0 bg-ink/10 transition-colors duration-500 group-hover:bg-ink/30" />
                 <div className="absolute inset-x-0 bottom-0 translate-y-2 p-6 text-center opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">

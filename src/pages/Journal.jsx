@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom"
+import { strkImgUrl } from "@/lib/strk-images"
 import { useStrkImages } from "@/hooks/useStrkImages"
 import Reveal from "@/components/ui/Reveal"
-
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 
 const posts = [
   {
@@ -72,7 +70,7 @@ export default function Journal() {
                     data-strk-img={`[${post.descId}] [${post.titleId}] gold jewelry editorial`}
                     data-strk-img-ratio="4x3"
                     data-strk-img-width="700"
-                    src={PLACEHOLDER}
+                    src={strkImgUrl(post.imgId)}
                     className="h-full w-full object-cover"
                   />
                 </div>

@@ -1,9 +1,7 @@
 import { reels } from "@/data/products"
+import { strkImgUrl } from "@/lib/strk-images"
 import { useStrkImages } from "@/hooks/useStrkImages"
 import Reveal from "@/components/ui/Reveal"
-
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 
 export default function ReelsStrip() {
   const containerRef = useStrkImages([])
@@ -31,7 +29,7 @@ export default function ReelsStrip() {
               data-strk-img={`[${reel.titleId}] vertical jewelry worn on ear neck editorial close up`}
               data-strk-img-ratio="9x16"
               data-strk-img-width="500"
-              src={PLACEHOLDER}
+              src={strkImgUrl(reel.imgId)}
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />

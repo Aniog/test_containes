@@ -5,13 +5,11 @@ import { getProductById, getRelatedProducts } from "@/data/products"
 import { useCart } from "@/context/CartContext"
 import { useStrkImages } from "@/hooks/useStrkImages"
 import { formatPrice, cn } from "@/lib/utils"
+import { strkImgUrl } from "@/lib/strk-images"
 import StarRating from "@/components/ui/StarRating"
 import Accordion from "@/components/ui/Accordion"
 import ProductCard from "@/components/product/ProductCard"
 import Reveal from "@/components/ui/Reveal"
-
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 
 // Gallery thumbnails — reuse product image IDs with varied queries
 function buildGalleryImages(product) {
@@ -124,7 +122,7 @@ export default function ProductDetail() {
                     data-strk-img={img.query}
                     data-strk-img-ratio="4x5"
                     data-strk-img-width="200"
-                    src={PLACEHOLDER}
+                    src={strkImgUrl(img.imgId)}
                     className="h-full w-full object-cover"
                   />
                 </button>
@@ -140,7 +138,7 @@ export default function ProductDetail() {
                   data-strk-img={gallery[activeImage].query}
                   data-strk-img-ratio="4x5"
                   data-strk-img-width="900"
-                  src={PLACEHOLDER}
+                  src={strkImgUrl(gallery[activeImage].imgId)}
                   className="h-full w-full object-cover"
                 />
               </div>

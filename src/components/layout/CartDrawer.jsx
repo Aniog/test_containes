@@ -2,10 +2,8 @@ import { Link } from "react-router-dom"
 import { X, Plus, Minus, Trash2, ShoppingBag } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 import { formatPrice } from "@/lib/utils"
+import { strkImgUrl } from "@/lib/strk-images"
 import { useStrkImages } from "@/hooks/useStrkImages"
-
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, count } = useCart()
@@ -102,7 +100,7 @@ export default function CartDrawer() {
                       data-strk-img={`[${item.descId}] [${item.titleId}]`}
                       data-strk-img-ratio="4x5"
                       data-strk-img-width="200"
-                      src={PLACEHOLDER}
+                      src={strkImgUrl(item.imgId)}
                       className="h-full w-full object-cover"
                     />
                   </Link>
