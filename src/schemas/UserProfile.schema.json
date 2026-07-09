@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User Profiles",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the user"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the user"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the user"
+    },
+    "job_title": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Job title or position of the user"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company or organization the user belongs to"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "City or region where the user is located"
+    },
+    "demands": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "User's needs, requirements or demands"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short personal bio or introduction"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "Personal or company website URL"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "pending"],
+      "default": "active",
+      "description": "Account status of the user"
+    }
+  },
+  "required": ["name", "email"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
