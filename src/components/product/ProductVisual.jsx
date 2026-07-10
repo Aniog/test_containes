@@ -1,9 +1,6 @@
 import { useRef } from 'react'
 import { useStrkImages } from '@/hooks/useStrkImages'
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 export default function ProductVisual({
   product,
   imageId,
@@ -21,14 +18,14 @@ export default function ProductVisual({
 
   return (
     <div ref={containerRef} className={`relative overflow-hidden ${className}`}>
-      <img
-        alt={product.name}
-        className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105"
-        data-strk-img-id={imageId}
-        data-strk-img={`[${modeId}] [${descId}] [${titleId}]`}
-        data-strk-img-ratio={ratio}
-        data-strk-img-width={width}
-        src={PLACEHOLDER}
+      <div
+        aria-label={product.name}
+        role="img"
+        className="h-full w-full bg-cover bg-center transition duration-700 ease-out group-hover:scale-105"
+        data-strk-bg-id={imageId}
+        data-strk-bg={`[${modeId}] [${descId}] [${titleId}]`}
+        data-strk-bg-ratio={ratio}
+        data-strk-bg-width={width}
       />
       <span id={titleId} className="sr-only">
         {product.name}
