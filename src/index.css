@@ -1,76 +1,100 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #2A1F1A;
+    background-color: #F5EFE7;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: inherit;
+    color: inherit;
+    background-color: #F5EFE7;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    color: #2A1F1A;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  ::selection {
+    background-color: #5C2A2A;
+    color: #FAF6F0;
+  }
+}
+
+@layer components {
+  .editorial-label {
+    @apply font-sans text-[11px] font-medium uppercase tracking-editorial text-cocoa;
+  }
+
+  .editorial-eyebrow {
+    @apply font-sans text-[10px] font-medium uppercase tracking-wider2 text-claret;
+  }
+
+  .product-name {
+    @apply font-sans text-xs font-medium uppercase tracking-editorial text-cocoa;
+  }
+
+  .serif-display {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-claret text-ivory-light px-8 py-4 text-[11px] font-medium uppercase tracking-editorial transition-colors duration-300 ease-editorial hover:bg-claret-dark disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center border border-cocoa text-cocoa px-8 py-4 text-[11px] font-medium uppercase tracking-editorial transition-colors duration-300 ease-editorial hover:bg-cocoa hover:text-ivory-light;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center text-cocoa text-[11px] font-medium uppercase tracking-editorial transition-colors duration-300 ease-editorial hover:text-claret;
+  }
+
+  .hairline {
+    @apply border-hairline;
+  }
+
+  .input-editorial {
+    @apply w-full bg-transparent border-0 border-b border-hairline px-0 py-3 text-sm text-cocoa placeholder:text-muted focus:outline-none focus:border-cocoa transition-colors duration-300;
+  }
+}
+
+/* Hide scrollbar utility for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Smooth image crossfade */
+.product-img-fade {
+  transition: opacity 600ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
