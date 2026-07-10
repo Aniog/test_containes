@@ -1,18 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ShoppingBag } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { useCart } from '@/context/CartContext';
 
 export default function ProductCard({ product, className = '' }) {
   const { addItem } = useCart();
-  const containerRef = useRef(null);
   const [added, setAdded] = useState(false);
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, []);
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -23,32 +16,20 @@ export default function ProductCard({ product, className = '' }) {
   };
 
   return (
-    <div ref={containerRef} className={`product-card group relative ${className}`}>
+    <div className={`product-card group relative ${className}`}>
       <Link to={`/product/${product.slug}`} className="block">
         {/* Image container */}
         <div className="relative overflow-hidden bg-stone-100 aspect-product">
-          {/* Hidden text for image queries — clipped by overflow-hidden */}
-          <span id={product.titleId} className="sr-only">{product.name}</span>
-          <span id={product.descId} className="sr-only">{product.shortDesc}</span>
-
           {/* Primary image */}
           <img
             className="product-img-primary absolute inset-0 w-full h-full object-cover transition-all duration-500"
-            data-strk-img-id={product.imgId}
-            data-strk-img={`[${product.descId}] [${product.titleId}]`}
-            data-strk-img-ratio="3x4"
-            data-strk-img-width="600"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={product.imgUrl}
             alt={product.name}
           />
           {/* Secondary image (hover) */}
           <img
             className="product-img-secondary absolute inset-0 w-full h-full object-cover transition-all duration-500"
-            data-strk-img-id={product.imgId2}
-            data-strk-img={`[${product.titleId}] gold jewelry close up detail`}
-            data-strk-img-ratio="3x4"
-            data-strk-img-width="600"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            src={product.imgUrl2}
             alt={`${product.name} detail`}
           />
 

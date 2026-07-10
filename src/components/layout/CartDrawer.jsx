@@ -1,31 +1,5 @@
-import { useEffect, useRef } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { useCart } from '@/context/CartContext';
-
-function CartItemThumb({ item }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, ref.current);
-  }, [item.product.imgId]);
-
-  return (
-    <div ref={ref} className="w-20 h-24 bg-stone-100 flex-shrink-0 overflow-hidden relative">
-      <img
-        data-strk-img-id={`cart-thumb-${item.key}`}
-        data-strk-img={`[cart-title-${item.key}]`}
-        data-strk-img-ratio="3x4"
-        data-strk-img-width="200"
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-        alt={item.product.name}
-        className="w-full h-full object-cover"
-      />
-      <span id={`cart-title-${item.key}`} className="sr-only">{item.product.name} gold jewelry</span>
-    </div>
-  );
-}
 
 export default function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, subtotal } = useCart();
@@ -80,7 +54,13 @@ export default function CartDrawer() {
               {items.map(item => (
                 <li key={item.key} className="flex gap-4 py-4 border-b border-stone-100">
                   {/* Product image */}
-                  <CartItemThumb item={item} />
+                  <div className="w-20 h-24 bg-stone-100 flex-shrink-0 overflow-hidden">
+                    <img
+                      src={item.product.imgUrl}
+                      alt={item.product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
                   {/* Details */}
                   <div className="flex-1 flex flex-col justify-between">

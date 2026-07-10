@@ -34,26 +34,26 @@ const companyLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-obsidian text-ivory">
+    <footer style={{ backgroundColor: '#1A1714', color: '#FAF7F2' }}>
       {/* Main footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <Link to="/" className="font-cormorant text-2xl font-medium tracking-[0.18em] uppercase text-ivory">
+            <Link to="/" className="font-cormorant text-2xl font-medium tracking-[0.18em] uppercase" style={{ color: '#FAF7F2' }}>
               Velmora
             </Link>
-            <p className="font-manrope text-sm text-stone-400 mt-4 leading-relaxed max-w-xs">
+            <p className="font-manrope text-sm mt-4 leading-relaxed max-w-xs" style={{ color: '#8C7B6B' }}>
               Demi-fine gold jewelry crafted for the modern woman. Designed to be worn every day, treasured forever.
             </p>
             <div className="flex items-center gap-4 mt-6">
-              <a href="#" aria-label="Instagram" className="text-stone-400 hover:text-champagne transition-colors duration-200">
+              <a href="#" aria-label="Instagram" className="transition-colors duration-200 hover:opacity-80" style={{ color: '#8C7B6B' }}>
                 <Instagram size={18} strokeWidth={1.5} />
               </a>
-              <a href="#" aria-label="Pinterest" className="text-stone-400 hover:text-champagne transition-colors duration-200">
+              <a href="#" aria-label="Pinterest" className="transition-colors duration-200 hover:opacity-80" style={{ color: '#8C7B6B' }}>
                 <PinterestIcon size={18} />
               </a>
-              <a href="#" aria-label="Facebook" className="text-stone-400 hover:text-champagne transition-colors duration-200">
+              <a href="#" aria-label="Facebook" className="transition-colors duration-200 hover:opacity-80" style={{ color: '#8C7B6B' }}>
                 <Facebook size={18} strokeWidth={1.5} />
               </a>
             </div>
@@ -61,11 +61,11 @@ export default function Footer() {
 
           {/* Shop */}
           <div>
-            <h3 className="font-manrope text-xs tracking-wider uppercase text-stone-300 mb-5">Shop</h3>
+            <h3 className="font-manrope text-xs tracking-wider uppercase mb-5" style={{ color: '#D4C9B8' }}>Shop</h3>
             <ul className="flex flex-col gap-3">
               {shopLinks.map(link => (
                 <li key={link.label}>
-                  <Link to={link.href} className="font-manrope text-sm text-stone-400 hover:text-ivory transition-colors duration-200">
+                  <Link to={link.href} className="font-manrope text-sm transition-colors duration-200 hover:opacity-100" style={{ color: '#8C7B6B' }}>
                     {link.label}
                   </Link>
                 </li>
@@ -75,11 +75,11 @@ export default function Footer() {
 
           {/* Help */}
           <div>
-            <h3 className="font-manrope text-xs tracking-wider uppercase text-stone-300 mb-5">Help</h3>
+            <h3 className="font-manrope text-xs tracking-wider uppercase mb-5" style={{ color: '#D4C9B8' }}>Help</h3>
             <ul className="flex flex-col gap-3">
               {helpLinks.map(link => (
                 <li key={link.label}>
-                  <Link to={link.href} className="font-manrope text-sm text-stone-400 hover:text-ivory transition-colors duration-200">
+                  <Link to={link.href} className="font-manrope text-sm transition-colors duration-200" style={{ color: '#8C7B6B' }}>
                     {link.label}
                   </Link>
                 </li>
@@ -89,11 +89,11 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <h3 className="font-manrope text-xs tracking-wider uppercase text-stone-300 mb-5">Company</h3>
+            <h3 className="font-manrope text-xs tracking-wider uppercase mb-5" style={{ color: '#D4C9B8' }}>Company</h3>
             <ul className="flex flex-col gap-3">
               {companyLinks.map(link => (
                 <li key={link.label}>
-                  <Link to={link.href} className="font-manrope text-sm text-stone-400 hover:text-ivory transition-colors duration-200">
+                  <Link to={link.href} className="font-manrope text-sm transition-colors duration-200" style={{ color: '#8C7B6B' }}>
                     {link.label}
                   </Link>
                 </li>
@@ -104,9 +104,9 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-stone-800">
+      <div style={{ borderTop: '1px solid #2E261E' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="font-manrope text-xs text-stone-500">
+          <p className="font-manrope text-xs" style={{ color: '#6B5C4E' }}>
             © 2026 Velmora Fine Jewelry. All rights reserved.
           </p>
 
@@ -115,7 +115,8 @@ export default function Footer() {
             {['Visa', 'MC', 'Amex', 'PayPal', 'Apple Pay'].map(method => (
               <span
                 key={method}
-                className="font-manrope text-[10px] text-stone-500 border border-stone-700 px-2 py-1 rounded-sm"
+                className="font-manrope text-[10px] px-2 py-1 rounded-sm"
+                style={{ color: '#6B5C4E', border: '1px solid #2E261E' }}
               >
                 {method}
               </span>
@@ -123,8 +124,8 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-4">
-            <a href="#" className="font-manrope text-xs text-stone-500 hover:text-stone-300 transition-colors">Privacy</a>
-            <a href="#" className="font-manrope text-xs text-stone-500 hover:text-stone-300 transition-colors">Terms</a>
+            <a href="#" className="font-manrope text-xs transition-colors" style={{ color: '#6B5C4E' }}>Privacy</a>
+            <a href="#" className="font-manrope text-xs transition-colors" style={{ color: '#6B5C4E' }}>Terms</a>
           </div>
         </div>
       </div>

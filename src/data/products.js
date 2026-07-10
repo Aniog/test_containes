@@ -1,3 +1,5 @@
+const CDN = 'https://user-images.strikinglycdn.com/res/hrscywv4p/image/upload/f_auto,q_auto,w_4096/unsplashcom';
+
 export const products = [
   {
     id: 1,
@@ -14,6 +16,8 @@ export const products = [
     materials: '18K Gold Plated Brass · Crystal Accent · Hypoallergenic · Nickel-Free',
     care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish gently with a soft cloth.',
     shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    imgUrl: `${CDN}/photo-1677578329676-7296dd3d1083`,
+    imgUrl2: `${CDN}/photo-1632806312889-2822760543c9`,
     imgId: 'product-vivid-aura-img-a1b2c3',
     imgId2: 'product-vivid-aura-img2-d4e5f6',
     titleId: 'product-vivid-aura-title',
@@ -37,6 +41,8 @@ export const products = [
     materials: '18K Gold Plated Chain · Multicolor Crystal Florals · Adjustable 16–18 inch',
     care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish gently with a soft cloth.',
     shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    imgUrl: `${CDN}/photo-1615421844228-37d4f0bf8bbc`,
+    imgUrl2: `${CDN}/photo-1681766151599-b41f7b8d12c5`,
     imgId: 'product-majestic-flora-img-g7h8i9',
     imgId2: 'product-majestic-flora-img2-j1k2l3',
     titleId: 'product-majestic-flora-title',
@@ -60,6 +66,8 @@ export const products = [
     materials: '18K Gold Plated Brass · Click-Closure · Hypoallergenic',
     care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish gently with a soft cloth.',
     shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    imgUrl: `${CDN}/photo-1582756825287-a250e1e432d9`,
+    imgUrl2: `${CDN}/photo-1680103110889-0ba4bfbcdb5f`,
     imgId: 'product-golden-sphere-img-m4n5o6',
     imgId2: 'product-golden-sphere-img2-p7q8r9',
     titleId: 'product-golden-sphere-title',
@@ -83,6 +91,8 @@ export const products = [
     materials: '18K Gold Plated Brass · Filigree Texture · Lightweight · Hypoallergenic',
     care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish gently with a soft cloth.',
     shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    imgUrl: `${CDN}/photo-1502723804370-fa1d97a9774e`,
+    imgUrl2: `${CDN}/photo-1658472022691-f969a893f12d`,
     imgId: 'product-amber-lace-img-s1t2u3',
     imgId2: 'product-amber-lace-img2-v4w5x6',
     titleId: 'product-amber-lace-title',
@@ -106,6 +116,8 @@ export const products = [
     materials: '18K Gold Plated Brass · Signature Gift Box · Hypoallergenic · Nickel-Free',
     care: 'Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish gently with a soft cloth.',
     shipping: 'Free worldwide shipping on all orders. Delivered in 3–7 business days. 30-day hassle-free returns.',
+    imgUrl: `${CDN}/photo-1585832641954-e30df38ca004`,
+    imgUrl2: `${CDN}/photo-1609252907817-fad418fb02ed`,
     imgId: 'product-royal-heirloom-img-y7z8a9',
     imgId2: 'product-royal-heirloom-img2-b1c2d3',
     titleId: 'product-royal-heirloom-title',
