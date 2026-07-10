@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { formatPrice, svgPlaceholder } from '@/data/storefront'
+import { formatPrice, getStrkImageSrc } from '@/data/storefront'
 import { useCart } from '@/context/CartContext.jsx'
 import RatingStars from '@/components/shared/RatingStars.jsx'
 
@@ -9,6 +9,8 @@ function ProductCard({ product, imageScope = 'grid' }) {
   const descId = `${imageScope}-${product.slug}-desc`
   const primaryId = `${imageScope}-${product.slug}-primary-7ad1`
   const secondaryId = `${imageScope}-${product.slug}-secondary-4f21`
+  const primarySrc = getStrkImageSrc(primaryId)
+  const secondarySrc = getStrkImageSrc(secondaryId)
 
   return (
     <article className="group flex h-full flex-col rounded-[2rem] border border-border bg-surface p-3 shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-soft">
@@ -22,7 +24,7 @@ function ProductCard({ product, imageScope = 'grid' }) {
               data-strk-img-id={primaryId}
               data-strk-img-ratio="3x4"
               data-strk-img-width="900"
-              src={svgPlaceholder}
+              src={primarySrc}
             />
             <img
               alt={`${product.name} styled view`}
@@ -31,7 +33,7 @@ function ProductCard({ product, imageScope = 'grid' }) {
               data-strk-img-id={secondaryId}
               data-strk-img-ratio="3x4"
               data-strk-img-width="900"
-              src={svgPlaceholder}
+              src={secondarySrc}
             />
           </div>
         </Link>

@@ -5,8 +5,8 @@ import SectionHeader from '@/components/shared/SectionHeader.jsx'
 import {
   brandStory,
   categoryTiles,
+  getStrkImageSrc,
   products,
-  svgPlaceholder,
   testimonials,
   trustPoints,
   ugcStories,
@@ -91,6 +91,7 @@ function HomePage() {
             {ugcStories.map((story, index) => {
               const titleId = `ugc-title-${story.id}`
               const descId = `ugc-desc-${story.id}`
+              const imageId = `ugc-card-${index}-c91`
               return (
                 <article
                   key={story.id}
@@ -101,10 +102,10 @@ function HomePage() {
                     alt={story.title}
                     className="aspect-reel h-full w-full object-cover"
                     data-strk-img={`[${descId}] [${titleId}] warm jewelry editorial portrait`}
-                    data-strk-img-id={`ugc-card-${index}-c91`}
+                    data-strk-img-id={imageId}
                     data-strk-img-ratio="9x16"
                     data-strk-img-width="600"
-                    src={svgPlaceholder}
+                    src={getStrkImageSrc(imageId)}
                   />
                   <div className="absolute inset-x-0 bottom-0 space-y-2 p-5 text-cream">
                     <p className="text-sm uppercase tracking-micro text-cream/70">Featured look</p>
@@ -132,6 +133,7 @@ function HomePage() {
             {categoryTiles.map((tile, index) => {
               const titleId = `category-title-${tile.title.toLowerCase()}`
               const descId = `category-desc-${tile.title.toLowerCase()}`
+              const imageId = `category-${index}-tile-49`
               return (
                 <Link
                   key={tile.title}
@@ -142,10 +144,10 @@ function HomePage() {
                     alt={tile.title}
                     className="aspect-editorial h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     data-strk-img={`[${descId}] [${titleId}] editorial gold jewelry still life`}
-                    data-strk-img-id={`category-${index}-tile-49`}
+                    data-strk-img-id={imageId}
                     data-strk-img-ratio="4x3"
                     data-strk-img-width="1200"
-                    src={svgPlaceholder}
+                    src={getStrkImageSrc(imageId)}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-shadow/90 via-shadow/20 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-6 text-cream">
@@ -178,7 +180,7 @@ function HomePage() {
               data-strk-img-id="story-image-78ff1"
               data-strk-img-ratio="4x3"
               data-strk-img-width="1200"
-              src={svgPlaceholder}
+              src={getStrkImageSrc('story-image-78ff1')}
             />
           </div>
           <div className="max-w-xl space-y-6">

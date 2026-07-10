@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { brandStory, svgPlaceholder } from '@/data/storefront'
+import { brandStory, getStrkImageSrc } from '@/data/storefront'
 import useStrkImages from '@/hooks/useStrkImages.jsx'
 
 function AboutPage() {
@@ -33,7 +33,7 @@ function AboutPage() {
             data-strk-img-id="about-hero-91f"
             data-strk-img-ratio="4x3"
             data-strk-img-width="1200"
-            src={svgPlaceholder}
+            src={getStrkImageSrc('about-hero-91f')}
           />
         </div>
       </section>

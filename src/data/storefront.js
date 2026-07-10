@@ -1,5 +1,21 @@
+import strkImgConfig from '@/strk-img-config.json'
+
 export const svgPlaceholder =
   "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+
+export const getStrkImageSrc = (imageId) => {
+  const entry = strkImgConfig[imageId]
+  const results = entry?.results ?? []
+
+  if (results.length === 0) return ''
+
+  if (entry?.picked) {
+    const selected = results.find((item) => String(item.id) === String(entry.picked))
+    if (selected?.url) return selected.url
+  }
+
+  return results[0]?.url ?? ''
+}
 
 export const navLinks = [
   { label: 'Shop', href: '/shop' },

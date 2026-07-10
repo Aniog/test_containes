@@ -4740,19 +4740,18 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
       if (imgId) {
         const srcAttr = getAttrNode('src')
         const url = getImgUrl(imgId)
-        if (srcAttr?.value?.type === 'StringLiteral' && url) {
+        if (srcAttr?.value && url) {
           pushPatch(srcAttr.value.start, srcAttr.value.end, JSON.stringify(url))
         }
       } else {
         const idAttr = getAttrNode('data-strk-img-id')
         const idExpr = expressionSource(idAttr)
         const srcAttr = getAttrNode('src')
-        const fallback = literalSrcFallback(srcAttr)
-        if (idExpr && srcAttr?.value && fallback != null && Object.keys(dynamicUrlMap).length) {
+        if (idExpr && srcAttr?.value && Object.keys(dynamicUrlMap).length) {
           dynamicSrcPatches.push({
             start: srcAttr.value.start,
             end: srcAttr.value.end,
-            text: `{${helperName}(${idExpr}, ${JSON.stringify(fallback)})}`,
+            text: `{${helperName}(${idExpr})}`,
           })
         }
       }
@@ -4786,7 +4785,7 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
     const helper = [
       '',
       'const ' + helperMapName + ' = ' + JSON.stringify(dynamicUrlMap) + ';',
-      'const ' + helperName + ' = (id, fallback) => ' + helperMapName + '[id] || fallback;',
+      'const ' + helperName + ' = (id) => ' + helperMapName + '[id] || "";',
       '',
     ].join('\n')
     pushPatch(importInsertPos, importInsertPos, helper)

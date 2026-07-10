@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { journalEntries, svgPlaceholder } from '@/data/storefront'
+import { getStrkImageSrc, journalEntries } from '@/data/storefront'
 import useStrkImages from '@/hooks/useStrkImages.jsx'
 
 function JournalPage() {
@@ -23,6 +23,7 @@ function JournalPage() {
           {journalEntries.map((entry, index) => {
             const titleId = `journal-title-${index}`
             const descId = `journal-desc-${index}`
+            const imageId = `journal-card-${index}-2c1`
 
             return (
               <article key={entry.slug} className="overflow-hidden rounded-[2rem] border border-border bg-surface shadow-card">
@@ -30,10 +31,10 @@ function JournalPage() {
                   alt={entry.title}
                   className="aspect-[4/3] w-full object-cover"
                   data-strk-img={`[${descId}] [${titleId}] quiet luxury jewelry editorial still life`}
-                  data-strk-img-id={`journal-card-${index}-2c1`}
+                  data-strk-img-id={imageId}
                   data-strk-img-ratio="4x3"
                   data-strk-img-width="1000"
-                  src={svgPlaceholder}
+                  src={getStrkImageSrc(imageId)}
                 />
                 <div className="space-y-4 p-6">
                   <p className="eyebrow">{entry.category}</p>
