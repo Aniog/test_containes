@@ -21,14 +21,12 @@ export default function FitnessPlanner() {
     return rows
   }, [])
 
-  useEffect(() => {
-    fetchPlans()
-  }, [fetchPlans])
+  useEffect(() => { fetchPlans() }, [fetchPlans])
 
-  const handlePlanCreated = async (name, description) => {
+  const handlePlanCreated = async (planName, description) => {
     const { data: res, error } = await client
       .from('Fitness Plans')
-      .insert({ data: { name, description } })
+      .insert({ data: { plan_name: planName, description, training_days: [] } })
       .select()
       .single()
     if (error) { console.error(error); return }
@@ -42,6 +40,11 @@ export default function FitnessPlanner() {
   const handlePlanDeleted = (planId) => {
     setPlans((prev) => prev.filter((p) => p.id !== planId))
     if (selectedPlanId === planId) setSelectedPlanId(null)
+  }
+
+  // Called by PlanDetail whenever training_days changes
+  const handlePlanUpdated = (updatedPlan) => {
+    setPlans((prev) => prev.map((p) => p.id === updatedPlan.id ? updatedPlan : p))
   }
 
   const selectedPlan = plans.find((p) => p.id === selectedPlanId) ?? null
@@ -66,7 +69,7 @@ export default function FitnessPlanner() {
 
         <div className="flex-1 min-w-0">
           {selectedPlan ? (
-            <PlanDetail plan={selectedPlan} client={client} />
+            <PlanDetail plan={selectedPlan} onPlanUpdated={handlePlanUpdated} />
           ) : (
             <div className="bg-white rounded-lg border border-gray-200 p-8 text-center text-gray-400 text-sm">
               {loading ? '加载中…' : '请从左侧选择或新建一个计划'}

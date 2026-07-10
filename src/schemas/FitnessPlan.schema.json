@@ -1,21 +1,42 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Fitness Plan",
   "title": "Fitness Plans",
   "type": "object",
   "properties": {
-    "name": {
+    "plan_name": {
       "type": "string",
-      "minLength": 1,
-      "maxLength": 100,
       "description": "Name of the fitness plan"
     },
     "description": {
       "type": "string",
-      "maxLength": 500,
-      "description": "Brief description of the fitness plan"
+      "description": "Brief description of the plan"
+    },
+    "training_days": {
+      "type": "array",
+      "description": "List of training days, each containing exercises",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day_name": { "type": "string" },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise_name": { "type": "string" },
+                "sets": { "type": "integer" },
+                "reps": { "type": "integer" }
+              },
+              "required": ["exercise_name", "sets", "reps"]
+            }
+          }
+        },
+        "required": ["day_name", "exercises"]
+      }
     }
   },
-  "required": ["name"],
+  "required": ["plan_name", "training_days"],
   "additionalProperties": false,
   "x-security": {
     "create": { "allow": ["*"] },

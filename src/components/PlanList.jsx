@@ -80,7 +80,7 @@ export default function PlanList({ plans, loading, selectedPlanId, onSelect, onC
           >
             <div className="min-w-0">
               <p className={`text-sm font-medium truncate ${selectedPlanId === plan.id ? 'text-blue-700' : 'text-gray-800'}`}>
-                {plan.data?.name}
+                {plan.data?.plan_name}
               </p>
               {plan.data?.description && (
                 <p className="text-xs text-gray-400 truncate">{plan.data.description}</p>
