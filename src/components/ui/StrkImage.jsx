@@ -25,9 +25,6 @@ export default function StrkImage({
     "2x3": "aspect-[2/3]",
   }[ratio] || "aspect-[4/5]";
 
-  const placeholder =
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
-
   if (bg) {
     return (
       <div
@@ -54,7 +51,6 @@ export default function StrkImage({
         data-strk-img={query}
         data-strk-img-ratio={ratio}
         data-strk-img-width={String(width)}
-        src={placeholder}
         loading="lazy"
       />
     </div>
