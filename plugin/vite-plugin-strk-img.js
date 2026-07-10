@@ -3900,6 +3900,9 @@ export function extractStrkEntriesFromAst(ast, options = {}) {
 
     const mapCtx = matchMapCall(node, regMap, subs, itemAliases)
     if (mapCtx) {
+      console.log('[DEBUG] matchMapCall items=' + (mapCtx.items?.length || 0) + ' shape=' + JSON.stringify(mapCtx.paramShape))
+    }
+    if (mapCtx) {
       for (let idx = 0; idx < mapCtx.items.length; idx++) {
         const value = mapCtx.contextual ? mapCtx.items[idx].item : mapCtx.items[idx]
         const contextSubs = mapCtx.contextual ? mapCtx.items[idx].contextSubs : []

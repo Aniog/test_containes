@@ -1,0 +1,138 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A sculptural gold ear cuff with a luminous crystal accent that catches the light with every turn. Designed for effortless elegance — no piercing required.',
+    materials: '18K gold-plated brass, cubic zirconia crystal. Nickel-free and hypoallergenic.',
+    care: 'Store in a dry pouch. Avoid contact with perfumes, lotions, and water. Clean gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'vivid-aura-1', ratio: '4x3', width: 800, query: 'gold ear cuff crystal jewelry on ear close up elegant' },
+      { id: 'vivid-aura-2', ratio: '4x3', width: 800, query: 'gold ear cuff crystal jewelry product shot dark background' },
+      { id: 'vivid-aura-3', ratio: '4x3', width: 800, query: 'gold ear cuff crystal jewelry worn on model' },
+    ],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A delicate necklace featuring multicolor floral crystals arranged in a graceful bloom. A statement piece that transitions beautifully from day to evening.',
+    materials: '18K gold-plated chain, hand-set crystal florals. Length: 16–18 inches adjustable.',
+    care: 'Keep away from moisture. Store flat to prevent tangling. Polish with a jewelry cloth to maintain shine.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'flora-1', ratio: '4x3', width: 800, query: 'multicolor floral crystal gold necklace on neck elegant jewelry' },
+      { id: 'flora-2', ratio: '4x3', width: 800, query: 'floral crystal gold necklace product shot dark background' },
+      { id: 'flora-3', ratio: '4x3', width: 800, query: 'gold necklace with colorful crystals close up jewelry' },
+    ],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 210,
+    description: 'Chunky gold dome huggie earrings with a smooth, mirror-polish finish. Bold yet wearable — the perfect everyday luxe staple.',
+    materials: '18K gold-plated brass with secure hinge closure. Lightweight and comfortable for all-day wear.',
+    care: 'Avoid sleeping or showering in your huggies. Wipe clean after wear and store in the provided pouch.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'sphere-1', ratio: '4x3', width: 800, query: 'chunky gold dome huggie earrings worn on ear close up' },
+      { id: 'sphere-2', ratio: '4x3', width: 800, query: 'gold huggie earrings product shot dark background' },
+      { id: 'sphere-3', ratio: '4x3', width: 800, query: 'gold dome huggie earrings on model elegant jewelry' },
+    ],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.8,
+    reviewCount: 156,
+    description: 'Textured gold filigree drop earrings inspired by vintage lace. Intricate detailing meets modern minimalism for a romantic, elevated look.',
+    materials: '18K gold-plated brass with delicate filigree work. Post-back closure. Length: 1.5 inches.',
+    care: 'Handle with care to preserve filigree detail. Store separately to avoid scratching. Clean gently.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'amber-1', ratio: '4x3', width: 800, query: 'gold filigree drop earrings on ear close up elegant jewelry' },
+      { id: 'amber-2', ratio: '4x3', width: 800, query: 'gold filigree earrings product shot dark background' },
+      { id: 'amber-3', ratio: '4x3', width: 800, query: 'textured gold drop earrings jewelry elegant' },
+    ],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 67,
+    description: 'A curated gift set featuring a matching earring and necklace duo, presented in our signature Velmora gift box. The ultimate gesture of timeless affection.',
+    materials: '18K gold-plated brass with matching crystal accents. Includes gift box and care card.',
+    care: 'Store in the provided gift box. Avoid moisture and harsh chemicals. Polish gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'heirloom-1', ratio: '4x3', width: 800, query: 'gold jewelry gift set necklace earrings elegant dark background' },
+      { id: 'heirloom-2', ratio: '4x3', width: 800, query: 'gold jewelry set in gift box elegant presentation' },
+      { id: 'heirloom-3', ratio: '4x3', width: 800, query: 'matching gold necklace and earrings set worn on model' },
+    ],
+  },
+  {
+    id: 'luna-pearl-huggies',
+    name: 'Luna Pearl Huggies',
+    category: 'huggies',
+    price: 48,
+    rating: 4.6,
+    reviewCount: 98,
+    description: 'Petite huggie hoops adorned with a single freshwater pearl. Understated romance for the modern muse.',
+    materials: '18K gold-plated brass, freshwater pearl. Hinge closure. Diameter: 12mm.',
+    care: 'Pearls are delicate — avoid direct contact with perfumes and cosmetics. Wipe gently after wear.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'luna-1', ratio: '4x3', width: 800, query: 'gold huggie earrings with pearl on ear close up elegant' },
+      { id: 'luna-2', ratio: '4x3', width: 800, query: 'pearl huggie earrings product shot dark background' },
+      { id: 'luna-3', ratio: '4x3', width: 800, query: 'small gold pearl hoop earrings jewelry elegant' },
+    ],
+  },
+  {
+    id: 'soleil-chain-necklace',
+    name: 'Soleil Chain Necklace',
+    category: 'necklaces',
+    price: 56,
+    rating: 4.7,
+    reviewCount: 112,
+    description: 'A luminous gold chain necklace with a sunburst pendant. Layer it or wear solo — either way, it radiates quiet confidence.',
+    materials: '18K gold-plated brass. Chain length: 18 inches with 2-inch extender.',
+    care: 'Store flat or hanging. Avoid exposure to water and chemicals. Clean with a soft jewelry cloth.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express 2–4 days.',
+    returns: '30-day hassle-free returns. Items must be unworn with original packaging.',
+    images: [
+      { id: 'soleil-1', ratio: '4x3', width: 800, query: 'gold sunburst pendant necklace on neck elegant jewelry' },
+      { id: 'soleil-2', ratio: '4x3', width: 800, query: 'gold chain necklace product shot dark background' },
+      { id: 'soleil-3', ratio: '4x3', width: 800, query: 'sunburst gold pendant necklace close up jewelry' },
+    ],
+  },
+];
+
+export const getProductById = (id) => products.find((p) => p.id === id);
+
+export const getRelatedProducts = (id, limit = 4) => {
+  const product = getProductById(id);
+  if (!product) return [];
+  return products
+    .filter((p) => p.id !== id && p.category === product.category)
+    .slice(0, limit);
+};
