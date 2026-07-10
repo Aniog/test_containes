@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, Minus, Plus, ChevronDown, ChevronUp, ArrowLeft } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { getProductBySlug, getRelatedProducts } from '../data/products';
 import { useCart } from '../context/CartContext';
 import ProductCard from '../components/product/ProductCard';
@@ -42,8 +40,6 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [activeImg, setActiveImg] = useState(0);
   const [added, setAdded] = useState(false);
-  const containerRef = useRef(null);
-  const relatedRef = useRef(null);
 
   useEffect(() => {
     if (product) {
@@ -51,14 +47,6 @@ export default function ProductDetail() {
       setQuantity(1);
       setActiveImg(0);
     }
-  }, [product]);
-
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      if (containerRef.current) ImageHelper.loadImages(strkImgConfig, containerRef.current);
-      if (relatedRef.current) ImageHelper.loadImages(strkImgConfig, relatedRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
   }, [product]);
 
   if (!product) {
@@ -74,12 +62,7 @@ export default function ProductDetail() {
     );
   }
 
-  const images = [
-    { id: product.imgId, query: `[${product.descId}] [${product.titleId}] gold jewelry` },
-    { id: product.imgId2, query: `[${product.titleId}] worn jewelry model close up` },
-    { id: `${product.imgId}-3`, query: `[${product.titleId}] gold jewelry detail texture` },
-    { id: `${product.imgId}-4`, query: `[${product.titleId}] gold jewelry flat lay` },
-  ];
+  const images = product.images || [product.image, product.image2].filter(Boolean);
 
   const handleAddToCart = () => {
     addItem(product, selectedVariant, quantity);
@@ -88,7 +71,7 @@ export default function ProductDetail() {
   };
 
   return (
-    <div className="bg-velmora-cream min-h-screen pt-16 md:pt-20" ref={containerRef}>
+    <div className="bg-velmora-cream min-h-screen pt-16 md:pt-20">
       {/* Breadcrumb */}
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-5">
         <div className="flex items-center gap-2">
@@ -108,20 +91,16 @@ export default function ProductDetail() {
           <div className="flex flex-col-reverse md:flex-row gap-3 md:gap-4">
             {/* Thumbnails */}
             <div className="flex flex-row md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-visible scrollbar-hide">
-              {images.map((img, i) => (
+              {images.map((imgUrl, i) => (
                 <button
-                  key={img.id}
+                  key={i}
                   onClick={() => setActiveImg(i)}
                   className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 overflow-hidden border-2 transition-colors duration-200 ${
                     activeImg === i ? 'border-velmora-gold' : 'border-transparent'
                   }`}
                 >
                   <img
-                    data-strk-img-id={`thumb-${img.id}`}
-                    data-strk-img={img.query}
-                    data-strk-img-ratio="1x1"
-                    data-strk-img-width="80"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    src={imgUrl}
                     alt={`${product.name} view ${i + 1}`}
                     className="w-full h-full object-cover"
                   />
@@ -130,20 +109,15 @@ export default function ProductDetail() {
             </div>
 
             {/* Main image */}
-            <div className="flex-1 overflow-hidden bg-velmora-linen" style={{ aspectRatio: '3/4' }}>
-              {images.map((img, i) => (
+            <div className="flex-1 overflow-hidden bg-velmora-linen relative" style={{ aspectRatio: '3/4' }}>
+              {images.map((imgUrl, i) => (
                 <img
-                  key={img.id}
-                  data-strk-img-id={img.id}
-                  data-strk-img={img.query}
-                  data-strk-img-ratio="3x4"
-                  data-strk-img-width="800"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  key={i}
+                  src={imgUrl}
                   alt={`${product.name} view ${i + 1}`}
                   className={`w-full h-full object-cover transition-opacity duration-400 ${
-                    activeImg === i ? 'opacity-100' : 'opacity-0 absolute'
+                    activeImg === i ? 'opacity-100' : 'opacity-0 absolute inset-0'
                   }`}
-                  style={activeImg !== i ? { position: 'absolute', pointerEvents: 'none' } : {}}
                 />
               ))}
             </div>

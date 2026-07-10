@@ -27,12 +27,7 @@ export default function ProductCard({ product }) {
       <div className="relative overflow-hidden bg-velmora-linen aspect-[3/4] mb-4">
         {/* Primary image */}
         <img
-          id={product.imgId}
-          data-strk-img-id={product.imgId}
-          data-strk-img={`[${product.descId}] [${product.titleId}] gold jewelry`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+          src={product.image}
           alt={product.name}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-400 ${
             hovered ? 'opacity-0' : 'opacity-100'
@@ -40,12 +35,7 @@ export default function ProductCard({ product }) {
         />
         {/* Secondary image (hover) */}
         <img
-          id={product.imgId2}
-          data-strk-img-id={product.imgId2}
-          data-strk-img={`[${product.titleId}] worn jewelry model`}
-          data-strk-img-ratio="3x4"
-          data-strk-img-width="600"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+          src={product.image2}
           alt={`${product.name} alternate view`}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-400 ${
             hovered ? 'opacity-100' : 'opacity-0'
