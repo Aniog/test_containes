@@ -3,65 +3,9 @@ import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { Calendar, Clock, ArrowRight, Bookmark, TrendingUp } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
+import { articles, CATEGORIES } from '@/data/articles';
 
-const categories = ['All', 'News', 'Reviews', 'Guides', 'Deals'];
-
-const articles = [
-  {
-    id: 'art-1', category: 'News',
-    title: 'Steam Summer Sale 2026 Kicks Off with Record-Breaking Discounts',
-    excerpt: 'Valve has launched its annual Summer Sale featuring over 14,000 discounted titles, with some games hitting all-time low prices.',
-    author: 'Alex Chen', date: '2026-07-01', readTime: '3 min',
-    featured: true,
-    titleId: 'art-1-title', descId: 'art-1-desc',
-    imgId: 'art-img-1-aa1bb2',
-  },
-  {
-    id: 'art-2', category: 'Reviews',
-    title: 'Elden Ring: Shadow of the Erdtree DLC — A Masterpiece Expanded',
-    excerpt: 'FromSoftware delivers yet another punishing yet rewarding experience in this massive expansion to the award-winning Elden Ring.',
-    author: 'Sarah Kim', date: '2026-06-28', readTime: '8 min',
-    featured: false,
-    titleId: 'art-2-title', descId: 'art-2-desc',
-    imgId: 'art-img-2-cc3dd4',
-  },
-  {
-    id: 'art-3', category: 'News',
-    title: 'Xbox Game Pass Adds 15 New Titles This Month Including Day-One Releases',
-    excerpt: 'Microsoft continues to bolster its subscription service with a strong lineup of first-party and third-party titles.',
-    author: 'Mike Torres', date: '2026-06-30', readTime: '4 min',
-    featured: false,
-    titleId: 'art-3-title', descId: 'art-3-desc',
-    imgId: 'art-img-3-ee5ff6',
-  },
-  {
-    id: 'art-4', category: 'Guides',
-    title: 'How to Get the Most Out of PlayStation Plus Premium in 2026',
-    excerpt: 'A comprehensive guide to maximizing your PlayStation Plus Premium subscription with tips on cloud streaming, game trials, and exclusive perks.',
-    author: 'Lisa Park', date: '2026-06-25', readTime: '6 min',
-    featured: false,
-    titleId: 'art-4-title', descId: 'art-4-desc',
-    imgId: 'art-img-4-gg7hh8',
-  },
-  {
-    id: 'art-5', category: 'News',
-    title: 'Nintendo Direct July 2026: Every Game Announced',
-    excerpt: 'Nintendo surprised fans with a packed Direct presentation revealing new Switch 2 exclusives and beloved franchise returns.',
-    author: 'Tom Nakamura', date: '2026-07-01', readTime: '5 min',
-    featured: false,
-    titleId: 'art-5-title', descId: 'art-5-desc',
-    imgId: 'art-img-5-ii9jj0',
-  },
-  {
-    id: 'art-6', category: 'Deals',
-    title: 'Epic Games Free Games This Week: Two AAA Titles Up for Grabs',
-    excerpt: 'Epic continues its generous free game program with two highly-rated titles available for free claim this week only.',
-    author: 'Emma Wilson', date: '2026-06-29', readTime: '2 min',
-    featured: false,
-    titleId: 'art-6-title', descId: 'art-6-desc',
-    imgId: 'art-img-6-kk1ll2',
-  },
-];
+const categories = CATEGORIES.filter((c) => c !== 'Features');
 
 const categoryColors = {
   News: 'bg-game-cyan/20 text-game-cyan',

@@ -3,6 +3,7 @@ import Navbar from './components/nav/Navbar';
 import Hero from './components/hero/Hero';
 import DealsSection from './components/deals/DealsSection';
 import NewsSection from './components/news/NewsSection';
+import ArticleSection from './components/articles/ArticleSection';
 import StoreSection from './components/store/StoreSection';
 import Footer from './components/footer/Footer';
 import './App.css';
@@ -16,6 +17,7 @@ function App() {
       <Hero />
       <DealsSection />
       <NewsSection />
+      <ArticleSection />
       <StoreSection onCartUpdate={setCartCount} />
       <Footer />
     </div>
