@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import {
   Plus, Pencil, Trash2, Eye, EyeOff, Star, StarOff,
   Loader2, X, Save, ChevronLeft, Search, Filter, Database, Gamepad2,
+  Table2, LayoutList, Hash, Type, ToggleLeft, List, Calendar, Clock,
+  CheckCircle2, AlertCircle,
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import {
@@ -17,6 +19,238 @@ const CATEGORY_COLORS = {
   Deals:    'bg-red-500/20 text-red-400 border-red-500/30',
   Features: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
 };
+
+// ── Schema definition (mirrors Article.schema.json) ──────────────────────────
+const SCHEMA_FIELDS = [
+  {
+    name: 'title',
+    type: 'string',
+    format: null,
+    constraints: 'minLength: 1 · maxLength: 200',
+    description: 'Article headline',
+    required: true,
+    default: null,
+  },
+  {
+    name: 'category',
+    type: 'string',
+    format: 'enum',
+    constraints: 'News · Reviews · Guides · Deals · Features',
+    description: 'Article category',
+    required: true,
+    default: null,
+  },
+  {
+    name: 'excerpt',
+    type: 'string',
+    format: null,
+    constraints: 'minLength: 1 · maxLength: 500',
+    description: 'Short summary shown in cards (1–2 sentences)',
+    required: true,
+    default: null,
+  },
+  {
+    name: 'body',
+    type: 'string',
+    format: null,
+    constraints: 'minLength: 1',
+    description: 'Full article body text',
+    required: true,
+    default: null,
+  },
+  {
+    name: 'author',
+    type: 'string',
+    format: null,
+    constraints: 'minLength: 1 · maxLength: 100',
+    description: 'Author display name',
+    required: true,
+    default: null,
+  },
+  {
+    name: 'date',
+    type: 'string',
+    format: 'date',
+    constraints: 'ISO 8601 date',
+    description: 'Publication date',
+    required: true,
+    default: null,
+  },
+  {
+    name: 'read_time',
+    type: 'string',
+    format: null,
+    constraints: 'maxLength: 20',
+    description: "Estimated read time, e.g. '5 min'",
+    required: false,
+    default: null,
+  },
+  {
+    name: 'tags',
+    type: 'array',
+    format: 'string[]',
+    constraints: 'items: string',
+    description: 'List of topic tags',
+    required: false,
+    default: null,
+  },
+  {
+    name: 'featured',
+    type: 'boolean',
+    format: null,
+    constraints: null,
+    description: 'Whether this article appears in the hero/featured slot',
+    required: false,
+    default: 'false',
+  },
+  {
+    name: 'published',
+    type: 'boolean',
+    format: null,
+    constraints: null,
+    description: 'Whether the article is visible on the public site',
+    required: false,
+    default: 'true',
+  },
+];
+
+const TYPE_STYLES = {
+  string:  { cls: 'bg-blue-500/15 text-blue-400 border-blue-500/25',   icon: Type },
+  boolean: { cls: 'bg-purple-500/15 text-purple-400 border-purple-500/25', icon: ToggleLeft },
+  array:   { cls: 'bg-amber-500/15 text-amber-400 border-amber-500/25',  icon: List },
+};
+
+const FORMAT_STYLES = {
+  date:    { cls: 'bg-cyan-500/15 text-cyan-400 border-cyan-500/25',    icon: Calendar },
+  enum:    { cls: 'bg-emerald-500/15 text-emerald-400 border-emerald-500/25', icon: Hash },
+  'string[]': { cls: 'bg-amber-500/15 text-amber-400 border-amber-500/25', icon: List },
+};
+
+// ── Schema Table Component ────────────────────────────────────────────────────
+function SchemaTable() {
+  return (
+    <div>
+      {/* Table info header */}
+      <div className="flex flex-wrap items-center gap-3 mb-6">
+        <div className="flex items-center gap-2 bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5">
+          <Database className="w-4 h-4 text-purple-400" />
+          <span className="text-white text-sm font-semibold">Articles</span>
+        </div>
+        <div className="flex items-center gap-2 bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5">
+          <Hash className="w-3.5 h-3.5 text-gray-500" />
+          <span className="text-gray-400 text-sm">{SCHEMA_FIELDS.length} fields</span>
+        </div>
+        <div className="flex items-center gap-2 bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5">
+          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+          <span className="text-gray-400 text-sm">
+            {SCHEMA_FIELDS.filter((f) => f.required).length} required
+          </span>
+        </div>
+        <div className="flex items-center gap-2 bg-gray-900 border border-gray-800 rounded-lg px-4 py-2.5">
+          <AlertCircle className="w-3.5 h-3.5 text-gray-500" />
+          <span className="text-gray-400 text-sm">
+            {SCHEMA_FIELDS.filter((f) => !f.required).length} optional
+          </span>
+        </div>
+      </div>
+
+      {/* Schema table */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+        {/* Header row */}
+        <div className="hidden md:grid grid-cols-[180px_110px_110px_1fr_90px_90px] gap-4 px-5 py-3 border-b border-gray-800 bg-gray-900/80">
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Field</span>
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Type</span>
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Format</span>
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Constraints / Values</span>
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Required</span>
+          <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Default</span>
+        </div>
+
+        {/* Field rows */}
+        <div className="divide-y divide-gray-800/70">
+          {SCHEMA_FIELDS.map((field) => {
+            const typeStyle = TYPE_STYLES[field.type] ?? { cls: 'bg-gray-700 text-gray-300 border-gray-600', icon: Type };
+            const TypeIcon = typeStyle.icon;
+            const fmtStyle = field.format ? (FORMAT_STYLES[field.format] ?? { cls: 'bg-gray-700 text-gray-300 border-gray-600', icon: Hash }) : null;
+            const FmtIcon = fmtStyle?.icon;
+
+            return (
+              <div
+                key={field.name}
+                className="grid grid-cols-1 md:grid-cols-[180px_110px_110px_1fr_90px_90px] gap-2 md:gap-4 px-5 py-4 hover:bg-gray-800/40 transition-colors items-start md:items-center"
+              >
+                {/* Field name */}
+                <div className="flex items-center gap-2 min-w-0">
+                  <code className="text-cyan-300 text-sm font-mono font-semibold">{field.name}</code>
+                </div>
+
+                {/* Type */}
+                <div>
+                  <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md border ${typeStyle.cls}`}>
+                    <TypeIcon className="w-3 h-3" />
+                    {field.type}
+                  </span>
+                </div>
+
+                {/* Format */}
+                <div>
+                  {fmtStyle ? (
+                    <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded-md border ${fmtStyle.cls}`}>
+                      <FmtIcon className="w-3 h-3" />
+                      {field.format}
+                    </span>
+                  ) : (
+                    <span className="text-gray-700 text-xs">—</span>
+                  )}
+                </div>
+
+                {/* Constraints */}
+                <div className="min-w-0">
+                  {field.constraints ? (
+                    <span className="text-gray-400 text-xs leading-relaxed break-words">{field.constraints}</span>
+                  ) : (
+                    <span className="text-gray-700 text-xs">—</span>
+                  )}
+                  {field.description && (
+                    <p className="text-gray-600 text-xs mt-0.5 italic">{field.description}</p>
+                  )}
+                </div>
+
+                {/* Required */}
+                <div>
+                  {field.required ? (
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-md">
+                      <CheckCircle2 className="w-3 h-3" /> Yes
+                    </span>
+                  ) : (
+                    <span className="text-xs text-gray-600">Optional</span>
+                  )}
+                </div>
+
+                {/* Default */}
+                <div>
+                  {field.default !== null ? (
+                    <code className="text-amber-400 text-xs font-mono bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
+                      {field.default}
+                    </code>
+                  ) : (
+                    <span className="text-gray-700 text-xs">—</span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* System fields note */}
+      <div className="mt-4 flex items-start gap-2 text-xs text-gray-600 px-1">
+        <Hash className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+        <span>System fields <code className="text-gray-500 font-mono">id</code>, <code className="text-gray-500 font-mono">form_id</code>, <code className="text-gray-500 font-mono">created_at</code>, and <code className="text-gray-500 font-mono">updated_at</code> are managed automatically by the database.</span>
+      </div>
+    </div>
+  );
+}
 
 const EMPTY_FORM = {
   title: '',
@@ -255,6 +489,7 @@ export default function ArticleAdminPage() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [filterCat, setFilterCat] = useState('All');
+  const [activeTab, setActiveTab] = useState('records'); // 'records' | 'schema'
 
   const [formTarget, setFormTarget] = useState(null); // null = closed, 'new' = new, row = edit
   const [deleteTarget, setDeleteTarget] = useState(null);
@@ -392,11 +627,51 @@ export default function ArticleAdminPage() {
             </button>
           </div>
         </div>
+
+        {/* Tab bar */}
+        <div className="max-w-7xl mx-auto flex items-center gap-1 border-t border-gray-800/60">
+          <button
+            onClick={() => setActiveTab('records')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+              activeTab === 'records'
+                ? 'border-purple-500 text-white'
+                : 'border-transparent text-gray-500 hover:text-gray-300'
+            }`}
+          >
+            <LayoutList className="w-4 h-4" />
+            Records
+            <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
+              activeTab === 'records' ? 'bg-purple-500/20 text-purple-300' : 'bg-gray-800 text-gray-500'
+            }`}>
+              {rows.length}
+            </span>
+          </button>
+          <button
+            onClick={() => setActiveTab('schema')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm font-medium border-b-2 transition-colors ${
+              activeTab === 'schema'
+                ? 'border-purple-500 text-white'
+                : 'border-transparent text-gray-500 hover:text-gray-300'
+            }`}
+          >
+            <Table2 className="w-4 h-4" />
+            Schema
+            <span className={`text-xs px-1.5 py-0.5 rounded-full font-semibold ${
+              activeTab === 'schema' ? 'bg-purple-500/20 text-purple-300' : 'bg-gray-800 text-gray-500'
+            }`}>
+              {SCHEMA_FIELDS.length}
+            </span>
+          </button>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8 py-8">
-        {/* Filters */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-6">
+        {activeTab === 'schema' ? (
+          <SchemaTable />
+        ) : (
+          <>
+            {/* Filters */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
             <input
@@ -526,6 +801,8 @@ export default function ArticleAdminPage() {
               })}
             </div>
           </div>
+        )}
+          </>
         )}
       </div>
 
