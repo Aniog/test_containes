@@ -33,7 +33,7 @@ export default {
       },
       letterSpacing: {
         editorial: "0.18em",
-        wider2: "0.22em",
+        eyebrow: "0.22em",
       },
       boxShadow: {
         soft: "0 4px 30px rgba(42,31,26,0.06)",
