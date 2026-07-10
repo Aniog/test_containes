@@ -1,0 +1,142 @@
+export const products = [
+  {
+    id: "vivid-aura-jewels",
+    name: "Vivid Aura Jewels",
+    category: "earrings",
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    shortDescription: "A delicate ear cuff adorned with a faceted crystal accent, catching light with every movement.",
+    description:
+      "The Vivid Aura Jewels ear cuff is designed for the woman who moves through the world with intention. A single faceted crystal sits at the curve of the cuff, refracting warm light in every direction. Wear it alone for understated elegance, or stack with our Amber Lace Earrings for a curated ear.",
+    materials: "18K gold plated brass, hypoallergenic, nickel-free. Crystal accent: AAA-grade cubic zirconia.",
+    care: "Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish gently with a soft cloth.",
+    shipping: "Free worldwide shipping on all orders. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns.",
+    variants: ["Gold Tone", "Silver Tone"],
+    tags: ["bestseller", "ear cuff", "crystal"],
+    imgId: "vivid-aura-jewels-main-a1b2c3",
+    hoverImgId: "vivid-aura-jewels-hover-a1b2c4",
+    cartImgId: "vivid-aura-jewels-cart-a1b2c5",
+    titleId: "product-vivid-aura-title",
+    descId: "product-vivid-aura-desc",
+    images: [
+      { id: "vivid-aura-img-1-d4e5f6", alt: "Vivid Aura Jewels ear cuff front view" },
+      { id: "vivid-aura-img-2-g7h8i9", alt: "Vivid Aura Jewels ear cuff worn on model" },
+      { id: "vivid-aura-img-3-j1k2l3", alt: "Vivid Aura Jewels ear cuff detail" },
+    ],
+  },
+  {
+    id: "majestic-flora-nectar",
+    name: "Majestic Flora Nectar",
+    category: "necklaces",
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    shortDescription: "A multicolor floral crystal pendant necklace that blooms at the collarbone.",
+    description:
+      "The Majestic Flora Nectar necklace is a wearable garden — a cluster of hand-set multicolor crystals arranged in a delicate floral motif. The pendant hangs from a fine 18K gold-plated chain, sitting perfectly at the collarbone. A piece that transitions effortlessly from morning coffee to evening cocktails.",
+    materials: "18K gold plated sterling silver, hypoallergenic. Crystals: hand-set multicolor cubic zirconia. Chain length: 16\" + 2\" extender.",
+    care: "Avoid contact with water, perfume, and lotions. Store flat in the provided pouch. Do not tug on the pendant.",
+    shipping: "Free worldwide shipping on all orders. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns.",
+    variants: ["Gold Tone", "Silver Tone"],
+    tags: ["bestseller", "necklace", "floral", "crystal"],
+    imgId: "majestic-flora-nectar-main-m4n5o6",
+    hoverImgId: "majestic-flora-nectar-hover-m4n5o7",
+    cartImgId: "majestic-flora-nectar-cart-m4n5o8",
+    titleId: "product-majestic-flora-title",
+    descId: "product-majestic-flora-desc",
+    images: [
+      { id: "majestic-flora-img-1-p7q8r9", alt: "Majestic Flora Nectar necklace flat lay" },
+      { id: "majestic-flora-img-2-s1t2u3", alt: "Majestic Flora Nectar necklace worn on model" },
+      { id: "majestic-flora-img-3-v4w5x6", alt: "Majestic Flora Nectar necklace pendant detail" },
+    ],
+  },
+  {
+    id: "golden-sphere-huggies",
+    name: "Golden Sphere Huggies",
+    category: "huggies",
+    price: 38,
+    rating: 4.7,
+    reviewCount: 203,
+    shortDescription: "Chunky gold dome huggie earrings that hug the lobe with sculptural confidence.",
+    description:
+      "The Golden Sphere Huggies are the everyday earring you'll reach for again and again. A bold dome silhouette in polished 18K gold plate hugs the earlobe with a satisfying weight. Minimal, architectural, and endlessly wearable — from desk to dinner.",
+    materials: "18K gold plated brass, hypoallergenic, nickel-free. Hinge closure. Inner diameter: 10mm.",
+    care: "Avoid contact with water, perfume, and lotions. Store in the provided pouch. Polish with a soft cloth to maintain shine.",
+    shipping: "Free worldwide shipping on all orders. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns.",
+    variants: ["Gold Tone", "Silver Tone", "Rose Gold Tone"],
+    tags: ["bestseller", "huggies", "everyday"],
+    imgId: "golden-sphere-huggies-main-y7z8a9",
+    hoverImgId: "golden-sphere-huggies-hover-y7z8b0",
+    cartImgId: "golden-sphere-huggies-cart-y7z8b1",
+    titleId: "product-golden-sphere-title",
+    descId: "product-golden-sphere-desc",
+    images: [
+      { id: "golden-sphere-img-1-b1c2d3", alt: "Golden Sphere Huggies front view" },
+      { id: "golden-sphere-img-2-e4f5g6", alt: "Golden Sphere Huggies worn on model ear" },
+      { id: "golden-sphere-img-3-h7i8j9", alt: "Golden Sphere Huggies pair detail" },
+    ],
+  },
+  {
+    id: "amber-lace-earrings",
+    name: "Amber Lace Earrings",
+    category: "earrings",
+    price: 54,
+    rating: 4.8,
+    reviewCount: 67,
+    shortDescription: "Textured gold filigree drop earrings with intricate lace-like detailing.",
+    description:
+      "The Amber Lace Earrings are a love letter to traditional goldsmithing. Intricate filigree work creates a lace-like texture that catches light beautifully, while the drop silhouette adds graceful movement. A statement piece that feels both timeless and contemporary.",
+    materials: "18K gold plated brass, hypoallergenic, nickel-free. French wire closure. Drop length: 35mm.",
+    care: "Avoid contact with water, perfume, and lotions. Store hanging or flat in the provided pouch. Handle with care to preserve filigree detail.",
+    shipping: "Free worldwide shipping on all orders. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns.",
+    variants: ["Gold Tone", "Silver Tone"],
+    tags: ["bestseller", "earrings", "filigree", "drop"],
+    imgId: "amber-lace-earrings-main-k1l2m3",
+    hoverImgId: "amber-lace-earrings-hover-k1l2m4",
+    cartImgId: "amber-lace-earrings-cart-k1l2m5",
+    titleId: "product-amber-lace-title",
+    descId: "product-amber-lace-desc",
+    images: [
+      { id: "amber-lace-img-1-n4o5p6", alt: "Amber Lace Earrings flat lay" },
+      { id: "amber-lace-img-2-q7r8s9", alt: "Amber Lace Earrings worn on model" },
+      { id: "amber-lace-img-3-t1u2v3", alt: "Amber Lace Earrings filigree detail" },
+    ],
+  },
+  {
+    id: "royal-heirloom-set",
+    name: "Royal Heirloom Set",
+    category: "sets",
+    price: 95,
+    rating: 5.0,
+    reviewCount: 41,
+    shortDescription: "A gift-boxed earring and necklace set — the perfect expression of considered luxury.",
+    description:
+      "The Royal Heirloom Set pairs our most beloved earring and necklace silhouettes in a curated gift box. Wrapped in our signature cream tissue and sealed with a Velmora wax stamp, this set arrives ready to gift — or to keep. Because sometimes the best gift is the one you give yourself.",
+    materials: "18K gold plated brass and sterling silver, hypoallergenic, nickel-free. Includes matching earrings and necklace. Presented in Velmora gift box.",
+    care: "Store each piece separately in the provided pouches. Avoid contact with water, perfume, and lotions.",
+    shipping: "Free worldwide shipping on all orders. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns. Gift wrapping included.",
+    variants: ["Gold Tone", "Silver Tone"],
+    tags: ["gift", "set", "bestseller"],
+    imgId: "royal-heirloom-set-main-w4x5y6",
+    hoverImgId: "royal-heirloom-set-hover-w4x5y7",
+    cartImgId: "royal-heirloom-set-cart-w4x5y8",
+    titleId: "product-royal-heirloom-title",
+    descId: "product-royal-heirloom-desc",
+    images: [
+      { id: "royal-heirloom-img-1-z7a8b9", alt: "Royal Heirloom Set gift box" },
+      { id: "royal-heirloom-img-2-c1d2e3", alt: "Royal Heirloom Set pieces laid out" },
+      { id: "royal-heirloom-img-3-f4g5h6", alt: "Royal Heirloom Set worn on model" },
+    ],
+  },
+];
+
+export const getProductById = (id) => products.find((p) => p.id === id);
+
+export const getProductsByCategory = (category) =>
+  category === "all" ? products : products.filter((p) => p.category === category);
+
+export const getBestsellers = () => products.filter((p) => p.tags.includes("bestseller"));
+
+export const getRelatedProducts = (id, limit = 4) =>
+  products.filter((p) => p.id !== id).slice(0, limit);
