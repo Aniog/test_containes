@@ -116,7 +116,7 @@ const Home = () => {
           {[1, 2, 3, 4, 5].map((item) => (
             <div key={item} className="relative h-[420px] w-[260px] flex-shrink-0 overflow-hidden rounded-2xl bg-background">
               <img
-                src={`https://images.unsplash.com/photo-${['1611591437281-460bfbe1220a', '1599643478518-a784e5dc4c8f', '1630019852942-f89202989a59', '1535632066927-ab7c11ab9f6a', '1602173574767-37ac01994b2a'][item - 1]}?auto=format&fit=crop&w=800&q=80`}
+                src={`https://images.unsplash.com/photo-${['1611591437281-460bfbe1220a', '1599643478518-a784e5dc4c8f', '1630019852942-f89202989a59', '1602173574767-37ac01994b2a', '1602173574767-37ac01994b2a'][item - 1]}?auto=format&fit=crop&w=800&q=80`}
                 alt="Community style"
                 className="h-full w-full object-cover"
               />

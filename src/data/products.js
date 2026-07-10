@@ -11,8 +11,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfume, lotions, and water. Clean with a soft polishing cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns. Ships in 2-4 business days.',
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f6a?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1200&q=80',
+      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"%3E%3Crect width="400" height="400" fill="%23d4af37"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-family="serif" font-size="20"%3EVivid Aura Jewels%3C/text%3E%3C/svg%3E',
     ],
     variants: ['Gold', 'Silver'],
     bestseller: true,
@@ -65,7 +65,7 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfume, lotions, and water. Clean with a soft polishing cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns. Ships in 2-4 business days.',
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f6a?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1200&q=80',
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80',
     ],
     variants: ['Gold', 'Silver'],
@@ -92,7 +92,7 @@ export const products = [
 ];
 
 export const categories = [
-  { name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c11ab9f6a?auto=format&fit=crop&w=1200&q=80' },
+  { name: 'Earrings', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=1200&q=80' },
   { name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=80' },
   { name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?auto=format&fit=crop&w=1200&q=80' },
 ];
