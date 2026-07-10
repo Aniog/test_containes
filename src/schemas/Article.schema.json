@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Articles",
+  "type": "object",
+  "properties": {
+    "category": {
+      "type": "string",
+      "enum": ["News", "Reviews", "Guides", "Deals", "Features"],
+      "description": "Article category"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Article headline"
+    },
+    "excerpt": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Short summary shown in cards (1-2 sentences)"
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full article body text"
+    },
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Author display name"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Publication date (ISO 8601)"
+    },
+    "read_time": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Estimated read time, e.g. '5 min'"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this article appears in the hero/featured slot"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of topic tags"
+    },
+    "published": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the article is visible on the public site"
+    }
+  },
+  "required": ["title", "category", "excerpt", "body", "author", "date"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read":   { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

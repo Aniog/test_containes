@@ -1,11 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
-import { Clock, ArrowRight, Tag, User, ChevronDown } from 'lucide-react';
+import { useEffect, useState, useCallback } from 'react';
+import { Clock, ArrowRight, Tag, User, ChevronDown, Loader2, Gamepad2 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
-import { articles, CATEGORIES } from '@/data/articles';
+import { fetchArticles, CATEGORIES } from '@/api/articles';
 
 const PAGE_SIZE = 6;
+
+// Normalise a DB row into the shape the UI expects
+function normaliseArticle(row) {
+  const d = row.data ?? {};
+  const id = String(row.id);
+  return {
+    id,
+    category: d.category ?? 'News',
+    title: d.title ?? '',
+    excerpt: d.excerpt ?? '',
+    body: d.body ?? '',
+    author: d.author ?? '',
+    date: d.date ?? new Date().toISOString().slice(0, 10),
+    readTime: d.read_time ?? '',
+    featured: d.featured ?? false,
+    tags: Array.isArray(d.tags) ? d.tags : [],
+  };
+}
 
 const categoryColors = {
   News:     'bg-game-cyan/20 text-game-cyan border-game-cyan/30',
@@ -15,6 +31,23 @@ const categoryColors = {
   Features: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
 };
 
+const categoryGradients = {
+  News:     'from-cyan-900/60 via-slate-900 to-slate-950',
+  Reviews:  'from-purple-900/60 via-slate-900 to-slate-950',
+  Guides:   'from-amber-900/60 via-slate-900 to-slate-950',
+  Deals:    'from-red-900/60 via-slate-900 to-slate-950',
+  Features: 'from-emerald-900/60 via-slate-900 to-slate-950',
+};
+
+function ArticleCoverPlaceholder({ category, className = '' }) {
+  const gradient = categoryGradients[category] ?? 'from-slate-800 via-slate-900 to-slate-950';
+  return (
+    <div className={`w-full h-full bg-gradient-to-br ${gradient} flex items-center justify-center ${className}`}>
+      <Gamepad2 className="w-10 h-10 text-white/10" />
+    </div>
+  );
+}
+
 // ── Hero Article ─────────────────────────────────────────────────────────────
 function HeroArticle({ article, onSelect }) {
   return (
@@ -23,15 +56,7 @@ function HeroArticle({ article, onSelect }) {
       onClick={() => onSelect(article)}
     >
       <div className="relative h-72 md:h-96 overflow-hidden">
-        <img
-          alt={article.title}
-          data-strk-img-id={article.imgId}
-          data-strk-img={`[${article.descId}] [${article.titleId}]`}
-          data-strk-img-ratio="16x9"
-          data-strk-img-width="1200"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 bg-game-elevated"
-        />
+        <ArticleCoverPlaceholder category={article.category} className="group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-game-bg via-game-bg/60 to-transparent" />
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
@@ -73,24 +98,16 @@ function ArticleCard({ article, onSelect }) {
       onClick={() => onSelect(article)}
     >
       <div className="relative overflow-hidden h-44">
-        <img
-          alt={article.title}
-          data-strk-img-id={article.imgId}
-          data-strk-img={`[${article.descId}] [${article.titleId}]`}
-          data-strk-img-ratio="16x9"
-          data-strk-img-width="600"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 bg-game-elevated"
-        />
+        <ArticleCoverPlaceholder category={article.category} className="group-hover:scale-105 transition-transform duration-300" />
         <span className={`absolute top-3 left-3 text-xs font-bold px-2 py-0.5 rounded-md border ${categoryColors[article.category]}`}>
           {article.category}
         </span>
       </div>
       <div className="p-4 flex flex-col flex-1">
-        <h3 id={article.titleId} className="text-game-text font-bold text-sm leading-snug mb-2 flex-1 group-hover:text-game-cyan transition-colors">
+        <h3 className="text-game-text font-bold text-sm leading-snug mb-2 flex-1 group-hover:text-game-cyan transition-colors">
           {article.title}
         </h3>
-        <p id={article.descId} className="text-game-muted text-xs leading-relaxed mb-3 line-clamp-2">
+        <p className="text-game-muted text-xs leading-relaxed mb-3 line-clamp-2">
           {article.excerpt}
         </p>
         <div className="flex flex-wrap gap-1 mb-3">
@@ -118,15 +135,6 @@ function ArticleCard({ article, onSelect }) {
 
 // ── Article Reader Modal ──────────────────────────────────────────────────────
 function ArticleReader({ article, onClose }) {
-  const readerRef = useRef(null);
-
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, readerRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [article]);
-
   // Render markdown-style bold (**text**) in body
   const renderBody = (text) =>
     text.split('\n\n').map((para, i) => {
@@ -144,18 +152,10 @@ function ArticleReader({ article, onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm overflow-y-auto py-8 px-4">
-      <div ref={readerRef} className="bg-game-card border border-game-border rounded-2xl w-full max-w-2xl shadow-2xl shadow-black/60">
-        {/* Cover image */}
+      <div className="bg-game-card border border-game-border rounded-2xl w-full max-w-2xl shadow-2xl shadow-black/60">
+        {/* Cover */}
         <div className="relative h-56 overflow-hidden rounded-t-2xl">
-          <img
-            alt={article.title}
-            data-strk-img-id={`reader-${article.imgId}`}
-            data-strk-img={`[reader-${article.descId}] [reader-${article.titleId}]`}
-            data-strk-img-ratio="16x9"
-            data-strk-img-width="800"
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-            className="w-full h-full object-cover bg-game-elevated"
-          />
+          <ArticleCoverPlaceholder category={article.category} />
           <div className="absolute inset-0 bg-gradient-to-t from-game-card/90 to-transparent" />
           <button
             onClick={onClose}
@@ -176,7 +176,7 @@ function ArticleReader({ article, onClose }) {
             </span>
           </div>
 
-          <h2 id={`reader-${article.titleId}`} className="text-game-text font-extrabold text-xl md:text-2xl leading-tight mb-3">
+          <h2 className="text-game-text font-extrabold text-xl md:text-2xl leading-tight mb-3">
             {article.title}
           </h2>
 
@@ -187,7 +187,7 @@ function ArticleReader({ article, onClose }) {
             <span>{formatDistanceToNow(new Date(article.date), { addSuffix: true })}</span>
           </div>
 
-          <p id={`reader-${article.descId}`} className="text-game-cyan text-sm font-medium italic mb-5 leading-relaxed">
+          <p className="text-game-cyan text-sm font-medium italic mb-5 leading-relaxed">
             {article.excerpt}
           </p>
 
@@ -211,7 +211,22 @@ export default function ArticleSection() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const containerRef = useRef(null);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadArticles = useCallback(async () => {
+    setLoading(true);
+    try {
+      const rows = await fetchArticles();
+      setArticles(rows.map(normaliseArticle));
+    } catch (err) {
+      console.error('Failed to load articles:', err);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => { loadArticles(); }, [loadArticles]);
 
   const filtered = activeCategory === 'All'
     ? articles
@@ -225,16 +240,9 @@ export default function ArticleSection() {
     setVisibleCount(PAGE_SIZE);
   }, [activeCategory]);
 
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [activeCategory, visibleCount]);
-
   return (
     <>
-      <section id="articles" ref={containerRef} className="py-20 px-4 md:px-8 bg-game-elevated">
+      <section id="articles" className="py-20 px-4 md:px-8 bg-game-elevated">
         <div className="max-w-7xl mx-auto">
 
           {/* Header */}
@@ -247,7 +255,7 @@ export default function ArticleSection() {
               </p>
             </div>
             <div className="text-game-dim text-sm">
-              {filtered.length} article{filtered.length !== 1 ? 's' : ''}
+              {loading ? '…' : `${filtered.length} article${filtered.length !== 1 ? 's' : ''}`}
             </div>
           </div>
 
@@ -268,15 +276,22 @@ export default function ArticleSection() {
             ))}
           </div>
 
+          {/* Loading */}
+          {loading && (
+            <div className="flex justify-center items-center py-20">
+              <Loader2 className="w-8 h-8 text-game-purple animate-spin" />
+            </div>
+          )}
+
           {/* Hero */}
-          {hero && (
+          {!loading && hero && (
             <div className="mb-10">
               <HeroArticle article={hero} onSelect={setSelectedArticle} />
             </div>
           )}
 
           {/* Grid */}
-          {rest.length > 0 && (
+          {!loading && rest.length > 0 && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {rest.map((article) => (
                 <ArticleCard key={article.id} article={article} onSelect={setSelectedArticle} />
@@ -284,8 +299,13 @@ export default function ArticleSection() {
             </div>
           )}
 
+          {/* Empty */}
+          {!loading && filtered.length === 0 && (
+            <div className="text-center py-20 text-game-dim">No articles in this category yet.</div>
+          )}
+
           {/* Load More */}
-          {hasMore && (
+          {!loading && hasMore && (
             <div className="flex justify-center mt-10">
               <button
                 onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}

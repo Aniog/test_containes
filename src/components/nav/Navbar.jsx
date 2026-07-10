@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Gamepad2, Menu, X, ShoppingCart, Search } from 'lucide-react';
+import { Gamepad2, Menu, X, ShoppingCart, Search, LayoutDashboard } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -44,6 +44,13 @@ const Navbar = ({ cartCount = 0 }) => {
             <button className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg border border-game-border text-game-muted hover:text-game-text hover:border-game-purple/60 transition-all duration-200 bg-transparent">
               <Search className="w-4 h-4" />
             </button>
+            <a
+              href="/admin/articles"
+              title="Manage Articles"
+              className="hidden md:flex items-center justify-center w-9 h-9 rounded-lg border border-game-border text-game-muted hover:text-game-text hover:border-game-purple/60 transition-all duration-200"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+            </a>
             <a href="#store" className="relative flex items-center justify-center w-9 h-9 rounded-lg border border-game-border text-game-muted hover:text-game-text hover:border-game-purple/60 transition-all duration-200">
               <ShoppingCart className="w-4 h-4" />
               {cartCount > 0 && (
