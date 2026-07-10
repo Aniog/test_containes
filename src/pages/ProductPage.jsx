@@ -9,7 +9,7 @@ import {
   formatPrice,
   getProductBySlug,
   getRelatedProducts,
-  svgPlaceholder,
+  getStrkImageSrc,
 } from '@/data/storefront'
 import { useCart } from '@/context/CartContext.jsx'
 import useStrkImages from '@/hooks/useStrkImages.jsx'
@@ -50,6 +50,7 @@ function ProductPage() {
 
   const relatedProducts = getRelatedProducts(product.slug)
   const currentGalleryItem = gallery[selectedImage]
+  const featuredImageId = `featured-${currentGalleryItem.imageId}`
   const currentContent = {
     description: product.description,
     materials: `${product.materials} ${product.care}`,
@@ -72,10 +73,10 @@ function ProductPage() {
                 alt={`${product.name} featured image`}
                 className="aspect-[4/5] w-full object-cover"
                 data-strk-img={`[${currentGalleryItem.descId}] [${currentGalleryItem.titleId}]`}
-                data-strk-img-id={`featured-${currentGalleryItem.imageId}`}
+                data-strk-img-id={featuredImageId}
                 data-strk-img-ratio="3x4"
                 data-strk-img-width="1200"
-                src={svgPlaceholder}
+                src={getStrkImageSrc(featuredImageId)}
               />
             </div>
             <div className="grid grid-cols-3 gap-3">
@@ -97,7 +98,7 @@ function ProductPage() {
                     data-strk-img-id={item.imageId}
                     data-strk-img-ratio={index === 1 ? '3x4' : '4x3'}
                     data-strk-img-width="500"
-                    src={svgPlaceholder}
+                    src={getStrkImageSrc(item.imageId)}
                   />
                 </button>
               ))}
