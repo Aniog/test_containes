@@ -1,7 +1,10 @@
-import { useState } from 'react'
-import { Plus, Trash2, MapPin, Calendar, Plane } from 'lucide-react'
-
-const generateId = () => Math.random().toString(36).slice(2, 9)
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { Plus, Trash2, MapPin, Calendar, Plane, Loader2 } from 'lucide-react'
+import {
+  fetchTrips, createTrip, updateTrip, deleteTrip,
+  fetchDays, createDay, updateDay, deleteDay,
+  fetchActivities, createActivity, updateActivity, deleteActivity,
+} from './api/itinerary.js'
 
 const ACTIVITY_TYPES = ['Sightseeing', 'Food', 'Transport', 'Accommodation', 'Activity', 'Other']
 
@@ -14,28 +17,42 @@ const TYPE_COLORS = {
   Other: 'bg-slate-100 text-slate-600',
 }
 
-function ActivityRow({ activity, onRemove, onUpdate }) {
+function useDebounce(fn, delay) {
+  const timer = useRef(null)
+  return useCallback((...args) => {
+    clearTimeout(timer.current)
+    timer.current = setTimeout(() => fn(...args), delay)
+  }, [fn, delay])
+}
+
+function ActivityRow({ activity, onRemove, onUpdate, saving }) {
+  const fields = activity.data ?? {}
+
+  const handleField = (key, value) => {
+    onUpdate(activity, { ...fields, [key]: value })
+  }
+
   return (
     <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100 group">
       <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-2">
         <input
           type="text"
-          value={activity.title}
-          onChange={(e) => onUpdate({ ...activity, title: e.target.value })}
+          defaultValue={fields.title}
+          onBlur={(e) => handleField('title', e.target.value)}
           placeholder="Activity name…"
           className="flex-1 bg-transparent text-sm text-slate-700 placeholder-slate-400 outline-none font-medium"
         />
         <div className="flex items-center gap-2">
           <input
             type="time"
-            value={activity.time}
-            onChange={(e) => onUpdate({ ...activity, time: e.target.value })}
+            defaultValue={fields.time}
+            onBlur={(e) => handleField('time', e.target.value)}
             className="text-xs text-slate-500 bg-transparent outline-none"
           />
           <select
-            value={activity.type}
-            onChange={(e) => onUpdate({ ...activity, type: e.target.value })}
-            className={`text-xs px-2 py-0.5 rounded-full font-medium outline-none border-0 cursor-pointer ${TYPE_COLORS[activity.type]}`}
+            value={fields.type}
+            onChange={(e) => handleField('type', e.target.value)}
+            className={`text-xs px-2 py-0.5 rounded-full font-medium outline-none border-0 cursor-pointer ${TYPE_COLORS[fields.type] ?? TYPE_COLORS.Other}`}
           >
             {ACTIVITY_TYPES.map((t) => (
               <option key={t} value={t}>{t}</option>
@@ -44,8 +61,9 @@ function ActivityRow({ activity, onRemove, onUpdate }) {
         </div>
       </div>
       <button
-        onClick={onRemove}
-        className="p-1 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100"
+        onClick={() => onRemove(activity)}
+        disabled={saving}
+        className="p-1 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-colors opacity-0 group-hover:opacity-100 disabled:opacity-30"
         title="Remove activity"
       >
         <Trash2 size={14} />
@@ -54,34 +72,19 @@ function ActivityRow({ activity, onRemove, onUpdate }) {
   )
 }
 
-function DayCard({ day, dayNumber, onRemove, onUpdate, totalDays }) {
+function DayCard({ day, dayNumber, totalDays, onRemoveDay, onUpdateDayLabel, activities, onAddActivity, onRemoveActivity, onUpdateActivity, saving }) {
   const [newActivityTitle, setNewActivityTitle] = useState('')
+  const fields = day.data ?? {}
 
-  const addActivity = () => {
+  const handleAdd = async () => {
     const title = newActivityTitle.trim()
-    const activity = {
-      id: generateId(),
-      title: title || 'New activity',
-      time: '',
-      type: 'Sightseeing',
-    }
-    onUpdate({ ...day, activities: [...day.activities, activity] })
+    if (!title) return
     setNewActivityTitle('')
-  }
-
-  const removeActivity = (id) => {
-    onUpdate({ ...day, activities: day.activities.filter((a) => a.id !== id) })
-  }
-
-  const updateActivity = (updated) => {
-    onUpdate({
-      ...day,
-      activities: day.activities.map((a) => (a.id === updated.id ? updated : a)),
-    })
+    await onAddActivity(day, title)
   }
 
   const handleKeyDown = (e) => {
-    if (e.key === 'Enter') addActivity()
+    if (e.key === 'Enter') handleAdd()
   }
 
   return (
@@ -93,16 +96,17 @@ function DayCard({ day, dayNumber, onRemove, onUpdate, totalDays }) {
           </div>
           <input
             type="text"
-            value={day.label}
-            onChange={(e) => onUpdate({ ...day, label: e.target.value })}
+            defaultValue={fields.label ?? ''}
+            onBlur={(e) => onUpdateDayLabel(day, e.target.value)}
             placeholder={`Day ${dayNumber}`}
             className="text-base font-semibold text-slate-800 bg-transparent outline-none placeholder-slate-400 w-full"
           />
         </div>
         {totalDays > 1 && (
           <button
-            onClick={onRemove}
-            className="p-1.5 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-colors flex-shrink-0"
+            onClick={() => onRemoveDay(day)}
+            disabled={saving}
+            className="p-1.5 rounded-lg text-slate-300 hover:text-red-400 hover:bg-red-50 transition-colors flex-shrink-0 disabled:opacity-30"
             title="Remove day"
           >
             <Trash2 size={15} />
@@ -111,15 +115,16 @@ function DayCard({ day, dayNumber, onRemove, onUpdate, totalDays }) {
       </div>
 
       <div className="px-5 py-4 space-y-2">
-        {day.activities.length === 0 && (
+        {activities.length === 0 && (
           <p className="text-sm text-slate-400 text-center py-2">No activities yet. Add one below.</p>
         )}
-        {day.activities.map((activity) => (
+        {activities.map((activity) => (
           <ActivityRow
             key={activity.id}
             activity={activity}
-            onRemove={() => removeActivity(activity.id)}
-            onUpdate={updateActivity}
+            onRemove={onRemoveActivity}
+            onUpdate={onUpdateActivity}
+            saving={saving}
           />
         ))}
 
@@ -133,8 +138,9 @@ function DayCard({ day, dayNumber, onRemove, onUpdate, totalDays }) {
             className="flex-1 text-sm text-slate-700 placeholder-slate-400 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 outline-none focus:border-sky-400 transition-colors"
           />
           <button
-            onClick={addActivity}
-            className="flex items-center gap-1 bg-sky-500 hover:bg-sky-600 text-white text-sm font-medium px-3 py-2 rounded-xl transition-colors"
+            onClick={handleAdd}
+            disabled={saving || !newActivityTitle.trim()}
+            className="flex items-center gap-1 bg-sky-500 hover:bg-sky-600 disabled:opacity-50 text-white text-sm font-medium px-3 py-2 rounded-xl transition-colors"
           >
             <Plus size={14} />
             Add
@@ -145,47 +151,157 @@ function DayCard({ day, dayNumber, onRemove, onUpdate, totalDays }) {
   )
 }
 
-const initialDays = [
-  {
-    id: generateId(),
-    label: 'Arrival Day',
-    activities: [
-      { id: generateId(), title: 'Check in to hotel', time: '14:00', type: 'Accommodation' },
-      { id: generateId(), title: 'Explore the neighborhood', time: '17:00', type: 'Sightseeing' },
-      { id: generateId(), title: 'Welcome dinner', time: '19:30', type: 'Food' },
-    ],
-  },
-  {
-    id: generateId(),
-    label: 'City Tour',
-    activities: [
-      { id: generateId(), title: 'Museum visit', time: '10:00', type: 'Sightseeing' },
-      { id: generateId(), title: 'Lunch at local café', time: '13:00', type: 'Food' },
-    ],
-  },
-]
-
 export default function App() {
-  const [tripName, setTripName] = useState('My Trip')
-  const [destination, setDestination] = useState('')
-  const [days, setDays] = useState(initialDays)
+  const [trip, setTrip] = useState(null)
+  const [days, setDays] = useState([])
+  const [activitiesByDay, setActivitiesByDay] = useState({})
+  const [loading, setLoading] = useState(true)
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState(null)
 
-  const addDay = () => {
-    setDays((prev) => [
-      ...prev,
-      { id: generateId(), label: '', activities: [] },
-    ])
+  // Load or create the single trip on mount
+  useEffect(() => {
+    async function init() {
+      try {
+        setLoading(true)
+        const trips = await fetchTrips()
+        let currentTrip = trips[0]
+        if (!currentTrip) {
+          currentTrip = await createTrip('My Trip', '')
+        }
+        setTrip(currentTrip)
+
+        const tripDays = await fetchDays(currentTrip.id)
+        setDays(tripDays)
+
+        const actMap = {}
+        await Promise.all(
+          tripDays.map(async (d) => {
+            actMap[d.id] = await fetchActivities(d.id)
+          })
+        )
+        setActivitiesByDay(actMap)
+      } catch (err) {
+        console.error(err)
+        setError('Failed to load itinerary.')
+      } finally {
+        setLoading(false)
+      }
+    }
+    init()
+  }, [])
+
+  const totalActivities = Object.values(activitiesByDay).reduce((s, arr) => s + arr.length, 0)
+
+  // Trip name / destination update (debounced)
+  const persistTripName = useCallback(async (field, value) => {
+    if (!trip) return
+    try {
+      const updated = await updateTrip(trip.id, { [field]: value }, trip)
+      setTrip(updated)
+    } catch (err) { console.error(err) }
+  }, [trip])
+
+  const debouncedTripName = useDebounce((v) => persistTripName('name', v), 600)
+  const debouncedTripDest = useDebounce((v) => persistTripName('destination', v), 600)
+
+  // Add day
+  const handleAddDay = async () => {
+    if (!trip) return
+    setSaving(true)
+    try {
+      const order = days.length + 1
+      const newDay = await createDay(trip.id, '', order)
+      setDays((prev) => [...prev, newDay])
+      setActivitiesByDay((prev) => ({ ...prev, [newDay.id]: [] }))
+    } catch (err) { console.error(err) }
+    finally { setSaving(false) }
   }
 
-  const removeDay = (id) => {
-    setDays((prev) => prev.filter((d) => d.id !== id))
+  // Remove day
+  const handleRemoveDay = async (day) => {
+    setSaving(true)
+    try {
+      await deleteDay(day.id)
+      setDays((prev) => prev.filter((d) => d.id !== day.id))
+      setActivitiesByDay((prev) => {
+        const next = { ...prev }
+        delete next[day.id]
+        return next
+      })
+    } catch (err) { console.error(err) }
+    finally { setSaving(false) }
   }
 
-  const updateDay = (updated) => {
-    setDays((prev) => prev.map((d) => (d.id === updated.id ? updated : d)))
+  // Update day label
+  const handleUpdateDayLabel = async (day, label) => {
+    try {
+      const updated = await updateDay(day.id, { label }, day)
+      setDays((prev) => prev.map((d) => (d.id === updated.id ? updated : d)))
+    } catch (err) { console.error(err) }
   }
 
-  const totalActivities = days.reduce((sum, d) => sum + d.activities.length, 0)
+  // Add activity
+  const handleAddActivity = async (day, title) => {
+    setSaving(true)
+    try {
+      const existing = activitiesByDay[day.id] ?? []
+      const order = existing.length + 1
+      const newAct = await createActivity(day.id, title, '', 'Sightseeing', order)
+      setActivitiesByDay((prev) => ({
+        ...prev,
+        [day.id]: [...(prev[day.id] ?? []), newAct],
+      }))
+    } catch (err) { console.error(err) }
+    finally { setSaving(false) }
+  }
+
+  // Remove activity
+  const handleRemoveActivity = async (activity) => {
+    setSaving(true)
+    try {
+      const dayId = activity.data?.day_id
+      await deleteActivity(activity.id)
+      setActivitiesByDay((prev) => ({
+        ...prev,
+        [dayId]: (prev[dayId] ?? []).filter((a) => a.id !== activity.id),
+      }))
+    } catch (err) { console.error(err) }
+    finally { setSaving(false) }
+  }
+
+  // Update activity
+  const handleUpdateActivity = async (activity, newFields) => {
+    try {
+      const updated = await updateActivity(activity.id, newFields, activity)
+      const dayId = updated.data?.day_id
+      setActivitiesByDay((prev) => ({
+        ...prev,
+        [dayId]: (prev[dayId] ?? []).map((a) => (a.id === updated.id ? updated : a)),
+      }))
+    } catch (err) { console.error(err) }
+  }
+
+  const tripFields = trip?.data ?? {}
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+        <div className="flex flex-col items-center gap-3 text-slate-500">
+          <Loader2 size={32} className="animate-spin text-sky-500" />
+          <span className="text-sm">Loading your itinerary…</span>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-slate-100 flex items-center justify-center">
+        <p className="text-red-500 text-sm">{error}</p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-slate-100">
@@ -197,8 +313,8 @@ export default function App() {
           <div className="flex-1 min-w-0">
             <input
               type="text"
-              value={tripName}
-              onChange={(e) => setTripName(e.target.value)}
+              defaultValue={tripFields.name ?? 'My Trip'}
+              onChange={(e) => debouncedTripName(e.target.value)}
               placeholder="Trip name…"
               className="text-xl font-bold text-slate-800 bg-transparent outline-none w-full placeholder-slate-400"
             />
@@ -206,16 +322,17 @@ export default function App() {
               <MapPin size={12} className="text-slate-400 flex-shrink-0" />
               <input
                 type="text"
-                value={destination}
-                onChange={(e) => setDestination(e.target.value)}
+                defaultValue={tripFields.destination ?? ''}
+                onChange={(e) => debouncedTripDest(e.target.value)}
                 placeholder="Destination…"
                 className="text-sm text-slate-500 bg-transparent outline-none placeholder-slate-400"
               />
             </div>
           </div>
-          <div className="hidden sm:flex flex-col items-end text-right">
+          <div className="hidden sm:flex flex-col items-end text-right gap-0.5">
             <span className="text-sm font-semibold text-slate-700">{days.length} {days.length === 1 ? 'day' : 'days'}</span>
             <span className="text-xs text-slate-400">{totalActivities} activities</span>
+            {saving && <Loader2 size={12} className="animate-spin text-sky-400 mt-0.5" />}
           </div>
         </div>
       </header>
@@ -232,14 +349,20 @@ export default function App() {
             day={day}
             dayNumber={index + 1}
             totalDays={days.length}
-            onRemove={() => removeDay(day.id)}
-            onUpdate={updateDay}
+            activities={activitiesByDay[day.id] ?? []}
+            onRemoveDay={handleRemoveDay}
+            onUpdateDayLabel={handleUpdateDayLabel}
+            onAddActivity={handleAddActivity}
+            onRemoveActivity={handleRemoveActivity}
+            onUpdateActivity={handleUpdateActivity}
+            saving={saving}
           />
         ))}
 
         <button
-          onClick={addDay}
-          className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-sky-400 hover:bg-sky-50 text-slate-400 hover:text-sky-600 rounded-2xl py-4 text-sm font-medium transition-colors"
+          onClick={handleAddDay}
+          disabled={saving}
+          className="w-full flex items-center justify-center gap-2 border-2 border-dashed border-slate-300 hover:border-sky-400 hover:bg-sky-50 text-slate-400 hover:text-sky-600 rounded-2xl py-4 text-sm font-medium transition-colors disabled:opacity-50"
         >
           <Plus size={16} />
           Add Day

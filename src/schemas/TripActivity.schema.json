@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Trip Activities",
+  "type": "object",
+  "properties": {
+    "day_id": {
+      "type": "integer",
+      "description": "Reference to the parent day",
+      "x-foreignKey": "trip_days.id"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Name of the activity"
+    },
+    "time": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Time of the activity in HH:MM format"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["Sightseeing", "Food", "Transport", "Accommodation", "Activity", "Other"],
+      "description": "Category of the activity"
+    },
+    "activity_order": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Position of this activity within the day"
+    }
+  },
+  "required": ["day_id", "title", "type", "activity_order"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
