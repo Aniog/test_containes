@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Companies",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Industry or sector the company belongs to"
+    },
+    "size": {
+      "type": "string",
+      "enum": ["1-10", "11-50", "51-200", "201-500", "501-1000", "1000+"],
+      "description": "Company size by number of employees"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "Company website URL"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Company contact email"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Company contact phone number"
+    },
+    "address": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Company address"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Brief description of the company"
+    },
+    "founded_year": {
+      "type": "integer",
+      "minimum": 1800,
+      "maximum": 2100,
+      "description": "Year the company was founded"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive", "archived"],
+      "default": "active",
+      "description": "Company status"
+    }
+  },
+  "required": ["name"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}

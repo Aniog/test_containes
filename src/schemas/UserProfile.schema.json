@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User Profiles",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the Users table",
+      "x-foreignKey": "users.id"
+    },
+    "company_id": {
+      "type": "integer",
+      "description": "Reference to the Companies table (form entity id)",
+      "x-foreignKey": "Companies.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the user"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "User phone number"
+    },
+    "job_title": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "User job title or position"
+    },
+    "department": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Department the user belongs to"
+    },
+    "demands": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "User demands, needs or requirements"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Short biography or introduction"
+    },
+    "avatar_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the user avatar image"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "User location or city"
+    },
+    "linkedin": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "LinkedIn profile URL"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "inactive"],
+      "default": "active",
+      "description": "Profile status"
+    }
+  },
+  "required": ["name", "email"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
