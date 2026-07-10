@@ -7,8 +7,8 @@ const products = [
     category: "Earrings",
     material: "Gold",
     images: [
-      "https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=800&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=800&h=800&fit=crop"
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Vivid+Aura+Jewels+1",
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Vivid+Aura+Jewels+2"
     ],
     rating: 4.8,
     reviews: 124,
@@ -30,8 +30,8 @@ const products = [
     category: "Necklaces",
     material: "Gold",
     images: [
-      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=800&fit=crop"
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Majestic+Flora+1",
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Majestic+Flora+2"
     ],
     rating: 4.9,
     reviews: 89,
@@ -53,8 +53,8 @@ const products = [
     category: "Huggies",
     material: "Gold",
     images: [
-      "https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb2?w=800&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb2?w=800&h=800&fit=crop"
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Golden+Sphere+1",
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Golden+Sphere+2"
     ],
     rating: 4.7,
     reviews: 156,
@@ -76,8 +76,8 @@ const products = [
     category: "Earrings",
     material: "Gold",
     images: [
-      "https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=800&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=800&h=800&fit=crop"
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Amber+Lace+1",
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Amber+Lace+2"
     ],
     rating: 4.9,
     reviews: 67,
@@ -98,8 +98,8 @@ const products = [
     category: "Sets",
     material: "Gold",
     images: [
-      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=800&fit=crop",
-      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=800&fit=crop"
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Royal+Heirloom+1",
+      "https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Royal+Heirloom+2"
     ],
     rating: 5.0,
     reviews: 43,

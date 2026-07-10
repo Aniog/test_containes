@@ -7,7 +7,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=1920&h=1080&fit=crop"
+          src="https://via.placeholder.com/1920x1080/FAF8F5/C9A96E?text=Velmora+Jewelry"
           alt="Velmora Fine Jewelry - Gold jewelry on model"
           className="w-full h-full object-cover"
         />

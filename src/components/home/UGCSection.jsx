@@ -4,37 +4,37 @@ export default function UGCSection() {
   const ugcItems = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=400&h=711&fit=crop',
+      image: 'https://via.placeholder.com/400x711/FAF8F5/C9A96E?text=Style+1',
       caption: 'Golden hour essentials ✨',
       author: '@sarahjewels'
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=711&fit=crop',
+      image: 'https://via.placeholder.com/400x711/FAF8F5/C9A96E?text=Style+2',
       caption: 'Layered to perfection 💫',
       author: '@emilyrose'
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb2?w=400&h=711&fit=crop',
+      image: 'https://via.placeholder.com/400x711/FAF8F5/C9A96E?text=Style+3',
       caption: 'Everyday elegance 🌙',
       author: '@avelinav'
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=400&h=711&fit=crop',
+      image: 'https://via.placeholder.com/400x711/FAF8F5/C9A96E?text=Style+4',
       caption: 'Gifted myself today 🎁',
       author: '@chloem'
     },
     {
       id: 5,
-      image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=711&fit=crop',
+      image: 'https://via.placeholder.com/400x711/FAF8F5/C9A96E?text=Style+5',
       caption: 'Brunal vibes only ☕',
       author: '@isabelle'
     },
     {
       id: 6,
-      image: 'https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb2?w=400&h=711&fit=crop',
+      image: 'https://via.placeholder.com/400x711/FAF8F5/C9A96E?text=Style+6',
       caption: 'My daily stack 💍',
       author: '@natalieg'
     },

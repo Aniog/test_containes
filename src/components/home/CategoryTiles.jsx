@@ -6,17 +6,17 @@ export default function CategoryTiles() {
     {
       name: 'Earrings',
       path: '/shop?category=Earrings',
-      image: 'https://images.unsplash.com/photo-1535632066927-ab7c9f819f1?w=800&h=800&fit=crop',
+      image: 'https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Earrings',
     },
     {
       name: 'Necklaces',
       path: '/shop?category=Necklaces',
-      image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=800&fit=crop',
+      image: 'https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Necklaces',
     },
     {
       name: 'Huggies',
       path: '/shop?category=Huggies',
-      image: 'https://images.unsplash.com/photo-1630019852942-fdaf6eb31cb2?w=800&h=800&fit=crop',
+      image: 'https://via.placeholder.com/800x800/FAF8F5/C9A96E?text=Huggies',
     },
   ];
 

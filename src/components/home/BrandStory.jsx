@@ -9,7 +9,7 @@ export default function BrandStory() {
           {/* Image Side */}
           <div className="relative aspect-square md:aspect-[4/5] overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=1000&fit=crop"
+              src="https://via.placeholder.com/800x1000/FAF8F5/C9A96E?text=Velmora+Craftsmanship"
               alt="Velmora jewelry craftsmanship"
               className="w-full h-full object-cover"
             />

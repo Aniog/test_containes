@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useCart } from '../../context/CartContext';
+import { useCart } from '../context/CartContext';
 import { ShoppingBag, SlidersHorizontal, X } from 'lucide-react';
-import products from '../../data/products';
+import products from '../data/products';
 
 export default function ShopPage() {
   const { addToCart } = useCart();

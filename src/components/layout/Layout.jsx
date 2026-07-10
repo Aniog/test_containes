@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../components/layout/Header';
-import Footer from '../components/layout/Footer';
-import CartDrawer from '../components/layout/CartDrawer';
+import Header from './Header';
+import Footer from './Footer';
+import CartDrawer from './CartDrawer';
 
 export default function Layout({ children }) {
   return (
