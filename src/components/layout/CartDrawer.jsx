@@ -11,6 +11,19 @@ function formatPrice(n) {
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, summary } = useCart();
   const [imageErrors, setImageErrors] = useState({});
+  // Keep dialog mounted during the close transition so the slide-out
+  // animation can play, then unmount so the dialog is fully removed from
+  // the accessibility tree.
+  const [mounted, setMounted] = useState(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setMounted(true);
+      return;
+    }
+    const t = setTimeout(() => setMounted(false), 500);
+    return () => clearTimeout(t);
+  }, [isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -31,6 +44,8 @@ export default function CartDrawer() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, closeCart]);
+
+  if (!mounted) return null;
 
   return (
     <div
