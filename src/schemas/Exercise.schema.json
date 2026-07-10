@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exercises",
+  "type": "object",
+  "properties": {
+    "day_id": {
+      "type": "integer",
+      "description": "Reference to the parent training day",
+      "x-foreignKey": "TrainingDays.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the exercise, e.g. Bench Press"
+    },
+    "sets": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Number of sets"
+    },
+    "reps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 1000,
+      "description": "Number of repetitions per set"
+    },
+    "sort_order": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Order of this exercise within the training day"
+    }
+  },
+  "required": ["day_id", "name", "sets", "reps"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

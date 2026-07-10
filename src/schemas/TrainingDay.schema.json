@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Training Days",
+  "type": "object",
+  "properties": {
+    "plan_id": {
+      "type": "integer",
+      "description": "Reference to the parent fitness plan",
+      "x-foreignKey": "FitnessPlans.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the training day, e.g. Day 1 - Chest"
+    },
+    "sort_order": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Order of this day within the plan"
+    }
+  },
+  "required": ["plan_id", "name"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
