@@ -7,16 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'velmora': {
-          cream: '#FAF8F5',
-          gold: '#C9A96E',
-          'gold-light': '#D4B896',
-          'gold-dark': '#A6884E',
-          charcoal: '#1A1A1A',
-          'gray-warm': '#8A8580',
-          'gray-light': '#F5F0EB',
-          'gray-border': '#E8E2DB',
-        }
+        'cream': '#FAF8F5',
+        'gold': '#C9A96E',
+        'gold-light': '#D4B896',
+        'gold-dark': '#A6884E',
+        'charcoal': '#1A1A1A',
+        'gray-warm': '#8A8580',
+        'gray-light': '#F5F0EB',
+        'gray-border': '#E8E2DB',
       },
       fontFamily: {
         'serif': ['"Playfair Display"', 'Georgia', 'serif'],
