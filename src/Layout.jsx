@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import { Users, Building2, LayoutDashboard, Menu, X, ChevronRight } from 'lucide-react'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { Users, Building2, LayoutDashboard, Menu, X, ChevronRight, LogIn, UserCircle, LogOut } from 'lucide-react'
+import { useAuth } from './context/AuthContext.jsx'
 
 const navItems = [
   { to: '/', label: '概览', icon: LayoutDashboard, end: true },
@@ -33,6 +34,48 @@ function NavItem({ to, label, icon: Icon, end, onClick }) {
   )
 }
 
+function UserSection({ onClose }) {
+  const { user, signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const handleSignOut = async () => {
+    await signOut()
+    onClose?.()
+    navigate('/auth')
+  }
+
+  if (!user) {
+    return (
+      <button
+        onClick={() => { navigate('/auth'); onClose?.() }}
+        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition-all w-full"
+      >
+        <LogIn size={18} className="text-gray-400" />
+        <span>登录 / 注册</span>
+      </button>
+    )
+  }
+
+  return (
+    <div className="flex flex-col gap-1">
+      <button
+        onClick={() => { navigate('/profile'); onClose?.() }}
+        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition-all w-full"
+      >
+        <UserCircle size={18} className="text-indigo-500" />
+        <span className="truncate">{user.name || user.email}</span>
+      </button>
+      <button
+        onClick={handleSignOut}
+        className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-500 hover:bg-red-50 hover:text-red-600 transition-all w-full"
+      >
+        <LogOut size={18} className="text-gray-400" />
+        <span>退出登录</span>
+      </button>
+    </div>
+  )
+}
+
 export default function Layout({ children }) {
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -56,8 +99,9 @@ export default function Layout({ children }) {
             <NavItem key={item.to} {...item} />
           ))}
         </nav>
-        <div className="px-4 py-4 border-t border-gray-100">
-          <p className="text-xs text-gray-400 text-center">© 2026 User CRM</p>
+        <div className="px-3 py-4 border-t border-gray-100 space-y-1">
+          <UserSection />
+          <p className="text-xs text-gray-400 text-center pt-2">© 2026 User CRM</p>
         </div>
       </aside>
 
@@ -95,6 +139,9 @@ export default function Layout({ children }) {
                 <NavItem key={item.to} {...item} onClick={() => setMobileOpen(false)} />
               ))}
             </nav>
+            <div className="px-3 py-4 border-t border-gray-100">
+              <UserSection onClose={() => setMobileOpen(false)} />
+            </div>
           </div>
         </div>
       )}
