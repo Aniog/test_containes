@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Quote Requests",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this quote request",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the requester"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the requester"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number"
+    },
+    "product_interest": {
+      "type": "string",
+      "enum": [
+        "double-folding-machine",
+        "double-folder",
+        "sheet-metal-folder",
+        "metal-folder-machine",
+        "metal-folding-machine",
+        "metal-folder",
+        "other"
+      ],
+      "description": "Product the requester is interested in"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Detailed message or requirements from the requester"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the quote request"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
