@@ -98,7 +98,7 @@ export default function CartDrawer() {
                   <div className="w-20 flex-shrink-0">
                     <StrkImage
                       imgId={`cart-${it.id}-img`}
-                      query={`[${it.titleId}] Velmora fine jewelry product`}
+                      query={`${it.name} ${it.material} Velmora demi-fine gold jewelry product editorial warm`}
                       ratio="1x1"
                       width={200}
                       alt={it.name}

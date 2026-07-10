@@ -78,19 +78,14 @@ export default function Testimonials() {
 function StrkCircleImg({ imgId, query }) {
   // small circular portrait
   return (
-    <div
-      className="w-full h-full"
+    <img
+      alt=""
+      className="w-full h-full object-cover"
       data-strk-img-id={imgId}
       data-strk-img={query}
       data-strk-img-ratio="1x1"
       data-strk-img-width="120"
-      style={{
-        backgroundImage:
-          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E\")",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-      role="img"
+      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
     />
   );
 }

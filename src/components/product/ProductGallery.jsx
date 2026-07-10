@@ -6,19 +6,19 @@ export default function ProductGallery({ product }) {
   const slides = [
     {
       imgId: `${product.imgId1}-gal-1`,
-      query: `[${product.descId}] [${product.titleId}] main editorial shot of demi-fine gold ${product.category} on dark background`,
+      query: `${product.name} ${product.material} main editorial shot of demi-fine gold ${product.category} on dark warm background`,
     },
     {
       imgId: `${product.imgId2}-gal-2`,
-      query: `[${product.titleId}] detail closeup of demi-fine gold ${product.category} on linen neutral background`,
+      query: `${product.name} detail closeup of demi-fine gold ${product.category} on linen neutral background warm light`,
     },
     {
       imgId: `${product.imgId1}-gal-3`,
-      query: `[${product.titleId}] lifestyle shot of demi-fine gold ${product.category} worn on model warm daylight`,
+      query: `${product.name} lifestyle shot of demi-fine gold ${product.category} worn on model warm daylight editorial`,
     },
     {
       imgId: `${product.imgId2}-gal-4`,
-      query: `[${product.descId}] [${product.titleId}] flat lay of demi-fine gold ${product.category} on cream linen`,
+      query: `${product.name} flat lay of demi-fine gold ${product.category} on cream linen warm natural light`,
     },
   ];
 

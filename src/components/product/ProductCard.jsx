@@ -32,7 +32,7 @@ export default function ProductCard({ product, eager = false }) {
         >
           <StrkImage
             imgId={product.imgId1}
-            query={`[${product.descId}] [${product.titleId}] gold jewelry on dark background`}
+            query={`${product.name} ${product.material} demi-fine gold jewelry on dark warm background editorial`}
             ratio="4x5"
             width={800}
             alt={product.name}
@@ -46,7 +46,7 @@ export default function ProductCard({ product, eager = false }) {
         >
           <StrkImage
             imgId={product.imgId2}
-            query={`[${product.titleId}] detail closeup of demi-fine gold ${product.category}`}
+            query={`${product.name} detail closeup of demi-fine gold ${product.category} on warm neutral surface`}
             ratio="4x5"
             width={800}
             alt={`${product.name} alternate view`}

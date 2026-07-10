@@ -88,7 +88,7 @@ export default function CheckoutPage() {
                     <div className="w-14 h-14 bg-sand-50 overflow-hidden flex-shrink-0">
                       <StrkImage
                         imgId={`co-${it.id}-mini`}
-                        query={`[${it.titleId}] demi-fine gold jewelry product`}
+                        query={`${it.name} ${it.material} demi-fine gold jewelry product editorial warm`}
                         ratio="1x1"
                         width={120}
                         alt={it.name}
