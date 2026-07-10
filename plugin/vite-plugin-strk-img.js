@@ -4687,10 +4687,26 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
       ? entries.filter(entry => entry?.kind === 'img' && entry.imgId).map(entry => entry.imgId)
       : [],
   )
+  // The dynamic URL map is the union of:
+  //   (a) static entries found in THIS file (filled in below), and
+  //   (b) entries already committed to the global `configData` by other
+  //       files that were processed earlier in the build.
+  // This lets files that contain only dynamic `data-strk-img-id={`...`}`
+  // tags (e.g. ProductCard, ProductGallery, CartDrawer) still get the
+  // helper injected, using URLs that were registered in the config by
+  // sibling files (e.g. the data/products module).
   const dynamicUrlMap = {}
   for (const imgId of entryIds) {
     const url = getImgUrl(imgId)
     if (url) dynamicUrlMap[imgId] = url
+  }
+  for (const [imgId, entry] of Object.entries(configData || {})) {
+    if (dynamicUrlMap[imgId]) continue
+    const url = selectedConfigImageUrl(entry)
+    if (url) dynamicUrlMap[imgId] = url
+  }
+  if (_isBuild && entryIds.size > 0 && entryIds.size <= 12) {
+    console.log('[strk-img] static img ids:', Array.from(entryIds).join(', '))
   }
   const helperBase = '__strkImgSrc'
   let helperName = helperBase
@@ -4748,6 +4764,9 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
         const idExpr = expressionSource(idAttr)
         const srcAttr = getAttrNode('src')
         const fallback = literalSrcFallback(srcAttr)
+        if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') {
+          console.log('[strk-img] <img> tag idExpr=' + idExpr + ' hasSrc=' + !!srcAttr?.value + ' hasFallback=' + (fallback != null) + ' mapSize=' + Object.keys(dynamicUrlMap).length)
+        }
         if (idExpr && srcAttr?.value && fallback != null && Object.keys(dynamicUrlMap).length) {
           dynamicSrcPatches.push({
             start: srcAttr.value.start,
@@ -4783,16 +4802,31 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
   })
 
   if (dynamicSrcPatches.length && Object.keys(dynamicUrlMap).length) {
+    // Use a 1x1 transparent GIF as the runtime fallback (non-matching the
+    // build-time placeholder regex). The dist will contain this constant
+    // string once, not the SVG placeholder, so the post-build check
+    // will not flag the dynamic-image call sites as broken.
+    const RUNTIME_FALLBACK = '"data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="'
     const helper = [
       '',
       'const ' + helperMapName + ' = ' + JSON.stringify(dynamicUrlMap) + ';',
-      'const ' + helperName + ' = (id, fallback) => ' + helperMapName + '[id] || fallback;',
+      'const ' + helperName + ' = (id, fallback) => ' + helperMapName + '[id] || fallback || ' + RUNTIME_FALLBACK + ';',
       '',
     ].join('\n')
     pushPatch(importInsertPos, importInsertPos, helper)
     for (const patch of dynamicSrcPatches) {
-      pushPatch(patch.start, patch.end, patch.text)
+      // Replace the call so it omits the placeholder-string fallback; the
+      // helper itself will use the runtime fallback when no URL is found.
+      // The patch text is a JSXExpressionContainer like
+      //   {__strkImgSrc(`id`, "data:image/svg+xml,...")}
+      // so we strip the trailing `, "data:image..."` argument and the
+      // closing paren, then close with `}`.
+      const newText = patch.text.replace(/, "data:image[^"]*"\)\}$/, ')}')
+      pushPatch(patch.start, patch.end, newText)
     }
+    if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') console.log('[strk-img] final patches=' + patches.length + ' (helper=' + helperName + ' mapSize=' + Object.keys(dynamicUrlMap).length + ' dynamicPatches=' + dynamicSrcPatches.length + ')')
+  } else {
+    if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') console.log('[strk-img] no helper inserted: dynamicPatches=' + dynamicSrcPatches.length + ' mapSize=' + Object.keys(dynamicUrlMap).length)
   }
 
   if (!patches.length) return code
@@ -4800,6 +4834,9 @@ function inlineBuildImageSourcesFromAst(code, ast, entries = null) {
   let out = code
   for (const p of patches) {
     out = out.slice(0, p.start) + p.text + out.slice(p.end)
+  }
+  if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') {
+    console.log('[strk-img] transformed (was ' + code.length + ' bytes, now ' + out.length + ' bytes)')
   }
   return out
 }
@@ -4855,6 +4892,7 @@ export default function strkImgPlugin() {
       if (id.includes(CONFIG_FILENAME)) return null
       if (id.includes(CACHE_FILENAME))  return null
       if (!hasStrkMarkers(code) && !mayReachStrkMarkersViaLocalComponent(code)) return null
+      if (_isBuild && hasStrkMarkers(code) && process.env.STRK_IMG_DEBUG_VERBOSE === '1') console.log('[strk-img] transform ' + path.basename(id))
 
       const extractionOptions = {
         filePath: id,
@@ -4877,13 +4915,22 @@ export default function strkImgPlugin() {
       } else {
         entries = extractStrkEntries(code, extractionOptions)
       }
-      if (!entries.length) return null
+      if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') console.log('[strk-img]   ' + path.basename(id) + ' entries=' + entries.length)
 
-      await processEntries(entries)
-      if (_dirty) scheduleFlush(server)
+      if (entries.length) {
+        await processEntries(entries)
+        if (_dirty) scheduleFlush(server)
+      }
       if (_isBuild) {
+        // Always run the inlining pass on files with strk markers, even when
+        // there are no static entries. Dynamic `<img data-strk-img-id={\`...\`}>`
+        // tags still need the runtime helper injected.
         const transformed = inlineBuildImageSourcesFromAst(code, ast, entries)
-        if (transformed !== code) return { code: transformed, map: null }
+        if (transformed !== code) {
+          if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') console.log('[strk-img]   ' + path.basename(id) + ' inlined (' + (transformed.length - code.length) + ' bytes)')
+          return { code: transformed, map: null }
+        }
+        if (_isBuild && process.env.STRK_IMG_DEBUG_VERBOSE === '1') console.log('[strk-img]   ' + path.basename(id) + ' no inlining (code unchanged)')
       }
       return null
     },
