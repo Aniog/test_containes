@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number with country code if possible"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product category or item to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or units"
+    },
+    "budget_range": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price range or budget per unit"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected delivery or production timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional requirements or sourcing details"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "How the buyer found SSourcing China"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last updated timestamp"
+    }
+  },
+  "required": ["id", "name", "email", "company", "product_category", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
