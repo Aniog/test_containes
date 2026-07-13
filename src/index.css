@@ -1,76 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand color utilities (defined explicitly so JIT scanning is not required) ── */
+@layer utilities {
+  /* Backgrounds */
+  .bg-brand-dark        { background-color: #1A2332; }
+  .bg-brand-navy        { background-color: #1A4B8C; }
+  .bg-brand-orange      { background-color: #E8621A; }
+  .bg-brand-orange-dark { background-color: #C9521A; }
+  .bg-brand-light-blue  { background-color: #EBF2FB; }
+  .bg-brand-green       { background-color: #2D7D46; }
+  .bg-brand-border      { background-color: #E2E8F0; }
+
+  /* Background opacity variants */
+  .bg-brand-navy\/30    { background-color: rgb(26 75 140 / 0.30); }
+  .bg-brand-navy\/10    { background-color: rgb(26 75 140 / 0.10); }
+  .bg-brand-green\/10   { background-color: rgb(45 125 70  / 0.10); }
+  .bg-brand-dark\/60    { background-color: rgb(26 35 50  / 0.60); }
+  .bg-brand-dark\/90    { background-color: rgb(26 35 50  / 0.90); }
+
+  /* Text */
+  .text-brand-dark       { color: #1A2332; }
+  .text-brand-navy       { color: #1A4B8C; }
+  .text-brand-orange     { color: #E8621A; }
+  .text-brand-body       { color: #4A5568; }
+  .text-brand-muted      { color: #718096; }
+  .text-brand-green      { color: #2D7D46; }
+  .text-brand-light-blue { color: #EBF2FB; }
+
+  /* Borders */
+  .border-brand-navy   { border-color: #1A4B8C; }
+  .border-brand-border { border-color: #E2E8F0; }
+  .border-brand-orange { border-color: #E8621A; }
+
+  /* Border opacity variants */
+  .border-brand-navy\/30 { border-color: rgb(26 75 140 / 0.30); }
+  .border-brand-navy\/50 { border-color: rgb(26 75 140 / 0.50); }
+
+  /* Gradient stops */
+  .from-brand-dark      { --tw-gradient-from: #1A2332 var(--tw-gradient-from-position); --tw-gradient-to: rgb(26 35 50 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-brand-dark\/60  { --tw-gradient-from: rgb(26 35 50 / 0.60) var(--tw-gradient-from-position); --tw-gradient-to: rgb(26 35 50 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-brand-dark\/90   { --tw-gradient-to: rgb(26 35 50 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(26 35 50 / 0.90) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-brand-dark\/60    { --tw-gradient-to: rgb(26 35 50 / 0.60) var(--tw-gradient-to-position); }
+
+  /* Hover variants */
+  .hover\:bg-brand-navy:hover       { background-color: #1A4B8C; }
+  .hover\:bg-brand-navy\/10:hover   { background-color: rgb(26 75 140 / 0.10); }
+  .hover\:bg-brand-orange-dark:hover { background-color: #C9521A; }
+  .hover\:text-brand-navy:hover     { color: #1A4B8C; }
+  .hover\:border-brand-navy\/30:hover { border-color: rgb(26 75 140 / 0.30); }
+
+  /* Group-hover variants */
+  .group:hover .group-hover\:bg-brand-navy   { background-color: #1A4B8C; }
+  .group:hover .group-hover\:text-brand-navy { color: #1A4B8C; }
+
+  /* Focus variants */
+  .focus\:border-brand-navy:focus { border-color: #1A4B8C; }
+  .focus\:ring-brand-navy\/30:focus {
+    --tw-ring-color: rgb(26 75 140 / 0.30);
+    --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+    box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
+  }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1A2332;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #ffffff;
+  color: #1A2332;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+* {
+  box-sizing: border-box;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer components {
+  .section-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .section-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .section-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
-  a:hover {
-    color: #747bff;
+  .section-padding {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  @media (min-width: 768px) {
+    .section-padding {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
   }
 
-  button {
-    background-color: #f9f9f9;
+  .btn-primary {
+    background-color: #E8621A;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease;
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    background-color: #C9521A;
+  }
+
+  .btn-secondary {
+    border: 2px solid #1A4B8C;
+    color: #1A4B8C;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    display: inline-block;
+    cursor: pointer;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    background-color: #1A4B8C;
+    color: #ffffff;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid #E2E8F0;
+    padding: 1.5rem;
+    transition: box-shadow 0.15s ease;
+  }
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
