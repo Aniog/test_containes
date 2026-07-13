@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Contact phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Category of product the buyer wants to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Search",
+          "Factory Verification",
+          "Quality Inspection",
+          "Production Follow-Up",
+          "Shipping Coordination",
+          "Full End-to-End Sourcing"
+        ]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Details about the product, target price, and timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Processing status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
