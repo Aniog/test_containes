@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Game Deals",
+  "type": "object",
+  "properties": {
+    "game_title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Name of the game on deal"
+    },
+    "platform": {
+      "type": "string",
+      "enum": ["steam", "epic", "nintendo", "playstation", "xbox", "gog"],
+      "description": "Platform where the deal is available"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Original price in USD"
+    },
+    "deal_price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Deal/sale price in USD"
+    },
+    "discount_percent": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Discount percentage"
+    },
+    "cover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Game cover image URL"
+    },
+    "deal_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Link to the deal on the platform store"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the deal expires"
+    },
+    "active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the deal is currently active"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature this deal prominently"
+    },
+    "genre": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Game genre"
+    }
+  },
+  "required": ["game_title", "platform", "original_price", "deal_price", "discount_percent"],
+  "x-security": {
+    "create": { "allow": [] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
