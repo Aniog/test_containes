@@ -6,24 +6,24 @@ export default function Testimonials() {
     <section className="py-16 md:py-24 px-6 md:px-12 lg:px-20 bg-ivory">
       <div className="max-w-7xl mx-auto">
         <h2 className="font-serif text-3xl md:text-4xl text-charcoal text-center mb-12">
-          What Our Customers Say
+          What They Say
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {testimonials.map(t => (
-            <div key={t.id} className="text-center px-4">
+            <div key={t.id} className="bg-cream p-6 md:p-8 border border-border">
               {/* Stars */}
-              <div className="flex items-center justify-center gap-0.5 mb-4">
+              <div className="flex gap-0.5 mb-4">
                 {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-gold text-gold" />
+                  <Star key={i} className="w-4 h-4 text-gold" fill="currentColor" />
                 ))}
               </div>
-              {/* Quote */}
+
               <p className="text-sm text-charcoal leading-relaxed italic">
-                "{t.text}"
+                &ldquo;{t.text}&rdquo;
               </p>
-              {/* Author */}
-              <p className="mt-4 text-xs font-medium text-muted uppercase tracking-wider">
+
+              <p className="mt-4 text-xs text-muted font-medium uppercase tracking-wider">
                 — {t.author}
               </p>
             </div>

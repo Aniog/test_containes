@@ -34,10 +34,10 @@ export default function BrandStory() {
               Where Craft Meets Intention
             </h2>
             <p id="brand-story-desc" className="mt-6 text-muted leading-relaxed">
-              Velmora was born from a simple belief: every woman deserves jewelry that feels as special as the moments she wears it for. We bridge the gap between fine jewelry and fashion — creating pieces in 18K gold that are designed to last, priced to be accessible, and crafted to be treasured.
+              Velmora was born from a simple belief: every woman deserves jewelry that feels as special as she is — without the luxury markup. Each piece is thoughtfully designed in our studio, crafted with 18K gold plating over hypoallergenic metals, and finished by hand.
             </p>
             <p className="mt-4 text-muted leading-relaxed">
-              Each piece is thoughtfully designed in our studio and brought to life by skilled artisans who share our commitment to quality. No shortcuts, no compromises — just beautiful jewelry made with care.
+              We bridge the gap between fine jewelry and fashion — creating pieces meant to be worn every day, layered with intention, and treasured for years to come.
             </p>
             <Link
               to="/#about"
