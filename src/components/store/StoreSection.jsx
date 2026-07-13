@@ -1,14 +1,21 @@
-import { useState, useEffect, useRef } from 'react';
-import { ShoppingCart, Star, ShoppingBag, Filter, Search, ChevronRight, Tag } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ShoppingCart, Star, ShoppingBag, Search, ChevronRight } from 'lucide-react';
 import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import PlatformBadge from '@/components/ui/PlatformBadge.jsx';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const PLATFORM_FILTERS = ['all', 'steam', 'epic', 'nintendo', 'playstation', 'xbox', 'multi'];
+
+const PLATFORM_GRADIENTS = {
+  steam: 'from-blue-900 to-gray-900',
+  epic: 'from-gray-800 to-gray-900',
+  nintendo: 'from-red-900 to-gray-900',
+  playstation: 'from-blue-800 to-gray-900',
+  xbox: 'from-green-900 to-gray-900',
+  multi: 'from-purple-900 to-gray-900',
+};
 
 function StarRating({ rating }) {
   return (
@@ -28,6 +35,7 @@ function GameCard({ game, titleId, descId }) {
   const [added, setAdded] = useState(false);
   const d = game.data;
   const isFree = d.original_price === 0;
+  const gradient = PLATFORM_GRADIENTS[d.platform] || 'from-gray-800 to-gray-900';
 
   const handleAdd = () => {
     setAdded(true);
@@ -38,15 +46,15 @@ function GameCard({ game, titleId, descId }) {
     <div className="group bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-purple-600/50 hover:shadow-xl hover:shadow-purple-900/20 transition-all duration-300 flex flex-col">
       {/* Image */}
       <div className="relative h-48 overflow-hidden bg-gray-800">
-        <img
-          alt={d.title}
-          data-strk-img-id={`store-game-${game.id}`}
-          data-strk-img={`[${descId}] [${titleId}] game cover art`}
-          data-strk-img-ratio="3x2"
-          data-strk-img-width="500"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        {d.cover_image_url ? (
+          <img
+            alt={d.title}
+            src={d.cover_image_url}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className={`w-full h-full bg-gradient-to-br ${gradient}`} />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
 
         {/* Badges */}
@@ -140,7 +148,6 @@ export default function StoreSection() {
   const [loading, setLoading] = useState(true);
   const [platform, setPlatform] = useState('all');
   const [search, setSearch] = useState('');
-  const containerRef = useRef(null);
 
   useEffect(() => {
     async function load() {
@@ -156,13 +163,6 @@ export default function StoreSection() {
     load();
   }, []);
 
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [games, platform, search]);
-
   const filtered = games.filter(g => {
     const matchPlatform = platform === 'all' || g.data.platform === platform;
     const matchSearch = !search || g.data.title.toLowerCase().includes(search.toLowerCase());
@@ -170,7 +170,7 @@ export default function StoreSection() {
   });
 
   return (
-    <section id="store" ref={containerRef} className="py-20 px-4 md:px-8 bg-gray-950">
+    <section id="store" className="py-20 px-4 md:px-8 bg-gray-950">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">

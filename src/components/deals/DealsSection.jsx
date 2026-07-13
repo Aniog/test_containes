@@ -1,15 +1,22 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Zap, Clock, ExternalLink, ChevronRight, Flame } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import PlatformBadge from '@/components/ui/PlatformBadge.jsx';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const PLATFORM_FILTERS = ['all', 'steam', 'epic', 'nintendo', 'playstation', 'xbox', 'gog'];
+
+const PLATFORM_GRADIENTS = {
+  steam: 'from-blue-900 to-gray-900',
+  epic: 'from-gray-800 to-gray-900',
+  nintendo: 'from-red-900 to-gray-900',
+  playstation: 'from-blue-800 to-gray-900',
+  xbox: 'from-green-900 to-gray-900',
+  gog: 'from-purple-900 to-gray-900',
+};
 
 function DealCard({ deal, titleId }) {
   const d = deal.data;
@@ -17,6 +24,7 @@ function DealCard({ deal, titleId }) {
   const expiresIn = d.expires_at
     ? formatDistanceToNow(new Date(d.expires_at), { addSuffix: true })
     : null;
+  const gradient = PLATFORM_GRADIENTS[d.platform] || 'from-gray-800 to-gray-900';
 
   return (
     <div className="group relative bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-purple-600/50 hover:shadow-lg hover:shadow-purple-900/20 transition-all duration-300">
@@ -36,15 +44,15 @@ function DealCard({ deal, titleId }) {
 
       {/* Image */}
       <div className="relative h-40 overflow-hidden bg-gray-800">
-        <img
-          alt={d.game_title}
-          data-strk-img-id={`deal-img-${deal.id}`}
-          data-strk-img={`[${titleId}] game deal discount`}
-          data-strk-img-ratio="16x9"
-          data-strk-img-width="400"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-        />
+        {d.cover_image_url ? (
+          <img
+            alt={d.game_title}
+            src={d.cover_image_url}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className={`w-full h-full bg-gradient-to-br ${gradient}`} />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
       </div>
 
@@ -94,7 +102,6 @@ export default function DealsSection() {
   const [deals, setDeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [platform, setPlatform] = useState('all');
-  const containerRef = useRef(null);
 
   useEffect(() => {
     async function load() {
@@ -110,13 +117,6 @@ export default function DealsSection() {
     load();
   }, []);
 
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [deals, platform]);
-
   const filtered = platform === 'all'
     ? deals
     : deals.filter(d => d.data.platform === platform);
@@ -126,7 +126,7 @@ export default function DealsSection() {
   }, 0);
 
   return (
-    <section id="deals" ref={containerRef} className="py-20 px-4 md:px-8 bg-gray-900/50">
+    <section id="deals" className="py-20 px-4 md:px-8 bg-gray-900/50">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
@@ -200,3 +200,4 @@ export default function DealsSection() {
     </section>
   );
 }
+
