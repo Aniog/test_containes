@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Name or description of the product to source"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Tech",
+        "Furniture & Home Décor",
+        "Apparel & Textiles",
+        "Hardware & Industrial",
+        "Toys & Baby Products",
+        "Health, Beauty & Personal Care",
+        "Sports & Outdoor",
+        "Packaging & Print",
+        "Other"
+      ],
+      "description": "Product category"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity (e.g. 500 units, 1 container)"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping Coordination",
+        "Private Label / OEM",
+        "Full Sourcing Service",
+        "Not Sure"
+      ],
+      "description": "Primary service the buyer is looking for"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details about the sourcing requirement"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_name", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

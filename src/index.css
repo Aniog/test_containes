@@ -1,76 +1,186 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, sans-serif;
+    color: #334155;
+    background-color: #ffffff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #0F172A;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: #1B3A6B;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background-color: #2A5298;
+  }
+
+  .btn-accent {
+    background-color: #C0392B;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s;
+    display: inline-block;
+    font-size: 1.125rem;
+  }
+  .btn-accent:hover {
+    background-color: #E74C3C;
+  }
+
+  .btn-outline {
+    border: 2px solid #1B3A6B;
+    color: #1B3A6B;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover {
+    background-color: #1B3A6B;
+    color: #ffffff;
+  }
+
+  .section-badge {
+    display: inline-block;
+    background-color: rgba(27, 58, 107, 0.1);
+    color: #1B3A6B;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);
+    transition: box-shadow 0.2s;
+    padding: 1.5rem;
+  }
+  .card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  }
+
+  .section-alt {
+    background-color: #f9fafb;
+  }
+
+  .container-xl {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-xl {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-xl {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+/* ── Custom brand color utilities (bypasses JIT for reliability) ── */
+.bg-navy-50  { background-color: #EEF2FF; }
+.bg-navy-100 { background-color: #E0E7FF; }
+.bg-navy-200 { background-color: #C7D2FE; }
+.bg-navy-400 { background-color: #4B6CB7; }
+.bg-navy-600 { background-color: #2A5298; }
+.bg-navy-700 { background-color: #1E3A8A; }
+.bg-navy-800 { background-color: #1B3A6B; }
+.bg-navy-900 { background-color: #0F2347; }
+
+.text-navy-50  { color: #EEF2FF; }
+.text-navy-100 { color: #E0E7FF; }
+.text-navy-200 { color: #C7D2FE; }
+.text-navy-400 { color: #4B6CB7; }
+.text-navy-600 { color: #2A5298; }
+.text-navy-700 { color: #1E3A8A; }
+.text-navy-800 { color: #1B3A6B; }
+.text-navy-900 { color: #0F2347; }
+
+.border-navy-800 { border-color: #1B3A6B; }
+.border-navy-700 { border-color: #1E3A8A; }
+.ring-navy-800   { --tw-ring-color: #1B3A6B; }
+
+.bg-brand-red       { background-color: #C0392B; }
+.bg-brand-red-light { background-color: #E74C3C; }
+.bg-brand-navy      { background-color: #1B3A6B; }
+.bg-brand-navy-light { background-color: #2A5298; }
+.bg-brand-navy-dark  { background-color: #0F2347; }
+
+.text-brand-red       { color: #C0392B; }
+.text-brand-red-light { color: #E74C3C; }
+.text-brand-navy      { color: #1B3A6B; }
+
+.border-brand-red  { border-color: #C0392B; }
+.border-brand-navy { border-color: #1B3A6B; }
+
+/* Opacity variants */
+.bg-navy-800\/5  { background-color: rgba(27, 58, 107, 0.05); }
+.bg-navy-800\/10 { background-color: rgba(27, 58, 107, 0.1); }
+.bg-navy-800\/20 { background-color: rgba(27, 58, 107, 0.2); }
+.bg-navy-800\/30 { background-color: rgba(27, 58, 107, 0.3); }
+.bg-navy-900\/70 { background-color: rgba(15, 35, 71, 0.7); }
+.bg-navy-900\/80 { background-color: rgba(15, 35, 71, 0.8); }
+.bg-navy-900\/90 { background-color: rgba(15, 35, 71, 0.9); }
+
+/* Hover variants */
+.hover\:bg-navy-600:hover { background-color: #2A5298; }
+.hover\:bg-navy-700:hover { background-color: #1E3A8A; }
+.hover\:bg-navy-800:hover { background-color: #1B3A6B; }
+.hover\:bg-navy-900:hover { background-color: #0F2347; }
+.hover\:text-navy-800:hover { color: #1B3A6B; }
+.hover\:text-navy-600:hover { color: #2A5298; }
+.hover\:bg-brand-red:hover       { background-color: #C0392B; }
+.hover\:bg-brand-red-light:hover { background-color: #E74C3C; }
+.hover\:text-brand-red:hover     { color: #C0392B; }
+
+/* From/to gradient variants */
+.from-navy-800 { --tw-gradient-from: #1B3A6B; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(27,58,107,0)); }
+.from-navy-900 { --tw-gradient-from: #0F2347; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(15,35,71,0)); }
+.to-navy-700   { --tw-gradient-to: #1E3A8A; }
+.to-navy-800   { --tw-gradient-to: #1B3A6B; }
+.to-navy-900   { --tw-gradient-to: #0F2347; }
+.via-navy-800  { --tw-gradient-stops: var(--tw-gradient-from), #1B3A6B, var(--tw-gradient-to, rgba(27,58,107,0)); }
