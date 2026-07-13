@@ -1,0 +1,58 @@
+import {
+  Search,
+  ShieldCheck,
+  PackageOpen,
+  BadgeDollarSign,
+  ClipboardCheck,
+  LineChart,
+  Ship,
+  FileCheck2,
+  Sparkles,
+  Layers,
+  Factory,
+  Globe2,
+  Wrench,
+  Box,
+  Shirt,
+  Pill,
+  Cog,
+  Package,
+  Bike,
+  Sofa,
+  Truck,
+  Hammer,
+  Plug,
+  Sprout,
+} from "lucide-react"
+
+const map = {
+  Search,
+  ShieldCheck,
+  PackageOpen,
+  BadgeDollarSign,
+  ClipboardCheck,
+  LineChart,
+  Ship,
+  FileCheck2,
+  Sparkles,
+  Layers,
+  Factory,
+  Globe2,
+  Wrench,
+  Box,
+  Shirt,
+  Pill,
+  Cog,
+  Package,
+  Bike,
+  Sofa,
+  Truck,
+  Hammer,
+  Plug,
+  Sprout,
+}
+
+export default function IconByName({ name, className = "w-5 h-5" }) {
+  const Icon = map[name] || Box
+  return <Icon className={className} aria-hidden="true" />
+}

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Contact person's full name"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Buyer's company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address for reply"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer's country or region"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "consumer_electronics",
+        "home_and_kitchen",
+        "apparel_and_textiles",
+        "beauty_and_personal_care",
+        "industrial_equipment",
+        "packaging_and_printing",
+        "toys_and_sporting_goods",
+        "furniture_and_home_decor",
+        "auto_and_motorcycle_parts",
+        "other"
+      ],
+      "description": "Primary product category to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Description of the product(s) the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Approximate order quantity or trial size"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price range and currency"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "factory_verification",
+          "sample_procurement",
+          "price_negotiation",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_and_logistics",
+          "customs_clearance",
+          "private_label_or_oem"
+        ]
+      },
+      "description": "List of services the buyer needs from SSourcing"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "urgent_within_2_weeks",
+        "1_to_3_months",
+        "3_to_6_months",
+        "exploratory"
+      ],
+      "description": "Expected timeline for the first order"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any other requirements, certifications, or constraints"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The page on the website where the inquiry was submitted"
+    }
+  },
+  "required": ["full_name", "company_name", "email", "product_description"],
+  "additionalProperties": false
+}
