@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Tours",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Name of the tour"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Full description of the tour"
+    },
+    "duration_type": {
+      "type": "string",
+      "enum": ["half-day", "one-day", "two-day"],
+      "description": "Duration category of the tour"
+    },
+    "price_usd": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price per person in USD"
+    },
+    "highlights": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Key highlights of the tour"
+    },
+    "included": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "What is included in the tour price"
+    },
+    "max_group_size": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "description": "Maximum number of participants"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "moderate", "challenging"],
+      "description": "Physical difficulty level"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the tour is currently available"
+    }
+  },
+  "required": ["title", "duration_type"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
