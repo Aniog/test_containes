@@ -1,18 +1,6 @@
 import { useState } from 'react';
 import { CheckCircle, Loader2 } from 'lucide-react';
-
-const STORAGE_KEY = 'contacts';
-
-function saveContact(contact) {
-  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  const newContact = {
-    ...contact,
-    id: Date.now().toString(),
-    createdAt: new Date().toISOString(),
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([newContact, ...existing]));
-  return newContact;
-}
+import { createContact } from '@/api/contacts';
 
 const initialForm = { name: '', email: '', company: '', message: '' };
 
@@ -40,7 +28,7 @@ export default function ContactForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
@@ -48,13 +36,15 @@ export default function ContactForm() {
       return;
     }
     setSubmitting(true);
-    // Simulate a brief async save
-    setTimeout(() => {
-      saveContact(form);
-      setSubmitting(false);
+    try {
+      await createContact(form);
       setSubmitted(true);
       setForm(initialForm);
-    }, 800);
+    } catch (err) {
+      setErrors({ submit: err.message || 'Something went wrong. Please try again.' });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -165,6 +155,10 @@ export default function ContactForm() {
           'Send message'
         )}
       </button>
+
+      {errors.submit && (
+        <p className="text-sm text-red-500 text-center">{errors.submit}</p>
+      )}
     </form>
   );
 }
