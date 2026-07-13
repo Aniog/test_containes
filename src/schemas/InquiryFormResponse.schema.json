@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inquiry Form Responses",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry response"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics & Electrical", "Machinery & Industrial Parts", "Home & Furniture", "Apparel & Textiles", "Packaging & Printing", "Beauty & Personal Care", "Hardware & Tools", "Other"],
+      "description": "Primary category of products to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product, specifications, and requirements"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or annual volume"
+    },
+    "sourcing_stage": {
+      "type": "string",
+      "enum": ["Just researching", "Have specifications", "Ready to sample", "Ready to order"],
+      "description": "Current stage of the buyer's sourcing process"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier sourcing", "Factory verification", "Quality inspection", "Production follow-up", "Shipping coordination", "Other"]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details or questions"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "product_category", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
