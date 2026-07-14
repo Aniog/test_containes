@@ -1,0 +1,28 @@
+import React, { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
+import Hero from '@/components/home/Hero'
+import TrustBar from '@/components/home/TrustBar'
+import Bestsellers from '@/components/home/Bestsellers'
+import UGCReels from '@/components/home/UGCReels'
+import ShopByCategory from '@/components/home/ShopByCategory'
+import BrandStory from '@/components/home/BrandStory'
+import Testimonials from '@/components/home/Testimonials'
+import Newsletter from '@/components/home/Newsletter'
+
+export default function HomePage() {
+  useEffect(() => { window.scrollTo(0, 0) }, [])
+
+  return (
+    <main>
+      <Hero />
+      <TrustBar />
+      <Bestsellers />
+      <UGCReels />
+      <ShopByCategory />
+      <BrandStory />
+      <Testimonials />
+      <Newsletter />
+    </main>
+  )
+}
