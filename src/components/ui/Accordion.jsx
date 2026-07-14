@@ -1,0 +1,36 @@
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+
+const Accordion = ({ items }) => {
+  const [openIndex, setOpenIndex] = useState(null);
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  return (
+    <div>
+      {items.map((item, index) => (
+        <div key={index} className="accordion-item">
+          <button
+            className="accordion-trigger"
+            onClick={() => toggle(index)}
+            aria-expanded={openIndex === index}
+          >
+            <span>{item.title}</span>
+            <ChevronDown 
+              className={`w-4 h-4 transition-transform ${openIndex === index ? 'rotate-180' : ''}`} 
+            />
+          </button>
+          {openIndex === index && (
+            <div className="accordion-content">
+              {item.content}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Accordion;
