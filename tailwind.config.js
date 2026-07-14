@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "Avenir", "Helvetica", "Arial", "sans-serif"],
+      },
+      colors: {
+        brand: {
+          50: "#EEF2FF",
+          100: "#E0E7FF",
+          600: "#4F46E5",
+          700: "#4338CA",
+        },
+      },
+    },
   },
   plugins: [],
 }
+

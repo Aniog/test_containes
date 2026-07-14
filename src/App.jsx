@@ -1,14 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import LandingPage from "@/pages/LandingPage"
+import ContactsPage from "@/pages/ContactsPage"
 import './App.css'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+      </Routes>
+    </Router>
   )
 }
 
