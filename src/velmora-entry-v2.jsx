@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./velmora/StorefrontApp.jsx";
-import "./velmora/theme.css";
+import "./velmora-theme-v2.css";
 
 if (import.meta.env.DEV) {
   import("./visual-edit/index.js");

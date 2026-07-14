@@ -51,7 +51,7 @@ const PreviewBridge = () => {
   return null
 }
 
-const AppShell = () => {
+const StorefrontShell = () => {
   return (
     <>
       <PreviewBridge />
@@ -69,14 +69,14 @@ const AppShell = () => {
   )
 }
 
-function App() {
+const StorefrontApp = () => {
   return (
     <BrowserRouter>
       <CartProvider>
-        <AppShell />
+        <StorefrontShell />
       </CartProvider>
     </BrowserRouter>
   )
 }
 
-export default App
+export default StorefrontApp

@@ -1,13 +1,12 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
-import './App.css'
-import CartDrawer from '@/components/layout/CartDrawer'
-import Footer from '@/components/layout/Footer'
-import SiteHeader from '@/components/layout/SiteHeader'
-import { CartProvider } from '@/context/CartContext'
-import HomePage from '@/pages/HomePage'
-import ProductPage from '@/pages/ProductPage'
-import ShopPage from '@/pages/ShopPage'
+import CartDrawer from './components/layout/CartDrawer.jsx'
+import Footer from './components/layout/Footer.jsx'
+import SiteHeader from './components/layout/SiteHeader.jsx'
+import { CartProvider } from './context/CartContext.jsx'
+import HomePageV2 from './pages/HomePageV2.jsx'
+import ProductPage from './pages/ProductPage.jsx'
+import ShopPage from './pages/ShopPage.jsx'
 
 const PreviewBridge = () => {
   const navigate = useNavigate()
@@ -51,14 +50,14 @@ const PreviewBridge = () => {
   return null
 }
 
-const AppShell = () => {
+const StorefrontShell = () => {
   return (
     <>
       <PreviewBridge />
       <SiteHeader />
       <main>
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePageV2 />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/product/:slug" element={<ProductPage />} />
         </Routes>
@@ -69,14 +68,14 @@ const AppShell = () => {
   )
 }
 
-function App() {
+const StorefrontAppV4 = () => {
   return (
     <BrowserRouter>
       <CartProvider>
-        <AppShell />
+        <StorefrontShell />
       </CartProvider>
     </BrowserRouter>
   )
 }
 
-export default App
+export default StorefrontAppV4

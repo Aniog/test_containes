@@ -1,0 +1,358 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: #1d1916;
+  background-color: #f7f1e8;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #f7f1e8;
+  color: #1d1916;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background-color: #b8955e;
+  color: #f7f1e8;
+}
+
+@layer base {
+  body {
+    background-color: #f7f1e8;
+    color: #1d1916;
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
+
+@layer components {
+  .container-shell {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 80rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .premium-button,
+  .premium-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition:
+      background-color 300ms,
+      border-color 300ms,
+      color 300ms,
+      transform 300ms;
+  }
+
+  .premium-button {
+    border: 1px solid #b8955e;
+    background-color: #b8955e;
+    color: #f7f1e8;
+  }
+
+  .premium-button:hover {
+    border-color: #1d1916;
+    background-color: #1d1916;
+  }
+
+  .premium-button-secondary {
+    border: 1px solid #d8c7b0;
+    background-color: transparent;
+    color: #1d1916;
+  }
+
+  .premium-button-secondary:hover {
+    border-color: #1d1916;
+    background-color: #1d1916;
+    color: #f7f1e8;
+  }
+
+  .eyebrow-label {
+    color: #5f554c;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 768px) {
+    .container-shell {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.velmora-hero-bg {
+  background:
+    linear-gradient(to right, rgba(23, 19, 16, 0.82), rgba(23, 19, 16, 0.34)),
+    linear-gradient(to bottom, rgba(23, 19, 16, 0.4), transparent 22%),
+    linear-gradient(to top, rgba(29, 25, 22, 0.58), transparent 40%);
+}
+
+.velmora-card-ratio {
+  aspect-ratio: 4 / 5;
+}
+
+.velmora-tall-ratio {
+  aspect-ratio: 9 / 16;
+}
+
+.velmora-story-ratio {
+  aspect-ratio: 4 / 5;
+}
+
+.velmora-product-gallery {
+  aspect-ratio: 1 / 1.2;
+}
+
+.velmora-image-fill {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.velmora-hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.velmora-hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@layer utilities {
+  .bg-velmora-ivory {
+    background-color: #f7f1e8;
+  }
+
+  .bg-velmora-ivory\/95 {
+    background-color: rgba(247, 241, 232, 0.95);
+  }
+
+  .bg-velmora-ivory\/75 {
+    background-color: rgba(247, 241, 232, 0.75);
+  }
+
+  .bg-velmora-ivory\/10 {
+    background-color: rgba(247, 241, 232, 0.1);
+  }
+
+  .bg-velmora-ivory\/5 {
+    background-color: rgba(247, 241, 232, 0.05);
+  }
+
+  .bg-velmora-pearl {
+    background-color: #efe4d3;
+  }
+
+  .bg-velmora-pearl\/55 {
+    background-color: rgba(239, 228, 211, 0.55);
+  }
+
+  .bg-velmora-pearl\/45 {
+    background-color: rgba(239, 228, 211, 0.45);
+  }
+
+  .bg-velmora-pearl\/35 {
+    background-color: rgba(239, 228, 211, 0.35);
+  }
+
+  .bg-velmora-pearl\/20 {
+    background-color: rgba(239, 228, 211, 0.2);
+  }
+
+  .bg-velmora-ink {
+    background-color: #1d1916;
+  }
+
+  .bg-velmora-ink\/45 {
+    background-color: rgba(29, 25, 22, 0.45);
+  }
+
+  .bg-velmora-ink\/15 {
+    background-color: rgba(29, 25, 22, 0.15);
+  }
+
+  .bg-velmora-gold {
+    background-color: #b8955e;
+  }
+
+  .text-velmora-ink {
+    color: #1d1916;
+  }
+
+  .text-velmora-ink\/70 {
+    color: rgba(29, 25, 22, 0.7);
+  }
+
+  .text-velmora-mocha {
+    color: #5f554c;
+  }
+
+  .text-velmora-ivory {
+    color: #f7f1e8;
+  }
+
+  .text-velmora-ivory\/90 {
+    color: rgba(247, 241, 232, 0.9);
+  }
+
+  .text-velmora-ivory\/82 {
+    color: rgba(247, 241, 232, 0.82);
+  }
+
+  .text-velmora-ivory\/80 {
+    color: rgba(247, 241, 232, 0.8);
+  }
+
+  .text-velmora-ivory\/75 {
+    color: rgba(247, 241, 232, 0.75);
+  }
+
+  .text-velmora-ivory\/70 {
+    color: rgba(247, 241, 232, 0.7);
+  }
+
+  .text-velmora-ivory\/65 {
+    color: rgba(247, 241, 232, 0.65);
+  }
+
+  .text-velmora-gold {
+    color: #b8955e;
+  }
+
+  .border-velmora-line {
+    border-color: #d8c7b0;
+  }
+
+  .border-velmora-line\/70 {
+    border-color: rgba(216, 199, 176, 0.7);
+  }
+
+  .border-velmora-ink {
+    border-color: #1d1916;
+  }
+
+  .border-velmora-ivory {
+    border-color: #f7f1e8;
+  }
+
+  .border-velmora-ivory\/35 {
+    border-color: rgba(247, 241, 232, 0.35);
+  }
+
+  .border-velmora-ivory\/30 {
+    border-color: rgba(247, 241, 232, 0.3);
+  }
+
+  .border-velmora-ivory\/25 {
+    border-color: rgba(247, 241, 232, 0.25);
+  }
+
+  .border-velmora-ivory\/15 {
+    border-color: rgba(247, 241, 232, 0.15);
+  }
+
+  .border-velmora-ivory\/10 {
+    border-color: rgba(247, 241, 232, 0.1);
+  }
+
+  .from-velmora-ink {
+    --tw-gradient-from: #1d1916 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(29, 25, 22, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .from-velmora-ink\/80 {
+    --tw-gradient-from: rgba(29, 25, 22, 0.8) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(29, 25, 22, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .from-velmora-pearl {
+    --tw-gradient-from: #efe4d3 var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(239, 228, 211, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .to-velmora-gold\/30 {
+    --tw-gradient-to: rgba(184, 149, 94, 0.3) var(--tw-gradient-to-position);
+  }
+
+  .ring-velmora-gold\/40 {
+    --tw-ring-color: rgba(184, 149, 94, 0.4);
+  }
+
+  .ring-velmora-ivory\/60 {
+    --tw-ring-color: rgba(247, 241, 232, 0.6);
+  }
+
+  .shadow-card {
+    --tw-shadow: 0 18px 40px rgba(29, 25, 22, 0.08);
+    --tw-shadow-colored: 0 18px 40px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+
+  .shadow-velmora {
+    --tw-shadow: 0 24px 60px rgba(29, 25, 22, 0.12);
+    --tw-shadow-colored: 0 24px 60px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+
+  .tracking-luxe {
+    letter-spacing: 0.25em;
+  }
+}
