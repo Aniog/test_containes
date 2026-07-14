@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials used"
+    },
+    "care": {
+      "type": "string",
+      "description": "Care instructions"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL friendly slug"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Product image URLs or search queries for stock images"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a bestseller?"
+    }
+  },
+  "required": ["name", "price", "category", "slug"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
