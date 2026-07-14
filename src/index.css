@@ -1,76 +1,182 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ink: 14 13 11;
+    --color-bone: 246 241 231;
+    --color-gold: 184 153 104;
+    --color-gold-soft: 212 185 138;
+    --color-gold-deep: 140 115 73;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-bone text-ink font-sans;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-light;
+    letter-spacing: -0.005em;
+  }
+
+  /* Hairline horizontal rule */
+  hr {
+    @apply border-0 border-t border-hairline;
+  }
+
+  /* Default focus ring */
+  *:focus-visible {
+    outline: 2px solid #B89968;
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background: #B89968;
+    color: #0E0D0B;
+  }
+
+  /* Scrollbar (subtle, only in dark contexts) */
+  .scrollbar-hairline::-webkit-scrollbar {
+    height: 1px;
+    width: 1px;
+  }
+  .scrollbar-hairline::-webkit-scrollbar-thumb {
+    background: rgba(184, 153, 104, 0.4);
+  }
+  .scrollbar-hairline::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@layer components {
+  .container-editorial {
+    @apply max-w-screen-2xl mx-auto px-5 md:px-8 lg:px-12;
+  }
+
+  .hairline {
+    @apply border-t border-hairline;
+  }
+
+  .hairline-dark {
+    @apply border-t border-hairline-dark;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[10px] md:text-[11px] uppercase tracking-editorial-wide text-gold font-medium;
+  }
+
+  .editorial-link {
+    @apply relative inline-block font-sans text-xs uppercase tracking-editorial text-ink pb-1;
+  }
+  .editorial-link::after {
+    content: "";
+    @apply absolute left-0 bottom-0 w-full h-px bg-gold origin-right scale-x-100 transition-transform duration-500 ease-editorial;
+  }
+  .editorial-link:hover::after {
+    @apply origin-left scale-x-100;
+  }
+  .editorial-link-light {
+    @apply text-bone;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5
+           bg-ink text-bone font-sans text-[11px] uppercase tracking-editorial font-medium
+           transition-all duration-500 ease-editorial
+           hover:bg-gold hover:text-ink;
+  }
+
+  .btn-primary-light {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5
+           bg-bone text-ink font-sans text-[11px] uppercase tracking-editorial font-medium
+           transition-all duration-500 ease-editorial
+           hover:bg-gold hover:text-ink;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5
+           border border-gold text-gold bg-transparent font-sans text-[11px] uppercase tracking-editorial font-medium
+           transition-all duration-500 ease-editorial
+           hover:bg-gold hover:text-ink;
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-3.5
+           border border-bone text-bone bg-transparent font-sans text-[11px] uppercase tracking-editorial font-medium
+           transition-all duration-500 ease-editorial
+           hover:bg-bone hover:text-ink;
+  }
+
+  .product-name {
+    @apply font-serif text-sm md:text-[15px] uppercase tracking-editorial font-medium text-ink;
+  }
+
+  .product-price {
+    @apply font-sans text-sm text-muted-light tracking-wide;
+  }
+
+  /* Quick add overlay on product card */
+  .quick-add {
+    @apply absolute left-0 right-0 bottom-0 translate-y-full opacity-0
+           transition-all duration-500 ease-editorial
+           bg-ink/95 text-bone text-center py-3
+           font-sans text-[10px] uppercase tracking-editorial font-medium
+           cursor-pointer;
+  }
+  .group:hover .quick-add,
+  .group:focus-within .quick-add {
+    @apply translate-y-0 opacity-100;
+  }
+
+  /* Decorative number / initial monogram */
+  .editorial-numeral {
+    @apply font-serif text-gold-soft text-2xl italic;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Reel scroll snap */
+  .reel-scroll {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .reel-scroll > * {
+    scroll-snap-align: start;
+  }
+
+  /* Soft warm gradient placeholder for product images */
+  .bg-warm-radial {
+    background-image: radial-gradient(
+      ellipse at center,
+      #2A1F12 0%,
+      #0E0D0B 70%
+    );
+  }
+  .bg-warm-radial-soft {
+    background-image: radial-gradient(
+      ellipse at center,
+      #3a2d1c 0%,
+      #1A1814 75%
+    );
+  }
+}
