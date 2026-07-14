@@ -54,7 +54,7 @@ export const products = [
     material: 'gold',
     images: [
       'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
-      'https://images.unsplash.com/photo-1587827774283-7c63ad1768a6?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
     ],
     variants: [
       { name: 'Gold', value: 'gold' },
@@ -96,7 +96,7 @@ export const products = [
     material: 'gold',
     images: [
       'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
-      'https://images.unsplash.com/photo-1599459183200-59c3a0e770be?w=800&q=80',
+      'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80',
     ],
     variants: [
       { name: 'Classic Gold', value: 'gold' },
@@ -161,7 +161,7 @@ export const ugcImages = [
   },
   {
     id: '5',
-    image: 'https://images.unsplash.com/photo-1601121141461-9d6647bca1ee?w=400&h=711&fit=crop&q=80',
+    image: 'https://images.unsplash.com/photo-1603974372039-adc49044b6bd?w=400&h=711&fit=crop&q=80',
     caption: 'Wedding guest ready',
   },
   {
