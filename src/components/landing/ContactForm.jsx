@@ -37,12 +37,16 @@ export default function ContactForm() {
       return;
     }
     setLoading(true);
-    setTimeout(() => {
-      saveContact(form);
-      setLoading(false);
-      setSubmitted(true);
-      setForm(INITIAL_FORM);
-    }, 600);
+    saveContact(form)
+      .then(() => {
+        setLoading(false);
+        setSubmitted(true);
+        setForm(INITIAL_FORM);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setErrors({ submit: err.message || 'Failed to send message. Please try again.' });
+      });
   }
 
   if (submitted) {
@@ -181,6 +185,10 @@ export default function ContactForm() {
           </>
         )}
       </button>
+
+      {errors.submit && (
+        <p className="text-sm text-red-500 text-center">{errors.submit}</p>
+      )}
     </form>
   );
 }
