@@ -1,76 +1,151 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, sans-serif;
+    color: #2a2622;
+    background-color: #f7f2eb;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, sans-serif;
+    background-color: #f7f2eb;
+    color: #2a2622;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tracking-brand {
+    letter-spacing: 0.24em;
+  }
+
+  .shadow-soft {
+    box-shadow: 0 20px 60px rgba(23, 23, 23, 0.08);
+  }
+
+  .shadow-panel {
+    box-shadow: 0 18px 40px rgba(23, 23, 23, 0.12);
+  }
+
+  .bg-velmora-glow {
+    background-image: linear-gradient(180deg, rgba(23, 23, 23, 0.1) 0%, rgba(23, 23, 23, 0.72) 100%);
+  }
+
+  .bg-obsidian { background-color: rgba(23, 23, 23, 1); }
+  .bg-obsidian\/40 { background-color: rgba(23, 23, 23, 0.4); }
+  .bg-obsidian\/45 { background-color: rgba(23, 23, 23, 0.45); }
+  .bg-obsidian\/86 { background-color: rgba(23, 23, 23, 0.86); }
+  .bg-ivory { background-color: rgba(247, 242, 235, 1); }
+  .bg-ivory\/95 { background-color: rgba(247, 242, 235, 0.95); }
+  .bg-sand { background-color: rgba(237, 227, 214, 1); }
+  .bg-champagne { background-color: rgba(216, 185, 128, 1); }
+  .bg-bronze { background-color: rgba(140, 106, 57, 1); }
+
+  .text-obsidian { color: rgba(23, 23, 23, 1); }
+  .text-obsidian\/70 { color: rgba(23, 23, 23, 0.7); }
+  .text-obsidian\/78 { color: rgba(23, 23, 23, 0.78); }
+  .text-ink { color: rgba(42, 38, 34, 1); }
+  .text-ink\/45 { color: rgba(42, 38, 34, 0.45); }
+  .text-ink\/55 { color: rgba(42, 38, 34, 0.55); }
+  .text-ink\/60 { color: rgba(42, 38, 34, 0.6); }
+  .text-ink\/70 { color: rgba(42, 38, 34, 0.7); }
+  .text-ink\/72 { color: rgba(42, 38, 34, 0.72); }
+  .text-ink\/75 { color: rgba(42, 38, 34, 0.75); }
+  .text-ink\/78 { color: rgba(42, 38, 34, 0.78); }
+  .text-ink\/80 { color: rgba(42, 38, 34, 0.8); }
+  .text-ivory { color: rgba(247, 242, 235, 1); }
+  .text-ivory\/55 { color: rgba(247, 242, 235, 0.55); }
+  .text-ivory\/65 { color: rgba(247, 242, 235, 0.65); }
+  .text-ivory\/70 { color: rgba(247, 242, 235, 0.7); }
+  .text-ivory\/72 { color: rgba(247, 242, 235, 0.72); }
+  .text-ivory\/78 { color: rgba(247, 242, 235, 0.78); }
+  .text-ivory\/80 { color: rgba(247, 242, 235, 0.8); }
+  .text-ivory\/85 { color: rgba(247, 242, 235, 0.85); }
+  .text-champagne { color: rgba(216, 185, 128, 1); }
+  .text-bronze { color: rgba(140, 106, 57, 1); }
+
+  .border-mist { border-color: rgba(217, 207, 194, 1); }
+  .border-mist\/80 { border-color: rgba(217, 207, 194, 0.8); }
+  .border-bronze { border-color: rgba(140, 106, 57, 1); }
+  .border-ink\/10 { border-color: rgba(42, 38, 34, 0.1); }
+  .border-ink\/15 { border-color: rgba(42, 38, 34, 0.15); }
+  .border-ivory\/10 { border-color: rgba(247, 242, 235, 0.1); }
+  .border-ivory\/25 { border-color: rgba(247, 242, 235, 0.25); }
+  .border-obsidian\/12 { border-color: rgba(23, 23, 23, 0.12); }
+
+  .from-obsidian {
+    --tw-gradient-from: rgba(23, 23, 23, 1) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgba(23, 23, 23, 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+  }
+
+  .via-obsidian\/20 {
+    --tw-gradient-stops: var(--tw-gradient-from), rgba(23, 23, 23, 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+
+  .via-obsidian\/70 {
+    --tw-gradient-stops: var(--tw-gradient-from), rgba(23, 23, 23, 0.7) var(--tw-gradient-via-position), var(--tw-gradient-to);
+  }
+
+  .hover\:bg-bronze:hover { background-color: rgba(140, 106, 57, 1); }
+  .hover\:border-bronze:hover { border-color: rgba(140, 106, 57, 1); }
+  .hover\:border-champagne:hover { border-color: rgba(216, 185, 128, 1); }
+  .hover\:text-bronze:hover { color: rgba(140, 106, 57, 1); }
+  .hover\:text-champagne:hover { color: rgba(216, 185, 128, 1); }
+  .hover\:text-ivory:hover { color: rgba(247, 242, 235, 1); }
+  .hover\:shadow-panel:hover { box-shadow: 0 18px 40px rgba(23, 23, 23, 0.12); }
+
+  .group:hover .group-hover\:text-bronze {
+    color: rgba(140, 106, 57, 1);
+  }
+
+  .focus\:ring-bronze\/30:focus {
+    box-shadow: 0 0 0 2px rgba(140, 106, 57, 0.3);
+  }
+
+  .focus\:ring-obsidian\/20:focus {
+    box-shadow: 0 0 0 2px rgba(23, 23, 23, 0.2);
+  }
+
+  .placeholder\:text-ink\/45::placeholder {
+    color: rgba(42, 38, 34, 0.45);
+  }
+}
