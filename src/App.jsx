@@ -1,14 +1,15 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home.jsx'
+import Contacts from './pages/Contacts.jsx'
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contacts" element={<Contacts />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

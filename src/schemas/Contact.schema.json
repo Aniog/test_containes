@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contacts",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the contact"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the contact"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Message or inquiry from the contact"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the form was submitted"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
