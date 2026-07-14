@@ -1,76 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --velmora-espresso: 28 21 18;
+  --velmora-espresso-soft: 51 39 35;
+  --velmora-ivory: 247 241 234;
+  --velmora-cream: 242 232 220;
+  --velmora-sand: 228 211 192;
+  --velmora-taupe: 179 157 139;
+  --velmora-cacao: 95 75 63;
+  --velmora-gold: 214 178 120;
+  --velmora-gold-soft: 229 201 149;
+  --velmora-gold-deep: 184 138 71;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: rgb(var(--velmora-espresso));
+  background: rgb(var(--velmora-ivory));
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: rgb(var(--velmora-ivory));
+  color: rgb(var(--velmora-espresso));
+  font-family: Inter, system-ui, sans-serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button:hover {
-  border-color: #646cff;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+img {
+  display: block;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+[class~="bg-velmora-espresso"] {
+  background-color: rgb(var(--velmora-espresso));
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+[class~="bg-velmora-espresso/45"] {
+  background-color: rgb(var(--velmora-espresso) / 0.45);
+}
+
+[class~="bg-velmora-espresso/70"] {
+  background-color: rgb(var(--velmora-espresso) / 0.7);
+}
+
+[class~="bg-velmora-espresso/90"] {
+  background-color: rgb(var(--velmora-espresso) / 0.9);
+}
+
+[class~="bg-velmora-espresso/95"] {
+  background-color: rgb(var(--velmora-espresso) / 0.95);
+}
+
+[class~="bg-velmora-espressoSoft"] {
+  background-color: rgb(var(--velmora-espresso-soft));
+}
+
+[class~="bg-velmora-ivory"] {
+  background-color: rgb(var(--velmora-ivory));
+}
+
+[class~="bg-velmora-ivory/95"] {
+  background-color: rgb(var(--velmora-ivory) / 0.95);
+}
+
+[class~="bg-velmora-ivory/98"] {
+  background-color: rgb(var(--velmora-ivory) / 0.98);
+}
+
+[class~="bg-velmora-ivory/99"] {
+  background-color: rgb(var(--velmora-ivory) / 0.99);
+}
+
+[class~="bg-velmora-cream"] {
+  background-color: rgb(var(--velmora-cream));
+}
+
+[class~="bg-velmora-cream/70"] {
+  background-color: rgb(var(--velmora-cream) / 0.7);
+}
+
+[class~="bg-velmora-sand/55"] {
+  background-color: rgb(var(--velmora-sand) / 0.55);
+}
+
+[class~="bg-velmora-sand/70"] {
+  background-color: rgb(var(--velmora-sand) / 0.7);
+}
+
+[class~="bg-velmora-gold"] {
+  background-color: rgb(var(--velmora-gold));
+}
+
+[class~="bg-velmora-gold/20"] {
+  background-color: rgb(var(--velmora-gold) / 0.2);
+}
+
+[class~="text-velmora-espresso"] {
+  color: rgb(var(--velmora-espresso));
+}
+
+[class~="text-velmora-ivory"] {
+  color: rgb(var(--velmora-ivory));
+}
+
+[class~="text-velmora-ivory/45"] {
+  color: rgb(var(--velmora-ivory) / 0.45);
+}
+
+[class~="text-velmora-ivory/52"] {
+  color: rgb(var(--velmora-ivory) / 0.52);
+}
+
+[class~="text-velmora-ivory/65"] {
+  color: rgb(var(--velmora-ivory) / 0.65);
+}
+
+[class~="text-velmora-ivory/72"] {
+  color: rgb(var(--velmora-ivory) / 0.72);
+}
+
+[class~="text-velmora-ivory/78"] {
+  color: rgb(var(--velmora-ivory) / 0.78);
+}
+
+[class~="text-velmora-ivory/80"] {
+  color: rgb(var(--velmora-ivory) / 0.8);
+}
+
+[class~="text-velmora-ivory/85"] {
+  color: rgb(var(--velmora-ivory) / 0.85);
+}
+
+[class~="text-velmora-cacao/55"] {
+  color: rgb(var(--velmora-cacao) / 0.55);
+}
+
+[class~="text-velmora-cacao/58"] {
+  color: rgb(var(--velmora-cacao) / 0.58);
+}
+
+[class~="text-velmora-cacao/60"] {
+  color: rgb(var(--velmora-cacao) / 0.6);
+}
+
+[class~="text-velmora-cacao/65"] {
+  color: rgb(var(--velmora-cacao) / 0.65);
+}
+
+[class~="text-velmora-cacao/70"] {
+  color: rgb(var(--velmora-cacao) / 0.7);
+}
+
+[class~="text-velmora-cacao/72"] {
+  color: rgb(var(--velmora-cacao) / 0.72);
+}
+
+[class~="text-velmora-cacao/74"] {
+  color: rgb(var(--velmora-cacao) / 0.74);
+}
+
+[class~="text-velmora-cacao/75"] {
+  color: rgb(var(--velmora-cacao) / 0.75);
+}
+
+[class~="text-velmora-cacao/78"] {
+  color: rgb(var(--velmora-cacao) / 0.78);
+}
+
+[class~="text-velmora-cacao/80"] {
+  color: rgb(var(--velmora-cacao) / 0.8);
+}
+
+[class~="text-velmora-gold"] {
+  color: rgb(var(--velmora-gold));
+}
+
+[class~="text-velmora-goldSoft"] {
+  color: rgb(var(--velmora-gold-soft));
+}
+
+[class~="text-velmora-goldDeep"] {
+  color: rgb(var(--velmora-gold-deep));
+}
+
+[class~="border-velmora-taupe/20"] {
+  border-color: rgb(var(--velmora-taupe) / 0.2);
+}
+
+[class~="border-velmora-taupe/25"] {
+  border-color: rgb(var(--velmora-taupe) / 0.25);
+}
+
+[class~="border-velmora-taupe/30"] {
+  border-color: rgb(var(--velmora-taupe) / 0.3);
+}
+
+[class~="border-velmora-taupe/35"] {
+  border-color: rgb(var(--velmora-taupe) / 0.35);
+}
+
+[class~="border-velmora-taupe/40"] {
+  border-color: rgb(var(--velmora-taupe) / 0.4);
+}
+
+[class~="border-velmora-goldDeep"] {
+  border-color: rgb(var(--velmora-gold-deep));
+}
+
+[class~="fill-velmora-gold"] {
+  fill: rgb(var(--velmora-gold));
+}
+
+[class~="accent-velmora-goldDeep"] {
+  accent-color: rgb(var(--velmora-gold-deep));
+}
+
+[class~="placeholder:text-velmora-ivory/45"]::placeholder {
+  color: rgb(var(--velmora-ivory) / 0.45);
+}
+
+[class~="hover:bg-velmora-espressoSoft"]:hover {
+  background-color: rgb(var(--velmora-espresso-soft));
+}
+
+[class~="hover:bg-velmora-goldSoft"]:hover {
+  background-color: rgb(var(--velmora-gold-soft));
+}
+
+[class~="hover:border-velmora-goldSoft"]:hover {
+  border-color: rgb(var(--velmora-gold-soft));
+}
+
+[class~="hover:border-velmora-goldDeep"]:hover {
+  border-color: rgb(var(--velmora-gold-deep));
+}
+
+[class~="hover:text-velmora-espresso"]:hover {
+  color: rgb(var(--velmora-espresso));
+}
+
+[class~="hover:text-velmora-goldSoft"]:hover {
+  color: rgb(var(--velmora-gold-soft));
+}
+
+[class~="hover:text-velmora-goldDeep"]:hover {
+  color: rgb(var(--velmora-gold-deep));
+}
+
+.group:hover [class~="group-hover:text-velmora-goldSoft"] {
+  color: rgb(var(--velmora-gold-soft));
+}
+
+[class~="focus:border-velmora-goldSoft"]:focus,
+[class~="focus:border-velmora-goldSoft"]:focus-visible {
+  border-color: rgb(var(--velmora-gold-soft));
+}
+
+[class~="focus:border-velmora-goldDeep"]:focus,
+[class~="focus:border-velmora-goldDeep"]:focus-visible {
+  border-color: rgb(var(--velmora-gold-deep));
+}
+
+::selection {
+  background: rgb(var(--velmora-gold) / 0.3);
+  color: rgb(var(--velmora-espresso));
+}
