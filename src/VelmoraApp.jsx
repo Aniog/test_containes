@@ -8,7 +8,7 @@ import {
   useNavigate,
   useSearchParams,
 } from 'react-router-dom'
-import AppShell, { useCart } from '@/components/layout/AppShell'
+import AppShell, { useCart } from '@/components/layout/AppShell?velmora=20260714b'
 import HomePage from '@/pages/HomePage'
 import ProductPage from '@/pages/ProductPage'
 import ShopPage from '@/pages/ShopPage'
@@ -36,7 +36,7 @@ function ShopRoute({ onAddToCart }) {
   return <ShopPage onAddToCart={onAddToCart} initialCategory={initialCategory} />
 }
 
-export function AppRoutes() {
+function VelmoraAppRoutes() {
   const cart = useCart()
 
   return (
@@ -64,8 +64,8 @@ export function AppRoutes() {
   )
 }
 
-function App() {
-  return <AppRoutes />
+function VelmoraApp() {
+  return <VelmoraAppRoutes />
 }
 
-export default App
+export default VelmoraApp

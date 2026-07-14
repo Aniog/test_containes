@@ -1,0 +1,14 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import VelmoraApp from './VelmoraApp.jsx?velmora=20260714c'
+import './index.css'
+
+if (import.meta.env.DEV) {
+  import('./visual-edit/index.js')
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <VelmoraApp />
+  </React.StrictMode>,
+)
