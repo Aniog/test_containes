@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { categories } from '@/data/products'
-import { useStrkImages } from '@/lib/strk-image'
-import { PLACEHOLDER } from '@/lib/strk-image'
+import { useStrkImages, getStrkImageUrl } from '@/lib/strk-image'
 
 export default function CategoryTiles() {
   const ref = useStrkImages([])
@@ -22,7 +21,7 @@ export default function CategoryTiles() {
               className="group relative overflow-hidden aspect-[4/5] bg-sand"
             >
               <img
-                src={PLACEHOLDER}
+                src={getStrkImageUrl(cat.imgId)}
                 alt={cat.name}
                 data-strk-img-id={cat.imgId}
                 data-strk-img={`[${cat.descId}] [${cat.titleId}] gold jewelry editorial`}

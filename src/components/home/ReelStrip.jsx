@@ -1,5 +1,5 @@
 import { reels } from '@/data/products'
-import { useStrkImages } from '@/lib/strk-image'
+import { useStrkImages, getStrkImageUrl } from '@/lib/strk-image'
 
 export default function ReelStrip() {
   const ref = useStrkImages([])
@@ -21,7 +21,7 @@ export default function ReelStrip() {
               className="relative shrink-0 w-[230px] md:w-[280px] aspect-[9/16] overflow-hidden bg-ink group"
             >
               <img
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                src={getStrkImageUrl(reel.imgId)}
                 alt={reel.caption}
                 data-strk-img-id={reel.imgId}
                 data-strk-img={`[${reel.captionId}] gold jewelry worn on ear neck editorial vertical`}

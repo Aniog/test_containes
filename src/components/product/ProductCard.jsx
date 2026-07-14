@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Star } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
 import { formatPrice, cn } from '@/lib/utils'
-import { PLACEHOLDER } from '@/lib/strk-image'
+import { getStrkImageUrl } from '@/lib/strk-image'
 
 export default function ProductCard({ product, index = 0 }) {
   const { addItem } = useCart()
@@ -21,7 +21,7 @@ export default function ProductCard({ product, index = 0 }) {
       <div className="relative overflow-hidden bg-sand aspect-[4/5]">
         {/* Primary image */}
         <img
-          src={PLACEHOLDER}
+          src={getStrkImageUrl(product.imgId)}
           alt={product.name}
           data-strk-img-id={product.imgId}
           data-strk-img={`[${product.descId}] [${product.titleId}]`}
@@ -31,7 +31,7 @@ export default function ProductCard({ product, index = 0 }) {
         />
         {/* Secondary image (revealed on hover) */}
         <img
-          src={PLACEHOLDER}
+          src={getStrkImageUrl(product.imgId2)}
           alt={product.name}
           data-strk-img-id={product.imgId2}
           data-strk-img={`[${product.descId}] ${product.name} worn on model`}

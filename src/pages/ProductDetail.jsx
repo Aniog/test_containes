@@ -4,7 +4,7 @@ import { Star, Minus, Plus, ChevronRight } from 'lucide-react'
 import { getProductById, getRelatedProducts } from '@/data/products'
 import { useCart } from '@/context/CartContext'
 import { formatPrice, cn } from '@/lib/utils'
-import { useStrkImages, PLACEHOLDER } from '@/lib/strk-image'
+import { useStrkImages, getStrkImageUrl } from '@/lib/strk-image'
 import Accordion from '@/components/ui/Accordion'
 import ProductCard from '@/components/product/ProductCard'
 
@@ -74,7 +74,7 @@ export default function ProductDetail() {
                   aria-label={img.label}
                 >
                   <img
-                    src={PLACEHOLDER}
+                    src={getStrkImageUrl(`thumb-${img.imgId}`)}
                     alt={img.label}
                     data-strk-img-id={`thumb-${img.imgId}`}
                     data-strk-img={`[${product.descId}] [${product.titleId}]`}
@@ -89,7 +89,7 @@ export default function ProductDetail() {
             {/* Main image */}
             <div className="flex-1 relative aspect-[4/5] overflow-hidden bg-sand">
               <img
-                src={PLACEHOLDER}
+                src={getStrkImageUrl(galleryImages[activeImg].imgId)}
                 alt={product.name}
                 data-strk-img-id={galleryImages[activeImg].imgId}
                 data-strk-img={`[${product.descId}] [${product.titleId}]`}
