@@ -1,76 +1,448 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global styles for Velmora Fine Jewelry */
+:root {
+  --color-black: #1a1a1a;
+  --color-charcoal: #2d2d2d;
+  --color-gold: #c9a96e;
+  --color-gold-light: #d4b87a;
+  --color-cream: #f5f0eb;
+  --color-beige: #e8e0d4;
+  --color-white: #fefefe;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Elegant uppercase styling for product names */
+.product-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+/* Smooth transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
+}
+
+/* Hairline dividers */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-beige) 20%,
+    var(--color-beige) 80%,
+    transparent
+  );
+}
+
+/* Premium button styles */
+.btn-primary {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  padding: 1rem 2.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-charcoal);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-black);
+  padding: 1rem 2.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-black);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+/* Image hover effects */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.6s ease;
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Cart drawer overlay */
+.cart-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Quantity input */
+.quantity-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-beige);
+}
+
+.quantity-input button {
+  padding: 0.5rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--color-black);
+}
+
+.quantity-input input {
+  width: 3rem;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Star rating */
+.star-rating {
+  color: var(--color-gold);
+}
+
+/* Trust badge */
+.trust-badge {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+}
+
+/* Responsive container */
+.container-velmora {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container-velmora {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Accordion styles */
+.accordion-item {
+  border-bottom: 1px solid var(--color-beige);
+}
+
+.accordion-trigger {
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-black);
+}
+
+/* Newsletter input */
+.newsletter-input {
+  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-beige);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  background: var(--color-white);
+  flex: 1;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Category tile overlay */
+.category-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.category-tile:hover::before {
+  opacity: 1;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  background: var(--color-cream);
+  padding: 2.5rem;
+}
+
+/* UGC card */
+.ugc-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 280px;
+  height: 500px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+  color: white;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* Product card */
+.product-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.product-card .quick-add {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+}
+
+/* Sticky nav */
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.4s ease;
+}
+
+.sticky-nav.transparent {
+  background: transparent;
+  color: white;
+}
+
+.sticky-nav.solid {
+  background: var(--color-white);
+  color: var(--color-black);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--color-white);
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-cream) 0%,
+    var(--color-beige) 50%,
+    var(--color-cream) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Price styling */
+.price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--color-black);
+}
+
+/* Variant pill */
+.variant-pill {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--color-beige);
+  background: transparent;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.variant-pill.active {
+  border-color: var(--color-black);
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-gold);
+}
+
+/* Filter sidebar */
+.filter-sidebar {
+  font-family: 'Inter', sans-serif;
+}
+
+.filter-section {
+  margin-bottom: 2rem;
+}
+
+.filter-title {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--color-charcoal);
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--color-charcoal);
+}
+
+.filter-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Sort dropdown */
+.sort-dropdown {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-beige);
+  background: var(--color-white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%232d2d2d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.sort-dropdown:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
