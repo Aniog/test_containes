@@ -1,0 +1,73 @@
+// Seed product data for Velmora Fine Jewelry
+
+export const products = [
+  {
+    id: 1,
+    name: "Vivid Aura Jewels",
+    category: "Earrings",
+    price: 42,
+    description: "Delicate gold ear cuff featuring a subtle crystal accent. Perfect for stacking or wearing alone.",
+    material: "18K Gold Plated Brass, Crystal",
+    image1: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+    image2: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+    rating: 4.8,
+    reviews: 124,
+    inStock: true,
+  },
+  {
+    id: 2,
+    name: "Majestic Flora Nectar",
+    category: "Necklaces",
+    price: 68,
+    description: "A statement necklace adorned with multicolor floral crystals. Each piece is hand-assembled for a unique finish.",
+    material: "18K Gold Plated Brass, Crystal Beads",
+    image1: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+    image2: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+    rating: 4.9,
+    reviews: 89,
+    inStock: true,
+  },
+  {
+    id: 3,
+    name: "Golden Sphere Huggies",
+    category: "Huggies",
+    price: 38,
+    description: "Chunky dome huggie earrings with a polished gold finish. Lightweight and comfortable for everyday wear.",
+    material: "18K Gold Plated Sterling Silver",
+    image1: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80",
+    image2: "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+    rating: 4.7,
+    reviews: 156,
+    inStock: true,
+  },
+  {
+    id: 4,
+    name: "Amber Lace Earrings",
+    category: "Earrings",
+    price: 54,
+    description: "Intricate filigree drop earrings with a textured gold finish. Inspired by vintage lace patterns.",
+    material: "18K Gold Plated Brass",
+    image1: "https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80",
+    image2: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&q=80",
+    rating: 4.6,
+    reviews: 72,
+    inStock: true,
+  },
+  {
+    id: 5,
+    name: "Royal Heirloom Set",
+    category: "Sets",
+    price: 95,
+    description: "A curated gift set featuring matching earrings and necklace. Presented in our signature velvet box.",
+    material: "18K Gold Plated Brass, Crystal",
+    image1: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80",
+    image2: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+    rating: 4.9,
+    reviews: 63,
+    inStock: true,
+  },
+];
+
+export const categories = ["Earrings", "Necklaces", "Huggies", "Sets"];
+
+export const materials = ["18K Gold Plated Brass", "18K Gold Plated Sterling Silver", "Crystal"];
