@@ -1,76 +1,61 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%; /* Soft warm beige */
+    --foreground: 20 14% 15%; /* Deep warm brown/near black */
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 15%;
+    --primary: 38 41% 32%; /* Rich deep bronze/gold */
+    --primary-foreground: 40 33% 98%;
+    --secondary: 35 15% 90%; /* Soft lighter beige */
+    --secondary-foreground: 20 14% 15%;
+    --muted: 35 10% 92%;
+    --muted-foreground: 25 10% 40%;
+    --accent: 38 41% 32%; /* Matches primary */
+    --accent-foreground: 40 33% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 35 15% 85%;
+    --input: 35 15% 85%;
+    --ring: 38 41% 32%;
+    --radius: 0rem; /* Elegant sharp corners */
+  }
+
+  .dark {
+    /* Using light mode for the deep editorial layout as requested, dark mode not priority but set up just in case */
+    --background: 20 14% 10%;
+    --foreground: 40 33% 98%;
+    --card: 20 14% 12%;
+    --card-foreground: 40 33% 98%;
+    --popover: 20 14% 12%;
+    --popover-foreground: 40 33% 98%;
+    --primary: 38 41% 60%; /* Lighter gold for dark mode */
+    --primary-foreground: 20 14% 10%;
+    --secondary: 20 14% 15%;
+    --secondary-foreground: 40 33% 98%;
+    --muted: 20 10% 20%;
+    --muted-foreground: 35 10% 70%;
+    --accent: 38 41% 60%;
+    --accent-foreground: 20 14% 10%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 40 33% 98%;
+    --border: 20 10% 20%;
+    --input: 20 10% 20%;
+    --ring: 38 41% 60%;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
