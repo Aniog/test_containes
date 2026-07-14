@@ -1,76 +1,377 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Elegant Quiet Luxury Color Palette */
+  --color-bg: #F8F6F3;
+  --color-bg-dark: #F4F1EB;
+  --color-surface: #FFFFFF;
+  --color-text: #2C2825;
+  --color-text-muted: #6B665F;
+  --color-text-light: #9A958E;
+  --color-accent: #8B7355;
+  --color-accent-dark: #6B553F;
+  --color-gold: #C5A46E;
+  --color-gold-light: #D4B896;
+  --color-border: #E5E0D8;
+  --color-border-light: #F0EBE3;
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  border-radius: 0;
+}
+
+.btn-primary {
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-text);
+  color: var(--color-surface);
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-surface);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-accent-dark);
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-surface);
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), 
+              box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card .product-image {
+  transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.product-card .quick-add {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 0.5rem 1.25rem;
+  border: 1px solid var(--color-border);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill.active {
+  background-color: var(--color-text);
+  color: var(--color-surface);
+  border-color: var(--color-text);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-text);
+}
+
+/* Accordion */
+.accordion-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.accordion-trigger:hover {
+  color: var(--color-accent);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding: 1rem 0;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--color-surface);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 90;
+}
+
+.overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Nav */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all 0.3s ease;
+}
+
+.nav.transparent {
+  background-color: transparent;
+}
+
+.nav.solid {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* UGC Reel */
+.ugc-card {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ugc-card img {
+  transition: transform 0.6s ease;
+}
+
+.ugc-card:hover img {
+  transform: scale(1.05);
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(44, 40, 37, 0.85), transparent);
+  color: var(--color-surface);
+}
+
+/* Category Tile */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform 0.6s ease;
+}
+
+.category-tile:hover img {
+  transform: scale(1.08);
+}
+
+.category-tile .label {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 2rem;
+  background-color: var(--color-surface);
+  font-size: 0.875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover .label {
+  opacity: 1;
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Input */
+.input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-border);
+  font-size: 0.875rem;
+  transition: border-color 0.2s ease;
+  background-color: var(--color-surface);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-text);
+  color: var(--color-surface);
+  padding: 1rem 2rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  z-index: 200;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .cart-drawer {
+    max-width: 100%;
+  }
+}
+
+/* Hairline divider */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+/* Star Rating */
+.stars {
+  color: var(--color-gold);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
