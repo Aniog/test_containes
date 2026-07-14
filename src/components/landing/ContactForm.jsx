@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 
-const STORAGE_KEY = 'contacthub_contacts';
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
-const saveContact = (contact) => {
-  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  const newContact = {
-    id: Date.now().toString(),
-    ...contact,
-    submittedAt: new Date().toISOString(),
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([newContact, ...existing]));
-  return newContact;
+const saveContact = async (contact) => {
+  const { data: response, error } = await client
+    .from('Contacts')
+    .insert({ data: contact })
+    .select()
+    .single();
+
+  if (error) throw error;
+  if (response?.success === false) {
+    const msg = Array.isArray(response.errors) ? response.errors.join(', ') : 'Submission failed';
+    throw new Error(msg);
+  }
+  return response?.data ?? null;
 };
 
 const initialForm = { name: '', email: '', phone: '', subject: '', message: '' };
@@ -39,15 +45,16 @@ const ContactForm = () => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
+    setStatus('submitting');
     try {
-      saveContact(form);
+      await saveContact(form);
       setStatus('success');
       setForm(initialForm);
       setErrors({});
@@ -183,14 +190,15 @@ const ContactForm = () => {
 
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors shadow-sm hover:shadow-md"
+                disabled={status === 'submitting'}
+                className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg transition-colors shadow-sm hover:shadow-md"
               >
                 <Send className="w-4 h-4" />
-                Send Message
+                {status === 'submitting' ? 'Sending…' : 'Send Message'}
               </button>
 
               <p className="text-xs text-gray-400 text-center">
-                Your information is saved locally on this device only.
+                Your information is saved securely and privately.
               </p>
             </form>
           )}
