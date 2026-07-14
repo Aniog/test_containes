@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Contact phone number (optional)"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Furniture", "Apparel & Textiles", "Hardware & Tools", "Packaging", "Toys & Sports", "Home Goods", "Beauty & Health", "Other"],
+      "description": "Product category the buyer is interested in sourcing"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or MOQ requirement"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Sourcing", "Factory Verification", "Quality Inspection", "Production Follow-up", "Shipping Coordination", "Sample Management"]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional details or questions from the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
