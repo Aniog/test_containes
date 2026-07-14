@@ -1,61 +1,104 @@
 import React, { useState, useEffect } from 'react';
 import { InboxIcon, Search, Calendar, User, Mail, MessageSquare } from 'lucide-react';
 import { format } from 'date-fns';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getMessageRows = (response) => response?.data?.list ?? [];
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedContact, setSelectedContact] = useState(null);
+  const [status, setStatus] = useState('loading');
+
+  const fetchContacts = async () => {
+    try {
+      const { data: response, error } = await client
+        .from('ContactMessage')
+        .select('*')
+        .order('created_at', { ascending: false });
+        
+      if (error) throw error;
+      
+      setContacts(getMessageRows(response));
+      setStatus('idle');
+    } catch (e) {
+      console.error('Failed to fetch contacts', e);
+      setStatus('error');
+    }
+  };
 
   useEffect(() => {
-    const savedContacts = localStorage.getItem('mock_contacts');
-    if (savedContacts) {
-      try {
-        setContacts(JSON.parse(savedContacts).sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)));
-      } catch (e) {
-        console.error('Failed to parse contacts', e);
-      }
-    } else {
-      const mockData = [
-        {
-          id: '1',
-          name: 'Jane Doe',
-          email: 'jane@example.com',
-          subject: 'Question about pricing',
-          message: 'Hi, I would like to know more about your enterprise pricing plans. Can someone reach out?',
-          createdAt: new Date(Date.now() - 1000 * 60 * 60 * 2).toISOString(),
-          status: 'new'
-        },
-        {
-          id: '2',
-          name: 'John Smith',
-          email: 'john.smith@techcorp.com',
-          subject: 'Partnership Opportunity',
-          message: 'We are looking for a solution like yours to integrate into our platform. Let\'s schedule a call next week to discuss this further. Are you available on Tuesday?',
-          createdAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 2).toISOString(),
-          status: 'read'
-        }
-      ];
-      setContacts(mockData);
-      localStorage.setItem('mock_contacts', JSON.stringify(mockData));
-    }
+    fetchContacts();
   }, []);
 
-  const handleContactClick = (contact) => {
+  const handleContactClick = async (contact) => {
     setSelectedContact(contact);
-    if (contact.status === 'new') {
-      const updatedContacts = contacts.map(c => 
-        c.id === contact.id ? { ...c, status: 'read' } : c
-      );
-      setContacts(updatedContacts);
-      localStorage.setItem('mock_contacts', JSON.stringify(updatedContacts));
+    
+    if (contact.data.status === 'new') {
+      try {
+        const { data: response, error } = await client
+          .from('ContactMessage')
+          .update({
+            data: {
+              ...contact.data,
+              status: 'read'
+            }
+          })
+          .eq('id', contact.id)
+          .select()
+          .single();
+          
+        if (!error && response?.success !== false) {
+          const updatedItem = response?.data;
+          if (updatedItem) {
+            setContacts(current => 
+              current.map(c => c.id === updatedItem.id ? updatedItem : c)
+            );
+          }
+        }
+      } catch (e) {
+        console.error('Failed to mark as read', e);
+      }
+    }
+  };
+
+  const handleMarkResolved = async () => {
+    if (!selectedContact) return;
+    try {
+      const { data: response, error } = await client
+        .from('ContactMessage')
+        .update({
+          data: {
+            ...selectedContact.data,
+            status: 'resolved'
+          }
+        })
+        .eq('id', selectedContact.id)
+        .select()
+        .single();
+        
+      if (!error && response?.success !== false) {
+        const updatedItem = response?.data;
+        if (updatedItem) {
+          setContacts(current => 
+            current.map(c => c.id === updatedItem.id ? updatedItem : c)
+          );
+          setSelectedContact(updatedItem);
+        }
+      }
+    } catch (e) {
+      console.error('Failed to mark as resolved', e);
     }
   };
 
   const filteredContacts = contacts.filter(c => 
-    c.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    c.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    c.subject.toLowerCase().includes(searchTerm.toLowerCase())
+    (c.data.name || '').toLowerCase().includes(searchTerm.toLowerCase()) || 
+    (c.data.email || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+    (c.data.subject || '').toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -67,7 +110,7 @@ const Contacts = () => {
         </div>
         <div className="bg-blue-50 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium border border-blue-100 flex items-center gap-2">
           <InboxIcon className="w-4 h-4" />
-          {contacts.filter(c => c.status === 'new').length} new messages
+          {contacts.filter(c => c.data?.status === 'new').length} new messages
         </div>
       </div>
       
@@ -87,7 +130,12 @@ const Contacts = () => {
           </div>
           
           <div className="flex-1 overflow-y-auto">
-            {filteredContacts.length === 0 ? (
+            {status === 'loading' ? (
+              <div className="p-8 text-center text-slate-500 flex flex-col items-center justify-center h-full">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mb-4"></div>
+                <p>Loading messages...</p>
+              </div>
+            ) : filteredContacts.length === 0 ? (
               <div className="p-8 text-center text-slate-500 flex flex-col items-center justify-center h-full">
                 <InboxIcon className="w-10 h-10 mb-3 text-slate-300" />
                 <p>No contacts found</p>
@@ -100,22 +148,22 @@ const Contacts = () => {
                       onClick={() => handleContactClick(contact)}
                       className={`w-full text-left p-4 hover:bg-slate-50 transition-colors flex flex-col gap-1 relative ${selectedContact?.id === contact.id ? 'bg-blue-50/50' : ''}`}
                     >
-                      {contact.status === 'new' && (
+                      {contact.data?.status === 'new' && (
                         <span className="absolute top-4 right-4 w-2 h-2 rounded-full bg-blue-600"></span>
                       )}
                       <div className="flex justify-between items-baseline mb-1">
-                        <span className={`font-medium ${contact.status === 'new' ? 'text-slate-900' : 'text-slate-700'}`}>
-                          {contact.name}
+                        <span className={`font-medium ${contact.data?.status === 'new' ? 'text-slate-900' : 'text-slate-700'}`}>
+                          {contact.data?.name}
                         </span>
                         <span className="text-xs text-slate-400">
-                          {format(new Date(contact.createdAt), 'MMM d, h:mm a')}
+                          {format(new Date(contact.created_at || Date.now()), 'MMM d, h:mm a')}
                         </span>
                       </div>
-                      <span className={`text-sm ${contact.status === 'new' ? 'text-slate-800 font-medium' : 'text-slate-600'} truncate`}>
-                        {contact.subject}
+                      <span className={`text-sm ${contact.data?.status === 'new' ? 'text-slate-800 font-medium' : 'text-slate-600'} truncate`}>
+                        {contact.data?.subject}
                       </span>
                       <span className="text-xs text-slate-500 truncate mt-1">
-                        {contact.message}
+                        {contact.data?.message}
                       </span>
                     </button>
                   </li>
@@ -128,45 +176,56 @@ const Contacts = () => {
         <div className="hidden md:flex md:w-2/3 flex-col bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden h-[calc(100vh-210px)] relative">
           {selectedContact ? (
             <div className="flex flex-col h-full overflow-y-auto">
-              <div className="p-6 md:p-8 border-b bg-slate-50/50">
-                <h2 className="text-2xl font-bold text-slate-900 mb-6">{selectedContact.subject}</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
-                      {selectedContact.name.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="font-medium text-slate-900">{selectedContact.name}</div>
-                      <div className="text-sm text-slate-500">{selectedContact.email}</div>
+              <div className="p-6 md:p-8 border-b bg-slate-50/50 flex justify-between items-start">
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <h2 className="text-2xl font-bold text-slate-900">{selectedContact.data?.subject}</h2>
+                    {selectedContact.data?.status === 'resolved' && (
+                      <span className="bg-green-100 text-green-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Resolved</span>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
+                        {selectedContact.data?.name?.charAt(0) || '?'}
+                      </div>
+                      <div>
+                        <div className="font-medium text-slate-900">{selectedContact.data?.name}</div>
+                        <div className="text-sm text-slate-500">{selectedContact.data?.email}</div>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex flex-col justify-center items-end text-sm text-slate-500 gap-1">
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {format(new Date(selectedContact.createdAt), 'MMMM d, yyyy')}
-                    </div>
-                    <div>
-                      {format(new Date(selectedContact.createdAt), 'h:mm a')}
-                    </div>
+                </div>
+                <div className="flex flex-col justify-center items-end text-sm text-slate-500 gap-1">
+                  <div className="flex items-center gap-1">
+                    <Calendar className="w-4 h-4" />
+                    {format(new Date(selectedContact.created_at || Date.now()), 'MMMM d, yyyy')}
+                  </div>
+                  <div>
+                    {format(new Date(selectedContact.created_at || Date.now()), 'h:mm a')}
                   </div>
                 </div>
               </div>
               <div className="p-6 md:p-8 flex-1">
                 <div className="prose prose-slate max-w-none space-y-4">
-                  {selectedContact.message.split('\n').map((paragraph, i) => (
+                  {(selectedContact.data?.message || '').split('\n').map((paragraph, i) => (
                     <p key={i} className="text-slate-700 leading-relaxed">{paragraph}</p>
                   ))}
                 </div>
               </div>
               <div className="p-6 border-t bg-slate-50">
                 <div className="flex gap-4">
-                  <button className="flex-1 bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors font-medium flex items-center justify-center gap-2">
+                  <a href={`mailto:${selectedContact.data?.email}`} className="flex-1 bg-white border border-slate-200 text-slate-700 px-4 py-2 rounded-lg hover:bg-slate-50 transition-colors font-medium flex items-center justify-center gap-2">
                     <Mail className="w-4 h-4" />
                     Reply via Email
-                  </button>
-                  <button className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
-                    Mark as Resolved
-                  </button>
+                  </a>
+                  {selectedContact.data?.status !== 'resolved' && (
+                    <button 
+                      onClick={handleMarkResolved}
+                      className="flex-1 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                      Mark as Resolved
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

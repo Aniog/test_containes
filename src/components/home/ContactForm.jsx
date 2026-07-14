@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle2 } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -16,36 +20,37 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
     
-    setTimeout(() => {
-      try {
-        const newContact = {
-          id: Math.random().toString(36).substring(2, 9),
-          ...formData,
-          createdAt: new Date().toISOString(),
-          status: 'new'
-        };
-        
-        const existingContactsStr = localStorage.getItem('mock_contacts');
-        let existingContacts = [];
-        if (existingContactsStr) {
-          existingContacts = JSON.parse(existingContactsStr);
-        }
-        
-        localStorage.setItem('mock_contacts', JSON.stringify([newContact, ...existingContacts]));
-        setStatus('success');
-        
-        setTimeout(() => {
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          setStatus('idle');
-        }, 3000);
-      } catch (error) {
-        setStatus('error');
-      }
-    }, 800);
+    try {
+      // Insert into ContactMessage
+      const { error: responseError } = await client
+        .from('ContactMessage')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            status: 'new'
+          }
+        });
+
+      if (responseError) throw responseError;
+
+      setStatus('success');
+      
+      setTimeout(() => {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setStatus('idle');
+      }, 3000);
+      
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+    }
   };
 
   if (status === 'success') {
