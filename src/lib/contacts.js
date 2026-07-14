@@ -1,0 +1,29 @@
+const STORAGE_KEY = 'saved_contacts';
+
+export function getContacts() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function saveContact(contact) {
+  const contacts = getContacts();
+  const newContact = {
+    ...contact,
+    id: crypto.randomUUID(),
+    createdAt: new Date().toISOString(),
+  };
+  contacts.unshift(newContact);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+  console.log('Contact saved:', newContact);
+  return newContact;
+}
+
+export function deleteContact(id) {
+  const contacts = getContacts().filter((c) => c.id !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+  console.log('Contact deleted:', id);
+}
