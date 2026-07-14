@@ -1,0 +1,47 @@
+export const seedProducts = [
+  {
+    id: 'vivid-aura',
+    title: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    description: 'A striking gold ear cuff adorned with a delicate crystal accent, designed to add a touch of modern luxury without piercing.',
+    materials: '18K Gold Vermeil, Cubic Zirconia',
+    imgId: 'product-vivid-aura-1',
+  },
+  {
+    id: 'majestic-flora',
+    title: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    description: 'An intricately detailed necklace featuring a vibrant, multicolor floral crystal arrangement set in warm gold.',
+    materials: '18K Gold Vermeil, Mixed Crystals',
+    imgId: 'product-majestic-flora-1',
+  },
+  {
+    id: 'golden-sphere',
+    title: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    description: 'Chunky gold dome huggie earrings that offer a bold yet classic silhouette for everyday elegance.',
+    materials: '18K Gold Plated Brass',
+    imgId: 'product-golden-sphere-1',
+  },
+  {
+    id: 'amber-lace',
+    title: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    description: 'Lightweight drop earrings showcasing textured gold filigree that catches the light beautifully from every angle.',
+    materials: '14K Solid Gold',
+    imgId: 'product-amber-lace-1',
+  },
+  {
+    id: 'royal-heirloom',
+    title: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    description: 'A curated, gift-boxed set containing our signature vintage-inspired earring and necklace pair. The ultimate gift of quiet luxury.',
+    materials: '18K Gold Vermeil, White Topaz',
+    imgId: 'product-royal-heirloom-1',
+  }
+];
