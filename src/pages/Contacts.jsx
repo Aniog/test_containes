@@ -1,47 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import { ArrowLeft, Trash2, Mail, Phone, User, MessageSquare, Search, Clock } from 'lucide-react';
-
-const STORAGE_KEY = 'landing_contacts';
-
-function getContacts() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  } catch {
-    return [];
-  }
-}
-
-function saveContacts(contacts) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
-}
+import { ArrowLeft, Trash2, Mail, Phone, User, MessageSquare, Search, Clock, Loader2 } from 'lucide-react';
+import { fetchContacts, deleteContact } from '../api/contacts.js';
 
 export default function Contacts() {
   const navigate = useNavigate();
   const [contacts, setContacts] = useState([]);
   const [search, setSearch] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setContacts(getContacts());
+  const loadContacts = useCallback(async () => {
+    try {
+      const data = await fetchContacts();
+      setContacts(data);
+    } catch {
+      // silent
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
-  function handleDelete(id) {
+  useEffect(() => {
+    loadContacts();
+  }, [loadContacts]);
+
+  async function handleDelete(id) {
+    try {
+      await deleteContact(id);
+    } catch {
+      // silent
+    }
     const updated = contacts.filter((c) => c.id !== id);
-    saveContacts(updated);
     setContacts(updated);
     if (selectedId === id) setSelectedId(null);
   }
 
   const filtered = contacts.filter(
-    (c) =>
-      c.name.toLowerCase().includes(search.toLowerCase()) ||
-      c.email.toLowerCase().includes(search.toLowerCase()) ||
-      c.message.toLowerCase().includes(search.toLowerCase())
+    (c) => {
+      const fields = c.data || {};
+      return (
+        (fields.name || '').toLowerCase().includes(search.toLowerCase()) ||
+        (fields.email || '').toLowerCase().includes(search.toLowerCase()) ||
+        (fields.message || '').toLowerCase().includes(search.toLowerCase())
+      );
+    }
   );
 
   const selected = contacts.find((c) => c.id === selectedId);
+  const selectedFields = selected?.data || {};
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -98,7 +106,9 @@ export default function Contacts() {
                 <p className="text-sm text-gray-500 text-center py-8">No matching contacts.</p>
               ) : (
                 <div className="space-y-2">
-                  {filtered.map((c) => (
+                  {filtered.map((c) => {
+                    const fields = c.data || {};
+                    return (
                     <button
                       key={c.id}
                       onClick={() => setSelectedId(c.id)}
@@ -108,13 +118,14 @@ export default function Contacts() {
                           : 'border-gray-100 bg-white hover:border-gray-200'
                       }`}
                     >
-                      <p className="font-medium text-gray-900 truncate">{c.name}</p>
-                      <p className="text-sm text-gray-500 truncate mt-0.5">{c.email}</p>
+                      <p className="font-medium text-gray-900 truncate">{fields.name}</p>
+                      <p className="text-sm text-gray-500 truncate mt-0.5">{fields.email}</p>
                       <p className="text-xs text-gray-400 mt-1">
-                        {format(new Date(c.createdAt), 'MMM d, yyyy')}
+                        {c.created_at ? format(new Date(c.created_at), 'MMM d, yyyy') : '—'}
                       </p>
                     </button>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
             </div>
@@ -125,10 +136,12 @@ export default function Contacts() {
                 <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
                   <div className="flex items-start justify-between mb-6">
                     <div>
-                      <h2 className="text-xl font-bold text-gray-900">{selected.name}</h2>
+                      <h2 className="text-xl font-bold text-gray-900">{selectedFields.name}</h2>
                       <p className="flex items-center gap-1.5 text-sm text-gray-500 mt-1">
                         <Clock className="w-3.5 h-3.5" />
-                        {format(new Date(selected.createdAt), 'MMMM d, yyyy — h:mm a')}
+                        {selected.created_at
+                          ? format(new Date(selected.created_at), 'MMMM d, yyyy — h:mm a')
+                          : '—'}
                       </p>
                     </div>
                     <button
@@ -145,15 +158,15 @@ export default function Contacts() {
                       <Mail className="w-4 h-4 text-gray-400 shrink-0" />
                       <div>
                         <p className="text-xs text-gray-400 uppercase tracking-wide">Email</p>
-                        <p className="text-gray-900">{selected.email}</p>
+                        <p className="text-gray-900">{selectedFields.email}</p>
                       </div>
                     </div>
-                    {selected.phone && (
+                    {selectedFields.phone && (
                       <div className="flex items-center gap-3">
                         <Phone className="w-4 h-4 text-gray-400 shrink-0" />
                         <div>
                           <p className="text-xs text-gray-400 uppercase tracking-wide">Phone</p>
-                          <p className="text-gray-900">{selected.phone}</p>
+                          <p className="text-gray-900">{selectedFields.phone}</p>
                         </div>
                       </div>
                     )}
@@ -161,7 +174,7 @@ export default function Contacts() {
                       <MessageSquare className="w-4 h-4 text-gray-400 shrink-0 mt-0.5" />
                       <div>
                         <p className="text-xs text-gray-400 uppercase tracking-wide">Message</p>
-                        <p className="text-gray-900 whitespace-pre-wrap mt-1">{selected.message}</p>
+                        <p className="text-gray-900 whitespace-pre-wrap mt-1">{selectedFields.message}</p>
                       </div>
                     </div>
                   </div>

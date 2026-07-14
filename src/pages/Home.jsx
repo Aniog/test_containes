@@ -1,47 +1,42 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Phone, User, MessageSquare, Send, CheckCircle, ArrowRight } from 'lucide-react';
-
-const STORAGE_KEY = 'landing_contacts';
-
-function getContacts() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  } catch {
-    return [];
-  }
-}
-
-function saveContacts(contacts) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
-}
+import { Mail, Phone, User, MessageSquare, Send, CheckCircle, AlertCircle, ArrowRight, Loader2 } from 'lucide-react';
+import { fetchContacts, createContact } from '../api/contacts.js';
 
 export default function Home() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [contactCount, setContactCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setContactCount(getContacts().length);
-  }, []);
+    fetchContacts()
+      .then((contacts) => setContactCount(contacts.length))
+      .catch(() => {});
+  }, [submitted]);
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    const contacts = getContacts();
-    contacts.push({
-      id: Date.now().toString(),
-      ...form,
-      createdAt: new Date().toISOString(),
-    });
-    saveContacts(contacts);
-    setSubmitted(true);
-    setContactCount(contacts.length);
-    setForm({ name: '', email: '', phone: '', message: '' });
+    setLoading(true);
+    setError(null);
+
+    try {
+      await createContact(form);
+      const contacts = await fetchContacts();
+      setSubmitted(true);
+      setContactCount(contacts.length);
+      setForm({ name: '', email: '', phone: '', message: '' });
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -97,6 +92,12 @@ export default function Home() {
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
+              {error && (
+                <div className="flex items-center gap-2 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  {error}
+                </div>
+              )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -172,10 +173,20 @@ export default function Home() {
               </div>
               <button
                 type="submit"
-                className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors"
+                disabled={loading}
+                className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-200 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                <Send className="w-4 h-4" />
-                Send Message
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           )}
