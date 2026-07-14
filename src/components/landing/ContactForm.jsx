@@ -1,21 +1,24 @@
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { CheckCircle, Send } from "lucide-react"
+import { DataClient } from "@strikingly/sdk"
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from "@/config"
 import { Button } from "@/components/ui/Button"
 import { Input, Textarea } from "@/components/ui/Input"
 import { Card } from "@/components/ui/Card"
 
-const STORAGE_KEY = "saved_contacts"
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
-function saveContact(contact) {
-  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")
-  const newContact = {
-    ...contact,
-    id: Date.now().toString(),
-    submittedAt: new Date().toISOString(),
-  }
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([newContact, ...existing]))
-  console.log("Contact saved:", newContact)
-  return newContact
+async function saveContact(contact) {
+  const { data: response, error } = await client
+    .from("Contact Form Responses")
+    .insert({ data: { name: contact.name, email: contact.email, phone: contact.phone || undefined, message: contact.message } })
+    .select()
+    .single()
+
+  if (error) throw error
+  if (response?.success === false) throw new Error((response.errors || []).join(", ") || "Failed to save contact")
+  console.log("Contact saved to DB:", response?.data)
+  return response?.data
 }
 
 const initialForm = { name: "", email: "", phone: "", message: "" }
@@ -41,7 +44,7 @@ export default function ContactForm({ sectionRef }) {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const errs = validate()
     if (Object.keys(errs).length > 0) {
@@ -49,11 +52,15 @@ export default function ContactForm({ sectionRef }) {
       return
     }
     setLoading(true)
-    setTimeout(() => {
-      saveContact(form)
+    try {
+      await saveContact(form)
       setSubmitted(true)
+    } catch (err) {
+      console.error("Failed to save contact:", err)
+      setErrors({ submit: err.message || "Something went wrong. Please try again." })
+    } finally {
       setLoading(false)
-    }, 600)
+    }
   }
 
   function handleReset() {
@@ -144,6 +151,9 @@ export default function ContactForm({ sectionRef }) {
                   </span>
                 )}
               </Button>
+              {errors.submit && (
+                <p className="text-sm text-red-600 text-center">{errors.submit}</p>
+              )}
             </form>
           )}
         </Card>
