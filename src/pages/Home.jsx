@@ -132,7 +132,7 @@ export default function Home() {
                 className="group relative overflow-hidden aspect-[3/4]"
               >
                 <img
-                  src={category.image}
+                  src={category.id === 'huggies' ? 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&h=800&fit=crop' : category.image}
                   alt={category.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
