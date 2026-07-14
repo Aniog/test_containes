@@ -1,21 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Mock data for frontend implementation
   useEffect(() => {
-    const fetchContacts = () => {
-      // Simulate API call
-      setTimeout(() => {
-        setContacts([
-          { id: 1, name: 'Alice Smith', email: 'alice@example.com', message: 'I need some help with my account.', createdAt: new Date().toISOString() },
-          { id: 2, name: 'Bob Johnson', email: 'bob@example.com', message: 'Can we schedule a demo?', createdAt: new Date(Date.now() - 86400000).toISOString() },
-        ]);
+    const fetchContacts = async () => {
+      try {
+        const { data: response, error: fetchError } = await client
+          .from('ContactFormResponse')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if (fetchError || response?.success === false) {
+          setError(response?.errors?.join(', ') || fetchError?.message || 'Failed to load contacts');
+          return;
+        }
+
+        setContacts(response?.data?.list || []);
+      } catch (err) {
+        console.error(err);
+        setError(err.message || 'An unexpected error occurred');
+      } finally {
         setIsLoading(false);
-      }, 800);
+      }
     };
 
     fetchContacts();
@@ -23,8 +37,22 @@ const Contacts = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-64">
+      <div className="flex justify-center items-center h-64 w-full">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 w-full">
+        <div className="bg-red-50 border-l-4 border-red-400 p-4">
+          <div className="flex">
+            <div className="ml-3">
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -79,16 +107,16 @@ const Contacts = () => {
                     {contacts.map((contact) => (
                       <tr key={contact.id}>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm font-medium text-gray-900 text-foreground">{contact.name}</div>
+                          <div className="text-sm font-medium text-gray-900 text-foreground">{contact.data?.name}</div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="text-sm text-gray-500 text-foreground">{contact.email}</div>
+                          <div className="text-sm text-gray-500 text-foreground">{contact.data?.email}</div>
                         </td>
                         <td className="px-6 py-4">
-                          <div className="text-sm text-gray-900 text-foreground max-w-xs truncate">{contact.message}</div>
+                          <div className="text-sm text-gray-900 text-foreground max-w-xs truncate">{contact.data?.message}</div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 text-foreground">
-                          {new Date(contact.createdAt).toLocaleDateString()}
+                          {new Date(contact.created_at).toLocaleDateString()}
                         </td>
                       </tr>
                     ))}

@@ -1,17 +1,45 @@
 import React, { useState } from 'react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Home = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate frontend form submission for now
-    console.log('Form submitted:', formData);
-    setStatus('success');
-    setFormData({ name: '', email: '', message: '' });
+    setStatus('submitting');
+    setError(null);
     
-    // In actual implementation, we would send this to the backend
+    try {
+      const { data: response, error: createError } = await client
+        .from('ContactFormResponse')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            message: formData.message,
+          },
+        })
+        .select()
+        .single();
+
+      if (createError || response?.success === false) {
+        setError(response?.errors?.join(', ') || createError?.message || 'Failed to submit form');
+        setStatus('error');
+        return;
+      }
+
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (err) {
+      console.error(err);
+      setError(err.message || 'An unexpected error occurred');
+      setStatus('error');
+    }
   };
 
   const handleChange = (e) => {
@@ -51,6 +79,16 @@ const Home = () => {
                 </div>
               </div>
             )}
+            
+            {status === 'error' && (
+              <div className="mb-6 bg-red-50 border-l-4 border-red-400 p-4">
+                <div className="flex">
+                  <div className="ml-3">
+                    <p className="text-sm text-red-700">{error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -62,7 +100,8 @@ const Home = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  disabled={status === 'submitting'}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:opacity-50"
                   placeholder="John Doe"
                 />
               </div>
@@ -76,7 +115,8 @@ const Home = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  disabled={status === 'submitting'}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:opacity-50"
                   placeholder="john@example.com"
                 />
               </div>
@@ -90,7 +130,8 @@ const Home = () => {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                  disabled={status === 'submitting'}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm disabled:opacity-50"
                   placeholder="How can we help you?"
                 />
               </div>
@@ -98,9 +139,10 @@ const Home = () => {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                  disabled={status === 'submitting'}
+                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
                 >
-                  Send Message
+                  {status === 'submitting' ? 'Sending...' : 'Send Message'}
                 </button>
               </div>
             </form>
