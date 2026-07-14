@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import App from "./App.jsx?velmora-runtime=20260714d";
 import "./index.css";
 
 if (import.meta.env.DEV) {

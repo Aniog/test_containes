@@ -1,76 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #15110D;
+  background-color: #FAF6EE;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #FAF6EE;
+  color: #15110D;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background-color: #D7B56D;
+  color: #15110D;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer utilities {
+  .bg-velmora-ink { background-color: #15110D; }
+  .bg-velmora-espresso { background-color: #2B2018; }
+  .bg-velmora-ivory { background-color: #FAF6EE; }
+  .bg-velmora-parchment { background-color: #EFE5D6; }
+  .bg-velmora-champagne { background-color: #D7B56D; }
+  .bg-velmora-bronze { background-color: #8E6338; }
+  .bg-velmora-pearl { background-color: #FFFDF8; }
+
+  .text-velmora-ink { color: #15110D; }
+  .text-velmora-espresso { color: #2B2018; }
+  .text-velmora-bronze { color: #8E6338; }
+  .text-velmora-champagne { color: #D7B56D; }
+  .text-velmora-ivory { color: #FAF6EE; }
+  .text-velmora-espresso\/55 { color: rgb(43 32 24 / 0.55); }
+  .text-velmora-espresso\/65 { color: rgb(43 32 24 / 0.65); }
+  .text-velmora-espresso\/70 { color: rgb(43 32 24 / 0.70); }
+  .text-velmora-espresso\/72 { color: rgb(43 32 24 / 0.72); }
+  .text-velmora-espresso\/74 { color: rgb(43 32 24 / 0.74); }
+  .text-velmora-espresso\/75 { color: rgb(43 32 24 / 0.75); }
+  .text-velmora-espresso\/76 { color: rgb(43 32 24 / 0.76); }
+  .text-velmora-espresso\/80 { color: rgb(43 32 24 / 0.80); }
+  .text-velmora-ivory\/58 { color: rgb(250 246 238 / 0.58); }
+  .text-velmora-ivory\/70 { color: rgb(250 246 238 / 0.70); }
+  .text-velmora-ivory\/72 { color: rgb(250 246 238 / 0.72); }
+  .text-velmora-ivory\/76 { color: rgb(250 246 238 / 0.76); }
+  .text-velmora-ivory\/85 { color: rgb(250 246 238 / 0.85); }
+
+  .border-velmora-ink { border-color: #15110D; }
+  .border-velmora-champagne { border-color: #D7B56D; }
+  .border-velmora-espresso\/10 { border-color: rgb(43 32 24 / 0.10); }
+  .border-velmora-espresso\/15 { border-color: rgb(43 32 24 / 0.15); }
+  .border-velmora-ink\/20 { border-color: rgb(21 17 13 / 0.20); }
+  .border-velmora-ivory\/12 { border-color: rgb(250 246 238 / 0.12); }
+  .border-velmora-ivory\/18 { border-color: rgb(250 246 238 / 0.18); }
+  .border-velmora-ivory\/20 { border-color: rgb(250 246 238 / 0.20); }
+  .bg-velmora-ink\/50 { background-color: rgb(21 17 13 / 0.50); }
+  .bg-velmora-ivory\/95 { background-color: rgb(250 246 238 / 0.95); }
+  .border-velmora-bronze { border-color: #8E6338; }
+  .border-velmora-ivory\/15 { border-color: rgb(250 246 238 / 0.15); }
+  .hover\:border-velmora-bronze:hover { border-color: #8E6338; }
+
+
+  .from-velmora-ink\/55 { --tw-gradient-from: rgb(21 17 13 / 0.55) var(--tw-gradient-from-position); --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/70 { --tw-gradient-from: rgb(21 17 13 / 0.70) var(--tw-gradient-from-position); --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/78 { --tw-gradient-from: rgb(21 17 13 / 0.78) var(--tw-gradient-from-position); --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/80 { --tw-gradient-from: rgb(21 17 13 / 0.80) var(--tw-gradient-from-position); --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-velmora-ink\/12 { --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(21 17 13 / 0.12) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-ink\/35 { --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(21 17 13 / 0.35) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-ink\/45 { --tw-gradient-to: rgb(21 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(21 17 13 / 0.45) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-velmora-ink\/85 { --tw-gradient-to: rgb(21 17 13 / 0.85) var(--tw-gradient-to-position); }
+
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .tracking-luxe { letter-spacing: 0.18em; }
+  .tracking-widerLuxury { letter-spacing: 0.24em; }
+  .shadow-soft { box-shadow: 0 24px 70px rgb(43 32 24 / 0.12); }
+  .shadow-editorial { box-shadow: 0 18px 50px rgb(21 17 13 / 0.16); }
+  .accent-velmora-bronze { accent-color: #8E6338; }
+
+  .placeholder\:text-velmora-espresso\/55::placeholder { color: rgb(43 32 24 / 0.55); }
+  .hover\:bg-velmora-bronze:hover { background-color: #8E6338; }
+  .hover\:bg-velmora-espresso:hover { background-color: #2B2018; }
+  .hover\:bg-velmora-ink:hover { background-color: #15110D; }
+  .hover\:bg-velmora-ivory:hover { background-color: #FAF6EE; }
+  .hover\:bg-velmora-parchment:hover { background-color: #EFE5D6; }
+  .hover\:border-velmora-champagne:hover { border-color: #D7B56D; }
+  .hover\:text-velmora-bronze:hover { color: #8E6338; }
+  .hover\:text-velmora-champagne:hover { color: #D7B56D; }
+  .hover\:text-velmora-ink:hover { color: #15110D; }
+  .hover\:text-velmora-ivory:hover { color: #FAF6EE; }
+  .focus\:ring-velmora-champagne:focus { --tw-ring-color: #D7B56D; }
+  .focus\:ring-velmora-ink:focus { --tw-ring-color: #15110D; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+  .animate-fadeUp { animation: fadeUp 700ms ease-out both; }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
