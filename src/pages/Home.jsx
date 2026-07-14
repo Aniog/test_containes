@@ -77,7 +77,7 @@ export default function Home() {
                 <Link to={`/product/${product.id}`} className="block block aspect-[3/4] overflow-hidden bg-secondary mb-4 relative">
                   <img
                     data-strk-img-id={`bestseller-${product.id}`}
-                    data-strk-img={`[bestsellers-title] [product-title-${product.id}] on dark background`}
+                    data-strk-img={`[bestsellers-title] [product-title-${product.id}] on dark background gold jewelry`}
                     data-strk-img-ratio="3x4"
                     data-strk-img-width="600"
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -146,9 +146,9 @@ export default function Home() {
               { id: 'huggies', title: 'Huggies', link: '/shop?category=huggies' }
             ].map((cat) => (
               <Link key={cat.id} to={cat.link} className="block relative aspect-[4/5] bg-secondary overflow-hidden group">
-                 <img
+                  <img
                     data-strk-img-id={`cat-img-${cat.id}`}
-                    data-strk-img={`[cat-title-${cat.id}] gold ${cat.title} jewelry on model editorial close up`}
+                    data-strk-img={`[cat-title-${cat.id}] gold jewelry editorial close up`}
                     data-strk-img-ratio="4x5"
                     data-strk-img-width="800"
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -172,9 +172,9 @@ export default function Home() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
             <div className="aspect-[4/5] relative overflow-hidden bg-background">
-               <img
+                <img
                   data-strk-img-id="story-image-1"
-                  data-strk-img={`[story-title] woman making fine jewelry close up editorial photography`}
+                  data-strk-img={`[story-title] woman making fine jewelry craft portrait closeup hand editorial`}
                   data-strk-img-ratio="4x5"
                   data-strk-img-width="800"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
