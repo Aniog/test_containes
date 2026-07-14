@@ -1,76 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  @apply bg-blue-50 text-slate-800;
 }
 
-button:hover {
-  border-color: #646cff;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer utilities {
+  .bg-brand-mist {
+    @apply bg-blue-50;
   }
 
-  a:hover {
-    color: #747bff;
+  .bg-brand-paper {
+    @apply bg-amber-50;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .bg-brand-blue {
+    @apply bg-blue-600;
+  }
+
+  .bg-brand-cyan {
+    @apply bg-cyan-500;
+  }
+
+  .bg-brand-navy {
+    @apply bg-slate-50 text-slate-800;
+  }
+
+  .text-brand-navy {
+    @apply text-slate-900;
+  }
+
+  .text-brand-blue {
+    @apply text-blue-700;
+  }
+
+  .text-brand-cyan {
+    @apply text-cyan-500;
+  }
+
+  .text-brand-ink {
+    @apply text-slate-800;
+  }
+
+  .text-brand-muted {
+    @apply text-slate-600;
+  }
+
+  .border-brand-blue {
+    @apply border-blue-600;
+  }
+
+  .shadow-soft {
+    @apply shadow-2xl;
+  }
+
+  .hover\:bg-brand-blue:hover {
+    @apply bg-blue-600;
+  }
+
+  .hover\:border-brand-blue:hover {
+    @apply border-blue-600;
+  }
+
+  .hover\:text-brand-blue:hover {
+    @apply text-blue-700;
+  }
+
+  .focus\:border-brand-blue:focus {
+    @apply border-blue-600;
+  }
+
+  .bg-brand-navy .text-white {
+    @apply text-slate-900;
+  }
+
+  .bg-brand-navy .text-cyan-100 {
+    @apply text-blue-700;
+  }
+
+  .bg-brand-navy .bg-white\/10 {
+    @apply bg-white;
+  }
+
+  .bg-brand-navy .ring-white\/10 {
+    @apply ring-slate-200;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.bg-brand-blue {
+  background-color: rgb(37 99 235);
+}
+
+.bg-brand-cyan {
+  background-color: rgb(6 182 212);
+}
+
+.bg-brand-mist {
+  background-color: rgb(239 246 255);
+}
+
+.bg-brand-paper {
+  background-color: rgb(255 251 235);
+}
+
+.bg-brand-navy {
+  background-color: rgb(248 250 252);
+  color: rgb(30 41 59);
+}
+
+.text-brand-blue {
+  color: rgb(29 78 216);
+}
+
+.text-brand-cyan {
+  color: rgb(6 182 212);
+}
+
+.text-brand-ink {
+  color: rgb(30 41 59);
+}
+
+.text-brand-muted {
+  color: rgb(71 85 105);
+}
+
+.text-brand-navy {
+  color: rgb(15 23 42);
+}
+
+.border-brand-blue {
+  border-color: rgb(37 99 235);
+}
+
+.shadow-soft {
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+}
+
+.bg-brand-navy .text-white,
+.bg-brand-navy p.text-white {
+  color: rgb(15 23 42);
+}
+
+.bg-brand-navy .text-cyan-100 {
+  color: rgb(29 78 216);
+}
+
+.bg-brand-navy .bg-white\/10 {
+  background-color: rgb(255 255 255);
+}
+
+.bg-brand-navy .ring-white\/10 {
+  --tw-ring-color: rgb(226 232 240);
+}
