@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "images": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "Product image URLs"
+    },
+    "hoverImage": {
+      "type": "string",
+      "format": "uri",
+      "description": "Image to show on hover"
+    },
+    "hasGold": {
+      "type": "boolean",
+      "default": true,
+      "description": "Available in gold tone"
+    },
+    "hasSilver": {
+      "type": "boolean",
+      "default": false,
+      "description": "Available in silver tone"
+    },
+    "isBestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a bestseller?"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "shipping": {
+      "type": "string",
+      "description": "Shipping information"
+    },
+    "returns": {
+      "type": "string",
+      "description": "Returns information"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
