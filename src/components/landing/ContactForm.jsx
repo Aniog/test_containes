@@ -1,17 +1,21 @@
 import { useState } from 'react';
 import { CheckCircle, Loader2 } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 
-const STORAGE_KEY = 'saved_contacts';
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
-function saveContact(contact) {
-  const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-  const newContact = {
-    ...contact,
-    id: Date.now().toString(),
-    submittedAt: new Date().toISOString(),
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify([newContact, ...existing]));
-  return newContact;
+async function saveContact(contact) {
+  const { data: response, error } = await client
+    .from('Contact Form Responses')
+    .insert({ data: { name: contact.name, email: contact.email, company: contact.company || '', message: contact.message } })
+    .select()
+    .single();
+
+  if (error) throw error;
+  if (response?.success === false) throw new Error((response.errors || []).join(', ') || 'Failed to save contact');
+  console.log('Contact saved to database:', response?.data);
+  return response?.data;
 }
 
 const initialForm = { name: '', email: '', company: '', message: '' };
@@ -40,7 +44,7 @@ export default function ContactForm() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }));
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
@@ -48,13 +52,16 @@ export default function ContactForm() {
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
-      saveContact(form);
-      setSubmitting(false);
+    try {
+      await saveContact(form);
       setSubmitted(true);
       setForm(initialForm);
-      console.log('Contact saved:', form);
-    }, 800);
+    } catch (err) {
+      console.error('Failed to save contact:', err);
+      setErrors({ submit: err.message || 'Something went wrong. Please try again.' });
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -164,6 +171,10 @@ export default function ContactForm() {
           'Send message'
         )}
       </button>
+
+      {errors.submit && (
+        <p className="text-sm text-red-600 text-center">{errors.submit}</p>
+      )}
     </form>
   );
 }
