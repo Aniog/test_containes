@@ -33,6 +33,8 @@ export function CartProvider({ children }) {
           price: product.price,
           imageId: product.imageId,
           category: product.category,
+          material: product.material,
+          shortDescription: product.shortDescription,
           variant,
           quantity,
         },

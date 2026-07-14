@@ -1,16 +1,20 @@
 import { Minus, Plus, ShoppingBag, X } from 'lucide-react'
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useCart } from '@/context/CartContext.jsx'
-import { useStrkImages } from '@/hooks/useStrkImages.js'
 import { formatPrice } from './storefront-utils.jsx'
-import { EditorialImage } from './EditorialImage.jsx'
+
+function getProductMonogram(name) {
+  return name
+    .split(' ')
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join('')
+    .toUpperCase()
+}
 
 export function CartDrawer() {
   const { cartItems, isCartOpen, closeCart, removeFromCart, updateQuantity, subtotal } = useCart()
-  const drawerRef = useRef(null)
-
-  useStrkImages(drawerRef, [isCartOpen, cartItems])
 
   useEffect(() => {
     if (!isCartOpen) return undefined
@@ -35,7 +39,6 @@ export function CartDrawer() {
         aria-hidden="true"
       />
       <aside
-        ref={drawerRef}
         className="fixed right-0 top-0 z-[80] flex h-full w-full max-w-md flex-col bg-stone-50 text-stone-900 shadow-2xl transition-transform duration-300 translate-x-0"
         aria-label="Shopping cart"
       >
@@ -81,14 +84,14 @@ export function CartDrawer() {
                 const descId = `cart-${item.lineId}-desc`
                 return (
                   <article key={item.lineId} className="grid grid-cols-[92px,1fr] gap-4 rounded-[1.5rem] border border-stone-200 bg-white p-3 shadow-sm">
-                    <EditorialImage
-                      alt={item.name}
-                      imageId={`cart-${item.lineId}-image`}
-                      query={`[${descId}] [${titleId}] [cart-drawer-title]`}
-                      ratio="1x1"
-                      width="400"
-                      className="aspect-square h-full w-full rounded-[1.1rem] object-cover"
-                    />
+                    <div className="relative flex aspect-square h-full w-full items-center justify-center overflow-hidden rounded-[1.1rem] border border-amber-200/70 bg-gradient-to-br from-stone-950 via-stone-900 to-amber-950 text-amber-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+                      <div className="absolute inset-3 rounded-full border border-amber-300/20" />
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(251,191,36,0.2),transparent_42%),radial-gradient(circle_at_bottom,rgba(255,255,255,0.08),transparent_36%)]" />
+                      <div className="relative text-center">
+                        <p className="text-[10px] uppercase tracking-[0.34em] text-amber-200/80">Velmora</p>
+                        <p className="mt-2 font-serif text-3xl tracking-[0.16em] text-amber-50">{getProductMonogram(item.name)}</p>
+                      </div>
+                    </div>
                     <div className="flex min-w-0 flex-col justify-between gap-3">
                       <div>
                         <p id={titleId} className="font-serif text-lg uppercase tracking-[0.18em] text-stone-950">
