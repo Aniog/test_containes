@@ -30,7 +30,6 @@ export default function ProductCard({ product, titleId, descId }) {
       <div className="relative overflow-hidden bg-cream">
         <StrkImage
           imgId={primary.imgId}
-          query={`[${descId}] [${titleId}]`}
           ratio="4x5"
           width={600}
           alt={primary.alt}

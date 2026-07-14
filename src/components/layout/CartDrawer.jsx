@@ -1,12 +1,10 @@
 import { Link } from 'react-router-dom'
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
-import { formatPrice } from '@/lib/utils'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import { formatPrice, resolveImgUrl } from '@/lib/utils'
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, setQuantity, subtotal, count } = useCart()
-  const ref = useStrkImages([items, isOpen])
 
   return (
     <>
@@ -21,7 +19,6 @@ export default function CartDrawer() {
 
       {/* Drawer */}
       <aside
-        ref={ref}
         className={`fixed right-0 top-0 z-[70] flex h-full w-full max-w-md flex-col bg-ivory shadow-2xl transition-transform duration-300 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -70,11 +67,7 @@ export default function CartDrawer() {
               >
                 <Link to={`/products/${item.slug}`} onClick={closeCart} className="shrink-0">
                   <img
-                    data-strk-img-id={`${item.imgId}-cart`}
-                    data-strk-img={`[cart-${item.key}-name] gold jewelry`}
-                    data-strk-img-ratio="4x5"
-                    data-strk-img-width="160"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                    src={resolveImgUrl(item.imgId)}
                     alt={item.alt}
                     className="h-24 w-20 object-cover"
                   />
@@ -86,7 +79,6 @@ export default function CartDrawer() {
                       onClick={closeCart}
                       className="font-serif text-base uppercase tracking-widest2 text-ink hover:text-gold"
                     >
-                      <span id={`cart-${item.key}-name`} className="sr-only">{item.name}</span>
                       {item.name}
                     </Link>
                     <button

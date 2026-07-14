@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { getProductBySlug, getRelatedProducts } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, resolveImgUrl } from '@/lib/utils'
 import { useStrkImages } from '@/hooks/useStrkImages'
 import StarRating from '@/components/ui/StarRating'
 import Accordion from '@/components/ui/Accordion'
@@ -72,11 +72,7 @@ export default function ProductDetail() {
                 }`}
               >
                 <img
-                  data-strk-img-id={`${img.imgId}-thumb`}
-                  data-strk-img={`[pdp-${product.id}-name] ${img.alt}`}
-                  data-strk-img-ratio="4x5"
-                  data-strk-img-width="200"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  src={resolveImgUrl(`${img.imgId}-thumb`)}
                   alt={img.alt}
                   className="h-full w-full object-cover"
                   loading="lazy"
@@ -86,11 +82,7 @@ export default function ProductDetail() {
           </div>
           <div className="relative flex-1 overflow-hidden bg-cream">
             <img
-              data-strk-img-id={`${product.images[activeImg].imgId}-main`}
-              data-strk-img={`[pdp-${product.id}-desc] [pdp-${product.id}-name] ${product.images[activeImg].alt}`}
-              data-strk-img-ratio="4x5"
-              data-strk-img-width="900"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src={resolveImgUrl(`${product.images[activeImg].imgId}-main`)}
               alt={product.images[activeImg].alt}
               className="aspect-[4/5] w-full object-cover"
             />

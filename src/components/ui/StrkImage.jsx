@@ -1,11 +1,11 @@
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+import { resolveImgUrl } from '@/lib/utils'
 
 // A content image wired to the strk-img tagging system.
-// `imgId` must be globally unique. `query` references nearby text element IDs.
+// `imgId` must be globally unique and present in strk-img-config.json.
+// The URL is resolved at runtime from the build config so the Vite plugin
+// does not need to statically resolve dynamic imgId expressions.
 export default function StrkImage({
   imgId,
-  query,
   ratio = '4x5',
   width = 600,
   alt = '',
@@ -14,11 +14,7 @@ export default function StrkImage({
 }) {
   return (
     <img
-      data-strk-img-id={imgId}
-      data-strk-img={query}
-      data-strk-img-ratio={ratio}
-      data-strk-img-width={String(width)}
-      src={PLACEHOLDER}
+      src={resolveImgUrl(imgId)}
       alt={alt}
       className={className}
       loading="lazy"
