@@ -1,22 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useCart } from '@/context/CartContext';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 
 export default function CartDrawer() {
   const { items, removeItem, updateQuantity, total, isOpen, setIsOpen } = useCart();
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (isOpen && containerRef.current) {
-      const frameId = window.requestAnimationFrame(() => {
-        ImageHelper.loadImages(strkImgConfig, containerRef.current);
-      });
-      return () => window.cancelAnimationFrame(frameId);
-    }
-  }, [isOpen, items]);
 
   useEffect(() => {
     if (isOpen) {
@@ -61,7 +49,7 @@ export default function CartDrawer() {
         </div>
 
         {/* Items */}
-        <div ref={containerRef} className="flex-1 overflow-y-auto px-6 py-4">
+        <div className="flex-1 overflow-y-auto px-6 py-4">
           {items.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
               <ShoppingBag size={40} strokeWidth={1} className="text-stone/40" />
@@ -78,17 +66,10 @@ export default function CartDrawer() {
             <div className="flex flex-col divide-y divide-stone/10">
               {items.map((item) => (
                 <div key={item.key} className="py-4 flex gap-4">
-                  <div className="w-20 h-20 bg-cream flex-shrink-0 overflow-hidden">
-                    <img
-                      data-strk-img-id={`cart-${item.key}-img`}
-                      data-strk-img={`[cart-item-${item.key}-name]`}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="160"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.product.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <span id={`cart-item-${item.key}-name`} className="sr-only">{item.product.name} gold jewelry</span>
+                  <div className="w-20 h-20 bg-cream flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    <span className="font-serif text-2xl font-light text-stone/60 select-none">
+                      {item.product.name.charAt(0)}
+                    </span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="font-serif text-xs uppercase tracking-product text-espresso leading-tight">

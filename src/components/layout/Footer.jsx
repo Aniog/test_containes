@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Pinterest } from 'lucide-react';
+import { Instagram, Facebook, Twitter } from 'lucide-react';
 
 const shopLinks = ['Earrings', 'Necklaces', 'Huggies', 'Gift Sets', 'New Arrivals'];
 const helpLinks = ['Shipping & Returns', 'Size Guide', 'Care Instructions', 'FAQ', 'Contact Us'];
@@ -26,8 +26,8 @@ export default function Footer() {
               <a href="#" aria-label="Facebook" className="text-ivory/40 hover:text-gold transition-colors duration-300">
                 <Facebook size={16} strokeWidth={1.5} />
               </a>
-              <a href="#" aria-label="Pinterest" className="text-ivory/40 hover:text-gold transition-colors duration-300">
-                <Pinterest size={16} strokeWidth={1.5} />
+              <a href="#" aria-label="Twitter" className="text-ivory/40 hover:text-gold transition-colors duration-300">
+                <Twitter size={16} strokeWidth={1.5} />
               </a>
             </div>
           </div>
