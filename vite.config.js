@@ -29,7 +29,7 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
