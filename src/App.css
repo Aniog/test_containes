@@ -1,50 +1,193 @@
-#root {
-  min-height: 100vh;
-  padding: 0;
-  background-color: #e4e8ef;
+/* Animation keyframes */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
+.animate-slideInRight {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+/* Hide scrollbar but allow scrolling */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* App loading shell */
 .app-loading-shell {
-  display: flex;
   min-height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+  background-color: #0D0D0D;
 }
 
 .app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
   text-align: center;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
-}
-
 .app-loading-text {
-  margin: 20px 0 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+  color: #F5F5F0;
+  letter-spacing: 0.1em;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
+/* Smooth image loading */
+img {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
 
-  to {
-    transform: rotate(360deg);
+img[data-loading="true"] {
+  opacity: 0;
+}
+
+/* Focus states */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #C9A962;
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background-color: #C9A962;
+  color: #0D0D0D;
+}
+
+/* Mobile menu animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* Product card hover effect */
+.product-card-image {
+  transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+/* Trust bar dot */
+.trust-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #333333;
+}
+
+/* Mobile menu overlay */
+.mobile-menu-enter {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.mobile-menu-content {
+  animation: slideInFromRight 0.3s ease forwards;
+}
+
+/* UGC scroll container */
+.ugc-scroll {
+  scroll-snap-type: x mandatory;
+}
+
+.ugc-scroll > div {
+  scroll-snap-align: start;
+}
+
+/* Category tile hover */
+.category-tile {
+  transition: transform 0.7s ease;
+}
+
+.category-tile:hover {
+  transform: scale(1.05);
+}
+
+/* Newsletter section */
+.newsletter-input::placeholder {
+  color: rgba(13, 13, 13, 0.5);
+}
+
+/* Cart drawer animation */
+.cart-drawer-backdrop {
+  animation: fadeIn 0.2s ease forwards;
+}
+
+.cart-drawer-panel {
+  animation: slideInFromRight 0.3s ease forwards;
+}
+
+/* Product detail page */
+.product-accordion-enter {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
   }
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Button hover states */
+.btn-primary {
+  background-color: #C9A962;
+  color: #0D0D0D;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #D4B978;
+}
+
+/* Link hover underline animation */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #C9A962;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Star rating */
+.star-filled {
+  color: #C9A962;
+}
+
+.star-empty {
+  color: #333333;
 }
