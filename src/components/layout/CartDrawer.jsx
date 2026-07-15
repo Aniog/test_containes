@@ -98,16 +98,10 @@ function CartItem({ item, onRemove, onQtyChange }) {
   const { product, variant, quantity } = item;
   return (
     <div className="py-4 flex gap-4">
-      <div className="w-20 h-20 bg-cream flex-shrink-0 overflow-hidden">
-        <img
-          data-strk-img-id={`cart-${product.imgId}`}
-          data-strk-img={`[${product.titleId}]`}
-          data-strk-img-ratio="1x1"
-          data-strk-img-width="160"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-          alt={product.name}
-          className="w-full h-full object-cover"
-        />
+      <div className="w-20 h-20 bg-cream flex-shrink-0 overflow-hidden border border-divider flex items-center justify-center">
+        <span className="font-cormorant text-2xl font-light text-gold uppercase select-none">
+          {product.name.charAt(0)}
+        </span>
       </div>
       <div className="flex-1 min-w-0">
         <div className="flex justify-between items-start gap-2">
