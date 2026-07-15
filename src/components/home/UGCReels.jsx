@@ -1,0 +1,50 @@
+import { useRef, useEffect } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
+
+const reels = [
+  { id: 'reel-1', caption: 'Everyday gold', imgId: 'ugc-reel-1-h4i5j6', titleId: 'ugc-reel-1-caption' },
+  { id: 'reel-2', caption: 'Layered & loved', imgId: 'ugc-reel-2-k7l8m9', titleId: 'ugc-reel-2-caption' },
+  { id: 'reel-3', caption: 'Gift-worthy', imgId: 'ugc-reel-3-n0o1p2', titleId: 'ugc-reel-3-caption' },
+  { id: 'reel-4', caption: 'Date night ready', imgId: 'ugc-reel-4-q3r4s5', titleId: 'ugc-reel-4-caption' },
+  { id: 'reel-5', caption: 'Minimal luxe', imgId: 'ugc-reel-5-t6u7v8', titleId: 'ugc-reel-5-caption' },
+  { id: 'reel-6', caption: 'Stack & style', imgId: 'ugc-reel-6-w9x0y1', titleId: 'ugc-reel-6-caption' },
+]
+
+export default function UGCReels() {
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
+  }, [])
+
+  return (
+    <section ref={containerRef} className="py-16 md:py-24 border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="text-center mb-10">
+          <h2 id="ugc-section-title" className="font-serif text-3xl md:text-4xl text-foreground">Worn by You</h2>
+          <p className="text-sm text-muted mt-3">Real moments, real style. Tag @velmora to be featured.</p>
+        </div>
+      </div>
+      <div className="flex gap-4 overflow-x-auto scrollbar-hide px-4 md:px-8 pb-4">
+        {reels.map(reel => (
+          <div key={reel.id} className="relative flex-shrink-0 w-44 md:w-52 aspect-[9/16] rounded-sm overflow-hidden group cursor-pointer">
+            <img
+              alt={reel.caption}
+              data-strk-img-id={reel.imgId}
+              data-strk-img={`[${reel.titleId}] [ugc-section-title] gold jewelry on woman`}
+              data-strk-img-ratio="9x16"
+              data-strk-img-width="300"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+            <p id={reel.titleId} className="absolute bottom-4 left-4 right-4 font-serif text-sm text-white italic">
+              {reel.caption}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
