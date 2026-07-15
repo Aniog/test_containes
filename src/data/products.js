@@ -1,0 +1,143 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent',
+    price: 42,
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 124,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'vivid-aura-jewels-1',
+      'vivid-aura-jewels-2',
+    ],
+    imgId: 'vivid-aura-main-a1b2c3',
+    titleId: 'vivid-aura-title',
+    descId: 'vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace',
+    price: 68,
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 89,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'majestic-flora-nectar-1',
+      'majestic-flora-nectar-2',
+    ],
+    imgId: 'majestic-flora-main-d4e5f6',
+    titleId: 'majestic-flora-title',
+    descId: 'majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings',
+    price: 38,
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    rating: 4.7,
+    reviews: 203,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'golden-sphere-huggies-1',
+      'golden-sphere-huggies-2',
+    ],
+    imgId: 'golden-sphere-main-g7h8i9',
+    titleId: 'golden-sphere-title',
+    descId: 'golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings',
+    price: 54,
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 67,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'amber-lace-earrings-1',
+      'amber-lace-earrings-2',
+    ],
+    imgId: 'amber-lace-main-j1k2l3',
+    titleId: 'amber-lace-title',
+    descId: 'amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set',
+    price: 95,
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    rating: 5.0,
+    reviews: 42,
+    variants: ['Gold', 'Silver'],
+    images: [
+      'royal-heirloom-set-1',
+      'royal-heirloom-set-2',
+    ],
+    imgId: 'royal-heirloom-main-m4n5o6',
+    titleId: 'royal-heirloom-title',
+    descId: 'royal-heirloom-desc',
+  },
+];
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    imgId: 'cat-earrings-p7q8r9',
+    titleId: 'cat-earrings-title',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    imgId: 'cat-necklaces-s1t2u3',
+    titleId: 'cat-necklaces-title',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    imgId: 'cat-huggies-v4w5x6',
+    titleId: 'cat-huggies-title',
+  },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is stunning for the price. I\'ve received so many compliments on my Golden Sphere Huggies — they look like fine jewelry, not costume.',
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    rating: 5,
+    text: 'I bought the Royal Heirloom Set as a gift and the packaging was gorgeous. My sister absolutely loved it. Will definitely be back for more.',
+  },
+  {
+    id: 3,
+    name: 'Priya K.',
+    rating: 5,
+    text: 'Finally, jewelry that doesn\'t irritate my ears! The hypoallergenic quality is real, and the designs are so elegant. My everyday go-to now.',
+  },
+];
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday elegance', imgId: 'ugc-reel-1-a1b2', titleId: 'ugc-title-1' },
+  { id: 'ugc-2', caption: 'Golden hour glow', imgId: 'ugc-reel-2-c3d4', titleId: 'ugc-title-2' },
+  { id: 'ugc-3', caption: 'Stacked & styled', imgId: 'ugc-reel-3-e5f6', titleId: 'ugc-title-3' },
+  { id: 'ugc-4', caption: 'Gift ready', imgId: 'ugc-reel-4-g7h8', titleId: 'ugc-title-4' },
+  { id: 'ugc-5', caption: 'Minimal luxury', imgId: 'ugc-reel-5-i9j0', titleId: 'ugc-title-5' },
+  { id: 'ugc-6', caption: 'Date night look', imgId: 'ugc-reel-6-k1l2', titleId: 'ugc-title-6' },
+];
