@@ -1,14 +1,18 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import { CartProvider } from './context/CartContext'
+import { Toaster } from 'sonner'
+import './index.css'
+import App from './App.jsx'
 
-if (import.meta.env.DEV) {
-  import("./visual-edit/index.js");
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <BrowserRouter>
+      <CartProvider>
+        <App />
+        <Toaster position="bottom-right" expand={false} richColors />
+      </CartProvider>
+    </BrowserRouter>
+  </StrictMode>,
+)
