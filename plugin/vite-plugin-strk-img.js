@@ -5384,6 +5384,7 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
         if (idExpr) {
           const candidates = entriesForOpening(np.node)
           const candidateIds = [...new Set(candidates.map(entry => entry.imgId))]
+
           if (!candidateIds.length) {
             reportUnresolved(np.node, {
               expression: idExpr,
