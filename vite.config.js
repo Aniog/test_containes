@@ -24,12 +24,13 @@ export default defineConfig({
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
+    port: 8080,
     hmr: {
       overlay: false
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
     },
   }
 })
