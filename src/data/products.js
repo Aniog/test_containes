@@ -1,0 +1,61 @@
+export const products = [
+  {
+    id: 1,
+    name: "Vivid Aura Jewels",
+    description: "Delicate gold ear cuff featuring a brilliant crystal accent. Perfect for stacking or wearing alone.",
+    price: 42,
+    category: "Earrings",
+    material: "Gold",
+    rating: 4.8,
+    image: "https://picsum.photos/id/1011/800/600",
+    imageSecondary: "https://picsum.photos/id/1005/800/600",
+  },
+  {
+    id: 2,
+    name: "Majestic Flora Nectar",
+    description: "A statement necklace adorned with multicolor floral crystals. Elegant and eye-catching.",
+    price: 68,
+    category: "Necklaces",
+    material: "Gold",
+    rating: 4.9,
+    image: "https://picsum.photos/id/106/800/600",
+    imageSecondary: "https://picsum.photos/id/160/800/600",
+  },
+  {
+    id: 3,
+    name: "Golden Sphere Huggies",
+    description: "Chunky gold dome huggie earrings with a sculptural silhouette. Bold yet refined.",
+    price: 38,
+    category: "Huggies",
+    material: "Gold",
+    rating: 4.7,
+    image: "https://picsum.photos/id/201/800/600",
+    imageSecondary: "https://picsum.photos/id/251/800/600",
+  },
+  {
+    id: 4,
+    name: "Amber Lace Earrings",
+    description: "Intricately textured gold filigree drop earrings. A timeless silhouette with modern craftsmanship.",
+    price: 54,
+    category: "Earrings",
+    material: "Gold",
+    rating: 4.6,
+    image: "https://picsum.photos/id/312/800/600",
+    imageSecondary: "https://picsum.photos/id/1009/800/600",
+  },
+  {
+    id: 5,
+    name: "Royal Heirloom Set",
+    description: "A beautifully gift-boxed pairing of our signature earrings and necklace. The perfect present.",
+    price: 95,
+    category: "Sets",
+    material: "Gold",
+    rating: 4.9,
+    image: "https://picsum.photos/id/180/800/600",
+    imageSecondary: "https://picsum.photos/id/133/800/600",
+  },
+];
+
+export const getProductById = (id) => products.find((p) => p.id === parseInt(id));
+export const getRelatedProducts = (currentId, limit = 4) =>
+  products.filter((p) => p.id !== parseInt(currentId)).slice(0, limit);
