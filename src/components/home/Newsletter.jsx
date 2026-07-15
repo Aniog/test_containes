@@ -14,7 +14,10 @@ const Newsletter = () => {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-base">
+    <section className="py-16 lg:py-24 bg-base relative overflow-hidden">
+      {/* Decorative gold line */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-px bg-gold/40" />
+
       <div className="max-w-content mx-auto px-6 lg:px-8 text-center">
         <h2 className="text-xs tracking-section uppercase font-semibold text-gold mb-3">Stay in Touch</h2>
         <p className="font-serif text-3xl md:text-4xl text-cream mb-3">Join for 10% Off</p>
@@ -23,7 +26,7 @@ const Newsletter = () => {
         </p>
 
         {submitted ? (
-          <div className="max-w-md mx-auto">
+          <div className="max-w-md mx-auto animate-fade-in-up">
             <p className="text-gold font-serif text-lg">Welcome to Velmora</p>
             <p className="text-cream/60 text-sm mt-2">Check your inbox for your 10% discount code.</p>
           </div>
@@ -39,7 +42,7 @@ const Newsletter = () => {
             />
             <button
               type="submit"
-              className="bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-wide uppercase px-6 py-3 transition-colors flex items-center gap-2"
+              className="bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-wide uppercase px-6 py-3 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 flex items-center gap-2"
             >
               Subscribe
               <ArrowRight className="w-4 h-4" />

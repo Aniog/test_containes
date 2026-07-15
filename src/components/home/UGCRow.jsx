@@ -16,6 +16,7 @@ const UGCRow = () => {
         <div className="text-center">
           <h2 className="text-xs tracking-section uppercase font-semibold text-gold mb-3">As Seen On You</h2>
           <p className="font-serif text-3xl md:text-4xl text-base">Styled by Our Community</p>
+          <div className="w-12 h-px bg-gold mx-auto mt-4" />
         </div>
       </div>
 
@@ -46,16 +47,6 @@ const UGCRow = () => {
           ))}
         </div>
       </div>
-
-      <style>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { Star, Plus, Minus, ChevronDown, ChevronUp, ShoppingBag } from 'lucide-react'
+import { Star, Plus, Minus, ChevronDown, ChevronUp, ShoppingBag, Check } from 'lucide-react'
 import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
 import { products } from '@/data/products'
@@ -8,6 +8,8 @@ import { useCart } from '@/context/CartContext'
 
 const Accordion = ({ title, children, defaultOpen = false }) => {
   const [open, setOpen] = useState(defaultOpen)
+  const contentRef = useRef(null)
+
   return (
     <div className="border-b border-divider">
       <button
@@ -15,9 +17,17 @@ const Accordion = ({ title, children, defaultOpen = false }) => {
         className="w-full flex items-center justify-between py-5 text-left"
       >
         <span className="text-sm tracking-product uppercase font-medium text-base">{title}</span>
-        {open ? <ChevronUp className="w-4 h-4 text-muted" /> : <ChevronDown className="w-4 h-4 text-muted" />}
+        <span className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`}>
+          <ChevronDown className="w-4 h-4 text-muted" />
+        </span>
       </button>
-      {open && <div className="pb-5 text-sm text-muted leading-relaxed">{children}</div>}
+      <div
+        ref={contentRef}
+        className="accordion-content"
+        style={{ maxHeight: open ? `${contentRef.current?.scrollHeight}px` : '0px', opacity: open ? 1 : 0 }}
+      >
+        <div className="pb-5 text-sm text-muted leading-relaxed">{children}</div>
+      </div>
     </div>
   )
 }
@@ -32,6 +42,7 @@ const ProductDetail = () => {
   const [selectedVariant, setSelectedVariant] = useState('Gold')
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
+  const [addedToCart, setAddedToCart] = useState(false)
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
@@ -168,11 +179,28 @@ const ProductDetail = () => {
 
             {/* Add to cart */}
             <button
-              onClick={() => addItem(product, selectedVariant, quantity)}
-              className="mt-8 w-full bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-product uppercase py-4 flex items-center justify-center gap-2 transition-colors"
+              onClick={() => {
+                addItem(product, selectedVariant, quantity)
+                setAddedToCart(true)
+                setTimeout(() => setAddedToCart(false), 2000)
+              }}
+              className={`mt-8 w-full font-medium text-sm tracking-product uppercase py-4 flex items-center justify-center gap-2 transition-all duration-300 ${
+                addedToCart
+                  ? 'bg-green-700 text-cream'
+                  : 'bg-gold hover:bg-gold-light text-cream hover:shadow-lg hover:shadow-gold/20'
+              }`}
             >
-              <ShoppingBag className="w-4 h-4" />
-              Add to Cart
+              {addedToCart ? (
+                <>
+                  <Check className="w-4 h-4" />
+                  Added to Bag
+                </>
+              ) : (
+                <>
+                  <ShoppingBag className="w-4 h-4" />
+                  Add to Cart
+                </>
+              )}
             </button>
 
             {/* Accordions */}

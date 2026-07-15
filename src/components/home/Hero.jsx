@@ -28,19 +28,19 @@ const Hero = () => {
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <h1
           id="hero-title"
-          className="font-serif text-4xl md:text-5xl lg:text-7xl text-cream font-medium leading-tight max-w-3xl"
+          className="font-serif text-4xl md:text-5xl lg:text-7xl text-cream font-medium leading-tight max-w-3xl animate-hero-reveal"
         >
           Crafted to be Treasured
         </h1>
         <p
           id="hero-subtitle"
-          className="mt-5 text-cream/80 text-base md:text-lg font-light max-w-lg leading-relaxed"
+          className="mt-5 text-cream/80 text-base md:text-lg font-light max-w-lg leading-relaxed animate-hero-reveal-delay-1"
         >
           Demi-fine gold jewelry designed for everyday elegance. 18K gold plated, hypoallergenic, and made to last.
         </p>
         <Link
           to="/shop"
-          className="mt-8 bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-product uppercase px-10 py-4 transition-colors"
+          className="mt-8 bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-product uppercase px-10 py-4 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20 animate-hero-reveal-delay-2"
         >
           Shop the Collection
         </Link>

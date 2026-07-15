@@ -17,6 +17,7 @@ const CategoryTiles = () => {
         <div className="text-center mb-12">
           <h2 className="text-xs tracking-section uppercase font-semibold text-gold mb-3">Explore</h2>
           <p className="font-serif text-3xl md:text-4xl text-base">Shop by Category</p>
+          <div className="w-12 h-px bg-gold mx-auto mt-4" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">

@@ -10,7 +10,7 @@ const trustItems = [
 
 const TrustBar = () => {
   return (
-    <div className="bg-base text-cream/70">
+    <div className="bg-base text-cream/70 border-t border-gold/20">
       <div className="max-w-content mx-auto px-6 lg:px-8 py-4">
         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 lg:gap-16">
           {trustItems.map((item, i) => (

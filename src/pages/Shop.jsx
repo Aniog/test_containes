@@ -205,10 +205,17 @@ const Shop = () => {
                           alt={product.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <div className="absolute bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm py-3 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault()
+                            e.stopPropagation()
+                            addItem(product)
+                          }}
+                          className="absolute bottom-0 left-0 right-0 bg-cream/95 backdrop-blur-sm py-3 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300"
+                        >
                           <ShoppingBag className="w-4 h-4 text-base" />
                           <span className="text-xs tracking-wide font-medium text-base uppercase">Quick Add</span>
-                        </div>
+                        </button>
                       </div>
                     </Link>
                     <div className="mt-4">
@@ -236,7 +243,7 @@ const Shop = () => {
       {mobileFiltersOpen && (
         <>
           <div
-            className="fixed inset-0 bg-base/40 z-50"
+            className="fixed inset-0 bg-base/40 z-50 animate-overlay-fade"
             onClick={() => setMobileFiltersOpen(false)}
           />
           <div className="fixed top-0 left-0 h-full w-80 max-w-[85vw] bg-cream z-50 shadow-2xl overflow-y-auto animate-slide-in-left">
@@ -250,16 +257,6 @@ const Shop = () => {
               <FilterContent />
             </div>
           </div>
-
-          <style>{`
-            @keyframes slideInLeft {
-              from { transform: translateX(-100%); }
-              to { transform: translateX(0); }
-            }
-            .animate-slide-in-left {
-              animation: slideInLeft 0.3s ease-out;
-            }
-          `}</style>
         </>
       )}
     </div>

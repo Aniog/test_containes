@@ -55,25 +55,25 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-10">
             <Link
               to="/shop"
-              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors`}
+              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors link-underline`}
             >
               Shop
             </Link>
             <Link
               to="/shop"
-              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors`}
+              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors link-underline`}
             >
               Collections
             </Link>
             <Link
               to="/about"
-              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors`}
+              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors link-underline`}
             >
               About
             </Link>
             <Link
               to="/journal"
-              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors`}
+              className={`text-xs tracking-section uppercase font-medium ${textColor} hover:text-gold transition-colors link-underline`}
             >
               Journal
             </Link>

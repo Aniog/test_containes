@@ -7,19 +7,36 @@ import CategoryTiles from '@/components/home/CategoryTiles'
 import BrandStory from '@/components/home/BrandStory'
 import Testimonials from '@/components/home/Testimonials'
 import Newsletter from '@/components/home/Newsletter'
+import { useScrollReveal } from '@/hooks/useScrollReveal'
 
 const Home = () => {
+  const revealRef = useScrollReveal()
+
   return (
-    <>
+    <div ref={revealRef}>
       <Hero />
-      <TrustBar />
-      <Bestsellers />
-      <UGCRow />
-      <CategoryTiles />
-      <BrandStory />
-      <Testimonials />
-      <Newsletter />
-    </>
+      <div className="reveal-on-scroll">
+        <TrustBar />
+      </div>
+      <div className="reveal-on-scroll">
+        <Bestsellers />
+      </div>
+      <div className="reveal-on-scroll">
+        <UGCRow />
+      </div>
+      <div className="reveal-on-scroll">
+        <CategoryTiles />
+      </div>
+      <div className="reveal-on-scroll">
+        <BrandStory />
+      </div>
+      <div className="reveal-on-scroll">
+        <Testimonials />
+      </div>
+      <div className="reveal-on-scroll">
+        <Newsletter />
+      </div>
+    </div>
   )
 }
 

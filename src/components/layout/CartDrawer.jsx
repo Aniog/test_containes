@@ -11,12 +11,12 @@ const CartDrawer = () => {
     <>
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-base/40 z-50 transition-opacity"
+        className="fixed inset-0 bg-base/40 z-50 animate-overlay-fade"
         onClick={closeDrawer}
       />
 
       {/* Drawer */}
-      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-cream z-50 shadow-2xl flex flex-col animate-slide-in">
+      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-cream z-50 shadow-2xl flex flex-col animate-slide-in-right">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-divider">
           <h2 className="font-serif text-lg tracking-product uppercase text-base">Your Bag</h2>
@@ -36,17 +36,8 @@ const CartDrawer = () => {
             <div className="space-y-6">
               {items.map((item) => (
                 <div key={`${item.id}-${item.variant}`} className="flex gap-4">
-                  <div className="w-20 h-24 bg-ivory rounded flex-shrink-0 overflow-hidden">
-                    <img
-                      data-strk-img-id={`cart-${item.id}-${item.variant}-a1b2c3`}
-                      data-strk-img={`[cart-${item.id}-name] gold jewelry`}
-                      data-strk-img-ratio="3x4"
-                      data-strk-img-width="160"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <span id={`cart-${item.id}-name`} className="hidden">{item.name}</span>
+                  <div className="w-20 h-24 bg-ivory rounded flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    <span className="font-serif text-xs tracking-product uppercase text-gold/60 text-center px-2">{item.name}</span>
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="font-serif text-sm tracking-product uppercase text-base truncate">{item.name}</h3>
@@ -90,22 +81,12 @@ const CartDrawer = () => {
               <span className="font-serif text-lg text-base">${subtotal.toFixed(2)}</span>
             </div>
             <p className="text-xs text-muted mb-4">Shipping calculated at checkout</p>
-            <button className="w-full bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-product uppercase py-4 transition-colors">
+            <button className="w-full bg-gold hover:bg-gold-light text-cream font-medium text-sm tracking-product uppercase py-4 transition-all duration-300 hover:shadow-lg hover:shadow-gold/20">
               Checkout
             </button>
           </div>
         )}
       </div>
-
-      <style>{`
-        @keyframes slideIn {
-          from { transform: translateX(100%); }
-          to { transform: translateX(0); }
-        }
-        .animate-slide-in {
-          animation: slideIn 0.3s ease-out;
-        }
-      `}</style>
     </>
   )
 }
