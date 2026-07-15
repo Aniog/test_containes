@@ -1,76 +1,87 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-velvet-50: #FAF8F6;
+    --color-velvet-100: #F5F1EC;
+    --color-velvet-200: #EDE5DB;
+    --color-velvet-300: #E2D5C7;
+    --color-velvet-400: #D4C3AF;
+    --color-velvet-500: #C5AE93;
+    --color-velvet-600: #B89A7A;
+    --color-velvet-700: #A68464;
+    --color-velvet-800: #8A7054;
+    --color-velvet-900: #6F5B45;
+    --color-champagne: #D4AF37;
+    --color-obsidian: #1A1A1A;
+    --color-cream: #FDFBF7;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans text-obsidian bg-cream antialiased;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-champagne/30 text-obsidian;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 
+           bg-obsidian text-cream font-sans font-medium text-sm tracking-wide
+           transition-all duration-300 ease-out
+           hover:bg-velvet-800 hover:shadow-lg;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 
+           bg-transparent border border-obsidian text-obsidian 
+           font-sans font-medium text-sm tracking-wide
+           transition-all duration-300 ease-out
+           hover:bg-obsidian hover:text-cream;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-8 py-3.5 
+           bg-champagne text-obsidian font-sans font-medium text-sm tracking-wide
+           transition-all duration-300 ease-out
+           hover:bg-champagne-light hover:shadow-lg;
+  }
+
+  .heading-display {
+    @apply font-serif font-semibold text-obsidian leading-tight;
+  }
+
+  .heading-section {
+    @apply font-serif font-medium text-obsidian tracking-wide;
+  }
+
+  .product-name {
+    @apply font-serif uppercase tracking-extra-wide text-obsidian;
+  }
+
+  .hairline {
+    @apply h-px bg-velvet-300 w-full;
+  }
+
+  .overlay-gradient {
+    @apply bg-gradient-to-t from-obsidian/60 via-transparent to-transparent;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
