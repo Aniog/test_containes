@@ -1,0 +1,27 @@
+import { useEffect } from "react"
+import { Outlet, useLocation } from "react-router-dom"
+import Navbar from "@/components/layout/Navbar"
+import Footer from "@/components/layout/Footer"
+import CartDrawer from "@/components/layout/CartDrawer"
+import { useCart } from "@/context/CartContext"
+
+export default function Layout() {
+  const { pathname } = useLocation()
+  const { setIsOpen } = useCart()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    setIsOpen(false)
+  }, [pathname, setIsOpen])
+
+  return (
+    <div className="min-h-screen flex flex-col bg-cream">
+      <Navbar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+      <CartDrawer />
+    </div>
+  )
+}
