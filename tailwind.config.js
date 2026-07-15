@@ -5,7 +5,26 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cream: '#FDFBF7',
+        charcoal: '#1A1A1A',
+        gold: '#B8860B',
+        'gold-light': '#D4A843',
+        taupe: '#8B7D6B',
+        linen: '#F5F0E8',
+        sand: '#E8E0D4',
+        espresso: '#2C2420',
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        product: '0.15em',
+        wide: '0.1em',
+      },
+    },
   },
   plugins: [],
 }
