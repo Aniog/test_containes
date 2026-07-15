@@ -15,19 +15,17 @@ export default function HeroSection() {
       <span id="hero-title" className="sr-only" aria-hidden="true">
         Velmora Fine Jewelry gold earrings necklace editorial warm light
       </span>
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E\")",
-        }}
-        data-strk-bg-id="hero-bg-velmora-main"
-        data-strk-bg="[hero-title]"
-        data-strk-bg-ratio="16x9"
-        data-strk-bg-width="1600"
-      >
-        <div className="absolute inset-0 bg-base/30" />
-      </div>
+      <img
+        className="absolute inset-0 w-full h-full object-cover"
+        data-strk-img-id="hero-bg-velmora-main"
+        data-strk-img="[hero-title]"
+        data-strk-img-ratio="16x9"
+        data-strk-img-width="1600"
+        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+        alt="Velmora Fine Jewelry editorial hero"
+        loading="eager"
+      />
+      <div className="absolute inset-0 bg-base/30" />
 
       <div className="relative z-10 h-full flex flex-col justify-end md:justify-center items-start px-5 md:px-8 lg:px-12 pb-20 md:pb-0 max-w-7xl mx-auto w-full">
         <div className="max-w-xl">

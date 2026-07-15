@@ -7,9 +7,6 @@ export default function ProductImage({
   alt,
   className = '',
   containerClassName = '',
-  asBackground = false,
-  bgId,
-  children,
 }) {
   const containerRef = useRef(null);
   const textId = image?.id ? `${image.id}-query` : undefined;
@@ -17,28 +14,6 @@ export default function ProductImage({
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, [image?.id]);
-
-  if (asBackground) {
-    return (
-      <div ref={containerRef} className={`relative ${containerClassName}`}>
-        <span id={textId} className="sr-only" aria-hidden="true">
-          {image?.query || alt || ''}
-        </span>
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E\")",
-          }}
-          data-strk-bg-id={bgId}
-          data-strk-bg={`[${textId}]`}
-          data-strk-bg-ratio={image?.ratio || '4x3'}
-          data-strk-bg-width={image?.width || 800}
-        />
-        <div className="relative z-10">{children}</div>
-      </div>
-    );
-  }
 
   return (
     <div ref={containerRef} className={containerClassName}>
