@@ -1,15 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { formatDistanceToNow, parseISO } from 'date-fns';
-import { Trash2, Mail, Building2, MessageSquare, Calendar, Search, Users, Inbox } from 'lucide-react';
+import { Trash2, Mail, Building2, MessageSquare, Calendar, Search, Users, Inbox, RefreshCw } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 
-const STORAGE_KEY = 'saved_contacts';
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getRows = (response) => response?.data?.list ?? [];
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) return response.errors.join(', ');
+  return error?.message || 'Request failed';
+};
 
 const ContactCard = ({ contact, onDelete }) => {
   const [expanded, setExpanded] = useState(false);
+  const fields = contact?.data ?? {};
 
   const timeAgo = (() => {
     try {
-      return formatDistanceToNow(parseISO(contact.submittedAt), { addSuffix: true });
+      return formatDistanceToNow(parseISO(contact.created_at), { addSuffix: true });
     } catch {
       return 'Unknown time';
     }
@@ -22,14 +31,14 @@ const ContactCard = ({ contact, onDelete }) => {
           <div className="flex items-center gap-3 min-w-0">
             <div className="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center">
               <span className="text-indigo-700 font-bold text-sm">
-                {contact.name.charAt(0).toUpperCase()}
+                {(fields.name || '?').charAt(0).toUpperCase()}
               </span>
             </div>
             <div className="min-w-0">
-              <h3 className="font-semibold text-slate-900 truncate">{contact.name}</h3>
+              <h3 className="font-semibold text-slate-900 truncate">{fields.name}</h3>
               <div className="flex items-center gap-1 text-slate-500 text-sm">
                 <Mail className="w-3.5 h-3.5 flex-shrink-0" />
-                <span className="truncate">{contact.email}</span>
+                <span className="truncate">{fields.email}</span>
               </div>
             </div>
           </div>
@@ -43,10 +52,10 @@ const ContactCard = ({ contact, onDelete }) => {
         </div>
 
         <div className="mt-4 flex flex-wrap gap-3">
-          {contact.company && (
+          {fields.company && (
             <span className="inline-flex items-center gap-1.5 text-xs text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full">
               <Building2 className="w-3 h-3" />
-              {contact.company}
+              {fields.company}
             </span>
           )}
           <span className="inline-flex items-center gap-1.5 text-xs text-slate-500 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200">
@@ -65,7 +74,7 @@ const ContactCard = ({ contact, onDelete }) => {
           </button>
           {expanded && (
             <p className="mt-3 text-sm text-slate-600 bg-slate-50 rounded-lg p-3 leading-relaxed border border-slate-200">
-              {contact.message}
+              {fields.message}
             </p>
           )}
         </div>
@@ -75,42 +84,70 @@ const ContactCard = ({ contact, onDelete }) => {
 };
 
 const ContactsPage = () => {
-  const [contacts, setContacts] = useState(() => {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    } catch {
-      return [];
-    }
-  });
+  const [contacts, setContacts] = useState([]);
+  const [loadStatus, setLoadStatus] = useState('loading'); // loading | ready | error
+  const [loadError, setLoadError] = useState(null);
   const [search, setSearch] = useState('');
   const [deleteConfirm, setDeleteConfirm] = useState(null);
 
-  const handleDelete = (id) => {
-    if (deleteConfirm === id) {
-      const updated = contacts.filter((c) => c.id !== id);
-      setContacts(updated);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-      setDeleteConfirm(null);
-      console.log('Contact deleted:', id);
-    } else {
+  const fetchContacts = useCallback(async () => {
+    setLoadStatus('loading');
+    setLoadError(null);
+    const { data: response, error } = await client
+      .from('Contact Submissions')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error || response?.success === false) {
+      const msg = getErrorMessage(response, error);
+      console.error('Failed to load contacts:', msg);
+      setLoadError(msg);
+      setLoadStatus('error');
+      return;
+    }
+
+    const rows = getRows(response);
+    console.log('Contacts loaded:', rows.length);
+    setContacts(rows);
+    setLoadStatus('ready');
+  }, []);
+
+  useEffect(() => {
+    fetchContacts();
+  }, [fetchContacts]);
+
+  const handleDelete = async (id) => {
+    if (deleteConfirm !== id) {
       setDeleteConfirm(id);
       setTimeout(() => setDeleteConfirm(null), 3000);
+      return;
     }
-  };
 
-  const handleClearAll = () => {
-    setContacts([]);
-    localStorage.removeItem(STORAGE_KEY);
-    console.log('All contacts cleared');
+    const { data: response, error } = await client
+      .from('Contact Submissions')
+      .delete()
+      .eq('id', id)
+      .select()
+      .maybeSingle();
+
+    if (error || response?.success === false) {
+      console.error('Delete failed:', getErrorMessage(response, error));
+      return;
+    }
+
+    setContacts((prev) => prev.filter((c) => c.id !== id));
+    setDeleteConfirm(null);
+    console.log('Contact deleted:', id);
   };
 
   const filtered = contacts.filter((c) => {
     const q = search.toLowerCase();
+    const f = c?.data ?? {};
     return (
-      c.name.toLowerCase().includes(q) ||
-      c.email.toLowerCase().includes(q) ||
-      (c.company || '').toLowerCase().includes(q) ||
-      c.message.toLowerCase().includes(q)
+      (f.name || '').toLowerCase().includes(q) ||
+      (f.email || '').toLowerCase().includes(q) ||
+      (f.company || '').toLowerCase().includes(q) ||
+      (f.message || '').toLowerCase().includes(q)
     );
   });
 
@@ -125,21 +162,46 @@ const ContactsPage = () => {
               <h1 className="text-2xl font-bold text-slate-900">Saved Contacts</h1>
             </div>
             <p className="text-slate-500 text-sm">
-              {contacts.length} {contacts.length === 1 ? 'contact' : 'contacts'} collected
+              {loadStatus === 'ready'
+                ? `${contacts.length} ${contacts.length === 1 ? 'contact' : 'contacts'} collected`
+                : loadStatus === 'loading'
+                ? 'Loading…'
+                : 'Could not load contacts'}
             </p>
           </div>
-          {contacts.length > 0 && (
-            <button
-              onClick={handleClearAll}
-              className="self-start sm:self-auto text-sm text-red-500 hover:text-red-600 hover:bg-red-50 border border-red-200 px-4 py-2 rounded-lg transition-colors font-medium"
-            >
-              Clear All
-            </button>
-          )}
+          <button
+            onClick={fetchContacts}
+            disabled={loadStatus === 'loading'}
+            className="self-start sm:self-auto flex items-center gap-1.5 text-sm text-slate-600 hover:text-indigo-600 border border-slate-200 hover:border-indigo-300 px-4 py-2 rounded-lg transition-colors font-medium disabled:opacity-50"
+          >
+            <RefreshCw className={`w-4 h-4 ${loadStatus === 'loading' ? 'animate-spin' : ''}`} />
+            Refresh
+          </button>
         </div>
 
+        {/* Loading state */}
+        {loadStatus === 'loading' && (
+          <div className="flex justify-center py-24">
+            <RefreshCw className="w-8 h-8 text-indigo-400 animate-spin" />
+          </div>
+        )}
+
+        {/* Error state */}
+        {loadStatus === 'error' && (
+          <div className="text-center py-16">
+            <p className="text-red-500 font-medium mb-2">Failed to load contacts</p>
+            <p className="text-slate-500 text-sm mb-4">{loadError}</p>
+            <button
+              onClick={fetchContacts}
+              className="text-indigo-600 hover:text-indigo-700 text-sm font-medium underline underline-offset-2"
+            >
+              Try again
+            </button>
+          </div>
+        )}
+
         {/* Search */}
-        {contacts.length > 0 && (
+        {loadStatus === 'ready' && contacts.length > 0 && (
           <div className="relative mb-6">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
@@ -153,7 +215,7 @@ const ContactsPage = () => {
         )}
 
         {/* Empty state */}
-        {contacts.length === 0 && (
+        {loadStatus === 'ready' && contacts.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24 text-center">
             <div className="w-16 h-16 bg-indigo-50 rounded-2xl flex items-center justify-center mb-4">
               <Inbox className="w-8 h-8 text-indigo-400" />
@@ -172,7 +234,7 @@ const ContactsPage = () => {
         )}
 
         {/* No search results */}
-        {contacts.length > 0 && filtered.length === 0 && (
+        {loadStatus === 'ready' && contacts.length > 0 && filtered.length === 0 && (
           <div className="text-center py-16">
             <p className="text-slate-500">No contacts match your search.</p>
             <button
@@ -185,7 +247,7 @@ const ContactsPage = () => {
         )}
 
         {/* Contact grid */}
-        {filtered.length > 0 && (
+        {loadStatus === 'ready' && filtered.length > 0 && (
           <div className="grid sm:grid-cols-2 gap-4">
             {filtered.map((contact) => (
               <ContactCard

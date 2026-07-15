@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { CheckCircle, Loader2 } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 
-const STORAGE_KEY = 'saved_contacts';
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const ContactForm = () => {
   const [form, setForm] = useState({ name: '', email: '', company: '', message: '' });
@@ -26,7 +28,7 @@ const ContactForm = () => {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -36,19 +38,23 @@ const ContactForm = () => {
 
     setStatus('submitting');
 
-    // Simulate a brief save delay for UX
-    setTimeout(() => {
-      const existing = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      const newContact = {
-        id: Date.now().toString(),
-        ...form,
-        submittedAt: new Date().toISOString(),
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify([newContact, ...existing]));
-      console.log('Contact saved:', newContact);
-      setStatus('success');
-      setForm({ name: '', email: '', company: '', message: '' });
-    }, 800);
+    const { data: response, error } = await client
+      .from('Contact Submissions')
+      .insert({ data: { name: form.name, email: form.email, company: form.company, message: form.message } })
+      .select()
+      .single();
+
+    if (error || response?.success === false) {
+      const msg = Array.isArray(response?.errors) ? response.errors.join(', ') : (error?.message || 'Submission failed');
+      console.error('Contact save failed:', msg);
+      setErrors({ message: msg });
+      setStatus('idle');
+      return;
+    }
+
+    console.log('Contact saved to database:', response?.data);
+    setStatus('success');
+    setForm({ name: '', email: '', company: '', message: '' });
   };
 
   const inputClass = (field) =>
