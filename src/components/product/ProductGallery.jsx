@@ -1,0 +1,73 @@
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+
+const PLACEHOLDER =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+
+// Gallery uses only the product's two statically-defined image IDs so the
+// build-time image plugin can resolve them. All images are rendered up front
+// and toggled via opacity, so no runtime re-scan is needed when switching.
+const gallery = [
+  { key: "primary", alt: (p) => p.name },
+  { key: "secondary", alt: (p) => `${p.name} worn` },
+]
+
+export default function ProductGallery({ product }) {
+  const [active, setActive] = useState(0)
+
+  return (
+    <div className="flex flex-col-reverse md:flex-row gap-4">
+      {/* Thumbnails */}
+      <div className="flex md:flex-col gap-3 md:w-20 shrink-0">
+        {gallery.map((img, i) => {
+          const id = i === 0 ? product.imgId : product.imgId2
+          return (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={cn(
+                "relative w-16 md:w-20 aspect-[4x5] overflow-hidden bg-cream-deep shrink-0 transition-all duration-300",
+                active === i
+                  ? "ring-1 ring-gold ring-offset-2 ring-offset-cream"
+                  : "opacity-60 hover:opacity-100"
+              )}
+              aria-label={`View image ${i + 1}`}
+            >
+              <img
+                alt={img.alt(product)}
+                data-strk-img-id={id}
+                data-strk-img={`[${product.descId}] [${product.titleId}]`}
+                data-strk-img-ratio="4x5"
+                data-strk-img-width="200"
+                src={PLACEHOLDER}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Main images — stacked, opacity-toggled */}
+      <div className="relative flex-1 aspect-[4x5] overflow-hidden bg-cream-deep">
+        {gallery.map((img, i) => {
+          const id = i === 0 ? product.imgId : product.imgId2
+          return (
+            <img
+              key={i}
+              alt={img.alt(product)}
+              data-strk-img-id={id}
+              data-strk-img={`[${product.descId}] [${product.titleId}]`}
+              data-strk-img-ratio="4x5"
+              data-strk-img-width="900"
+              src={PLACEHOLDER}
+              className={cn(
+                "absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-luxury",
+                active === i ? "opacity-100" : "opacity-0"
+              )}
+            />
+          )
+        })}
+      </div>
+    </div>
+  )
+}
