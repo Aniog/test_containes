@@ -3,7 +3,9 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { seedProducts } from '@/lib/data';
 import { useCartStore } from '@/store/useCartStore';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, Filter } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
+import { Filter } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   Select,
@@ -25,6 +27,7 @@ export default function Shop() {
   const [activeSort, setActiveSort] = useState(initialSort);
   const [filteredProducts, setFilteredProducts] = useState(seedProducts);
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+  const containerRef = React.useRef(null);
 
 // Remove window.scrollTo from components since Layout handles it
   useEffect(() => {
@@ -62,6 +65,25 @@ export default function Shop() {
     setFilteredProducts(result);
   }, [activeCategory, activeSort]);
 
+  useEffect(() => {
+    let frameId;
+    // We only need to rescan if there are products
+    if (filteredProducts.length > 0 && containerRef.current) {
+      frameId = window.requestAnimationFrame(() => {
+        // Need a tiny delay for React to guarantee DOM elements exist in grid
+        setTimeout(() => {
+          if (containerRef.current) {
+            console.log('Scanning containerRef for STRK images');
+            ImageHelper.loadImages(strkImgConfig, containerRef.current);
+          }
+        }, 100);
+      });
+    }
+    return () => {
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
+  }, [filteredProducts]);
+
   const handleCategoryChange = (category) => {
     if (category === 'all') {
       searchParams.delete('category');
@@ -89,7 +111,7 @@ export default function Shop() {
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-background min-h-screen">
+    <div ref={containerRef} className="pt-24 pb-20 bg-background min-h-screen">
       
       {/* Header Banner */}
       <div className="bg-secondary/30 py-16 mb-12">

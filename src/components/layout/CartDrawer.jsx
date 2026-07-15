@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useCartStore } from '@/store/useCartStore';
 import { X, Plus, Minus, Trash2 } from 'lucide-react';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export function CartDrawer() {
   const { isOpen, closeCart, items, removeItem, updateQuantity } = useCartStore();
@@ -12,9 +14,23 @@ export function CartDrawer() {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen && items.length > 0) {
+      // Create a unique timer for each drawer open to avoid overlapping state issues
+      const timerId = setTimeout(() => {
+         if (containerRef.current) {
+            ImageHelper.loadImages(strkImgConfig, containerRef.current);
+         }
+      }, 300);
+      return () => clearTimeout(timerId);
+    }
+  }, [isOpen, items]);
+
   return (
     <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
-      <SheetContent className="w-full sm:max-w-md flex flex-col p-0 border-l border-border">
+      <SheetContent className="w-full sm:max-w-md flex flex-col p-0 border-l border-border" ref={containerRef}>
         <SheetHeader className="p-6 border-b border-border">
           <SheetTitle className="font-serif text-2xl font-medium tracking-wide">
             Your Cart ({totalItems})
@@ -33,20 +49,21 @@ export function CartDrawer() {
             ) : (
               <div className="py-6 space-y-6">
                 {items.map((item, index) => (
-                  <div key={`${item.id}-${item.variant}-${index}`}>
-                    <div className="flex gap-4">
-                      {/* Product Image */}
-                      <div className="w-24 h-24 bg-secondary flex-shrink-0">
-                         {item.imgId ? (
-                            <img
-                              data-strk-img-id={`cart-thumb-${item.imgId}-${index}`}
-                              data-strk-img={`cart thumbnail ${item.title} gold close up`}
-                              data-strk-img-ratio="1x1"
-                              data-strk-img-width="200"
-                              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                              alt={item.title}
-                              className="w-full h-full object-cover"
-                            />
+                    <div key={`${item.id}-${item.variant}-${index}`}>
+                      <div className="flex gap-4">
+                        {/* Product Image */}
+                        <div className="w-24 h-24 bg-secondary flex-shrink-0 relative overflow-hidden">
+                           {item.id ? (
+                              <img
+                                key={`cart-img-${item.id}-${index}`}
+                                data-strk-img-id={`c-thumb-${item.id}-${item.variant || 'gold'}-${index}`}
+                                data-strk-img={`cart thumbnail [cart-title-${item.id}-${index}] gold detail`}
+                                data-strk-img-ratio="1x1"
+                                data-strk-img-width="200"
+                                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                                alt={item.title}
+                                className="w-full h-full object-cover"
+                              />
                          ) : (
                             <div className="w-full h-full animate-pulse bg-muted" />
                          )}
@@ -56,7 +73,7 @@ export function CartDrawer() {
                       <div className="flex-1 flex flex-col justify-between">
                         <div>
                           <div className="flex justify-between items-start">
-                            <h3 id={`cart-title-${item.id}`} className="font-serif uppercase tracking-widest text-sm font-medium">
+                            <h3 id={`cart-title-${item.id}-${index}`} className="font-serif uppercase tracking-widest text-sm font-medium">
                               {item.title}
                             </h3>
                             <button

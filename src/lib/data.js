@@ -1,3 +1,4 @@
+// Note: seed products use `id` not `imgId` in this version.
 export const seedProducts = [
   {
     id: 'vivid-aura',

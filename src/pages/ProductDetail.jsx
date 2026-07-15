@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useCartStore } from '@/store/useCartStore';
 import { seedProducts } from '@/lib/data';
@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Plus, Minus, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export default function ProductDetail() {
   const { id } = useParams();
@@ -14,6 +16,7 @@ export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
   const [variant, setVariant] = useState('gold'); // gold or silver
   const [activeImage, setActiveImage] = useState(0);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Find the product
@@ -24,9 +27,18 @@ export default function ProductDetail() {
     setQuantity(1);
     setVariant('gold');
     setActiveImage(0);
+  }, [id]);
+
+  useEffect(() => {
     // When the product data changes, React might reuse DOM elements for the main image.
     // Give it a tiny delay to ensure the DOM tree is updated so ImageHelper triggers.
-  }, [id]);
+     if (product) {
+       const frameId = window.requestAnimationFrame(() => {
+         ImageHelper.loadImages(strkImgConfig, containerRef.current);
+       });
+       return () => window.cancelAnimationFrame(frameId);
+     }
+  }, [product, activeImage]);
 
   if (!product) return null;
 
@@ -41,7 +53,7 @@ export default function ProductDetail() {
   ];
 
   return (
-    <div className="pt-24 pb-20 bg-background text-foreground min-h-screen">
+    <div ref={containerRef} className="pt-24 pb-20 bg-background text-foreground min-h-screen">
       <div className="container mx-auto px-4 md:px-8">
         {/* Breadcrumbs */}
         <nav className="flex text-xs uppercase tracking-widest text-muted-foreground mb-8">

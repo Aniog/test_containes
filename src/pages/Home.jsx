@@ -5,6 +5,8 @@ import { seedProducts } from '@/lib/data';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 
+import { useCartStore } from '@/store/useCartStore';
+
 const products = seedProducts;
 
 export default function Home() {
