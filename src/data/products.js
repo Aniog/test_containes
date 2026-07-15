@@ -1,0 +1,96 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A sculptural gold ear cuff with a delicate crystal accent. Designed to sit comfortably along the ear without piercing, it catches light beautifully and layers effortlessly with your favorite studs.',
+    materials: 'Brass base with 18k gold plating. AAA cubic zirconia crystal accent. Nickel-free and hypoallergenic.',
+    care: 'Avoid contact with perfumes, lotions, and water. Store in the provided pouch and polish gently with a soft cloth.',
+    tags: ['bestseller', 'earrings'],
+    toneOptions: ['gold', 'silver'],
+    images: 4,
+    imageId: 'product-card-vivid-aura-jewels',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: '18k-gold-plated',
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A romantic pendant necklace featuring multicolor floral crystals set in warm gold. The adjustable chain lets you wear it close to the collarbone or layered lower.',
+    materials: 'Brass base with 18k gold plating. Hand-set glass crystals in soft pastel tones. Lobster clasp closure.',
+    care: 'Store flat or hanging to prevent tangling. Clean with a dry, soft cloth after wear.',
+    tags: ['bestseller', 'necklaces'],
+    toneOptions: ['gold'],
+    images: 4,
+    imageId: 'product-card-majestic-flora-nectar',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: '18k-gold-plated',
+    rating: 4.7,
+    reviewCount: 215,
+    description: 'Chunky dome huggie earrings with a polished, mirror-like finish. Lightweight enough for all-day wear, bold enough to make a statement.',
+    materials: 'Brass base with thick 18k gold plating. Hinge closure. Hypoallergenic posts.',
+    care: 'Remove before showering or swimming. Wipe clean with a soft cloth and store in a dry place.',
+    tags: ['bestseller', 'huggies'],
+    toneOptions: ['gold', 'silver'],
+    images: 4,
+    imageId: 'product-card-golden-sphere-huggies',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    rating: 4.9,
+    reviewCount: 76,
+    description: 'Textured gold filigree drop earrings inspired by antique lace. The intricate pattern creates delicate shadows against the skin.',
+    materials: 'Brass base with 18k gold plating. Intricate cast filigree. Shepherd hook closure.',
+    care: 'Handle with care to protect delicate details. Store separately to avoid scratches.',
+    tags: ['bestseller', 'earrings'],
+    toneOptions: ['gold'],
+    images: 4,
+    imageId: 'product-card-amber-lace-earrings',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    material: '18k-gold-plated',
+    rating: 5.0,
+    reviewCount: 52,
+    description: 'A coordinated earring and necklace set presented in our signature gift box. An effortless choice for gifting — or treating yourself.',
+    materials: 'Brass base with 18k gold plating. Includes matching necklace and stud earrings. Gift box included.',
+    care: 'Keep pieces stored in the gift box when not worn. Avoid moisture and harsh chemicals.',
+    tags: ['bestseller', 'sets', 'gift'],
+    toneOptions: ['gold'],
+    images: 4,
+    imageId: 'product-card-royal-heirloom-set',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', label: 'Earrings', slug: 'earrings' },
+  { id: 'necklaces', label: 'Necklaces', slug: 'necklaces' },
+  { id: 'huggies', label: 'Huggies', slug: 'huggies' },
+];
+
+export function getProductById(id) {
+  return products.find((p) => p.id === id) || null;
+}
+
+export function getRelatedProducts(currentId, limit = 4) {
+  return products.filter((p) => p.id !== currentId).slice(0, limit);
+}
