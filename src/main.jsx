@@ -1,14 +1,12 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+import { Toaster } from "@/components/ui/sonner"
 
-if (import.meta.env.DEV) {
-  import("./visual-edit/index.js");
-}
-
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <App />
-  </React.StrictMode>,
-);
+    <Toaster position="top-center" expand={true} richColors />
+  </StrictMode>,
+)
