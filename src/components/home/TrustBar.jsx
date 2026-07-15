@@ -1,0 +1,28 @@
+import React from 'react';
+import { Truck, RotateCcw, ShieldCheck, Sparkles } from 'lucide-react';
+
+const TrustBar = () => {
+  const items = [
+    { icon: Truck, label: 'Free Worldwide Shipping' },
+    { icon: RotateCcw, label: '30-Day Returns' },
+    { icon: ShieldCheck, label: '18K Gold Plated' },
+    { icon: Sparkles, label: 'Hypoallergenic' },
+  ];
+
+  return (
+    <div className="bg-brand-surface border-b border-brand-line">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-brand-line">
+          {items.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center justify-center gap-2 py-3">
+              <Icon className="h-4 w-4 text-brand-accent" />
+              <span className="text-xs uppercase tracking-widest text-brand-muted">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default TrustBar;
