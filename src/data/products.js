@@ -1,0 +1,130 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    slug: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 42,
+    rating: 4.9,
+    reviews: 128,
+    description: 'A sculptural gold ear cuff finished with a crystal accent for a subtle flash of light.',
+    detail: 'Designed for effortless stacking, this no-piercing cuff hugs the ear with a luminous crystal accent and softly polished gold tone.',
+    image: {
+      id: 'product-vivid-aura-primary-9b7d2a',
+      query: '[product-vivid-aura-desc] [product-vivid-aura-name]',
+    },
+    hoverImage: {
+      id: 'product-vivid-aura-hover-3c1a7f',
+      query: '[product-vivid-aura-material] [product-vivid-aura-name]',
+    },
+    ids: {
+      name: 'product-vivid-aura-name',
+      desc: 'product-vivid-aura-desc',
+      material: 'product-vivid-aura-material',
+    },
+  },
+  {
+    id: 'majestic-flora-nectar',
+    slug: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    material: 'Gold Vermeil',
+    price: 68,
+    rating: 4.8,
+    reviews: 96,
+    description: 'A delicate multicolor floral crystal necklace made for warm, romantic layering.',
+    detail: 'Tiny floral crystals trace the neckline with a refined shimmer, balancing playfulness with an heirloom-inspired finish.',
+    image: {
+      id: 'product-majestic-flora-primary-5e2d8b',
+      query: '[product-majestic-flora-desc] [product-majestic-flora-name]',
+    },
+    hoverImage: {
+      id: 'product-majestic-flora-hover-8a4c0d',
+      query: '[product-majestic-flora-material] [product-majestic-flora-name]',
+    },
+    ids: {
+      name: 'product-majestic-flora-name',
+      desc: 'product-majestic-flora-desc',
+      material: 'product-majestic-flora-material',
+    },
+  },
+  {
+    id: 'golden-sphere-huggies',
+    slug: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    price: 38,
+    rating: 4.9,
+    reviews: 182,
+    description: 'Chunky gold dome huggie earrings with a polished everyday silhouette.',
+    detail: 'Rounded, lightweight, and made to sit close to the lobe, these huggies add a quiet statement to every rotation.',
+    image: {
+      id: 'product-golden-sphere-primary-6f0b12',
+      query: '[product-golden-sphere-desc] [product-golden-sphere-name]',
+    },
+    hoverImage: {
+      id: 'product-golden-sphere-hover-2a9e77',
+      query: '[product-golden-sphere-material] [product-golden-sphere-name]',
+    },
+    ids: {
+      name: 'product-golden-sphere-name',
+      desc: 'product-golden-sphere-desc',
+      material: 'product-golden-sphere-material',
+    },
+  },
+  {
+    id: 'amber-lace-earrings',
+    slug: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 54,
+    rating: 4.7,
+    reviews: 74,
+    description: 'Textured gold filigree drop earrings with a lace-like vintage glow.',
+    detail: 'Fine openwork texture gives these drops movement and dimension while staying polished enough for evening gifting.',
+    image: {
+      id: 'product-amber-lace-primary-0d5a6e',
+      query: '[product-amber-lace-desc] [product-amber-lace-name]',
+    },
+    hoverImage: {
+      id: 'product-amber-lace-hover-4b8f33',
+      query: '[product-amber-lace-material] [product-amber-lace-name]',
+    },
+    ids: {
+      name: 'product-amber-lace-name',
+      desc: 'product-amber-lace-desc',
+      material: 'product-amber-lace-material',
+    },
+  },
+  {
+    id: 'royal-heirloom-set',
+    slug: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Gift Sets',
+    material: 'Gold Vermeil',
+    price: 95,
+    rating: 5,
+    reviews: 63,
+    description: 'A gift-boxed earring and necklace set with refined occasion-ready shine.',
+    detail: 'A complete demi-fine pairing arranged in our signature box, created for milestone gifting and lasting everyday wear.',
+    image: {
+      id: 'product-royal-heirloom-primary-1c7b9f',
+      query: '[product-royal-heirloom-desc] [product-royal-heirloom-name]',
+    },
+    hoverImage: {
+      id: 'product-royal-heirloom-hover-7e3d44',
+      query: '[product-royal-heirloom-material] [product-royal-heirloom-name]',
+    },
+    ids: {
+      name: 'product-royal-heirloom-name',
+      desc: 'product-royal-heirloom-desc',
+      material: 'product-royal-heirloom-material',
+    },
+  },
+]
+
+export const findProductBySlug = (slug) =>
+  products.find((product) => product.slug === slug) || products[0]
