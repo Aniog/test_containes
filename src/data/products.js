@@ -1,0 +1,143 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent — a statement piece that elevates any look with effortless glamour.',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      'vivid-aura-1',
+      'vivid-aura-2',
+    ],
+    imgId: 'vivid-aura-main-a1b2c3',
+    titleId: 'vivid-aura-title',
+    descId: 'vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace — a garden of brilliance captured in delicate gold settings.',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    tone: ['gold'],
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      'majestic-flora-1',
+      'majestic-flora-2',
+    ],
+    imgId: 'majestic-flora-main-d4e5f6',
+    titleId: 'majestic-flora-title',
+    descId: 'majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings — bold yet refined, the perfect everyday statement.',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      'golden-sphere-1',
+      'golden-sphere-2',
+    ],
+    imgId: 'golden-sphere-main-g7h8i9',
+    titleId: 'golden-sphere-title',
+    descId: 'golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings — intricate artistry meets modern elegance.',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    tone: ['gold'],
+    rating: 4.8,
+    reviews: 67,
+    images: [
+      'amber-lace-1',
+      'amber-lace-2',
+    ],
+    imgId: 'amber-lace-main-j1k2l3',
+    titleId: 'amber-lace-title',
+    descId: 'amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set — the ultimate luxury gift, presented in our signature box.',
+    price: 95,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 5.0,
+    reviews: 42,
+    images: [
+      'royal-heirloom-1',
+      'royal-heirloom-2',
+    ],
+    imgId: 'royal-heirloom-main-m4n5o6',
+    titleId: 'royal-heirloom-title',
+    descId: 'royal-heirloom-desc',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    imgId: 'cat-earrings-p7q8r9',
+    titleId: 'cat-earrings-title',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    imgId: 'cat-necklaces-s1t2u3',
+    titleId: 'cat-necklaces-title',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    imgId: 'cat-huggies-v4w5x6',
+    titleId: 'cat-huggies-title',
+  },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    text: 'The quality is absolutely stunning. I wear my Golden Sphere Huggies every day and they still look brand new.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    text: 'Bought the Royal Heirloom Set as a gift and the presentation was gorgeous. She was over the moon.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Priya K.',
+    text: 'Finally, jewelry that looks luxurious without the luxury price tag. The Amber Lace Earrings are my new favorites.',
+    rating: 5,
+  },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday elegance', imgId: 'ugc-everyday-y7z8a9' },
+  { id: 'ugc-2', caption: 'Golden hour glow', imgId: 'ugc-goldenhour-b1c2d3' },
+  { id: 'ugc-3', caption: 'Stacked & styled', imgId: 'ugc-stacked-e4f5g6' },
+  { id: 'ugc-4', caption: 'Date night ready', imgId: 'ugc-datenight-h7i8j9' },
+  { id: 'ugc-5', caption: 'Office to evening', imgId: 'ugc-office-k1l2m3' },
+  { id: 'ugc-6', caption: 'Layered luxury', imgId: 'ugc-layered-n4o5p6' },
+]
