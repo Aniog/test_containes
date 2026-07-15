@@ -10,17 +10,17 @@ const shopLinks = [
 ];
 
 const helpLinks = [
-  { label: 'Shipping & Returns', href: '#' },
-  { label: 'Care Guide', href: '#' },
-  { label: 'FAQ', href: '#' },
-  { label: 'Contact Us', href: '#' },
+  { label: 'Shipping & Returns', href: '#', external: true },
+  { label: 'Care Guide', href: '#', external: true },
+  { label: 'FAQ', href: '#', external: true },
+  { label: 'Contact Us', href: '#', external: true },
 ];
 
 const companyLinks = [
   { label: 'Our Story', href: '/about' },
   { label: 'Journal', href: '/journal' },
-  { label: 'Sustainability', href: '#' },
-  { label: 'Careers', href: '#' },
+  { label: 'Sustainability', href: '#', external: true },
+  { label: 'Careers', href: '#', external: true },
 ];
 
 export default function Footer() {
@@ -77,12 +77,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {helpLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -95,12 +104,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {companyLinks.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.external ? (
+                    <a
+                      href={link.href}
+                      className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={link.href}
+                      className="text-sm text-ivory/60 hover:text-gold transition-colors duration-300"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

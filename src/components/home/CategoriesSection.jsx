@@ -28,6 +28,7 @@ export default function CategoriesSection() {
             <Link
               key={category.id}
               to={`/shop?category=${category.id}`}
+              aria-label={`Shop ${category.label}`}
               className="relative aspect-[3/4] overflow-hidden group"
             >
               <span id={`category-query-${category.id}`} className="sr-only" aria-hidden="true">
