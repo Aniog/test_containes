@@ -1,0 +1,128 @@
+export const products = [
+  {
+    id: "vivid-aura-jewels",
+    name: "Vivid Aura Jewels",
+    category: "earrings",
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    material: ["18k-gold-plated", "crystal"],
+    tone: ["gold", "silver"],
+    badge: "Bestseller",
+    shortDescription: "A sculptural gold ear cuff finished with a single luminous crystal accent. No piercing required.",
+    description: "The Vivid Aura Jewels ear cuff catches light at every angle. Designed for everyday elevation, its sculptural silhouette wraps the ear with a soft gleam and a single crystal accent that feels both modern and timeless.",
+    materialsCare: "18k gold-plated brass with a cubic zirconia accent. Nickel-free and hypoallergenic. Avoid contact with perfumes, lotions, and water to preserve the finish. Store in a dry pouch.",
+    shippingReturns: "Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns on unworn pieces.",
+    imgId: "velmora-vivid-aura-1a2b3c",
+    hoverImgId: "velmora-vivid-aura-hover-4d5e6f",
+    images: ["velmora-vivid-aura-1a2b3c", "velmora-vivid-aura-hover-4d5e6f", "velmora-vivid-aura-detail-7g8h9i"],
+    titleId: "product-title-vivid-aura-jewels",
+    descId: "product-desc-vivid-aura-jewels",
+  },
+  {
+    id: "majestic-flora-nectar",
+    name: "Majestic Flora Nectar",
+    category: "necklaces",
+    price: 68,
+    rating: 4.9,
+    reviewCount: 86,
+    material: ["18k-gold-plated", "crystal"],
+    tone: ["gold"],
+    badge: "New",
+    shortDescription: "A delicate necklace blooming with multicolor floral crystals on a warm gold chain.",
+    description: "Majestic Flora Nectar brings garden-inspired color to your neckline. Each tiny crystal petal is handset along a fine gold-plated chain for a piece that feels playful yet refined.",
+    materialsCare: "18k gold-plated stainless steel with handset glass crystals. Water-resistant finish. Wipe clean with a soft cloth after wear.",
+    shippingReturns: "Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns on unworn pieces.",
+    imgId: "velmora-flora-nectar-2b3c4d",
+    hoverImgId: "velmora-flora-nectar-hover-5e6f7g",
+    images: ["velmora-flora-nectar-2b3c4d", "velmora-flora-nectar-hover-5e6f7g", "velmora-flora-nectar-detail-8h9i0j"],
+    titleId: "product-title-majestic-flora-nectar",
+    descId: "product-desc-majestic-flora-nectar",
+  },
+  {
+    id: "golden-sphere-huggies",
+    name: "Golden Sphere Huggies",
+    category: "huggies",
+    price: 38,
+    rating: 4.7,
+    reviewCount: 210,
+    material: ["18k-gold-plated"],
+    tone: ["gold", "silver"],
+    badge: null,
+    shortDescription: "Chunky dome huggies with a polished, mirror-like finish for day-to-night wear.",
+    description: "Bold but lightweight, the Golden Sphere Huggies hug the lobe with a satisfying rounded volume. Their mirror-polished surface catches candlelight, daylight, and every moment in between.",
+    materialsCare: "18k gold-plated brass with a surgical steel post. Hypoallergenic and nickel-free. Store flat to maintain shape.",
+    shippingReturns: "Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns on unworn pieces.",
+    imgId: "velmora-sphere-huggies-3c4d5e",
+    hoverImgId: "velmora-sphere-huggies-hover-6f7g8h",
+    images: ["velmora-sphere-huggies-3c4d5e", "velmora-sphere-huggies-hover-6f7g8h", "velmora-sphere-huggies-detail-9i0j1k"],
+    titleId: "product-title-golden-sphere-huggies",
+    descId: "product-desc-golden-sphere-huggies",
+  },
+  {
+    id: "amber-lace-earrings",
+    name: "Amber Lace Earrings",
+    category: "earrings",
+    price: 54,
+    rating: 4.9,
+    reviewCount: 63,
+    material: ["18k-gold-plated"],
+    tone: ["gold"],
+    badge: "Editor's Pick",
+    shortDescription: "Textured gold filigree drops inspired by vintage lace and sun-warmed amber.",
+    description: "The Amber Lace Earrings balance ornate filigree with a clean drop silhouette. Inspired by antique textiles, each pair is cast and polished for a warmth that feels heirloom but wearable.",
+    materialsCare: "18k gold-plated brass with a textured cast finish. Lightweight and nickel-free. Avoid moisture and store in the provided jewelry pouch.",
+    shippingReturns: "Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns on unworn pieces.",
+    imgId: "velmora-amber-lace-4d5e6f",
+    hoverImgId: "velmora-amber-lace-hover-7g8h9i",
+    images: ["velmora-amber-lace-4d5e6f", "velmora-amber-lace-hover-7g8h9i", "velmora-amber-lace-detail-0j1k2l"],
+    titleId: "product-title-amber-lace-earrings",
+    descId: "product-desc-amber-lace-earrings",
+  },
+  {
+    id: "royal-heirloom-set",
+    name: "Royal Heirloom Set",
+    category: "sets",
+    price: 95,
+    rating: 5.0,
+    reviewCount: 41,
+    material: ["18k-gold-plated", "crystal"],
+    tone: ["gold"],
+    badge: "Gift Favorite",
+    shortDescription: "A curated earring and necklace set, gift-boxed and ready to treasure.",
+    description: "The Royal Heirloom Set pairs our most-loved pendant necklace with a matching stud earring. Arrives in a Velmora gift box with a keepsake pouch — ideal for gifting or treating yourself.",
+    materialsCare: "18k gold-plated brass with crystal accents. Hypoallergenic posts and nickel-free chain. Store in the gift box to prevent tarnish.",
+    shippingReturns: "Free worldwide shipping on orders over $50. Standard delivery 5–8 business days. Express available at checkout. 30-day hassle-free returns on unworn pieces.",
+    imgId: "velmora-heirloom-set-5e6f7g",
+    hoverImgId: "velmora-heirloom-set-hover-8h9i0j",
+    images: ["velmora-heirloom-set-5e6f7g", "velmora-heirloom-set-hover-8h9i0j", "velmora-heirloom-set-detail-1k2l3m"],
+    titleId: "product-title-royal-heirloom-set",
+    descId: "product-desc-royal-heirloom-set",
+  },
+];
+
+export function getProductById(id) {
+  return products.find((p) => p.id === id);
+}
+
+export function getRelatedProducts(currentId, limit = 4) {
+  return products.filter((p) => p.id !== currentId).slice(0, limit);
+}
+
+export const categories = [
+  { id: "earrings", label: "Earrings" },
+  { id: "necklaces", label: "Necklaces" },
+  { id: "huggies", label: "Huggies" },
+  { id: "sets", label: "Sets" },
+];
+
+export const priceRanges = [
+  { id: "under-50", label: "Under $50", min: 0, max: 50 },
+  { id: "50-80", label: "$50 — $80", min: 50, max: 80 },
+  { id: "80-120", label: "$80 — $120", min: 80, max: 120 },
+];
+
+export const materials = [
+  { id: "18k-gold-plated", label: "18k Gold Plated" },
+  { id: "crystal", label: "Crystal" },
+];
