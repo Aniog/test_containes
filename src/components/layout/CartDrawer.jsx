@@ -1,13 +1,12 @@
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { X, Plus, Minus, ShoppingBag } from "lucide-react"
 import { useCart } from "@/context/CartContext"
-import { useStrkImages } from "@/components/ui/StrkImage"
+import { getStrkImageUrl } from "@/lib/strk-images"
 import { formatPrice } from "@/lib/utils"
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, count } = useCart()
-  const ref = useStrkImages([items, isOpen])
 
   useEffect(() => {
     if (isOpen) {
@@ -29,7 +28,6 @@ export default function CartDrawer() {
         onClick={closeCart}
       />
       <aside
-        ref={ref}
         className="absolute right-0 top-0 h-full w-full max-w-md bg-cream shadow-soft-lg flex flex-col animate-slide-in"
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-sand">
@@ -59,17 +57,10 @@ export default function CartDrawer() {
             <div className="flex-1 overflow-y-auto px-6 py-4">
               {items.map((item) => (
                 <div key={item.key} className="flex gap-4 py-5 border-b border-sand/60">
-                  {/* Hidden text refs so the image system can resolve the query */}
-                  <span id={item.titleId} className="sr-only">{item.name}</span>
-                  <span id={item.descId} className="sr-only">{item.name} jewelry</span>
                   <Link to={`/product/${item.id}`} onClick={closeCart} className="shrink-0">
                     <img
                       alt={item.name}
-                      data-strk-img-id={item.imgId}
-                      data-strk-img={`[${item.descId}] [${item.titleId}]`}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="200"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      src={getStrkImageUrl(item.imgId) || "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"}
                       className="w-20 h-20 object-cover bg-cream-deep"
                     />
                   </Link>

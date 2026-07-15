@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { cn } from "@/lib/utils"
+import { getStrkImageUrl } from "@/lib/strk-images"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+const FALLBACK =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
 
 // Gallery uses only the product's two statically-defined image IDs so the
 // build-time image plugin can resolve them. All images are rendered up front
@@ -35,11 +36,7 @@ export default function ProductGallery({ product }) {
             >
               <img
                 alt={img.alt(product)}
-                data-strk-img-id={id}
-                data-strk-img={`[${product.descId}] [${product.titleId}]`}
-                data-strk-img-ratio="4x5"
-                data-strk-img-width="200"
-                src={PLACEHOLDER}
+                src={getStrkImageUrl(id) || FALLBACK}
                 className="w-full h-full object-cover"
               />
             </button>
@@ -55,11 +52,7 @@ export default function ProductGallery({ product }) {
             <img
               key={i}
               alt={img.alt(product)}
-              data-strk-img-id={id}
-              data-strk-img={`[${product.descId}] [${product.titleId}]`}
-              data-strk-img-ratio="4x5"
-              data-strk-img-width="900"
-              src={PLACEHOLDER}
+              src={getStrkImageUrl(id) || FALLBACK}
               className={cn(
                 "absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-luxury",
                 active === i ? "opacity-100" : "opacity-0"
