@@ -1,0 +1,127 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A delicate gold ear cuff adorned with a luminous crystal accent. Designed to catch light with every turn, this piece brings an ethereal glow to your everyday look. No piercing required — simply slide onto the ear for an instant statement.',
+    materials: '18K gold-plated brass, cubic zirconia crystal. Nickel-free and hypoallergenic.',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided pouch to prevent tarnishing. Clean gently with a soft cloth.',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'vivid-aura-1', ratio: '4x3', width: 800, query: 'gold ear cuff crystal accent on ear warm lighting' },
+      { id: 'vivid-aura-2', ratio: '4x3', width: 800, query: 'gold ear cuff jewelry detail shot dark background' },
+      { id: 'vivid-aura-3', ratio: '4x3', width: 800, query: 'woman wearing gold ear cuff elegant portrait warm' },
+    ],
+    hoverImage: { id: 'vivid-aura-hover', ratio: '4x3', width: 800, query: 'gold ear cuff with crystal on black velvet jewelry' },
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A multicolor floral crystal necklace that blooms at your collarbone. Each petal is handset with precision, creating a garden of light that moves gracefully with you. The perfect centerpiece for both day and evening.',
+    materials: '18K gold-plated chain, hand-set enamel and crystal petals. Adjustable 16–18 inch chain.',
+    care: 'Wipe after wear. Keep away from moisture and direct sunlight to preserve enamel vibrancy. Store flat in jewelry box.',
+    variants: ['gold'],
+    images: [
+      { id: 'flora-1', ratio: '4x3', width: 800, query: 'multicolor floral crystal necklace on model neck warm gold' },
+      { id: 'flora-2', ratio: '4x3', width: 800, query: 'floral crystal necklace detail flat lay dark background' },
+      { id: 'flora-3', ratio: '4x3', width: 800, query: 'woman wearing colorful flower necklace elegant warm portrait' },
+    ],
+    hoverImage: { id: 'flora-hover', ratio: '4x3', width: 800, query: 'multicolor crystal flower necklace on black velvet jewelry' },
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 210,
+    description: 'Chunky gold dome huggie earrings that hug the lobe with sculptural presence. Their polished surface reflects warmth and sophistication, making them your new daily essential.',
+    materials: '18K gold-plated stainless steel, hinged huggie closure. Water-resistant and tarnish-resistant.',
+    care: 'Safe for occasional water contact. Dry thoroughly after swimming or showering. Polish with soft cloth to maintain shine.',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'sphere-1', ratio: '4x3', width: 800, query: 'chunky gold dome huggie earrings on ear warm lighting' },
+      { id: 'sphere-2', ratio: '4x3', width: 800, query: 'gold huggie earrings detail shot dark background' },
+      { id: 'sphere-3', ratio: '4x3', width: 800, query: 'woman wearing gold huggie earrings elegant portrait warm' },
+    ],
+    hoverImage: { id: 'sphere-hover', ratio: '4x3', width: 800, query: 'chunky gold dome huggie earrings on black velvet jewelry' },
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.6,
+    reviewCount: 76,
+    description: 'Textured gold filigree drop earrings inspired by vintage lace patterns. Intricate yet lightweight, they sway beautifully and frame the face with old-world romance.',
+    materials: '18K gold-plated brass, intricate filigree casting. French hook closure with silicone back.',
+    care: 'Handle with care to protect delicate filigree. Store hanging or flat. Avoid contact with sharp objects.',
+    variants: ['gold'],
+    images: [
+      { id: 'amber-1', ratio: '4x3', width: 800, query: 'textured gold filigree drop earrings on ear warm lighting' },
+      { id: 'amber-2', ratio: '4x3', width: 800, query: 'gold filigree drop earrings detail dark background' },
+      { id: 'amber-3', ratio: '4x3', width: 800, query: 'woman wearing gold lace earrings elegant warm portrait' },
+    ],
+    hoverImage: { id: 'amber-hover', ratio: '4x3', width: 800, query: 'gold filigree drop earrings on black velvet jewelry' },
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 56,
+    description: 'A curated gift-boxed set featuring a matching earring and necklace duo. Elegantly presented in our signature Velmora box with ribbon — ready for gifting or treating yourself.',
+    materials: '18K gold-plated brass, matching earring and necklace set. Gift box included.',
+    care: 'Store in provided box when not worn. Clean with soft cloth. Avoid harsh chemicals and prolonged water exposure.',
+    variants: ['gold'],
+    images: [
+      { id: 'heirloom-1', ratio: '4x3', width: 800, query: 'gold jewelry gift set necklace earrings elegant box warm' },
+      { id: 'heirloom-2', ratio: '4x3', width: 800, query: 'gold earring necklace set flat lay dark background' },
+      { id: 'heirloom-3', ratio: '4x3', width: 800, query: 'woman wearing gold jewelry set necklace earrings elegant warm portrait' },
+    ],
+    hoverImage: { id: 'heirloom-hover', ratio: '4x3', width: 800, query: 'gold jewelry set necklace earrings on black velvet' },
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', labelId: 'cat-earrings-title' },
+  { id: 'necklaces', name: 'Necklaces', labelId: 'cat-necklaces-title' },
+  { id: 'huggies', name: 'Huggies', labelId: 'cat-huggies-title' },
+];
+
+export const testimonials = [
+  {
+    id: 't1',
+    name: 'Sarah L.',
+    rating: 5,
+    text: 'The quality exceeded my expectations. I wear my Golden Sphere Huggies every day and they still look brand new after six months.',
+  },
+  {
+    id: 't2',
+    name: 'Maya R.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a birthday gift and my sister absolutely loved it. The packaging alone felt like a luxury experience.',
+  },
+  {
+    id: 't3',
+    name: 'Elena K.',
+    rating: 5,
+    text: 'Quiet luxury at its finest. These pieces are delicate, refined, and so easy to mix and match. Already planning my next order.',
+  },
+];
+
+export const ugcReels = [
+  { id: 'ugc1', titleId: 'ugc-title-1', descId: 'ugc-desc-1', title: 'Morning Glow', desc: 'Gold huggies catching the sunrise', imgId: 'ugc-img-1' },
+  { id: 'ugc2', titleId: 'ugc-title-2', descId: 'ugc-desc-2', title: 'Date Night', desc: 'Layered necklaces and candlelight', imgId: 'ugc-img-2' },
+  { id: 'ugc3', titleId: 'ugc-title-3', descId: 'ugc-desc-3', title: 'Office Chic', desc: 'Subtle sparkle for the workday', imgId: 'ugc-img-3' },
+  { id: 'ugc4', titleId: 'ugc-title-4', descId: 'ugc-desc-4', title: 'Weekend Brunch', desc: 'Ear cuffs and espresso', imgId: 'ugc-img-4' },
+  { id: 'ugc5', titleId: 'ugc-title-5', descId: 'ugc-desc-5', title: 'Self Gifting', desc: 'Because you deserve it', imgId: 'ugc-img-5' },
+];
