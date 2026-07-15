@@ -1,0 +1,55 @@
+import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
+
+const Hero = () => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
+  return (
+    <section ref={containerRef} className="relative h-screen min-h-[600px] max-h-[900px] flex items-center overflow-hidden">
+      {/* Background image */}
+      <div
+        className="absolute inset-0 z-0"
+        data-strk-bg-id="hero-bg-velmora-7x9k2m"
+        data-strk-bg="[hero-subtitle] [hero-headline]"
+        data-strk-bg-ratio="16x9"
+        data-strk-bg-width="1600"
+        style={{ backgroundSize: 'cover', backgroundPosition: 'center' }}
+      />
+
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/30 z-[1]" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 w-full">
+        <div className="max-w-xl">
+          <h1
+            id="hero-headline"
+            className="font-serif text-4xl md:text-6xl lg:text-7xl font-light text-white leading-[1.1] mb-4"
+          >
+            Crafted to be Treasured
+          </h1>
+          <p
+            id="hero-subtitle"
+            className="text-base md:text-lg text-white/80 font-light mb-8 max-w-md"
+          >
+            Demi-fine gold jewelry designed for everyday elegance. Timeless pieces that tell your story.
+          </p>
+          <Link
+            to="/shop"
+            className="inline-block bg-brand-gold text-white px-8 py-3.5 text-sm tracking-wide-xl uppercase font-medium hover:bg-brand-gold-dark transition-colors rounded-sm"
+          >
+            Shop the Collection
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
