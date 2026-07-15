@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { X, Plus, Minus, ShoppingBag, Trash2 } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { cn } from '@/lib/utils';
@@ -21,7 +20,6 @@ export function CartDrawer() {
     subtotal,
     count,
   } = useCart();
-  const drawerRef = useRef(null);
 
   return (
     <>
@@ -33,7 +31,6 @@ export function CartDrawer() {
         onClick={closeCart}
       />
       <div
-        ref={drawerRef}
         className={cn(
           'fixed right-0 top-0 z-50 h-full w-full max-w-md bg-velmora-porcelain shadow-2xl transition-transform duration-500 ease-out',
           isOpen ? 'translate-x-0' : 'translate-x-full'
@@ -75,16 +72,14 @@ export function CartDrawer() {
                       key={`${item.id}-${item.tone}`}
                       className="flex gap-4 border-b border-velmora-sand pb-6"
                     >
-                      <div className="h-20 w-20 shrink-0 overflow-hidden bg-velmora-stone">
-                        <img
-                          src={
-                            resolveImageUrl(item.imageId) ||
-                            "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                          }
-                          alt={item.name}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
+                      <div
+                        className="h-20 w-20 shrink-0 bg-cover bg-center bg-velmora-stone"
+                        style={{
+                          backgroundImage: `url(${resolveImageUrl(item.imageId) || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"})`,
+                        }}
+                        aria-label={item.name}
+                        role="img"
+                      />
                       <div className="flex flex-1 flex-col">
                         <div className="flex items-start justify-between gap-2">
                           <div>

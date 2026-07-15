@@ -10,6 +10,11 @@ export function ProductCard({ product, featured = false }) {
 
   const tone = product.toneOptions?.includes('gold') ? 'gold' : product.toneOptions[0];
 
+  const handleQuickAdd = (e) => {
+    e.preventDefault();
+    addItem(product, 1, tone);
+  };
+
   return (
     <article
       className="group relative flex flex-col"
@@ -43,10 +48,7 @@ export function ProductCard({ product, featured = false }) {
         </button>
         <button
           type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            addItem(product, 1, tone);
-          }}
+          onClick={handleQuickAdd}
           className="absolute bottom-0 left-0 right-0 translate-y-full bg-velmora-ink py-3 text-center text-xs font-medium uppercase tracking-widest text-white transition-transform duration-300 group-hover:translate-y-0"
         >
           <span className="inline-flex items-center gap-2">
