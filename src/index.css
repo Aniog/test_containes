@@ -1,76 +1,269 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #F6F1EA;
+    --color-parchment: #EFE7DC;
+    --color-cocoa: #1F1A14;
+    --color-cocoa-soft: #2A241B;
+    --color-gold: #B89968;
+    --color-gold-deep: #8E7344;
+    --color-gold-pale: #E9DCC2;
+    --color-ink: #1F1A14;
+    --color-muted: #6E655A;
+    --color-line: #D9CFBE;
+
+    color-scheme: light;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
+    color: var(--color-ink);
+    background-color: var(--color-ivory);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-ivory);
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background-color: var(--color-gold-pale);
+    color: var(--color-cocoa);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    letter-spacing: 0.005em;
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Note: avoid @apply with our custom palette names (text-ink, bg-gold, etc.)
+     because some build paths resolve @apply before the palette is registered.
+     Use plain CSS with our CSS variables for the colors. */
+  .eyebrow {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--color-muted);
+    font-weight: 500;
+  }
+
+  .product-name {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+  @media (min-width: 640px) {
+    .product-name {
+      font-size: 13px;
+    }
+  }
+
+  .meta {
+    font-size: 0.875rem;
+    line-height: 1.625;
+    color: var(--color-muted);
+  }
+
+  .body {
+    font-size: 15px;
+    line-height: 1.625;
+    color: var(--color-ink);
+    opacity: 0.85;
+  }
+
+  .editorial {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+
+  .hairline {
+    border-color: rgba(217, 207, 190, 0.8);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-cocoa);
+    color: var(--color-ivory);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 0.125rem;
+    transition-property: background-color, color;
+    transition-duration: 300ms;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-cocoa-soft);
+  }
+  .btn-primary:focus {
+    outline: none;
+  }
+  .btn-primary:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn-accent {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-gold);
+    color: var(--color-cocoa);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 0.125rem;
+    transition-property: background-color, color;
+    transition-duration: 300ms;
+  }
+  .btn-accent:hover {
+    background-color: var(--color-gold-deep);
+    color: var(--color-ivory);
+  }
+  .btn-accent:focus {
+    outline: none;
+  }
+  .btn-accent:focus-visible {
+    outline: 2px solid var(--color-cocoa);
+    outline-offset: 2px;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    border: 1px solid var(--color-ink);
+    color: var(--color-ink);
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 0.125rem;
+    transition-property: background-color, color;
+    transition-duration: 300ms;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-ink);
+    color: var(--color-ivory);
+  }
+  .btn-outline:focus {
+    outline: none;
+  }
+  .btn-outline:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 2px;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--color-ink);
+    border-bottom: 1px solid rgba(31, 26, 20, 0.4);
+    padding-bottom: 0.25rem;
+    transition-property: border-color, color;
+    transition-duration: 300ms;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-ink);
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    border: 1px solid var(--color-line);
+    border-radius: 9999px;
+    cursor: pointer;
+    transition-property: background-color, color, border-color;
+    transition-duration: 300ms;
+    color: var(--color-ink);
+  }
+  .pill:hover {
+    border-color: var(--color-ink);
+  }
+  .pill-active {
+    background-color: var(--color-ink);
+    color: var(--color-ivory);
+    border-color: var(--color-ink);
+  }
+
+  .input-line {
+    width: 100%;
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid rgba(31, 26, 20, 0.4);
+    padding: 0.75rem 0;
+    color: var(--color-ink);
+    transition-property: border-color;
+    transition-duration: 300ms;
+  }
+  .input-line::placeholder {
+    color: rgba(110, 101, 90, 0.7);
+  }
+  .input-line:focus {
+    outline: none;
+    border-color: var(--color-ink);
+  }
+
+  .container-shell {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .container-shell {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-shell {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  /* hide scrollbars on horizontal rails but keep scrolling */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
