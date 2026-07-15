@@ -1,0 +1,160 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    shortName: 'Vivid Aura Jewels',
+    description: 'A sculptural ear cuff adorned with a delicate crystal accent, designed to catch the light with every movement. Crafted in 18K gold-plated brass for lasting brilliance.',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', src: '', alt: 'Vivid Aura Jewels - gold ear cuff with crystal accent' },
+      { id: 'vivid-aura-2', src: '', alt: 'Vivid Aura Jewels - side view' },
+      { id: 'vivid-aura-3', src: '', alt: 'Vivid Aura Jewels - detail view' },
+    ],
+    variants: [
+      { id: 'gold', name: 'Gold', available: true },
+      { id: 'silver', name: 'Silver', available: true },
+    ],
+    details: {
+      materials: '18K gold-plated brass, Austrian crystal',
+      care: 'Avoid contact with water, perfume, and lotions. Store in provided pouch.',
+      dimensions: 'Length: 2.5cm, Width: 1.2cm',
+    },
+    related: ['golden-sphere-huggies', 'amber-lace-earrings'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    shortName: 'Majestic Flora Nectar',
+    description: 'A breathtaking floral pendant featuring multicolor crystals that bloom against a delicate gold chain. Each petal is meticulously set to create a garden of light.',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'majestic-flora-1', src: '', alt: 'Majestic Flora Nectar - multicolor floral crystal necklace' },
+      { id: 'majestic-flora-2', src: '', alt: 'Majestic Flora Nectar - worn view' },
+      { id: 'majestic-flora-3', src: '', alt: 'Majestic Flora Nectar - detail view' },
+    ],
+    variants: [
+      { id: 'gold', name: 'Gold', available: true },
+      { id: 'silver', name: 'Silver', available: true },
+    ],
+    details: {
+      materials: '18K gold-plated brass, multicolor Swarovski crystals',
+      care: 'Store flat in provided box. Clean gently with soft cloth.',
+      dimensions: 'Chain length: 45cm, Pendant: 2.8cm diameter',
+    },
+    related: ['royal-heirloom-set', 'vivid-aura-jewels'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    shortName: 'Golden Sphere Huggies',
+    description: 'Chunky dome huggie earrings with a polished gold finish. These everyday essentials hug the earlobe with understated luxury and effortless style.',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'golden-sphere-1', src: '', alt: 'Golden Sphere Huggies - chunky gold dome huggie earrings' },
+      { id: 'golden-sphere-2', src: '', alt: 'Golden Sphere Huggies - worn view' },
+      { id: 'golden-sphere-3', src: '', alt: 'Golden Sphere Huggies - detail view' },
+    ],
+    variants: [
+      { id: 'gold', name: 'Gold', available: true },
+      { id: 'silver', name: 'Silver', available: true },
+    ],
+    details: {
+      materials: '18K gold-plated brass, hypoallergenic post',
+      care: 'Wipe clean after wear. Avoid moisture and chemicals.',
+      dimensions: 'Diameter: 1.4cm, Thickness: 0.8cm',
+    },
+    related: ['vivid-aura-jewels', 'amber-lace-earrings'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    shortName: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. The intricate openwork design creates a play of light and shadow, perfect for special occasions.',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', src: '', alt: 'Amber Lace Earrings - textured gold filigree drop earrings' },
+      { id: 'amber-lace-2', src: '', alt: 'Amber Lace Earrings - worn view' },
+      { id: 'amber-lace-3', src: '', alt: 'Amber Lace Earrings - detail view' },
+    ],
+    variants: [
+      { id: 'gold', name: 'Gold', available: true },
+      { id: 'silver', name: 'Silver', available: false },
+    ],
+    details: {
+      materials: '18K gold-plated brass, nickel-free',
+      care: 'Store separately to prevent tangling. Clean with dry cloth.',
+      dimensions: 'Length: 4.2cm, Width: 1.8cm',
+    },
+    related: ['golden-sphere-huggies', 'vivid-aura-jewels'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    shortName: 'Royal Heirloom Set',
+    description: 'A beautifully gift-boxed set featuring matching earrings and necklace in our signature gold finish. The perfect present for someone special — or a treat for yourself.',
+    price: 95,
+    category: 'sets',
+    material: '18K Gold Plated',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'royal-heirloom-1', src: '', alt: 'Royal Heirloom Set - gift-boxed earring and necklace set' },
+      { id: 'royal-heirloom-2', src: '', alt: 'Royal Heirloom Set - necklace detail' },
+      { id: 'royal-heirloom-3', src: '', alt: 'Royal Heirloom Set - gift box view' },
+    ],
+    variants: [
+      { id: 'gold', name: 'Gold', available: true },
+      { id: 'silver', name: 'Silver', available: true },
+    ],
+    details: {
+      materials: '18K gold-plated brass, hypoallergenic',
+      care: 'Store in provided gift box. Avoid water and perfume.',
+      dimensions: 'Necklace: 42cm, Earrings: 2cm drop',
+    },
+    related: ['majestic-flora-nectar', 'amber-lace-earrings'],
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 1 },
+  { id: 'huggies', name: 'Huggies', count: 1 },
+  { id: 'sets', name: 'Sets', count: 1 },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day — they haven\'t tarnished at all.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging was beautiful and she absolutely loved it. Will definitely order again.',
+  },
+  {
+    id: 3,
+    name: 'Jessica R.',
+    rating: 5,
+    text: 'Finally found jewelry that looks expensive without the designer price tag. The Amber Lace Earrings get me compliments every time I wear them.',
+  },
+];
