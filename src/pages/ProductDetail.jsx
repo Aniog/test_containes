@@ -55,7 +55,7 @@ export default function ProductDetail() {
             <div className="aspect-[3/4] bg-cream-300 overflow-hidden mb-4">
               <img
                 alt={product.name}
-                data-strk-img-id={`pdp-${product.id}-${activeImage}`}
+                data-strk-img-id={`shop-${product.id}`}
                 data-strk-img={`[pdp-title-${product.id}] velmora gold jewelry`}
                 data-strk-img-ratio="3x4"
                 data-strk-img-width="800"
@@ -74,7 +74,7 @@ export default function ProductDetail() {
                 >
                   <img
                     alt={`${product.name} view ${i + 1}`}
-                    data-strk-img-id={`pdp-thumb-${product.id}-${i}`}
+                    data-strk-img-id={`shop-${product.id}-thumb-${i}`}
                     data-strk-img={`[pdp-title-${product.id}] velmora gold jewelry`}
                     data-strk-img-ratio="3x4"
                     data-strk-img-width="160"
@@ -208,7 +208,7 @@ export default function ProductDetail() {
                   <div className="aspect-[3/4] bg-cream-300 overflow-hidden mb-4">
                     <img
                       alt={rp.name}
-                      data-strk-img-id={`related-${rp.id}`}
+                      data-strk-img-id={`shop-${rp.id}`}
                       data-strk-img={`[related-name-${rp.id}] velmora gold jewelry`}
                       data-strk-img-ratio="3x4"
                       data-strk-img-width="400"

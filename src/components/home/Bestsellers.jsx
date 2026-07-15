@@ -19,7 +19,6 @@ export default function Bestsellers() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6">
         {bestsellers.map((product) => {
           const isHovered = hoveredId === product.id;
-          const imgId = isHovered && product.images[1] ? product.images[1] : product.images[0];
 
           return (
             <div
@@ -32,7 +31,7 @@ export default function Bestsellers() {
               <Link to={`/product/${product.slug}`} className="block relative aspect-[3/4] bg-cream-300 overflow-hidden mb-4">
                 <img
                   alt={product.name}
-                  data-strk-img-id={`bestseller-${product.id}-${imgId}`}
+                  data-strk-img-id={`shop-${product.id}`}
                   data-strk-img={`[bestseller-name-${product.id}] velmora gold jewelry`}
                   data-strk-img-ratio="3x4"
                   data-strk-img-width="600"

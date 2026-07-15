@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Pinterest } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -64,7 +64,6 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Instagram className="w-4 h-4 text-cream-400 hover:text-gold transition-colors cursor-pointer" />
             <Facebook className="w-4 h-4 text-cream-400 hover:text-gold transition-colors cursor-pointer" />
-            <Pinterest className="w-4 h-4 text-cream-400 hover:text-gold transition-colors cursor-pointer" />
           </div>
         </div>
       </div>

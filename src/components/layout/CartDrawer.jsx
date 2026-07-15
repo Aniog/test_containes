@@ -56,15 +56,9 @@ export default function CartDrawer() {
                 {items.map((item) => (
                   <div key={`${item.id}-${item.variant}`} className="flex gap-4 py-4 border-b border-cream-300 last:border-0">
                     <div className="w-20 h-20 bg-cream-300 flex-shrink-0 overflow-hidden">
-                      <img
-                        alt={item.name}
-                        data-strk-img-id={`cart-${item.id}-${item.variant}`}
-                        data-strk-img={`velmora ${item.name} gold jewelry`}
-                        data-strk-img-ratio="1x1"
-                        data-strk-img-width="160"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        className="w-full h-full object-cover"
-                      />
+                      <div className="w-full h-full bg-cream-300 flex items-center justify-center">
+                        <span className="text-cream-500 text-[8px] tracking-widest uppercase">Velmora</span>
+                      </div>
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="product-title text-xs mb-1">{item.name}</p>
