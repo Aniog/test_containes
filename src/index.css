@@ -1,76 +1,88 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-velmora-surface text-velmora-base font-sans;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-velmora-accent/30 text-velmora-base;
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply w-full max-w-[1440px] mx-auto px-5 md:px-10 lg:px-16;
+  }
+
+  .heading-xl {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl leading-tight tracking-wide;
+  }
+
+  .heading-lg {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl leading-tight tracking-wide;
+  }
+
+  .heading-md {
+    @apply font-serif text-2xl md:text-3xl leading-snug tracking-wider;
+  }
+
+  .heading-sm {
+    @apply font-serif text-lg md:text-xl leading-snug tracking-wider;
+  }
+
+  .product-name {
+    @apply font-serif text-sm md:text-base tracking-wider uppercase;
+  }
+
+  .body-text {
+    @apply font-sans text-base leading-relaxed text-velmora-base/80;
+  }
+
+  .caption {
+    @apply font-sans text-xs md:text-sm tracking-wide text-velmora-base/60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-velmora-accent text-white font-sans text-sm font-medium tracking-wider uppercase
+           hover:bg-velmora-accent-hover active:scale-[0.98]
+           transition-all duration-300 ease-out;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-velmora-base text-velmora-base font-sans text-sm font-medium tracking-wider uppercase
+           hover:bg-velmora-base hover:text-white active:scale-[0.98]
+           transition-all duration-300 ease-out;
+  }
+
+  .hairline-divider {
+    @apply border-0 h-px bg-velmora-muted;
+  }
+
+  .accent-badge {
+    @apply inline-block px-3 py-1 bg-velmora-accent-light text-velmora-accent-hover font-sans text-xs font-medium tracking-wider uppercase rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
