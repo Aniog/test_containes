@@ -1,76 +1,481 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Velmora Color Palette - Quiet Luxury */
+  --velmora-cream: #F8F5F1;
+  --velmora-ivory: #F5F1E9;
+  --velmora-warm-gray: #EDE8E0;
+  --velmora-taupe: #2C2825;
+  --velmora-charcoal: #1C1C1C;
+  --velmora-gold: #B89778;
+  --velmora-gold-dark: #8B6F4E;
+  --velmora-gold-light: #D4B896;
+  --velmora-text: #1C1C1C;
+  --velmora-text-muted: #5C5752;
+  --velmora-border: #D4CFC6;
+  --velmora-white: #FFFFFF;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--velmora-cream);
+  color: var(--velmora-text);
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elegant Serif Typography */
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Product Names - UPPERCASE with wide letter-spacing */
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 500;
+}
+
+/* Hairline Dividers */
+.divider {
+  border-top: 1px solid var(--velmora-border);
+}
+
+/* Premium Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-white);
+}
+
+.btn-primary:hover {
+  background-color: var(--velmora-gold-dark);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--velmora-charcoal);
+  border: 1px solid var(--velmora-charcoal);
+}
+
+.btn-outline:hover {
+  background-color: var(--velmora-charcoal);
+  color: var(--velmora-white);
+}
+
+.btn-gold {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-white);
+}
+
+.btn-gold:hover {
+  background-color: var(--velmora-gold-dark);
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 11px;
+}
+
+/* Subtle Hover Transitions */
+.card-hover {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+/* Product Card */
+.product-card {
+  background: var(--velmora-white);
+  overflow: hidden;
+}
+
+.product-card-image {
+  position: relative;
+  overflow: hidden;
+  background: var(--velmora-warm-gray);
+}
+
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}
+
+.product-card-image .secondary-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-card:hover .primary-image {
+  opacity: 0;
+}
+
+.product-card:hover .secondary-image {
+  opacity: 1;
+}
+
+.product-card .quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--velmora-taupe);
+}
+
+.category-tile img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-tile .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(28, 28, 28, 0.6));
+  transition: background 0.3s ease;
+}
+
+.category-tile:hover .overlay {
+  background: linear-gradient(to bottom, transparent, rgba(28, 28, 28, 0.75));
+}
+
+.category-tile .label {
+  position: absolute;
+  bottom: 32px;
+  left: 32px;
+  color: var(--velmora-white);
+  font-family: var(--font-serif);
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  opacity: 0.9;
+  transition: opacity 0.2s ease;
+}
+
+.category-tile:hover .label {
+  opacity: 1;
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  height: 320px;
+  overflow: hidden;
+  background: var(--velmora-taupe);
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-card .caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px;
+  background: linear-gradient(to top, rgba(28, 28, 28, 0.85), transparent);
+  color: var(--velmora-white);
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+}
+
+/* Sticky Nav */
+.nav {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav.solid {
+  background-color: var(--velmora-cream);
+  border-bottom: 1px solid var(--velmora-border);
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background: var(--velmora-white);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+  box-shadow: -10px 0 30px -15px rgba(0, 0, 0, 0.2);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+@media (max-width: 480px) {
+  .cart-drawer {
+    max-width: 100%;
+  }
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 10px 20px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--velmora-border);
+  background: var(--velmora-white);
+  color: var(--velmora-text-muted);
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.variant-pill.active {
+  border-color: var(--velmora-gold);
+  color: var(--velmora-charcoal);
+  background: var(--velmora-ivory);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--velmora-gold-light);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 1px solid var(--velmora-border);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+}
+
+/* Form Inputs */
+.input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  background: var(--velmora-white);
+  border: 1px solid var(--velmora-border);
+  color: var(--velmora-text);
+  transition: border-color 0.15s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+.input::placeholder {
+  color: var(--velmora-text-muted);
+}
+
+/* Star Rating */
+.stars {
+  color: var(--velmora-gold);
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+  margin-bottom: 12px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--velmora-text);
+}
+
+.filter-option:hover {
+  color: var(--velmora-gold);
+}
+
+.filter-option input {
+  margin-right: 10px;
+  accent-color: var(--velmora-gold);
+}
+
+/* Sort Dropdown */
+.sort-select {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  padding: 8px 12px;
+  border: 1px solid var(--velmora-border);
+  background: var(--velmora-white);
+  color: var(--velmora-text);
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+/* Editorial Image Styling */
+.editorial-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Newsletter Block */
+.newsletter {
+  background: var(--velmora-taupe);
+  color: var(--velmora-white);
+}
+
+.newsletter .input {
+  background: var(--velmora-white);
+  border: none;
+}
+
+/* Footer */
+.footer-link {
+  font-size: 13px;
+  color: var(--velmora-text-muted);
+  transition: color 0.15s ease;
+}
+
+.footer-link:hover {
+  color: var(--velmora-gold);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .product-card .quick-add {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  
+  .ugc-card {
+    width: 140px;
+    height: 250px;
+  }
+  
+  .btn {
+    padding: 12px 24px;
+    font-size: 12px;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus Styles for Accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--velmora-gold);
+  outline-offset: 2px;
+}
+
+/* Empty State */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--velmora-text-muted);
+}
