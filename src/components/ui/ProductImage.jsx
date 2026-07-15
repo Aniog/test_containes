@@ -26,6 +26,10 @@ export default function ProductImage({
         </span>
         <div
           className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3C/svg%3E\")",
+          }}
           data-strk-bg-id={bgId}
           data-strk-bg={`[${textId}]`}
           data-strk-bg-ratio={image?.ratio || '4x3'}
