@@ -21,15 +21,28 @@ export default defineConfig({
     },
   },
   server: {
+    port: 8080,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
     hmr: {
-      overlay: false
+      overlay: false,
+      clientPort: 12000,
+      host: '0.0.0.0',
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
+    },
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
     },
   }
 })
