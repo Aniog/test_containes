@@ -1,76 +1,260 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Luxury warm palette */
+  --color-bg: #F8F5F0;
+  --color-bg-dark: #0A0806;
+  --color-text: #0A0806;
+  --color-text-muted: #5C5346;
+  --color-text-light: #8A7F6D;
+  --color-border: #E5DFD3;
+  --color-accent: #C5A46E;
+  --color-accent-dark: #B08F5A;
+  --color-card: #FFFFFF;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+h1, h2, h3, .product-name {
+  font-family: var(--font-serif);
+}
+
+/* Product names in uppercase with wide letter-spacing */
+.product-name {
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+}
+
+/* Editorial image styling */
+.editorial-img {
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.group:hover .editorial-img {
+  transform: scale(1.03);
+}
+
+/* Hairline dividers */
+.hairline {
+  border-color: var(--color-border);
+}
+
+/* Subtle hover transitions */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+              box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -15px rgba(0,0,0,0.1);
+}
+
+/* Premium button styles */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.btn-premium::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+
+.btn-premium:hover::after {
+  transform: translateX(100%);
+}
+
+/* Variant pill buttons */
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill:hover {
+  border-color: var(--color-accent);
+}
+
+.variant-pill.active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg-dark);
+}
+
+/* Category tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(10,8,6,0.6));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover::after {
+  opacity: 1;
+}
+
+.category-tile .label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.category-tile:hover .label {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* UGC Reel cards */
+.ugc-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ugc-card .caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(10,8,6,0.75), transparent);
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* Trust bar */
+.trust-bar {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Newsletter */
+.newsletter-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-accent);
+  padding: 12px 0;
+  font-size: 14px;
+  color: var(--color-text);
+}
+
+.newsletter-input::placeholder {
+  color: var(--color-text-light);
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-accent-dark);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .product-name {
+    letter-spacing: 1.5px;
+  }
+}
+
+/* Star rating */
+.star {
+  color: var(--color-accent);
+}
+
+/* Accordion */
+.accordion-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+/* Cart count badge */
+.cart-badge {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Product gallery */
+.gallery-thumb {
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.gallery-thumb.active,
+.gallery-thumb:hover {
+  border-color: var(--color-accent);
+}
+
+/* Filter sidebar */
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+/* Sort dropdown */
+.sort-select {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
