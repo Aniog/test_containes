@@ -74,9 +74,7 @@ export function CartDrawer() {
                     >
                       <div
                         className="h-20 w-20 shrink-0 bg-cover bg-center bg-velmora-stone"
-                        style={{
-                          backgroundImage: `url(${resolveImageUrl(item.imageId) || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"})`,
-                        }}
+                        style={resolveImageUrl(item.imageId) ? { backgroundImage: `url(${resolveImageUrl(item.imageId)})` } : undefined}
                         aria-label={item.name}
                         role="img"
                       />
