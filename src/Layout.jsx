@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import Navbar from '@/components/Navbar';
 import CartDrawer from '@/components/CartDrawer';
 import Footer from '@/components/Footer';
 
 const Layout = ({ children }) => {
+  const containerRef = useRef(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [location.pathname]);
+
   return (
-    <div className="min-h-screen bg-velmora-cream flex flex-col">
+    <div ref={containerRef} className="min-h-screen bg-velmora-cream flex flex-col">
       <Navbar />
       <CartDrawer />
       <main className="flex-1">{children}</main>

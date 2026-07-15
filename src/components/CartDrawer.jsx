@@ -54,17 +54,8 @@ const CartDrawer = () => {
               <div className="flex flex-col gap-6">
                 {items.map((item) => (
                   <div key={`${item.id}-${item.variant}`} className="flex gap-4">
-                    <div className="w-20 h-20 bg-velmora-sand rounded-md flex-shrink-0 overflow-hidden">
-                      <img
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        data-strk-img-id={`cart-item-${item.id}`}
-                        data-strk-img={`[cart-name-${item.id}]`}
-                        data-strk-img-ratio="1x1"
-                        data-strk-img-width="200"
-                        className="w-full h-full object-cover"
-                      />
-                      <span id={`cart-name-${item.id}`} className="sr-only">{item.name}</span>
+                    <div className="w-20 h-20 bg-velmora-sand rounded-md flex-shrink-0 flex items-center justify-center">
+                      <span className="font-serif text-xl text-velmora-taupe">{item.name.charAt(0)}</span>
                     </div>
                     <div className="flex-1">
                       <div className="flex justify-between items-start">
