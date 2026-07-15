@@ -25,7 +25,7 @@ export default function ProductDetail() {
   const [activeImage, setActiveImage] = useState(0);
   const galleryRef = useRef(null);
   const relatedRef = useRef(null);
-  useImageLoader(galleryRef, [productId, activeImage]);
+  useImageLoader(galleryRef, [productId]);
   useImageLoader(relatedRef, [productId]);
 
   if (!product) {
@@ -66,19 +66,29 @@ export default function ProductDetail() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div ref={galleryRef} className="space-y-4">
             <div className="relative aspect-[4/5] overflow-hidden bg-velmora-sand/40">
-              <StrkImage
-                id={`product-detail-main-${product.id}-${activeImage}`}
-                query={imageQueries[activeImage]}
-                ratio="4x3"
-                width={900}
-                alt={product.name}
-                className="h-full w-full object-cover"
-              />
+              {product.images.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={cn(
+                    "absolute inset-0 transition-opacity duration-500",
+                    activeImage === idx ? "z-10 opacity-100" : "z-0 opacity-0",
+                  )}
+                >
+                  <StrkImage
+                    id={`product-detail-main-${product.id}-${idx}`}
+                    query={imageQueries[idx]}
+                    ratio="4x3"
+                    width={900}
+                    alt={product.name}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
               <button
                 onClick={() =>
                   setActiveImage((i) => (i === 0 ? product.images.length - 1 : i - 1))
                 }
-                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-sm hover:bg-white"
+                className="absolute left-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-sm hover:bg-white"
                 aria-label="Previous image"
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -87,7 +97,7 @@ export default function ProductDetail() {
                 onClick={() =>
                   setActiveImage((i) => (i === product.images.length - 1 ? 0 : i + 1))
                 }
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-sm hover:bg-white"
+                className="absolute right-3 top-1/2 z-20 -translate-y-1/2 rounded-full bg-white/90 p-2 shadow-sm hover:bg-white"
                 aria-label="Next image"
               >
                 <ChevronRight className="w-5 h-5" />
