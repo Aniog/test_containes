@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useStrkImages } from '@/hooks/useStrkImages'
 import { cn } from '@/lib/utils'
 
 export default function ProductGallery({ product }) {
@@ -21,9 +22,10 @@ export default function ProductGallery({ product }) {
   ]
 
   const [activeImage, setActiveImage] = useState(images[0])
+  const containerRef = useStrkImages([activeImage.id])
 
   return (
-    <div className="grid gap-4 lg:grid-cols-[112px_minmax(0,1fr)]">
+    <div ref={containerRef} className="grid gap-4 lg:grid-cols-[112px_minmax(0,1fr)]">
       <div className="order-2 flex gap-3 overflow-x-auto lg:order-1 lg:flex-col">
         {images.map((image) => (
           <button

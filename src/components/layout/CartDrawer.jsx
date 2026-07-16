@@ -15,7 +15,7 @@ export default function CartDrawer() {
       />
 
       <aside
-        className={`fixed right-0 top-0 z-[70] flex h-full w-full max-w-md flex-col bg-[#fffdf9] text-stone-900 shadow-2xl transition-transform duration-300 ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
+        className={`fixed right-0 top-0 z-[70] flex h-full w-full max-w-md flex-col bg-velmora-ivory text-stone-900 shadow-2xl transition-transform duration-300 ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
         aria-label="Shopping cart"
       >
         <div className="flex items-center justify-between border-b border-velmora-sand/50 px-5 py-5 sm:px-6">

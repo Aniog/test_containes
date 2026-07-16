@@ -1,7 +1,7 @@
 import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export default function Stars({ rating, reviews, className = '' }) {
+export default function Stars({ rating, reviews, className = '', showText = true }) {
   const filledStars = Math.round(rating)
 
   return (
@@ -17,8 +17,8 @@ export default function Stars({ rating, reviews, className = '' }) {
           />
         ))}
       </div>
-      <span>{rating.toFixed(1)}</span>
-      {typeof reviews === 'number' ? <span>({reviews})</span> : null}
+      {showText ? <span>{rating.toFixed(1)}</span> : null}
+      {showText && typeof reviews === 'number' ? <span>({reviews})</span> : null}
     </div>
   )
 }

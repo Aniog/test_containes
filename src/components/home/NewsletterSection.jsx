@@ -21,7 +21,7 @@ export default function NewsletterSection() {
               placeholder="Email address"
               className="h-12 flex-1 rounded-full border border-white/15 bg-white/10 px-5 text-sm text-velmora-ivory placeholder:text-velmora-ivory/50 focus:outline-none focus:ring-2 focus:ring-velmora-gold/70"
             />
-            <Button size="lg" className="bg-velmora-gold text-velmora-ink hover:bg-amber-300">
+            <Button size="lg" className="bg-velmora-gold text-velmora-ink hover:bg-velmora-rose">
               Join Now
             </Button>
           </form>

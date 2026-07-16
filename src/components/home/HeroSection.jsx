@@ -26,7 +26,7 @@ export default function HeroSection() {
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link to="/shop">
-              <Button size="lg" className="bg-velmora-gold text-velmora-ink hover:bg-amber-300">
+              <Button size="lg" className="bg-velmora-gold text-velmora-ink hover:bg-velmora-rose">
                 Shop the Collection
                 <ArrowRight className="h-4 w-4" />
               </Button>
