@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Requests",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "integer",
+      "description": "Reference to the internal user id in the Users table",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Name of the person making the contact request"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the requester"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number of the requester"
+    },
+    "subject": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Subject or topic of the contact request"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Detailed message or request content"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "in_progress", "resolved", "closed"],
+      "default": "pending",
+      "description": "Current status of the contact request"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
