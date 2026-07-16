@@ -6,7 +6,7 @@ const categories = [
   {
     id: 'earrings',
     name: 'Earrings',
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=800&q=85',
+    image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=85',
     description: 'Cuffs, drops, and huggies',
   },
   {
@@ -18,7 +18,7 @@ const categories = [
   {
     id: 'huggies',
     name: 'Huggies', 
-    image: 'https://images.unsplash.com/photo-1629224316810-9d6d07f79a5b?w=800&q=85',
+    image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=85',
     description: 'Classic and contemporary',
   },
 ];

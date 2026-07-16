@@ -10,7 +10,7 @@ export default function BrandStory() {
           {/* Image */}
           <div className="relative aspect-[4/5] rounded overflow-hidden bg-velvet-surface">
             <img
-              src="https://images.unsplash.com/photo-1515562141589-63e7b3b1eada?w=800&q=85"
+              src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=85"
               alt="Artisan jewelry craftsmanship"
               className="w-full h-full object-cover"
             />
