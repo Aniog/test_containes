@@ -6,9 +6,9 @@ import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 import checkBrokenImgPlugin from './plugin/vite-plugin-check-broken-img.js'
 import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-img.js'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     checkBrokenImgPlugin(),
     checkPlaceholderImgPlugin(),
@@ -21,15 +21,19 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0',
+    port: 12000,
+    host: true,
     allowedHosts: true,
     cors: true,
-    hmr: {
-      overlay: false
-    },
-    watch: {
-      usePolling: true,
-      interval: 100, // Check for changes every 100ms
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
     },
   }
 })
