@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full product description"
+    },
+    "shortDescription": {
+      "type": "string",
+      "description": "Short summary for grids or quick view"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Array of image URLs"
+    },
+    "mainImage": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image"
+    },
+    "hoverImage": {
+      "type": "string",
+      "format": "uri",
+      "description": "Image shown on hover"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to show in bestsellers"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available tones (e.g. Gold, Silver)"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
