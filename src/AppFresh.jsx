@@ -109,12 +109,10 @@ function Storefront() {
   )
 }
 
-function App() {
+export default function AppFresh() {
   return (
     <BrowserRouter>
       <Storefront />
     </BrowserRouter>
   )
 }
-
-export default App
