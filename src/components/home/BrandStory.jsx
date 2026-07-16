@@ -12,7 +12,7 @@ export default function BrandStory() {
           {/* Image side */}
           <div className="aspect-[4/5] md:aspect-auto md:h-[600px] overflow-hidden" data-reveal>
             <img
-              src="https://images.unsplash.com/photo-1617038220308-7eb77f1e6f89?w=900&auto=format&q=85"
+              src="https://images.unsplash.com/photo-1630019852942-f89202989a59?w=900&auto=format&q=85"
               alt="Velmora fine jewelry craftsmanship"
               className="w-full h-full object-cover"
               loading="lazy"

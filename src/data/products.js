@@ -46,9 +46,9 @@ export const products = [
     variants: ['gold', 'silver'],
     images: [
       'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&auto=format&q=80',
-      'https://images.unsplash.com/photo-1621996346564-e3dbc2b0c1e3?w=800&auto=format&q=80',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&auto=format&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1621996346564-e3dbc2b0c1e3?w=800&auto=format&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&auto=format&q=80',
   },
   {
     id: 'amber-lace-earrings',
@@ -62,10 +62,10 @@ export const products = [
     reviews: 67,
     variants: ['gold', 'silver'],
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=800&auto=format&q=80',
-      'https://images.unsplash.com/photo-1506630440444-54a7e8b1e48e?w=800&auto=format&q=80',
+      'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&auto=format&q=80',
+      'https://images.unsplash.com/photo-1589674781759-c21c37956a44?w=800&auto=format&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1506630440444-54a7e8b1e48e?w=800&auto=format&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1589674781759-c21c37956a44?w=800&auto=format&q=80',
   },
   {
     id: 'royal-heirloom-set',
@@ -79,10 +79,10 @@ export const products = [
     reviews: 43,
     variants: ['gold', 'silver'],
     images: [
-      'https://images.unsplash.com/photo-1515562141589-67f0c123c2b0?w=800&auto=format&q=80',
-      'https://images.unsplash.com/photo-1602751584552-8ba73a1a350b?w=800&auto=format&q=80',
+      'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&auto=format&q=80',
+      'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&auto=format&q=80',
     ],
-    hoverImage: 'https://images.unsplash.com/photo-1602751584552-8ba73a1a350b?w=800&auto=format&q=80',
+    hoverImage: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&auto=format&q=80',
   },
 ]
 
@@ -108,7 +108,7 @@ export const testimonials = [
 ]
 
 export const categories = [
-  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c8ab60908?w=600&auto=format&q=80' },
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=600&auto=format&q=80' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&auto=format&q=80' },
   { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&auto=format&q=80' },
 ]
@@ -116,7 +116,7 @@ export const categories = [
 export const ugcReels = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1617038220308-7eb77f1e6f89?w=400&auto=format&q=80',
+    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&auto=format&q=80',
     caption: 'Golden hour with my Vivid Aura cuff',
   },
   {
@@ -126,7 +126,7 @@ export const ugcReels = [
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1600294037681-c80c4ad25e60?w=400&auto=format&q=80',
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&auto=format&q=80',
     caption: 'The Flora Nectar is my new staple',
   },
   {
