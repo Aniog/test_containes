@@ -39,6 +39,6 @@ export const Auth = {
 };
 
 export const API = {
-  uploadImage: async () => ({ storageKey: 'mock/image.png' }),
-  uploadFile: async () => ({ storageKey: 'mock/file.txt' })
+  uploadImage: async () => ({ storageKey: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800' }),
+  uploadFile: async () => ({ storageKey: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' })
 };

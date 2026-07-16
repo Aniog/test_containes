@@ -1,42 +1,50 @@
 import React, { useEffect, useRef } from 'react';
-import { PRODUCTS } from '@/config';
-import ProductCard from '../shop/ProductCard';
+import { motion } from 'framer-motion';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
-import { motion } from 'framer-motion';
+import ProductCard from '../shop/ProductCard';
+import { PRODUCTS } from '@/config';
 
 const Bestsellers = () => {
   const containerRef = useRef(null);
+  const bestsellers = PRODUCTS.slice(0, 5);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    const cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    return cleanup;
   }, []);
 
   return (
-    <section ref={containerRef} className="py-24 px-6 md:px-12 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex justify-between items-end mb-12">
-          <div>
-            <h2 className="text-xs uppercase tracking-[0.3em] font-sans font-semibold text-muted-foreground mb-3">Our Most Loved Pieces</h2>
-            <h3 className="text-4xl md:text-5xl font-serif">The Bestsellers</h3>
+    <section ref={containerRef} className="py-28 bg-white">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 px-2">
+          <div className="space-y-3">
+             <p className="text-[10px] uppercase tracking-[0.4em] text-accent font-bold">Curated for you</p>
+             <h2 className="text-3xl md:text-5xl font-serif leading-tight">Bestsellers</h2>
           </div>
-          <a href="/shop" className="text-xs uppercase tracking-widest border-b border-black pb-1 mb-2 hover:opacity-70 transition-opacity">
-            View All
+          <a href="/shop" className="hidden md:block text-[10px] uppercase tracking-[0.2em] border-b border-primary pb-1 font-bold hover:opacity-50 transition-all duration-300">
+            Shop all jewelry
           </a>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10">
-          {PRODUCTS.slice(0, 5).map((product, index) => (
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-x-6 gap-y-16">
+          {bestsellers.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, delay: index * 0.15, ease: "easeOut" }}
             >
               <ProductCard product={product} />
             </motion.div>
           ))}
+        </div>
+        
+        <div className="mt-16 text-center md:hidden">
+            <a href="/shop" className="inline-block text-[10px] uppercase tracking-[0.2em] border-b border-primary pb-1 font-bold">
+              Shop all jewelry
+            </a>
         </div>
       </div>
     </section>

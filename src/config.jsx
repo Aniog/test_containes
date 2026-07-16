@@ -11,7 +11,7 @@ export const PRODUCTS = [
     shortDescription: "Gold ear cuff with crystal accent",
     images: [
       "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1630019314271-93e1898716b5?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800"
     ]
   },
   {
@@ -23,7 +23,7 @@ export const PRODUCTS = [
     shortDescription: "Multicolor floral crystal necklace",
     images: [
       "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1611085583191-a3b134a668a1?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80&w=800"
     ]
   },
   {
@@ -34,8 +34,8 @@ export const PRODUCTS = [
     description: "Chunky gold dome huggie earrings. Minimalist design with a bold presence.",
     shortDescription: "Chunky gold dome huggie earrings",
     images: [
-      "https://images.unsplash.com/photo-1515562141207-7a18b5ce7142?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1635767798638-3665c302e27c?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800"
     ]
   },
   {
@@ -47,7 +47,7 @@ export const PRODUCTS = [
     shortDescription: "Textured gold filigree drop earrings",
     images: [
       "https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1629227310822-bb2c270bcb60?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800"
     ]
   },
   {
@@ -58,7 +58,7 @@ export const PRODUCTS = [
     description: "Gift-boxed earring + necklace set. The perfect heirloom-inspired gift for someone special.",
     shortDescription: "Gift-boxed earring + necklace set",
     images: [
-      "https://images.unsplash.com/photo-1549439602-43ebcb232811?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1601121141461-9d6647bca1ed?auto=format&fit=crop&q=80&w=800"
     ]
   }

@@ -1,233 +1,192 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import Layout from '@/components/layout/Layout';
-import { PRODUCTS } from '@/config';
-import { useCart } from '@/context/CartContext';
+import { Star, Minus, Plus, ChevronRight, ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
-import { Star, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useCart } from '@/context/CartContext';
 import ProductCard from '@/components/shop/ProductCard';
-import { toast } from 'sonner';
+import { PRODUCTS, CURRENCY } from '@/config';
 
-const Accordion = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <div className="border-b border-black/5">
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex justify-between items-center text-xs uppercase tracking-[0.2em] font-semibold hover:opacity-70 transition-opacity"
-      >
-        <span>{title}</span>
-        {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-      </button>
+const Accordion = ({ title, children, isOpen, onClick }) => (
+  <div className="border-b border-black/5">
+    <button
+      onClick={onClick}
+      className="w-full py-6 flex justify-between items-center text-[10px] uppercase tracking-[0.2em] font-semibold"
+    >
+      <span>{title}</span>
+      <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+    </button>
+    <AnimatePresence>
       {isOpen && (
-        <div className="pb-8 text-sm text-muted-foreground leading-relaxed font-sans">
-          {children}
-        </div>
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          className="overflow-hidden"
+        >
+          <div className="pb-8 text-sm text-muted-foreground leading-relaxed font-light">
+            {children}
+          </div>
+        </motion.div>
       )}
-    </div>
-  );
-};
+    </AnimatePresence>
+  </div>
+);
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const containerRef = useRef(null);
   const { addToCart } = useCart();
-  const [selectedImage, setSelectedImage] = useState(0);
+  const [product, setProduct] = useState(null);
+  const [activeImage, setActiveImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [variant, setVariant] = useState('Gold');
-  const containerRef = useRef(null);
+  const [openAccordion, setOpenAccordion] = useState('description');
 
-  const product = PRODUCTS.find(p => p.id === id);
+  useEffect(() => {
+    const found = PRODUCTS.find(p => p.id === parseInt(id));
+    if (found) {
+      setProduct(found);
+      window.scrollTo(0, 0);
+    }
+  }, [id]);
 
   useEffect(() => {
     if (product) {
-      window.scrollTo(0, 0);
-      setSelectedImage(0);
-      setQuantity(1);
-      const timer = requestAnimationFrame(() => {
-        ImageHelper.loadImages(strkImgConfig, containerRef.current);
-      });
-      return () => cancelAnimationFrame(timer);
+      const cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current);
+      return cleanup;
     }
-  }, [id, product]);
+  }, [product, activeImage]);
 
-  if (!product) {
-    return (
-      <Layout>
-        <div className="pt-40 pb-20 text-center">
-          <h2 className="text-2xl font-serif mb-4">Product not found</h2>
-          <Link to="/shop" className="text-accent hover:underline uppercase tracking-widest text-sm">Back to Shop</Link>
-        </div>
-      </Layout>
-    );
-  }
+  if (!product) return <div className="pt-40 text-center font-serif py-40">Product not found</div>;
 
   const relatedProducts = PRODUCTS.filter(p => p.id !== product.id).slice(0, 4);
 
-  const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      addToCart(product);
-    }
-    toast.success(`${quantity} ${product.title} added to bag`);
-  };
-
   return (
-    <Layout>
-      <div ref={containerRef} className="pt-32 pb-24 px-6 md:px-12 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-32">
-            {/* Gallery */}
-            <div className="lg:col-span-7 flex flex-col-reverse md:flex-row gap-6">
-              {/* Thumbnails */}
-              <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-x-visible pb-4 md:pb-0">
-                {[0, 1, 2].map((i) => (
+    <div ref={containerRef} className="pt-32 pb-24">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex items-center space-x-2 text-[9px] uppercase tracking-[0.2em] text-muted-foreground mb-12">
+          <Link to="/" className="hover:text-primary transition-colors">Home</Link>
+          <ChevronRight className="w-2.5 h-2.5" />
+          <Link to="/shop" className="hover:text-primary transition-colors">Shop</Link>
+          <ChevronRight className="w-2.5 h-2.5" />
+          <span className="text-primary font-medium">{product.category}</span>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-28">
+          <div className="lg:col-span-7 flex flex-col md:flex-row gap-4">
+            <div className="order-2 md:order-1 flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto hide-scrollbar">
+              {product.images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveImage(i)}
+                  className={`w-20 md:w-24 aspect-[3/4] bg-muted flex-shrink-0 border transition-all duration-300 ${activeImage === i ? 'border-primary' : 'border-transparent opacity-60 hover:opacity-100'}`}
+                >
+                  <img src={img} alt="" className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+            <div className="order-1 md:order-2 flex-grow aspect-[3/4] bg-muted overflow-hidden relative group">
+              <img
+                data-strk-img-id={`p-detail-main-${product.id}`}
+                data-strk-img={`[p-detail-desc] [p-detail-name] closeup luxury`}
+                data-strk-img-ratio="3x4"
+                data-strk-img-width="1200"
+                src={product.images[activeImage]}
+                alt={product.name}
+                className="w-full h-full object-cover transition-transform duration-1000 hover:scale-105"
+              />
+            </div>
+          </div>
+
+          <div className="lg:col-span-5 space-y-10">
+            <div>
+              <h1 id="p-detail-name" className="text-3xl md:text-4xl font-serif tracking-[0.1em] mb-4 uppercase leading-tight font-medium">{product.name}</h1>
+              <div className="flex items-center justify-between border-b border-black/5 pb-6">
+                <p className="text-2xl font-serif text-accent">{CURRENCY}{product.price}</p>
+                <div className="flex items-center space-x-1.5">
+                  <div className="flex">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-2.5 h-2.5 fill-accent text-accent" />
+                    ))}
+                  </div>
+                  <span className="text-[9px] uppercase tracking-[0.1em] text-muted-foreground ml-2">(12 Reviews)</span>
+                </div>
+              </div>
+            </div>
+
+            <p id="p-detail-desc" className="text-muted-foreground font-light leading-relaxed text-sm">
+              {product.description}
+            </p>
+
+            <div className="space-y-4">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-primary">Finish: <span className="font-light text-muted-foreground">{variant}</span></span>
+              <div className="flex space-x-3">
+                {['Gold', 'Silver'].map(v => (
                   <button
-                    key={i}
-                    onClick={() => setSelectedImage(i)}
-                    className={cn(
-                      "w-20 aspect-[3/4] bg-muted flex-shrink-0 border transition-all",
-                      selectedImage === i ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"
-                    )}
+                    key={v}
+                    onClick={() => setVariant(v)}
+                    className={`px-10 py-3 text-[10px] uppercase tracking-[0.2em] border transition-all duration-300 ${variant === v ? 'bg-primary text-white border-primary shadow-sm' : 'border-black/10 hover:border-black/30 text-muted-foreground'}`}
                   >
-                    <img
-                      alt={`${product.title} thumb ${i}`}
-                      data-strk-img-id={`prod-thumb-${id}-${i}`}
-                      data-strk-img={`[${product.descId}] [${product.titleId}] jewelry view ${i}`}
-                      data-strk-img-ratio="3x4"
-                      data-strk-img-width="200"
-                      className="w-full h-full object-cover"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    />
+                    {v}
                   </button>
                 ))}
               </div>
-              {/* Main Image */}
-              <div className="flex-grow aspect-[3/4] bg-muted overflow-hidden">
-                <img
-                  alt={product.title}
-                  data-strk-img-id={`prod-main-${id}-${selectedImage}`}
-                  data-strk-img={`[${product.descId}] [${product.titleId}] jewelry main focus view`}
-                  data-strk-img-ratio="3x4"
-                  data-strk-img-width="1200"
-                  className="w-full h-full object-cover"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                />
-              </div>
             </div>
 
-            {/* Info */}
-            <div className="lg:col-span-5 space-y-10">
-              <div className="space-y-4">
-                <nav className="text-[10px] uppercase tracking-widest text-muted-foreground flex items-center space-x-2">
-                  <Link to="/shop" className="hover:text-primary transition-colors">Shop</Link>
-                  <span>/</span>
-                  <span className="text-primary">{product.category}</span>
-                </nav>
-                <h1 id={product.titleId} className="text-4xl md:text-5xl font-serif">
-                  {product.title}
-                </h1>
-                <div className="flex items-center justify-between">
-                  <p className="text-2xl font-serif italic text-accent">
-                    ${product.price}
-                  </p>
-                  <div className="flex items-center space-x-2">
-                    <div className="flex space-x-0.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3.5 h-3.5 fill-accent text-accent" />
-                      ))}
-                    </div>
-                    <span className="text-[10px] uppercase tracking-widest text-muted-foreground opacity-70">(12 reviews)</span>
-                  </div>
+            <div className="flex flex-col space-y-4 pt-4">
+              <div className="flex items-center space-x-6">
+                <div className="flex items-center border border-black/10 rounded-full px-5 py-2.5">
+                  <button onClick={() => setQuantity(q => Math.max(1, q - 1))} className="p-1 hover:opacity-50 transition-opacity"><Minus className="w-3.5 h-3.5" /></button>
+                  <span className="w-10 text-center text-sm font-medium">{quantity}</span>
+                  <button onClick={() => setQuantity(q => q + 1)} className="p-1 hover:opacity-50 transition-opacity"><Plus className="w-3.5 h-3.5" /></button>
                 </div>
               </div>
-
-              <div className="space-y-6">
-                <p id={product.descId} className="text-muted-foreground text-sm leading-relaxed font-sans">
-                  {product.description}
-                </p>
-
-                {/* Variant Selector */}
-                <div className="space-y-4">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Finish: {variant}</span>
-                  <div className="flex space-x-3">
-                    {['Gold', 'Silver'].map((v) => (
-                      <button
-                        key={v}
-                        onClick={() => setVariant(v)}
-                        className={cn(
-                          "px-6 py-2 border text-[10px] uppercase tracking-widest transition-all",
-                          variant === v ? "border-primary bg-primary text-white" : "border-black/10 text-muted-foreground hover:border-black/30"
-                        )}
-                      >
-                        {v} Tone
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Quantity */}
-                <div className="space-y-4">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold">Quantity</span>
-                  <div className="flex items-center border border-black/10 w-32">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="p-3 hover:bg-muted flex-grow flex justify-center"
-                    >
-                      <Minus className="w-4 h-4" />
-                    </button>
-                    <span className="w-10 text-center text-sm font-sans">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(quantity + 1)}
-                      className="p-3 hover:bg-muted flex-grow flex justify-center"
-                    >
-                      <Plus className="w-4 h-4" />
-                    </button>
-                  </div>
-                </div>
-
-                {/* Add to Cart */}
-                <button
-                  onClick={handleAddToCart}
-                  className="w-full bg-primary text-white py-5 uppercase tracking-[0.2em] text-xs font-semibold hover:opacity-95 transition-opacity active:scale-[0.98] duration-150"
-                >
-                  Add to Bag — ${ (product.price * quantity).toFixed(2) }
-                </button>
-              </div>
-
-              {/* Accordions */}
-              <div className="pt-4 border-t border-black/5">
-                <Accordion title="Details & Dimensions">
-                  <p>Materials: {product.materials}</p>
-                </Accordion>
-                <Accordion title="Care Guide">
-                  <p>{product.care}</p>
-                </Accordion>
-                <Accordion title="Shipping & Returns">
-                  <p>{product.shipping}</p>
-                  <p className="mt-2">Available for worldwide shipping. 30-day effortless returns policy.</p>
-                </Accordion>
-              </div>
+              <button
+                onClick={() => addToCart({ ...product, price: product.price })}
+                className="w-full bg-primary text-white py-5 uppercase tracking-[0.2em] text-[10px] font-bold hover:bg-neutral-800 transition-all active:scale-[0.98] shadow-md"
+              >
+                Add to Cart
+              </button>
             </div>
-          </div>
 
-          {/* Related Products */}
-          <div className="border-t border-black/5 pt-32">
-            <div className="flex justify-between items-end mb-12">
-              <h3 className="text-3xl md:text-4xl font-serif">You May Also Like</h3>
-              <Link to="/shop" className="text-xs uppercase tracking-widest border-b border-black pb-1 mb-2 hover:opacity-70 transition-opacity">
-                Shop All
-              </Link>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              {relatedProducts.map(rp => (
-                <ProductCard key={rp.id} product={rp} />
-              ))}
+            <div className="pt-6">
+              <Accordion 
+                title="Description" 
+                isOpen={openAccordion === 'description'} 
+                onClick={() => setOpenAccordion(openAccordion === 'description' ? '' : 'description')}
+              >
+                Our {product.name} is a testament to quiet luxury. Carefully crafted with 18K gold plating over recycled brass, this piece is designed for longevity and daily wear. High-polish finish with hand-set crystal highlights.
+              </Accordion>
+              <Accordion 
+                title="Materials & Care" 
+                isOpen={openAccordion === 'materials'} 
+                onClick={() => setOpenAccordion(openAccordion === 'materials' ? '' : 'materials')}
+              >
+                Materials: 18K Gold Plated Brass or Sterling Silver. Lead and Nickel free. Hypoallergenic. To maintain the shine, avoid contact with perfumes, lotions, and water. Wipe with a soft cloth after wear.
+              </Accordion>
+              <Accordion 
+                title="Shipping & Returns" 
+                isOpen={openAccordion === 'shipping'} 
+                onClick={() => setOpenAccordion(openAccordion === 'shipping' ? '' : 'shipping')}
+              >
+                Free worldwide shipping on all orders over $100. Delivered in our signature FSC-certified jewelry box. 30-day returns accepted for unworn items in original packaging.
+              </Accordion>
             </div>
           </div>
         </div>
+
+        <div className="pt-24 border-t border-black/5">
+          <h2 className="text-2xl font-serif text-center mb-16 italic">You May Also Like</h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+            {relatedProducts.map(p => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
+        </div>
       </div>
-    </Layout>
+    </div>
   );
 };
 
