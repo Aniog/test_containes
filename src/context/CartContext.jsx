@@ -17,12 +17,14 @@ function loadInitial() {
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD": {
-      const { product, variant, quantity } = action.payload
+      const { product, variant, quantity, imgSrc } = action.payload
       const key = `${product.id}__${variant}`
       const existing = state.find((i) => i.key === key)
       if (existing) {
         return state.map((i) =>
-          i.key === key ? { ...i, quantity: i.quantity + quantity } : i
+          i.key === key
+            ? { ...i, quantity: i.quantity + quantity, imgSrc: imgSrc || i.imgSrc }
+            : i
         )
       }
       return [
@@ -36,6 +38,7 @@ function cartReducer(state, action) {
           variant,
           quantity,
           imgId: product.imgId,
+          imgSrc: imgSrc || "",
         },
       ]
     }
@@ -77,7 +80,22 @@ export function CartProvider({ children }) {
       closeCart: () => setIsOpen(false),
       toggleCart: () => setIsOpen((v) => !v),
       addItem: (product, variant, quantity = 1) => {
-        dispatch({ type: "ADD", payload: { product, variant, quantity } })
+        // Capture the already-resolved image URL from the product card's <img>
+        // so the cart drawer can render a plain <img> without strk tags
+        // (which can't be statically resolved at build time for dynamic keys).
+        let imgSrc = ""
+        if (typeof document !== "undefined") {
+          const el = document.querySelector(
+            `img[data-strk-img-id="${product.imgId}"]`
+          )
+          if (el && el.src && !el.src.startsWith("data:image/svg")) {
+            imgSrc = el.src
+          }
+        }
+        dispatch({
+          type: "ADD",
+          payload: { product, variant, quantity, imgSrc },
+        })
         setIsOpen(true)
       },
       removeItem: (key) => dispatch({ type: "REMOVE", payload: { key } }),

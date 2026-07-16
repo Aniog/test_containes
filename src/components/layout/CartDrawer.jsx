@@ -90,15 +90,17 @@ export function CartDrawer() {
                   onClick={closeCart}
                   className="shrink-0"
                 >
-                  <img
-                    alt={item.name}
-                    data-strk-img-id={`cart-${item.key}`}
-                    data-strk-img={`[cart-name-${item.key}]`}
-                    data-strk-img-ratio="3x4"
-                    data-strk-img-width="200"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="h-24 w-20 bg-cream object-cover"
-                  />
+                  {item.imgSrc ? (
+                    <img
+                      alt={item.name}
+                      src={item.imgSrc}
+                      className="h-24 w-20 bg-cream object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-24 w-20 items-center justify-center bg-cream font-serif text-lg text-gold">
+                      {item.name.charAt(0)}
+                    </div>
+                  )}
                 </Link>
                 <div className="flex flex-1 flex-col">
                   <div className="flex justify-between gap-2">
