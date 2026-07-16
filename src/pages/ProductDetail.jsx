@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import { useCart } from '../components/cart/CartContext';
 
 const ProductDetail = () => {
@@ -14,7 +15,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     try {
-      ImageHelper.loadImages({}, containerRef.current);
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
     } catch (e) {
       console.log('ImageHelper not yet fully configured', e);
     }
@@ -39,7 +40,7 @@ const ProductDetail = () => {
   ];
 
   return (
-    <div ref={containerRef} className="pt-24 pb-20 bg-background min-h-screen">
+    <div ref={containerRef} className="pt-24 pb-20 bg-stone-50 min-h-screen">
       <div className="container mx-auto px-4 md:px-8">
         
         {/* Breadcrumbs */}
@@ -48,7 +49,7 @@ const ProductDetail = () => {
           <span>/</span>
           <Link to="/shop" className="hover:text-amber-700">Jewelry</Link>
           <span>/</span>
-          <span className="text-foreground">{product.title}</span>
+          <span className="text-stone-900">{product.title}</span>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 mb-24">
@@ -84,7 +85,7 @@ const ProductDetail = () => {
 
           {/* Details */}
           <div className="py-2 md:py-8 lg:pr-12">
-            <h1 id="product-title" className="text-3xl md:text-4xl font-serif text-foreground uppercase tracking-wider mb-4">{product.title}</h1>
+            <h1 id="product-title" className="text-3xl md:text-4xl font-serif text-stone-900 uppercase tracking-wider mb-4">{product.title}</h1>
             
             <div className="flex items-center gap-4 mb-6">
               <span className="text-xl text-stone-600">${product.price}</span>
@@ -104,7 +105,7 @@ const ProductDetail = () => {
 
             {/* Selectors */}
             <div className="mb-8">
-              <p className="text-xs uppercase tracking-widest text-foreground font-medium mb-3">Tone: <span className="text-stone-500 capitalize">{selectedTone}</span></p>
+              <p className="text-xs uppercase tracking-widest text-stone-900 font-medium mb-3">Tone: <span className="text-stone-500 capitalize">{selectedTone}</span></p>
               <div className="flex gap-3">
                 <button 
                   onClick={() => setSelectedTone('gold')}
@@ -141,10 +142,10 @@ const ProductDetail = () => {
                 { id: 'materials', title: 'Materials & Care', content: product.materials },
                 { id: 'shipping', title: 'Shipping & Returns', content: product.shipping }
               ].map((acc) => (
-                <div key={acc.id} className="border-b border-border">
+                <div key={acc.id} className="border-b border-stone-200">
                   <button 
                     onClick={() => setActiveAccordion(activeAccordion === acc.id ? null : acc.id)}
-                    className="w-full py-4 flex justify-between items-center text-sm font-medium uppercase tracking-wider text-foreground hover:text-amber-700 transition-colors"
+                    className="w-full py-4 flex justify-between items-center text-sm font-medium uppercase tracking-wider text-stone-900 hover:text-amber-700 transition-colors"
                   >
                     {acc.title}
                     {activeAccordion === acc.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -160,9 +161,9 @@ const ProductDetail = () => {
         </div>
 
         {/* You May Also Like */}
-        <section className="border-t border-border pt-20">
+        <section className="border-t border-stone-200 pt-20">
           <div className="flex justify-between items-end mb-10">
-            <h2 id="related-title" className="text-2xl md:text-3xl font-serif text-foreground">You May Also Like</h2>
+            <h2 id="related-title" className="text-2xl md:text-3xl font-serif text-stone-900">You May Also Like</h2>
             <Link to="/shop" className="flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-amber-700 hover:text-amber-800 transition-colors">
               Shop All <ArrowRight size={16} />
             </Link>
@@ -182,7 +183,7 @@ const ProductDetail = () => {
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <h3 id={`related-title-${item.id}`} className="font-medium text-sm md:text-base uppercase tracking-wider text-foreground mb-1">{item.title}</h3>
+                <h3 id={`related-title-${item.id}`} className="font-medium text-sm md:text-base uppercase tracking-wider text-stone-900 mb-1">{item.title}</h3>
                 <p className="text-stone-500 text-sm">${item.price}</p>
               </Link>
             ))}

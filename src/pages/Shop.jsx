@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ChevronDown, Filter, X } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import { useCart } from '../components/cart/CartContext';
 
 const Shop = () => {
@@ -14,7 +15,7 @@ const Shop = () => {
 
   useEffect(() => {
     try {
-      ImageHelper.loadImages({}, containerRef.current);
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
     } catch (e) {
       console.log('ImageHelper not yet fully configured', e);
     }
@@ -57,12 +58,12 @@ const Shop = () => {
   ];
 
   return (
-    <div ref={containerRef} className="pt-24 pb-20 bg-background min-h-screen">
+    <div ref={containerRef} className="pt-24 pb-20 bg-stone-50 min-h-screen">
       <div className="container mx-auto px-4 md:px-8">
         
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 id="shop-title" className="text-4xl md:text-5xl font-serif text-foreground mb-4">
+          <h1 id="shop-title" className="text-4xl md:text-5xl font-serif text-stone-900 mb-4">
             {categories.find(c => c.id === activeCategory)?.label || 'Shop'}
           </h1>
           <p className="text-stone-500 max-w-2xl mx-auto">
@@ -71,9 +72,9 @@ const Shop = () => {
         </div>
 
         {/* Toolbar */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-border pb-4 mb-8 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-stone-200 pb-4 mb-8 gap-4">
           <button 
-            className="md:hidden flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-foreground"
+            className="md:hidden flex items-center gap-2 text-sm font-medium uppercase tracking-widest text-stone-900"
             onClick={() => setIsFilterOpen(true)}
           >
             <Filter size={16} /> Filters
@@ -84,7 +85,7 @@ const Shop = () => {
               <button
                 key={cat.id}
                 onClick={() => setCategory(cat.id)}
-                className={`text-sm font-medium uppercase tracking-widest pb-4 -mb-[17px] border-b-2 transition-colors ${activeCategory === cat.id ? 'border-amber-700 text-amber-700' : 'border-transparent text-stone-500 hover:text-foreground'}`}
+                className={`text-sm font-medium uppercase tracking-widest pb-4 -mb-[17px] border-b-2 transition-colors ${activeCategory === cat.id ? 'border-amber-700 text-amber-700' : 'border-transparent text-stone-500 hover:text-stone-900'}`}
               >
                 {cat.label}
               </button>
@@ -94,7 +95,7 @@ const Shop = () => {
           <div className="flex items-center gap-2 text-sm text-stone-600">
             <span className="uppercase tracking-widest text-xs hidden md:inline">Sort By:</span>
             <div className="relative group">
-              <button className="flex items-center gap-1 font-medium text-foreground p-2">
+              <button className="flex items-center gap-1 font-medium text-stone-900 p-2">
                 Featured <ChevronDown size={14} />
               </button>
               {/* Dropdown would go here in a real impl */}
@@ -106,8 +107,8 @@ const Shop = () => {
         <div className="flex gap-12">
           {/* Mobile Filter Sidebar */}
           <div className={`fixed inset-0 z-50 bg-black/50 transition-opacity ${isFilterOpen ? 'opacity-100' : 'opacity-0 pointer-events-none md:hidden'}`}>
-            <div className={`absolute top-0 bottom-0 left-0 w-80 bg-background shadow-xl transition-transform transform ${isFilterOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-              <div className="p-6 border-b border-border flex justify-between items-center">
+            <div className={`absolute top-0 bottom-0 left-0 w-80 bg-stone-50 shadow-xl transition-transform transform ${isFilterOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+              <div className="p-6 border-b border-stone-200 flex justify-between items-center">
                 <h3 className="font-serif text-xl">Filters</h3>
                 <button onClick={() => setIsFilterOpen(false)}><X size={20} /></button>
               </div>
@@ -156,7 +157,7 @@ const Shop = () => {
                        </button>
                     </div>
                   </div>
-                  <h3 id={`shop-item-title-${item.id}`} className="font-medium text-sm md:text-base uppercase tracking-wider text-foreground mb-1 pr-4 truncate">{item.title}</h3>
+                  <h3 id={`shop-item-title-${item.id}`} className="font-medium text-sm md:text-base uppercase tracking-wider text-stone-900 mb-1 pr-4 truncate">{item.title}</h3>
                   <p className="text-stone-500 text-sm">${item.price}</p>
                 </Link>
               ))}

@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Star } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import { useCart } from '../components/cart/CartContext';
 
 const Home = () => {
@@ -13,7 +14,7 @@ const Home = () => {
     // The image integration guidelines say: "To initiate image loading, use ImageHelper.loadImages(strkImgConfig, containerRef.current)."
     // We will use standard SVG placeholders for the images initially as configured in sdk to run.
     try {
-      ImageHelper.loadImages({}, containerRef.current);
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
     } catch (e) {
       console.log('ImageHelper not yet fully configured', e);
     }
@@ -69,11 +70,11 @@ const Home = () => {
       </section>
 
       {/* Bestsellers Grid */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-stone-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex justify-between items-end mb-12">
             <div>
-              <h2 id="bestsellers-title" className="text-3xl md:text-4xl text-foreground">Trending Now</h2>
+              <h2 id="bestsellers-title" className="text-3xl md:text-4xl text-stone-900">Trending Now</h2>
               <p className="text-stone-500 mt-2">Our most loved pieces this season.</p>
             </div>
             <Link to="/shop" className="hidden md:flex items-center gap-2 text-sm font-medium uppercase tracking-wide text-amber-700 hover:text-amber-800 transition-colors">
@@ -106,7 +107,7 @@ const Home = () => {
                     </button>
                   </div>
                 </div>
-                <h3 id={`bestseller-title-${item.id}`} className="font-medium text-sm md:text-base uppercase tracking-wider text-foreground mb-1">{item.title}</h3>
+                <h3 id={`bestseller-title-${item.id}`} className="font-medium text-sm md:text-base uppercase tracking-wider text-stone-900 mb-1">{item.title}</h3>
                 <p className="text-stone-500 text-sm">${item.price}</p>
               </Link>
             ))}
@@ -123,7 +124,7 @@ const Home = () => {
       {/* Categories */}
       <section className="py-20 bg-stone-50">
          <div className="container mx-auto px-4 md:px-8">
-            <h2 id="categories-title" className="text-3xl md:text-4xl text-center mb-12 text-foreground">Explore Categories</h2>
+            <h2 id="categories-title" className="text-3xl md:text-4xl text-center mb-12 text-stone-900">Explore Categories</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
@@ -151,7 +152,7 @@ const Home = () => {
       </section>
 
       {/* Brand Story */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-stone-50">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="aspect-square relative overflow-hidden bg-stone-100">
@@ -166,7 +167,7 @@ const Home = () => {
                 />
             </div>
             <div className="max-w-xl">
-              <h2 id="story-title" className="text-3xl md:text-4xl mb-6 text-foreground">The Art of Subtle Elegance</h2>
+              <h2 id="story-title" className="text-3xl md:text-4xl mb-6 text-stone-900">The Art of Subtle Elegance</h2>
               <p id="story-desc" className="text-stone-600 mb-6 leading-relaxed">
                 Founded on the belief that luxury should be an everyday experience. Every Velmora piece is thoughtfully designed to be layered, lived in, and loved. We cast in 18k solid gold over a sterling silver base, ensuring brilliance that endures.
               </p>
