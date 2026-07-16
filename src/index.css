@@ -1,74 +1,243 @@
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --velmora-cream: #F8F5F0;
+  --velmora-ivory: #F5F2ED;
+  --velmora-sand: #E5DFD6;
+  --velmora-taupe: #9A8F82;
+  --velmora-brown: #2C2522;
+  --velmora-gold: #B89778;
+  --velmora-gold-dark: #A68665;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #F8F5F0;
+  color: #2C2522;
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Typography */
+h1, h2, h3, h4, .serif {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #B89778;
+}
+
+/* Hairline dividers */
+.divider {
+  border-top: 1px solid #E5DFD6;
+}
+
+/* Editorial image styling */
+.editorial-img {
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.group:hover .editorial-img {
+  transform: scale(1.03);
+}
+
+/* Product card hover */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 40px -15px rgba(44, 37, 34, 0.1);
+}
+
+/* Image hover reveal */
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-primary,
+.image-secondary {
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-card:hover .image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .image-secondary {
+  opacity: 1;
+}
+
+/* Variant pills */
+.variant-pill {
+  padding: 8px 20px;
+  border: 1px solid #E5DFD6;
+  background: white;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+.variant-pill:hover {
+  border-color: #B89778;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.variant-pill.active {
+  background: #2C2522;
+  color: white;
+  border-color: #2C2522;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+/* Accordion */
+.accordion-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px 0;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #E5DFD6;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.accordion-trigger:hover {
+  color: #B89778;
+}
 
-  button {
-    background-color: #f9f9f9;
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding-bottom: 16px;
+}
+
+/* Cart drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* UGC Reel horizontal scroll */
+.ugc-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Category tile */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.08);
+}
+
+.category-label {
+  transition: all 0.3s ease;
+}
+
+.category-tile:hover .category-label {
+  background: rgba(44, 37, 34, 0.85);
+  color: white;
+}
+
+/* Newsletter */
+.newsletter-input {
+  border: 1px solid #E5DFD6;
+  background: white;
+  transition: border-color 0.2s ease;
+}
+
+.newsletter-input:focus {
+  border-color: #B89778;
+  outline: none;
+}
+
+/* Trust bar */
+.trust-bar {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+}
+
+/* Smooth transitions */
+.btn-transition {
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Modal / Overlay */
+.overlay {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .product-name {
+    letter-spacing: 0.08em;
   }
+}
+
+/* Remove default button styles where we use our Button component */
+button {
+  font-family: inherit;
 }
 
 @tailwind base;
