@@ -46,8 +46,8 @@ export default function Footer() {
             <div>
               <h4 className="text-xs uppercase tracking-widest mb-4 text-[#c9a96e]">Company</h4>
               <ul className="space-y-2">
-                <li><Link to="/about" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Our Story</a></li>
-                <li><Link to="/journal" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Journal</a></li>
+                <li><Link to="/about" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Our Story</Link></li>
+                <li><Link to="/journal" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Journal</Link></li>
                 <li><a href="#" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Sustainability</a></li>
                 <li><a href="#" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Careers</a></li>
                 <li><a href="#" className="text-sm text-[#8a8178] hover:text-[#faf8f5] transition-colors">Privacy Policy</a></li>
