@@ -33,6 +33,12 @@
       "type": "string",
       "maxLength": 1000,
       "description": "留言内容"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "关联的用户 ID",
+      "x-foreignKey": "users.id"
     }
   },
   "required": ["name", "phone", "email"],
