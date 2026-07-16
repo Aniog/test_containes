@@ -1,76 +1,563 @@
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+  /* Color Palette - Warm Editorial */
+  --velmora-bg: #FAF7F2;
+  --velmora-surface: #FFFFFF;
+  --velmora-surface-2: #F5F1E9;
+  --velmora-text: #1A1816;
+  --velmora-text-muted: #5C5349;
+  --velmora-text-light: #8A7F70;
+  --velmora-border: #EDE8E0;
+  --velmora-border-light: #F5F1E9;
+  
+  /* Gold Accents */
+  --velmora-gold: #C5A46E;
+  --velmora-gold-dark: #A68B5B;
+  --velmora-gold-light: #D4B98A;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--velmora-bg);
+  color: var(--velmora-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.body-text {
+  font-family: var(--font-sans);
+  line-height: 1.7;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--velmora-gold);
+}
+
+/* Buttons - Premium Feel */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-gold);
+}
+
+.btn-primary:hover {
+  background-color: var(--velmora-gold-dark);
+  border-color: var(--velmora-gold-dark);
+  color: var(--velmora-bg);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--velmora-text);
+  border-color: var(--velmora-text);
+}
+
+.btn-outline:hover {
+  background-color: var(--velmora-text);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-text);
+}
+
+.btn-gold-outline {
+  background-color: transparent;
+  color: var(--velmora-gold);
+  border-color: var(--velmora-gold);
+}
+
+.btn-gold-outline:hover {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-gold);
+}
+
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 0.75rem;
+}
+
+/* Hairline Dividers */
+.divider {
+  height: 1px;
+  background-color: var(--velmora-border);
+}
+
+/* Cards */
+.card {
+  background-color: var(--velmora-surface);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -15px rgba(26, 24, 22, 0.1);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--velmora-surface);
+}
+
+.product-card-image {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background-color: var(--velmora-surface-2);
+}
+
+.product-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.product-card:hover .product-card-image img:first-child {
+  opacity: 0;
+}
+
+.product-card:hover .product-card-image img:last-child {
+  opacity: 1;
+}
+
+.product-card-image img:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-card-info {
+  padding: var(--space-lg) 0;
+}
+
+.product-card-name {
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.product-card-price {
+  font-size: 0.875rem;
+  color: var(--velmora-text-muted);
+  font-family: var(--font-sans);
+}
+
+/* Quick Add Button */
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 10;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background-color: var(--velmora-surface-2);
+}
+
+.category-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-tile-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-xl);
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.7), transparent);
+  color: var(--velmora-bg);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.category-tile:hover .category-tile-label {
+  opacity: 1;
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 9/16;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--velmora-surface-2);
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--space-lg);
+  background: linear-gradient(to top, rgba(26, 24, 22, 0.85), transparent);
+  color: var(--velmora-bg);
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+}
+
+/* Testimonials */
+.testimonial {
+  padding: var(--space-xl);
+  background-color: var(--velmora-surface);
+  border: 1px solid var(--velmora-border);
+}
+
+.stars {
+  color: var(--velmora-gold);
+  letter-spacing: 2px;
+}
+
+/* Newsletter */
+.newsletter-block {
+  background-color: var(--velmora-text);
+  color: var(--velmora-bg);
+}
+
+.newsletter-block input {
+  background-color: var(--velmora-bg);
+  border: 1px solid var(--velmora-border);
+  color: var(--velmora-text);
+  font-family: var(--font-sans);
+}
+
+.newsletter-block input::placeholder {
+  color: var(--velmora-text-light);
+}
+
+.newsletter-block input:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+/* Navigation */
+.nav {
+  transition: background-color var(--transition-base), border-color var(--transition-base);
+}
+
+.nav.scrolled {
+  background-color: var(--velmora-bg);
+  border-bottom: 1px solid var(--velmora-border);
+}
+
+.nav-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  position: relative;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--velmora-gold);
+  transition: width var(--transition-base);
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 420px;
+  background-color: var(--velmora-bg);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  overflow-y: auto;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 24, 22, 0.5);
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  transition: all var(--transition-base);
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Product Detail */
+.gallery-thumb {
+  border: 1px solid var(--velmora-border);
+  cursor: pointer;
+  transition: border-color var(--transition-fast);
+}
+
+.gallery-thumb.active,
+.gallery-thumb:hover {
+  border-color: var(--velmora-gold);
+}
+
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid var(--velmora-border);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.variant-pill.active,
+.variant-pill:hover {
+  border-color: var(--velmora-gold);
+  background-color: var(--velmora-gold);
+  color: var(--velmora-bg);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg) 0;
+  border-bottom: 1px solid var(--velmora-border);
+  cursor: pointer;
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+}
+
+.accordion-content {
+  padding: var(--space-lg) 0;
+  color: var(--velmora-text-muted);
+  line-height: 1.8;
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.filter-option input {
+  accent-color: var(--velmora-gold);
+}
+
+/* Sort Dropdown */
+.sort-select {
+  background-color: var(--velmora-surface);
+  border: 1px solid var(--velmora-border);
+  padding: 8px 12px;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+/* Modal / Search */
+.search-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--velmora-bg);
+  z-index: 100;
+  padding: var(--space-xl);
+  border-bottom: 1px solid var(--velmora-border);
+}
+
+.search-input {
+  width: 100%;
+  font-size: 1.5rem;
+  font-family: var(--font-serif);
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--velmora-text);
+}
+
+.search-input::placeholder {
+  color: var(--velmora-text-light);
+}
+
+/* Footer */
+.footer-link {
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: var(--velmora-text-muted);
+}
+
+.footer-link:hover {
+  color: var(--velmora-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.8rem;
+  }
+  
+  .product-card-info {
+    padding: var(--space-md) 0;
+  }
+  
+  .ugc-card {
+    width: 140px;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-base) ease;
+}
+
+/* Remove default focus rings, use gold */
+*:focus-visible {
+  outline: 1px solid var(--velmora-gold);
+  outline-offset: 2px;
+}
