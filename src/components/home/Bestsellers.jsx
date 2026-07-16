@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Star, ShoppingBagPlus } from 'lucide-react';
+import { Star, ShoppingBag } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { products } from '../../data/products';
@@ -103,7 +103,7 @@ function ProductCard({ product, onAddToCart }) {
         onClick={() => onAddToCart(product, 'gold', 1)}
         className="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-warm-gold hover:text-white"
       >
-        <ShoppingBagPlus size={14} />
+        <ShoppingBag size={14} />
       </button>
     </div>
   );
