@@ -1,76 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1f1714;
+  background: #fcf8f2;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: #fcf8f2;
+  color: #1f1714;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  body {
+    background: #fcf8f2;
+    color: #1f1714;
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  ::selection {
+    background: rgba(201, 168, 106, 0.4);
+    color: #1f1714;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer utilities {
+  .bg-velmora-ink { background-color: #1f1714; }
+  .bg-velmora-cocoa { background-color: #3a2a24; }
+  .bg-velmora-accent { background-color: #c9a86a; }
+  .bg-velmora-accent-deep { background-color: #9f7a3d; }
+  .bg-velmora-ivory { background-color: #fcf8f2; }
+  .bg-velmora-paper { background-color: #fffdf9; }
+  .bg-velmora-mist { background-color: #f1e8de; }
+  .bg-velmora-sand { background-color: #efe4d6; }
+  .bg-velmora-line { background-color: #dbcdbd; }
+  .bg-velmora-mist\/55 { background-color: rgba(241, 232, 222, 0.55); }
+  .bg-velmora-mist\/65 { background-color: rgba(241, 232, 222, 0.65); }
+  .bg-velmora-sand\/70 { background-color: rgba(239, 228, 214, 0.7); }
+  .bg-velmora-paper\/95 { background-color: rgba(255, 253, 249, 0.95); }
+  .bg-velmora-ink\/35 { background-color: rgba(31, 23, 20, 0.35); }
+
+  .text-velmora-ink { color: #1f1714; }
+  .text-velmora-cocoa { color: #3a2a24; }
+  .text-velmora-accent { color: #c9a86a; }
+  .text-velmora-muted { color: #6f6258; }
+  .text-velmora-olive { color: #6c5c52; }
+  .text-velmora-paper { color: #fffdf9; }
+  .text-velmora-paper\/55 { color: rgba(255, 253, 249, 0.55); }
+  .text-velmora-paper\/70 { color: rgba(255, 253, 249, 0.7); }
+  .text-velmora-paper\/75 { color: rgba(255, 253, 249, 0.75); }
+  .text-velmora-paper\/80 { color: rgba(255, 253, 249, 0.8); }
+  .text-velmora-paper\/85 { color: rgba(255, 253, 249, 0.85); }
+  .text-velmora-ink\/70 { color: rgba(31, 23, 20, 0.7); }
+  .text-velmora-ink\/75 { color: rgba(31, 23, 20, 0.75); }
+  .text-velmora-ink\/80 { color: rgba(31, 23, 20, 0.8); }
+
+  .border-velmora-accent { border-color: #c9a86a; }
+  .border-velmora-line { border-color: #dbcdbd; }
+  .border-velmora-line\/70 { border-color: rgba(219, 205, 189, 0.7); }
+  .border-velmora-paper\/15 { border-color: rgba(255, 253, 249, 0.15); }
+  .border-velmora-ink\/15 { border-color: rgba(31, 23, 20, 0.15); }
+
+  .tracking-editorial { letter-spacing: 0.22em; }
+  .tracking-product { letter-spacing: 0.18em; }
+
+  .shadow-velmora-card { box-shadow: 0 20px 60px rgba(31, 23, 20, 0.08); }
+  .shadow-velmora-floating { box-shadow: 0 30px 80px rgba(31, 23, 20, 0.14); }
+}
