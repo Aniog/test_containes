@@ -1,0 +1,173 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    description: 'A stunning gold ear cuff adorned with a brilliant crystal accent. Perfect for adding a touch of sparkle to any look without the need for piercings.',
+    longDescription: 'Our Vivid Aura Jewels ear cuff is the ultimate statement piece for the modern woman. Crafted from premium 18K gold-plated brass, this cuff features a dazzling crystal that catches the light beautifully. The adjustable design ensures a comfortable, secure fit on any ear. Stack it with your favorite studs or wear it alone for an effortlessly chic look.',
+    careInstructions: 'Store in the provided jewelry pouch when not wearing. Avoid contact with perfumes, lotions, and water. Clean gently with a soft cloth.',
+    rating: 4.8,
+    reviews: 124,
+    variants: ['gold', 'silver'],
+    badge: 'Bestseller',
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&h=600&fit=crop',
+    ],
+    secondImage: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&h=600&fit=crop',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A breathtaking multicolor floral crystal necklace that captures the beauty of a blooming garden. Perfect for special occasions or elevating everyday style.',
+    longDescription: 'The Majestic Flora Nectar necklace is a wearable work of art. Each petal is meticulously set with multicolor crystals that shimmer and dance with your every movement. The 18K gold-plated chain is adjustable from 16" to 18", making it versatile for any neckline. This piece transitions seamlessly from daytime elegance to evening glamour.',
+    careInstructions: 'Store flat in the provided jewelry box. Avoid exposure to moisture and chemicals. Polish gently with the included microfiber cloth.',
+    rating: 4.9,
+    reviews: 89,
+    variants: ['gold', 'silver'],
+    badge: 'New Arrival',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=600&fit=crop',
+    ],
+    secondImage: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=600&fit=crop',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    description: 'Chunky gold dome huggie earrings that make a bold statement. Comfortable enough for all-day wear, stunning enough for any occasion.',
+    longDescription: 'Our Golden Sphere Huggies are the perfect blend of bold and refined. The chunky dome design creates a luxurious silhouette that hugs your earlobe beautifully. Made from 18K gold-plated sterling silver, these huggies feature a secure click-top closure for easy on and off. The high-polish finish reflects light gorgeously, adding warmth to your complexion.',
+    careInstructions: 'Keep in a dry place. Remove before swimming or showering. Clean with a soft jewelry cloth to maintain shine.',
+    rating: 4.7,
+    reviews: 156,
+    variants: ['gold', 'silver'],
+    images: [
+      'https://images.unsplash.com/photo-1629224316810-9d8805b95e76?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=600&fit=crop',
+    ],
+    secondImage: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=600&fit=crop',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Textured gold filigree drop earrings inspired by vintage lace patterns. Delicate yet eye-catching, perfect for romantic evenings.',
+    longDescription: 'The Amber Lace Earrings draw inspiration from the intricate patterns of antique lace. Each earring features hand-finished filigree work in warm 18K gold plating, creating a texture that plays with light and shadow. The drop design elongates the neck and adds movement to your look. Lightweight and comfortable, these earrings are perfect for weddings, date nights, or adding a touch of romance to your daily style.',
+    careInstructions: 'Store in the provided pouch to prevent tangling. Avoid contact with water and harsh chemicals. Handle with care due to delicate filigree work.',
+    rating: 4.6,
+    reviews: 72,
+    variants: ['gold', 'silver'],
+    images: [
+      'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=600&fit=crop',
+    ],
+    secondImage: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=600&fit=crop',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    material: 'gold',
+    description: 'A luxurious gift-boxed set featuring matching earrings and necklace. The perfect present for someone special—or yourself.',
+    longDescription: 'The Royal Heirloom Set is our most giftable collection. Presented in a beautiful velvet-lined box, this set includes a pair of coordinating drop earrings and a pendant necklace, both crafted in 18K gold plating with crystal accents. The timeless design makes it suitable for any occasion, from birthdays to anniversaries to "just because." Each piece can be worn together for a coordinated look or separately for everyday elegance.',
+    careInstructions: 'Store each piece separately in the provided compartments. Clean gently with a soft cloth. Avoid exposure to perfumes and lotions.',
+    rating: 4.9,
+    reviews: 203,
+    variants: ['gold', 'silver'],
+    badge: 'Gift Set',
+    images: [
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop',
+    ],
+    secondImage: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop',
+  },
+];
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    description: 'From studs to statement drops',
+    image: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=600&h=800&fit=crop',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    description: 'Chains, pendants & layers',
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=800&fit=crop',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    description: 'Everyday essential hoops',
+    image: 'https://images.unsplash.com/photo-1629224316810-9d8805b95e76?w=600&h=800&fit=crop',
+  },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'Absolutely stunning quality! The Golden Sphere Huggies are my new everyday go-to. They look much more expensive than they are.',
+    product: 'Golden Sphere Huggies',
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    rating: 5,
+    text: 'I bought the Royal Heirloom Set for my sister\'s birthday and she cried happy tears. The packaging is gorgeous and the jewelry is even more beautiful in person.',
+    product: 'Royal Heirloom Set',
+  },
+  {
+    id: 3,
+    name: 'Jessica L.',
+    rating: 5,
+    text: 'The Amber Lace Earrings are breathtaking. I\'ve gotten so many compliments. Velmora has become my go-to for jewelry gifts.',
+    product: 'Amber Lace Earrings',
+  },
+];
+
+export const ugcItems = [
+  {
+    id: 1,
+    image: 'https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=400&h=700&fit=crop',
+    caption: 'Golden hour glow',
+  },
+  {
+    id: 2,
+    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&h=700&fit=crop',
+    caption: 'Stack & shine',
+  },
+  {
+    id: 3,
+    image: 'https://images.unsplash.com/photo-1629224316810-9d8805b95e76?w=400&h=700&fit=crop',
+    caption: 'Everyday luxury',
+  },
+  {
+    id: 4,
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=700&fit=crop',
+    caption: 'Effortless elegance',
+  },
+  {
+    id: 5,
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=700&fit=crop',
+    caption: 'Statement pieces',
+  },
+  {
+    id: 6,
+    image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400&h=700&fit=crop',
+    caption: 'Crystal clear beauty',
+  },
+];
