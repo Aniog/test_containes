@@ -50,25 +50,15 @@ export default function CartDrawer() {
                     key={`${item.id}-${item.variant}-${idx}`}
                     className="flex gap-4 py-4 border-b border-gold-light/20 animate-[fadeIn_0.3s_ease]"
                   >
-                    {/* Image placeholder */}
-                    <div className="w-20 h-20 shrink-0 bg-sand rounded-sm overflow-hidden">
-                      <img
-                        data-strk-img-id={`cart-${item.id}-${item.variant}`}
-                        data-strk-img={`[cart-item-name-${item.id}-${idx}]`}
-                        data-strk-img-ratio="1x1"
-                        data-strk-img-width="200"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    {/* Thumbnail */}
+                    <div className="w-20 h-20 shrink-0 bg-sand rounded-sm overflow-hidden flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8A96E" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" opacity="0.5">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 01-8 0" />
+                      </svg>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <span
-                        id={`cart-item-name-${item.id}-${idx}`}
-                        className="hidden"
-                      >
-                        {item.name}
-                      </span>
                       <h4 className="text-xs tracking-[0.1em] uppercase font-medium text-soft-black truncate">
                         {item.name}
                       </h4>
