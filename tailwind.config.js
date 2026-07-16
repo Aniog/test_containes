@@ -5,7 +5,30 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          cream: '#FAF7F2',
+          ivory: '#F5F0E8',
+          sand: '#E8DFD3',
+          gold: '#B8956A',
+          'gold-light': '#D4B896',
+          'gold-dark': '#8B6914',
+          charcoal: '#1A1A1A',
+          graphite: '#2D2D2D',
+          muted: '#6B6B6B',
+          'warm-gray': '#9A9490',
+        },
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        'product': '0.2em',
+        'wide-xl': '0.15em',
+      },
+    },
   },
   plugins: [],
 }
