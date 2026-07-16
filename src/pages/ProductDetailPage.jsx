@@ -74,10 +74,15 @@ export default function ProductDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
           {/* Image Gallery */}
           <div className="space-y-4">
+            {/* Hidden text elements for image queries */}
+            <span id="product-detail-main-desc" className="sr-only">{product.description}</span>
+            {product.images.map((img, idx) => (
+              <span key={idx} id={`product-thumb-${idx}-desc`} className="sr-only">{img.alt}</span>
+            ))}
             <div className="aspect-[3/4] bg-[var(--velmora-bg-secondary)] overflow-hidden">
               <img
-                data-strk-img-id={`product-${product.id}-detail-${selectedImage}`}
-                data-strk-img={`[${product.id}-name] [product-detail-image-${selectedImage}]`}
+                data-strk-img-id={`product-${product.id}-detail-main`}
+                data-strk-img={`[${product.id}-name] [product-detail-main-desc]`}
                 data-strk-img-ratio="3x4"
                 data-strk-img-width="800"
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -96,7 +101,7 @@ export default function ProductDetailPage() {
                 >
                   <img
                     data-strk-img-id={`product-${product.id}-thumb-${idx}`}
-                    data-strk-img={`[${product.id}-name] [product-thumb-${idx}]`}
+                    data-strk-img={`[${product.id}-name] [product-thumb-${idx}-desc]`}
                     data-strk-img-ratio="1x1"
                     data-strk-img-width="200"
                     src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"

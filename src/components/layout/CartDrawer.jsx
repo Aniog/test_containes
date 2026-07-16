@@ -49,16 +49,8 @@ export default function CartDrawer() {
             <div className="p-6 space-y-6">
               {cartItems.map((item) => (
                 <div key={`${item.productId}-${item.variant}`} className="flex gap-4">
-                  <div className="w-20 h-20 bg-[var(--velmora-bg-secondary)] rounded overflow-hidden flex-shrink-0">
-                    <img
-                      data-strk-img-id={`cart-${item.productId}-${item.variant}`}
-                      data-strk-img={`[cart-item-name-${item.productId}]`}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="200"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="w-20 h-20 bg-[var(--velmora-bg-secondary)] rounded overflow-hidden flex-shrink-0 flex items-center justify-center">
+                    <ShoppingBag className="w-6 h-6 text-[var(--velmora-border)]" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p id={`cart-item-name-${item.productId}`} className="product-name text-sm text-[var(--velmora-text)] truncate">

@@ -21,9 +21,12 @@ export default function ProductCard({ product }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative aspect-[3/4] bg-[var(--velmora-bg-secondary)] overflow-hidden mb-4">
+        {/* Hidden text elements for image queries */}
+        <span id={`product-card-title-${product.id}`} className="sr-only">{product.name} gold jewelry</span>
+        <span id={`product-card-hover-${product.id}`} className="sr-only">{product.name} detail view</span>
         <img
           data-strk-img-id={`product-${product.id}-card`}
-          data-strk-img={`[${product.id}-name] [product-card-title]`}
+          data-strk-img={`[${product.id}-name] [product-card-title-${product.id}]`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="600"
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
@@ -34,7 +37,7 @@ export default function ProductCard({ product }) {
         />
         <img
           data-strk-img-id={`product-${product.id}-card-hover`}
-          data-strk-img={`[${product.id}-name] [product-card-hover-title]`}
+          data-strk-img={`[${product.id}-name] [product-card-hover-${product.id}]`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="600"
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
