@@ -1,76 +1,149 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --velmora-pearl: #f6f1ea;
+    --velmora-mist: #ebe3d8;
+    --velmora-gold: #b99263;
+    --velmora-rose: #7a5b55;
+    --velmora-truffle: #5e4b42;
+    --velmora-ink: #211b18;
+    --velmora-shadow-soft: 0 18px 40px rgba(33, 27, 24, 0.08);
+    --velmora-shadow-card: 0 12px 30px rgba(33, 27, 24, 0.07);
+    --velmora-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--velmora-pearl);
+    color: var(--velmora-ink);
+    font-family: Inter, system-ui, sans-serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  ::selection {
+    background: rgba(185, 146, 99, 0.25);
+    color: var(--velmora-ink);
+  }
+}
+
+@layer components {
+  .velmora-divider {
+    border-top: 1px solid rgba(33, 27, 24, 0.1);
+  }
+
+  .velmora-container {
+    width: 100%;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .velmora-button-primary,
+  .velmora-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    transition:
+      transform 300ms var(--velmora-ease),
+      color 300ms var(--velmora-ease),
+      background-color 300ms var(--velmora-ease),
+      border-color 300ms var(--velmora-ease),
+      box-shadow 300ms var(--velmora-ease);
+  }
+
+  .velmora-button-primary {
+    background: var(--velmora-ink);
+    color: var(--velmora-pearl);
+  }
+
+  .velmora-button-primary:hover {
+    transform: translateY(-2px);
+    background: var(--velmora-rose);
+    box-shadow: var(--velmora-shadow-soft);
+  }
+
+  .velmora-button-secondary {
+    border: 1px solid rgba(33, 27, 24, 0.2);
+    background: var(--velmora-pearl);
+    color: var(--velmora-ink);
+  }
+
+  .velmora-button-secondary:hover {
+    transform: translateY(-2px);
+    border-color: var(--velmora-gold);
+    color: var(--velmora-gold);
+    box-shadow: var(--velmora-shadow-card);
+  }
+
+  .velmora-product-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--velmora-ink);
+  }
+
+  .velmora-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--velmora-truffle);
+  }
+}
+
+@media (min-width: 640px) {
+  @layer components {
+    .velmora-container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  @layer components {
+    .velmora-container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+}
