@@ -1,24 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Elegant Quiet Luxury Palette - Warm Editorial */
+  --color-bg: #F8F5F1;
+  --color-bg-dark: #1C1917;
+  --color-text: #2C2825;
+  --color-text-light: #6B665F;
+  --color-accent: #8B7355;
+  --color-accent-dark: #5C4A38;
+  --color-gold: #C5A46E;
+  --color-gold-light: #D4B896;
+  --color-border: #E5DFD3;
+  --color-white: #FFFFFF;
+  --color-card: #FFFFFF;
+  
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -30,44 +34,224 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
+/* Elegant Serif Typography */
+h1, h2, h3, .serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.product-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Premium Button Styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: var(--color-bg-dark);
+  color: var(--color-white);
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-1px);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: transparent;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.btn-outline:hover {
+  background-color: var(--color-text);
+  color: var(--color-white);
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.btn-accent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  button {
-    background-color: #f9f9f9;
+.btn-accent:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-1px);
+}
+
+/* Hairline Dividers */
+.divider {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Card Styles */
+.product-card {
+  background: var(--color-card);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+/* Image Hover Effects */
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-card:hover .product-image {
+  opacity: 0;
+  transform: scale(1.02);
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 8px 20px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.variant-pill.active {
+  background: var(--color-text);
+  color: var(--color-white);
+  border-color: var(--color-text);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-text);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding: 16px 0;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* UGC Reel Scroll */
+.ugc-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+  margin-bottom: 12px;
+}
+
+/* Newsletter */
+.newsletter-input {
+  border: none;
+  border-bottom: 1px solid var(--color-text);
+  background: transparent;
+  padding: 12px 0;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.newsletter-input::placeholder {
+  color: var(--color-text-light);
+}
+
+/* Stars */
+.star {
+  color: var(--color-gold);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .btn-primary, .btn-outline, .btn-accent {
+    padding: 12px 24px;
+    font-size: 13px;
   }
 }
 
