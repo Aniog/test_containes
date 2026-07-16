@@ -8,20 +8,15 @@ export default {
     extend: {
       colors: {
         velmora: {
-          // Deep warm base
           deep: '#1A1514',
           dark: '#2C2422',
-          // Warm neutrals
           warm: '#F5F0EB',
           cream: '#FAF8F5',
-          // Gold accents
           gold: '#C8A96E',
           'gold-light': '#D4BC8B',
           'gold-dark': '#A68B4C',
-          // Accent
           rose: '#B76E79',
           'rose-light': '#D4A0A8',
-          // Text
           muted: '#7A7268',
           body: '#3D3833',
         },
