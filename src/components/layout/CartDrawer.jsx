@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { Link } from 'react-router-dom';
@@ -6,60 +6,75 @@ import { Link } from 'react-router-dom';
 export default function CartDrawer({ open, onClose }) {
   const { items, itemCount, subtotal, removeItem, updateQuantity } = useCart();
   const closeRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    if (open) {
+      setVisible(true);
+    } else {
+      const t = setTimeout(() => setVisible(false), 350);
+      return () => clearTimeout(t);
+    }
+    return undefined;
+  }, [open]);
 
   useEffect(() => {
     if (open) {
       document.body.style.overflow = 'hidden';
       const handleEsc = (e) => { if (e.key === 'Escape') onClose(); };
       window.addEventListener('keydown', handleEsc);
-      closeRef.current?.focus();
+      const t = setTimeout(() => closeRef.current?.focus(), 150);
       return () => {
         document.body.style.overflow = '';
         window.removeEventListener('keydown', handleEsc);
+        clearTimeout(t);
       };
-    } else {
-      document.body.style.overflow = '';
     }
     return undefined;
   }, [open, onClose]);
+
+  if (!visible) return null;
+
+  const overlayClass = open
+    ? 'bg-espresso/40 backdrop-blur-sm'
+    : 'bg-transparent backdrop-blur-none';
 
   return (
     <>
       {/* Overlay */}
       <div
-        className={`fixed inset-0 z-[60] bg-espresso/40 backdrop-blur-sm transition-opacity duration-400 ${
-          open ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        className={`fixed inset-0 transition-all duration-300 ${overlayClass}`}
+        style={{ zIndex: 99990 }}
         onClick={onClose}
       />
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-[70] h-full w-[calc(100%-2rem)] sm:w-full sm:max-w-md bg-surface border-l border-warm-sand shadow-2xl transform transition-transform duration-500 ease-out ${
-          open ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 h-full w-full max-w-md flex flex-col bg-surface border-l border-warm-sand shadow-2xl transition-transform duration-300 ease-out ${open ? 'translate-x-0' : 'translate-x-full'}`}
+        style={{ zIndex: 99991 }}
         role="dialog"
         aria-modal="true"
         aria-label="Shopping cart"
       >
-        <div className="flex flex-col h-full">
-          {/* Header */}
-          <div className="flex items-center justify-between px-6 py-5 border-b border-warm-sand gap-4">
-            <h2 className="font-serif text-lg tracking-[0.15em] uppercase text-espresso">
+        {/* Header */}
+        <div className="flex-shrink-0 border-b border-warm-sand px-5 pt-5 pb-4">
+          <div className="flex items-center gap-4">
+            <h2 className="font-serif text-sm sm:text-lg tracking-[0.15em] uppercase text-espresso flex-1 min-w-0 truncate">
               Your Bag ({itemCount})
             </h2>
             <button
               ref={closeRef}
               onClick={onClose}
-              className="text-espresso hover:text-accent transition-colors flex-shrink-0 p-1"
+              className="flex-shrink-0 text-espresso hover:text-accent transition-colors p-1"
               aria-label="Close cart"
             >
               <X size={20} />
             </button>
           </div>
+        </div>
 
           {/* Items */}
-          <div className="flex-1 overflow-y-auto px-6 py-6">
+          <div className="flex-1 overflow-y-auto px-5 py-6">
             {items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
                 <ShoppingBag size={40} className="text-warm-sand mb-4" />
@@ -113,20 +128,19 @@ export default function CartDrawer({ open, onClose }) {
             )}
           </div>
 
-          {/* Footer */}
-          {items.length > 0 && (
-            <div className="border-t border-warm-sand px-6 py-5 space-y-4">
-              <div className="flex items-center justify-between text-espresso">
-                <span className="text-sm">Subtotal</span>
-                <span className="font-serif text-lg tracking-[0.05em]">${subtotal.toFixed(2)}</span>
-              </div>
-              <p className="text-xs text-taupe">Shipping & taxes calculated at checkout</p>
-              <button className="btn-primary w-full">
-                Checkout
-              </button>
+        {/* Footer */}
+        {items.length > 0 && (
+          <div className="flex-shrink-0 border-t border-warm-sand px-5 py-5 space-y-4">
+            <div className="flex items-center justify-between text-espresso">
+              <span className="text-sm">Subtotal</span>
+              <span className="font-serif text-lg tracking-[0.05em]">${subtotal.toFixed(2)}</span>
             </div>
-          )}
-        </div>
+            <p className="text-xs text-taupe">Shipping & taxes calculated at checkout</p>
+            <button className="btn-primary w-full">
+              Checkout
+            </button>
+          </div>
+        )}
       </div>
     </>
   );

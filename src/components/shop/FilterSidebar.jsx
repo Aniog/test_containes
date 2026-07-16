@@ -111,11 +111,14 @@ export default function FilterSidebar({
       {/* Mobile overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-espresso/30" onClick={onMobileClose} />
-          <div className="absolute left-0 top-0 bottom-0 w-72 bg-surface border-r border-warm-sand p-6 overflow-y-auto">
+          <div
+            className="absolute inset-0 bg-espresso/30 backdrop-blur-sm transition-opacity duration-300"
+            onClick={onMobileClose}
+          />
+          <div className="absolute left-0 top-0 bottom-0 w-64 bg-surface border-r border-warm-sand p-5 overflow-y-auto transition-transform duration-300 ease-out translate-x-0">
             <div className="flex items-center justify-between mb-8">
               <span className="text-xs tracking-[0.15em] uppercase text-espresso font-medium">Filters</span>
-              <button onClick={onMobileClose} className="text-espresso">
+              <button onClick={onMobileClose} className="text-espresso hover:text-accent transition-colors">
                 <X size={18} />
               </button>
             </div>

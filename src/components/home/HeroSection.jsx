@@ -24,20 +24,20 @@ export default function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-5 md:px-6">
         <h1
           id="hero-title"
-          className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-[0.08em] uppercase text-white mb-4 max-w-2xl leading-tight"
+          className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-[0.06em] sm:tracking-[0.08em] uppercase text-white mb-4 max-w-2xl leading-tight"
         >
           Crafted to be Treasured
         </h1>
         <p
           id="hero-subtitle"
-          className="text-base md:text-lg text-white/80 font-light max-w-md mb-8"
+          className="text-sm sm:text-base md:text-lg text-white/80 font-light max-w-md mx-auto mb-8"
         >
           Demi-fine gold jewelry for the modern woman — designed in Paris, worn everywhere.
         </p>
-        <Link to="/shop" className="btn-primary">
+        <Link to="/shop" className="btn-primary text-xs sm:text-sm px-6 sm:px-8 py-2.5 sm:py-3">
           Shop the Collection
         </Link>
       </div>

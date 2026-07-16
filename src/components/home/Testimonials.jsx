@@ -21,23 +21,23 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section className="section-padding bg-cream">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="text-center mb-14">
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="text-center mb-10 md:mb-14">
           <h2 className="serif-heading text-2xl md:text-3xl text-espresso">Loved by You</h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {testimonials.map((t, i) => (
             <div key={i} className="text-center">
-              <div className="flex items-center justify-center gap-0.5 mb-4">
+              <div className="flex items-center justify-center gap-0.5 mb-3 md:mb-4">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} size={13} className="fill-accent text-accent" />
+                  <Star key={j} size={12} className="fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-sm text-taupe leading-relaxed italic mb-4 max-w-xs mx-auto">
+              <p className="text-xs md:text-sm text-taupe leading-relaxed italic mb-3 md:mb-4 max-w-xs mx-auto">
                 &ldquo;{t.text}&rdquo;
               </p>
-              <p className="text-xs tracking-[0.15em] uppercase text-espresso font-medium">
+              <p className="text-[10px] md:text-xs tracking-[0.15em] uppercase text-espresso font-medium">
                 {t.name} {t.initial}.
               </p>
             </div>

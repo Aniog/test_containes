@@ -41,9 +41,23 @@
     @apply border-t border-warm-sand;
   }
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-16 md:py-28;
   }
   .serif-heading {
     @apply font-serif uppercase tracking-[0.15em];
   }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
 }

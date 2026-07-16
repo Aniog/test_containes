@@ -36,17 +36,16 @@ function ProductCard({ product }) {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
 
+        {/* Quick-add — always visible on mobile, hover-revealed on desktop */}
         <div
-          className={`absolute bottom-0 left-0 right-0 p-3 transition-all duration-300 ${
-            hovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
-          }`}
+          className={`absolute bottom-0 left-0 right-0 p-2 sm:p-3 transition-all duration-300 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 translate-y-0 opacity-100`}
         >
           <button
             onClick={handleAdd}
-            className="w-full bg-surface text-espresso py-2.5 text-xs tracking-[0.12em] uppercase font-medium hover:bg-accent hover:text-white transition-all duration-300 shadow-md"
+            className="w-full bg-surface text-espresso py-2 sm:py-2.5 text-[10px] sm:text-xs tracking-[0.12em] uppercase font-medium hover:bg-accent hover:text-white transition-all duration-300 shadow-md"
           >
-            <span className="flex items-center justify-center gap-2">
-              <ShoppingBag size={13} />
+            <span className="flex items-center justify-center gap-1.5 sm:gap-2">
+              <ShoppingBag size={11} className="sm:w-[13px] sm:h-[13px]" />
               Add to Cart
             </span>
           </button>

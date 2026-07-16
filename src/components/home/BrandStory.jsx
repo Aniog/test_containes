@@ -14,8 +14,8 @@ export default function BrandStory() {
 
   return (
     <section ref={containerRef} className="section-padding bg-cream">
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Image */}
           <div className="aspect-[4/5] bg-clay overflow-hidden">
             <img
@@ -30,7 +30,7 @@ export default function BrandStory() {
           </div>
 
           {/* Text */}
-          <div className="md:pl-4">
+          <div className="md:pl-4 text-center md:text-left">
             <span className="text-xs tracking-[0.2em] uppercase text-taupe mb-3 block">Our Story</span>
             <h2
               id={titleId}
@@ -40,14 +40,14 @@ export default function BrandStory() {
             </h2>
             <p
               id={subtitleId}
-              className="text-taupe leading-relaxed mt-6 mb-8 max-w-md"
+              className="text-taupe leading-relaxed mt-6 mb-8 max-w-md mx-auto md:mx-0"
             >
               Velmora was born from a simple belief: that fine jewelry should feel effortless.
               Each piece is crafted in small batches using 18K gold plating and ethically sourced
               materials — designed to move with you from morning coffee to evening candlelight,
               and every moment in between.
             </p>
-            <button className="btn-outline">
+            <button className="btn-outline w-full sm:w-auto">
               Read Our Story
             </button>
           </div>
