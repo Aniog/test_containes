@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The name of the jewelry piece"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full product description including materials and sizing"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "material": {
+      "type": "string",
+      "description": "Main material (e.g., 18K Gold Plated, Sterling Silver)"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storageKey": { "type": "string" },
+          "filename": { "type": "string" }
+        }
+      },
+      "description": "Product images"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly slug"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "default": 5,
+      "description": "Customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of reviews"
+    }
+  },
+  "required": ["name", "price", "category", "slug"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
