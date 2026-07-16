@@ -1,0 +1,127 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'A sculptural ear cuff adorned with a single crystal accent, designed to catch the light with every turn of your head. Effortlessly elegant, no piercing required.',
+    price: 42,
+    rating: 4.8,
+    reviews: 124,
+    category: 'earrings',
+    material: 'gold',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'vivid-aura-1', ratio: '3x4', width: 800 },
+      { id: 'vivid-aura-2', ratio: '3x4', width: 800 },
+      { id: 'vivid-aura-3', ratio: '3x4', width: 800 },
+    ],
+    titleId: 'vivid-aura-title',
+    descId: 'vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'A delicate pendant necklace featuring multicolor floral crystals suspended from a fine chain. Each petal catches light differently, creating a living garden at your collarbone.',
+    price: 68,
+    rating: 4.9,
+    reviews: 89,
+    category: 'necklaces',
+    material: 'gold',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'majestic-flora-1', ratio: '3x4', width: 800 },
+      { id: 'majestic-flora-2', ratio: '3x4', width: 800 },
+      { id: 'majestic-flora-3', ratio: '3x4', width: 800 },
+    ],
+    titleId: 'majestic-flora-title',
+    descId: 'majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings that hug your earlobe with quiet confidence. The polished sphere design adds dimension without weight — perfect for everyday luxury.',
+    price: 38,
+    rating: 4.7,
+    reviews: 203,
+    category: 'huggies',
+    material: 'gold',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'golden-sphere-1', ratio: '3x4', width: 800 },
+      { id: 'golden-sphere-2', ratio: '3x4', width: 800 },
+      { id: 'golden-sphere-3', ratio: '3x4', width: 800 },
+    ],
+    titleId: 'golden-sphere-title',
+    descId: 'golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. The intricate openwork design creates a play of shadow and light, romantic yet modern.',
+    price: 54,
+    rating: 4.6,
+    reviews: 67,
+    category: 'earrings',
+    material: 'gold',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'amber-lace-1', ratio: '3x4', width: 800 },
+      { id: 'amber-lace-2', ratio: '3x4', width: 800 },
+      { id: 'amber-lace-3', ratio: '3x4', width: 800 },
+    ],
+    titleId: 'amber-lace-title',
+    descId: 'amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'A curated gift-boxed set featuring matching earrings and necklace in our signature demi-fine finish. Presented in a velvet-lined box — the perfect gesture for someone you treasure.',
+    price: 95,
+    rating: 5.0,
+    reviews: 45,
+    category: 'sets',
+    material: 'gold',
+    variants: ['gold', 'silver'],
+    images: [
+      { id: 'royal-heirloom-1', ratio: '3x4', width: 800 },
+      { id: 'royal-heirloom-2', ratio: '3x4', width: 800 },
+      { id: 'royal-heirloom-3', ratio: '3x4', width: 800 },
+    ],
+    titleId: 'royal-heirloom-title',
+    descId: 'royal-heirloom-desc',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', slug: 'earrings' },
+  { id: 'necklaces', name: 'Necklaces', slug: 'necklaces' },
+  { id: 'huggies', name: 'Huggies', slug: 'huggies' },
+  { id: 'sets', name: 'Gift Sets', slug: 'sets' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day — they haven\'t tarnished at all.',
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. She cried when she opened it. The packaging is so beautiful.',
+  },
+  {
+    id: 3,
+    name: 'Jessica L.',
+    rating: 5,
+    text: 'Finally found jewelry that feels luxurious without the luxury markup. Velmora is my new go-to for everyday pieces.',
+  },
+];
+
+export const trustItems = [
+  'Free Worldwide Shipping',
+  '30-Day Returns',
+  '18K Gold Plated',
+  'Hypoallergenic',
+];
