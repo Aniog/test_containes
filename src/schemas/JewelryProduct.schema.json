@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jewelry Product",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL slug"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full product description"
+    },
+    "short_description": {
+      "type": "string",
+      "description": "Short description for cards"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials used"
+    },
+    "care_instructions": {
+      "type": "string",
+      "description": "Care instructions"
+    },
+    "main_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "hover_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Hover variant product image URL"
+    },
+    "gallery": {
+      "type": "array",
+      "items": { "type": "string", "format": "uri" },
+      "description": "Additional gallery images"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Flag for featured bestseller section"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "description": "Metal color options"
+    }
+  },
+  "required": ["name", "slug", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
