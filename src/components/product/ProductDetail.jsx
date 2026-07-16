@@ -5,6 +5,7 @@ import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { StarRating } from '@/components/ui/StarRating';
 import { StockImage } from '@/components/ui/StockImage';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { toast } from 'sonner';
 
 export default function ProductDetail() {
@@ -15,6 +16,7 @@ export default function ProductDetail() {
   const [selectedVariant, setSelectedVariant] = useState('gold');
   const [quantity, setQuantity] = useState(1);
   const containerRef = useRef(null);
+  const sectionRef = useRevealOnScroll();
 
   const product = products.find(p => p.id === id);
 
@@ -51,7 +53,7 @@ export default function ProductDetail() {
     <div className="pt-20 md:pt-24" ref={containerRef}>
       <div className="container-padding">
         {/* Breadcrumb */}
-        <nav className="flex items-center gap-2 text-xs text-muted-foreground mb-8 py-4">
+        <nav className="flex items-center gap-2 text-xs text-muted-foreground mb-8 py-4 reveal">
           <Link to="/" className="hover:text-accent transition-colors">Home</Link>
           <span>/</span>
           <Link to="/shop" className="hover:text-accent transition-colors">Shop</Link>
@@ -59,9 +61,9 @@ export default function ProductDetail() {
           <span className="text-foreground">{product.name}</span>
         </nav>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16" ref={sectionRef}>
           {/* Image Gallery */}
-          <div className="space-y-4">
+          <div className="space-y-4 reveal">
             {/* Main Image */}
             <div className="aspect-[3/4] bg-secondary relative">
               <StockImage
@@ -117,7 +119,7 @@ export default function ProductDetail() {
           </div>
 
           {/* Product Info */}
-          <div className="lg:py-8">
+          <div className="lg:py-8 reveal reveal-delay-2">
             {product.badge && (
               <span className="inline-block bg-accent/10 text-accent text-[10px] uppercase tracking-widest px-3 py-1 mb-4">
                 {product.badge}
@@ -231,10 +233,10 @@ export default function ProductDetail() {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className="mt-20 pt-16 border-t border-border">
-            <h2 className="serif-heading text-2xl md:text-3xl text-center mb-10">You May Also Like</h2>
+            <h2 className="serif-heading text-2xl md:text-3xl text-center mb-10 reveal">You May Also Like</h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {relatedProducts.map((relProduct) => (
-                <Link key={relProduct.id} to={`/product/${relProduct.id}`} className="group">
+              {relatedProducts.map((relProduct, index) => (
+                <Link key={relProduct.id} to={`/product/${relProduct.id}`} className={`group reveal reveal-delay-${Math.min(index + 1, 4)}`}>
                   <div className="aspect-[3/4] bg-secondary mb-3 overflow-hidden">
                     <StockImage
                       imgId={`related-${relProduct.images[0].id}`}

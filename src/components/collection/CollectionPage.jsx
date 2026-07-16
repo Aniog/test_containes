@@ -5,6 +5,7 @@ import { products, categories } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { StarRating } from '@/components/ui/StarRating';
 import { StockImage } from '@/components/ui/StockImage';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 import { toast } from 'sonner';
 
 export default function CollectionPage() {
@@ -15,6 +16,7 @@ export default function CollectionPage() {
   const [selectedMaterial, setSelectedMaterial] = useState('all');
   const [priceRange, setPriceRange] = useState([0, 200]);
   const [sortBy, setSortBy] = useState('featured');
+  const sectionRef = useRevealOnScroll();
 
   useEffect(() => {
     const cat = searchParams.get('category');
@@ -61,7 +63,7 @@ export default function CollectionPage() {
     <div className="pt-20 md:pt-24 min-h-screen">
       <div className="container-padding">
         {/* Header */}
-        <div className="py-8 md:py-12">
+        <div className="py-8 md:py-12 reveal">
           <h1 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-2">Shop All</h1>
           <p className="text-sm text-muted-foreground">{filteredProducts.length} pieces</p>
         </div>
@@ -149,7 +151,7 @@ export default function CollectionPage() {
           {filtersOpen && (
             <>
               <div className="fixed inset-0 bg-black/40 z-40 lg:hidden" onClick={() => setFiltersOpen(false)} />
-              <div className="fixed right-0 top-0 bottom-0 w-80 max-w-full bg-background z-50 p-6 overflow-y-auto lg:hidden">
+              <div className="fixed right-0 top-0 bottom-0 w-80 max-w-full bg-background z-50 p-6 overflow-y-auto lg:hidden animate-slide-in">
                 <div className="flex items-center justify-between mb-8">
                   <h2 className="serif-heading text-xl">Filters</h2>
                   <button onClick={() => setFiltersOpen(false)} aria-label="Close filters">
@@ -180,9 +182,9 @@ export default function CollectionPage() {
           )}
 
           {/* Product Grid */}
-          <div className="flex-1">
+          <div className="flex-1" ref={sectionRef}>
             {/* Sort & Active Filters */}
-            <div className="flex items-center justify-between mb-6 pb-4 border-b border-border">
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-border reveal">
               <div className="flex items-center gap-2 flex-wrap">
                 {selectedCategory !== 'all' && (
                   <span className="inline-flex items-center gap-1 text-xs bg-secondary px-3 py-1">
@@ -206,7 +208,7 @@ export default function CollectionPage() {
 
             {/* Grid */}
             {filteredProducts.length === 0 ? (
-              <div className="text-center py-20">
+              <div className="text-center py-20 reveal">
                 <p className="serif-heading text-xl mb-2">No pieces found</p>
                 <p className="text-sm text-muted-foreground mb-6">Try adjusting your filters</p>
                 <button onClick={() => { setSelectedCategory('all'); setSelectedMaterial('all'); setPriceRange([0, 200]); }} className="btn-outline inline-block">
@@ -215,8 +217,8 @@ export default function CollectionPage() {
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-                {filteredProducts.map((product) => (
-                  <div key={product.id} className="group">
+                {filteredProducts.map((product, index) => (
+                  <div key={product.id} className={`group reveal reveal-delay-${Math.min(index + 1, 4)}`}>
                     <Link to={`/product/${product.id}`} className="block">
                       <div className="relative aspect-[3/4] bg-secondary mb-4 overflow-hidden">
                         <StockImage

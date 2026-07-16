@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom';
 import { StockImage } from '@/components/ui/StockImage';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 
 export default function BrandStorySection() {
+  const sectionRef = useRevealOnScroll();
+
   return (
-    <section className="bg-background">
+    <section className="bg-background" ref={sectionRef}>
       <div className="grid grid-cols-1 md:grid-cols-2">
         {/* Image */}
-        <div className="relative aspect-square md:aspect-auto bg-[#2a2520]">
+        <div className="relative aspect-square md:aspect-auto bg-[#2a2520] reveal">
           <StockImage
             imgId="brand-story-img-s1t2u3"
             query="[brand-story-headline] [brand-story-text]"
@@ -17,7 +20,7 @@ export default function BrandStorySection() {
         </div>
 
         {/* Text */}
-        <div className="flex items-center justify-center p-8 md:p-16 lg:p-20">
+        <div className="flex items-center justify-center p-8 md:p-16 lg:p-20 reveal reveal-delay-2">
           <div className="max-w-md">
             <p className="text-xs uppercase tracking-widest text-accent mb-4">Our Story</p>
             <h2

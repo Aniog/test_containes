@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react';
 import { StockImage } from '@/components/ui/StockImage';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 
 const ugcPosts = [
   {
@@ -42,10 +43,10 @@ const ugcPosts = [
 
 export default function UGCRow() {
   const scrollRef = useRef(null);
-  const containerRef = useRef(null);
+  const sectionRef = useRevealOnScroll();
 
   useEffect(() => {
-    if (containerRef.current) {
+    if (scrollRef.current) {
       const frameId = window.requestAnimationFrame(() => {
         // Images handled by StockImage
       });
@@ -54,8 +55,8 @@ export default function UGCRow() {
   }, []);
 
   return (
-    <section className="py-16 md:py-20 bg-secondary/30 overflow-hidden" ref={containerRef}>
-      <div className="text-center mb-10 px-4">
+    <section className="py-16 md:py-20 bg-secondary/30 overflow-hidden" ref={sectionRef}>
+      <div className="text-center mb-10 px-4 reveal">
         <p className="serif-heading text-2xl md:text-3xl italic text-foreground/80">
           As worn by you
         </p>
@@ -67,10 +68,10 @@ export default function UGCRow() {
         className="flex gap-4 px-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-4"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
-        {ugcPosts.map((post) => (
+        {ugcPosts.map((post, index) => (
           <div
             key={post.id}
-            className="flex-shrink-0 w-[200px] md:w-[240px] snap-start"
+            className={`flex-shrink-0 w-[200px] md:w-[240px] snap-start reveal reveal-delay-${Math.min(index + 1, 4)}`}
           >
             <div className="relative aspect-[9/16] bg-[#2a2520] overflow-hidden group">
               <StockImage

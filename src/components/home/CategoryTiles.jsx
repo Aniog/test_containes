@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { StockImage } from '@/components/ui/StockImage';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 
 const categoryTiles = [
   {
@@ -26,20 +27,22 @@ const categoryTiles = [
 ];
 
 export default function CategoryTiles() {
+  const sectionRef = useRevealOnScroll();
+
   return (
-    <section className="section-padding bg-background">
+    <section className="section-padding bg-background" ref={sectionRef}>
       <div className="container-padding">
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 reveal">
           <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-3">Shop by Category</h2>
           <p className="text-sm text-muted-foreground tracking-wide">Find your perfect piece</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {categoryTiles.map((cat) => (
+          {categoryTiles.map((cat, index) => (
             <Link
               key={cat.id}
               to={cat.href}
-              className="group relative aspect-[4/5] bg-[#2a2520] overflow-hidden cursor-pointer"
+              className={`group relative aspect-[4/5] bg-[#2a2520] overflow-hidden cursor-pointer reveal reveal-delay-${index + 1}`}
             >
               <StockImage
                 imgId={cat.imgId}

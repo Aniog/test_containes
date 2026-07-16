@@ -1,6 +1,7 @@
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 import { Link } from 'react-router-dom';
+import { StockImage } from '@/components/ui/StockImage';
 
 export default function CartDrawer() {
   const { items, isDrawerOpen, closeDrawer, removeItem, updateQuantity, totalPrice } = useCart();
@@ -40,8 +41,16 @@ export default function CartDrawer() {
             <div className="px-6 py-4 space-y-6">
               {items.map((item) => (
                 <div key={item.cartId} className="flex gap-4">
-                  {/* Image placeholder */}
-                  <div className="w-20 h-24 bg-secondary flex-shrink-0" />
+                  {/* Product Image */}
+                  <div className="w-20 h-24 bg-secondary flex-shrink-0 overflow-hidden">
+                    <StockImage
+                      imgId={`cart-${item.product.images[0].id}`}
+                      query={item.product.images[0].query}
+                      ratio="4x5"
+                      width="120"
+                      alt={item.product.name}
+                    />
+                  </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="product-name text-sm mb-1 truncate">{item.product.name}</h3>
                     <p className="text-xs text-muted-foreground mb-2 capitalize">{item.variant} tone</p>

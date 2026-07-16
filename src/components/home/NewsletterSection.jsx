@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { toast } from 'sonner';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState('');
+  const sectionRef = useRevealOnScroll();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,9 +15,9 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="bg-[#1a1714] text-[#faf8f5]">
+    <section className="bg-[#1a1714] text-[#faf8f5]" ref={sectionRef}>
       <div className="container-padding">
-        <div className="py-16 md:py-20 text-center max-w-xl mx-auto">
+        <div className="py-16 md:py-20 text-center max-w-xl mx-auto reveal">
           <h2 className="serif-heading text-3xl md:text-4xl mb-3">Join for 10% Off</h2>
           <p className="text-sm text-[#8a8178] mb-8">
             Your first order, on us. Plus early access to new collections and exclusive offers.

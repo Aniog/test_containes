@@ -5,11 +5,13 @@ import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { StarRating } from '@/components/ui/StarRating';
 import { StockImage } from '@/components/ui/StockImage';
+import { useRevealOnScroll } from '@/hooks/useRevealOnScroll';
 
 export default function BestsellersSection() {
   const { addItem } = useCart();
   const [hoveredId, setHoveredId] = useState(null);
   const containerRef = useRef(null);
+  const sectionRef = useRevealOnScroll();
 
   const bestsellers = products.filter(p => p.badge === 'Bestseller' || p.rating >= 4.7).slice(0, 5);
 
@@ -23,20 +25,20 @@ export default function BestsellersSection() {
   }, []);
 
   return (
-    <section className="section-padding bg-background" ref={containerRef}>
+    <section className="section-padding bg-background" ref={sectionRef}>
       <div className="container-padding">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className="text-center mb-12 md:mb-16 reveal">
           <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl mb-3">Bestsellers</h2>
           <p className="text-sm text-muted-foreground tracking-wide">Our most loved pieces, chosen by you</p>
         </div>
 
         {/* Product Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-          {bestsellers.map((product) => (
+          {bestsellers.map((product, index) => (
             <div
               key={product.id}
-              className="group cursor-pointer"
+              className={`group cursor-pointer reveal reveal-delay-${Math.min(index + 1, 4)}`}
               onMouseEnter={() => setHoveredId(product.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -97,7 +99,7 @@ export default function BestsellersSection() {
         </div>
 
         {/* View All */}
-        <div className="text-center mt-12">
+        <div className="text-center mt-12 reveal">
           <Link to="/shop" className="btn-outline inline-block">
             View All
           </Link>

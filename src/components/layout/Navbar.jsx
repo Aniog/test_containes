@@ -86,8 +86,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-background pt-20 md:hidden">
-          <nav className="flex flex-col items-center gap-8 pt-12">
+        <div className="fixed inset-0 z-40 bg-background pt-20 md:hidden mobile-menu-enter">
+          <nav className="flex flex-col items-center gap-8 pt-12 mobile-menu-links">
             <Link to="/shop" className="serif-heading text-2xl hover:text-accent transition-colors">
               Shop
             </Link>
