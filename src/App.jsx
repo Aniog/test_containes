@@ -1,17 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { CartProvider } from '@/context/CartContext';
 import Layout from '@/components/Layout';
+import Home from '@/pages/Home';
+import Shop from '@/pages/Shop';
+import ProductDetail from '@/pages/ProductDetail';
 import './App.css';
 
 export default function App() {
-  console.log('APP RENDERING');
   return (
     <Router>
       <CartProvider>
         <Layout>
-          <div style={{color: 'black', fontSize: '30px', padding: '50px', background: '#FBF7F0'}}>
-            APP + ROUTER + CART + LAYOUT TEST
-          </div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/product/:id" element={<ProductDetail />} />
+          </Routes>
         </Layout>
       </CartProvider>
     </Router>
