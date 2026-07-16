@@ -1,0 +1,157 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'Earrings',
+    subcategory: 'Ear Cuffs',
+    material: '18K Gold Plated',
+    description: 'A sculptural gold ear cuff with a luminous crystal accent, designed to be worn alone or stacked for a curated ear moment.',
+    details: '18K gold-plated brass with crystal accent. Hypoallergenic, nickel-free. Sold as a single piece.',
+    materials: '18K Gold Plated Brass, Crystal',
+    rating: 4.8,
+    reviewCount: 124,
+    bestseller: true,
+    colors: ['gold', 'silver'],
+    images: [
+      'https://images.unsplash.com/photo-1633810542437-03e8e8e5a3b2?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    related: ['golden-sphere-huggies', 'amber-lace-earrings'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'Necklaces',
+    subcategory: 'Pendant',
+    material: '18K Gold Plated',
+    description: 'A delicate floral necklace featuring multicolor crystal petals and a fine gold chain. An heirloom-inspired piece for everyday elegance.',
+    details: '18K gold-plated brass chain with multicolor crystal pendant. Adjustable 16"–18" chain. Lobster clasp.',
+    materials: '18K Gold Plated Brass, Multicolor Crystals',
+    rating: 4.9,
+    reviewCount: 87,
+    bestseller: true,
+    colors: ['gold'],
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a25e3a5c2e2a?w=800&q=80',
+      'https://images.unsplash.com/photo-1600721391776-b5cd0e0048f9?w=800&q=80',
+    ],
+    related: ['royal-heirloom-set', 'golden-sphere-huggies'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'Earrings',
+    subcategory: 'Huggies',
+    material: '18K Gold Plated',
+    description: 'Chunky gold dome huggie earrings with a high-polish finish. The perfect everyday staple that transitions seamlessly from day to night.',
+    details: '18K gold-plated brass. 12mm diameter. Sold as a pair. Snap closure.',
+    materials: '18K Gold Plated Brass',
+    rating: 4.7,
+    reviewCount: 203,
+    bestseller: true,
+    colors: ['gold', 'silver'],
+    images: [
+      'https://images.unsplash.com/photo-1629224316810-9d8805b95e76?w=800&q=80',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+    ],
+    related: ['vivid-aura-jewels', 'amber-lace-earrings'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'Earrings',
+    subcategory: 'Drop',
+    material: '18K Gold Plated',
+    description: 'Textured gold filigree drop earrings with an intricate lace-like pattern. Lightweight and eye-catching, crafted for effortless sophistication.',
+    details: '18K gold-plated brass with filigree detailing. 4cm drop length. French wire closure.',
+    materials: '18K Gold Plated Brass',
+    rating: 4.6,
+    reviewCount: 56,
+    bestseller: false,
+    colors: ['gold'],
+    images: [
+      'https://images.unsplash.com/photo-1602752250015-528e5a20e5b7?w=800&q=80',
+      'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80',
+    ],
+    related: ['vivid-aura-jewels', 'golden-sphere-huggies'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'Sets',
+    subcategory: 'Gift Set',
+    material: '18K Gold Plated',
+    description: 'A beautifully gift-boxed earring and necklace set featuring matching crystal accents. The perfect gift for someone special — or yourself.',
+    details: '18K gold-plated brass earrings and necklace with crystal accents. Gift box included. Earrings: 2cm drop. Necklace: 16"–18" adjustable.',
+    materials: '18K Gold Plated Brass, Crystal',
+    rating: 5.0,
+    reviewCount: 42,
+    bestseller: true,
+    colors: ['gold'],
+    images: [
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    related: ['majestic-flora-nectar', 'golden-sphere-huggies'],
+  },
+];
+
+export const categories = [
+  {
+    name: 'Earrings',
+    slug: 'earrings',
+    description: 'Curated ear artistry',
+    large: true,
+  },
+  {
+    name: 'Necklaces',
+    slug: 'necklaces',
+    description: 'Adorn your neckline',
+    large: false,
+  },
+  {
+    name: 'Huggies',
+    slug: 'huggies',
+    description: 'Everyday essentials',
+    large: false,
+  },
+];
+
+export const testimonials = [
+  {
+    name: 'Sarah M.',
+    text: 'The quality is absolutely stunning. I\'ve worn my Golden Sphere Huggies every day for months and they still look brand new.',
+    rating: 5,
+  },
+  {
+    name: 'Jessica L.',
+    text: 'Velmora pieces feel far more expensive than they are. The packaging alone makes it feel like a luxury gift.',
+    rating: 5,
+  },
+  {
+    name: 'Rachel K.',
+    text: 'I ordered the Royal Heirloom Set for my sister\'s wedding and it was absolutely perfect. The crystals catch the light beautifully.',
+    rating: 5,
+  },
+];
+
+export const ugcReels = [
+  { id: 'ugc-1', caption: 'Golden hour with Golden Sphere Huggies', product: 'Golden Sphere Huggies' },
+  { id: 'ugc-2', caption: 'Stacked & styled: the ear curation edit', product: 'Vivid Aura Jewels' },
+  { id: 'ugc-3', caption: 'A closer look at the Majestic Flora Nectar', product: 'Majestic Flora Nectar' },
+  { id: 'ugc-4', caption: 'From desk to dinner: Amber Lace', product: 'Amber Lace Earrings' },
+  { id: 'ugc-5', caption: 'The gift that says it all', product: 'Royal Heirloom Set' },
+  { id: 'ugc-6', caption: 'Everyday elegance starts here', product: 'Golden Sphere Huggies' },
+];
+
+export const trustBarItems = [
+  'Free Worldwide Shipping',
+  '30-Day Returns',
+  '18K Gold Plated',
+  'Hypoallergenic',
+];
