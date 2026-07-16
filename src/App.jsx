@@ -1,15 +1,19 @@
-import './App.css'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { CartProvider } from '@/context/CartContext';
+import Layout from '@/components/Layout';
+import './App.css';
 
-function App() {
+export default function App() {
+  console.log('APP RENDERING');
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <Router>
+      <CartProvider>
+        <Layout>
+          <div style={{color: 'black', fontSize: '30px', padding: '50px', background: '#FBF7F0'}}>
+            APP + ROUTER + CART + LAYOUT TEST
+          </div>
+        </Layout>
+      </CartProvider>
+    </Router>
+  );
 }
-
-export default App
