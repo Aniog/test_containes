@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Member Profiles",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "关联的用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "real_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "真实姓名"
+    },
+    "student_id": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "学号"
+    },
+    "graduation_year": {
+      "type": "integer",
+      "minimum": 1960,
+      "maximum": 2030,
+      "description": "毕业年份"
+    },
+    "major": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "专业"
+    },
+    "college": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "书院"
+    },
+    "degree": {
+      "type": "string",
+      "enum": ["bachelor", "master", "phd", "other"],
+      "description": "学位类型"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "所在公司/机构"
+    },
+    "position": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "职位"
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "所在城市"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "联系电话"
+    },
+    "wechat": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "微信号"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "个人简介"
+    },
+    "membership_status": {
+      "type": "string",
+      "enum": ["pending", "active", "expired", "rejected"],
+      "default": "pending",
+      "description": "会员状态"
+    },
+    "membership_expiry": {
+      "type": "string",
+      "format": "date",
+      "description": "会员到期日期"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "审批时间"
+    },
+    "approved_by": {
+      "type": "string",
+      "format": "uuid",
+      "description": "审批人ID"
+    }
+  },
+  "required": ["user_id", "real_name"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

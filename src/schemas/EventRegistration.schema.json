@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event Registrations",
+  "type": "object",
+  "properties": {
+    "event_id": {
+      "type": "integer",
+      "description": "活动ID"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "报名用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "participant_name": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "参与者姓名"
+    },
+    "participant_email": {
+      "type": "string",
+      "format": "email",
+      "description": "参与者邮箱"
+    },
+    "participant_phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "参与者电话"
+    },
+    "fee_paid": {
+      "type": "number",
+      "minimum": 0,
+      "description": "已支付金额"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": ["pending", "paid", "refunded", "waived"],
+      "default": "pending",
+      "description": "支付状态"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["fps", "bank_transfer", "cash", "online", "free"],
+      "description": "支付方式"
+    },
+    "payment_reference": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "支付参考号"
+    },
+    "registration_status": {
+      "type": "string",
+      "enum": ["registered", "waitlisted", "cancelled", "attended"],
+      "default": "registered",
+      "description": "报名状态"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "备注"
+    }
+  },
+  "required": ["event_id", "user_id", "participant_name", "participant_email"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Membership Payments",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "amount": {
+      "type": "number",
+      "minimum": 0,
+      "description": "支付金额（港币）"
+    },
+    "membership_type": {
+      "type": "string",
+      "enum": ["annual", "lifetime"],
+      "default": "annual",
+      "description": "会员类型"
+    },
+    "payment_status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "rejected"],
+      "default": "pending",
+      "description": "支付状态"
+    },
+    "payment_method": {
+      "type": "string",
+      "enum": ["fps", "bank_transfer", "cash", "online"],
+      "description": "支付方式"
+    },
+    "payment_reference": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "支付参考号/截图说明"
+    },
+    "valid_from": {
+      "type": "string",
+      "format": "date",
+      "description": "会员有效期开始"
+    },
+    "valid_until": {
+      "type": "string",
+      "format": "date",
+      "description": "会员有效期结束"
+    },
+    "confirmed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "确认时间"
+    },
+    "confirmed_by": {
+      "type": "string",
+      "format": "uuid",
+      "description": "确认人ID"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "备注"
+    }
+  },
+  "required": ["user_id", "amount", "payment_method"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}

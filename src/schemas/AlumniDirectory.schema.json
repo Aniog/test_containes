@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alumni Directory",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "关联用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "real_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "description": "真实姓名"
+    },
+    "graduation_year": {
+      "type": "integer",
+      "minimum": 1960,
+      "maximum": 2030,
+      "description": "毕业年份"
+    },
+    "major": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "专业"
+    },
+    "college": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "书院"
+    },
+    "degree": {
+      "type": "string",
+      "enum": ["bachelor", "master", "phd", "other"],
+      "description": "学位"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "公司/机构"
+    },
+    "position": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "职位"
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "行业"
+    },
+    "city": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "所在城市"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "所在国家/地区"
+    },
+    "email_public": {
+      "type": "string",
+      "format": "email",
+      "description": "公开邮箱（可选）"
+    },
+    "linkedin": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "LinkedIn链接"
+    },
+    "bio": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "个人简介"
+    },
+    "skills": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "技能标签"
+    },
+    "approval_status": {
+      "type": "string",
+      "enum": ["pending", "approved", "rejected"],
+      "default": "pending",
+      "description": "审批状态（只有审批通过的才对会员可见）"
+    },
+    "approved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "审批时间"
+    },
+    "approved_by": {
+      "type": "string",
+      "format": "uuid",
+      "description": "审批人ID"
+    },
+    "rejection_reason": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "拒绝原因"
+    }
+  },
+  "required": ["user_id", "real_name", "graduation_year"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

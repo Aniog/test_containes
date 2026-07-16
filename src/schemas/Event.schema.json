@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Events",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "活动标题"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "活动详情"
+    },
+    "event_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "活动日期时间"
+    },
+    "registration_deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "报名截止时间"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "活动地点"
+    },
+    "capacity": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "活动容量（0表示不限）"
+    },
+    "fee": {
+      "type": "number",
+      "minimum": 0,
+      "description": "活动费用（港币）"
+    },
+    "member_fee": {
+      "type": "number",
+      "minimum": 0,
+      "description": "会员优惠价格（港币）"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published", "cancelled", "completed"],
+      "default": "draft",
+      "description": "活动状态"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["networking", "career", "culture", "sports", "academic", "other"],
+      "description": "活动类别"
+    },
+    "organizer_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "组织者用户ID",
+      "x-foreignKey": "users.id"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "活动标签"
+    }
+  },
+  "required": ["title", "event_date", "location"],
+  "x-security": {
+    "create": { "allow": ["user"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}
