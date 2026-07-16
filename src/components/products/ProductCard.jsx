@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
-import { toast } from 'sonner';
+import { useCart } from '@/context/CartContext';
 
 const ProductCard = ({ product }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const { addToCart } = useCart();
 
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    toast.success(`${product.name} added to your treasure chest`);
+    addToCart(product);
   };
 
   return (
@@ -21,7 +22,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="aspect-[3/4] overflow-hidden bg-muted relative mb-4">
         <img
-          data-strk-img-id={`prod-img-main-${product.id}`}
+          data-strk-img-id={"p-main-" + product.id}
           data-strk-img={`[prod-name-${product.id}] jewelry piece elegant view`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="600"
@@ -31,7 +32,7 @@ const ProductCard = ({ product }) => {
         />
         {/* Hover image */}
         <img
-            data-strk-img-id={`prod-img-hover-${product.id}`}
+            data-strk-img-id={"p-hover-" + product.id}
             data-strk-img={`[prod-name-${product.id}] jewelry piece lifestyle model view`}
             data-strk-img-ratio="3x4"
             data-strk-img-width="600"

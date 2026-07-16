@@ -4,6 +4,7 @@ import { ChevronDown, Filter, X } from 'lucide-react';
 import { products } from '@/api/products';
 import ProductCard from '@/components/products/ProductCard';
 import { ImageHelper } from '@/lib/mock-sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -14,9 +15,7 @@ const Shop = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
-    if (window.ImageHelper) {
-      window.ImageHelper.loadImages({}, containerRef.current);
-    }
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, [categoryFilter]);
 
   const filteredProducts = products.filter(p => 
@@ -29,7 +28,7 @@ const Shop = () => {
     <div ref={containerRef} className="pt-24 min-h-screen">
       <div className="px-6 md:px-12 max-w-7xl mx-auto">
         <div className="mb-12 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif mb-4 uppercase tracking-[0.1em]">Collection</h1>
+          <h1 className="text-4xl md:text-5xl font-serif mb-4 uppercase tracking-widest-plus">Collection</h1>
           <p className="text-muted-foreground font-light max-w-2xl mx-auto">
             Explore our curated selection of demi-fine jewelry, designed to be worn every day and cherished forever.
           </p>
@@ -112,6 +111,18 @@ const Shop = () => {
                      <label key={range} className="flex items-center space-x-3 cursor-pointer group">
                         <div className="w-4 h-4 border border-black/20 group-hover:border-accent transition-colors" />
                         <span className="text-sm text-muted-foreground">{range}</span>
+                     </label>
+                   ))}
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xs uppercase tracking-widest font-bold mb-4">Material</h3>
+                <div className="space-y-3">
+                   {['18K Gold Plated', 'Sterling Silver', 'Rose Gold'].map(mat => (
+                     <label key={mat} className="flex items-center space-x-3 cursor-pointer group">
+                        <div className="w-4 h-4 border border-black/20 group-hover:border-accent transition-colors" />
+                        <span className="text-sm text-muted-foreground">{mat}</span>
                      </label>
                    ))}
                 </div>

@@ -2,14 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, ChevronDown, ChevronUp, Plus, Minus, HelpCircle, Truck, RefreshCw } from 'lucide-react';
 import { products } from '@/api/products';
-import { toast } from 'sonner';
+import { useCart } from '@/context/CartContext';
+import { ImageHelper } from '@/lib/mock-sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import ProductCard from '@/components/products/ProductCard';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const product = products.find(p => p.id === id);
   const containerRef = useRef(null);
-  
+  const { addToCart } = useCart();
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [activeAccordion, setActiveAccordion] = useState('description');
@@ -17,71 +20,64 @@ const ProductDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (window.ImageHelper) {
-      window.ImageHelper.loadImages({}, containerRef.current);
-    }
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, [id]);
 
   if (!product) return <div className="pt-32 text-center font-serif text-2xl">Product not found.</div>;
 
   const handleAddToCart = () => {
-    toast.success(`${product.name} added to your collection`);
+    addToCart(product, quantity);
   };
 
   const tones = ['Gold', 'Silver'];
-  
+
   const accordions = [
-    { 
-      id: 'description', 
-      title: 'Description', 
-      content: product.description 
+    {
+      id: 'description',
+      title: 'Description',
+      content: product.description
     },
-    { 
-      id: 'materials', 
-      title: 'Materials & Care', 
-      content: `Crafted in ${product.materials}. To maintain its luster, avoid contact with perfumes, lotions, and water. Store in a cool, dry place.` 
+    {
+      id: 'materials',
+      title: 'Materials & Care',
+      content: `Crafted in ${product.materials}. To maintain its luster, avoid contact with perfumes, lotions, and water. Store in a cool, dry place.`
     },
-    { 
-      id: 'shipping', 
-      title: 'Shipping & Returns', 
-      content: 'Free standard shipping on all orders. Returns are accepted within 30 days of delivery for a full refund or exchange.' 
+    {
+      id: 'shipping',
+      title: 'Shipping & Returns',
+      content: 'Free standard shipping on all orders. Returns are accepted within 30 days of delivery for a full refund or exchange.'
     }
   ];
 
-  const relatedProducts = products.filter(p => p.id !== id).slice(0, 4);
+    const relatedProducts = products.filter(p => p.id !== id).slice(0, 4);
 
-  return (
+    return (
     <div ref={containerRef} className="pt-24 pb-24">
       <div className="px-6 md:px-12 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
-          
+
           {/* Left: Image Gallery */}
           <div className="flex flex-col-reverse md:flex-row gap-4">
             {/* Thumbnails */}
             <div className="flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto hide-scrollbar">
-              {[...Array(4)].map((_, idx) => (
-                <button 
-                  key={idx}
-                  onClick={() => setSelectedImage(idx)}
-                  className={`flex-shrink-0 w-20 md:w-24 aspect-[3/4] bg-muted overflow-hidden border transition-all ${selectedImage === idx ? 'border-accent' : 'border-transparent'}`}
-                >
-                  <img
-                    data-strk-img-id={`pdp-thumb-${id}-${idx}`}
-                    data-strk-img={`[pdp-name] jewelry piece close-up view ${idx}`}
-                    data-strk-img-ratio="3x4"
-                    data-strk-img-width="200"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E"
-                    className="w-full h-full object-cover"
-                    alt={`Thumbnail ${idx}`}
-                  />
-                </button>
-              ))}
+              <button onClick={() => setSelectedImage(0)} className={`flex-shrink-0 w-20 md:w-24 aspect-[3/4] bg-muted overflow-hidden border transition-all ${selectedImage === 0 ? 'border-accent' : 'border-transparent'}`}>
+                  <img data-strk-img-id="pdp-thumb-0" data-strk-img="[pdp-name] jewelry piece close-up view 0" data-strk-img-ratio="3x4" data-strk-img-width="200" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E" className="w-full h-full object-cover" alt="Thumbnail 0" />
+              </button>
+              <button onClick={() => setSelectedImage(1)} className={`flex-shrink-0 w-20 md:w-24 aspect-[3/4] bg-muted overflow-hidden border transition-all ${selectedImage === 1 ? 'border-accent' : 'border-transparent'}`}>
+                  <img data-strk-img-id="pdp-thumb-1" data-strk-img="[pdp-name] jewelry piece close-up view 1" data-strk-img-ratio="3x4" data-strk-img-width="200" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E" className="w-full h-full object-cover" alt="Thumbnail 1" />
+              </button>
+              <button onClick={() => setSelectedImage(2)} className={`flex-shrink-0 w-20 md:w-24 aspect-[3/4] bg-muted overflow-hidden border transition-all ${selectedImage === 2 ? 'border-accent' : 'border-transparent'}`}>
+                  <img data-strk-img-id="pdp-thumb-2" data-strk-img="[pdp-name] jewelry piece close-up view 2" data-strk-img-ratio="3x4" data-strk-img-width="200" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E" className="w-full h-full object-cover" alt="Thumbnail 2" />
+              </button>
+              <button onClick={() => setSelectedImage(3)} className={`flex-shrink-0 w-20 md:w-24 aspect-[3/4] bg-muted overflow-hidden border transition-all ${selectedImage === 3 ? 'border-accent' : 'border-transparent'}`}>
+                  <img data-strk-img-id="pdp-thumb-3" data-strk-img="[pdp-name] jewelry piece close-up view 3" data-strk-img-ratio="3x4" data-strk-img-width="200" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E" className="w-full h-full object-cover" alt="Thumbnail 3" />
+              </button>
             </div>
-            
+
             {/* Main Image */}
             <div className="flex-grow aspect-[3/4] bg-muted overflow-hidden">
                 <img
-                    data-strk-img-id={`pdp-main-${id}`}
+                    data-strk-img-id="pdp-main-image"
                     data-strk-img="[pdp-name] jewelry piece main showpiece view"
                     data-strk-img-ratio="3x4"
                     data-strk-img-width="1200"
@@ -95,7 +91,7 @@ const ProductDetail = () => {
           {/* Right: Product Details */}
           <div className="space-y-8">
             <div className="space-y-2">
-              <h1 id="pdp-name" className="text-3xl md:text-4xl font-serif uppercase tracking-[0.1em]">{product.name}</h1>
+              <h1 id="pdp-name" className="text-3xl md:text-4xl font-serif uppercase tracking-widest-plus">{product.name}</h1>
               <div className="flex items-center justify-between">
                 <p className="text-xl md:text-2xl font-serif text-accent">${product.price}</p>
                 <div className="flex items-center space-x-1">
@@ -124,11 +120,11 @@ const ProductDetail = () => {
                      ))}
                   </div>
                </div>
-               
+
                <div>
                   <h3 className="text-xs uppercase tracking-widest font-bold mb-3">Quantity</h3>
                   <div className="inline-flex items-center border border-black/10">
-                     <button 
+                     <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
                         className="p-3 hover:text-accent disabled:opacity-30"
                         disabled={quantity === 1}
@@ -136,7 +132,7 @@ const ProductDetail = () => {
                         <Minus size={16} />
                      </button>
                      <span className="w-12 text-center font-medium">{quantity}</span>
-                     <button 
+                     <button
                         onClick={() => setQuantity(quantity + 1)}
                         className="p-3 hover:text-accent"
                      >
@@ -146,7 +142,7 @@ const ProductDetail = () => {
                </div>
             </div>
 
-            <button 
+            <button
                onClick={handleAddToCart}
                className="w-full bg-accent text-white py-5 uppercase tracking-widest text-sm font-bold shadow-lg hover:shadow-xl hover:bg-accent/90 transition-all active:scale-[0.98]"
             >
@@ -157,7 +153,7 @@ const ProductDetail = () => {
             <div className="border-t border-black/5 pt-8 space-y-4">
                {accordions.map(acc => (
                   <div key={acc.id} className="border-b border-black/5 pb-4">
-                     <button 
+                     <button
                         onClick={() => setActiveAccordion(activeAccordion === acc.id ? '' : acc.id)}
                         className="w-full flex justify-between items-center py-2"
                      >

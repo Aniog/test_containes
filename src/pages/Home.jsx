@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ImageHelper } from '@/lib/mock-sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import { Star, ArrowRight } from 'lucide-react';
 import { products } from '@/api/products';
 import ProductCard from '@/components/products/ProductCard';
@@ -10,11 +11,7 @@ const Home = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    // ImageHelper is a mock or system tool that would be available in the real environment
-    // For this preview, we'll assume it exists if it's in the spec
-    if (window.ImageHelper) {
-      window.ImageHelper.loadImages({}, containerRef.current);
-    }
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
 
   const trustBarItems = [
@@ -125,15 +122,15 @@ const Home = () => {
       {/* UGC Section */}
       <section className="py-24 bg-[#FAF9F6]">
         <div className="px-6 md:px-12 mb-12 text-center">
-            <h2 className="text-3xl font-serif mb-2">As Worn By You</h2>
-            <p className="text-muted-foreground tracking-wide uppercase text-xs">Tag @VELMORAFINE to be featured</p>
+            <h2 id="ugc-title" className="text-3xl font-serif mb-2">As Worn By You</h2>
+            <p id="ugc-concept" className="text-muted-foreground tracking-wide uppercase text-xs">Tag @VELMORAFINE to be featured</p>
         </div>
         <div className="flex overflow-x-auto pb-12 hide-scrollbar px-6 md:px-12 space-x-4 md:space-x-6">
             {ugcItems.map((item) => (
               <div key={item.id} className="min-w-[280px] md:min-w-[320px] aspect-[9/16] relative transition-transform hover:scale-[1.02] duration-500 overflow-hidden group">
                 <img
                   data-strk-img-id={item.imgId}
-                  data-strk-img="[ugc-title] [ugc-concept]"
+                  data-strk-img={`[ugc-caption-${item.id}] [hero-title]`}
                   data-strk-img-ratio="9x16"
                   data-strk-img-width="600"
                   src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 16'/%3E"
@@ -142,7 +139,10 @@ const Home = () => {
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <p className="text-white font-serif italic text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0">
+                  <p 
+                    id={`ugc-caption-${item.id}`}
+                    className="text-white font-serif italic text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 translate-y-2 group-hover:translate-y-0"
+                  >
                     "{item.caption}"
                   </p>
                 </div>
@@ -183,7 +183,7 @@ const Home = () => {
         <div className="aspect-[4/5] overflow-hidden">
           <img
               data-strk-img-id="story-image"
-              data-strk-img="minimalist elegant jewelry story background"
+              data-strk-img="[story-heading] [hero-title]"
               data-strk-img-ratio="4x5"
               data-strk-img-width="1000"
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'/%3E"
@@ -192,7 +192,7 @@ const Home = () => {
           />
         </div>
         <div className="space-y-8">
-          <h2 className="text-4xl md:text-5xl font-serif leading-tight">Our pieces are crafted to be lived in, and loved forever.</h2>
+          <h2 id="story-heading" className="text-4xl md:text-5xl font-serif leading-tight">Our pieces are crafted to be lived in, and loved forever.</h2>
           <p className="text-muted-foreground leading-relaxed text-lg font-light">
             VELMORA was born from a desire for jewelry that balances high-end craftsmanship with accessible pricing. We use only the finest 18K gold plating over skin-friendly brass, creating demi-fine treasures that endure.
           </p>
