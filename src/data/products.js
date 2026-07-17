@@ -1,0 +1,138 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    slug: 'vivid-aura-jewels',
+    price: 42,
+    category: 'earrings',
+    material: '18k-gold',
+    rating: 4.8,
+    reviewCount: 126,
+    description:
+      'A luminous crystal accent meets sculptural gold in this statement ear cuff. Designed for the modern woman who believes jewelry should whisper elegance, not shout. Wear alone or stack with studs for a curated ear.',
+    details: [
+      '18K gold-plated brass',
+      'Crystal accent',
+      'Cuff style — no piercing required',
+      'Diameter: 14mm',
+    ],
+    materialsCare: 'Avoid contact with water, perfumes, and lotions. Store in the included Velmora pouch. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–7 business days. Express delivery 2–3 business days.',
+    variants: ['18K Gold', 'Sterling Silver'],
+    images: ['vivid-aura-1', 'vivid-aura-2', 'vivid-aura-3'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    slug: 'majestic-flora-nectar',
+    price: 68,
+    category: 'necklaces',
+    material: '18k-gold',
+    rating: 4.9,
+    reviewCount: 89,
+    description:
+      'Inspired by blossoms in morning light, this floral necklace features multicolor crystals set in warm gold. A true heirloom piece that elevates everything from a silk blouse to an evening gown.',
+    details: [
+      '18K gold-plated brass',
+      'Multicolor crystal stones',
+      'Adjustable chain: 40cm + 5cm extender',
+      'Lobster clasp',
+    ],
+    materialsCare: 'Avoid contact with water, perfumes, and lotions. Store in the included Velmora pouch. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–7 business days. Express delivery 2–3 business days.',
+    variants: ['18K Gold'],
+    images: ['flora-nectar-1', 'flora-nectar-2', 'flora-nectar-3'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    slug: 'golden-sphere-huggies',
+    price: 38,
+    category: 'earrings',
+    material: '18k-gold',
+    rating: 4.7,
+    reviewCount: 203,
+    description:
+      'Chunky dome huggies with a buttery gold finish. Bold yet lightweight, these are the everyday earrings you will never want to take off. Pairs perfectly with our ear cuffs.',
+    details: [
+      '18K gold-plated brass',
+      'Chunky dome profile',
+      'Hinged clasp closure',
+      'Diameter: 12mm',
+    ],
+    materialsCare: 'Hypoallergenic and nickel-free. Avoid contact with water, perfumes, and lotions. Store in the included Velmora pouch.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–7 business days. Express delivery 2–3 business days.',
+    variants: ['18K Gold', 'Sterling Silver'],
+    images: ['sphere-huggies-1', 'sphere-huggies-2', 'sphere-huggies-3'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    slug: 'amber-lace-earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18k-gold',
+    rating: 4.6,
+    reviewCount: 67,
+    description:
+      'Filigree artistry meets warm amber-toned accents. These drop earrings cascade with intricate gold lace detailing, catching light with every movement. A romantic statement for day or night.',
+    details: [
+      '18K gold-plated brass',
+      'Textured filigree design',
+      'Drop length: 35mm',
+      'Post back closure',
+    ],
+    materialsCare: 'Avoid contact with water, perfumes, and lotions. Store in the included Velmora pouch. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–7 business days. Express delivery 2–3 business days.',
+    variants: ['18K Gold'],
+    images: ['amber-lace-1', 'amber-lace-2', 'amber-lace-3'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    slug: 'royal-heirloom-set',
+    price: 95,
+    category: 'sets',
+    material: '18k-gold',
+    rating: 5.0,
+    reviewCount: 42,
+    description:
+      'A gift-boxed pairing of our signature earrings and necklace. Designed to be the complete look — whether for a bride, an anniversary, or simply because she deserves something timeless.',
+    details: [
+      '18K gold-plated brass',
+      'Matching earring and necklace set',
+      'Gift box included',
+      'Necklace: 42cm + 5cm extender',
+    ],
+    materialsCare: 'Avoid contact with water, perfumes, and lotions. Store in the included Velmora pouch. Wipe gently with a soft cloth after wear.',
+    shipping: 'Free worldwide shipping on orders over $50. Standard delivery 5–7 business days. Express delivery 2–3 business days.',
+    variants: ['18K Gold', 'Sterling Silver'],
+    images: ['heirloom-1', 'heirloom-2', 'heirloom-3'],
+  },
+];
+
+export const testimonials = [
+  {
+    name: 'Claire M.',
+    text: 'The quality is exceptional — looks and feels far more expensive than it is. I wear my Golden Sphere Huggies every single day.',
+    rating: 5,
+  },
+  {
+    name: 'Sophie L.',
+    text: 'Ordered the Majestic Flora Nectar necklace for my sister\'s wedding. It arrived beautifully packaged and she absolutely adores it.',
+    rating: 5,
+  },
+  {
+    name: 'Elena R.',
+    text: 'Finally, demi-fine jewelry that nails quiet luxury. The Amber Lace earrings get compliments everywhere I go.',
+    rating: 5,
+  },
+];
+
+export const ugcItems = [
+  { id: 'ugc-1', title: 'Everyday Glow', caption: '@isabelle_ wears Golden Sphere Huggies' },
+  { id: 'ugc-2', title: 'Bridal Moment', caption: '@anamaria styled with Flora Nectar' },
+  { id: 'ugc-3', title: 'Stacked & Chic', caption: '@lenaklaus layers Vivid Aura + Huggies' },
+  { id: 'ugc-4', title: 'Date Night', caption: '@sophiedreams in Amber Lace' },
+  { id: 'ugc-5', title: 'Gift Edit', caption: '@thestyleedit unboxes Royal Heirloom' },
+];
