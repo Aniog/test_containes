@@ -47,7 +47,7 @@ const ProductCard = ({
       <Link to={`/product/${product.slug}`} className="block overflow-hidden rounded-3xl bg-velmora-mist shadow-soft">
         <div className="relative aspect-[4/5] overflow-hidden">
           <img
-            src={imagePlaceholder}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={product.name}
             loading={priority ? 'eager' : 'lazy'}
             className="h-full w-full object-cover transition-all duration-500 ease-luxe group-hover:scale-105 group-hover:opacity-0"
@@ -57,7 +57,7 @@ const ProductCard = ({
             data-strk-img-width="900"
           />
           <img
-            src={imagePlaceholder}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={`${product.name} alternate view`}
             loading="lazy"
             className="absolute inset-0 h-full w-full object-cover opacity-0 transition-all duration-500 ease-luxe group-hover:scale-105 group-hover:opacity-100"

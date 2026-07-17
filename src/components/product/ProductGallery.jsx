@@ -12,7 +12,7 @@ const ProductGallery = ({ product }) => {
     <div className="space-y-4">
       <div className="overflow-hidden rounded-[2.5rem] bg-velmora-mist shadow-soft">
         <img
-          src={imagePlaceholder}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           alt={product.name}
           className="aspect-[4/5] w-full object-cover"
           data-strk-img-id={`product-gallery-main-${product.slug}`}
@@ -38,7 +38,7 @@ const ProductGallery = ({ product }) => {
               {shot.prompt}
             </span>
             <img
-              src={imagePlaceholder}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt={shot.label}
               className="aspect-square w-full object-cover"
               data-strk-img-id={`product-gallery-thumb-${product.slug}-${shot.id}`}

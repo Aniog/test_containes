@@ -6,7 +6,7 @@ const HomeStorySection = () => {
       <div className="page-shell grid gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
         <div className="overflow-hidden rounded-[2.5rem] bg-velmora-ink shadow-soft">
           <img
-            src={imagePlaceholder}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt="Velmora atelier story"
             className="h-full min-h-[25rem] w-full object-cover"
             data-strk-img-id="story-image-velmora-52hf2k"

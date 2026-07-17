@@ -20,7 +20,7 @@ const HomeUGCRow = ({ moments }) => {
                   className="group relative w-[16.5rem] shrink-0 overflow-hidden rounded-[2rem] bg-velmora-ink shadow-soft md:w-[18rem]"
                 >
                   <img
-                    src={imagePlaceholder}
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                     alt={moment.title}
                     className="h-[28rem] w-full object-cover transition-transform duration-700 ease-luxe group-hover:scale-105"
                     data-strk-img-id={`ugc-card-${moment.id}`}
