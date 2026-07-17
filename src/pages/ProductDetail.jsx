@@ -149,10 +149,13 @@ export default function ProductDetail() {
                     onClick={() => setSelectedVariant(variant)}
                     className={`px-5 py-2.5 font-sans text-sm capitalize transition-colors rounded-none ${
                       selectedVariant === variant
-                        ? 'border-2 border-[#1A1A1A] bg-[#1A1A1A]'
-                        : 'border border-divider bg-transparent text-foreground hover:border-foreground'
+                        ? 'border-2 border-[#1A1A1A]'
+                        : 'border border-divider hover:border-foreground'
                     }`}
-                    style={selectedVariant === variant ? { color: '#FAF7F2' } : {}}
+                    style={selectedVariant === variant
+                      ? { backgroundColor: '#1A1A1A', color: '#FAF7F2' }
+                      : { backgroundColor: 'transparent', color: '#1A1A1A' }
+                    }
                   >
                     {variant}
                   </button>
