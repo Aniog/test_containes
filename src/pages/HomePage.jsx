@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '../strk-img-config.json'
 import { categories, journalPosts, products, testimonials, ugcMoments } from '../data/products'
 import { useStore } from '../context/StoreContext'
 import { ProductCard } from '../components/storefront/ProductCard'
@@ -16,9 +19,25 @@ const trustItems = [
 
 export function HomePage() {
   const { addToCart } = useStore()
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (containerRef.current) {
+        cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      }
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [])
 
   return (
-    <>
+    <div ref={containerRef}>
       <section className="relative isolate overflow-hidden bg-velmora-espresso px-5 pb-14 pt-32 text-velmora-ivory sm:px-6 lg:px-10 lg:pb-20 lg:pt-36">
         <div
           className="absolute inset-0 opacity-40"
@@ -64,9 +83,9 @@ export function HomePage() {
                 id="hero-model-shot"
                 alt="Velmora model wearing gold jewelry"
                 query="[hero-subtitle] [hero-title]"
-                ratio="4x5"
+                ratio="3x4"
                 width="1000"
-                className="aspect-[4/5] h-full w-full object-cover"
+                className="aspect-[3/4] h-full w-full object-cover"
               />
             </div>
             <div className="absolute -bottom-6 left-4 rounded-[1.75rem] border border-white/15 bg-velmora-espresso/85 p-5 shadow-xl backdrop-blur sm:left-8">
@@ -77,7 +96,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="border-b border-t border-velmora-line bg-white">
+      <section id="assurance" className="border-b border-t border-velmora-line bg-white">
         <div className="mx-auto flex w-full max-w-7xl flex-wrap items-center justify-center gap-x-6 gap-y-3 px-5 py-4 text-center text-xs uppercase tracking-[0.32em] text-velmora-taupe sm:px-6 lg:justify-between lg:px-10">
           {trustItems.map((item) => (
             <span key={item}>{item}</span>
@@ -165,9 +184,9 @@ export function HomePage() {
                   id={`${category.id}-tile-image`}
                   alt={category.label}
                   query={`[${descId}] [${titleId}]`}
-                  ratio="4x5"
+                  ratio="3x4"
                   width="900"
-                  className="aspect-[4/5] h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  className="aspect-[3/4] h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-velmora-espresso via-velmora-espresso/18 to-transparent transition duration-300 group-hover:bg-gradient-to-t group-hover:from-velmora-espresso group-hover:via-velmora-espresso/28" />
                 <div className="absolute inset-0 flex items-end p-6">
@@ -193,9 +212,9 @@ export function HomePage() {
               id="brand-story-image"
               alt="Velmora brand story"
               query="[story-body] [story-title]"
-              ratio="4x5"
+              ratio="3x4"
               width="1000"
-              className="aspect-[4/5] h-full w-full object-cover"
+              className="aspect-[3/4] h-full w-full object-cover"
             />
           </div>
           <div className="max-w-xl space-y-6">
@@ -238,7 +257,7 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto w-full max-w-7xl px-5 pb-16 sm:px-6 md:pb-24 lg:px-10">
+      <section id="newsletter" className="mx-auto w-full max-w-7xl px-5 pb-16 sm:px-6 md:pb-24 lg:px-10">
         <div className="overflow-hidden rounded-[2.5rem] bg-velmora-espresso px-6 py-10 text-velmora-ivory shadow-[0_26px_60px_rgba(38,27,23,0.18)] sm:px-8 lg:px-12 lg:py-12">
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
             <div className="max-w-2xl space-y-4">
@@ -288,6 +307,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

@@ -102,9 +102,9 @@ export function ProductPage() {
               id={`${product.imageIds[selectedImage]}-detail`}
               alt={product.shortName}
               query={`[product-description] [product-title]`}
-              ratio="4x5"
+              ratio="3x4"
               width="1200"
-              className="aspect-[4/5] h-full w-full object-cover"
+              className="aspect-[3/4] h-full w-full object-cover"
             />
           </div>
         </div>

@@ -8,15 +8,26 @@ export function ProductCard({ product, onAddToCart, priority = false }) {
   const imageTitleId = `${product.id}-card-title`
   const imageDescId = `${product.id}-card-desc`
 
+  const handleQuickAdd = (event) => {
+    event.preventDefault()
+    event.stopPropagation()
+    onAddToCart(product, 'Gold', 1)
+  }
+
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-[2rem] border border-velmora-line bg-white text-velmora-espresso shadow-[0_20px_50px_rgba(38,27,23,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_24px_60px_rgba(38,27,23,0.12)]">
-      <Link to={`/product/${product.id}`} className="relative block overflow-hidden rounded-[2rem] rounded-b-none bg-velmora-champagne/65">
-        <div className="relative aspect-[4/5] overflow-hidden">
+      <div className="relative overflow-hidden rounded-[2rem] rounded-b-none bg-velmora-champagne/65">
+        <Link
+          to={`/product/${product.id}`}
+          className="absolute inset-0 z-10"
+          aria-label={`View ${product.shortName}`}
+        />
+        <div className="relative aspect-[3/4] overflow-hidden">
           <StoreImage
             id={product.imageIds[0]}
             alt={product.shortName}
             query={`[${imageDescId}] [${imageTitleId}]`}
-            ratio="4x5"
+            ratio="3x4"
             width={priority ? '900' : '700'}
             className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] group-hover:opacity-0"
           />
@@ -24,24 +35,32 @@ export function ProductCard({ product, onAddToCart, priority = false }) {
             id={product.imageIds[1]}
             alt={`${product.shortName} alternate view`}
             query={`[${imageTitleId}] [${imageDescId}]`}
-            ratio="4x5"
+            ratio="3x4"
             width={priority ? '900' : '700'}
             className="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-100"
           />
         </div>
-        <div className="pointer-events-none absolute inset-x-4 bottom-4 translate-y-4 rounded-full border border-white/50 bg-velmora-espresso/92 px-4 py-3 text-center text-xs uppercase tracking-[0.26em] text-velmora-ivory opacity-0 shadow-lg backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          Quick add to cart
+        <div className="pointer-events-none absolute inset-x-4 bottom-4 z-20 translate-y-4 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <button
+            type="button"
+            onClick={handleQuickAdd}
+            className="pointer-events-auto w-full rounded-full border border-white/50 bg-velmora-espresso/92 px-4 py-3 text-center text-xs uppercase tracking-[0.26em] text-velmora-ivory shadow-lg backdrop-blur transition duration-300 hover:bg-velmora-gold hover:text-velmora-espresso"
+          >
+            Quick add to cart
+          </button>
         </div>
-      </Link>
+      </div>
 
       <div className="flex flex-1 flex-col gap-4 px-5 pb-6 pt-5 sm:px-6">
         <div className="space-y-3">
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-[0.3em] text-velmora-taupe">{product.category}</p>
-              <h3 id={imageTitleId} className="mt-2 font-display text-2xl uppercase tracking-[0.24em] text-velmora-espresso sm:text-[1.85rem]">
-                {product.name}
-              </h3>
+              <Link to={`/product/${product.id}`}>
+                <h3 id={imageTitleId} className="mt-2 font-display text-2xl uppercase tracking-[0.24em] text-velmora-espresso sm:text-[1.85rem]">
+                  {product.name}
+                </h3>
+              </Link>
             </div>
             <span className="text-base text-velmora-espresso">{formatPrice(product.price)}</span>
           </div>

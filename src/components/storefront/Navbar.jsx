@@ -34,6 +34,9 @@ export function Navbar() {
     : 'bg-transparent'
   const navText = solidNav ? 'text-velmora-espresso' : 'text-velmora-ivory'
   const navSubtle = solidNav ? 'text-velmora-taupe' : 'text-velmora-ivory/70'
+  const inputPlaceholderTone = solidNav
+    ? 'placeholder:text-velmora-taupe'
+    : 'placeholder:text-velmora-ivory/70'
 
   return (
     <header className={`fixed inset-x-0 top-0 z-30 transition duration-300 ${navSurface}`}>
@@ -60,13 +63,13 @@ export function Navbar() {
           {navItems.map((item) => {
             const isHashLink = item.to.includes('#')
             return isHashLink ? (
-              <a
+              <Link
                 key={item.label}
-                href={item.to}
+                to={item.to}
                 className={`text-xs uppercase tracking-[0.32em] transition hover:text-velmora-gold ${navText}`}
               >
                 {item.label}
-              </a>
+              </Link>
             ) : (
               <NavLink
                 key={item.label}
@@ -91,10 +94,11 @@ export function Navbar() {
           >
             <Search className={`h-4 w-4 ${navSubtle}`} />
             <input
+              aria-label="Search styles"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search styles"
-              className={`w-28 bg-transparent text-sm outline-none placeholder:${navSubtle} ${navText}`}
+              className={`w-28 bg-transparent text-sm outline-none ${inputPlaceholderTone} ${navText}`}
             />
           </label>
           <button
@@ -144,22 +148,23 @@ export function Navbar() {
           >
             <Search className={`h-4 w-4 ${navSubtle}`} />
             <input
+              aria-label="Search styles"
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
               placeholder="Search styles"
-              className={`w-full bg-transparent text-sm outline-none placeholder:${navSubtle} ${navText}`}
+              className={`w-full bg-transparent text-sm outline-none ${inputPlaceholderTone} ${navText}`}
             />
           </label>
           <div className="flex flex-col gap-4">
             {navItems.map((item) =>
               item.to.includes('#') ? (
-                <a
+                <Link
                   key={item.label}
-                  href={item.to}
+                  to={item.to}
                   className={`text-xs uppercase tracking-[0.32em] ${navText}`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ) : (
                 <NavLink
                   key={item.label}

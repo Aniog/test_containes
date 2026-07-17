@@ -1,18 +1,40 @@
-import { Instagram, Music2, Pinterest } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Gem, Instagram, Music2 } from 'lucide-react'
 
 const footerGroups = [
   {
     title: 'Shop',
-    links: ['Earrings', 'Necklaces', 'Huggies', 'Gift Sets'],
+    links: [
+      { label: 'Earrings', to: '/shop?category=Earrings' },
+      { label: 'Necklaces', to: '/shop?category=Necklaces' },
+      { label: 'Huggies', to: '/shop?category=Huggies' },
+      { label: 'Gift Sets', to: '/shop?category=Sets' },
+    ],
   },
   {
     title: 'Help',
-    links: ['Shipping', 'Returns', 'Care Guide', 'Contact'],
+    links: [
+      { label: 'Shipping', to: '/#assurance' },
+      { label: 'Returns', to: '/#assurance' },
+      { label: 'Care Guide', to: '/product/vivid-aura-jewels' },
+      { label: 'Contact', to: '/#newsletter' },
+    ],
   },
   {
     title: 'Company',
-    links: ['About Velmora', 'Journal', 'Stockists', 'Privacy'],
+    links: [
+      { label: 'About Velmora', to: '/#about' },
+      { label: 'Journal', to: '/#journal' },
+      { label: 'Stockists', to: '/#about' },
+      { label: 'Privacy', to: '/#newsletter' },
+    ],
   },
+]
+
+const socialLinks = [
+  { label: 'Instagram', to: '/#journal', icon: Instagram },
+  { label: 'Collections', to: '/#collections', icon: Gem },
+  { label: 'TikTok', to: '/#journal', icon: Music2 },
 ]
 
 export function Footer() {
@@ -36,15 +58,20 @@ export function Footer() {
             </div>
           </div>
           <div className="flex items-center gap-3 text-velmora-ivory">
-            <a href="#" aria-label="Instagram" className="rounded-full border border-white/15 p-3 transition hover:border-velmora-gold hover:text-velmora-gold">
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a href="#" aria-label="Pinterest" className="rounded-full border border-white/15 p-3 transition hover:border-velmora-gold hover:text-velmora-gold">
-              <Pinterest className="h-4 w-4" />
-            </a>
-            <a href="#" aria-label="TikTok" className="rounded-full border border-white/15 p-3 transition hover:border-velmora-gold hover:text-velmora-gold">
-              <Music2 className="h-4 w-4" />
-            </a>
+            {socialLinks.map((item) => {
+              const Icon = item.icon
+
+              return (
+                <Link
+                  key={item.label}
+                  to={item.to}
+                  aria-label={item.label}
+                  className="rounded-full border border-white/15 p-3 transition hover:border-velmora-gold hover:text-velmora-gold"
+                >
+                  <Icon className="h-4 w-4" />
+                </Link>
+              )
+            })}
           </div>
         </div>
 
@@ -54,10 +81,10 @@ export function Footer() {
               <p className="text-xs uppercase tracking-[0.32em] text-velmora-ivory/60">{group.title}</p>
               <ul className="space-y-3 text-sm text-velmora-ivory/78">
                 {group.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="transition hover:text-velmora-gold">
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    <Link to={link.to} className="transition hover:text-velmora-gold">
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
