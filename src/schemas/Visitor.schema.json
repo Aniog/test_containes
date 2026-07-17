@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Visitors",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 255,
+      "description": "Visitor's email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Visitor's primary phone number"
+    },
+    "membership_tier": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Membership tier or plan of the visitor"
+    },
+    "first_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Visitor's first name"
+    },
+    "last_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Visitor's last name"
+    },
+    "country_region_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or region name"
+    },
+    "country_region_code": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "ISO country or region code (e.g. US, CN, JP)"
+    },
+    "location": {
+      "type": "string",
+      "maxLength": 255,
+      "description": "City or detailed location of the visitor"
+    },
+    "website": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Visitor's personal or company website URL"
+    },
+    "facebook": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Visitor's Facebook profile URL"
+    },
+    "twitter": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Visitor's Twitter/X profile URL"
+    },
+    "instagram": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Visitor's Instagram profile URL"
+    },
+    "youtube": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Visitor's YouTube channel URL"
+    },
+    "comment": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes or comments about the visitor"
+    },
+    "received_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the visitor record was received or created"
+    }
+  },
+  "required": ["email"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
