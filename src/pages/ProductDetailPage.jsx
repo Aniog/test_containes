@@ -1,5 +1,6 @@
 import { Minus, Plus, Truck } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import ProductGallery from '@/components/products/ProductGallery'
 import ProductCard from '@/components/products/ProductCard'
@@ -7,7 +8,7 @@ import Accordion from '@/components/shared/Accordion'
 import RatingStars from '@/components/shared/RatingStars'
 import { useCart } from '@/context/CartContext'
 import { formatPrice, getProductBySlug, products } from '@/data/products'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 import { cn } from '@/lib/utils'
 
 function ProductDetailPage() {
@@ -17,7 +18,21 @@ function ProductDetailPage() {
   const [selectedVariant, setSelectedVariant] = useState(product?.variants?.[0] || 'Gold Tone')
   const [quantity, setQuantity] = useState(1)
   const { addItem } = useCart()
-  const containerRef = useStrkImages([activeIndex, selectedVariant])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [activeIndex, selectedVariant])
 
   const relatedProducts = useMemo(() => {
     if (!product) {

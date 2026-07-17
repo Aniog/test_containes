@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from '@/components/products/ProductCard'
 import ShopFilters from '@/components/shop/ShopFilters'
 import SectionHeading from '@/components/shared/SectionHeading'
 import { materials, products } from '@/data/products'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 const sortOptions = {
   featured: 'Featured',
@@ -21,11 +22,25 @@ function ShopPage() {
   const [selectedPrice, setSelectedPrice] = useState(null)
   const [sortBy, setSortBy] = useState('featured')
   const [isMobileOpen, setIsMobileOpen] = useState(false)
-  const containerRef = useStrkImages([selectedCategory, selectedMaterial, selectedPrice, sortBy])
+  const containerRef = useRef(null)
 
   useEffect(() => {
     setSelectedCategory(searchParams.get('category') || 'All')
   }, [searchParams])
+
+  useEffect(() => {
+    let cleanup
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [selectedCategory, selectedMaterial, selectedPrice, sortBy])
 
   const availableCategories = useMemo(
     () => Array.from(new Set(products.map((product) => product.category))),

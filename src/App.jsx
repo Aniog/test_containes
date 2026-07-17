@@ -1,27 +1,11 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import SiteLayout from '@/components/layout/SiteLayout'
 import { CartProvider } from '@/context/CartContext'
 import HomePage from '@/pages/HomePage'
 import ProductDetailPage from '@/pages/ProductDetailPage'
 import ShopPage from '@/pages/ShopPage'
-
-function PreviewRouteBridge() {
-  const navigate = useNavigate()
-
-  useEffect(() => {
-    window.__STRIKINGLY_PREVIEW_NAVIGATE__ = (path, options = {}) => {
-      navigate(path, options)
-    }
-
-    return () => {
-      delete window.__STRIKINGLY_PREVIEW_NAVIGATE__
-    }
-  }, [navigate])
-
-  return null
-}
 
 function ScrollManager() {
   const location = useLocation()
@@ -44,7 +28,6 @@ function ScrollManager() {
 function AppRoutes() {
   return (
     <>
-      <PreviewRouteBridge />
       <ScrollManager />
       <Routes>
         <Route element={<SiteLayout />}>

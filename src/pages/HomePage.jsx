@@ -1,3 +1,5 @@
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import BestsellersSection from '@/components/home/BestsellersSection'
 import CategoryTiles from '@/components/home/CategoryTiles'
 import HomeHero from '@/components/home/HomeHero'
@@ -16,10 +18,24 @@ import {
   trustPoints,
   ugcMoments,
 } from '@/data/products'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 function HomePage() {
-  const containerRef = useStrkImages([])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [])
 
   return (
     <div ref={containerRef} className="bg-ivory text-velvet">

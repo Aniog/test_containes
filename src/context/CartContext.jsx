@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 
 const CartContext = createContext(null)
 const STORAGE_KEY = 'velmora-cart'
@@ -29,7 +29,40 @@ export function CartProvider({ children }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
   }, [items])
 
-  const addItem = (product, options = {}) => {
+  const openCart = useCallback(() => {
+    setIsOpen(true)
+  }, [])
+
+  const closeCart = useCallback(() => {
+    setIsOpen(false)
+  }, [])
+
+  const toggleCart = useCallback(() => {
+    setIsOpen((current) => !current)
+  }, [])
+
+  const removeItem = useCallback((key) => {
+    setItems((current) => current.filter((item) => item.key !== key))
+  }, [])
+
+  const updateQuantity = useCallback((key, quantity) => {
+    if (quantity <= 0) {
+      removeItem(key)
+      return
+    }
+
+    setItems((current) =>
+      current.map((item) =>
+        item.key === key ? { ...item, quantity } : item,
+      ),
+    )
+  }, [removeItem])
+
+  const clearCart = useCallback(() => {
+    setItems([])
+  }, [])
+
+  const addItem = useCallback((product, options = {}) => {
     const variant = options.variant || product.variants?.[0] || 'Gold Tone'
     const quantity = Math.max(1, options.quantity || 1)
     const key = buildCartKey(product.id, variant)
@@ -60,29 +93,8 @@ export function CartProvider({ children }) {
       ]
     })
 
-    setIsOpen(true)
-  }
-
-  const removeItem = (key) => {
-    setItems((current) => current.filter((item) => item.key !== key))
-  }
-
-  const updateQuantity = (key, quantity) => {
-    if (quantity <= 0) {
-      removeItem(key)
-      return
-    }
-
-    setItems((current) =>
-      current.map((item) =>
-        item.key === key ? { ...item, quantity } : item,
-      ),
-    )
-  }
-
-  const clearCart = () => {
-    setItems([])
-  }
+    openCart()
+  }, [openCart])
 
   const value = useMemo(() => {
     const itemCount = items.reduce((total, item) => total + item.quantity, 0)
@@ -100,11 +112,11 @@ export function CartProvider({ children }) {
       removeItem,
       updateQuantity,
       clearCart,
-      openCart: () => setIsOpen(true),
-      closeCart: () => setIsOpen(false),
-      toggleCart: () => setIsOpen((current) => !current),
+      openCart,
+      closeCart,
+      toggleCart,
     }
-  }, [isOpen, items])
+  }, [addItem, clearCart, closeCart, isOpen, items, openCart, removeItem, toggleCart, updateQuantity])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }
