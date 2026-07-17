@@ -74,3 +74,58 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+
+    --primary: 38 42% 43%;          /* Warm gold/bronze accent */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 20% 92%;        /* Soft cream/beige secondary */
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 5.9% 90%;
+
+    --radius: 0.2rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    @apply font-serif;
+  }
+}
+
+.hover-trigger .hover-target {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hover-trigger:hover .hover-target {
+  opacity: 1;
+}
