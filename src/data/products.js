@@ -1,0 +1,122 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    description: 'A stunning gold ear cuff adorned with a delicate crystal accent. This piece captures light beautifully, adding a touch of celestial sparkle to any look.',
+    longDescription: 'The Vivid Aura Jewels ear cuff is designed for the modern woman who appreciates subtle luxury. Crafted from premium 18K gold-plated sterling silver, this piece features a hand-set crystal that catches the light with every movement. No piercing required — simply slide it onto your ear for an instant elevation.',
+    materials: '18K gold-plated sterling silver, Cubic zirconia crystal. Nickel-free, hypoallergenic.',
+    care: 'Store in the provided jewelry pouch. Avoid contact with perfume, lotions, and water. Clean gently with a soft cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3-7 business days. 30-day hassle-free returns.',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=600&fit=crop',
+    ],
+    variants: ['Gold', 'Silver'],
+    featured: true,
+    slug: 'vivid-aura-jewels',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A multicolor floral crystal necklace that blooms with vibrant elegance. Each petal is meticulously set to create a garden of light around your neckline.',
+    longDescription: 'Inspired by the enchanting gardens of European estates, the Majestic Flora Nectar necklace is a celebration of nature\'s artistry. Multiple crystals in soft pastel tones are arranged in a delicate floral pattern, suspended from a fine 18K gold chain. A statement piece that transitions seamlessly from day to evening.',
+    materials: '18K gold-plated sterling silver, Multicolor cubic zirconia crystals. Nickel-free, hypoallergenic.',
+    care: 'Lay flat when storing to prevent tangling. Avoid water and chemicals. Polish with the included microfiber cloth.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3-7 business days. 30-day hassle-free returns.',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=600&fit=crop',
+    ],
+    variants: ['Gold', 'Silver'],
+    featured: true,
+    slug: 'majestic-flora-nectar',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    description: 'Chunky gold dome huggie earrings that hug your earlobes with luxurious weight. A modern classic for everyday elegance.',
+    longDescription: 'The Golden Sphere Huggies are the epitome of quiet luxury. Their chunky dome design creates a bold yet refined silhouette that complements any outfit. The smooth, polished surface reflects light beautifully, while the secure hinged closure ensures comfortable all-day wear.',
+    materials: '18K gold-plated brass. Nickel-free, hypoallergenic. Secure hinged closure.',
+    care: 'Wipe clean with a soft cloth after each wear. Store separately to avoid scratching. Remove before swimming or showering.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3-7 business days. 30-day hassle-free returns.',
+    rating: 4.7,
+    reviews: 201,
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=600&fit=crop',
+    ],
+    variants: ['Gold', 'Silver'],
+    featured: true,
+    slug: 'golden-sphere-huggies',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Textured gold filigree drop earrings inspired by vintage lace patterns. Intricate, romantic, and utterly captivating.',
+    longDescription: 'The Amber Lace Earrings draw inspiration from antique lacework, translated into precious metal with remarkable detail. Each earring features a hand-finished filigree pattern that creates beautiful shadow play as you move. The warm gold tone adds a touch of vintage glamour to contemporary styling.',
+    materials: '18K gold-plated sterling silver. Hand-finished filigree detail. Nickel-free, hypoallergenic.',
+    care: 'Store hanging or flat in the provided box. Clean with a dry soft cloth. Avoid exposure to moisture and chemicals.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3-7 business days. 30-day hassle-free returns.',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop',
+    ],
+    variants: ['Gold', 'Silver'],
+    featured: true,
+    slug: 'amber-lace-earrings',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    price: 95,
+    category: 'sets',
+    material: 'gold',
+    description: 'A luxurious gift-boxed set featuring matching earrings and necklace. The perfect present for someone special — or yourself.',
+    longDescription: 'The Royal Heirloom Set is our most giftable collection, presented in a signature Velmora keepsake box with a velvet-lined interior. The set includes a pair of elegant drop earrings and a matching pendant necklace, both featuring our signature crystal setting. An unforgettable gift for birthdays, anniversaries, or "just because."',
+    materials: '18K gold-plated sterling silver, Cubic zirconia crystals. Nickel-free, hypoallergenic. Includes luxury gift box.',
+    care: 'Each piece should be stored in the provided compartments. Clean gently with the included cloth. Avoid contact with water and chemicals.',
+    shipping: 'Free worldwide shipping on all orders. Delivered in 3-7 business days. 30-day hassle-free returns. Gift wrapping included.',
+    rating: 4.9,
+    reviews: 156,
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop',
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&h=600&fit=crop',
+    ],
+    variants: ['Gold', 'Silver'],
+    featured: true,
+    slug: 'royal-heirloom-set',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 1 },
+  { id: 'huggies', name: 'Huggies', count: 1 },
+  { id: 'sets', name: 'Sets', count: 1 },
+];
+
+export const getProductBySlug = (slug) => {
+  return products.find((p) => p.slug === slug);
+};
+
+export const getRelatedProducts = (productId, limit = 4) => {
+  return products.filter((p) => p.id !== productId).slice(0, limit);
+};
