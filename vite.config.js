@@ -21,7 +21,8 @@ export default defineConfig({
     },
   },
   server: {
-    host: '0.0.0.0',
+    port: 8080,
+    host: true,
     allowedHosts: true,
     cors: true,
     hmr: {
