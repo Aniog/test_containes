@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import ProductCard from '@/components/common/ProductCard'
 import SectionHeading from '@/components/common/SectionHeading'
 import FilterSidebar from '@/components/shop/FilterSidebar'
 import { useCart } from '@/context/CartContext'
-import { products, toneOptions } from '@/data/store'
+import { categoryFilters, products, toneOptions } from '@/data/store'
 import { useStrkImages } from '@/hooks/useStrkImages'
 
 const sortOptions = [
@@ -21,15 +22,46 @@ const matchesPrice = (product, value) => {
   return true
 }
 
+const getCategoryFromParams = (searchParams) => {
+  const category = searchParams.get('category')
+  return categoryFilters.includes(category) ? category : 'All'
+}
+
 const Shop = () => {
   const { addItem, openCart } = useCart()
-  const [filters, setFilters] = useState({
-    category: 'All',
+  const [searchParams, setSearchParams] = useSearchParams()
+  const categoryFromParams = getCategoryFromParams(searchParams)
+  const [filters, setFilters] = useState(() => ({
+    category: categoryFromParams,
     price: 'all',
     materials: [],
-  })
+  }))
   const [sort, setSort] = useState('featured')
   const containerRef = useStrkImages([filters.category, filters.price, filters.materials.join(','), sort])
+
+  useEffect(() => {
+    setFilters((current) =>
+      current.category === categoryFromParams
+        ? current
+        : { ...current, category: categoryFromParams },
+    )
+  }, [categoryFromParams])
+
+  useEffect(() => {
+    if (filters.category === categoryFromParams) {
+      return
+    }
+
+    const nextSearchParams = new URLSearchParams(searchParams)
+
+    if (filters.category === 'All') {
+      nextSearchParams.delete('category')
+    } else {
+      nextSearchParams.set('category', filters.category)
+    }
+
+    setSearchParams(nextSearchParams, { replace: true })
+  }, [categoryFromParams, filters.category, searchParams, setSearchParams])
 
   const filteredProducts = useMemo(() => {
     const nextProducts = products
@@ -58,6 +90,15 @@ const Shop = () => {
   const handleAddToCart = (product) => {
     addItem(product, { quantity: 1, variant: toneOptions[0] })
     openCart()
+  }
+
+  const resetFilters = () => {
+    setFilters({
+      category: 'All',
+      price: 'all',
+      materials: [],
+    })
+    setSort('featured')
   }
 
   return (
@@ -96,15 +137,30 @@ const Shop = () => {
             </label>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-            {filteredProducts.map((product) => (
-              <ProductCard
-                key={product.slug}
-                product={product}
-                onAddToCart={handleAddToCart}
-              />
-            ))}
-          </div>
+          {filteredProducts.length > 0 ? (
+            <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+              {filteredProducts.map((product) => (
+                <ProductCard
+                  key={product.slug}
+                  product={product}
+                  onAddToCart={handleAddToCart}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-[2rem] border border-velmora-sand/70 bg-velmora-mist p-7 text-velmora-ink shadow-soft">
+              <p className="text-xs uppercase tracking-[0.35em] text-velmora-gold">
+                No matches found
+              </p>
+              <h2 className="mt-4 font-heading text-4xl">Refine your edit</h2>
+              <p className="mt-4 max-w-lg text-sm leading-7 text-velmora-ink/75 md:text-base">
+                Try resetting your filters or exploring another category to discover more quiet-luxury pieces.
+              </p>
+              <button type="button" className="button-secondary mt-6" onClick={resetFilters}>
+                Reset filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
     </div>

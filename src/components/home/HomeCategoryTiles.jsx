@@ -4,7 +4,7 @@ import { imagePlaceholder } from '@/data/store'
 
 const HomeCategoryTiles = ({ categories }) => {
   return (
-    <section id="collections" className="bg-velmora-pearl py-16 md:py-24">
+    <section id="collections" className="scroll-mt-28 bg-velmora-pearl py-16 md:scroll-mt-32 md:py-24">
       <div className="page-shell space-y-10">
         <SectionHeading
           eyebrow="Shop by category"

@@ -2,7 +2,26 @@ import { Link } from 'react-router-dom'
 import { footerColumns } from '@/data/store'
 
 const paymentMethods = ['Visa', 'Mastercard', 'AmEx', 'PayPal']
-const socialLinks = ['Instagram', 'Pinterest', 'TikTok']
+const socialLinks = [
+  { label: 'Instagram', href: 'https://instagram.com' },
+  { label: 'Pinterest', href: 'https://pinterest.com' },
+  { label: 'TikTok', href: 'https://tiktok.com' },
+]
+
+const footerLinkMap = {
+  Bestsellers: '/#bestsellers',
+  Earrings: '/shop?category=Earrings',
+  Necklaces: '/shop?category=Necklaces',
+  'Gift Sets': '/shop?category=Gift Sets',
+  Shipping: '/shop',
+  Returns: '/shop',
+  'Care Guide': '/#journal',
+  Contact: '/#newsletter',
+  'About Velmora': '/#story',
+  Journal: '/#journal',
+  'Our Materials': '/#story',
+  Privacy: '/#newsletter',
+}
 
 const SiteFooter = () => {
   return (
@@ -40,9 +59,12 @@ const SiteFooter = () => {
               <ul className="space-y-4 text-sm text-velmora-ink/75">
                 {items.map((item) => (
                   <li key={item}>
-                    <a href="#" className="transition-colors hover:text-velmora-gold">
+                    <Link
+                      to={footerLinkMap[item] ?? '/'}
+                      className="transition-colors hover:text-velmora-gold"
+                    >
                       {item}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -57,8 +79,14 @@ const SiteFooter = () => {
         <p>© 2026 Velmora Fine Jewelry</p>
         <div className="flex flex-wrap items-center gap-4">
           {socialLinks.map((social) => (
-            <a key={social} href="#" className="transition-colors hover:text-velmora-gold">
-              {social}
+            <a
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-velmora-gold"
+            >
+              {social.label}
             </a>
           ))}
         </div>

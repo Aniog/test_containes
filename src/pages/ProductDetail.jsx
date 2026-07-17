@@ -55,7 +55,7 @@ const ProductDetail = () => {
               <p className="text-2xl text-velmora-ink">{formatPrice(product.price)}</p>
               <StarRating rating={product.rating} reviewCount={product.reviewCount} />
             </div>
-            <p id="product-short-desc" className="mt-6 text-base leading-8 text-velmora-ink/72">
+            <p id="product-short-desc" className="mt-6 text-base leading-8 text-velmora-ink/75">
               {product.shortDescription}
             </p>
 
@@ -125,7 +125,7 @@ const ProductDetail = () => {
         <div className="page-shell space-y-10">
           <div>
             <p className="section-kicker">You may also like</p>
-            <h2 className="section-title">Continue your edit</h2>
+            <h2 className="section-title">Complete the collection</h2>
           </div>
           <div className="grid gap-8 md:grid-cols-3">
             {relatedProducts.map((item) => (

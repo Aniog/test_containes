@@ -3,7 +3,7 @@ import SectionHeading from '@/components/common/SectionHeading'
 
 const HomeBestsellers = ({ products, onAddToCart }) => {
   return (
-    <section className="bg-velmora-pearl py-16 md:py-24">
+    <section id="bestsellers" className="scroll-mt-28 bg-velmora-pearl py-16 md:scroll-mt-32 md:py-24">
       <div className="page-shell space-y-10">
         <SectionHeading
           eyebrow="Bestsellers"

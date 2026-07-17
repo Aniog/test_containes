@@ -3,7 +3,7 @@ import SectionHeading from '@/components/common/SectionHeading'
 
 const HomeJournal = ({ notes }) => {
   return (
-    <section id="journal" className="bg-velmora-mist py-16 md:py-24">
+    <section id="journal" className="scroll-mt-28 bg-velmora-mist py-16 md:scroll-mt-32 md:py-24">
       <div className="page-shell space-y-10">
         <SectionHeading
           eyebrow="Journal"
@@ -22,13 +22,13 @@ const HomeJournal = ({ notes }) => {
               <h3 className="mt-5 font-heading text-3xl leading-tight text-velmora-ink">
                 {note.title}
               </h3>
-              <a
-                href="#"
+              <button
+                type="button"
                 className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.28em] text-velmora-ink/60 transition-colors group-hover:text-velmora-gold"
               >
                 Read story
                 <ArrowUpRight className="h-4 w-4" />
-              </a>
+              </button>
             </article>
           ))}
         </div>
