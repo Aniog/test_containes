@@ -4,21 +4,26 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Velmora Fine Jewelry — Crafted to be Treasured</title>
+    <meta
+      name="description"
+      content="Velmora Fine Jewelry — demi-fine gold jewelry crafted to be treasured. Earrings, necklaces, huggies, and gift sets."
+    />
   </head>
   <body>
     <div id="root"></div>
     <script>
       (() => {
-        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) {
-          return;
-        }
-
+        if (window.__STRK_PREVIEW_ROUTE_BRIDGE__) return;
         window.__STRK_PREVIEW_ROUTE_BRIDGE__ = true;
-
         const CHANNEL = "strikingly-preview";
         const VERSION = 1;
-
         const getRoutePayload = (source) => ({
           url: window.location.href,
           origin: window.location.origin,
@@ -30,102 +35,51 @@
           source,
           timestamp: Date.now(),
         });
-
         const postRoute = (type, source) => {
-          if (!window.parent || window.parent === window) {
-            return;
-          }
-
+          if (!window.parent || window.parent === window) return;
           try {
             window.parent.postMessage(
-              {
-                channel: CHANNEL,
-                version: VERSION,
-                type,
-                payload: getRoutePayload(source),
-              },
-              "*",
+              { channel: CHANNEL, version: VERSION, type, payload: getRoutePayload(source) },
+              "*"
             );
-          } catch {
-            // Keep the generated app running even if preview communication fails.
-          }
+          } catch {}
         };
-
         const notifyRouteChanged = (source) => {
-          window.requestAnimationFrame(() =>
-            postRoute("route:changed", source),
-          );
+          window.requestAnimationFrame(() => postRoute("route:changed", source));
         };
-
         const patchHistoryMethod = (methodName) => {
           const originalMethod = window.history[methodName];
-          if (typeof originalMethod !== "function") {
-            return;
-          }
-
-          window.history[methodName] = function patchedHistoryMethod(...args) {
+          if (typeof originalMethod !== "function") return;
+          window.history[methodName] = function patched(...args) {
             const result = originalMethod.apply(this, args);
             notifyRouteChanged(methodName);
             return result;
           };
         };
-
         patchHistoryMethod("pushState");
         patchHistoryMethod("replaceState");
-
-        window.addEventListener("popstate", () => {
-          notifyRouteChanged("popstate");
-        });
-
-        window.addEventListener("hashchange", () => {
-          notifyRouteChanged("hashchange");
-        });
-
+        window.addEventListener("popstate", () => notifyRouteChanged("popstate"));
+        window.addEventListener("hashchange", () => notifyRouteChanged("hashchange"));
         window.addEventListener("load", () => {
           postRoute("route:ready", "load");
           postRoute("route:changed", "load");
         });
-
         window.addEventListener("message", (event) => {
           const data = event.data;
-          if (
-            !data ||
-            typeof data !== "object" ||
-            data.channel !== CHANNEL ||
-            data.version !== VERSION
-          ) {
-            return;
-          }
-
-          if (data.type === "route:request") {
-            postRoute("route:changed", "load");
-            return;
-          }
-
-          if (data.type !== "route:navigate") {
-            return;
-          }
-
+          if (!data || typeof data !== "object" || data.channel !== CHANNEL || data.version !== VERSION) return;
+          if (data.type === "route:request") { postRoute("route:changed", "load"); return; }
+          if (data.type !== "route:navigate") return;
           const path = data.payload?.path;
-          if (typeof path !== "string" || !path) {
-            return;
-          }
-
+          if (typeof path !== "string" || !path) return;
           const replace = Boolean(data.payload?.replace);
           const navigate = window.__STRIKINGLY_PREVIEW_NAVIGATE__;
-
           if (typeof navigate === "function") {
             navigate(path, { replace });
             notifyRouteChanged("navigate-command");
             return;
           }
-
-          if (replace) {
-            window.history.replaceState({}, "", path);
-          } else {
-            window.history.pushState({}, "", path);
-          }
-
+          if (replace) window.history.replaceState({}, "", path);
+          else window.history.pushState({}, "", path);
           window.dispatchEvent(new PopStateEvent("popstate", { state: {} }));
           notifyRouteChanged("navigate-command");
         });
