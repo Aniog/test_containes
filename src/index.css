@@ -1,76 +1,151 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Google Fonts - Elegant serif + clean sans-serif */
+
+@layer base {
+  :root {
+    --color-gold: #C9A96E;
+    --color-gold-light: #D4B87A;
+    --color-gold-dark: #B8945A;
+    --color-cream: #FAF8F5;
+    --color-charcoal: #1A1A1A;
+    --color-warm-gray: #8A8580;
+    --color-border: #E8E4DF;
+  }
+
+  * {
+    @apply border-[#E8E4DF];
+  }
+
+  body {
+    @apply bg-[#FAF8F5] text-[#1A1A1A] font-[Inter] antialiased;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-[Cormorant_Garamond];
+  }
+}
+
+@layer components {
+  /* Product name styling */
+  .product-name {
+    @apply font-[Cormorant_Garamond] uppercase tracking-[0.2em] text-sm md:text-base;
+  }
+
+  /* Premium button base */
+  .btn-premium {
+    @apply px-8 py-3 font-[Inter] text-sm uppercase tracking-wider transition-all duration-300;
+  }
+
+  .btn-premium-solid {
+    @apply btn-premium bg-[#C9A96E] text-white hover:bg-[#B8945A];
+  }
+
+  .btn-premium-outline {
+    @apply btn-premium border-2 border-[#C9A96E] text-[#C9A96E] hover:bg-[#C9A96E] hover:text-white;
+  }
+
+  /* Hairline divider */
+  .divider-hairline {
+    @apply h-px bg-[#E8E4DF];
+  }
+
+  /* Smooth image hover */
+  .img-hover-zoom {
+    @apply overflow-hidden;
+  }
+
+  .img-hover-zoom img {
+    @apply transition-all duration-500;
+  }
+
+  .img-hover-zoom:hover img {
+    @apply scale-105;
+  }
+
+  /* Cart badge pulse */
+  @keyframes cart-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+  }
+
+  .cart-badge-pulse {
+    animation: cart-pulse 0.3s ease-in-out;
+  }
+
+  /* Line clamp for descriptions */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-[#FAF8F5];
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-[#8A8580] rounded-full;
+  }
+
+  /* Focus styles */
+  input:focus, select:focus, textarea:focus {
+    @apply outline-none ring-1 ring-[#C9A96E];
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  /* Slide up animation */
+  @keyframes slideUp {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+
+  /* Slide down animation */
+  @keyframes slideDown {
+    0% { transform: translateY(-10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+}
