@@ -83,18 +83,11 @@ export default function CartDrawer() {
                   key={`${item.id}-${item.variant}`}
                   className="flex gap-4 py-4 border-b border-stone-100 last:border-b-0"
                 >
-                  <span id={`product-name-${item.id}`} className="hidden">{item.name}</span>
-                  {/* Product image */}
-                  <div className="w-20 h-20 flex-shrink-0 overflow-hidden rounded-md">
-                    <img
-                      data-strk-img-id={`cart-${item.id}-${item.variant}`}
-                      data-strk-img={`[product-name-${item.id}] gold jewelry product`}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="160"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.name}
-                      className="w-full h-full object-cover bg-stone-200"
-                    />
+                  {/* Product thumbnail */}
+                  <div className="w-20 h-20 flex-shrink-0 rounded-md bg-gradient-to-br from-amber-50 to-stone-100 flex items-center justify-center border border-stone-200">
+                    <span className="font-serif text-xl text-gold font-medium">
+                      {item.name.charAt(0)}
+                    </span>
                   </div>
 
                   <div className="flex-1 min-w-0">
