@@ -4,9 +4,6 @@ import { useCart } from "@/context/CartContext"
 import { formatPrice } from "@/lib/utils"
 import StarRating from "@/components/ui/StarRating"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 export default function ProductCard({ product, sectionTitleId }) {
   const { addItem } = useCart()
 
@@ -29,7 +26,7 @@ export default function ProductCard({ product, sectionTitleId }) {
           data-strk-img={`[${product.descId}] [${product.titleId}] ${sectionTitleId ? `[${sectionTitleId}]` : ""}`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="aspect-[3/4] w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
         {/* Secondary image revealed on hover */}
@@ -39,7 +36,7 @@ export default function ProductCard({ product, sectionTitleId }) {
           data-strk-img={`[${product.descId}] [${product.titleId}] worn model`}
           data-strk-img-ratio="3x4"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 aspect-[3/4] w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
 

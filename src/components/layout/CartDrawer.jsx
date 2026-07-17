@@ -5,9 +5,7 @@ import { useCart } from "@/context/CartContext"
 import { formatPrice } from "@/lib/utils"
 import { ImageHelper } from "@strikingly/sdk"
 import strkImgConfig from "@/strk-img-config.json"
-
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+import { products } from "@/data/products"
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, subtotal, count } = useCart()
@@ -78,16 +76,17 @@ export default function CartDrawer() {
         ) : (
           <div className="flex-1 overflow-y-auto px-6 py-4">
             {items.map((item) => {
+              const product = products.find((p) => p.id === item.id)
               return (
               <div key={item.lineId} className="flex gap-4 border-b border-ink/10 py-5">
                 <Link to={`/product/${item.id}`} onClick={closeCart} className="shrink-0">
                   <img
                     alt={item.name}
-                    data-strk-img-id={item.imgId}
-                    data-strk-img={`[${item.titleId}]`}
+                    data-strk-img-id={product.imgId}
+                    data-strk-img={`[${product.titleId}]`}
                     data-strk-img-ratio="3x4"
                     data-strk-img-width="200"
-                    src={PLACEHOLDER}
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                     className="h-28 w-21 bg-sand object-cover"
                   />
                 </Link>

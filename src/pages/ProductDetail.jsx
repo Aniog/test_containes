@@ -8,9 +8,6 @@ import StarRating from "@/components/ui/StarRating"
 import Accordion from "@/components/ui/Accordion"
 import ProductCard from "@/components/product/ProductCard"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 export default function ProductDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
@@ -91,7 +88,7 @@ export default function ProductDetail() {
                   data-strk-img={`[${product.descId}] [${product.titleId}] ${img.label}`}
                   data-strk-img-ratio="3x4"
                   data-strk-img-width="200"
-                  src={PLACEHOLDER}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="h-full w-full object-cover"
                 />
               </button>
@@ -104,7 +101,7 @@ export default function ProductDetail() {
               data-strk-img={`[${product.descId}] [${product.titleId}] ${gallery[activeImg].label}`}
               data-strk-img-ratio="3x4"
               data-strk-img-width="900"
-              src={PLACEHOLDER}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               className="aspect-[3/4] w-full object-cover"
             />
           </div>

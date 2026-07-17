@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 const POSTS = [
   {
     id: "journal-1",
@@ -67,7 +64,7 @@ export default function Journal() {
                   data-strk-img={`[${post.descId}] [${post.titleId}] gold jewelry editorial`}
                   data-strk-img-ratio="4x3"
                   data-strk-img-width="800"
-                  src={PLACEHOLDER}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
