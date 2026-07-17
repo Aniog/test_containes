@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronRight, Star } from 'lucide-react'
 import ProductCard from '@/components/product/ProductCard'
-import { categories, placeholderSvg, products, ugcStories } from '@/data/products'
+import { categories, products, ugcStories } from '@/data/products'
 import { useVelmoraImages } from '@/lib/useVelmoraImages'
 
 const testimonials = [
@@ -85,7 +85,7 @@ export default function Home({ onAddToCart }) {
                 data-strk-img={`[${story.descId}] [${story.titleId}]`}
                 data-strk-img-ratio="9x16"
                 data-strk-img-width="520"
-                src={placeholderSvg}
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt={story.caption}
               />
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-velmora-ink/82" />
@@ -112,7 +112,7 @@ export default function Home({ onAddToCart }) {
                 data-strk-img={`[${category.descId}] [${category.titleId}]`}
                 data-strk-img-ratio="4x3"
                 data-strk-img-width="900"
-                src={placeholderSvg}
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt={`${category.name} jewelry`}
               />
               <div className="absolute inset-0 bg-gradient-to-b from-velmora-ink/10 via-velmora-ink/20 to-velmora-ink/75" />
@@ -136,7 +136,7 @@ export default function Home({ onAddToCart }) {
               data-strk-img="[brand-story-copy] [brand-story-heading]"
               data-strk-img-ratio="4x3"
               data-strk-img-width="1000"
-              src={placeholderSvg}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt="Velmora gold jewelry editorial portrait"
             />
           </div>

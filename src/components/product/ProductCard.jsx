@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { ShoppingBag, Star } from 'lucide-react'
-import { placeholderSvg } from '@/data/products'
 
 export default function ProductCard({ product, onAddToCart, compact = false }) {
   return (
@@ -13,7 +12,7 @@ export default function ProductCard({ product, onAddToCart, compact = false }) {
             data-strk-img={`[${product.descId}] [${product.titleId}] [bestsellers-heading]`}
             data-strk-img-ratio="3x4"
             data-strk-img-width="700"
-            src={placeholderSvg}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={`${product.name} gold jewelry product photo`}
           />
           <img
@@ -22,7 +21,7 @@ export default function ProductCard({ product, onAddToCart, compact = false }) {
             data-strk-img={`[${product.descId}] [${product.titleId}]`}
             data-strk-img-ratio="3x4"
             data-strk-img-width="700"
-            src={placeholderSvg}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={`${product.name} styled on model`}
           />
           <div className="absolute left-4 top-4 border border-velmora-ivory/60 bg-velmora-ink/72 px-3 py-1 text-[0.62rem] font-semibold uppercase tracking-luxury text-velmora-ivory backdrop-blur">
