@@ -22,9 +22,13 @@ export default function CartDrawer() {
         onClick={closeCart}
       />
       <aside
-        className={`fixed right-0 top-0 z-[60] flex h-full w-full max-w-md flex-col bg-velmora-parchment text-velmora-ink shadow-float transition-transform duration-500 ease-velvet ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
+        className={`fixed right-0 top-0 z-[60] flex h-full w-full max-w-md flex-col bg-velmora-parchment text-velmora-ink shadow-float transition-all duration-500 ease-velvet ${
+          isOpen
+            ? 'translate-x-0 opacity-100'
+            : 'pointer-events-none invisible translate-x-full opacity-0'
         }`}
+        aria-hidden={!isOpen}
+        inert={!isOpen ? '' : undefined}
         aria-label="Cart drawer"
       >
         <div className="flex items-center justify-between border-b border-velmora-ink/10 px-5 py-5 md:px-7">
