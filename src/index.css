@@ -12,10 +12,15 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    --velmora-velvet-950: #171210;
+    --velmora-velvet-900: #241c19;
+    --velmora-velvet-200: #d8ccc4;
+    --velmora-cream-50: #f8f2eb;
+    --velmora-gold-300: #dbc49e;
   }
 
   * {
-    @apply border-velvet-200;
+    border-color: var(--velmora-velvet-200);
   }
 
   html {
@@ -23,12 +28,17 @@
   }
 
   body {
-    @apply m-0 min-h-screen bg-cream-50 font-sans text-velvet-900;
+    margin: 0;
+    min-height: 100vh;
     overflow-x: hidden;
+    background-color: var(--velmora-cream-50);
+    color: var(--velmora-velvet-900);
+    font-family: Inter, sans-serif;
   }
 
   a {
-    @apply text-inherit no-underline;
+    color: inherit;
+    text-decoration: none;
   }
 
   button,
@@ -39,10 +49,12 @@
   }
 
   img {
-    @apply block max-w-full;
+    display: block;
+    max-width: 100%;
   }
 
   ::selection {
-    @apply bg-gold-300 text-velvet-950;
+    background-color: var(--velmora-gold-300);
+    color: var(--velmora-velvet-950);
   }
 }
