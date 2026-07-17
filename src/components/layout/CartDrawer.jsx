@@ -120,16 +120,13 @@ export function CartDrawer() {
                   key={item.productId}
                   className="flex gap-4 border-b border-hairline pb-5"
                 >
-                  <div className="relative h-24 w-24 shrink-0 overflow-hidden bg-bone">
-                    <img
-                      data-strk-img-id={`cart-${item.productId}`}
-                      data-strk-img={item.product.imgQuery}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="240"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.product.name}
-                      className="h-full w-full object-cover"
-                    />
+                  <div
+                    className="relative flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden bg-bone"
+                    aria-hidden="true"
+                  >
+                    <span className="font-serif text-3xl text-ink-deep/70">
+                      {item.product.name.charAt(0)}
+                    </span>
                   </div>
                   <div className="flex flex-1 flex-col">
                     <div className="flex items-start justify-between gap-3">
