@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "material": {
+      "type": "string",
+      "description": "Material details"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Array of image search query identifiers"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is this a bestseller?"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
