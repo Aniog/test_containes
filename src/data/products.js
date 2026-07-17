@@ -1,0 +1,128 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A sculptural gold ear cuff with a single crystal accent that catches the light with every movement. Designed to be worn solo or stacked for a bolder statement.',
+    materials: '18K gold-plated brass with a cubic zirconia accent. Nickel-free and hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and water. Polish gently with a soft cloth to maintain shine.',
+    images: [
+      { ratio: '3x4', width: 600, query: 'photo-1705326454933-9685fc6888e1' },
+      { ratio: '3x4', width: 600, query: 'photo-1705326453273-1c35d7dad309' },
+      { ratio: '3x4', width: 600, query: 'photo-1720944518547-93ae4d5f90b7' },
+    ],
+    variant: 'gold',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A delicate necklace featuring multicolor floral crystals arranged in an organic cluster. The perfect finishing touch for both day and evening looks.',
+    materials: '18K gold-plated chain with hand-set crystal florals. Adjustable 16-18 inch length.',
+    care: 'Store flat or hanging to prevent tangling. Clean with a soft, dry cloth. Avoid exposure to moisture.',
+    images: [
+      { ratio: '3x4', width: 600, query: 'photo-1573408301185-9146fe634ad0' },
+      { ratio: '3x4', width: 600, query: 'photo-1589095053205-8fc842336f4a' },
+      { ratio: '3x4', width: 600, query: 'photo-1651160670627-2896ddf7822f' },
+    ],
+    variant: 'gold',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviewCount: 210,
+    description: 'Chunky dome huggie earrings with a polished, mirror-like finish. Lightweight enough for all-day wear, bold enough to turn heads.',
+    materials: '18K gold-plated brass with a stainless steel post. Lightweight hollow construction.',
+    care: 'Wipe clean after wear. Keep away from harsh chemicals. Store in the provided pouch.',
+    images: [
+      { ratio: '3x4', width: 600, query: 'photo-1605100804763-247f67b3557e' },
+      { ratio: '3x4', width: 600, query: 'photo-1535632066927-ab7c9ab60908' },
+      { ratio: '3x4', width: 600, query: 'photo-1515934751635-c81c6bc9a2d8' },
+    ],
+    variant: 'gold',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.6,
+    reviewCount: 76,
+    description: 'Textured filigree drop earrings inspired by vintage lacework. Each curve catches light differently, creating a warm, glowing effect.',
+    materials: '18K gold-plated brass with intricate filigree detailing. Hypoallergenic hooks.',
+    care: 'Handle with care to protect delicate filigree. Store separately to avoid tangling.',
+    images: [
+      { ratio: '3x4', width: 600, query: 'photo-1611591437281-460bfbe1220a' },
+      { ratio: '3x4', width: 600, query: 'photo-1601121141461-9d6647bca1ed' },
+      { ratio: '3x4', width: 600, query: 'photo-1603561591411-07134e71a2a9' },
+    ],
+    variant: 'gold',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    price: 95,
+    category: 'sets',
+    material: 'gold',
+    rating: 5.0,
+    reviewCount: 56,
+    description: 'A curated gift set featuring a pair of statement earrings and a matching pendant necklace, presented in our signature Velmora gift box.',
+    materials: '18K gold-plated brass with crystal accents. Includes gift box, care card, and velvet pouch.',
+    care: 'Follow individual care instructions included. Store in the gift box for longevity.',
+    images: [
+      { ratio: '3x4', width: 600, query: 'photo-1515562141207-7a88fb7ce338' },
+      { ratio: '3x4', width: 600, query: 'photo-1626784215021-2e39ccf971cd' },
+      { ratio: '3x4', width: 600, query: 'photo-1631982681280-8ca46226a5c9' },
+    ],
+    variant: 'gold',
+  },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday luxury', query: 'photo-1720944518547-93ae4d5f90b7' },
+  { id: 'ugc-2', caption: 'Stacked & styled', query: 'photo-1705326453273-1c35d7dad309' },
+  { id: 'ugc-3', caption: 'Gift-worthy', query: 'photo-1589095053205-8fc842336f4a' },
+  { id: 'ugc-4', caption: 'Office to evening', query: 'photo-1651160670627-2896ddf7822f' },
+  { id: 'ugc-5', caption: 'Weekend sparkle', query: 'photo-1626784215021-2e39ccf971cd' },
+  { id: 'ugc-6', caption: 'Minimal glow', query: 'photo-1705326454933-9685fc6888e1' },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day and they still look brand new after 6 months.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Jessica L.',
+    text: 'Bought the Royal Heirloom Set as a birthday gift for my sister. The packaging alone made her cry — absolutely stunning.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Amanda K.',
+    text: 'Finally, demi-fine jewelry that does not turn my ears green. These are my go-to for both work dinners and weekend brunches.',
+    rating: 5,
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', query: 'photo-1603561591411-07134e71a2a9' },
+  { id: 'necklaces', name: 'Necklaces', query: 'photo-1573408301185-9146fe634ad0' },
+  { id: 'huggies', name: 'Huggies', query: 'photo-1605100804763-247f67b3557e' },
+]
