@@ -1,17 +1,8 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 
 const BrandStory = () => {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-warm-charcoal">
+    <section className="py-16 md:py-24 bg-warm-charcoal">
       <div className="max-w-container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
           {/* Image */}

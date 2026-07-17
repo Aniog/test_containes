@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Star, Minus, Plus, ChevronDown, ShoppingBag } from 'lucide-react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { products } from '@/lib/data'
 import { useCart } from '@/context/CartContext'
 import ProductCard from '@/components/product/ProductCard'
@@ -32,16 +30,9 @@ const ProductDetail = () => {
   const { id } = useParams()
   const product = products.find((p) => p.id === id)
   const { addItem } = useCart()
-  const containerRef = useRef(null)
   const [selectedTone, setSelectedTone] = useState('Gold')
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
-
-  useEffect(() => {
-    if (product) {
-      return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-    }
-  }, [product, selectedImage])
 
   if (!product) {
     return (
@@ -57,7 +48,7 @@ const ProductDetail = () => {
   const relatedProducts = products.filter((p) => p.id !== product.id).slice(0, 4)
 
   return (
-    <div ref={containerRef} className="bg-ivory min-h-screen pt-20 md:pt-24">
+    <div className="bg-ivory min-h-screen pt-20 md:pt-24">
       <div className="max-w-container mx-auto px-4 md:px-8 py-8 md:py-12">
         {/* Breadcrumb */}
         <nav className="mb-6 md:mb-8">

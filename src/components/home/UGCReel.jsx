@@ -1,17 +1,8 @@
-import { useEffect, useRef } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { ugcSlides } from '@/lib/data'
 
 const UGCReel = () => {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
   return (
-    <section ref={containerRef} className="py-16 md:py-24 bg-warm-charcoal">
+    <section className="py-16 md:py-24 bg-warm-charcoal">
       <div className="max-w-container mx-auto px-4 md:px-8 mb-8">
         <h2 className="font-serif text-3xl md:text-4xl text-warm-cream tracking-wide">As Seen On You</h2>
         <div className="w-12 h-px bg-gold mt-4" />

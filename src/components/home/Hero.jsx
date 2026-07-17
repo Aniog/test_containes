@@ -1,17 +1,8 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 
 const Hero = () => {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
   return (
-    <section ref={containerRef} className="relative h-screen min-h-[600px] max-h-[900px] flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen min-h-[600px] max-h-[900px] flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div
         className="absolute inset-0"

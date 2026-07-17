@@ -1,8 +1,6 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { products } from '@/lib/data'
 import ProductCard from '@/components/product/ProductCard'
 
@@ -21,7 +19,6 @@ const SORT_OPTIONS = [
 ]
 
 const Shop = () => {
-  const containerRef = useRef(null)
   const [searchParams, setSearchParams] = useSearchParams()
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [sortOpen, setSortOpen] = useState(false)
@@ -39,10 +36,6 @@ const Shop = () => {
       setSelectedCategories([categoryParam.charAt(0).toUpperCase() + categoryParam.slice(1)])
     }
   }, [categoryParam])
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [selectedCategories, selectedPriceRanges, selectedMaterials, sortBy])
 
   const toggleCategory = (cat) => {
     setSelectedCategories((prev) =>
@@ -151,7 +144,7 @@ const Shop = () => {
   )
 
   return (
-    <div ref={containerRef} className="bg-ivory min-h-screen pt-20 md:pt-24">
+    <div className="bg-ivory min-h-screen pt-20 md:pt-24">
       <div className="max-w-container mx-auto px-4 md:px-8 py-8 md:py-12">
         {/* Page header */}
         <div className="text-center mb-10">

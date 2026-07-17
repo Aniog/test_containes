@@ -1,18 +1,9 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { categories } from '@/lib/data'
 
 const CategoryTiles = () => {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
   return (
-    <section ref={containerRef} className="py-16 md:py-24">
+    <section className="py-16 md:py-24">
       <div className="max-w-container mx-auto px-4 md:px-8">
         <div className="text-center mb-10 md:mb-14">
           <h2 className="font-serif text-3xl md:text-4xl text-warm-cream tracking-wide">Shop by Category</h2>
