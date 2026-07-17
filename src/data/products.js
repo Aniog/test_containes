@@ -12,7 +12,12 @@ export const products = [
       "Features a single clear cubic zirconia",
       "Sold as a single cuff"
     ],
-    imgId: "prod-vivid-aura",
+    imgId: "prod-vivid-aura-main",
+    hoverImgId: "prod-vivid-aura-hover",
+    cartImgId: "prod-vivid-aura-cart",
+    detailMainImgId: "prod-vivid-aura-detail-main",
+    detailSub1ImgId: "prod-vivid-aura-detail-sub1",
+    detailSub2ImgId: "prod-vivid-aura-detail-sub2"
   },
   {
     id: "majestic-flora-nectar",
@@ -27,7 +32,12 @@ export const products = [
       "16\" chain with 2\" extender",
       "Lobster clasp closure"
     ],
-    imgId: "prod-majestic-flora",
+    imgId: "prod-majestic-flora-main",
+    hoverImgId: "prod-majestic-flora-hover",
+    cartImgId: "prod-majestic-flora-cart",
+    detailMainImgId: "prod-majestic-flora-detail-main",
+    detailSub1ImgId: "prod-majestic-flora-detail-sub1",
+    detailSub2ImgId: "prod-majestic-flora-detail-sub2"
   },
   {
     id: "golden-sphere-huggies",
@@ -42,7 +52,12 @@ export const products = [
       "Secure hinge closure",
       "Perfect for everyday wear"
     ],
-    imgId: "prod-golden-sphere",
+    imgId: "prod-golden-sphere-main",
+    hoverImgId: "prod-golden-sphere-hover",
+    cartImgId: "prod-golden-sphere-cart",
+    detailMainImgId: "prod-golden-sphere-detail-main",
+    detailSub1ImgId: "prod-golden-sphere-detail-sub1",
+    detailSub2ImgId: "prod-golden-sphere-detail-sub2"
   },
   {
     id: "amber-lace-earrings",
@@ -57,7 +72,12 @@ export const products = [
       "Drop length: 1.5 inches",
       "Surgical steel posts"
     ],
-    imgId: "prod-amber-lace",
+    imgId: "prod-amber-lace-main",
+    hoverImgId: "prod-amber-lace-hover",
+    cartImgId: "prod-amber-lace-cart",
+    detailMainImgId: "prod-amber-lace-detail-main",
+    detailSub1ImgId: "prod-amber-lace-detail-sub1",
+    detailSub2ImgId: "prod-amber-lace-detail-sub2"
   },
   {
     id: "royal-heirloom-set",
@@ -72,6 +92,11 @@ export const products = [
       "Presented in a premium Velmora gift box",
       "A perfect seamless pairing"
     ],
-    imgId: "prod-royal-heirloom",
+    imgId: "prod-royal-heirloom-main",
+    hoverImgId: "prod-royal-heirloom-hover",
+    cartImgId: "prod-royal-heirloom-cart",
+    detailMainImgId: "prod-royal-heirloom-detail-main",
+    detailSub1ImgId: "prod-royal-heirloom-detail-sub1",
+    detailSub2ImgId: "prod-royal-heirloom-detail-sub2"
   }
 ];

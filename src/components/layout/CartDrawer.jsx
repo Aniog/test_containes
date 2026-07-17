@@ -54,7 +54,7 @@ const CartDrawer = () => {
                     <div className="w-24 h-24 bg-brand-50 flex-shrink-0 relative overflow-hidden group">
                       <img 
                         src={`data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E`}
-                        data-strk-img-id={`cart-thumb-${item.product.id}`}
+                        data-strk-img-id={item.product.cartImgId}
                         data-strk-img={`[cart-item-title-${item.product.id}] minimalist jewelry white background`}
                         data-strk-img-ratio="1x1"
                         data-strk-img-width="200"
