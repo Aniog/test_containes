@@ -7,7 +7,7 @@ const ProductCard = ({ product, onAddToCart }) => {
 
   const handleAddToCart = (e) => {
     e.preventDefault();
-    onAddToCart(product);
+    onAddToCart({ ...product, quantity: 1, variant: product.variants?.[0] || 'gold' });
   };
 
   return (
