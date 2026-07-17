@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Newsletter Subscriptions",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the subscriber user record.",
+      "x-foreignKey": "users.id"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Subscriber email address."
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 80,
+      "default": "homepage_newsletter",
+      "description": "Where the subscription was submitted."
+    },
+    "subscribed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the subscription was created."
+    },
+    "marketing_consent": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether the subscriber consented to receive marketing email."
+    }
+  },
+  "required": ["email", "subscribed_at", "marketing_consent"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
