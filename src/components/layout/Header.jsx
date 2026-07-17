@@ -5,7 +5,7 @@ import { useCart } from '@/context/CartContext'
 
 const links = [
   { label: 'Shop', to: '/shop' },
-  { label: 'Collections', to: '/shop#collections' },
+  { label: 'Collections', to: '/#collections' },
   { label: 'About', to: '/#about' },
   { label: 'Journal', to: '/#journal' },
 ]
