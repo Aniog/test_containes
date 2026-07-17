@@ -1,76 +1,165 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas: #f6f1ea;
+    --canvas-soft: #efe7d9;
+    --espresso: #1a1612;
+    --espresso-soft: #221c16;
+    --gold: #b8935a;
+    --gold-hover: #a07f4b;
+    --gold-soft: #e8dcc4;
+    --ink: #1f1a14;
+    --ink-secondary: #5a4f40;
+    --ink-muted: #8e8270;
+    --line: #dcd2bd;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
+    color: var(--ink);
+    background-color: var(--canvas);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  h1, h2, h3, h4 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+
+  /* Editorial utility labels */
+  .eyebrow {
+    font-family: "Inter", sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--ink-secondary);
+  }
+
+  .eyebrow-on-dark {
+    color: rgba(246, 241, 234, 0.7);
+  }
+
+  .product-name {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+  }
+
+  /* Hairline divider */
+  .hairline {
+    height: 1px;
+    background: var(--line);
+    width: 100%;
+  }
+
+  .hairline-on-dark {
+    background: rgba(246, 241, 234, 0.18);
+  }
+
+  /* Subtle button reset for premium look */
+  button {
+    font-family: inherit;
+  }
+
+  /* Focus rings — accessible but understated */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Scrollbar (desktop) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #d8cdb6;
+    border-radius: 999px;
+    border: 2px solid var(--canvas);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b9ac90;
+  }
+}
+
+@layer components {
+  .container-editorial {
+    @apply mx-auto w-full px-5 sm:px-8 lg:px-14;
+    max-width: 1440px;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-espresso text-ink-onDark
+      px-8 py-4 text-[11px] font-medium uppercase tracking-wider3
+      transition-all duration-300 hover:bg-gold hover:text-espresso
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 bg-gold text-espresso
+      px-8 py-4 text-[11px] font-medium uppercase tracking-wider3
+      transition-all duration-300 hover:bg-gold-hover
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/30 text-ink
+      px-8 py-4 text-[11px] font-medium uppercase tracking-wider3
+      transition-all duration-300 hover:border-ink hover:bg-ink hover:text-ink-onDark;
+  }
+
+  .btn-outline-on-dark {
+    @apply inline-flex items-center justify-center gap-2 border border-line-dark text-ink-onDark
+      px-8 py-4 text-[11px] font-medium uppercase tracking-wider3
+      transition-all duration-300 hover:border-ink-onDark hover:bg-ink-onDark hover:text-espresso;
+  }
+
+  .link-underline {
+    @apply relative inline-block text-[11px] uppercase tracking-wider3 font-medium;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform-origin: right center;
+    transform: scaleX(1);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after {
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+
+  .pill {
+    @apply inline-flex items-center justify-center px-5 py-2.5 text-[11px]
+      uppercase tracking-wider2 font-medium border transition-all duration-300;
+  }
+
+  /* Hide scrollbar but keep scrolling (for UGC strip, etc.) */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
