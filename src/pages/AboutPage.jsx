@@ -4,7 +4,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1589674781759-c21c583561c3?w=1600&q=85"
+          src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1600&q=85"
           alt="Velmora craftsmanship"
           className="w-full h-full object-cover"
         />

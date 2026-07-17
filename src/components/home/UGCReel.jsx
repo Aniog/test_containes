@@ -4,25 +4,25 @@ import { Heart } from 'lucide-react'
 const ugcItems = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1601381840527-4704b0d5578f?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=400&q=80',
     caption: 'Obsessed with my new Vivid Aura Jewels',
     handle: '@stylebyclaire',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1603973653928-0cb6a5b0d1f0?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?w=400&q=80',
     caption: 'Golden hour with my Golden Sphere Huggies',
     handle: '@jewelrydiaries',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1517103114844-ee7b9e8e4b0e?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=400&q=80',
     caption: 'The Majestic Flora Nectar is everything',
     handle: '@gemma.wears',
   },
   {
     id: 4,
-    image: 'https://images.unsplash.com/photo-1596704017254-9b0f2121e268?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80',
     caption: 'Stacking my Velmora pieces for the perfect mix',
     handle: '@minimalistjewels',
   },
@@ -34,7 +34,7 @@ const ugcItems = [
   },
   {
     id: 6,
-    image: 'https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=400&q=80',
     caption: 'Amber Lace Earrings are my new signature',
     handle: '@lily.do',
   },

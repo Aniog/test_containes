@@ -30,9 +30,9 @@ export const products = [
     colors: ["Gold", "Silver"],
     images: [
       "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
-      "https://images.unsplash.com/photo-1611107683228-e8b89c5d9e78?w=800&q=80",
+      "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
     ],
-    hoverImage: "https://images.unsplash.com/photo-1611107683228-e8b89c5d9e78?w=800&q=80",
+    hoverImage: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80",
     badge: null,
   },
   {
@@ -47,10 +47,10 @@ export const products = [
     care: "Remove before swimming or showering. Polish with a jewelry cloth.",
     colors: ["Gold", "Silver"],
     images: [
-      "https://images.unsplash.com/photo-1601381840527-4704b0d5578f?w=800&q=80",
-      "https://images.unsplash.com/photo-1603973653928-0cb6a5b0d1f0?w=800&q=80",
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+      "https://images.unsplash.com/photo-1501084817091-a4f3d1d19e07?w=800&q=80",
     ],
-    hoverImage: "https://images.unsplash.com/photo-1603973653928-0cb6a5b0d1f0?w=800&q=80",
+    hoverImage: "https://images.unsplash.com/photo-1501084817091-a4f3d1d19e07?w=800&q=80",
     badge: "Most Popular",
   },
   {
@@ -65,7 +65,7 @@ export const products = [
     care: "Store in the provided pouch. Avoid bending or pulling the delicate filigree.",
     colors: ["Gold"],
     images: [
-      "https://images.unsplash.com/photo-1596704017254-9b0f2121e268?w=800&q=80",
+      "https://images.unsplash.com/photo-1560343090-f0409e92791a?w=800&q=80",
       "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&q=80",
     ],
     hoverImage: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=800&q=80",
@@ -84,17 +84,17 @@ export const products = [
     colors: ["Gold", "Silver"],
     images: [
       "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?w=800&q=80",
-      "https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=800&q=80",
+      "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80",
     ],
-    hoverImage: "https://images.unsplash.com/photo-1597223557154-721c1cecc4b0?w=800&q=80",
+    hoverImage: "https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=800&q=80",
     badge: "Gift Set",
   },
 ];
 
 export const categories = [
-  { id: "earrings", name: "Earrings", count: 3, image: "https://images.unsplash.com/photo-1601381840527-4704b0d5578f?w=600&q=80" },
+  { id: "earrings", name: "Earrings", count: 3, image: "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80" },
   { id: "necklaces", name: "Necklaces", count: 1, image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80" },
-  { id: "huggies", name: "Huggies", count: 1, image: "https://images.unsplash.com/photo-1603973653928-0cb6a5b0d1f0?w=600&q=80" },
+  { id: "huggies", name: "Huggies", count: 1, image: "https://images.unsplash.com/photo-1501084817091-a4f3d1d19e07?w=600&q=80" },
 ];
 
 export const testimonials = [

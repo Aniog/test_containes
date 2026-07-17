@@ -6,7 +6,7 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?w=1600&q=85"
+          src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1600&q=85"
           alt="Gold jewelry on warm background"
           className="w-full h-full object-cover"
         />
