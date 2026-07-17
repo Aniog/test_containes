@@ -1,7 +1,10 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
 import { formatPrice, imagePlaceholder } from '@/data/store'
 import { cn } from '@/lib/utils'
+import strkImgConfig from '@/strk-img-config.json'
 
 const ProductCard = ({
   product,
@@ -9,13 +12,33 @@ const ProductCard = ({
   priority = false,
   className,
 }) => {
+  const cardRef = useRef(null)
   const titleId = `product-${product.slug}-title`
   const descId = `product-${product.slug}-desc`
   const promptPrimaryId = `product-${product.slug}-prompt-primary`
   const promptSecondaryId = `product-${product.slug}-prompt-secondary`
 
+  useEffect(() => {
+    let cleanup
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!cardRef.current) {
+        return
+      }
+
+      cleanup = ImageHelper.loadImages(strkImgConfig, cardRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [descId, promptPrimaryId, promptSecondaryId, titleId])
+
   return (
-    <article className={cn('group', className)}>
+    <article ref={cardRef} className={cn('group', className)}>
       <div className="sr-only">
         <span id={promptPrimaryId}>{product.galleryShots[0].prompt}</span>
         <span id={promptSecondaryId}>{product.galleryShots[1].prompt}</span>

@@ -1,11 +1,12 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from '@/components/common/ProductCard'
 import SectionHeading from '@/components/common/SectionHeading'
 import FilterSidebar from '@/components/shop/FilterSidebar'
 import { useCart } from '@/context/CartContext'
 import { categoryFilters, products, toneOptions } from '@/data/store'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 const sortOptions = [
   { label: 'Featured', value: 'featured' },
@@ -37,7 +38,26 @@ const Shop = () => {
     materials: [],
   }))
   const [sort, setSort] = useState('featured')
-  const containerRef = useStrkImages([filters.category, filters.price, filters.materials.join(','), sort])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!containerRef.current) {
+        return
+      }
+
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [filters.category, filters.materials, filters.price, sort])
 
   useEffect(() => {
     setFilters((current) =>

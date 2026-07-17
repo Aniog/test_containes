@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import { Navigate, useParams } from 'react-router-dom'
 import ProductCard from '@/components/common/ProductCard'
 import StarRating from '@/components/common/StarRating'
@@ -13,7 +14,7 @@ import {
   shippingCopy,
   toneOptions,
 } from '@/data/store'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 const ProductDetail = () => {
   const { slug } = useParams()
@@ -22,12 +23,31 @@ const ProductDetail = () => {
   const { addItem, openCart } = useCart()
   const [selectedTone, setSelectedTone] = useState(toneOptions[0])
   const [quantity, setQuantity] = useState(1)
-  const containerRef = useStrkImages([slug, selectedTone])
+  const containerRef = useRef(null)
 
   useEffect(() => {
     setSelectedTone(toneOptions[0])
     setQuantity(1)
   }, [slug])
+
+  useEffect(() => {
+    let cleanup
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!containerRef.current) {
+        return
+      }
+
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [selectedTone, slug])
 
   if (!product) {
     return <Navigate to="/shop" replace />

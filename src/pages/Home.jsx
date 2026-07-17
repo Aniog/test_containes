@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import HomeBestsellers from '@/components/home/HomeBestsellers'
 import HomeCategoryTiles from '@/components/home/HomeCategoryTiles'
 import HomeHero from '@/components/home/HomeHero'
@@ -18,11 +19,30 @@ import {
   trustPoints,
   ugcMoments,
 } from '@/data/store'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 const Home = () => {
   const { addItem, openCart } = useCart()
-  const containerRef = useStrkImages([])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!containerRef.current) {
+        return
+      }
+
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') {
+        cleanup()
+      }
+    }
+  }, [])
 
   const featuredProducts = useMemo(() => products.slice(0, 5), [])
 
