@@ -1,9 +1,9 @@
 import { useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal } from 'lucide-react'
-import ProductCard from '@/components/common/ProductCard.jsx'
+import ProductCard from '../components/common/ProductCard.jsx?probe=velmora17'
 import { products } from '@/data/products.js'
-import { useImageLoader } from '@/lib/useImageLoader.js?velmora-direct'
+import { useImageLoader } from '@/lib/useImageLoader.js?probe=velmora17'
 
 const categoryOptions = ['All', 'Earrings', 'Necklaces', 'Huggies', 'Sets']
 const priceOptions = [

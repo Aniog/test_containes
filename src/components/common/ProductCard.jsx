@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ShoppingBag, Star } from 'lucide-react'
-import ImageSlot from './ImageSlot.jsx'
+import ImageSlot from './ImageSlot.jsx?probe=velmora17'
 import { formatPrice } from '@/data/products.js'
 
 export default function ProductCard({ product, onAdd, context = 'grid' }) {

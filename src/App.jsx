@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import CartDrawer from '@/components/common/CartDrawer.jsx'
-import Footer from '@/components/common/Footer.jsx'
-import Header from '@/components/common/Header.jsx'
-import Home from '@/pages/Home.jsx'
-import ProductDetail from '@/pages/ProductDetail.jsx'
-import Shop from '@/pages/Shop.jsx'
+import CartDrawer from '@/components/common/CartDrawer.jsx?probe=velmora17'
+import Footer from '@/components/common/Footer.jsx?probe=velmora17'
+import Header from '@/components/common/Header.jsx?probe=velmora17'
+import Home from '@/pages/Home.jsx?probe=velmora17'
+import ProductDetail from '@/pages/ProductDetail.jsx?probe=velmora17'
+import Shop from '@/pages/Shop.jsx?probe=velmora17'
 import './App.css'
 
 function App() {

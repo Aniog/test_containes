@@ -1,4 +1,4 @@
-import ImageSlot from '@/components/common/ImageSlot.jsx'
+import ImageSlot from '../common/ImageSlot.jsx?probe=velmora17'
 import { ugcStories } from '@/data/products.js'
 export default function UGCStrip() {
   return (

@@ -1,11 +1,30 @@
 import { Link } from 'react-router-dom'
-import BackgroundSlot from '@/components/common/BackgroundSlot.jsx'
+import { imageMap } from '@/data/imageMap.js?probe=velmora17'
+
+function optimizeHeroUrl(url) {
+  if (!url) return ''
+  try {
+    const nextUrl = new URL(url)
+    nextUrl.searchParams.set('w', '1800')
+    nextUrl.searchParams.set('q', '90')
+    nextUrl.searchParams.set('fit', 'max')
+    nextUrl.searchParams.set('fm', 'jpg')
+    return nextUrl.toString()
+  } catch {
+    return url
+  }
+}
 
 export default function Hero() {
+  const heroImage = optimizeHeroUrl(imageMap['velmora-hero-model-bg']?.url)
+
   return (
     <section className="relative min-h-[92vh] overflow-hidden bg-velmora-espresso text-velmora-ivory">
-      <p id="hero-image-context" className="sr-only">Warm-lit close-up of gold jewelry worn on a model with quiet luxury styling</p>
-      <BackgroundSlot id="velmora-hero-model-bg" query="[hero-image-context] [hero-subhead] [hero-title]" ratio="16x9" width="1800" className="absolute inset-0 opacity-85" />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-cover bg-center opacity-85"
+        style={heroImage ? { backgroundImage: `url(${heroImage})` } : undefined}
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-velmora-espresso/95 via-velmora-espresso/78 to-velmora-espresso/35" />
       <div className="absolute inset-0 bg-gradient-to-t from-velmora-espresso/88 via-velmora-espresso/24 to-velmora-espresso/35" />
       <div className="relative mx-auto flex min-h-[92vh] max-w-7xl items-end px-4 pb-16 pt-32 sm:px-6 md:pb-24 lg:px-8">

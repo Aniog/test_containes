@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import ImageSlot from '@/components/common/ImageSlot.jsx'
+import ImageSlot from '../common/ImageSlot.jsx?probe=velmora17'
 
 export default function ProductGallery({ product }) {
   const [activeIndex, setActiveIndex] = useState(0)

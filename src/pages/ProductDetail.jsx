@@ -1,11 +1,11 @@
 import { Navigate, useParams } from 'react-router-dom'
 import { useRef } from 'react'
-import ProductCard from '@/components/common/ProductCard.jsx'
-import ProductAccordions from '@/components/product/ProductAccordions.jsx'
-import ProductGallery from '@/components/product/ProductGallery.jsx'
-import ProductInfo from '@/components/product/ProductInfo.jsx'
+import ProductCard from '../components/common/ProductCard.jsx?probe=velmora17'
+import ProductAccordions from '@/components/product/ProductAccordions.jsx?probe=velmora17'
+import ProductGallery from '../components/product/ProductGallery.jsx?probe=velmora17'
+import ProductInfo from '@/components/product/ProductInfo.jsx?probe=velmora17'
 import { getProductBySlug, getRelatedProducts } from '@/data/products.js'
-import { useImageLoader } from '@/lib/useImageLoader.js?velmora-direct'
+import { useImageLoader } from '@/lib/useImageLoader.js?probe=velmora17'
 
 export default function ProductDetail({ onAdd }) {
   const { slug } = useParams()

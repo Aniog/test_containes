@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import ImageSlot from '@/components/common/ImageSlot.jsx'
+import ImageSlot from '../common/ImageSlot.jsx?probe=velmora17'
 import { categories } from '@/data/products.js'
 export default function CategoryTiles() {
   return (

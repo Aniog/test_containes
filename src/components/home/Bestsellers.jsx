@@ -1,4 +1,4 @@
-import ProductCard from '@/components/common/ProductCard.jsx'
+import ProductCard from '../common/ProductCard.jsx?probe=velmora17'
 import { products } from '@/data/products.js'
 export default function Bestsellers({ onAdd }) {
   return (
