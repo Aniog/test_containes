@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingBag, Search, Menu, X, Minus, Plus } from 'lucide-react';
 import { useCart } from './context/CartContext';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/plugin/strk-img-config.json';
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -97,6 +99,18 @@ function Navbar() {
 
 function CartDrawer() {
   const { isCartOpen, closeCart, cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
+  const drawerRef = useRef(null);
+
+  useEffect(() => {
+    if (isCartOpen) {
+      const frameId = window.requestAnimationFrame(() => {
+        try {
+          ImageHelper.loadImages(strkImgConfig, drawerRef.current);
+        } catch(e) {}
+      });
+      return () => window.cancelAnimationFrame(frameId);
+    }
+  }, [isCartOpen, cartItems]);
 
   return (
     <>  
@@ -110,6 +124,7 @@ function CartDrawer() {
 
       {/* Drawer */}
       <div 
+        ref={drawerRef}
         className={`fixed top-0 right-0 h-full w-[90%] sm:w-[400px] bg-background z-[70] shadow-2xl transform transition-transform duration-300 ease-in-out flex flex-col ${
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -138,13 +153,17 @@ function CartDrawer() {
                     <img 
                       src={item.image || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"}
                       alt={item.name} 
-                      className="absolute inset-0 w-full h-full object-cover" 
+                      className="absolute inset-0 w-full h-full object-cover"
+                      data-strk-img-id={`c-img-${item.id}-${(item.variant || 'none').replace(/\s+/g, '-')}`}
+                      data-strk-img="product"
+                      data-strk-img-ratio="2x3"
+                      data-strk-img-width="150"
                     />
                   </div>
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex justify-between items-start">
-                        <h3 id={`cart-product-name-${item.id}`} className="font-serif uppercase tracking-wider text-sm">{item.name}</h3>
+                        <h3 className="font-serif uppercase tracking-wider text-sm">{item.name}</h3>
                         <button onClick={() => removeFromCart(item.id, item.variant)} className="text-muted-foreground hover:text-foreground">
                           <X className="w-4 h-4" />
                         </button>
