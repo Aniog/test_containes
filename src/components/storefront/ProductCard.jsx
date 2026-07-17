@@ -1,11 +1,36 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
 import { Star } from 'lucide-react'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function ProductCard({ product, onAddToCart, priority = false }) {
   const baseId = `card-${product.id}`
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    let disposeImages = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!cardRef.current) {
+        return
+      }
+
+      const cleanup = ImageHelper.loadImages(strkImgConfig, cardRef.current)
+      disposeImages = typeof cleanup === 'function' ? cleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      disposeImages()
+    }
+  }, [product.id])
 
   return (
-    <article className="group relative rounded-[2rem] border border-brand-line bg-brand-surface text-brand-ink shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-luxe">
+    <article
+      ref={cardRef}
+      className="group relative rounded-[2rem] border border-brand-line bg-brand-surface text-brand-ink shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-luxe"
+    >
       <span id={`${baseId}-title`} className="sr-only">
         {product.name}
       </span>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { useLocation, useOutletContext } from 'react-router-dom'
+import { useOutletContext, useSearchParams } from 'react-router-dom'
 import ProductCard from '@/components/storefront/ProductCard'
 import { products } from '@/data/products'
 import { useCart } from '@/context/CartContext'
@@ -36,9 +36,8 @@ function matchesPrice(product, selectedPrice) {
 }
 
 export default function ShopPage() {
-  const { search } = useLocation()
-  const params = new URLSearchParams(search)
-  const initialCategory = params.get('category') || ''
+  const [searchParams, setSearchParams] = useSearchParams()
+  const initialCategory = searchParams.get('category') || ''
   const [selectedCategory, setSelectedCategory] = useState(initialCategory)
   const [selectedPrice, setSelectedPrice] = useState('')
   const [selectedMaterial, setSelectedMaterial] = useState('')
@@ -51,6 +50,22 @@ export default function ShopPage() {
     setSelectedCategory(initialCategory)
   }, [initialCategory])
 
+  useEffect(() => {
+    const nextParams = new URLSearchParams(searchParams)
+
+    if (selectedCategory) {
+      nextParams.set('category', selectedCategory)
+    } else {
+      nextParams.delete('category')
+    }
+
+    const nextSearch = nextParams.toString()
+    const currentSearch = searchParams.toString()
+
+    if (nextSearch !== currentSearch) {
+      setSearchParams(nextParams, { replace: true })
+    }
+  }, [searchParams, selectedCategory, setSearchParams])
 
   useStrkImages(containerRef, [selectedCategory, selectedPrice, selectedMaterial, sortBy])
 
