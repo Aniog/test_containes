@@ -1,0 +1,73 @@
+// Seed product data for Velmora Fine Jewelry
+
+export const products = [
+  {
+    id: 1,
+    name: "Vivid Aura Jewels",
+    category: "Earrings",
+    price: 42,
+    material: "Gold",
+    description: "Delicate gold ear cuff featuring a brilliant crystal accent. A modern interpretation of classic elegance.",
+    details: "18K gold plated brass with premium crystal. Hypoallergenic and tarnish-resistant.",
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80",
+    rating: 4.8,
+    reviews: 124,
+  },
+  {
+    id: 2,
+    name: "Majestic Flora Nectar",
+    category: "Necklaces",
+    price: 68,
+    material: "Gold",
+    description: "A statement necklace adorned with multicolor floral crystals. Each piece tells a story of natural beauty.",
+    details: "18K gold plated chain with hand-set crystal pendants. Adjustable length 16-18 inches.",
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80",
+    rating: 4.9,
+    reviews: 89,
+  },
+  {
+    id: 3,
+    name: "Golden Sphere Huggies",
+    category: "Huggies",
+    price: 38,
+    material: "Gold",
+    description: "Chunky gold dome huggie earrings with a sculptural silhouette. Bold yet refined.",
+    details: "18K gold plated brass. Secure hinged closure. Lightweight design for all-day wear.",
+    image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+    rating: 4.7,
+    reviews: 156,
+  },
+  {
+    id: 4,
+    name: "Amber Lace Earrings",
+    category: "Earrings",
+    price: 54,
+    material: "Gold",
+    description: "Intricate textured gold filigree drop earrings. A celebration of artisanal craftsmanship.",
+    details: "18K gold plated brass with delicate filigree work. French wire hooks.",
+    image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+    rating: 4.6,
+    reviews: 72,
+  },
+  {
+    id: 5,
+    name: "Royal Heirloom Set",
+    category: "Sets",
+    price: 95,
+    material: "Gold",
+    description: "A curated gift-boxed pairing of our signature earring and necklace. The perfect expression of thoughtfulness.",
+    details: "Includes one pair of Golden Sphere Huggies and one Majestic Flora Nectar necklace. Presented in a premium gift box.",
+    image: "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+    rating: 5.0,
+    reviews: 48,
+  },
+];
+
+export const categories = ["Earrings", "Necklaces", "Huggies", "Sets"];
+
+export const materials = ["Gold", "Silver"];
