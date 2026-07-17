@@ -1,0 +1,171 @@
+export const placeholderSvg =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    slug: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 42,
+    rating: 4.9,
+    reviewCount: 86,
+    description: 'A luminous gold ear cuff finished with a precise crystal accent for everyday polish.',
+    longDescription:
+      'Designed for effortless stacking, this sculptural cuff catches light with a single crystal accent and a warm gold finish.',
+    care: '18K gold plated over brass with crystal detail. Keep dry, store separately, and polish gently with a soft cloth.',
+    imageContext: 'gold ear cuff with crystal accent worn on ear warm editorial jewelry',
+    cartImageId: 'cart-vivid-aura-jewels',
+    cartTitleId: 'cart-title-vivid-aura-jewels',
+    cartDescId: 'cart-desc-vivid-aura-jewels',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    slug: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    price: 68,
+    rating: 4.8,
+    reviewCount: 74,
+    description: 'A delicate floral crystal necklace with soft color and heirloom-inspired detail.',
+    longDescription:
+      'A graceful floral pendant set with multicolor crystals, made to layer beautifully or stand alone as a keepsake.',
+    care: '18K gold plated chain with crystal pendant. Avoid fragrance, lotions, and water exposure to preserve the finish.',
+    imageContext: 'multicolor floral crystal necklace on model warm gold jewelry close up',
+    cartImageId: 'cart-majestic-flora-nectar',
+    cartTitleId: 'cart-title-majestic-flora-nectar',
+    cartDescId: 'cart-desc-majestic-flora-nectar',
+    titleId: 'product-majestic-flora-title',
+    descId: 'product-majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    slug: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    price: 38,
+    rating: 4.9,
+    reviewCount: 112,
+    description: 'Chunky gold dome huggies with a softly rounded silhouette and secure closure.',
+    longDescription:
+      'Polished dome huggies with a modern profile, made for a close fit that feels substantial yet lightweight.',
+    care: '18K gold plated over stainless steel. Hypoallergenic posts. Store in the pouch between wears.',
+    imageContext: 'chunky gold dome huggie earrings worn on ear demi fine jewelry',
+    cartImageId: 'cart-golden-sphere-huggies',
+    cartTitleId: 'cart-title-golden-sphere-huggies',
+    cartDescId: 'cart-desc-golden-sphere-huggies',
+    titleId: 'product-golden-sphere-title',
+    descId: 'product-golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    slug: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 54,
+    rating: 4.7,
+    reviewCount: 59,
+    description: 'Textured gold filigree drop earrings with airy movement and antique warmth.',
+    longDescription:
+      'Intricate filigree drops bring a refined vintage note to evening looks while remaining light enough for long wear.',
+    care: '18K gold plated filigree. Remove before sleeping, swimming, or exercising. Clean with a dry microfiber cloth.',
+    imageContext: 'textured gold filigree drop earrings editorial warm neutral background',
+    cartImageId: 'cart-amber-lace-earrings',
+    cartTitleId: 'cart-title-amber-lace-earrings',
+    cartDescId: 'cart-desc-amber-lace-earrings',
+    titleId: 'product-amber-lace-title',
+    descId: 'product-amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    slug: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Gift Sets',
+    material: '18K Gold Plated',
+    price: 95,
+    rating: 5,
+    reviewCount: 43,
+    description: 'A gift-boxed earring and necklace set made for meaningful occasions.',
+    longDescription:
+      'A complete demi-fine pairing presented in a signature gift box, created for birthdays, bridesmaids, and lasting self-celebration.',
+    care: '18K gold plated set with crystal details. Store each piece separately and avoid moisture for long-lasting shine.',
+    imageContext: 'gift boxed gold earring and necklace set premium jewelry packaging',
+    cartImageId: 'cart-royal-heirloom-set',
+    cartTitleId: 'cart-title-royal-heirloom-set',
+    cartDescId: 'cart-desc-royal-heirloom-set',
+    titleId: 'product-royal-heirloom-title',
+    descId: 'product-royal-heirloom-desc',
+  },
+]
+
+export const categories = [
+  {
+    name: 'Earrings',
+    path: '/shop?category=Earrings',
+    titleId: 'category-earrings-title',
+    descId: 'category-earrings-desc',
+    description: 'Light-catching drops and cuffs for polished everyday wear.',
+  },
+  {
+    name: 'Necklaces',
+    path: '/shop?category=Necklaces',
+    titleId: 'category-necklaces-title',
+    descId: 'category-necklaces-desc',
+    description: 'Layerable chains and keepsake pendants with warm luminosity.',
+  },
+  {
+    name: 'Huggies',
+    path: '/shop?category=Huggies',
+    titleId: 'category-huggies-title',
+    descId: 'category-huggies-desc',
+    description: 'Close-fit silhouettes designed for all-day shine.',
+  },
+]
+
+export const ugcStories = [
+  {
+    id: 'soft-morning-stack',
+    caption: 'Soft morning stack',
+    titleId: 'ugc-soft-morning-title',
+    descId: 'ugc-soft-morning-desc',
+    description: 'Gold huggie earrings worn on the ear in natural warm light.',
+  },
+  {
+    id: 'dinner-glow',
+    caption: 'Dinner glow, made simple',
+    titleId: 'ugc-dinner-glow-title',
+    descId: 'ugc-dinner-glow-desc',
+    description: 'A gold crystal necklace styled on the neck for an evening look.',
+  },
+  {
+    id: 'everyday-gilt',
+    caption: 'Everyday gilt',
+    titleId: 'ugc-everyday-gilt-title',
+    descId: 'ugc-everyday-gilt-desc',
+    description: 'Gold earrings worn by a woman in an editorial demi-fine jewelry moment.',
+  },
+  {
+    id: 'gift-ready',
+    caption: 'Gift-ready details',
+    titleId: 'ugc-gift-ready-title',
+    descId: 'ugc-gift-ready-desc',
+    description: 'A premium jewelry gift box opening in warm soft light.',
+  },
+  {
+    id: 'barely-there-luxe',
+    caption: 'Barely-there luxe',
+    titleId: 'ugc-barely-there-title',
+    descId: 'ugc-barely-there-desc',
+    description: 'A minimal gold ear cuff close-up on a model against warm neutrals.',
+  },
+]
+
+export function getProductBySlug(slug) {
+  return products.find((product) => product.slug === slug) ?? products[0]
+}
