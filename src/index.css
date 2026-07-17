@@ -1,76 +1,85 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-ivory text-charcoal font-body antialiased;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+    font-weight: 400;
+  }
+}
+
+a {
+  @apply text-espresso transition-colors duration-200;
+}
+
+a:hover {
+  @apply text-gold-600;
+}
+
+button {
+  @apply font-body;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cream;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-taupe rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-espresso;
+}
+
+/* Product name styling */
+.product-name {
+  @apply font-serif uppercase tracking-ultra-wide text-espresso text-sm md:text-base;
+}
+
+/* Hairline divider */
+.hairline {
+  @apply h-px bg-sand w-full;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #FAF8F5 25%, #F5F0EB 50%, #FAF8F5 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Focus states */
+*:focus-visible {
+  @apply outline-none ring-2 ring-gold-400 ring-offset-2;
+}
+
+/* Image placeholder */
+.img-placeholder {
+  @apply bg-gradient-to-br from-sand to-cream;
+}
