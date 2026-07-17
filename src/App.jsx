@@ -7,6 +7,7 @@ import CartDrawer from '@/components/CartDrawer';
 import Home from '@/pages/Home';
 import Shop from '@/pages/Shop';
 import ProductDetail from '@/pages/ProductDetail';
+import About from '@/pages/About';
 import { Toaster } from 'sonner';
 
 const App = () => {
@@ -21,6 +22,14 @@ const App = () => {
               <Route path="/shop" element={<Shop />} />
               <Route path="/collections" element={<Shop />} />
               <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/journal" element={<About />} />
+              <Route path="/shipping" element={<About />} />
+              <Route path="/care" element={<About />} />
+              <Route path="/faq" element={<About />} />
+              <Route path="/contact" element={<About />} />
+              <Route path="/careers" element={<About />} />
+              <Route path="/accessibility" element={<About />} />
               <Route path="*" element={<Home />} />
             </Routes>
           </main>

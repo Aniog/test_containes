@@ -21,15 +21,15 @@ const CartDrawer = () => {
 
   return (
     <>
-      <div 
+      <div
         className={cn(
           "fixed inset-0 bg-black/40 z-[100] transition-opacity duration-300",
           isCartOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={() => setIsCartOpen(false)}
       />
-      
-      <div 
+
+      <div
         ref={containerRef}
         className={cn(
           "fixed top-0 right-0 h-full w-full max-w-md bg-white z-[101] shadow-2xl transition-transform duration-500 ease-out flex flex-col",
@@ -48,7 +48,7 @@ const CartDrawer = () => {
             <div className="flex-1 flex flex-col items-center justify-center text-center gap-4">
               <ShoppingBag className="w-12 h-12 text-velmora-border" />
               <p className="font-serif text-lg">Your bag is empty</p>
-              <button 
+              <button
                 onClick={() => setIsCartOpen(false)}
                 className="text-xs uppercase tracking-widest font-semibold border-b border-velmora-dark pb-1"
               >
@@ -57,47 +57,12 @@ const CartDrawer = () => {
             </div>
           ) : (
             cart.map((item) => (
-              <div key={item.id} className="flex gap-4">
-                <div className="w-24 h-32 bg-velmora-beige flex-shrink-0">
-                   <img
-                    data-strk-img-id={`product-${item.id}-main`}
-                    data-strk-img={`[cart-item-name-${item.id}] jewelry luxury`}
-                    data-strk-img-ratio="2x3"
-                    data-strk-img-width="200"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 3'/%3E"
-                    alt={item.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="flex-1 flex flex-col">
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 id={`cart-item-name-${item.id}`} className="font-serif text-sm uppercase tracking-wider">{item.name}</h3>
-                    <button onClick={() => removeFromCart(item.id)}>
-                      <X className="w-4 h-4 text-velmora-muted" />
-                    </button>
-                  </div>
-                  <p className="text-xs text-velmora-muted mb-4">${item.price}</p>
-                  
-                  <div className="mt-auto flex items-center justify-between">
-                    <div className="flex items-center border border-velmora-border px-2 py-1">
-                      <button 
-                        onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="p-1"
-                      >
-                        <Minus className="w-3 h-3" />
-                      </button>
-                      <span className="text-xs w-8 text-center">{item.quantity}</span>
-                      <button 
-                        onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                        className="p-1"
-                      >
-                        <Plus className="w-3 h-3" />
-                      </button>
-                    </div>
-                    <p className="text-sm font-medium font-serif">${item.price * item.quantity}</p>
-                  </div>
-                </div>
-              </div>
+              <CartItem 
+                key={item.id} 
+                item={item} 
+                updateQuantity={updateQuantity} 
+                removeFromCart={removeFromCart} 
+              />
             ))
           )}
         </div>

@@ -3,18 +3,31 @@ import { X, Plus, Minus } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const CartItem = ({ item, updateQuantity, removeFromCart }) => {
+  const productIds = [
+    'vivid-aura-jewels',
+    'majestic-flora-nectar',
+    'golden-sphere-huggies',
+    'amber-lace-earrings',
+    'royal-heirloom-set'
+  ];
+
   return (
     <div className="flex gap-4">
-      <div className="w-24 h-32 bg-velmora-beige flex-shrink-0">
-        <img
-          data-strk-img-id={`product-${item.id}-main`}
-          data-strk-img={`[cart-item-name-${item.id}] jewelry luxury`}
-          data-strk-img-ratio="2x3"
-          data-strk-img-width="200"
-          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 3'/%3E"
-          alt={item.name}
-          className="w-full h-full object-cover"
-        />
+      <div className="w-24 h-32 bg-velmora-beige flex-shrink-0 relative">
+        {productIds.map(pid => (
+          item.id === pid && (
+            <img
+              key={pid}
+              data-strk-img-id={`product-${pid}-main`}
+              data-strk-img={`[cart-item-name-${pid}] jewelry luxury`}
+              data-strk-img-ratio="2x3"
+              data-strk-img-width="200"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2 3'/%3E"
+              alt={item.name}
+              className="w-full h-full object-cover"
+            />
+          )
+        ))}
       </div>
       <div className="flex-1 flex flex-col">
         <div className="flex justify-between items-start mb-1">
