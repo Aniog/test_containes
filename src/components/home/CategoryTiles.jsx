@@ -1,0 +1,8 @@
+import { Link } from 'react-router-dom'
+import ImageSlot from '@/components/common/ImageSlot.jsx'
+import { categories } from '@/data/products.js'
+export default function CategoryTiles() {
+  return (
+    <section className="bg-velmora-ivory py-16 text-velmora-ink md:py-24"><div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"><div className="mb-10 text-center"><p className="text-xs font-bold uppercase tracking-[0.32em] text-velmora-gold">Curated pathways</p><h2 id="category-title" className="mt-3 font-serif text-5xl text-velmora-ink md:text-6xl">Shop by Category</h2></div><div className="grid gap-5 md:grid-cols-3">{categories.map((category) => { const titleId = `category-${category.id}-title`; const descId = `category-${category.id}-desc`; return <Link key={category.id} to={`/shop?category=${encodeURIComponent(category.label)}`} className="group relative aspect-[4/5] overflow-hidden bg-velmora-blush shadow-soft"><ImageSlot id={`category-${category.id}-img`} query={`[${descId}] [${titleId}] [category-title]`} ratio="4x3" width="900" alt={category.label} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-velmora-espresso/75 via-velmora-espresso/10 to-transparent opacity-85 transition group-hover:opacity-95" /><div className="absolute inset-x-6 bottom-6 translate-y-4 text-velmora-ivory transition duration-500 group-hover:translate-y-0"><h3 id={titleId} className="font-serif text-4xl">{category.label}</h3><p id={descId} className="mt-2 max-w-xs text-sm leading-6 text-velmora-ivory/76 opacity-0 transition duration-500 group-hover:opacity-100">{category.description}</p></div></Link> })}</div></div></section>
+  )
+}
