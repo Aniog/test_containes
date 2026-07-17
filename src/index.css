@@ -92,47 +92,112 @@
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 bg-ink-800 text-ivory-50 
-           font-sans font-medium text-sm tracking-widest uppercase 
-           transition-all duration-300 hover:bg-ink-700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background-color: var(--color-ink);
+    color: var(--color-ivory-light);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background-color: #2D2720;
   }
 
   .btn-outline {
-    @apply inline-flex items-center justify-center px-8 py-3 
-           border border-gold-400 text-gold-600 
-           font-sans font-medium text-sm tracking-widest uppercase 
-           transition-all duration-300 hover:bg-gold-400 hover:text-ink-800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    border: 1px solid #C4A77D;
+    color: #8F6F3D;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .btn-outline:hover {
+    background-color: #C4A77D;
+    color: var(--color-ink);
   }
 
   .btn-gold {
-    @apply inline-flex items-center justify-center px-8 py-3 
-           bg-gold-400 text-ink-800 
-           font-sans font-medium text-sm tracking-widest uppercase 
-           transition-all duration-300 hover:bg-gold-500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    background-color: #C4A77D;
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+  }
+  .btn-gold:hover {
+    background-color: #B08D5B;
   }
 
   .section-container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 640px) {
+    .section-container { padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .section-container { padding-left: 2rem; padding-right: 2rem; }
   }
 
   .section-title {
-    @apply font-serif text-3xl md:text-4xl lg:text-5xl text-ink-800 tracking-wide;
+    font-family: var(--font-serif);
+    font-size: 1.875rem;
+    color: var(--color-ink);
+    letter-spacing: 0.025em;
   }
+  @media (min-width: 768px) { .section-title { font-size: 2.25rem; } }
+  @media (min-width: 1024px) { .section-title { font-size: 3rem; } }
 
   .section-subtitle {
-    @apply font-sans text-sm md:text-base text-ink-400 tracking-widest uppercase;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: #8F806C;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
   }
+  @media (min-width: 768px) { .section-subtitle { font-size: 1rem; } }
 
   .divider {
-    @apply w-full h-px bg-gold-200;
+    width: 100%;
+    height: 1px;
+    background-color: #EDDDB5;
   }
 
   .product-name {
-    @apply font-serif text-lg md:text-xl uppercase tracking-widest-xl text-ink-800;
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-ink);
   }
+  @media (min-width: 768px) { .product-name { font-size: 1.25rem; } }
 
   .price {
-    @apply font-sans text-lg text-gold-600 font-medium;
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    color: #8F6F3D;
+    font-weight: 500;
   }
 }
 
