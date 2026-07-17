@@ -1,76 +1,230 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-gold: #C9A96E;
+    --color-gold-dark: #B8955A;
+    --color-gold-light: #D4C4A8;
+    --color-charcoal: #1A1A1A;
+    --color-cream: #FAF8F5;
+    --color-warm-cream: #F5F2ED;
+    --color-taupe: #8B7E6A;
+    --color-muted-gold: #D4C4A8;
+    --color-light-gray: #E8E4DE;
+    --color-medium-gray: #9A948A;
+    --color-dark-bg: #2A2A2A;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans;
+    @apply text-charcoal;
+    @apply bg-cream;
+    margin: 0;
+    padding: 0;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+    @apply font-normal;
+    line-height: 1.2;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+    transition: color 0.2s ease;
+  }
+
+  button {
+    @apply cursor-pointer;
+    font-family: inherit;
+  }
+
+  img {
+    @apply max-w-full h-auto;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-warm-cream;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-gold rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold;
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-7xl mx-auto px-6 md:px-12;
+  }
+
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+
+  .hairline-divider {
+    @apply h-px bg-light-gray;
+  }
+
+  /* Button variants */
+  .btn-primary {
+    @apply inline-flex items-center justify-center;
+    @apply bg-gold text-white;
+    @apply px-8 py-4;
+    @apply font-sans font-medium text-sm uppercase tracking-extra-wide;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-gold-dark hover:-translate-y-0.5;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center;
+    @apply bg-transparent border border-gold text-gold;
+    @apply px-8 py-4;
+    @apply font-sans font-medium text-sm uppercase tracking-extra-wide;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:bg-gold hover:text-white;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center;
+    @apply bg-transparent text-charcoal;
+    @apply px-4 py-2;
+    @apply font-sans font-medium text-sm uppercase tracking-extra-wide;
+    @apply transition-all duration-200 ease-out;
+    @apply hover:text-gold;
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+
+  /* Product name styling */
+  .product-name {
+    @apply font-serif uppercase tracking-extra-wide text-charcoal;
+  }
+
+  /* Card styles */
+  .card-base {
+    @apply bg-white shadow-soft;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card-base:hover {
+    @apply shadow-lift;
+  }
+
+  /* Pill/Tag */
+  .pill {
+    @apply inline-block;
+    @apply bg-warm-cream text-taupe;
+    @apply px-4 py-1.5 rounded-full;
+    @apply font-sans text-xs uppercase tracking-wider;
+  }
+
+  /* Section title */
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl text-charcoal;
+  }
+
+  /* Newsletter input */
+  .input-newsletter {
+    @apply w-full px-6 py-4;
+    @apply bg-white border border-light-gray;
+    @apply font-sans text-charcoal placeholder:text-medium-gray;
+    @apply transition-colors duration-200;
+    @apply focus:outline-none focus:border-gold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  /* Staggered animation delays */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+
+  /* Hide scrollbar utility */
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
