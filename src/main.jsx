@@ -3,12 +3,17 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-if (import.meta.env.DEV) {
-  import("./visual-edit/index.js");
-}
+const root = document.getElementById("root");
+console.log("main.jsx loaded, root:", root);
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+try {
+  ReactDOM.createRoot(root).render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>,
+  );
+  console.log("render called successfully");
+} catch (err) {
+  console.error("Render error:", err);
+  root.innerHTML = '<div style="color:red;padding:20px;">Error: ' + err.message + '</div>';
+}
