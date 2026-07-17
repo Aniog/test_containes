@@ -57,28 +57,28 @@ export default function ProductDetail() {
                     selectedImageIdx === idx ? "border-velmora-accent opacity-100" : "border-transparent opacity-60 hover:opacity-100"
                   )}
                 >
-                   <img
-                    data-strk-img-id={`pdp-thumb-${product.id}-${idx}`}
-                    data-strk-img={img.dataStrkImg}
-                    data-strk-img-ratio="4x5"
-                    data-strk-img-width="200"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'/%3E"
-                    alt={`${product.name} thumbnail`}
-                    className="w-full h-full object-cover"
-                  />
+               <img
+                data-strk-img-id={`pdp-thumb-${product.id}-${idx}`}
+                data-strk-img={img.dataStrkImg}
+                data-strk-img-ratio="4x5"
+                data-strk-img-width="200"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                alt={`${product.name} thumbnail`}
+                className="w-full h-full object-cover"
+              />
                 </button>
               ))}
             </div>
             <div className="flex-1 bg-velmora-beige aspect-[4/5] overflow-hidden order-1 md:order-2 shadow-sm">
-                <img
-                  data-strk-img-id={`pdp-main-${product.id}`}
-                  data-strk-img={product.images[selectedImageIdx].dataStrkImg}
-                  data-strk-img-ratio="4x5"
-                  data-strk-img-width="1000"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'/%3E"
-                  alt={product.name}
-                  className="w-full h-full object-cover transition-transform duration-1000"
-                />
+                  <img
+                    data-strk-img-id={`pdp-main-${product.id}`}
+                    data-strk-img={product.images[selectedImageIdx].dataStrkImg}
+                    data-strk-img-ratio="4x5"
+                    data-strk-img-width="1000"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    alt={product.name}
+                    className="w-full h-full object-cover transition-transform duration-1000"
+                  />
             </div>
           </div>
 
@@ -203,7 +203,7 @@ export default function ProductDetail() {
                     data-strk-img={p.images[0].dataStrkImg}
                     data-strk-img-ratio="4/5"
                     data-strk-img-width="500"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'/%3E"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                     alt={p.name}
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                   />

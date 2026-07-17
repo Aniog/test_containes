@@ -132,7 +132,7 @@ export default function Shop() {
                         data-strk-img={product.images[0].dataStrkImg}
                         data-strk-img-ratio="4/5"
                         data-strk-img-width="600"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 4'/%3E"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         alt={product.name}
                         className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                       />
