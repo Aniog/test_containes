@@ -6,7 +6,7 @@ export default function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1515562141589-677e7c0b1e9b?w=1920&q=85"
+          src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=1920&q=85"
           alt="Gold jewelry on a warm editorial background"
           className="w-full h-full object-cover"
         />

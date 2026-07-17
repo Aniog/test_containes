@@ -1,11 +1,5 @@
 import { Link } from "react-router-dom";
-import { Instagram, Pinterest, Twitter } from "lucide-react";
-
-const socialLinks = [
-  { label: "Instagram", icon: Instagram, href: "#" },
-  { label: "Pinterest", icon: Pinterest, href: "#" },
-  { label: "Twitter", icon: Twitter, href: "#" },
-];
+import { Instagram } from "lucide-react";
 
 export default function Footer() {
   return (

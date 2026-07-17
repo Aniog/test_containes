@@ -9,7 +9,7 @@ export const products = [
     material: "gold",
     images: [
       "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&q=80",
-      "https://images.unsplash.com/photo-1603975217914-9c2a6e7f1b3e?w=800&q=80",
+      "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80",
     ],
     rating: 4.8,
     reviews: 124,
@@ -54,7 +54,7 @@ export const products = [
     material: "gold",
     images: [
       "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
-      "https://images.unsplash.com/photo-1603975217914-9c2a6e7f1b3e?w=800&q=80",
+      "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800&q=80",
     ],
     rating: 4.6,
     reviews: 67,
@@ -68,8 +68,8 @@ export const products = [
     category: "sets",
     material: "gold",
     images: [
-      "https://images.unsplash.com/photo-1515562141589-677e7c0b1e9b?w=800&q=80",
-      "https://images.unsplash.com/photo-1602751584554-8ba73aad82e1?w=800&q=80",
+      "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80",
+      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=800&q=80",
     ],
     rating: 5.0,
     reviews: 42,
@@ -93,7 +93,7 @@ export const ugcReels = [
     id: "ugc-3",
     caption: "Gift for my best friend",
     image:
-      "https://images.unsplash.com/photo-1515562141589-677e7c0b1e9b?w=400&q=80",
+      "https://images.unsplash.com/photo-1635767798638-3e25273a8236?w=400&q=80",
   },
   {
     id: "ugc-4",
