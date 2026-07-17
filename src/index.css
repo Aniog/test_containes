@@ -1,76 +1,80 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 98%; /* Warm, slightly creamy off-white (#FAF8F5) */
+    --foreground: 20 14% 15%; /* Deep brownish black (#2A2624) */
+
+    --card: 40 33% 98%;
+    --card-foreground: 20 14% 15%;
+
+    --popover: 40 33% 98%;
+    --popover-foreground: 20 14% 15%;
+
+    --primary: 38 30% 25%; /* Deep warm brown/charcoal, elegant dark (#534638) */
+    --primary-foreground: 40 33% 98%;
+
+    --secondary: 35 25% 90%; /* Soft beige/sand (#E8E3DA) */
+    --secondary-foreground: 20 14% 15%;
+
+    --muted: 35 20% 92%; /* Lighter sand (#EDEBE6) */
+    --muted-foreground: 20 10% 40%; /* Mid brownish grey (#706963) */
+
+    --accent: 43 50% 64%; /* Muted gold (#CDA85C) */
+    --accent-foreground: 40 33% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 35 15% 85%; /* Soft beige border (#DFDCD5) */
+    --input: 35 15% 85%;
+    --ring: 38 30% 25%;
+
+    --radius: 0rem; /* Elegant sharp corners */
+  }
+
+  .dark {
+    --background: 20 14% 10%; /* Very dark warm grey (#1D1A18) */
+    --foreground: 40 33% 95%; /* Off-white (#F7F4F0) */
+
+    --card: 20 14% 12%;
+    --card-foreground: 40 33% 95%;
+
+    --popover: 20 14% 12%;
+    --popover-foreground: 40 33% 95%;
+
+    --primary: 43 50% 64%; /* Muted gold (#CDA85C) */
+    --primary-foreground: 20 14% 10%;
+
+    --secondary: 20 10% 20%; /* Dark grey (#383431) */
+    --secondary-foreground: 40 33% 95%;
+
+    --muted: 20 10% 20%;
+    --muted-foreground: 40 20% 70%; /* Light brownish grey (#BAAFA3) */
+
+    --accent: 43 50% 64%; /* Muted gold */
+    --accent-foreground: 20 14% 10%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 20 10% 25%; /* Dark border (#46403C) */
+    --input: 20 10% 25%;
+    --ring: 43 50% 64%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased selection:bg-accent/30 selection:text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-wide;
+  }
+}
