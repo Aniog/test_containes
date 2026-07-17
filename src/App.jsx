@@ -1,15 +1,24 @@
-import './App.css'
+import { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { CartProvider } from '@/context/CartContext';
 
-function App() {
-  return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+// Minimal test
+function TestPage() {
+  return <div style={{color: 'white', background: 'green', padding: '40px'}}>TEST - NO CART PROVIDER</div>;
 }
 
-export default App
+function AppLayout() {
+  return (
+    <div>
+      <TestPage />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppLayout />
+    </BrowserRouter>
+  );
+}
