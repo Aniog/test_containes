@@ -1,76 +1,146 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: #FAF7F2;
+    color: #1C1814;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    background-color: #C9A96E;
+    color: #1C1814;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background-color: #B8924A;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  .btn-primary:active { transform: scale(0.95); }
+
+  .btn-outline {
+    border: 1px solid #C9A96E;
+    color: #C9A96E;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+    background-color: transparent;
+  }
+  .btn-outline:hover {
+    background-color: #C9A96E;
+    color: #1C1814;
+  }
+  .btn-outline:active { transform: scale(0.95); }
+
+  .btn-dark {
+    background-color: #1C1814;
+    color: #FAF7F2;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+  }
+  .btn-dark:hover {
+    background-color: #2A2420;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  }
+  .btn-dark:active { transform: scale(0.95); }
+
+  .section-label {
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #7A6E68;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.25rem;
+    color: #1C1814;
+    line-height: 1.25;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 0.875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #1C1814;
+  }
+
+  .hairline {
+    border-top: 1px solid rgba(61, 53, 48, 0.4);
+  }
+
+  .card-hover {
+    transition: all 500ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .card-hover:hover {
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    transform: translateY(-0.25rem);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #FAF7F2; }
+::-webkit-scrollbar-thumb { background: #C9A96E; border-radius: 3px; }
+
+/* Hide scrollbar for UGC row */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
