@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { imagePlaceholder } from '@/data/store'
 import { cn } from '@/lib/utils'
 
 const ProductGallery = ({ product }) => {

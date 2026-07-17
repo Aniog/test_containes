@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
 import { ImageHelper } from '@strikingly/sdk'
-import { formatPrice, imagePlaceholder } from '@/data/store'
+import { formatPrice } from '@/data/store'
 import { cn } from '@/lib/utils'
 import strkImgConfig from '@/strk-img-config.json'
 

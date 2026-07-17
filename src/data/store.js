@@ -218,20 +218,68 @@ export const testimonials = [
 export const journalNotes = [
   {
     id: 'journal-1',
+    slug: 'how-to-stack-gold-tones-with-ease',
     title: 'How to stack gold tones with ease',
     category: 'Styling',
+    readingTime: '3 min read',
+    excerpt:
+      'Thoughtful layering starts with one softly sculptural anchor, then builds with contrast in scale, texture, and light-catching detail.',
+    lede:
+      'The most elegant stacks never feel overworked. They begin with one piece you want to notice first, then layer in supporting shapes that bring warmth, polish, and dimension.',
+    body: [
+      'Start with a clear focal point, whether that is a floral pendant, a polished dome huggie, or a crystal-accented cuff. Once the hero piece is in place, choose one or two quieter companions so the look still feels breathable and refined.',
+      'Mixing chain weights is the easiest way to create depth without looking busy. A fine necklace beside a slightly bolder silhouette keeps the stack intentional, while repeating the same metal tone allows the overall finish to stay soft and cohesive.',
+      'For earrings, think in balance rather than symmetry. A slim cuff paired with a rounded huggie creates the kind of editorial tension that feels premium, modern, and wearable from coffee meetings to candlelit dinners.',
+    ],
+    sidebar:
+      'Build your own softly layered edit with necklaces and huggies designed to sit beautifully together.',
+    ctaLabel: 'Shop Necklaces',
+    shopHref: '/shop?category=Necklaces',
   },
   {
     id: 'journal-2',
+    slug: 'the-art-of-gifting-jewelry-that-feels-personal',
     title: 'The art of gifting jewelry that feels personal',
     category: 'Gifting',
+    readingTime: '4 min read',
+    excerpt:
+      'The best jewelry gifts feel intimate, not extravagant — chosen with enough detail to feel noticed and enough versatility to be worn often.',
+    lede:
+      'A meaningful gift does not need to be loud. It needs to feel like it belongs to the woman receiving it — easy to reach for, beautiful to unwrap, and polished enough to mark the moment.',
+    body: [
+      'When choosing a piece, consider how she dresses every day rather than saving the decision for rare occasions. Huggies, delicate necklaces, and coordinated sets tend to become the gifts people wear most because they slide effortlessly into an existing wardrobe.',
+      'Presentation matters just as much as the piece itself. A gift feels more considered when it arrives ready to give, with warm-toned packaging, a personal note, and a silhouette that feels elevated from the first glance.',
+      'If you are unsure where to begin, choose something versatile with a little presence. A softly statement necklace or a gift-boxed set offers the confidence of impact while still feeling universally wearable.',
+    ],
+    sidebar:
+      'Explore gift-ready pieces that arrive polished, versatile, and beautifully packaged for the occasion.',
+    ctaLabel: 'Shop Gift Sets',
+    shopHref: '/shop?category=Gift%20Sets',
   },
   {
     id: 'journal-3',
+    slug: 'caring-for-demi-fine-pieces-so-they-stay-luminous',
     title: 'Caring for demi-fine pieces so they stay luminous',
     category: 'Care',
+    readingTime: '3 min read',
+    excerpt:
+      'A few simple rituals help demi-fine jewelry hold its glow longer: gentle storage, mindful wear, and a quick wipe after the day ends.',
+    lede:
+      'Jewelry lasts best when it is treated like part of a ritual. Small habits preserve shine, protect plating, and keep your favorite pieces ready to wear again tomorrow.',
+    body: [
+      'Store each piece somewhere dry and soft, ideally in its pouch or box, so chains do not tangle and polished surfaces stay protected from friction. Humidity and hard contact are the fastest way to dull a beautiful finish.',
+      'Apply fragrance, lotion, and hair products before putting jewelry on. Letting those formulas settle first helps preserve plated surfaces and keeps crystals or textured details looking clear and bright.',
+      'At the end of the day, use a soft cloth to remove skin oils and residue. That one quiet step goes a long way toward maintaining the warm glow that makes demi-fine gold jewelry feel so special.',
+    ],
+    sidebar:
+      'Choose everyday pieces designed for repeat wear, thoughtful gifting, and long-lasting shine with proper care.',
+    ctaLabel: 'Shop Bestsellers',
+    shopHref: '/shop',
   },
 ]
+
+export const getJournalNoteBySlug = (slug) =>
+  journalNotes.find((note) => note.slug === slug)
 
 export const footerColumns = {
   Shop: ['Bestsellers', 'Earrings', 'Necklaces', 'Gift Sets'],

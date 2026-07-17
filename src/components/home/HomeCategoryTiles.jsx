@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import SectionHeading from '@/components/common/SectionHeading'
-import { imagePlaceholder } from '@/data/store'
 
 const HomeCategoryTiles = ({ categories }) => {
   return (

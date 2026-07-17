@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { imagePlaceholder } from '@/data/store'
 
 const HomeStorySection = () => {
   return (

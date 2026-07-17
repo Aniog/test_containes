@@ -1,5 +1,4 @@
 import SectionHeading from '@/components/common/SectionHeading'
-import { imagePlaceholder } from '@/data/store'
 
 const HomeUGCRow = ({ moments }) => {
   return (
