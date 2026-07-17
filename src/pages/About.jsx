@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import StrkImage, { useStrkImageLoader } from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 import Newsletter from "@/components/layout/Newsletter";
 
 export default function About() {
-  const ref = useStrkImageLoader([]);
   return (
     <>
       <section
-        ref={ref}
         className="relative bg-ink-deep text-ivory pt-32 md:pt-40 pb-20"
       >
         <div className="mx-auto max-w-editorial px-5 md:px-10">
@@ -45,7 +43,7 @@ export default function About() {
           </div>
           <div className="md:col-span-6 order-1 md:order-2">
             <div className="relative aspect-[4/5] w-full overflow-hidden bg-cream-warm">
-              <StrkImage
+              <InlineImage
                 imgId="about-img-1"
                 query="[about-h2]"
                 ratio="4x5"

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import StrkImage, { useStrkImageLoader } from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 import { cn } from "@/lib/utils";
 
 export default function ProductGallery({ product }) {
   const [active, setActive] = useState(0);
-  const ref = useStrkImageLoader([product.id, active]);
 
   // Build a 4-image gallery: primary, secondary, then 2 generated (we reuse the same two for now)
   const slides = [
@@ -31,7 +30,7 @@ export default function ProductGallery({ product }) {
   ];
 
   return (
-    <div ref={ref} className="flex flex-col-reverse gap-4 md:flex-row">
+    <div className="flex flex-col-reverse gap-4 md:flex-row">
       <ol
         className="order-2 md:order-1 flex md:flex-col gap-2 md:gap-3 overflow-x-auto md:overflow-x-visible no-scrollbar"
         role="tablist"
@@ -49,7 +48,7 @@ export default function ProductGallery({ product }) {
                 active === i ? "border-ink" : "border-line hover:border-ink/40"
               )}
             >
-              <StrkImage
+              <InlineImage
                 imgId={s.imgId}
                 query={`[${s.titleId}] [pd-name-${product.id}] [pd-cat-${product.id}]`}
                 ratio="1x1"
@@ -67,7 +66,7 @@ export default function ProductGallery({ product }) {
 
       <div className="order-1 md:order-2 flex-1">
         <div className="relative aspect-[4/5] w-full overflow-hidden bg-cream-soft">
-          <StrkImage
+          <InlineImage
             key={slides[active].imgId}
             imgId={slides[active].imgId}
             query={`[pd-name-${product.id}] [pd-cat-${product.id}]`}

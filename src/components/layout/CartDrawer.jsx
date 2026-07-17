@@ -2,13 +2,11 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { X, Plus, Minus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
-import StrkImage from "@/components/ui/StrkImage";
-import { useStrkImageLoader } from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 import { formatPrice } from "@/lib/utils";
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, summary, updateQty, removeItem } = useCart();
-  const ref = useStrkImageLoader([isOpen, items.length]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -62,7 +60,7 @@ export default function CartDrawer() {
           </button>
         </header>
 
-        <div ref={ref} className="flex-1 overflow-y-auto px-6 py-5">
+        <div className="flex-1 overflow-y-auto px-6 py-5">
           {items.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center py-16">
               <ShoppingBag className="h-10 w-10 text-ink-soft" strokeWidth={1.25} />
@@ -86,7 +84,7 @@ export default function CartDrawer() {
                   className="flex gap-4 pb-5 border-b border-line last:border-b-0"
                 >
                   <div className="relative h-24 w-24 flex-none overflow-hidden bg-cream-warm">
-                    <StrkImage
+                    <InlineImage
                       imgId={it.imgId}
                       query={`[cart-item-name-${it.variantKey}] [cart-item-tone-${it.variantKey}]`}
                       ratio="1x1"

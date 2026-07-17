@@ -2,17 +2,14 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import ProductCard from "@/components/home/ProductCard";
 import { getRelated } from "@/data/products";
-import { useStrkImageLoader } from "@/components/ui/StrkImage";
 
 export default function RelatedProducts({ product }) {
   const items = getRelated(product, 4);
-  const ref = useStrkImageLoader([product.id, items.length]);
 
   if (items.length === 0) return null;
 
   return (
     <section
-      ref={ref}
       aria-labelledby="related-title"
       className="bg-cream-soft border-t border-line py-20 md:py-24"
     >

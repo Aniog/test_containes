@@ -1,10 +1,9 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import StrkImage, { useStrkImageLoader } from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 import { UGC_REELS } from "@/data/products";
 
 export default function UGCReels() {
-  const ref = useStrkImageLoader([UGC_REELS.length]);
   const scrollerRef = useRef(null);
 
   const scrollBy = (dir) => {
@@ -16,7 +15,6 @@ export default function UGCReels() {
 
   return (
     <section
-      ref={ref}
       aria-labelledby="ugc-title"
       className="bg-cream-soft py-20 md:py-24 border-y border-line"
     >
@@ -66,7 +64,7 @@ export default function UGCReels() {
               key={reel.id}
               className="relative shrink-0 snap-start w-[58vw] sm:w-[230px] md:w-[260px] aspect-[9/16] overflow-hidden bg-cream-warm"
             >
-              <StrkImage
+              <InlineImage
                 imgId={`ugc-${reel.id}`}
                 query={`[ugc-caption-${reel.id}] [ugc-product-${reel.id}] [ugc-title]`}
                 ratio="9x16"

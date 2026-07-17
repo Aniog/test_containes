@@ -2,15 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import ProductCard from "./ProductCard";
 import { PRODUCTS } from "@/data/products";
-import { useStrkImageLoader } from "@/components/ui/StrkImage";
 
 export default function Bestsellers() {
-  const ref = useStrkImageLoader([PRODUCTS.length]);
   const items = PRODUCTS.slice(0, 5);
 
   return (
     <section
-      ref={ref}
       aria-labelledby="bestsellers-title"
       className="bg-cream py-20 md:py-28"
     >

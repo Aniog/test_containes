@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { StrkBackground, useStrkImageLoader } from "@/components/ui/StrkImage";
+import { InlineBackground } from "@/components/ui/InlineImage";
 
 export default function Hero() {
-  const ref = useStrkImageLoader([]);
   return (
     <section
-      ref={ref}
       className="relative isolate min-h-[100svh] w-full overflow-hidden bg-ink-deep text-ivory"
     >
-      {/* Background image (replaced at runtime) */}
-      <StrkBackground
+      {/* Background image — resolved at render time from the bundled config */}
+      <InlineBackground
         id="hero-bg-6d34fa"
         query="[hero-subtitle] [hero-title]"
         ratio="3x4"

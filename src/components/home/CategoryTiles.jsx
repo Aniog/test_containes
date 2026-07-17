@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import StrkImage, { useStrkImageLoader } from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 import { CATEGORIES_FOR_HOMEPAGE } from "@/data/products";
 
 export default function CategoryTiles() {
-  const ref = useStrkImageLoader([CATEGORIES_FOR_HOMEPAGE.length]);
   return (
     <section
-      ref={ref}
       aria-labelledby="categories-title"
       className="bg-cream py-20 md:py-28"
     >
@@ -31,7 +29,7 @@ export default function CategoryTiles() {
                 to={`/shop?category=${c.id}`}
                 className="group relative block aspect-[3/4] overflow-hidden bg-cream-warm"
               >
-                <StrkImage
+                <InlineImage
                   imgId={c.imgId}
                   query={`[cat-desc-${c.id}] [cat-title-${c.id}] [categories-title]`}
                   ratio="3x4"

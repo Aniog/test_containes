@@ -1,19 +1,17 @@
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import StrkImage, { useStrkImageLoader } from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 
 export default function BrandStory() {
-  const ref = useStrkImageLoader([]);
   return (
     <section
-      ref={ref}
       aria-labelledby="story-title"
       className="bg-cream-soft border-y border-line"
     >
       <div className="mx-auto grid max-w-editorial grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 items-center px-5 md:px-10 py-20 md:py-28">
         <div className="md:col-span-6">
           <div className="relative aspect-[4/5] w-full overflow-hidden bg-cream-warm">
-            <StrkImage
+            <InlineImage
               imgId="brand-story-img-1a2b"
               query="[story-title] [story-eyebrow]"
               ratio="4x5"

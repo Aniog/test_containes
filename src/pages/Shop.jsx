@@ -4,7 +4,6 @@ import { SlidersHorizontal } from "lucide-react";
 import ProductCard from "@/components/home/ProductCard";
 import FilterSidebar from "@/components/shop/FilterSidebar";
 import SortDropdown from "@/components/shop/SortDropdown";
-import { useStrkImageLoader } from "@/components/ui/StrkImage";
 import { PRODUCTS, CATEGORIES, PRICE_BUCKETS } from "@/data/products";
 
 const EMPTY_FILTERS = {
@@ -66,8 +65,6 @@ export default function Shop() {
 
   const sorted = useMemo(() => sortItems(filtered, sort), [filtered, sort]);
 
-  const ref = useStrkImageLoader([sorted.length, sort]);
-
   const activeCategory =
     filters.category.size === 1
       ? CATEGORIES.find((c) => c.id === [...filters.category][0])?.label
@@ -90,7 +87,6 @@ export default function Shop() {
       </section>
 
       <section
-        ref={ref}
         className="bg-cream py-10 md:py-14"
       >
         <div className="mx-auto max-w-editorial px-5 md:px-10">

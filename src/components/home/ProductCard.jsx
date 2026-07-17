@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Plus, Star } from "lucide-react";
-import StrkImage from "@/components/ui/StrkImage";
+import InlineImage from "@/components/ui/InlineImage";
 import { useCart } from "@/context/CartContext";
 import { formatPrice, slugify } from "@/lib/utils";
 
@@ -16,7 +16,7 @@ export default function ProductCard({ product, eager = false }) {
         aria-label={`View ${product.name}`}
       >
         <div className="relative aspect-[4/5] w-full overflow-hidden">
-          <StrkImage
+          <InlineImage
             imgId={product.imgIds.primary}
             query={`[card-desc-${product.id}] [card-name-${product.id}] [bestsellers-title]`}
             ratio="4x5"
@@ -25,7 +25,7 @@ export default function ProductCard({ product, eager = false }) {
             eager={eager}
             className="product-card-img product-card-img-primary"
           />
-          <StrkImage
+          <InlineImage
             imgId={product.imgIds.secondary}
             query={`[card-desc-${product.id}] [card-name-${product.id}]`}
             ratio="4x5"
