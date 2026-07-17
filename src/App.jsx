@@ -30,11 +30,20 @@ function RouteEffects() {
 
   useEffect(() => {
     if (location.hash) {
-      window.requestAnimationFrame(() => {
+      const frameId = window.requestAnimationFrame(() => {
         const target = document.getElementById(location.hash.slice(1))
-        target?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        const navbar = document.querySelector('[data-velmora-navbar="true"]')
+        const navbarHeight = navbar instanceof HTMLElement ? navbar.offsetHeight : 0
+
+        if (!target) {
+          return
+        }
+
+        const top = target.getBoundingClientRect().top + window.scrollY - navbarHeight - 20
+        window.scrollTo({ top: Math.max(top, 0), behavior: 'smooth' })
       })
-      return
+
+      return () => window.cancelAnimationFrame(frameId)
     }
 
     window.scrollTo({ top: 0, behavior: 'auto' })
@@ -48,12 +57,27 @@ function AppShell() {
   const location = useLocation()
 
   useEffect(() => {
+    if (!containerRef.current) {
+      return undefined
+    }
+
     let cleanup = () => {}
+    let cancelled = false
+
     const frameId = window.requestAnimationFrame(() => {
-      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      if (cancelled || !containerRef.current) {
+        return
+      }
+
+      try {
+        cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      } catch (error) {
+        console.error('Velmora image loading failed', error)
+      }
     })
 
     return () => {
+      cancelled = true
       window.cancelAnimationFrame(frameId)
       cleanup()
     }

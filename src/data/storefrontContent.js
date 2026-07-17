@@ -38,24 +38,27 @@ export const reels = [
 export const categories = [
   {
     id: 'earrings',
+    imgId: 'category-earrings-jewel-z81m',
     label: 'Earrings',
     href: '/shop?category=Earrings',
     description: 'Textural drops and sculptural statements.',
-    visual: 'Editorial gold earrings close-up on warm neutral background',
+    visual: 'Luxury gold drop earrings styled on ivory stone with warm editorial jewelry lighting',
   },
   {
     id: 'necklaces',
+    imgId: 'category-necklaces-jewel-r42p',
     label: 'Necklaces',
     href: '/shop?category=Necklaces',
     description: 'Layering pieces that softly catch the light.',
-    visual: 'Delicate gold necklace worn on model with elegant neckline',
+    visual: 'Delicate gold necklace on woman neckline in warm editorial luxury jewelry portrait',
   },
   {
     id: 'huggies',
+    imgId: 'category-huggies-jewel-k63v',
     label: 'Huggies',
     href: '/shop?category=Huggies',
     description: 'Rounded daily icons with a modern finish.',
-    visual: 'Chunky gold huggie earrings on ear in close-up portrait',
+    visual: 'Chunky gold hoop earrings on ear close-up, luxury jewelry editorial, woman portrait',
   },
 ]
 
@@ -91,7 +94,22 @@ export const journalEntries = [
 ]
 
 export const footerLinks = {
-  shop: ['Bestsellers', 'New Arrivals', 'Gift Sets', 'Necklaces'],
-  help: ['Shipping', 'Returns', 'Care Guide', 'FAQ'],
-  company: ['About', 'Journal', 'Contact', 'Instagram'],
+  Shop: [
+    { label: 'Bestsellers', href: '/#bestsellers' },
+    { label: 'New Arrivals', href: '/shop' },
+    { label: 'Gift Sets', href: '/shop?category=Gift%20Sets' },
+    { label: 'Necklaces', href: '/shop?category=Necklaces' },
+  ],
+  Help: [
+    { label: 'Shipping', href: '/shop' },
+    { label: 'Returns', href: '/shop' },
+    { label: 'Care Guide', href: '/product/vivid-aura-jewels' },
+    { label: 'FAQ', href: '/shop' },
+  ],
+  Company: [
+    { label: 'About', href: '/#story' },
+    { label: 'Journal', href: '/#journal' },
+    { label: 'Contact', href: '/#newsletter' },
+    { label: 'Instagram', href: '/#journal' },
+  ],
 }

@@ -26,7 +26,7 @@ function StorySection() {
             Velmora was created for women who want jewelry that feels special the moment it arrives, yet effortless enough to keep wearing tomorrow. Our pieces are designed to sit between occasion and everyday — warm, polished, and quietly unforgettable.
           </p>
           <Link
-            to="/shop"
+            to="/#story"
             className="mt-8 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-luxe text-umber transition hover:text-gold-deep"
           >
             Our Story

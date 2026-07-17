@@ -1,10 +1,35 @@
-import { createContext, useContext, useMemo, useState } from 'react'
+import { createContext, useContext, useEffect, useMemo, useState } from 'react'
 
 const CartContext = createContext(null)
+const CART_STORAGE_KEY = 'velmora-cart'
+
+const readStoredCartItems = () => {
+  if (typeof window === 'undefined') {
+    return []
+  }
+
+  try {
+    const storedItems = window.localStorage.getItem(CART_STORAGE_KEY)
+
+    if (!storedItems) {
+      return []
+    }
+
+    const parsedItems = JSON.parse(storedItems)
+    return Array.isArray(parsedItems) ? parsedItems : []
+  } catch (error) {
+    console.error('Unable to restore saved Velmora cart', error)
+    return []
+  }
+}
 
 export function CartProvider({ children }) {
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState(readStoredCartItems)
   const [isCartOpen, setIsCartOpen] = useState(false)
+
+  useEffect(() => {
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
+  }, [items])
 
   const addItem = (product, options = {}) => {
     const tone = options.tone || 'gold'
