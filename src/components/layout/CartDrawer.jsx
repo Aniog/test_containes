@@ -1,21 +1,9 @@
-import { useEffect, useRef } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
 import { useCart } from '@/context/CartContext';
-import strkImgConfig from '@/strk-img-config.json';
 
 export default function CartDrawer() {
   const { items, removeItem, updateQty, totalPrice, totalItems, isOpen, setIsOpen } = useCart();
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    if (!isOpen || !containerRef.current) return;
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current);
-    });
-    return () => window.cancelAnimationFrame(frameId);
-  }, [isOpen, items]);
 
   if (!isOpen) return null;
 
@@ -28,7 +16,7 @@ export default function CartDrawer() {
       />
 
       {/* Drawer */}
-      <div ref={containerRef} className="fixed top-0 right-0 h-full w-full max-w-md bg-ivory z-50 flex flex-col slide-in-right shadow-2xl">
+      <div className="fixed top-0 right-0 h-full w-full max-w-md bg-ivory z-50 flex flex-col slide-in-right shadow-2xl">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-5 border-b border-blush">
           <div className="flex items-center gap-2">
@@ -67,17 +55,11 @@ export default function CartDrawer() {
             <ul className="flex flex-col gap-5">
               {items.map(item => (
                 <li key={item.key} className="flex gap-4 py-4 border-b border-blush last:border-0">
-                  {/* Product image placeholder */}
-                  <div className="w-20 h-20 bg-cream rounded-sm flex-shrink-0 overflow-hidden">
-                    <img
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      data-strk-img-id={`cart-${item.key}-img`}
-                      data-strk-img={`[${item.product.descId}] [${item.product.titleId}]`}
-                      data-strk-img-ratio="1x1"
-                      data-strk-img-width="160"
-                      alt={item.product.name}
-                      className="w-full h-full object-cover"
-                    />
+                  {/* Product image thumbnail */}
+                  <div className="w-20 h-20 bg-cream rounded-sm flex-shrink-0 overflow-hidden flex items-center justify-center">
+                    <span className="font-serif text-2xl font-light text-champagne select-none">
+                      {item.product.name.charAt(0)}
+                    </span>
                   </div>
 
                   <div className="flex-1 min-w-0">
