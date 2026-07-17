@@ -1,10 +1,11 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Link, useOutletContext } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
 import { ArrowRight, Star } from 'lucide-react'
 import ProductCard from '@/components/storefront/ProductCard'
 import { categories, products, testimonials, trustBadges, ugcStories } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function HomePage() {
   const { addItem } = useCart()
@@ -13,7 +14,23 @@ export default function HomePage() {
 
   const bestsellers = useMemo(() => products.slice(0, 5), [])
 
-  useStrkImages(containerRef, [])
+  useEffect(() => {
+    let disposeImages = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!containerRef.current) {
+        return
+      }
+
+      const cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      disposeImages = typeof cleanup === 'function' ? cleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      disposeImages()
+    }
+  }, [])
 
   const handleAddToCart = (product) => {
     addItem(product)

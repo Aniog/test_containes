@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import { useOutletContext, useSearchParams } from 'react-router-dom'
 import ProductCard from '@/components/storefront/ProductCard'
 import { products } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 const priceRanges = [
   { label: 'Under $50', value: 'under-50' },
@@ -67,7 +68,23 @@ export default function ShopPage() {
     }
   }, [searchParams, selectedCategory, setSearchParams])
 
-  useStrkImages(containerRef, [selectedCategory, selectedPrice, selectedMaterial, sortBy])
+  useEffect(() => {
+    let disposeImages = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!containerRef.current) {
+        return
+      }
+
+      const cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      disposeImages = typeof cleanup === 'function' ? cleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      disposeImages()
+    }
+  }, [selectedCategory, selectedPrice, selectedMaterial, sortBy])
 
   const filteredProducts = useMemo(() => {
     const nextProducts = products.filter((product) => {

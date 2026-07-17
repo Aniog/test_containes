@@ -1,12 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useOutletContext, useParams, Link } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
 import { Star } from 'lucide-react'
 import AccordionItem from '@/components/storefront/AccordionItem'
 import ProductCard from '@/components/storefront/ProductCard'
 import QuantitySelector from '@/components/storefront/QuantitySelector'
 import { products } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { useStrkImages } from '@/hooks/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function ProductPage() {
   const { productId } = useParams()
@@ -18,7 +19,23 @@ export default function ProductPage() {
   const { openCart } = useOutletContext()
   const containerRef = useRef(null)
 
-  useStrkImages(containerRef, [selectedImage, selectedColor])
+  useEffect(() => {
+    let disposeImages = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (!containerRef.current) {
+        return
+      }
+
+      const cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      disposeImages = typeof cleanup === 'function' ? cleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      disposeImages()
+    }
+  }, [selectedImage, selectedColor, product.id])
 
   useEffect(() => {
     setSelectedColor(product.colors[0])
