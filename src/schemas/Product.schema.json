@@ -1,0 +1,17 @@
+{
+  "properties": {
+    "name": { "type": "string", "description": "Product name" },
+    "price": { "type": "number", "description": "Price in USD" },
+    "description": { "type": "string", "description": "Short description" },
+    "category": { "type": "string", "enum": ["earrings", "necklaces", "huggies"], "description": "Product category" },
+    "images": { "type": "array", "items": { "type": "string", "format": "uri" }, "description": "Product images" },
+    "variants": { "type": "array", "items": { "type": "string" }, "description": "Color variants (e.g. Gold, Silver)" },
+    "material": { "type": "string", "description": "Materials and Care info" },
+    "shipping": { "type": "string", "description": "Shipping and Returns info" },
+    "stars": { "type": "number", "default": 5, "description": "Star rating" }
+  },
+  "required": ["name", "price", "category", "images"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
