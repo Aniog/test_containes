@@ -5553,6 +5553,12 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
     ? options.onUnresolved
     : () => {}
   const getImgUrl = imgId => selectedConfigImageUrl(activeConfigData[imgId])
+  // Resolve imported/local const identifiers (e.g. `IMG_PLACEHOLDER`) to
+  // their string values so a `src={IMG_PLACEHOLDER}` attribute yields a
+  // usable fallback for the build-time inlining pass. Without this, an
+  // Identifier `src` returns null and no inlining patch is created, leaving
+  // the placeholder URL in the built output.
+  const staticRegistry = buildStaticValueRegistry(ast, filePath, null)
   const dynamicUrlMap = {}
   const dynamicBgUrlMap = {}
   const imageEntries = (Array.isArray(entries) ? entries : []).filter(
@@ -5597,6 +5603,16 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
     if (!attr) return null
     if (attr.value?.type === 'StringLiteral') return attr.value.value
     if (attr.value?.expression?.type === 'StringLiteral') return attr.value.expression.value
+    // Resolve Identifier `src` values (e.g. `src={IMG_PLACEHOLDER}`) via the
+    // static value registry so the build-time inliner can treat them as a
+    // concrete fallback string instead of bailing out with null.
+    if (attr.value?.expression?.type === 'Identifier') {
+      const name = attr.value.expression.name
+      if (staticRegistry && staticRegistry.has(name)) {
+        const value = staticRegistry.get(name)
+        if (typeof value === 'string') return value
+      }
+    }
     return null
   }
   const entriesForOpening = (opening, kind) => {
