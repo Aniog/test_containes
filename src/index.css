@@ -1,76 +1,139 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #F7F3EE;
+    --color-cream: #EDE8E0;
+    --color-gold: #B8965A;
+    --color-gold-light: #D4AF72;
+    --color-espresso: #2A1F14;
+    --color-charcoal: #4A3F35;
+    --color-muted: #8A7D70;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: #F7F3EE;
+    color: #2A1F14;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    background-color: #B8965A;
+    color: #F7F3EE;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+  }
+  .btn-gold:hover { background-color: #8C6E3A; }
+  .btn-gold:active { transform: scale(0.95); }
+
+  .btn-outline-gold {
+    border: 1px solid #B8965A;
+    color: #B8965A;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+  }
+  .btn-outline-gold:hover { background-color: #B8965A; color: #F7F3EE; }
+  .btn-outline-gold:active { transform: scale(0.95); }
+
+  .btn-outline-espresso {
+    border: 1px solid #2A1F14;
+    color: #2A1F14;
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    padding: 0.875rem 2rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: inline-block;
+  }
+  .btn-outline-espresso:hover { background-color: #2A1F14; color: #F7F3EE; }
+  .btn-outline-espresso:active { transform: scale(0.95); }
+
+  .hairline {
+    border-top: 1px solid #D9CFC3;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: #2A1F14;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: #2A1F14;
+  }
+
+  .nav-link {
+    font-family: 'Manrope', 'Inter', system-ui, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #4A3F35;
+    transition: color 0.2s;
+  }
+  .nav-link:hover { color: #B8965A; }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #EDE8E0; }
+::-webkit-scrollbar-thumb { background: #D9CFC3; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #B8965A; }
+
+/* Cart drawer transition */
+.cart-drawer-enter { transform: translateX(100%); }
+.cart-drawer-enter-active { transform: translateX(0); transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.cart-drawer-exit { transform: translateX(0); }
+.cart-drawer-exit-active { transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
