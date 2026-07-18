@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Star, Minus, Plus, ShoppingBag } from 'lucide-react';
-import { products } from '../../data/products';
-import { useCart } from '../../context/CartContext';
+import { products } from '../data/products';
+import { useCart } from '../context/CartContext';
 
 export default function ProductDetail() {
   const { id } = useParams();

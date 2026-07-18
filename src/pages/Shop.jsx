@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, SlidersHorizontal, X } from 'lucide-react';
-import { products } from '../../data/products';
+import { products } from '../data/products';
 
 export default function Shop() {
   const [selectedCategory, setSelectedCategory] = useState('All');
