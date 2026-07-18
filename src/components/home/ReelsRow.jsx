@@ -3,9 +3,6 @@ import { reels } from "@/data/products"
 import { ImageHelper } from "@strikingly/sdk"
 import strkImgConfig from "@/strk-img-config.json"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 export default function ReelsRow() {
   const containerRef = useRef(null)
   useEffect(() => {
@@ -45,7 +42,7 @@ export default function ReelsRow() {
               data-strk-img={`[${reel.titleId}]`}
               data-strk-img-ratio="9x16"
               data-strk-img-width="500"
-              src={PLACEHOLDER}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent" />

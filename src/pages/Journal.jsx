@@ -3,9 +3,6 @@ import { Link } from "react-router-dom"
 import { ImageHelper } from "@strikingly/sdk"
 import strkImgConfig from "@/strk-img-config.json"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 const posts = [
   {
     id: "journal-1",
@@ -75,7 +72,7 @@ export default function Journal() {
                   data-strk-img={`[${post.descId}] [${post.titleId}]`}
                   data-strk-img-ratio="4x3"
                   data-strk-img-width="600"
-                  src={PLACEHOLDER}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

@@ -8,9 +8,6 @@ import strkImgConfig from "@/strk-img-config.json"
 import StarRating from "@/components/ui/StarRating"
 import { getProductById } from "@/data/products"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 export default function ProductCard({ product, className }) {
   const { addItem } = useCart()
   const containerRef = useRef(null)
@@ -50,7 +47,7 @@ export default function ProductCard({ product, className }) {
           data-strk-img={`[${full.descId}] [${full.titleId}]`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0"
         />
         <img
@@ -59,7 +56,7 @@ export default function ProductCard({ product, className }) {
           data-strk-img={`[${full.descId}] [${full.titleId}] worn on model`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
 

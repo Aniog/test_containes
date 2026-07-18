@@ -7,8 +7,20 @@ import { ImageHelper } from "@strikingly/sdk"
 import strkImgConfig from "@/strk-img-config.json"
 import Button from "@/components/ui/Button"
 
-const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+// Cart line imgIds come from runtime state (localStorage via useCart), so the
+// build-time image inliner cannot statically resolve them. Resolve the URL
+// directly from the strk-img config at render time instead.
+function resolveImgUrl(imgId) {
+  const entry = strkImgConfig[imgId]
+  if (!entry) return ""
+  const results = entry.results
+  if (!Array.isArray(results) || results.length === 0) return ""
+  if (entry.picked) {
+    const picked = results.find((r) => String(r.id) === String(entry.picked))
+    if (picked?.url) return picked.url
+  }
+  return results[0]?.url || ""
+}
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, updateQty, subtotal, count } =
@@ -96,7 +108,7 @@ export default function CartDrawer() {
                         data-strk-img={`[${item.descId}] [${item.titleId}]`}
                         data-strk-img-ratio="4x5"
                         data-strk-img-width="200"
-                        src={PLACEHOLDER}
+                        src={resolveImgUrl(item.imgId)}
                         className="h-full w-full object-cover"
                       />
                     </div>
