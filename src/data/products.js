@@ -1,0 +1,166 @@
+export const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1 1%22/%3E'
+
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    slug: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 42,
+    rating: 4.9,
+    reviews: 128,
+    tone: ['Gold', 'Silver'],
+    description:
+      'A sculptural gold ear cuff finished with a light-catching crystal accent for an effortless stacked look.',
+    care:
+      'Keep dry, store separately in the Velmora pouch, and polish gently with a soft cloth after wear.',
+    imgId: 'product-vivid-aura-primary-a81f2c',
+    imgHoverId: 'product-vivid-aura-hover-c7d9a4',
+    titleId: 'product-vivid-aura-title',
+    descId: 'product-vivid-aura-desc',
+    queryLabel: 'gold ear cuff crystal accent on model warm editorial jewelry',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    slug: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    material: 'Crystal + Gold Plated',
+    price: 68,
+    rating: 4.8,
+    reviews: 96,
+    tone: ['Gold'],
+    description:
+      'A delicate floral crystal necklace with soft color and a luminous gold chain made for gifting.',
+    care:
+      'Avoid fragrance and water exposure. Lay flat when storing to preserve the chain and stones.',
+    imgId: 'product-majestic-flora-primary-b62e1d',
+    imgHoverId: 'product-majestic-flora-hover-f4c3ab',
+    titleId: 'product-majestic-flora-title',
+    descId: 'product-majestic-flora-desc',
+    queryLabel: 'multicolor floral crystal necklace gold chain warm neutral closeup',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    slug: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    price: 38,
+    rating: 4.9,
+    reviews: 173,
+    tone: ['Gold', 'Silver'],
+    description:
+      'Chunky dome huggies with a polished rounded silhouette that elevates every day styling.',
+    care:
+      'Remove before showering or swimming and keep in a dry jewelry box between wears.',
+    imgId: 'product-golden-sphere-primary-d98f31',
+    imgHoverId: 'product-golden-sphere-hover-a11b93',
+    titleId: 'product-golden-sphere-title',
+    descId: 'product-golden-sphere-desc',
+    queryLabel: 'chunky gold dome huggie earrings worn on ear editorial close up',
+  },
+  {
+    id: 'amber-lace-earrings',
+    slug: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    material: 'Textured Gold Plated',
+    price: 54,
+    rating: 4.7,
+    reviews: 82,
+    tone: ['Gold'],
+    description:
+      'Textured filigree drop earrings with vintage-inspired movement and warm amber shine.',
+    care:
+      'Store in a soft pouch and avoid direct contact with lotions, perfumes, and household cleaners.',
+    imgId: 'product-amber-lace-primary-ef72c8',
+    imgHoverId: 'product-amber-lace-hover-b53d88',
+    titleId: 'product-amber-lace-title',
+    descId: 'product-amber-lace-desc',
+    queryLabel: 'textured gold filigree drop earrings warm studio jewelry portrait',
+  },
+  {
+    id: 'royal-heirloom-set',
+    slug: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Gift Sets',
+    material: '18K Gold Plated Set',
+    price: 95,
+    rating: 5.0,
+    reviews: 64,
+    tone: ['Gold'],
+    description:
+      'A gift-boxed earring and necklace pairing designed to feel personal, polished, and timeless.',
+    care:
+      'Return each piece to its gift box after use and clean gently with the included polishing cloth.',
+    imgId: 'product-royal-heirloom-primary-e36ac1',
+    imgHoverId: 'product-royal-heirloom-hover-aa41f0',
+    titleId: 'product-royal-heirloom-title',
+    descId: 'product-royal-heirloom-desc',
+    queryLabel: 'gift boxed gold jewelry earring necklace set luxury warm neutral',
+  },
+]
+
+export const ugcCards = [
+  {
+    id: 'ugc-ear-stack',
+    title: 'Ear stacks in the late afternoon light',
+    caption: 'A quiet shimmer for every day.',
+    titleId: 'ugc-ear-stack-title',
+    captionId: 'ugc-ear-stack-caption',
+    imgId: 'ugc-ear-stack-img-f2b77c',
+  },
+  {
+    id: 'ugc-neck-glow',
+    title: 'Layered chains for dinner plans',
+    caption: 'Soft gold against silk.',
+    titleId: 'ugc-neck-glow-title',
+    captionId: 'ugc-neck-glow-caption',
+    imgId: 'ugc-neck-glow-img-b4e91a',
+  },
+  {
+    id: 'ugc-huggie-close',
+    title: 'Huggies that never feel overdone',
+    caption: 'Small shape, lasting glow.',
+    titleId: 'ugc-huggie-close-title',
+    captionId: 'ugc-huggie-close-caption',
+    imgId: 'ugc-huggie-close-img-c54e9d',
+  },
+  {
+    id: 'ugc-gift-moment',
+    title: 'Unboxing a little keepsake',
+    caption: 'Made for gifting beautifully.',
+    titleId: 'ugc-gift-moment-title',
+    captionId: 'ugc-gift-moment-caption',
+    imgId: 'ugc-gift-moment-img-e8aa3c',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    label: 'Earrings',
+    titleId: 'category-earrings-title',
+    descId: 'category-earrings-desc',
+    imgId: 'category-earrings-img-d2b90f',
+    description: 'Sculptural drops, cuffs, and everyday shine.',
+  },
+  {
+    id: 'necklaces',
+    label: 'Necklaces',
+    titleId: 'category-necklaces-title',
+    descId: 'category-necklaces-desc',
+    imgId: 'category-necklaces-img-a7e40b',
+    description: 'Layered chains and light-catching pendants.',
+  },
+  {
+    id: 'huggies',
+    label: 'Huggies',
+    titleId: 'category-huggies-title',
+    descId: 'category-huggies-desc',
+    imgId: 'category-huggies-img-c801ed',
+    description: 'Polished silhouettes made to live in.',
+  },
+]
