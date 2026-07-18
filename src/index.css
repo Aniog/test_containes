@@ -1,76 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #453833;
+  background: #f6f0e8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
+  font-family: Inter, system-ui, sans-serif;
+  background: #f6f0e8;
+  color: #453833;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button:hover {
-  border-color: #646cff;
+* {
+  box-sizing: border-box;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+#root {
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+::selection {
+  background: #c8a36a;
+  color: #241b18;
+}
+
+@layer base {
+  body {
+    @apply bg-ivory text-ink;
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display text-velvet;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+  .page-shell {
+    @apply min-h-screen bg-ivory text-ink;
+  }
+
+  .content-wrap {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .hairline-light {
+    @apply border-white/10;
+  }
+
+  .hairline-dark {
+    @apply border-ink/10;
+  }
+
+  .button-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-champagne px-6 py-3 text-sm font-medium text-velvet transition-all duration-300 ease-luxe hover:-translate-y-0.5 hover:bg-sand;
+  }
+
+  .button-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-ink/20 bg-transparent px-6 py-3 text-sm font-medium text-ink transition-all duration-300 ease-luxe hover:-translate-y-0.5 hover:border-champagne hover:text-velvet;
+  }
+
+  .product-title {
+    @apply font-display text-2xl uppercase tracking-luxe text-velvet;
+  }
+
+  .editorial-kicker {
+    @apply text-xs uppercase tracking-luxe text-champagne;
+  }
+
+  .surface-card {
+    @apply rounded-luxe border border-ink/10 bg-mist shadow-velvet;
+  }
+
+  .scrollbar-hidden {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+}
