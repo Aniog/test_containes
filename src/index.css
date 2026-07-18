@@ -1,76 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global styles */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: Manrope, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+
+  color-scheme: light;
+  color: #3F332C;
+  background-color: #F7F4F0;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F7F4F0;
+  color: #3F332C;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: Manrope, Inter, system-ui, sans-serif;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-velmora-gold text-white px-8 py-3.5 text-xs font-semibold uppercase tracking-widest transition-colors duration-300 hover:bg-velmora-gold-light;
   }
 
-  a:hover {
-    color: #747bff;
+  .btn-secondary {
+    @apply inline-flex items-center justify-center border border-velmora-charcoal text-velmora-charcoal px-8 py-3.5 text-xs font-semibold uppercase tracking-widest transition-colors duration-300 hover:bg-velmora-charcoal hover:text-white;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl font-light tracking-wide text-velmora-charcoal;
+  }
+
+  .product-name {
+    @apply text-xs md:text-sm font-sans font-medium uppercase tracking-[0.2em] text-velmora-charcoal;
+  }
+
+  .caption-label {
+    @apply text-xs font-sans uppercase tracking-[0.15em] text-velmora-taupe;
+  }
+
+  .hairline {
+    @apply h-px bg-velmora-hairline;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DED6CD;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8860B;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #E9E2D9 25%, #F7F4F0 50%, #E9E2D9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
