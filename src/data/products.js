@@ -1,0 +1,52 @@
+// Seed data for the store
+export const initialProducts = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    description: 'A striking gold ear cuff featuring a delicate crystal accent. Perfect for adding a touch of modern elegance to any stack without the need for additional piercings.',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    imgId: 'vivid-aura-jewels-img',
+    isNew: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    description: 'An intricate, multicolor floral crystal necklace that commands attention. The perfect statement piece for special occasions or elevating everyday attire.',
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    imgId: 'majestic-flora-nectar-img',
+    isBestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    description: 'Chunky, minimalist gold dome huggie earrings. A versatile staple that transitions seamlessly from day to night.',
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    imgId: 'golden-sphere-huggies-img',
+    isBestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    description: 'Textured gold filigree drop earrings reminiscent of vintage lace. Lightweight and intricately detailed.',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    imgId: 'amber-lace-earrings-img',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    description: 'A beautifully matched gifting set featuring a classic pendant necklace and coordinating stud earrings. Arrives in our signature velvet presentation box.',
+    category: 'Sets',
+    material: '18K Gold Plated',
+    imgId: 'royal-heirloom-set-img',
+    isBestseller: true,
+  }
+];
