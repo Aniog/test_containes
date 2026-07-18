@@ -1,76 +1,402 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  /* Velmora Quiet Luxury Palette - Warm Editorial */
+  --color-bg: #F8F5F1;
+  --color-bg-dark: #2C2823;
+  --color-surface: #FFFFFF;
+  --color-surface-warm: #F5F1EA;
+  --color-text: #2C2823;
+  --color-text-muted: #6B665F;
+  --color-text-light: #A39B8F;
+  --color-gold: #B8976E;
+  --color-gold-dark: #8C6F4E;
+  --color-gold-light: #D4BFA3;
+  --color-accent: #B8976E;
+  --color-border: #E5DFD3;
+  --color-border-light: #F0EBE3;
+  
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.heading-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.product-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Premium Button Styles */
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold-dark);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text);
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid var(--color-text);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-text);
+  color: var(--color-bg);
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-bg);
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-dark);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+  background: var(--color-surface-warm);
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 10;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Category Tile */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  cursor: pointer;
+}
+
+.category-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(44,40,35,0.7) 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 32px;
+}
+
+.category-label {
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* UGC Reel Card */
+.ugc-card {
+  position: relative;
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 9/16;
+  overflow: hidden;
+  background: var(--color-bg-dark);
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.9;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 16px;
+  background: linear-gradient(to top, rgba(44,40,35,0.85) 0%, rgba(44,40,35,0) 100%);
+  color: white;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 13px;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Sticky Nav */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.nav-transparent {
+  background: transparent;
+}
+
+.nav-solid {
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 420px;
+  background: var(--color-surface);
+  z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.1);
+  overflow-y: auto;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  z-index: 150;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: var(--color-surface);
+}
+
+.variant-pill.active {
+  border-color: var(--color-gold);
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-text);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding: 16px 0;
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 12px;
+}
+
+/* Hairline Divider */
+.divider {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Newsletter */
+.newsletter-input {
+  border: none;
+  border-bottom: 1px solid var(--color-text);
+  background: transparent;
+  padding: 12px 0;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.newsletter-input::placeholder {
+  color: var(--color-text-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus Styles */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
