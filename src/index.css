@@ -1,76 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  color: #1B1611;
+  background-color: #F6F1E8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  padding: 0;
+  background-color: #F6F1E8;
+  color: #1B1611;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Editorial scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #F6F1E8; }
+::-webkit-scrollbar-thumb { background: #D9C9AA; border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: #A8804B; }
+
+/* Selection */
+::selection { background: #A8804B; color: #F6F1E8; }
+
+/* Reel horizontal scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Hairline divider helper */
+.hairline { border-color: #E0D5C0; }
+
+/* Focus rings - elegant */
+:focus-visible {
+  outline: 1px solid #A8804B;
+  outline-offset: 3px;
+}
+button:focus, a:focus, input:focus { outline: none; }
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 1px solid #A8804B;
+  outline-offset: 3px;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Subtle image reveal */
+.img-fade { transition: opacity 600ms ease; }
+
+/* Marquee for trust strip on small screens */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.animate-marquee {
+  animation: marquee 30s linear infinite;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
