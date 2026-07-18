@@ -13,7 +13,12 @@ export default defineConfig({
     checkBrokenImgPlugin(),
     checkPlaceholderImgPlugin(),
     visualEditPlugin(),
-    react(),
+    react({
+      babel: {
+        plugins: [["babel-plugin-react-compiler"]],
+      },
+      fastRefresh: false, // Disable Fast Refresh to avoid preamble issues
+    }),
   ],
   resolve: {
     alias: {
