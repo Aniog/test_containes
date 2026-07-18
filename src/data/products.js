@@ -1,0 +1,61 @@
+export const products = [
+  {
+    id: 1,
+    name: "Vivid Aura Jewels",
+    description: "Delicate gold ear cuff featuring a brilliant crystal accent. A modern interpretation of classic elegance.",
+    price: 42,
+    category: "Earrings",
+    material: "Gold",
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+  },
+  {
+    id: 2,
+    name: "Majestic Flora Nectar",
+    description: "A statement necklace adorned with multicolor floral crystals. Each piece tells a story of natural beauty.",
+    price: 68,
+    category: "Necklaces",
+    material: "Gold",
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+  },
+  {
+    id: 3,
+    name: "Golden Sphere Huggies",
+    description: "Chunky dome huggie earrings in lustrous gold. Bold yet refined, perfect for everyday elegance.",
+    price: 38,
+    category: "Huggies",
+    material: "Gold",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+  },
+  {
+    id: 4,
+    name: "Amber Lace Earrings",
+    description: "Intricately textured filigree drop earrings. Inspired by vintage heirlooms, crafted for today.",
+    price: 54,
+    category: "Earrings",
+    material: "Gold",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+  },
+  {
+    id: 5,
+    name: "Royal Heirloom Set",
+    description: "A curated gift set featuring matching earrings and necklace. Presented in our signature keepsake box.",
+    price: 95,
+    category: "Necklaces",
+    material: "Gold",
+    rating: 5.0,
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80",
+    imageSecondary: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80",
+  },
+];
+
+export const getProductById = (id) => products.find(p => p.id === parseInt(id));
+export const getRelatedProducts = (currentId, limit = 4) => 
+  products.filter(p => p.id !== parseInt(currentId)).slice(0, limit);
