@@ -11,7 +11,7 @@ export default defineConfig({
     // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     checkBrokenImgPlugin(),
-    checkPlaceholderImgPlugin(),
+    // checkPlaceholderImgPlugin(), // Disabled: Strikingly images use runtime placeholders
     visualEditPlugin(),
     react(),
   ],
