@@ -1,76 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --velmora-cream-token: #FFF9F0;
+  --velmora-warm-gold-token: #F4D8A8;
+}
+
+:root {
+  font-family: Manrope, Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #231A16;
+  background-color: #F7F1E8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
+  background-color: #F7F1E8;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F7F1E8;
+  color: #231A16;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #B98B45;
+  outline-offset: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #B98B45;
+  color: #FFF9F0;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@layer utilities {
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-sans { font-family: Manrope, Inter, system-ui, sans-serif; }
+  .tracking-luxe { letter-spacing: 0.18em; }
+
+  .text-velmora-ivory { color: #F7F1E8; }
+  .text-velmora-cream { color: #FFF9F0; }
+  .text-velmora-linen { color: #E8D9C2; }
+  .text-velmora-sand { color: #C9AA7D; }
+  .text-velmora-gold { color: #B98B45; }
+  .text-velmora-espresso { color: #231A16; }
+  .text-velmora-cocoa { color: #4A342C; }
+  .text-velmora-rose { color: #A76758; }
+  .text-velmora-ivory\/80 { color: rgb(247 241 232 / 0.8); }
+  .text-velmora-ivory\/85 { color: rgb(247 241 232 / 0.85); }
+  .text-velmora-ivory\/90 { color: rgb(247 241 232 / 0.9); }
+  .text-velmora-cream\/90 { color: rgb(255 249 240 / 0.9); }
+
+  .bg-velmora-ivory { background-color: #F7F1E8; }
+  .bg-velmora-cream { background-color: #FFF9F0; }
+  .bg-velmora-linen { background-color: #E8D9C2; }
+  .bg-velmora-sand { background-color: #C9AA7D; }
+  .bg-velmora-gold { background-color: #B98B45; }
+  .bg-velmora-espresso { background-color: #231A16; }
+  .bg-velmora-cocoa { background-color: #4A342C; }
+  .bg-velmora-mist { background-color: #F1E7D8; }
+  .bg-velmora-ivory\/95 { background-color: rgb(247 241 232 / 0.95); }
+  .bg-velmora-cream\/90 { background-color: rgb(255 249 240 / 0.9); }
+  .bg-velmora-espresso\/10 { background-color: rgb(35 26 22 / 0.1); }
+  .bg-velmora-espresso\/45 { background-color: rgb(35 26 22 / 0.45); }
+  .bg-velmora-espresso\/80 { background-color: rgb(35 26 22 / 0.8); }
+  .bg-velmora-espresso\/85 { background-color: rgb(35 26 22 / 0.85); }
+  .bg-velmora-gold\/50 { background-color: rgb(185 139 69 / 0.5); }
+
+  .border-velmora-linen { border-color: #E8D9C2; }
+  .border-velmora-gold { border-color: #B98B45; }
+  .border-velmora-cream\/25 { border-color: rgb(255 249 240 / 0.25); }
+  .border-velmora-cream\/45 { border-color: rgb(255 249 240 / 0.45); }
+  .border-velmora-gold\/60 { border-color: rgb(185 139 69 / 0.6); }
+
+  .shadow-soft { box-shadow: 0 12px 36px rgb(35 26 22 / 0.08); }
+  .shadow-editorial { box-shadow: 0 24px 70px rgb(35 26 22 / 0.10); }
+
+  .from-velmora-espresso { --tw-gradient-from: #231A16 var(--tw-gradient-from-position); --tw-gradient-to: rgb(35 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-espresso\/80 { --tw-gradient-from: rgb(35 26 22 / 0.8) var(--tw-gradient-from-position); --tw-gradient-to: rgb(35 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-espresso\/85 { --tw-gradient-from: rgb(35 26 22 / 0.85) var(--tw-gradient-from-position); --tw-gradient-to: rgb(35 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-cream { --tw-gradient-from: #FFF9F0 var(--tw-gradient-from-position); --tw-gradient-to: rgb(255 249 240 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-velmora-espresso\/45 { --tw-gradient-to: rgb(35 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(35 26 22 / 0.45) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-espresso\/10 { --tw-gradient-to: rgb(35 26 22 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(35 26 22 / 0.1) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-linen { --tw-gradient-to: rgb(232 217 194 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), #E8D9C2 var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-velmora-espresso\/10 { --tw-gradient-to: rgb(35 26 22 / 0.1) var(--tw-gradient-to-position); }
+  .to-velmora-sand { --tw-gradient-to: #C9AA7D var(--tw-gradient-to-position); }
+  .to-transparent { --tw-gradient-to: transparent var(--tw-gradient-to-position); }
+
+  .hover\:text-velmora-gold:hover { color: #B98B45; }
+  .hover\:text-velmora-espresso:hover { color: #231A16; }
+  .hover\:text-velmora-rose:hover { color: #A76758; }
+  .hover\:bg-velmora-gold:hover { background-color: #B98B45; }
+  .hover\:bg-velmora-espresso:hover { background-color: #231A16; }
+  .hover\:bg-velmora-cream:hover { background-color: #FFF9F0; }
+  .hover\:border-velmora-gold:hover { border-color: #B98B45; }
+  .focus\:border-velmora-gold:focus { border-color: #B98B45; }
+  .focus\:ring-velmora-gold\/30:focus { --tw-ring-color: rgb(185 139 69 / 0.3); }
+  .focus\:ring-velmora-gold\/40:focus { --tw-ring-color: rgb(185 139 69 / 0.4); }
+  .placeholder\:text-velmora-cocoa::placeholder { color: #4A342C; }
+}
+
+
+.velmora-hero-panel {
+  max-width: 42rem;
+  padding: 1.5rem;
+  background-color: rgba(35, 26, 22, 0.88);
+  color: #FFF9F0;
+  box-shadow: 0 24px 70px rgb(35 26 22 / 0.22);
+  backdrop-filter: blur(4px);
+}
+
+.velmora-hero-panel * {
+  color: inherit;
+}
+
+.velmora-hero-kicker {
+  margin-bottom: 1.25rem;
+  color: #F4D8A8 !important;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.velmora-hero-title {
+  color: #FFF9F0 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(4rem, 10vw, 8rem);
+  font-weight: 600;
+  line-height: 0.9;
+}
+
+.velmora-hero-subtitle {
+  max-width: 36rem;
+  margin-top: 1.75rem;
+  color: #FFF9F0 !important;
+  font-size: 1rem;
+  line-height: 2;
+}
+
+.velmora-hero-overlay {
+  background: linear-gradient(90deg, rgba(35, 26, 22, 0.92) 0%, rgba(35, 26, 22, 0.72) 36%, rgba(35, 26, 22, 0.26) 72%, rgba(35, 26, 22, 0.18) 100%);
+}
+
+@media (min-width: 768px) {
+  .velmora-hero-panel {
+    padding: 3rem;
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  .velmora-hero-subtitle {
+    font-size: 1.125rem;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.velmora-solid-button {
+  background: #B98B45;
+  color: #FFF9F0;
+}
+
+.velmora-solid-button:hover {
+  background: #FFF9F0;
+  color: #231A16;
+}
+
+.velmora-outline-button {
+  border-color: rgba(255, 249, 240, 0.55);
+  color: #FFF9F0;
+}
+
+.velmora-outline-button:hover {
+  border-color: #B98B45;
+  color: #F4D8A8;
+}
+
