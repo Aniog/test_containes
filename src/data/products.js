@@ -1,0 +1,168 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    price: 42,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    description: 'A delicate gold ear cuff adorned with a single crystal accent, designed to catch the light with every movement. No piercing required.',
+    care: '18K gold-plated brass. Avoid contact with water, perfumes, and lotions. Store in a dry pouch when not worn.',
+    rating: 4.8,
+    reviews: 124,
+    imageId: 'prod-vivid-aura-c1d2e3',
+    titleId: 'prod-title-vivid-aura',
+    descId: 'prod-desc-vivid-aura',
+    tags: ['bestseller'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    price: 68,
+    category: 'necklaces',
+    material: '18k-gold-plated',
+    description: 'A vibrant floral crystal necklace with multicolor stones set in warm gold. A statement piece that transitions effortlessly from day to evening.',
+    care: '18K gold-plated brass with crystal stones. Wipe gently with a soft cloth. Avoid exposure to moisture.',
+    rating: 4.9,
+    reviews: 89,
+    imageId: 'prod-flora-nectar-b4e5f6',
+    titleId: 'prod-title-flora-nectar',
+    descId: 'prod-desc-flora-nectar',
+    tags: ['bestseller'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    price: 38,
+    category: 'huggies',
+    material: '18k-gold-plated',
+    description: 'Chunky gold dome huggie earrings with a polished, mirror-like finish. Bold yet refined — the perfect everyday essential.',
+    care: '18K gold-plated stainless steel. Hypoallergenic and water-resistant. Clean with a soft jewelry cloth.',
+    rating: 4.7,
+    reviews: 215,
+    imageId: 'prod-golden-sphere-a7b8c9',
+    titleId: 'prod-title-golden-sphere',
+    descId: 'prod-desc-golden-sphere',
+    tags: ['bestseller'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    price: 54,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    description: 'Textured gold filigree drop earrings inspired by vintage lace patterns. Lightweight and elegant with intricate artisan detailing.',
+    care: '18K gold-plated brass. Handle with care to preserve delicate filigree work. Store flat in jewelry box.',
+    rating: 4.6,
+    reviews: 76,
+    imageId: 'prod-amber-lace-d0e1f2',
+    titleId: 'prod-title-amber-lace',
+    descId: 'prod-desc-amber-lace',
+    tags: ['bestseller'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    price: 95,
+    category: 'sets',
+    material: '18k-gold-plated',
+    description: 'A curated gift-boxed set featuring a pair of elegant earrings and a matching necklace. The perfect present for someone special — or yourself.',
+    care: '18K gold-plated brass. Includes velvet-lined gift box. Keep dry and store in provided pouch.',
+    rating: 4.9,
+    reviews: 52,
+    imageId: 'prod-heirloom-set-g3h4i5',
+    titleId: 'prod-title-heirloom-set',
+    descId: 'prod-desc-heirloom-set',
+    tags: ['bestseller'],
+  },
+  {
+    id: 'luna-drop-pendants',
+    name: 'LUNA DROP PENDANTS',
+    price: 48,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    description: 'Sleek crescent moon drop earrings with a brushed gold finish. Celestial elegance for the modern romantic.',
+    care: '18K gold-plated brass. Avoid chemicals and store separately to prevent scratching.',
+    rating: 4.5,
+    reviews: 63,
+    imageId: 'prod-luna-drop-j6k7l8',
+    titleId: 'prod-title-luna-drop',
+    descId: 'prod-desc-luna-drop',
+    tags: [],
+  },
+  {
+    id: 'serpent-chain-necklace',
+    name: 'SERPENT CHAIN NECKLACE',
+    price: 58,
+    category: 'necklaces',
+    material: 'sterling-silver',
+    description: 'A fluid, snake-chain necklace that drapes like liquid metal around the collarbone. Minimalist luxury at its finest.',
+    care: 'Sterling silver with rhodium plating. Polish with a silver cloth to maintain shine.',
+    rating: 4.7,
+    reviews: 98,
+    imageId: 'prod-serpent-chain-m9n0o1',
+    titleId: 'prod-title-serpent-chain',
+    descId: 'prod-desc-serpent-chain',
+    tags: [],
+  },
+  {
+    id: 'nova-huggie-duo',
+    name: 'NOVA HUGGIE DUO',
+    price: 44,
+    category: 'huggies',
+    material: '18k-gold-plated',
+    description: 'A set of two mismatched huggies — one smooth, one pavé-set with tiny crystals. Mix, match, or stack for endless combinations.',
+    care: '18K gold-plated stainless steel. Hypoallergenic. Safe for sensitive ears.',
+    rating: 4.8,
+    reviews: 141,
+    imageId: 'prod-nova-huggie-p2q3r4',
+    titleId: 'prod-title-nova-huggie',
+    descId: 'prod-desc-nova-huggie',
+    tags: [],
+  },
+];
+
+export const getProductById = (id) => products.find((p) => p.id === id);
+
+export const getBestsellers = () => products.filter((p) => p.tags.includes('bestseller'));
+
+export const getRelatedProducts = (id) => {
+  const product = getProductById(id);
+  if (!product) return [];
+  return products.filter((p) => p.category === product.category && p.id !== id).slice(0, 4);
+};
+
+export const categories = [
+  { id: 'earrings', label: 'Earrings', imageId: 'cat-earrings-x1y2z3', titleId: 'cat-title-earrings' },
+  { id: 'necklaces', label: 'Necklaces', imageId: 'cat-necklaces-x4y5z6', titleId: 'cat-title-necklaces' },
+  { id: 'huggies', label: 'Huggies', imageId: 'cat-huggies-x7y8z9', titleId: 'cat-title-huggies' },
+];
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday elegance', user: '@elena.m' },
+  { id: 'ugc-2', caption: 'My new favorites', user: '@sarah.j' },
+  { id: 'ugc-3', caption: 'Subtle luxury', user: '@maria.k' },
+  { id: 'ugc-4', caption: 'Perfect for gifting', user: '@lily.r' },
+  { id: 'ugc-5', caption: 'Effortlessly chic', user: '@ava.t' },
+  { id: 'ugc-6', caption: 'Golden hour glow', user: '@nina.p' },
+];
+
+export const testimonials = [
+  {
+    id: 't1',
+    name: 'Elena M.',
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day and they still look brand new.',
+    rating: 5,
+  },
+  {
+    id: 't2',
+    name: 'Sarah J.',
+    text: 'Bought the Royal Heirloom Set as a birthday gift. The packaging alone made it feel like a $500 piece. She was thrilled.',
+    rating: 5,
+  },
+  {
+    id: 't3',
+    name: 'Maria K.',
+    text: 'Finally found demi-fine jewelry that does not turn my ears green. Hypoallergenic and beautiful — I am obsessed.',
+    rating: 5,
+  },
+];
