@@ -1,5 +1,8 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Star } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { products, categories, testimonials, ugcPosts } from '@/data/products'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Button } from '@/components/ui/Button'
@@ -14,9 +17,14 @@ const trustItems = [
 
 export default function Home() {
   const bestsellers = products.filter((p) => p.tags.includes('bestseller'))
+  const pageRef = useRef(null)
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, pageRef.current)
+  }, [])
 
   return (
-    <div className="bg-paper">
+    <div ref={pageRef} className="bg-paper">
       {/* Hero */}
       <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
         <div

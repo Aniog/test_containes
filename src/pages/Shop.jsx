@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, X } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { products } from '@/data/products'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Button } from '@/components/ui/Button'
@@ -135,6 +137,15 @@ export default function Shop() {
   const activeFilterCount =
     selectedCategories.length + selectedMaterials.length + selectedPrices.length
 
+  const pageRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, pageRef.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [filteredProducts.length, selectedCategories.join(','), selectedMaterials.join(','), selectedPrices.join(','), sort])
+
   const FilterContent = () => (
     <>
       <div className="flex items-center justify-between">
@@ -185,7 +196,7 @@ export default function Shop() {
   )
 
   return (
-    <div className="bg-paper pt-24 md:pt-28">
+    <div ref={pageRef} className="bg-paper pt-24 md:pt-28">
       <div className="mx-auto max-w-7xl px-6 py-8 md:py-12">
         {/* Header */}
         <div className="mb-10 text-center">

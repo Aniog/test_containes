@@ -1,3 +1,6 @@
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { cn } from '@/lib/utils'
 
 const PLACEHOLDER =
@@ -11,8 +14,14 @@ export function ProductImage({
   hover = false,
   hoverQuery,
 }) {
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
+  }, [])
+
   return (
-    <div className={cn('relative overflow-hidden bg-champagne/40', className)}>
+    <div ref={containerRef} className={cn('relative overflow-hidden bg-champagne/40', className)}>
       <img
         alt={product.name}
         data-strk-img-id={product.imgId}

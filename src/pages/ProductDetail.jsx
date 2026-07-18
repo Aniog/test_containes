@@ -1,6 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { ChevronLeft, Heart, Share2, Truck, RotateCcw, ShieldCheck } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { getProductById, getRelatedProducts, formatPrice as dataFormatPrice } from '@/data/products'
 import { Button } from '@/components/ui/Button'
 import { StarRating } from '@/components/ui/StarRating'
@@ -64,9 +66,17 @@ export default function ProductDetail() {
   ]
 
   const selectedVariantObj = product.variants.find((v) => v.id === selectedVariant)
+  const pageRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, pageRef.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [productId, activeImage])
 
   return (
-    <div className="bg-paper pt-20 md:pt-24">
+    <div ref={pageRef} className="bg-paper pt-20 md:pt-24">
       <div className="mx-auto max-w-7xl px-6 py-8 md:py-12">
         <button
           onClick={() => navigate(-1)}
