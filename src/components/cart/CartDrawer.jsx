@@ -1,0 +1,143 @@
+import React from 'react'
+import { X, Minus, Plus, ShoppingBag } from 'lucide-react'
+import { useCart } from '../../context/CartContext'
+import { formatPrice } from '../../lib/utils'
+
+export default function CartDrawer() {
+  const { items, isDrawerOpen, closeDrawer, removeItem, updateQuantity, totalPrice, totalItems } = useCart()
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        className={`fixed inset-0 bg-black/40 z-50 transition-opacity duration-300 ${
+          isDrawerOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        }`}
+        onClick={closeDrawer}
+      />
+
+      {/* Drawer */}
+      <div
+        className={`fixed top-0 right-0 h-full w-full max-w-md bg-velmora-surface z-50 shadow-2xl transition-transform duration-400 ease-out ${
+          isDrawerOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Header */}
+          <div className="flex items-center justify-between px-6 py-5 border-b border-velmora-warm">
+            <h2 className="font-serif text-xl tracking-wider text-velmora-charcoal">
+              Your Cart ({totalItems})
+            </h2>
+            <button
+              onClick={closeDrawer}
+              className="p-2 text-velmora-charcoal hover:opacity-70 transition-opacity"
+              aria-label="Close cart"
+            >
+              <X size={20} strokeWidth={1.5} />
+            </button>
+          </div>
+
+          {/* Items */}
+          <div className="flex-1 overflow-y-auto px-6 py-4">
+            {items.length === 0 ? (
+              <div className="flex flex-col items-center justify-center h-full text-center">
+                <ShoppingBag size={48} strokeWidth={1} className="text-velmora-light-gray mb-4" />
+                <p className="font-serif text-xl text-velmora-charcoal mb-2">Your cart is empty</p>
+                <p className="text-sm text-velmora-mid-gray">Discover something beautiful to add.</p>
+                <button
+                  onClick={closeDrawer}
+                  className="mt-6 btn-outline text-xs"
+                >
+                  Continue Shopping
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {items.map((item) => (
+                  <div
+                    key={`${item.id}-${item.variant}`}
+                    className="flex gap-4 py-4 border-b border-velmora-warm/50 last:border-0"
+                  >
+                    {/* Product image */}
+                    <div className="w-20 h-24 bg-velmora-ivory rounded overflow-hidden flex-shrink-0">
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    {/* Details */}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-serif text-sm uppercase tracking-wider text-velmora-charcoal truncate">
+                        {item.name}
+                      </h3>
+                      <p className="text-xs text-velmora-mid-gray mt-0.5">{item.variant}</p>
+                      <p className="text-sm font-medium text-velmora-charcoal mt-1">
+                        {formatPrice(item.price)}
+                      </p>
+
+                      {/* Quantity controls */}
+                      <div className="flex items-center gap-3 mt-2">
+                        <button
+                          onClick={() => updateQuantity(item.id, item.variant, item.quantity - 1)}
+                          className="w-7 h-7 border border-velmora-warm flex items-center justify-center hover:border-velmora-charcoal transition-colors"
+                          aria-label="Decrease quantity"
+                        >
+                          <Minus size={12} strokeWidth={1.5} />
+                        </button>
+                        <span className="text-sm font-sans w-6 text-center">{item.quantity}</span>
+                        <button
+                          onClick={() => updateQuantity(item.id, item.variant, item.quantity + 1)}
+                          className="w-7 h-7 border border-velmora-warm flex items-center justify-center hover:border-velmora-charcoal transition-colors"
+                          aria-label="Increase quantity"
+                        >
+                          <Plus size={12} strokeWidth={1.5} />
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Remove */}
+                    <button
+                      onClick={() => removeItem(item.id, item.variant)}
+                      className="self-start p-1 text-velmora-light-gray hover:text-velmora-charcoal transition-colors"
+                      aria-label="Remove item"
+                    >
+                      <X size={16} strokeWidth={1.5} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Footer */}
+          {items.length > 0 && (
+            <div className="border-t border-velmora-warm px-6 py-5">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-sans text-sm uppercase tracking-wider text-velmora-mid-gray">
+                  Subtotal
+                </span>
+                <span className="font-serif text-xl text-velmora-charcoal">
+                  {formatPrice(totalPrice)}
+                </span>
+              </div>
+              <p className="text-xs text-velmora-mid-gray mb-4">
+                Shipping & taxes calculated at checkout
+              </p>
+              <button className="w-full btn-accent text-sm">
+                Proceed to Checkout
+              </button>
+              <button
+                onClick={closeDrawer}
+                className="w-full mt-3 text-xs font-sans tracking-wider uppercase text-velmora-mid-gray hover:text-velmora-charcoal transition-colors py-2"
+              >
+                Continue Shopping
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  )
+}
