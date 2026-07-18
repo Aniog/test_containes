@@ -12,7 +12,7 @@ export default defineConfig({
     strkImgPlugin(),
     checkBrokenImgPlugin(),
     checkPlaceholderImgPlugin(),
-    visualEditPlugin(),
+    // visualEditPlugin(),  // TEMPORARILY DISABLED FOR DEBUGGING
     react(),
   ],
   resolve: {
