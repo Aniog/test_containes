@@ -1,50 +1,40 @@
-#root {
-  min-height: 100vh;
-  padding: 0;
-  background-color: #e4e8ef;
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+/* Custom font styles if needed */
+.tracking-tight-serif {
+  letter-spacing: -0.02em;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.tracking-wide-serif {
+  letter-spacing: 0.1em;
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+/* Luxury button transitions */
+.btn-luxury {
+  @apply relative overflow-hidden transition-all duration-500;
+}
+
+.btn-luxury::after {
+  content: '';
+  @apply absolute inset-0 bg-white/20 translate-y-full transition-transform duration-500;
+}
+
+.btn-luxury:hover::after {
+  @apply translate-y-0;
 }
