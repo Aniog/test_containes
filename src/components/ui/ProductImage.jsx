@@ -13,6 +13,8 @@ export function ProductImage({
   className,
   hover = false,
   hoverQuery,
+  src,
+  hoverSrc,
 }) {
   const containerRef = useRef(null)
 
@@ -28,7 +30,7 @@ export function ProductImage({
         data-strk-img={`[${product.descId}] [${product.titleId}]`}
         data-strk-img-ratio={ratio}
         data-strk-img-width={width}
-        src={PLACEHOLDER}
+        src={src || PLACEHOLDER}
         className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         loading="lazy"
       />
@@ -39,7 +41,7 @@ export function ProductImage({
           data-strk-img={hoverQuery || `[${product.titleId}] alternate view`}
           data-strk-img-ratio={ratio}
           data-strk-img-width={width}
-          src={PLACEHOLDER}
+          src={hoverSrc || PLACEHOLDER}
           className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           loading="lazy"
         />

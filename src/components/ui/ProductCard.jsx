@@ -3,7 +3,7 @@ import { ShoppingBag } from 'lucide-react'
 import { ProductImage } from './ProductImage'
 import { StarRating } from './StarRating'
 import { Button } from './Button'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, getImageUrl } from '@/lib/utils'
 import { useCart } from '@/lib/cart-context'
 
 export function ProductCard({ product, className }) {
@@ -20,6 +20,8 @@ export function ProductCard({ product, className }) {
           hover
           hoverQuery={`[${product.titleId}] worn`}
           className="aspect-[3/4] w-full"
+          src={getImageUrl(product.imgId)}
+          hoverSrc={getImageUrl(`${product.imgId}-hover`)}
         />
       </Link>
       <div className="pt-4 text-center">
