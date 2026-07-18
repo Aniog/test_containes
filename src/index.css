@@ -1,76 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2D231E;
+  background-color: #F8F1E8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F8F1E8;
+  color: #2D231E;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+[data-visual-edit-element-id] {
+  border-color: transparent !important;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Runtime-safe Velmora utilities mirror the design.md palette for the canonical preview server. */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-button:hover {
-  border-color: #646cff;
+.animate-fadeUp { animation: fadeUp 0.7s ease-out both; }
+.aspect-product { aspect-ratio: 4 / 5; }
+.aspect-editorial { aspect-ratio: 5 / 6; }
+.aspect-reel { aspect-ratio: 9 / 16; }
+.tracking-nav { letter-spacing: 0.18em; }
+.tracking-product { letter-spacing: 0.14em; }
+.shadow-velmora { box-shadow: 0 24px 60px rgba(27, 20, 16, 0.12); }
+.shadow-glow { box-shadow: 0 18px 50px rgba(201, 163, 95, 0.18); }
+
+.text-velmora-espresso { color: #1B1410; }
+.text-velmora-ink { color: #2D231E; }
+.text-velmora-cocoa { color: #4F3D33; }
+.text-velmora-ivory { color: #F8F1E8; }
+.text-velmora-pearl { color: #FFFDF8; }
+.text-velmora-pearl\/90 { color: rgba(255, 253, 248, 0.9); }
+.text-velmora-linen { color: #E8D9C7; }
+.text-velmora-champagne { color: #C9A35F; }
+.text-velmora-gold { color: #A9792B; }
+
+.bg-velmora-espresso { background-color: #1B1410; }
+.bg-velmora-espresso\/10 { background-color: rgba(27, 20, 16, 0.1); }
+.bg-velmora-espresso\/55 { background-color: rgba(27, 20, 16, 0.55); }
+.bg-velmora-espresso\/70 { background-color: rgba(27, 20, 16, 0.7); }
+.bg-velmora-ivory { background-color: #F8F1E8; }
+.bg-velmora-ivory\/95 { background-color: rgba(248, 241, 232, 0.95); }
+.bg-velmora-pearl { background-color: #FFFDF8; }
+.bg-velmora-linen { background-color: #E8D9C7; }
+.bg-velmora-linen\/45 { background-color: rgba(232, 217, 199, 0.45); }
+.bg-velmora-cocoa { background-color: #4F3D33; }
+.bg-velmora-champagne { background-color: #C9A35F; }
+.bg-velmora-rose { background-color: #B88678; }
+
+.border-velmora-espresso { border-color: #1B1410; }
+.border-velmora-gold { border-color: #A9792B; }
+.border-velmora-linen { border-color: #E8D9C7; }
+.border-velmora-linen\/20 { border-color: rgba(232, 217, 199, 0.2); }
+.border-velmora-linen\/25 { border-color: rgba(232, 217, 199, 0.25); }
+.border-velmora-pearl\/20 { border-color: rgba(255, 253, 248, 0.2); }
+.border-velmora-pearl\/40 { border-color: rgba(255, 253, 248, 0.4); }
+
+.from-velmora-espresso\/70 { --tw-gradient-from: rgba(27, 20, 16, 0.7) var(--tw-gradient-from-position); --tw-gradient-to: rgba(27, 20, 16, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/85 { --tw-gradient-from: rgba(27, 20, 16, 0.85) var(--tw-gradient-from-position); --tw-gradient-to: rgba(27, 20, 16, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/95 { --tw-gradient-from: rgba(27, 20, 16, 0.95) var(--tw-gradient-from-position); --tw-gradient-to: rgba(27, 20, 16, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-espresso\/15 { --tw-gradient-to: rgba(27, 20, 16, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(27, 20, 16, 0.15) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.via-velmora-espresso\/75 { --tw-gradient-to: rgba(27, 20, 16, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(27, 20, 16, 0.75) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.to-velmora-espresso\/25 { --tw-gradient-to: rgba(27, 20, 16, 0.25) var(--tw-gradient-to-position); }
+
+.hover\:bg-velmora-gold:hover { background-color: #A9792B; }
+.hover\:bg-velmora-ink:hover { background-color: #2D231E; }
+.hover\:bg-velmora-ivory:hover { background-color: #F8F1E8; }
+.hover\:bg-velmora-pearl:hover { background-color: #FFFDF8; }
+.hover\:bg-velmora-champagne\/15:hover { background-color: rgba(201, 163, 95, 0.15); }
+.hover\:border-velmora-gold:hover { border-color: #A9792B; }
+.hover\:border-velmora-champagne:hover { border-color: #C9A35F; }
+.hover\:text-velmora-champagne:hover { color: #C9A35F; }
+.hover\:text-velmora-espresso:hover { color: #1B1410; }
+.hover\:text-velmora-gold:hover { color: #A9792B; }
+.hover\:text-velmora-ink:hover { color: #2D231E; }
+.hover\:text-velmora-pearl:hover { color: #FFFDF8; }
+.group:hover .group-hover\:shadow-velmora { box-shadow: 0 24px 60px rgba(27, 20, 16, 0.12); }
+.focus\:ring-velmora-espresso:focus { --tw-ring-color: #1B1410; }
+.placeholder\:text-velmora-cocoa::placeholder { color: #4F3D33; }
+
+
+button,
+a,
+input,
+select {
+  font: inherit;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+::selection {
+  background-color: #C9A35F;
+  color: #1B1410;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
