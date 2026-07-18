@@ -1,0 +1,111 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    description: 'A sculptural ear cuff adorned with a single crystal accent. Designed to catch the light with every turn of your head.',
+    materials: '18K gold plated over brass. Crystal accent. Hypoallergenic and nickel-free.',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', query: 'gold ear cuff crystal accent jewelry closeup editorial', ratio: '3x4', width: 800 },
+      { id: 'vivid-aura-2', query: 'gold ear cuff model wearing jewelry warm lighting', ratio: '3x4', width: 800 },
+      { id: 'vivid-aura-3', query: 'gold jewelry detail macro shot dark background', ratio: '3x4', width: 800 },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A delicate chain suspending a multicolor floral crystal pendant. Each petal catches light differently, creating a living piece of art.',
+    materials: '18K gold plated chain. Multicolor Swarovski crystals. Adjustable 16-18 inch chain.',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'majestic-flora-1', query: 'floral crystal pendant necklace gold chain editorial', ratio: '3x4', width: 800 },
+      { id: 'majestic-flora-2', query: 'multicolor crystal necklace model wearing warm light', ratio: '3x4', width: 800 },
+      { id: 'majestic-flora-3', query: 'floral pendant jewelry detail dark background', ratio: '3x4', width: 800 },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'New',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    description: 'Chunky gold dome huggie earrings that sit close to the ear. Effortlessly chic, impossibly lightweight.',
+    materials: '18K gold plated over brass. Secure hinged closure. Hypoallergenic.',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'golden-sphere-1', query: 'gold dome huggie earrings closeup jewelry', ratio: '3x4', width: 800 },
+      { id: 'golden-sphere-2', query: 'gold huggie earrings model ear warm lighting', ratio: '3x4', width: 800 },
+      { id: 'golden-sphere-3', query: 'chunky gold earrings detail shot dark background', ratio: '3x4', width: 800 },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Each piece is individually crafted for a one-of-a-kind feel.',
+    materials: '18K gold plated over brass. French wire closure. Hypoallergenic.',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', query: 'gold filigree drop earrings lace texture jewelry', ratio: '3x4', width: 800 },
+      { id: 'amber-lace-2', query: 'gold drop earrings model wearing editorial warm', ratio: '3x4', width: 800 },
+      { id: 'amber-lace-3', query: 'textured gold earrings detail dark background', ratio: '3x4', width: 800 },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A gift-boxed earring and necklace set in matching gold. The perfect heirloom piece for someone special — or yourself.',
+    materials: '18K gold plated over brass. Presented in luxury gift box. Hypoallergenic.',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'royal-heirloom-1', query: 'gold jewelry set necklace earrings gift box luxury', ratio: '3x4', width: 800 },
+      { id: 'royal-heirloom-2', query: 'gold necklace and earring set model wearing', ratio: '3x4', width: 800 },
+      { id: 'royal-heirloom-3', query: 'luxury jewelry gift set flatlay dark background', ratio: '3x4', width: 800 },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'Gift Set',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: { id: 'cat-earrings', query: 'gold earrings collection editorial jewelry', ratio: '3x4', width: 600 } },
+  { id: 'necklaces', name: 'Necklaces', image: { id: 'cat-necklaces', query: 'gold necklace collection editorial jewelry', ratio: '3x4', width: 600 } },
+  { id: 'huggies', name: 'Huggies', image: { id: 'cat-huggies', query: 'gold huggie earrings collection jewelry', ratio: '3x4', width: 600 } },
+];
+
+export const testimonials = [
+  { id: 1, name: 'Sarah M.', text: 'The quality is incredible for the price. I wear my huggies every single day.', rating: 5 },
+  { id: 2, name: 'Emma L.', text: 'Bought the Flora Nectar as a gift — she cried. Beautiful packaging too.', rating: 5 },
+  { id: 3, name: 'Priya K.', text: 'Finally, jewelry that looks expensive without the markup. Obsessed.', rating: 5 },
+];
+
+export const ugcPosts = [
+  { id: 1, caption: 'Everyday elegance', image: { id: 'ugc-1', query: 'woman wearing gold earrings closeup ear jewelry lifestyle', ratio: '9x16', width: 400 } },
+  { id: 2, caption: 'Layered & loved', image: { id: 'ugc-2', query: 'woman wearing layered gold necklaces lifestyle warm', ratio: '9x16', width: 400 } },
+  { id: 3, caption: 'Stacked perfection', image: { id: 'ugc-3', query: 'woman wearing gold huggie earrings ear closeup', ratio: '9x16', width: 400 } },
+  { id: 4, caption: 'Golden hour glow', image: { id: 'ugc-4', query: 'woman wearing gold jewelry sunset warm lighting', ratio: '9x16', width: 400 } },
+  { id: 5, caption: 'Details matter', image: { id: 'ugc-5', query: 'gold jewelry detail closeup editorial warm light', ratio: '9x16', width: 400 } },
+];
