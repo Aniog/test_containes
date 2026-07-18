@@ -6,6 +6,7 @@ import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 import checkBrokenImgPlugin from './plugin/vite-plugin-check-broken-img.js'
 import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-img.js'
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     // Our plugin runs BEFORE React transform so it sees raw JSX
@@ -18,18 +19,24 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "axios": path.resolve(__dirname, "./node_modules/axios"),
+      "@supabase/postgrest-js": path.resolve(__dirname, "./node_modules/@supabase/postgrest-js"),
     },
   },
   server: {
-    host: '0.0.0.0',
+    port: 8080,
+    host: true,
     allowedHosts: true,
     cors: true,
-    hmr: {
-      overlay: false
-    },
-    watch: {
-      usePolling: true,
-      interval: 100, // Check for changes every 100ms
+    proxy: {
+      '/heartbeat': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      },
+      '/run': {
+        target: 'http://localhost:8081',
+        changeOrigin: true
+      }
     },
   }
 })
