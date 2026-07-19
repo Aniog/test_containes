@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
+import { ImageHelper } from "@strikingly/sdk";
+// @ts-ignore — runtime JSON populated by the Vite plugin
+import strkImgConfig from "@/strk-img-config.json";
 import { toast } from "sonner";
 import { useCart } from "@/context/CartContext";
 import Stars from "@/components/ui/Stars";
@@ -13,6 +16,19 @@ export default function ProductCard({ product, eager = false }) {
   const [hover, setHover] = useState(false);
   const [variant, setVariant] = useState(product.variants[0]);
   const { addItem } = useCart();
+  const containerRef = useRef(null);
+
+  // Load images on mount; re-run on hover so the second image populates.
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const config = strkImgConfig && Object.keys(strkImgConfig).length
+      ? strkImgConfig
+      : {};
+    const frame = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(config, containerRef.current);
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [hover]);
 
   const handleAdd = (e) => {
     e.preventDefault();
@@ -28,7 +44,7 @@ export default function ProductCard({ product, eager = false }) {
   };
 
   return (
-    <article className="group">
+    <article ref={containerRef} className="group">
       <Link
         to={`/product/${product.slug}`}
         className="block"
