@@ -1,0 +1,47 @@
+export const products = [
+    {
+        id: 'vivid-aura-jewels',
+        name: 'Vivid Aura Jewels',
+        price: 42,
+        description: 'Gold ear cuff with crystal accent. Hypoallergenic and perfect for stacking.',
+        category: 'Earrings',
+        tags: ['New', 'Bestseller'],
+        material: '18K Gold Plated',
+    },
+    {
+        id: 'majestic-flora-nectar',
+        name: 'Majestic Flora Nectar',
+        price: 68,
+        description: 'Multicolor floral crystal necklace. A vibrant piece to elevate any outfit.',
+        category: 'Necklaces',
+        tags: ['New'],
+        material: '18K Gold Plated',
+    },
+    {
+        id: 'golden-sphere-huggies',
+        name: 'Golden Sphere Huggies',
+        price: 38,
+        description: 'Chunky gold dome huggie earrings. Minimalist design with maximum impact.',
+        category: 'Huggies',
+        tags: ['Bestseller'],
+        material: '18K Gold Plated',
+    },
+    {
+        id: 'amber-lace-earrings',
+        name: 'Amber Lace Earrings',
+        price: 54,
+        description: 'Textured gold filigree drop earrings. Intricate details inspired by vintage lace.',
+        category: 'Earrings',
+        tags: [],
+        material: '18K Gold Plated',
+    },
+    {
+        id: 'royal-heirloom-set',
+        name: 'Royal Heirloom Set',
+        price: 95,
+        description: 'Gift-boxed earring + necklace set. The ultimate gift for yourself or a loved one.',
+        category: 'Collections',
+        tags: ['Gift Set'],
+        material: '18K Gold Plated',
+    }
+];
