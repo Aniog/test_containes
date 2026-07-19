@@ -5,10 +5,26 @@ import { ImageHelper } from "@strikingly/sdk";
 // @ts-ignore — runtime JSON populated by the Vite plugin
 import strkImgConfig from "@/strk-img-config.json";
 import { useCart } from "@/context/CartContext";
+import { PRODUCTS } from "@/data/products";
 
 function formatPrice(n) {
   return `$${n.toFixed(0)}`;
 }
+
+// Build-time resolvable list of cart line-item images. Each entry uses a
+// STATIC data-strk-img-id and query string so the build-time image plugin
+// can resolve them to real URLs.
+const CART_THUMBS = PRODUCTS.map((p) => ({
+  productId: p.id,
+  imgId: `cart-thumb-${p.id}`,
+  query: p.images[0].query,
+  ratio: p.images[0].ratio || "4x5",
+  width: 240,
+}));
+const CART_THUMB_BY_ID = Object.fromEntries(
+  CART_THUMBS.map((c) => [c.productId, c])
+);
+const DEFAULT_CART_THUMB = CART_THUMBS[0];
 
 export default function CartDrawer() {
   const { items, count, subtotal, isOpen, closeCart, setQty, removeItem } = useCart();
@@ -50,6 +66,23 @@ export default function CartDrawer() {
       aria-hidden={!isOpen}
       className={`fixed inset-0 z-50 ${isOpen ? "" : "pointer-events-none"}`}
     >
+      {/* Hidden preload block: one static <img> per seed product, each with
+          a STATIC, unique data-strk-img-id and query so the build-time image
+          plugin can resolve them to real URLs. The matching line-item image
+          below reuses the same id to inherit the resolved src. */}
+      <div aria-hidden="true" className="pointer-events-none absolute h-0 w-0 overflow-hidden opacity-0">
+        {CART_THUMBS.map((t) => (
+          <img
+            key={t.imgId}
+            alt=""
+            data-strk-img-id={t.imgId}
+            data-strk-img={t.query}
+            data-strk-img-ratio={t.ratio}
+            data-strk-img-width={t.width}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+          />
+        ))}
+      </div>
       {/* Backdrop */}
       <div
         onClick={closeCart}
@@ -100,7 +133,9 @@ export default function CartDrawer() {
         ) : (
           <>
             <ul className="flex-1 overflow-y-auto px-6 py-4">
-              {items.map((item) => (
+              {items.map((item) => {
+                const thumb = CART_THUMB_BY_ID[item.id] || DEFAULT_CART_THUMB;
+                return (
                 <li
                   key={item.key}
                   className="flex gap-4 border-b border-line py-5 last:border-b-0"
@@ -112,10 +147,10 @@ export default function CartDrawer() {
                   >
                     <img
                       alt={item.name}
-                      data-strk-img-id={`cart-${item.id}-${item.variant.id}`}
-                      data-strk-img={item.image}
-                      data-strk-img-ratio={item.imageRatio || "4x5"}
-                      data-strk-img-width={item.imageWidth || 240}
+                      data-strk-img-id={thumb.imgId}
+                      data-strk-img={thumb.query}
+                      data-strk-img-ratio={thumb.ratio}
+                      data-strk-img-width={thumb.width}
                       src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                       className="h-full w-full object-cover"
                     />
@@ -172,7 +207,8 @@ export default function CartDrawer() {
                     </div>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
 
             <div className="border-t border-line bg-ivory px-6 py-6">
