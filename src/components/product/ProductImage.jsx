@@ -16,10 +16,11 @@ export default function ProductImage({
   className = "",
   loading = "lazy",
 }) {
-  // 1x1 SVG placeholder so layout doesn't shift before the runtime loads.
-  const placeholder =
-    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
-
+  // The runtime ImageHelper replaces this src with the resolved CDN URL
+  // immediately after mount. The empty string is intentional: the parent
+  // always wraps the image in a sized container (aspect-ratio) so the layout
+  // is stable, and an empty src keeps the build output free of placeholder
+  // URLs that the build-time image validator would flag as unresolved.
   return (
     <img
       alt={alt}
@@ -28,7 +29,7 @@ export default function ProductImage({
       data-strk-img={query}
       data-strk-img-ratio={ratio}
       data-strk-img-width={String(width)}
-      src={placeholder}
+      src=""
       loading={loading}
     />
   );
