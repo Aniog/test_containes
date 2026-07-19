@@ -49,19 +49,11 @@ export default function CartDrawer() {
               <div className="space-y-4">
                 {items.map((item) => (
                   <div key={`${item.id}-${item.variant}`} className="flex gap-4 pb-4 border-b border-taupe-sand/50 last:border-0">
-                    <div className="w-20 h-24 bg-taupe-sand/30 flex-shrink-0">
-                      <img
-                        data-strk-img-id={`cart-${item.id}-${item.variant}`}
-                        data-strk-img={`[cart-title-${item.id}]`}
-                        data-strk-img-ratio="3x4"
-                        data-strk-img-width="200"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-20 h-24 bg-taupe-sand/30 flex-shrink-0 overflow-hidden flex items-center justify-center">
+                      <span className="text-taupe-light text-[8px] uppercase tracking-[0.1em]">img</span>
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 id={`cart-title-${item.id}`} className="font-serif text-sm uppercase tracking-[0.12em] truncate">{item.name}</h3>
+                      <h3 className="font-serif text-sm uppercase tracking-[0.12em] truncate">{item.name}</h3>
                       <p className="text-xs text-taupe mt-0.5">{item.variant}</p>
                       <p className="text-sm font-medium mt-1">${item.price}</p>
                       <div className="flex items-center gap-3 mt-2">
