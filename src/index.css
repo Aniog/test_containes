@@ -1,76 +1,169 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color-scheme: light;
+    color: #1d1611;
+    background-color: #faf6ef;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #root {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background-color: #faf6ef;
+    color: #1d1611;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.1;
+    color: #1d1611;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button {
+    font-family: inherit;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: #b89460;
+    color: #faf6ef;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] md:text-xs font-medium uppercase text-taupe;
+    letter-spacing: 0.32em;
+  }
+
+  .product-name {
+    @apply font-serif text-base md:text-lg font-medium uppercase text-ink;
+    letter-spacing: 0.18em;
+  }
+
+  .editorial-heading {
+    @apply font-serif font-medium text-ink;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-mist;
+  }
+
+  .hairline-gold {
+    @apply h-px w-full bg-gold-soft/50;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+      bg-ink text-paper uppercase text-[11px] font-medium
+      transition-all duration-300 ease-editorial
+      hover:bg-ink-soft active:bg-ink;
+    letter-spacing: 0.32em;
+  }
+
+  .btn-primary-gold {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+      bg-gold text-ink uppercase text-[11px] font-semibold
+      transition-all duration-300 ease-editorial
+      hover:bg-gold-deep hover:text-paper;
+    letter-spacing: 0.32em;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+      border border-ink text-ink uppercase text-[11px] font-medium
+      transition-all duration-300 ease-editorial
+      hover:bg-ink hover:text-paper;
+    letter-spacing: 0.32em;
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5
+      border border-paper/70 text-paper uppercase text-[11px] font-medium
+      transition-all duration-300 ease-editorial
+      hover:bg-paper hover:text-ink;
+    letter-spacing: 0.32em;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-1.5 text-sm font-medium text-ink
+      transition-colors duration-300 ease-editorial
+      hover:text-gold-deep;
+  }
+
+  .input-bare {
+    @apply w-full bg-transparent border-0 border-b border-mist
+      px-0 py-3 text-sm text-ink placeholder:text-taupe
+      focus:outline-none focus:border-gold-deep
+      transition-colors duration-300 ease-editorial;
+  }
+
+  /* hide scrollbar but keep scrolling */
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .container-editorial {
+    @apply mx-auto w-full max-w-content px-6 md:px-10 lg:px-16;
+  }
+}
+
+/* Page transition fade */
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-fade {
+  animation: pageFadeIn 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Reel card subtle parallax sheen */
+@keyframes reelShine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
