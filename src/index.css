@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #F5EFE6;
+    --color-ivory-light: #FAF6EF;
+    --color-espresso: #1A1410;
+    --color-gold: #B08850;
+    --color-gold-hover: #9A6F3D;
+    --color-taupe: #A89A8C;
+    --color-sand: #E8DFD2;
+    --color-hairline: #D8CFC1;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--color-ivory);
+    color: var(--color-espresso);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Hide scrollbar for horizontal scroll rows but keep functionality */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto px-6 md:px-10 lg:px-16;
+    max-width: 1280px;
+  }
+
+  .container-wide {
+    @apply mx-auto px-6 md:px-10 lg:px-16;
+    max-width: 1440px;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] uppercase tracking-widest2 text-taupe;
+  }
+
+  .product-name {
+    @apply font-serif uppercase tracking-widest2 text-espresso;
+  }
+
+  .nav-link {
+    @apply font-sans text-[11px] uppercase tracking-widest2 text-espresso/80 hover:text-espresso transition-colors duration-300;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center bg-gold hover:bg-goldHover text-white font-sans text-[11px] uppercase tracking-widest2 font-medium py-4 px-10 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center border border-espresso text-espresso hover:bg-espresso hover:text-white font-sans text-[11px] uppercase tracking-widest2 font-medium py-4 px-10 transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center font-sans text-[11px] uppercase tracking-widest2 font-medium text-espresso/70 hover:text-espresso transition-colors duration-300;
+  }
+
+  .hairline {
+    @apply border-t border-hairline;
+  }
+
+  .editorial-link {
+    @apply relative font-serif italic text-base text-espresso inline-block;
+  }
+  .editorial-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform-origin: right;
+    transform: scaleX(1);
+    transition: transform 0.4s ease;
+  }
+  .editorial-link:hover::after {
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: editorialUnderline 0.4s ease forwards;
+  }
+  @keyframes editorialUnderline {
+    0% {
+      transform-origin: right;
+      transform: scaleX(1);
+    }
+    50% {
+      transform-origin: right;
+      transform: scaleX(0);
+    }
+    50.01% {
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+    100% {
+      transform-origin: left;
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+  background-color: #B08850;
+  color: #FFFFFF;
+}
