@@ -1,0 +1,113 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural gold ear cuff featuring a radiant crystal accent that catches the light with every turn. Designed to be worn solo or stacked for a bold, modern silhouette.',
+    materials: '18K gold-plated brass, cubic zirconia crystal. Nickel-free and hypoallergenic.',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided pouch to maintain brilliance.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    description: 'A delicate necklace blooming with multicolor floral crystal petals. Each stone is hand-set to create a garden of light around your neckline.',
+    materials: '18K gold-plated chain, hand-set multicolor cubic zirconia. Adjustable 16–18 inch chain.',
+    care: 'Gently wipe with a soft cloth after wear. Store flat to prevent tangling.',
+    images: [
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky gold dome huggie earrings that hug the lobe with confident curves. A everyday staple with sculptural presence.',
+    materials: '18K gold-plated stainless steel. Hypoallergenic and tarnish-resistant.',
+    care: 'Clean with a dry soft cloth. Avoid sleeping or showering while wearing.',
+    images: [
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 76,
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Light as air, yet rich in detail and movement.',
+    materials: '18K gold-plated brass with intricate filigree texture. Surgical steel posts.',
+    care: 'Handle with care to protect delicate filigree. Store in original box.',
+    images: [
+      'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=800&q=80',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    material: 'gold',
+    rating: 5.0,
+    reviews: 42,
+    description: 'A curated gift-boxed set pairing our signature earring and necklace. Presented in a luxury velvet box, ready to delight.',
+    materials: '18K gold-plated brass and stainless steel. Includes polishing cloth and velvet gift box.',
+    care: 'Use included polishing cloth to restore shine. Keep in gift box when not worn.',
+    images: [
+      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80',
+      'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=800&q=80',
+    ],
+    hoverImage: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=800&q=80',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=600&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=600&q=80' },
+];
+
+export const testimonials = [
+  { id: 1, name: 'Sophia M.', text: 'Absolutely stunning quality. The gold plating has stayed perfect for months. I get compliments every time I wear my Vivid Aura cuff.', rating: 5 },
+  { id: 2, name: 'Emily R.', text: 'Bought the Royal Heirloom Set as a gift and my sister cried. The packaging alone feels like a luxury brand.', rating: 5 },
+  { id: 3, name: 'Olivia K.', text: 'Demi-fine jewelry that actually looks expensive. Fast shipping and beautiful presentation. Already ordered again.', rating: 5 },
+];
+
+export const ugcItems = [
+  { id: 1, caption: 'Everyday gold essentials', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?auto=format&fit=crop&w=400&q=80' },
+  { id: 2, caption: 'Date night stacks', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=400&q=80' },
+  { id: 3, caption: 'Minimal but luxe', image: 'https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&w=400&q=80' },
+  { id: 4, caption: 'Gift-ready packaging', image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=400&q=80' },
+  { id: 5, caption: 'Layered necklaces', image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=400&q=80' },
+  { id: 6, caption: 'Office to evening', image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&w=400&q=80' },
+];
