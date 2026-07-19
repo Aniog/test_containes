@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debug</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import React from './node_modules/react/index.js';
+    import ReactDOM from './node_modules/react-dom/client.js';
+    
+    console.log('React loaded:', !!React);
+    console.log('ReactDOM loaded:', !!ReactDOM);
+    
+    const root = document.getElementById('root');
+    console.log('Root element:', !!root);
+    
+    if (root && React && ReactDOM) {
+      ReactDOM.createRoot(root).render(
+        React.createElement('h1', null, 'Debug: React is working!')
+      );
+      console.log('React rendered successfully');
+    }
+  </script>
+</body>
+</html>
