@@ -1,0 +1,150 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'A sculptural gold ear cuff featuring a delicate crystal accent that catches the light with every movement. Designed to be worn solo or stacked for a layered look.',
+    price: 42,
+    category: 'earrings',
+    material: '18K gold-plated brass',
+    tone: ['gold', 'silver'],
+    rating: 4.8,
+    reviews: 124,
+    isBestseller: true,
+    images: {
+      primary: 'gold ear cuff crystal accent on model ear close up',
+      secondary: 'gold ear cuff jewelry flatlay warm light',
+    },
+    details: {
+      materials: 'Crafted from 18K gold-plated brass with a premium e-coating for lasting shine. Crystal accent is hand-set for secure placement.',
+      care: 'Avoid contact with perfume, lotions, and water. Store in the provided pouch to prevent scratches. Clean gently with a soft cloth.',
+      shipping: 'Free worldwide shipping on all orders. Standard delivery 5-7 business days. Express options available at checkout.',
+      returns: '30-day hassle-free returns. Items must be unworn and in original packaging. Free return shipping included.',
+    },
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'A captivating necklace featuring multicolor floral crystals arranged in an organic cascade. Each crystal is hand-selected for its unique hue and clarity.',
+    price: 68,
+    category: 'necklaces',
+    material: '18K gold-plated brass',
+    tone: ['gold'],
+    rating: 4.9,
+    reviews: 89,
+    isBestseller: true,
+    images: {
+      primary: 'multicolor floral crystal necklace on model neck elegant',
+      secondary: 'floral crystal necklace flatlay gold jewelry display',
+    },
+    details: {
+      materials: '18K gold-plated brass chain with hand-selected multicolor crystal pendants. Adjustable length: 16-18 inches.',
+      care: 'Store flat to prevent tangling. Avoid moisture and harsh chemicals. Wipe with a soft cloth after each wear.',
+      shipping: 'Free worldwide shipping on all orders. Standard delivery 5-7 business days. Express options available at checkout.',
+      returns: '30-day hassle-free returns. Items must be unworn and in original packaging. Free return shipping included.',
+    },
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky dome huggie earrings that sit close to the earlobe with a satisfying weight and polished finish. The perfect everyday statement.',
+    price: 38,
+    category: 'huggies',
+    material: '18K gold-plated brass',
+    tone: ['gold', 'silver'],
+    rating: 4.7,
+    reviews: 156,
+    isBestseller: true,
+    images: {
+      primary: 'chunky gold dome huggie earrings on ear close up',
+      secondary: 'gold huggie earrings pair flatlay neutral background',
+    },
+    details: {
+      materials: 'Chunky 18K gold-plated brass dome huggies with secure click-back closure. Diameter: 12mm. Lightweight at just 3g per earring.',
+      care: 'Keep away from water and chemicals. Store in a dry place. Polish occasionally with the included cloth to maintain shine.',
+      shipping: 'Free worldwide shipping on all orders. Standard delivery 5-7 business days. Express options available at checkout.',
+      returns: '30-day hassle-free returns. Items must be unworn and in original packaging. Free return shipping included.',
+    },
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Intricate filigree drop earrings with a textured gold finish reminiscent of vintage lace. Lightweight and elegant for day or evening wear.',
+    price: 54,
+    category: 'earrings',
+    material: '18K gold-plated brass',
+    tone: ['gold'],
+    rating: 4.9,
+    reviews: 67,
+    isBestseller: true,
+    images: {
+      primary: 'textured gold filigree drop earrings on model elegant',
+      secondary: 'gold filigree lace earrings jewelry display warm',
+    },
+    details: {
+      materials: 'Delicate 18K gold-plated filigree drop earrings with a vintage-inspired lace texture. Length: 45mm. Hypoallergenic posts.',
+      care: 'Handle with care due to the intricate filigree design. Store in a padded pouch. Avoid bending or dropping.',
+      shipping: 'Free worldwide shipping on all orders. Standard delivery 5-7 business days. Express options available at checkout.',
+      returns: '30-day hassle-free returns. Items must be unworn and in original packaging. Free return shipping included.',
+    },
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'A curated gift set featuring a matching earring and necklace duo, presented in a signature Velmora gift box. The ultimate gifting moment.',
+    price: 95,
+    category: 'sets',
+    material: '18K gold-plated brass',
+    tone: ['gold', 'silver'],
+    rating: 5.0,
+    reviews: 43,
+    isBestseller: true,
+    images: {
+      primary: 'gold jewelry gift set elegant box presentation',
+      secondary: 'gold earring necklace set flatlay luxury packaging',
+    },
+    details: {
+      materials: 'Complete matching set in 18K gold-plated brass. Includes one necklace (18-inch chain) and one pair of stud earrings. Gift box included.',
+      care: 'Store each piece separately in the provided pouches to prevent scratching. Avoid contact with water and perfumes.',
+      shipping: 'Complimentary gift packaging and free worldwide shipping. Express delivery available. Gift message card included.',
+      returns: '30-day hassle-free returns. Gift recipients may exchange for store credit. Free return shipping included.',
+    },
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', description: 'Statement pieces for every occasion', image: 'gold earrings collection display elegant jewelry' },
+  { id: 'necklaces', name: 'Necklaces', description: 'Layered chains and pendants', image: 'gold necklaces layered on model neck elegant' },
+  { id: 'huggies', name: 'Huggies', description: 'Everyday comfort, elevated', image: 'gold huggie earrings close up ear stack' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sophie M.',
+    text: 'The quality exceeded my expectations. These pieces look like they cost triple the price. My new everyday earrings.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    text: "Bought the Royal Heirloom Set for my sister's birthday and she hasn't taken it off since. The packaging is gorgeous too.",
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Olivia R.',
+    text: "Finally, demi-fine jewelry that doesn't turn my ears green. The huggies are so comfortable I sleep in them.",
+    rating: 5,
+  },
+];
+
+export const ugcContent = [
+  { id: 1, caption: 'Stacked and stunning', user: '@jewelrylover' },
+  { id: 2, caption: 'My daily essentials', user: '@minimalmuse' },
+  { id: 3, caption: 'Golden hour glow', user: '@stylediary' },
+  { id: 4, caption: 'New favorites', user: '@chicandshine' },
+  { id: 5, caption: 'Layered perfection', user: '@goldeveryday' },
+  { id: 6, caption: 'Weekend stack', user: '@effortlesslux' },
+  { id: 7, caption: 'Office to evening', user: '@9to9style' },
+  { id: 8, caption: 'Gift to myself', user: '@selfcarefirst' },
+];
