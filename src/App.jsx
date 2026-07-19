@@ -1,10 +1,13 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useRef } from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   useNavigate,
+  useLocation,
 } from "react-router-dom";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
 import { Toaster } from "@/components/ui/sonner";
 import Layout from "@/components/layout/Layout";
 import Home from "@/pages/Home";
@@ -30,10 +33,28 @@ function PreviewNavigateBridge() {
   return null;
 }
 
+// App-level image loader: scans the entire document for any data-strk-img /
+// data-strk-bg elements after mount and on every route change. This is the
+// catch-all that ensures every page in the app gets its tagged images loaded
+// (Layout's scoped scanner handles its own subtree too).
+function AppImageScanner() {
+  const location = useLocation();
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (typeof document !== "undefined" && document.body) {
+        ImageHelper.loadImages(strkImgConfig, document.body);
+      }
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [location.pathname]);
+  return null;
+}
+
 function App() {
   return (
     <Router>
       <PreviewNavigateBridge />
+      <AppImageScanner />
       <Layout>
         <Suspense
           fallback={
