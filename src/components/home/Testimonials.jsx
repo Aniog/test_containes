@@ -1,0 +1,5 @@
+import { Star } from 'lucide-react'
+import { testimonials } from '@/data/products.js'
+export default function Testimonials() {
+  return <section className="bg-velmora-ivory py-16 md:py-24"><div className="velmora-container"><div className="mx-auto max-w-2xl text-center"><p className="eyebrow">Reviews</p><h2 className="mt-3 font-display text-5xl font-medium leading-none text-velmora-ink md:text-6xl">Loved for the glow</h2></div><div className="mt-10 grid gap-5 md:grid-cols-3">{testimonials.map((review) => <article key={review.id} className="border border-velmora-sand bg-velmora-cream p-7 text-velmora-ink"><div className="flex gap-1 text-velmora-gold" aria-label="5 star rating">{Array.from({ length: 5 }).map((_, index) => <Star key={index} className="h-4 w-4 fill-current" />)}</div><p className="mt-6 text-base leading-8 text-velmora-ink">“{review.text}”</p><p className="mt-6 text-xs font-extrabold uppercase tracking-nav text-velmora-taupe">{review.name}</p></article>)}</div></div></section>
+}
