@@ -1,76 +1,179 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ink: #161311;
+    --color-oat: #F4ECE0;
+    --color-bone: #EAE0D1;
+    --color-champagne: #C8A972;
+    --color-champagne-deep: #A7864A;
+    --color-mist: #7A726A;
+    --color-cream: #FBF7F0;
+    --color-rose-gold: #D8B192;
+    --color-hairline: #E2D9C7;
+    --color-hairline-dark: #2A2520;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+    background-color: var(--color-oat);
+    color: var(--color-ink);
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: "Cormorant Garamond", ui-serif, Georgia, serif;
+    font-weight: 400;
+    letter-spacing: 0;
+    color: var(--color-ink);
+  }
+
+  /* Editorial uppercase utility (product names, nav, labels) */
+  .label {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.75rem;
+    color: var(--color-ink);
+  }
+
+  .label-2 {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    font-size: 0.6875rem;
+    color: var(--color-mist);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: var(--color-champagne);
+    color: var(--color-ink);
+  }
+
+  /* Scrollbar — minimal */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-hairline);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-mist);
+  }
+
+  /* Focus ring — global */
+  :focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 2px;
+  }
+
+  /* Remove default button styles for our own */
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 bg-ink text-cream font-medium uppercase tracking-wider-2 text-xs transition-colors duration-300;
+  }
+  .btn-primary:hover {
+    background-color: var(--color-champagne);
+    color: var(--color-ink);
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 border border-ink text-ink font-medium uppercase tracking-wider-2 text-xs transition-colors duration-300;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-ink uppercase tracking-wider-2 text-xs font-medium relative;
+  }
+  .btn-ghost::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(1);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .btn-ghost:hover::after {
+    transform: scaleX(0);
+    transform-origin: right;
+  }
+  .btn-ghost:hover > .ghost-arrow {
+    transform: translateX(4px);
+  }
+  .ghost-arrow {
+    transition: transform 0.3s ease;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-hairline;
+  }
+  .hairline-dark {
+    @apply h-px w-full bg-hairline-dark;
+  }
+
+  .product-name {
+    @apply font-serif uppercase tracking-wider-3 text-sm font-medium text-ink;
+  }
+
+  .container-x {
+    @apply max-w-8xl mx-auto px-5 md:px-8 lg:px-12;
+  }
+
+  /* Hide scrollbar on horizontal scrollers (UGC, etc.) */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
