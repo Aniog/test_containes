@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ShoppingBag } from 'lucide-react';
-import { useCartDispatch } from '@/context/CartContext';
+import { useCart } from '@/context/CartContext';
 
 export default function ProductCard({ product }) {
   const [hovered, setHovered] = useState(false);
-  const { addItem } = useCartDispatch();
+  const { addItem } = useCart();
 
   const handleAddToCart = (e) => {
     e.preventDefault();
@@ -23,9 +23,9 @@ export default function ProductCard({ product }) {
       {/* Image */}
       <div className="relative aspect-[3/4] bg-sand/30 overflow-hidden mb-4">
         {/* Primary "image" */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gold/15 via-gold/5 to-sand/50 transition-opacity duration-500 group-hover:opacity-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-gold/15 via-gold/5 to-sand/50 transition-opacity duration-500 group-hover:opacity-0 pointer-events-none" />
         {/* Secondary "image" (hover state) */}
-        <div className="absolute inset-0 bg-gradient-to-b from-rose/15 via-gold/10 to-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-b from-rose/15 via-gold/10 to-charcoal/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
         {/* New badge */}
         {product.isNew && (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Pinterest } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
 
 const shopLinks = ['All Jewelry', 'Earrings', 'Necklaces', 'Huggies', 'Gift Sets', 'New Arrivals'];
 const helpLinks = ['Shipping & Returns', 'Size Guide', 'Care Guide', 'FAQ', 'Contact Us'];
@@ -21,7 +21,7 @@ export default function Footer() {
             <div className="flex items-center gap-4 mt-6">
               <Instagram className="w-4 h-4 text-cream/50 hover:text-cream transition-colors cursor-pointer" />
               <Facebook className="w-4 h-4 text-cream/50 hover:text-cream transition-colors cursor-pointer" />
-              <Pinterest className="w-4 h-4 text-cream/50 hover:text-cream transition-colors cursor-pointer" />
+              
             </div>
           </div>
 

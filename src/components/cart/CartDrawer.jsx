@@ -1,10 +1,9 @@
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useCart, useCartDispatch } from '@/context/CartContext';
+import { useCart } from '@/context/CartContext';
 
 export default function CartDrawer() {
-  const { items, drawerOpen, subtotal, itemCount } = useCart();
-  const { toggleDrawer, updateQuantity, removeItem } = useCartDispatch();
+  const { items, drawerOpen, subtotal, itemCount, toggleDrawer, updateQuantity, removeItem } = useCart();
 
   return (
     <>

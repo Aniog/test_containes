@@ -1,7 +1,6 @@
 import { createContext, useContext, useReducer, useCallback } from 'react';
 
 const CartContext = createContext(null);
-const CartDispatchContext = createContext(null);
 
 function cartReducer(state, action) {
   switch (action.type) {
@@ -12,6 +11,7 @@ function cartReducer(state, action) {
       if (existing) {
         return {
           ...state,
+          drawerOpen: true,
           items: state.items.map((item) =>
             item.id === action.payload.id && item.variant === action.payload.variant
               ? { ...item, quantity: item.quantity + 1 }
@@ -19,7 +19,11 @@ function cartReducer(state, action) {
           ),
         };
       }
-      return { ...state, items: [...state.items, { ...action.payload, quantity: 1 }] };
+      return {
+        ...state,
+        drawerOpen: true,
+        items: [...state.items, { ...action.payload, quantity: 1 }],
+      };
     }
     case 'REMOVE_ITEM':
       return {
@@ -49,8 +53,6 @@ function cartReducer(state, action) {
       return { ...state, drawerOpen: !state.drawerOpen };
     case 'CLOSE_DRAWER':
       return { ...state, drawerOpen: false };
-    case 'OPEN_DRAWER':
-      return { ...state, drawerOpen: true };
     default:
       return state;
   }
@@ -63,8 +65,10 @@ export function CartProvider({ children }) {
   });
 
   const addItem = useCallback((product, variant) => {
-    dispatch({ type: 'ADD_ITEM', payload: { ...product, variant: variant || product.variant } });
-    dispatch({ type: 'OPEN_DRAWER' });
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: { ...product, variant: variant || product.variant },
+    });
   }, []);
 
   const removeItem = useCallback((id, variant) => {
@@ -82,18 +86,26 @@ export function CartProvider({ children }) {
   const subtotal = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <CartContext.Provider value={{ ...state, itemCount, subtotal }}>
-      <CartDispatchContext.Provider value={{ addItem, removeItem, updateQuantity, toggleDrawer, closeDrawer }}>
-        {children}
-      </CartDispatchContext.Provider>
+    <CartContext.Provider
+      value={{
+        items: state.items,
+        drawerOpen: state.drawerOpen,
+        itemCount,
+        subtotal,
+        addItem,
+        removeItem,
+        updateQuantity,
+        toggleDrawer,
+        closeDrawer,
+      }}
+    >
+      {children}
     </CartContext.Provider>
   );
 }
 
 export function useCart() {
-  return useContext(CartContext);
-}
-
-export function useCartDispatch() {
-  return useContext(CartDispatchContext);
+  const context = useContext(CartContext);
+  if (!context) throw new Error('useCart must be used within CartProvider');
+  return context;
 }
