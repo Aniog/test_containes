@@ -1,4 +1,5 @@
-import { useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { useCart } from '../components/cart/CartContext'
 import QuantitySelector from '../components/common/QuantitySelector'
@@ -11,7 +12,7 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from '../lib/products'
-import { useStrkImageLoader } from '../lib/useStrkImageLoader'
+import strkImgConfig from '../strk-img-config.json'
 
 export default function ProductPage() {
   const { slug } = useParams()
@@ -28,7 +29,19 @@ export default function ProductPage() {
     [product],
   )
 
-  useStrkImageLoader(containerRef, [slug])
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      const maybeCleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof maybeCleanup === 'function' ? maybeCleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [slug])
 
   if (!product) {
     return <Navigate to="/shop" replace />
@@ -72,7 +85,8 @@ export default function ProductPage() {
                         key={variant}
                         type="button"
                         onClick={() => setSelectedVariant(variant)}
-                        className={`rounded-full border px-4 py-2 text-sm transition ${
+                        aria-pressed={isActive}
+                        className={`rounded-full border px-4 py-2 text-sm transition focus:outline-none focus:ring-2 focus:ring-rosewood focus:ring-offset-2 focus:ring-offset-porcelain ${
                           isActive
                             ? 'border-champagne bg-champagne text-champagneInk'
                             : 'border-sandDeep/80 bg-porcelain text-ink hover:border-rosewood hover:text-rosewood'

@@ -138,7 +138,9 @@ export default function ShopPage() {
               <button
                 type="button"
                 onClick={() => setShowMobileFilters((current) => !current)}
-                className="inline-flex items-center gap-2 rounded-full border border-sandDeep/70 px-4 py-2 text-sm text-ink transition hover:border-rosewood hover:text-rosewood lg:hidden"
+                aria-expanded={showMobileFilters}
+                aria-controls="mobile-filter-panel"
+                className="inline-flex items-center gap-2 rounded-full border border-sandDeep/70 px-4 py-2 text-sm text-ink transition hover:border-rosewood hover:text-rosewood focus:outline-none focus:ring-2 focus:ring-rosewood focus:ring-offset-2 focus:ring-offset-porcelain lg:hidden"
               >
                 <SlidersHorizontal className="h-4 w-4" />
                 Filters
@@ -165,7 +167,12 @@ export default function ShopPage() {
           </div>
 
           {showMobileFilters ? (
-            <div className="mt-5 lg:hidden">
+            <div
+              id="mobile-filter-panel"
+              role="region"
+              aria-label="Mobile product filters"
+              className="mt-5 lg:hidden"
+            >
               <FilterSidebar
                 categories={allCategories}
                 materials={allMaterials}

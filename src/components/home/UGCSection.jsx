@@ -1,5 +1,4 @@
 import { ugcCards } from '../../lib/products'
-import { imagePlaceholder } from '../../lib/utils'
 
 export default function UGCSection() {
   return (
@@ -30,7 +29,7 @@ export default function UGCSection() {
               </div>
               <div className="aspect-[9/16] overflow-hidden">
                 <img
-                  src={imagePlaceholder}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   alt={card.title}
                   data-strk-img-id={card.imgId}
                   data-strk-img={`[${card.descId}] [${card.titleId}] [ugc-title]`}

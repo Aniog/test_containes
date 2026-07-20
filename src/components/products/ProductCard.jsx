@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { formatPrice } from '../../lib/products'
-import { cn, imagePlaceholder } from '../../lib/utils'
+import { cn } from '../../lib/utils'
 import { useCart } from '../cart/CartContext'
 
 export default function ProductCard({ className, contextKey, product, sectionTitleId }) {
@@ -21,7 +21,7 @@ export default function ProductCard({ className, contextKey, product, sectionTit
         <Link to={`/product/${product.slug}`} className="block">
           <div className="relative aspect-[3/4] overflow-hidden bg-sand">
             <img
-              src={imagePlaceholder}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt={product.name}
               data-strk-img-id={`${contextKey}-${product.slug}-primary`}
               data-strk-img={imageQuery}
@@ -30,7 +30,7 @@ export default function ProductCard({ className, contextKey, product, sectionTit
               className="absolute inset-0 h-full w-full object-cover transition duration-500 ease-luxe group-hover:scale-105 group-hover:opacity-0"
             />
             <img
-              src={imagePlaceholder}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt={`${product.name} styled view`}
               data-strk-img-id={`${contextKey}-${product.slug}-secondary`}
               data-strk-img={`${imageQuery} [${titleId}]`}

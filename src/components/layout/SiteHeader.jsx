@@ -92,10 +92,11 @@ export default function SiteHeader() {
             <Search className="h-4 w-4 md:h-5 md:w-5" />
           </button>
           <button
+            id="site-cart-trigger"
             type="button"
             aria-label="Open cart"
-            onClick={openCart}
-            className={`relative rounded-full border p-2 transition ${
+            onClick={(event) => openCart(event.currentTarget)}
+            className={`relative rounded-full border p-2 transition focus:outline-none focus:ring-2 focus:ring-rosewood focus:ring-offset-2 ${
               isTransparent
                 ? 'border-white/30 text-white hover:bg-white/10'
                 : 'border-sandDeep/70 text-ink hover:border-rosewood hover:text-rosewood'

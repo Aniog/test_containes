@@ -1,13 +1,25 @@
-import { useRef, useState } from 'react'
-import { imagePlaceholder } from '../../lib/utils'
-import { useStrkImageLoader } from '../../lib/useStrkImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import { useEffect, useRef, useState } from 'react'
+import strkImgConfig from '../../strk-img-config.json'
 
 export default function ProductGallery({ product }) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const containerRef = useRef(null)
   const selectedImage = product.gallery[selectedIndex]
 
-  useStrkImageLoader(containerRef, [product.slug, selectedIndex])
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      const maybeCleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof maybeCleanup === 'function' ? maybeCleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [product.slug, selectedIndex])
 
   return (
     <div ref={containerRef} className="space-y-4">
@@ -23,7 +35,7 @@ export default function ProductGallery({ product }) {
       <div className="overflow-hidden rounded-3xl border border-sandDeep/70 bg-sand shadow-card">
         <div className="aspect-[3/4] overflow-hidden">
           <img
-            src={imagePlaceholder}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={selectedImage.title}
             data-strk-img-id={`${selectedImage.imgId}-main`}
             data-strk-img={`[${selectedImage.descId}] [${selectedImage.titleId}]`}
@@ -40,7 +52,9 @@ export default function ProductGallery({ product }) {
             key={item.id}
             type="button"
             onClick={() => setSelectedIndex(index)}
-            className={`overflow-hidden rounded-2xl border bg-white/70 transition ${
+            aria-label={`View ${item.title}`}
+            aria-pressed={index === selectedIndex}
+            className={`overflow-hidden rounded-2xl border bg-white/70 transition focus:outline-none focus:ring-2 focus:ring-rosewood focus:ring-offset-2 focus:ring-offset-porcelain ${
               index === selectedIndex
                 ? 'border-champagne shadow-card'
                 : 'border-sandDeep/70 hover:border-rosewood'
@@ -48,7 +62,7 @@ export default function ProductGallery({ product }) {
           >
             <div className="aspect-square overflow-hidden">
               <img
-                src={imagePlaceholder}
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt={item.title}
                 data-strk-img-id={`${item.imgId}-thumb`}
                 data-strk-img={`[${item.descId}] [${item.titleId}]`}

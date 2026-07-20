@@ -1,4 +1,12 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 
 const CartContext = createContext(null)
 const CART_STORAGE_KEY = 'velmora-cart'
@@ -19,6 +27,9 @@ const buildCartKey = (productId, variant) => `${productId}-${variant}`
 export function CartProvider({ children }) {
   const [items, setItems] = useState(readStoredCart)
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const triggerRef = useRef(null)
+  const restoreFocusFrameRef = useRef(null)
+  const restoreFocusIntervalRef = useRef(null)
 
   useEffect(() => {
     window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items))
@@ -29,8 +40,73 @@ export function CartProvider({ children }) {
     return () => document.body.classList.remove('drawer-open')
   }, [isCartOpen])
 
+  const clearRestoreFocus = useCallback(() => {
+    if (restoreFocusFrameRef.current) {
+      window.cancelAnimationFrame(restoreFocusFrameRef.current)
+      restoreFocusFrameRef.current = null
+    }
+
+    if (restoreFocusIntervalRef.current) {
+      window.clearInterval(restoreFocusIntervalRef.current)
+      restoreFocusIntervalRef.current = null
+    }
+  }, [])
+
+  const getFocusTarget = useCallback(() => {
+    const preferredTrigger =
+      triggerRef.current instanceof HTMLElement && triggerRef.current.isConnected
+        ? triggerRef.current
+        : null
+    const fallbackTrigger = document.getElementById('site-cart-trigger')
+    return preferredTrigger ?? fallbackTrigger
+  }, [])
+
+  const restoreTriggerFocus = useCallback(() => {
+    const focusTarget = getFocusTarget()
+
+    if (focusTarget instanceof HTMLElement) {
+      focusTarget.focus({ preventScroll: true })
+      return document.activeElement === focusTarget
+    }
+
+    return false
+  }, [getFocusTarget])
+
+  const scheduleRestoreFocus = useCallback(() => {
+    clearRestoreFocus()
+    restoreFocusFrameRef.current = window.requestAnimationFrame(() => {
+      let attempts = 0
+      restoreFocusIntervalRef.current = window.setInterval(() => {
+        attempts += 1
+        const restored = restoreTriggerFocus()
+
+        if (restored || attempts >= 8) {
+          clearRestoreFocus()
+        }
+      }, 40)
+    })
+  }, [clearRestoreFocus, restoreTriggerFocus])
+
+  useEffect(() => clearRestoreFocus, [clearRestoreFocus])
+
+  useEffect(() => {
+    if (!isCartOpen) return undefined
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setIsCartOpen(false)
+        scheduleRestoreFocus()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isCartOpen, scheduleRestoreFocus])
+
   const addItem = (product, quantity = 1, variant = 'Gold Tone') => {
     const cartKey = buildCartKey(product.id, variant)
+    triggerRef.current = document.activeElement
 
     setItems((currentItems) => {
       const existingItem = currentItems.find((item) => item.cartKey === cartKey)
@@ -80,6 +156,17 @@ export function CartProvider({ children }) {
     )
   }
 
+  const closeCart = useCallback(() => {
+    setIsCartOpen(false)
+    scheduleRestoreFocus()
+  }, [scheduleRestoreFocus])
+
+  const openCart = useCallback((triggerElement) => {
+    clearRestoreFocus()
+    triggerRef.current = triggerElement ?? document.activeElement
+    setIsCartOpen(true)
+  }, [clearRestoreFocus])
+
   const value = useMemo(() => {
     const itemCount = items.reduce((total, item) => total + item.quantity, 0)
     const subtotal = items.reduce(
@@ -95,10 +182,10 @@ export function CartProvider({ children }) {
       addItem,
       removeItem,
       updateItemQuantity,
-      openCart: () => setIsCartOpen(true),
-      closeCart: () => setIsCartOpen(false),
+      openCart,
+      closeCart,
     }
-  }, [isCartOpen, items])
+  }, [closeCart, isCartOpen, items, openCart])
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }

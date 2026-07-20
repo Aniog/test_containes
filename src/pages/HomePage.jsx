@@ -1,4 +1,5 @@
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import BestsellersSection from '../components/home/BestsellersSection'
 import BrandStorySection from '../components/home/BrandStorySection'
 import CategoryTilesSection from '../components/home/CategoryTilesSection'
@@ -8,12 +9,24 @@ import NewsletterSection from '../components/home/NewsletterSection'
 import TestimonialsSection from '../components/home/TestimonialsSection'
 import TrustBar from '../components/home/TrustBar'
 import UGCSection from '../components/home/UGCSection'
-import { useStrkImageLoader } from '../lib/useStrkImageLoader'
+import strkImgConfig from '../strk-img-config.json'
 
 export default function HomePage() {
   const containerRef = useRef(null)
 
-  useStrkImageLoader(containerRef)
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      const maybeCleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof maybeCleanup === 'function' ? maybeCleanup : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [])
 
   return (
     <div ref={containerRef}>

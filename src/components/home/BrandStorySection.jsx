@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { imagePlaceholder } from '../../lib/utils'
 
 export default function BrandStorySection() {
   return (
@@ -14,7 +13,7 @@ export default function BrandStorySection() {
           </div>
           <div className="aspect-[4/5] overflow-hidden">
             <img
-              src={imagePlaceholder}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt="Velmora jewelry still life"
               data-strk-img-id="brand-story-image-a14b9"
               data-strk-img="[story-image-desc] [story-image-title] [story-heading]"

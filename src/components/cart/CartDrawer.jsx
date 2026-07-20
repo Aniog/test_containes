@@ -1,4 +1,5 @@
 import { ShoppingBag, X } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { formatPrice } from '../../lib/products'
 import QuantitySelector from '../common/QuantitySelector'
@@ -13,39 +14,55 @@ export default function CartDrawer() {
     subtotal,
     updateItemQuantity,
   } = useCart()
+  const drawerRef = useRef(null)
+
+  useEffect(() => {
+    if (!isCartOpen) return undefined
+
+    const frameId = window.requestAnimationFrame(() => {
+      drawerRef.current?.focus()
+    })
+
+    return () => window.cancelAnimationFrame(frameId)
+  }, [isCartOpen])
+
+  if (!isCartOpen) return null
 
   return (
-    <div
-      className={`fixed inset-0 z-50 transition ${
-        isCartOpen ? 'pointer-events-auto' : 'pointer-events-none'
-      }`}
-      aria-hidden={!isCartOpen}
-    >
+    <div className="fixed inset-0 z-50">
       <button
         type="button"
         aria-label="Close cart"
         onClick={closeCart}
-        className={`absolute inset-0 bg-ink/45 transition duration-300 ${
-          isCartOpen ? 'opacity-100' : 'opacity-0'
-        }`}
+        className="absolute inset-0 bg-ink/45 transition duration-300"
       />
 
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-porcelain text-ink shadow-soft transition duration-300 ease-luxe ${
-          isCartOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        ref={drawerRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="cart-drawer-title"
+        tabIndex={-1}
+        onKeyDown={(event) => {
+          if (event.key === 'Escape') {
+            event.preventDefault()
+            closeCart()
+          }
+        }}
+        className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-porcelain text-ink shadow-soft"
       >
         <div className="flex items-center justify-between border-b border-sandDeep/70 px-6 py-5">
           <div>
             <p className="eyebrow">Your cart</p>
-            <h2 className="mt-2 font-display text-3xl text-ink">
+            <h2 id="cart-drawer-title" className="mt-2 font-display text-3xl text-ink">
               A polished final touch
             </h2>
           </div>
           <button
             type="button"
+            aria-label="Close cart drawer"
             onClick={closeCart}
-            className="rounded-full border border-sandDeep/70 p-2 text-ink transition hover:border-rosewood hover:text-rosewood"
+            className="rounded-full border border-sandDeep/70 p-2 text-ink transition hover:border-rosewood hover:text-rosewood focus:outline-none focus:ring-2 focus:ring-rosewood focus:ring-offset-2 focus:ring-offset-porcelain"
           >
             <X className="h-5 w-5" />
           </button>
