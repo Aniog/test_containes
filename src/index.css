@@ -1,24 +1,28 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Manrope', system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #1A1815;
+  background-color: #FAF9F7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a {
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+  color: inherit;
+  text-decoration: none;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #C9A962;
 }
 
 body {
@@ -30,47 +34,51 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  margin: 0;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  border: none;
+  background: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  font-family: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 2px solid #C9A962;
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .container-main {
+    @apply max-w-[1280px] mx-auto px-4 md:px-8;
+  }
+  
+  .btn-primary {
+    @apply bg-gold text-charcoal font-sans text-sm uppercase tracking-widest py-4 px-8 transition-all duration-300 hover:bg-gold-hover;
+  }
+  
+  .btn-secondary {
+    @apply border border-charcoal text-charcoal font-sans text-sm uppercase tracking-widest py-4 px-8 transition-all duration-300 hover:bg-charcoal hover:text-cream;
+  }
+  
+  .divider {
+    @apply w-full h-px bg-border;
+  }
+  
+  .product-name {
+    @apply font-sans text-product uppercase tracking-widest text-charcoal;
+  }
+}
