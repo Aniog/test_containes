@@ -1,76 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #2C2823;
+  background-color: #F8F5F1;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #F8F5F1;
+  color: #2C2823;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Elegant Serif Typography */
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Product Names - Uppercase with wide letter-spacing */
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Heading styles */
+h1, h2, h3, .heading-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Hairline dividers */
+.hairline {
+  border-color: #E5DFD6;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Premium button styles */
+.btn-premium {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-premium-solid {
+  background-color: #B8976A;
+  color: #FFFFFF;
+  border: 1px solid #B8976A;
+}
+
+.btn-premium-solid:hover {
+  background-color: #8C6F4A;
+  border-color: #8C6F4A;
+}
+
+.btn-premium-outline {
+  background-color: transparent;
+  color: #2C2823;
+  border: 1px solid #2C2823;
+}
+
+.btn-premium-outline:hover {
+  background-color: #2C2823;
+  color: #FFFFFF;
+}
+
+.btn-premium-ghost {
+  background-color: transparent;
+  color: #6B6359;
+  border: 1px solid #E5DFD6;
+}
+
+.btn-premium-ghost:hover {
+  border-color: #B8976A;
+  color: #B8976A;
+}
+
+/* Product card styles */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #F5F2ED;
+}
+
+.product-image {
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+/* Quick add button */
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  pointer-events: none;
+  z-index: 20;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* Ensure images don't block the quick add button */
+.product-image-container img {
+  pointer-events: none;
+}
+
+/* Allow button to receive clicks over the container */
+.product-image-container {
+  position: relative;
+}
+
+.quick-add {
+  pointer-events: auto !important;
+}
+
+/* Category tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-label {
+  transition: all 0.3s ease;
+}
+
+.category-tile:hover .category-label {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #2C2823;
+}
+
+/* UGC Reel cards */
+.ugc-card {
+  transition: transform 0.3s ease;
+}
+
+.ugc-card:hover {
+  transform: scale(1.01);
+}
+
+/* Cart drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Variant pills */
+.variant-pill {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.variant-pill.active {
+  background-color: #2C2823;
+  color: #FFFFFF;
+  border-color: #2C2823;
+}
+
+.variant-pill:not(.active):hover {
+  border-color: #B8976A;
+  color: #B8976A;
+}
+
+/* Accordion */
+.accordion-trigger {
+  transition: all 0.2s ease;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+}
+
+/* Filter sidebar */
+.filter-checkbox {
+  accent-color: #B8976A;
+}
+
+/* Sort dropdown */
+.sort-select {
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+
+/* Newsletter */
+.newsletter-input {
+  background-color: transparent;
+  border: 1px solid #E5DFD6;
+  transition: all 0.2s ease;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #B8976A;
+}
+
+/* Trust bar */
+.trust-bar {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+/* Modal / Drawer overlay */
+.overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .product-name {
+    letter-spacing: 0.1em;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  
+  .quick-add {
+    font-size: 13px;
+    padding: 8px 20px;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
