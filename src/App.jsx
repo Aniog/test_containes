@@ -1,15 +1,10 @@
-import './App.css'
+import React from 'react';
+import Home from './pages/Home.jsx';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <Home />
+  );
 }
 
-export default App
+export default App;
