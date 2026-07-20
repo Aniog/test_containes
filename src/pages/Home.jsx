@@ -1,0 +1,38 @@
+import React, { useEffect, useRef } from 'react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json'; // Make sure this path exists or omit for now
+import HomeHero from '../components/home/HomeHero';
+import TrustBar from '../components/home/TrustBar';
+import Bestsellers from '../components/home/Bestsellers';
+import UGCReelRow from '../components/home/UGCReelRow';
+import CategoryTiles from '../components/home/CategoryTiles';
+import BrandStory from '../components/home/BrandStory';
+import Testimonials from '../components/home/Testimonials';
+
+export default function Home() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    try {
+      if(strkImgConfig && containerRef.current) {
+        requestAnimationFrame(() => {
+          ImageHelper.loadImages(strkImgConfig, containerRef.current);
+        });
+      }
+    } catch(e) {
+      console.warn("ImageHelper setup skipped for now", e);
+    }
+  }, []);
+
+  return (
+    <div ref={containerRef}>
+      <HomeHero />
+      <TrustBar />
+      <Bestsellers />
+      <CategoryTiles />
+      <BrandStory />
+      <UGCReelRow />
+      <Testimonials />
+    </div>
+  );
+}
