@@ -1,0 +1,73 @@
+export const placeholderSvg = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 1 1\'/%3E'
+
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    price: 42,
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    description: 'A sculptural gold ear cuff finished with a tiny crystal accent for a luminous everyday glimmer.',
+    longDescription: 'Designed to slip on without a piercing, this polished ear cuff frames the ear with a crystal-bright detail that feels refined from morning coffee to candlelit dinners.',
+    care: 'Keep dry, polish gently with a soft cloth, and store separately in the included pouch.',
+    rating: 4.9,
+    reviews: 128,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    price: 68,
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    description: 'A delicate floral crystal necklace with softly colored stones and a fine gold-plated chain.',
+    longDescription: 'A romantic necklace inspired by botanical heirlooms, balanced with modern demi-fine ease and a graceful adjustable chain.',
+    care: 'Avoid perfumes and lotions directly on the piece. Fasten clasp before storing to prevent tangles.',
+    rating: 5,
+    reviews: 94,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    price: 38,
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    description: 'Chunky dome huggie earrings with a soft rounded silhouette and a comfortable hinged closure.',
+    longDescription: 'Small in scale but rich in presence, these rounded huggies add instant polish to denim, silk, or evening tailoring.',
+    care: 'Close hinges before storage and wipe after wear to preserve the high-polish finish.',
+    rating: 4.8,
+    reviews: 203,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    price: 54,
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    description: 'Textured gold filigree drop earrings with lace-like movement and a warm amber glow.',
+    longDescription: 'Inspired by vintage lacework, these earrings bring soft movement and artful texture to simple knits and slip dresses.',
+    care: 'Store flat in a dry place and avoid sleeping, swimming, or showering while wearing.',
+    rating: 4.9,
+    reviews: 76,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Gift Sets',
+    price: 95,
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    description: 'A gift-boxed earring and necklace set curated for birthdays, bridesmaids, and self-celebration.',
+    longDescription: 'Presented in a keepsake Velmora box, this coordinated set layers refined sparkle with a thoughtful gifting experience.',
+    care: 'Return each piece to the gift box after wear and clean gently with the provided polishing cloth.',
+    rating: 5,
+    reviews: 142,
+  },
+]
+
+export const categories = ['Earrings', 'Necklaces', 'Huggies']
+
+export const getProductById = (id) => products.find((product) => product.id === id) || products[0]
