@@ -4,6 +4,10 @@ const siteId = null
 const token = ''
 const serverUrl = 'https://www.uat.strikingly.com'
 const requestUrl = `${serverUrl}/api/v1/sites/${siteId}/form_entities`
+ 
+console.log(requestUrl);
+
+const appId = 'default';
 
 export const client = createClient({
   appId: appId,
