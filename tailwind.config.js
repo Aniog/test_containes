@@ -21,6 +21,7 @@ export default {
         card: '0 18px 30px rgba(31, 23, 28, 0.06)',
       },
       letterSpacing: {
+        eyebrow: '0.28em',
         luxe: '0.32em',
       },
       transitionTimingFunction: {
