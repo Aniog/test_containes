@@ -1,0 +1,127 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    shortName: 'Vivid Aura Jewels',
+    description: 'A sculptural ear cuff adorned with a single crystal accent. Designed to catch the light with every turn of the head — effortless elegance, no piercing required.',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', primary: true },
+      { id: 'vivid-aura-2', primary: false },
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    related: ['golden-sphere-earrings', 'amber-lace-earrings'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    shortName: 'Majestic Flora Nectar',
+    description: 'A delicate chain suspends a cluster of multicolor floral crystals, each petal catching light like morning dew. A statement piece that whispers rather than shouts.',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'majestic-flora-1', primary: true },
+      { id: 'majestic-flora-2', primary: false },
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    related: ['royal-heirloom-set'],
+  },
+  {
+    id: 'golden-sphere-earrings',
+    name: 'GOLDEN SPHERE EARRINGS',
+    shortName: 'Golden Sphere Earrings',
+    description: 'Chunky gold dome earrings with a satisfying click closure. Substantial enough to feel luxurious, light enough to forget you\'re wearing them.',
+    price: 38,
+    category: 'hoop-earrings',
+    material: '18K Gold Plated',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'golden-sphere-earrings-img-1', primary: true },
+      { id: 'golden-sphere-earrings-img-2', primary: false },
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    related: ['vivid-aura-jewels', 'amber-lace-earrings'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    shortName: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Each pair is hand-finished for a one-of-a-kind artisan feel.',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', primary: true },
+      { id: 'amber-lace-2', primary: false },
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    related: ['vivid-aura-jewels', 'golden-sphere-earrings'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    shortName: 'Royal Heirloom Set',
+    description: 'A curated earring and necklace set, presented in our signature gift box. The perfect introduction to Velmora — or the perfect gift for someone who deserves it.',
+    price: 95,
+    category: 'sets',
+    material: '18K Gold Plated',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'royal-heirloom-1', primary: true },
+      { id: 'royal-heirloom-2', primary: false },
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+    related: ['majestic-flora-nectar'],
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 1 },
+  { id: 'hoop-earrings', name: 'Hoop Earrings', count: 1 },
+  { id: 'sets', name: 'Gift Sets', count: 1 },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The Golden Sphere Earrings are my everyday earrings now. They feel so much more expensive than they are — I\'ve gotten so many compliments.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging was beautiful and she absolutely loved it. Will definitely order again.',
+  },
+  {
+    id: 3,
+    name: 'Priya K.',
+    rating: 5,
+    text: 'Finally, jewelry that doesn\'t irritate my sensitive skin. The Amber Lace Earrings are stunning and I haven\'t taken them off since they arrived.',
+  },
+];
+
+export const trustItems = [
+  'Free Worldwide Shipping',
+  '30-Day Returns',
+  '18K Gold Plated',
+  'Hypoallergenic',
+];
