@@ -1,9 +1,10 @@
+import { ImageHelper } from '@strikingly/sdk'
 import { ArrowRight, Quote, Star } from 'lucide-react'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import ProductCard from '@/components/products/ProductCard.jsx'
 import { products } from '@/data/products.js'
-import { useStrkImages } from '@/hooks/useStrkImages.js'
+import strkImgConfig from '@/strk-img-config.json'
 
 const trustItems = ['Free Worldwide Shipping', '30-Day Returns', '18K Gold Plated', 'Hypoallergenic']
 
@@ -279,7 +280,10 @@ function Newsletter() {
 
 export default function Home() {
   const pageRef = useRef(null)
-  useStrkImages(pageRef, [])
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, pageRef.current)
+  }, [])
 
   return (
     <main ref={pageRef} className="bg-velmora-ivory">

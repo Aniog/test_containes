@@ -1,10 +1,11 @@
+import { ImageHelper } from '@strikingly/sdk'
 import { ChevronDown, Minus, Plus, Star } from 'lucide-react'
-import { useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import ProductCard from '@/components/products/ProductCard.jsx'
 import { useCart } from '@/context/CartContext.jsx'
 import { getProductById, relatedProducts } from '@/data/products.js'
-import { useStrkImages } from '@/hooks/useStrkImages.js'
+import strkImgConfig from '@/strk-img-config.json'
 
 const galleryFrames = [
   { key: 'editorial', caption: 'Warm editorial close-up of demi-fine gold jewelry' },

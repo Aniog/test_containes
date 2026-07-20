@@ -10,10 +10,16 @@ export default function ProductCard({ product, compact = false }) {
   const titleId = `product-title-${product.id}`
   const descId = `product-desc-${product.id}`
   const hoverId = `product-hover-desc-${product.id}`
+  const cardRef = useRef(null)
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, cardRef.current)
+  }, [product.id])
+
   const imageContext = `[${descId}] [${titleId}]`
 
   return (
-    <article className="group text-velmora-espresso">
+    <article ref={cardRef} className="group text-velmora-espresso">
       <span id={hoverId} className="sr-only">{product.name} styled on a model in warm editorial light</span>
       <Link to={`/product/${product.id}`} className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-velmora-gold">
         <div className="relative aspect-[4/5] overflow-hidden bg-velmora-porcelain shadow-soft">
