@@ -51,21 +51,8 @@ export default function CartDrawer() {
             <div className="flex flex-col gap-5">
               {items.map((item, idx) => (
                 <div key={`${item.productId}-${item.variant}-${idx}`} className="flex gap-4">
-                  {/* Image */}
-                  <span className="sr-only" id={`cart-name-${item.productId}-${item.variant}`}>
-                    {item.name} gold jewelry
-                  </span>
-                  <div className="w-20 h-20 flex-shrink-0 bg-sand rounded-sm overflow-hidden">
-                    <img
-                      alt={item.name}
-                      data-strk-img-id={`cart-${item.productId}-${item.variant}`}
-                      data-strk-img={`[cart-name-${item.productId}-${item.variant}]`}
-                      data-strk-img-ratio={item.imageRatio}
-                      data-strk-img-width="200"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
+                  {/* Image placeholder */}
+                  <div className="w-20 h-20 flex-shrink-0 bg-sand rounded-sm overflow-hidden" />
 
                   {/* Details */}
                   <div className="flex-1 min-w-0">

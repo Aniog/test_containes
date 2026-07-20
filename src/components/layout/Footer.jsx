@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, Pinterest } from 'lucide-react';
+import { Camera, MessageCircle, Heart } from 'lucide-react';
 import { footerLinks } from '@/lib/data';
 
 export default function Footer() {
@@ -45,13 +45,13 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-6">
               <a href="#" className="text-cream/50 hover:text-gold transition-colors" aria-label="Instagram">
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a href="#" className="text-cream/50 hover:text-gold transition-colors" aria-label="Facebook">
-                <Facebook className="w-4 h-4" />
+                <Camera className="w-4 h-4" />
               </a>
               <a href="#" className="text-cream/50 hover:text-gold transition-colors" aria-label="Pinterest">
-                <Pinterest className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4" />
+              </a>
+              <a href="#" className="text-cream/50 hover:text-gold transition-colors" aria-label="TikTok">
+                <Heart className="w-4 h-4" />
               </a>
             </div>
           </div>

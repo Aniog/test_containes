@@ -20,20 +20,22 @@ export default function ProductGallery({ product }) {
 
   return (
     <div ref={containerRef}>
+      {/* Hidden text for image queries */}
+      <span className="sr-only" id={`gallery-title-${product.id}`}>
+        {product.name} demi-fine gold jewelry
+      </span>
+
       {/* Main image */}
       <div className="aspect-square bg-sand overflow-hidden mb-4">
         <img
           alt={`${product.name} - view ${selected + 1}`}
           data-strk-img-id={`gallery-main-${product.id}-${selected}`}
-          data-strk-img={`[gallery-img-${product.id}-${selected}] [product-title-${product.id}]`}
+          data-strk-img={`[gallery-title-${product.id}]`}
           data-strk-img-ratio={product.imageRatio}
           data-strk-img-width={product.imageWidth}
           src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="w-full h-full object-cover"
         />
-        <span className="sr-only" id={`gallery-img-${product.id}-${selected}`}>
-          {product.name} image {selected + 1}
-        </span>
       </div>
 
       {/* Thumbnails */}
@@ -49,15 +51,12 @@ export default function ProductGallery({ product }) {
             <img
               alt={`${product.name} thumbnail ${i + 1}`}
               data-strk-img-id={`gallery-thumb-${product.id}-${i}`}
-              data-strk-img={`[thumb-img-${product.id}-${i}] [product-title-${product.id}]`}
+              data-strk-img={`[gallery-title-${product.id}]`}
               data-strk-img-ratio="1x1"
               data-strk-img-width="200"
               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               className="w-full h-full object-cover"
             />
-            <span className="sr-only" id={`thumb-img-${product.id}-${i}`}>
-              {product.name} thumbnail {i + 1}
-            </span>
           </button>
         ))}
       </div>
