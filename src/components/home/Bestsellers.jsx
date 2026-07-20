@@ -1,0 +1,45 @@
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
+import ProductCard from '../product/ProductCard';
+import { products } from '../../data/products';
+
+export default function Bestsellers() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
+  return (
+    <section ref={containerRef} className="bg-cream py-20 md:py-28">
+      <div className="max-w-7xl mx-auto px-6 md:px-10">
+        {/* Section header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <p className="font-sans text-[11px] font-semibold uppercase tracking-widest text-gold mb-3">
+              Curated for You
+            </p>
+            <h2 className="font-serif text-4xl md:text-5xl font-light text-ink leading-tight">
+              Bestsellers
+            </h2>
+          </div>
+          <Link
+            to="/shop"
+            className="self-start md:self-auto font-sans text-[11px] font-semibold uppercase tracking-widest text-ink border-b border-ink pb-0.5 hover:text-gold hover:border-gold transition-colors duration-200"
+          >
+            View All
+          </Link>
+        </div>
+
+        {/* Product grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 md:gap-6">
+          {products.map(product => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
