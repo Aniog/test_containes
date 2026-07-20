@@ -104,12 +104,15 @@ const ShopPage = () => {
       <div className="mx-auto max-w-7xl space-y-10">
         <section className="overflow-hidden rounded-[2.5rem] bg-velmora-ink px-6 py-12 text-velmora-cream sm:px-10 lg:px-14 lg:py-16">
           <div className="grid gap-8 lg:grid-cols-[1fr,0.8fr] lg:items-end">
-            <SectionHeading
-              eyebrow="Collection"
-              title="The Velmora shop"
-              description="A curated storefront of demi-fine earrings, necklaces, and huggies designed to feel refined, wearable, and gift-ready."
-              inverted
-            />
+            <div className="flex flex-col gap-4 text-left">
+              <p className="eyebrow text-velmora-gold">Collection</p>
+              <div className="space-y-4">
+                <h1 className="font-display text-4xl text-velmora-cream sm:text-5xl">The Velmora shop</h1>
+                <p className="max-w-2xl text-sm leading-7 text-velmora-cream/76 sm:text-base">
+                  A curated storefront of demi-fine earrings, necklaces, and huggies designed to feel refined, wearable, and gift-ready.
+                </p>
+              </div>
+            </div>
             <p className="text-sm leading-7 text-velmora-cream/76 lg:justify-self-end lg:text-right">
               Premium-but-accessible pieces between $30 and $120, with warm gold finishes, soft crystal accents, and silhouettes made for repeat wear.
             </p>
