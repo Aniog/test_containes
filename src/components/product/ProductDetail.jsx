@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Star, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import { toast } from 'sonner';
@@ -38,12 +39,12 @@ export default function ProductDetail() {
   const product = products.find(p => p.id === id);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, [id, selectedImage]);
 
   if (!product) {
     return (

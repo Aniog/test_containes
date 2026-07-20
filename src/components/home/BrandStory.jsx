@@ -15,15 +15,13 @@ export default function BrandStory() {
       <div className="container-padding">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center">
           {/* Image */}
-          <div className="relative aspect-[4/5] rounded overflow-hidden bg-stone-100">
-            <div
-              className="absolute inset-0"
-              data-strk-bg-id="brand-story-img-d4e5f6"
-              data-strk-bg="[brand-story-text] [our-story-title]"
-              data-strk-bg-ratio="4x5"
-              data-strk-bg-width="800"
-            />
-          </div>
+          <div
+            className="relative aspect-[4/5] rounded overflow-hidden bg-stone-300"
+            data-strk-bg-id="brand-story-img-d4e5f6"
+            data-strk-bg="[brand-story-text] [our-story-title]"
+            data-strk-bg-ratio="4x5"
+            data-strk-bg-width="800"
+          />
 
           {/* Text */}
           <div className="md:pl-8">

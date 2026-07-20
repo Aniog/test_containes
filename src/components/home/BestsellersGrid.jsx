@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ShoppingBag } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { products } from '@/data/products';
 import { useCart } from '@/context/CartContext';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export default function BestsellersGrid() {
   const { addItem } = useCart();
@@ -19,9 +19,9 @@ export default function BestsellersGrid() {
     <section ref={containerRef} className="section-padding bg-background">
       <div className="container-padding">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="serif-heading text-3xl md:text-4xl lg:text-5xl text-stone-800 mb-3">Bestsellers</h2>
+          <h2 id="bestsellers-title" className="serif-heading text-3xl md:text-4xl lg:text-5xl text-stone-800 mb-3">Bestsellers</h2>
           <div className="w-12 h-px bg-primary mx-auto mb-4" />
-          <p className="text-stone-500 max-w-md mx-auto">Our most loved pieces, chosen by you</p>
+          <p id="bestsellers-subtitle" className="text-stone-500 max-w-md mx-auto">Our most loved pieces, chosen by you</p>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
@@ -33,20 +33,20 @@ export default function BestsellersGrid() {
               onMouseLeave={() => setHoveredId(null)}
             >
               <Link to={`/product/${product.id}`} className="block">
-                <div className="relative aspect-[3/4] bg-stone-100 rounded overflow-hidden mb-3">
+                <div className="relative aspect-[3/4] bg-stone-200 rounded overflow-hidden mb-3">
                   <div
-                    className="absolute inset-0 transition-opacity duration-500"
-                    data-strk-bg-id={`bestseller-${product.images[0].id}`}
+                    className="absolute inset-0"
+                    data-strk-bg-id={`bestseller-${product.id}-1`}
                     data-strk-bg={`[${product.id}-desc] [${product.id}-title] [bestsellers-subtitle] [bestsellers-title]`}
                     data-strk-bg-ratio="3x4"
-                    data-strk-bg-width="400"
+                    data-strk-bg-width="500"
                   />
                   <div
                     className={`absolute inset-0 transition-opacity duration-500 ${hoveredId === product.id ? 'opacity-100' : 'opacity-0'}`}
-                    data-strk-bg-id={`bestseller-hover-${product.images[1].id}`}
+                    data-strk-bg-id={`bestseller-hover-${product.id}-2`}
                     data-strk-bg={`[${product.id}-desc] [${product.id}-title] [bestsellers-subtitle] [bestsellers-title]`}
                     data-strk-bg-ratio="3x4"
-                    data-strk-bg-width="400"
+                    data-strk-bg-width="500"
                   />
                   <button
                     className={`absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-sm py-2.5 text-xs uppercase tracking-wider text-stone-800 transition-all duration-300 hover:bg-primary hover:text-white ${

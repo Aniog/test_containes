@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Star, SlidersHorizontal, ChevronDown } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
 import { products, categories } from '@/data/products';
 import { useCart } from '@/context/CartContext';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 
 export default function CollectionPage() {
   const [searchParams] = useSearchParams();
@@ -17,13 +17,13 @@ export default function CollectionPage() {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
-  }, [selectedCategory, sortBy]);
-
-  useEffect(() => {
     const cat = searchParams.get('category');
     if (cat) setSelectedCategory(cat);
   }, [searchParams]);
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, [selectedCategory, sortBy, priceRange]);
 
   let filtered = products.filter(p => {
     if (selectedCategory !== 'all' && p.category !== selectedCategory) return false;
@@ -40,7 +40,7 @@ export default function CollectionPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="serif-heading text-3xl md:text-4xl text-stone-800 mb-2">All Jewelry</h1>
+          <h1 id="shop-title" className="serif-heading text-3xl md:text-4xl text-stone-800 mb-2">All Jewelry</h1>
           <p className="text-stone-500 text-sm">{filtered.length} pieces</p>
         </div>
 
@@ -216,10 +216,10 @@ export default function CollectionPage() {
                     onMouseLeave={() => setHoveredId(null)}
                   >
                     <Link to={`/product/${product.id}`} className="block">
-                      <div className="relative aspect-[3/4] bg-stone-100 rounded overflow-hidden mb-3">
+                      <div className="relative aspect-[3/4] bg-stone-200 rounded overflow-hidden mb-3">
                         <div
-                          className="absolute inset-0 transition-transform duration-500 group-hover:scale-105"
-                          data-strk-bg-id={`shop-${product.images[0].id}`}
+                          className="absolute inset-0"
+                          data-strk-bg-id={`shop-${product.id}-1`}
                           data-strk-bg={`[${product.id}-desc] [${product.id}-title] [shop-title]`}
                           data-strk-bg-ratio="3x4"
                           data-strk-bg-width="500"
@@ -238,8 +238,8 @@ export default function CollectionPage() {
                       </div>
                     </Link>
                     <Link to={`/product/${product.id}`} className="block">
-                      <h3 className="product-name text-sm text-stone-800 mb-1">{product.name}</h3>
-                      <p className="text-xs text-stone-500 mb-1.5">{product.description}</p>
+                      <h3 id={`${product.id}-title`} className="product-name text-sm text-stone-800 mb-1">{product.name}</h3>
+                      <p id={`${product.id}-desc`} className="text-xs text-stone-500 mb-1.5">{product.description}</p>
                       <div className="flex items-center gap-1 mb-1.5">
                         <Star className="w-3 h-3 fill-primary text-primary" />
                         <span className="text-xs text-stone-600">{product.rating}</span>

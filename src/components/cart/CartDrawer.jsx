@@ -49,13 +49,7 @@ export default function CartDrawer() {
               {items.map(item => (
                 <div key={item.id} className="flex gap-4">
                   <div className="w-20 h-20 bg-stone-100 rounded overflow-hidden flex-shrink-0">
-                    <div
-                      className="w-full h-full bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center"
-                      data-strk-bg-id={`cart-thumb-${item.imageId}`}
-                      data-strk-bg="[cart-item]"
-                      data-strk-bg-ratio="1x1"
-                      data-strk-bg-width="200"
-                    />
+                    <div className="w-full h-full bg-gradient-to-br from-stone-200 to-stone-300" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="product-name text-sm text-stone-800 truncate">{item.name}</h3>

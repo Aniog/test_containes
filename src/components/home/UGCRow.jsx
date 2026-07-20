@@ -30,7 +30,7 @@ export default function UGCRow() {
             key={item.id}
             className="flex-shrink-0 w-48 sm:w-56 md:w-64 snap-start"
           >
-            <div className="relative aspect-[9/16] rounded-lg overflow-hidden bg-stone-200">
+            <div className="relative aspect-[9/16] rounded-lg overflow-hidden bg-stone-300">
               <div
                 className="absolute inset-0"
                 data-strk-bg-id={`ugc-bg-${item.id}`}

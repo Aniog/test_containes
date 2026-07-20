@@ -29,12 +29,12 @@ export default function CategoryTiles() {
             <Link
               key={tile.id}
               to={tile.path}
-              className="group relative aspect-[4/5] md:aspect-[3/4] rounded overflow-hidden bg-stone-100"
+              className="group relative aspect-[4/5] md:aspect-[3/4] rounded overflow-hidden bg-stone-300"
             >
               <div
-                className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0"
                 data-strk-bg-id={`category-${tile.id}`}
-                data-strk-bg="[${tile.id}-label] [shop-by-title]"
+                data-strk-bg={`[${tile.id}-label] [shop-by-title]`}
                 data-strk-bg-ratio="3x4"
                 data-strk-bg-width="600"
               />

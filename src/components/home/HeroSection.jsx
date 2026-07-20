@@ -14,13 +14,13 @@ export default function HeroSection() {
     <section ref={containerRef} className="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
       {/* Background */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 bg-cover bg-center"
         data-strk-bg-id="hero-bg-a1b2c3"
         data-strk-bg="[hero-subtitle] [hero-title]"
         data-strk-bg-ratio="16x9"
         data-strk-bg-width="1600"
       />
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
       <div className="relative z-10 text-center text-white px-4 max-w-3xl mx-auto">
