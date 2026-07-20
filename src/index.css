@@ -1,76 +1,135 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #2B201B;
+    background-color: #F4EFE6;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #F4EFE6;
+    color: #2B201B;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  ::selection {
+    background: #C8A35D;
+    color: #17100D;
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hairline {
+    border-color: rgba(200, 163, 93, 0.38);
+  }
+
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .tracking-product { letter-spacing: 0.18em; }
+  .tracking-luxe { letter-spacing: 0.28em; }
+
+  .text-parchment { color: #F4EFE6; }
+  .text-ivory { color: #FFFCF6; }
+  .text-ivory\/55 { color: rgba(255, 252, 246, 0.55); }
+  .text-ivory\/70 { color: rgba(255, 252, 246, 0.70); }
+  .text-ivory\/75 { color: rgba(255, 252, 246, 0.75); }
+  .text-ivory\/80 { color: rgba(255, 252, 246, 0.80); }
+  .text-ivory\/85 { color: rgba(255, 252, 246, 0.85); }
+  .text-cocoa { color: #2B201B; }
+  .text-espresso { color: #17100D; }
+  .text-stone { color: #6F6256; }
+  .text-antique { color: #96733B; }
+  .text-champagne { color: #C8A35D; }
+
+  .bg-parchment { background-color: #F4EFE6; }
+  .bg-parchment\/95 { background-color: rgba(244, 239, 230, 0.95); }
+  .bg-ivory { background-color: #FFFCF6; }
+  .bg-linen { background-color: #E9DDCD; }
+  .bg-cocoa { background-color: #2B201B; }
+  .bg-espresso { background-color: #17100D; }
+  .bg-espresso\/55 { background-color: rgba(23, 16, 13, 0.55); }
+  .bg-champagne { background-color: #C8A35D; }
+
+  .border-mist { border-color: #D8CBB8; }
+  .border-mist\/70 { border-color: rgba(216, 203, 184, 0.70); }
+  .border-mist\/80 { border-color: rgba(216, 203, 184, 0.80); }
+  .border-cocoa { border-color: #2B201B; }
+  .border-champagne { border-color: #C8A35D; }
+  .border-champagne\/40 { border-color: rgba(200, 163, 93, 0.40); }
+  .border-champagne\/45 { border-color: rgba(200, 163, 93, 0.45); }
+  .border-ivory\/15 { border-color: rgba(255, 252, 246, 0.15); }
+
+  .from-espresso\/70 { --tw-gradient-from: rgba(23, 16, 13, 0.70) var(--tw-gradient-from-position); --tw-gradient-to: rgba(23, 16, 13, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-espresso\/75 { --tw-gradient-from: rgba(23, 16, 13, 0.75) var(--tw-gradient-from-position); --tw-gradient-to: rgba(23, 16, 13, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-espresso\/90 { --tw-gradient-from: rgba(23, 16, 13, 0.90) var(--tw-gradient-from-position); --tw-gradient-to: rgba(23, 16, 13, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-espresso\/15 { --tw-gradient-to: rgba(23, 16, 13, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(23, 16, 13, 0.15) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-espresso\/35 { --tw-gradient-to: rgba(23, 16, 13, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(23, 16, 13, 0.35) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-espresso\/80 { --tw-gradient-to: rgba(23, 16, 13, 0.80) var(--tw-gradient-to-position); }
+  .to-espresso\/90 { --tw-gradient-to: rgba(23, 16, 13, 0.90) var(--tw-gradient-to-position); }
+
+  .shadow-soft { box-shadow: 0 18px 60px rgba(43, 32, 27, 0.10); }
+  .shadow-glow { box-shadow: 0 24px 80px rgba(200, 163, 93, 0.20); }
+
+  .hover\:bg-antique:hover { background-color: #96733B; }
+  .hover\:bg-champagne:hover { background-color: #C8A35D; }
+  .hover\:bg-champagne\/15:hover { background-color: rgba(200, 163, 93, 0.15); }
+  .hover\:bg-cocoa:hover { background-color: #2B201B; }
+  .hover\:bg-ivory:hover { background-color: #FFFCF6; }
+  .hover\:bg-linen:hover { background-color: #E9DDCD; }
+  .hover\:text-antique:hover { color: #96733B; }
+  .hover\:text-champagne:hover { color: #C8A35D; }
+  .hover\:text-espresso:hover { color: #17100D; }
+  .hover\:text-ivory:hover { color: #FFFCF6; }
+  .hover\:border-champagne:hover { border-color: #C8A35D; }
+  .group:hover .group-hover\:text-antique { color: #96733B; }
+  .placeholder\:text-stone::placeholder { color: #6F6256; }
+  .focus\:ring-champagne:focus { --tw-ring-color: #C8A35D; }
+  .accent-antique { accent-color: #96733B; }
+}
