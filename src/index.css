@@ -1,76 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: Inter, system-ui, sans-serif;
+  color: #18110d;
+  background: #f8f1e7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: #f8f1e7;
+  color: #18110d;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+/* Runtime-safe Velmora utility fallbacks for the active preview server. */
+:root {
+  --velmora-ink: #18110d;
+  --velmora-espresso: #241812;
+  --velmora-ivory: #f8f1e7;
+  --velmora-pearl: #fffaf3;
+  --velmora-sand: #dccab4;
+  --velmora-gold: #c9a15b;
+  --velmora-champagne: #dfbf7a;
+  --velmora-bronze: #7b5a33;
+  --velmora-blush: #ead8cc;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-sans { font-family: Inter, system-ui, sans-serif; }
+.tracking-ui { letter-spacing: 0.16em; }
+.tracking-product { letter-spacing: 0.18em; }
+.tracking-logo { letter-spacing: 0.22em; }
 
-  a:hover {
-    color: #747bff;
-  }
+.text-velmora-ink { color: var(--velmora-ink); }
+.text-velmora-espresso { color: var(--velmora-espresso); }
+.text-velmora-ivory { color: var(--velmora-ivory); }
+.text-velmora-pearl { color: var(--velmora-pearl); }
+.text-velmora-sand { color: var(--velmora-sand); }
+.text-velmora-gold { color: var(--velmora-gold); }
+.text-velmora-champagne { color: var(--velmora-champagne); }
+.text-velmora-bronze { color: var(--velmora-bronze); }
+.placeholder\:text-velmora-bronze\/70::placeholder { color: rgb(123 90 51 / 0.7); }
 
-  button {
-    background-color: #f9f9f9;
-  }
+.bg-velmora-ink { background-color: var(--velmora-ink); }
+.bg-velmora-espresso { background-color: var(--velmora-espresso); }
+.bg-velmora-ivory { background-color: var(--velmora-ivory); }
+.bg-velmora-ivory\/95 { background-color: rgb(248 241 231 / 0.95); }
+.bg-velmora-pearl { background-color: var(--velmora-pearl); }
+.bg-velmora-pearl\/90 { background-color: rgb(255 250 243 / 0.9); }
+.bg-velmora-sand { background-color: var(--velmora-sand); }
+.bg-velmora-gold { background-color: var(--velmora-gold); }
+.bg-velmora-champagne { background-color: var(--velmora-champagne); }
+.bg-velmora-bronze { background-color: var(--velmora-bronze); }
+.bg-velmora-blush { background-color: var(--velmora-blush); }
+.bg-velmora-blush\/40 { background-color: rgb(234 216 204 / 0.4); }
+
+.border-velmora-gold { border-color: var(--velmora-gold); }
+.border-velmora-sand { border-color: var(--velmora-sand); }
+.border-velmora-sand\/20 { border-color: rgb(220 202 180 / 0.2); }
+.border-velmora-sand\/30 { border-color: rgb(220 202 180 / 0.3); }
+.border-velmora-sand\/40 { border-color: rgb(220 202 180 / 0.4); }
+.border-velmora-sand\/60 { border-color: rgb(220 202 180 / 0.6); }
+.border-velmora-sand\/70 { border-color: rgb(220 202 180 / 0.7); }
+.divide-velmora-sand\/60 > :not([hidden]) ~ :not([hidden]) { border-color: rgb(220 202 180 / 0.6); }
+
+.shadow-velmora { box-shadow: 0 18px 50px rgb(24 17 13 / 0.08); }
+.shadow-velmora-lg { box-shadow: 0 28px 80px rgb(24 17 13 / 0.18); }
+.hover\:shadow-velmora-lg:hover { box-shadow: 0 28px 80px rgb(24 17 13 / 0.18); }
+
+.from-velmora-espresso { --tw-gradient-from: var(--velmora-espresso) var(--tw-gradient-from-position); --tw-gradient-to: rgb(36 24 18 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-ink\/80 { --tw-gradient-from: rgb(24 17 13 / 0.8) var(--tw-gradient-from-position); --tw-gradient-to: rgb(24 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-ink\/85 { --tw-gradient-from: rgb(24 17 13 / 0.85) var(--tw-gradient-from-position); --tw-gradient-to: rgb(24 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-ink\/20 { --tw-gradient-to: rgb(24 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(24 17 13 / 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.via-velmora-ink\/45 { --tw-gradient-to: rgb(24 17 13 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(24 17 13 / 0.45) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.to-velmora-ink\/10 { --tw-gradient-to: rgb(24 17 13 / 0.1) var(--tw-gradient-to-position); }
+
+.hover\:text-velmora-ink:hover { color: var(--velmora-ink); }
+.hover\:text-velmora-ivory:hover { color: var(--velmora-ivory); }
+.hover\:text-velmora-gold:hover { color: var(--velmora-gold); }
+.hover\:text-velmora-bronze:hover { color: var(--velmora-bronze); }
+.hover\:bg-velmora-gold:hover { background-color: var(--velmora-gold); }
+.hover\:bg-velmora-champagne:hover { background-color: var(--velmora-champagne); }
+.hover\:border-velmora-gold:hover { border-color: var(--velmora-gold); }
+.focus\:border-velmora-gold:focus { border-color: var(--velmora-gold); }
+.focus-visible\:ring-velmora-gold:focus-visible { --tw-ring-color: var(--velmora-gold); }
+
+@keyframes velmora-fade-up {
+  0% { opacity: 0; transform: translateY(18px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.animate-fade-up { animation: velmora-fade-up 800ms ease-out both; }
+
+::selection {
+  background: #c9a15b;
+  color: #18110d;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
