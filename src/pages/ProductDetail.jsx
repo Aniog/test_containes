@@ -3,12 +3,12 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
 import { ImageHelper } from '@strikingly/sdk'
 import AccordionItem from '@/components/storefront/AccordionItem'
-import ProductCard from '@/components/storefront/ProductCard'
+import ProductCard from '@/components/storefront/ProductCard.jsx'
 import QuantityControl from '@/components/storefront/QuantityControl'
 import RatingStars from '@/components/storefront/RatingStars'
 import { products } from '@/data/products'
 import strkImgConfig from '@/strk-img-config.json'
-import { formatCurrency, imagePlaceholder } from '@/lib/storefront'
+import { formatCurrency } from '@/lib/storefront'
 
 const ProductDetail = ({ onAddToCart }) => {
   const { slug } = useParams()
@@ -74,7 +74,7 @@ const ProductDetail = ({ onAddToCart }) => {
           <div>
             <div className="overflow-hidden rounded-[2rem] bg-ivory shadow-[0_24px_70px_rgba(33,24,22,0.10)]">
               <img
-                src={imagePlaceholder}
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt={activeImage.alt}
                 data-strk-img-id={activeImage.id}
                 data-strk-img={`[${activeImage.descId}] [${activeImage.titleId}] [${product.heroDescId}] [${product.heroTitleId}]`}
@@ -92,7 +92,7 @@ const ProductDetail = ({ onAddToCart }) => {
                   className={`overflow-hidden rounded-[1.3rem] border bg-ivory ${selectedImage === index ? 'border-obsidian' : 'border-sand/70'}`}
                 >
                   <img
-                    src={imagePlaceholder}
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                     alt={image.alt}
                     data-strk-img-id={`${image.id}-thumb`}
                     data-strk-img={`[${image.descId}] [${image.titleId}] [${product.heroDescId}] [${product.heroTitleId}]`}
@@ -199,3 +199,5 @@ const ProductDetail = ({ onAddToCart }) => {
 }
 
 export default ProductDetail
+
+

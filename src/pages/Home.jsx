@@ -2,10 +2,9 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { ImageHelper } from '@strikingly/sdk'
-import ProductCard from '@/components/storefront/ProductCard'
+import ProductCard from '@/components/storefront/ProductCard.jsx'
 import { categories, products, testimonials, trustPoints, ugcMoments } from '@/data/products'
 import strkImgConfig from '@/strk-img-config.json'
-import { imagePlaceholder } from '@/lib/storefront'
 
 const Home = ({ onAddToCart }) => {
   const containerRef = useRef(null)
@@ -111,7 +110,7 @@ const Home = ({ onAddToCart }) => {
                 className="group relative min-w-[72%] snap-start overflow-hidden rounded-[2rem] bg-obsidian shadow-[0_20px_60px_rgba(33,24,22,0.16)] sm:min-w-[320px]"
               >
                 <img
-                  src={imagePlaceholder}
+                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                   alt={moment.title}
                   data-strk-img-id={moment.imgId}
                   data-strk-img={`[${moment.captionId}] [${moment.titleId}] [hero-subhead] [hero-headline]`}
@@ -150,7 +149,7 @@ const Home = ({ onAddToCart }) => {
               className="group relative overflow-hidden rounded-[2rem] bg-obsidian"
             >
               <img
-                src={imagePlaceholder}
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt={category.name}
                 data-strk-img-id={category.imgId}
                 data-strk-img={`[${category.descId}] [${category.titleId}] [hero-subhead] [hero-headline]`}
@@ -177,7 +176,7 @@ const Home = ({ onAddToCart }) => {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8">
           <div className="overflow-hidden rounded-[2rem] bg-obsidian shadow-[0_20px_60px_rgba(33,24,22,0.12)]">
             <img
-              src={imagePlaceholder}
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
               alt={featuredStory.name}
               data-strk-img-id="brand-story-hero-4f8a1d"
               data-strk-img={`[story-copy] [story-title] [${featuredStory.heroDescId}] [${featuredStory.heroTitleId}]`}
@@ -287,3 +286,5 @@ const Home = ({ onAddToCart }) => {
 }
 
 export default Home
+
+

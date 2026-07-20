@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
 import RatingStars from './RatingStars'
-import { formatCurrency, imagePlaceholder } from '@/lib/storefront'
+import { formatCurrency } from '@/lib/storefront'
 
 const ProductCard = ({ product, onAddToCart, priority = false }) => {
   const primaryImage = product.images[0]
@@ -30,7 +30,7 @@ const ProductCard = ({ product, onAddToCart, priority = false }) => {
       <div className="relative overflow-hidden rounded-[1.7rem] bg-mist">
         <Link to={`/product/${product.slug}`} className="block">
           <img
-            src={imagePlaceholder}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={primaryImage.alt}
             data-strk-img-id={primaryImage.id}
             data-strk-img={primaryImageQuery}
@@ -40,7 +40,7 @@ const ProductCard = ({ product, onAddToCart, priority = false }) => {
             loading={priority ? 'eager' : 'lazy'}
           />
           <img
-            src={imagePlaceholder}
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={secondaryImage.alt}
             data-strk-img-id={secondaryImage.id}
             data-strk-img={secondaryImageQuery}
@@ -105,3 +105,5 @@ const ProductCard = ({ product, onAddToCart, priority = false }) => {
 }
 
 export default ProductCard
+
+

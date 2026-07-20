@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import ProductCard from '@/components/storefront/ProductCard'
+import ProductCard from '@/components/storefront/ProductCard.jsx'
 import { products } from '@/data/products'
 import { useStrkImages } from '@/lib/useStrkImages'
 
