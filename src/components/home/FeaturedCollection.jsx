@@ -10,11 +10,7 @@ const FeaturedCollection = () => {
             <img
               alt="The Golden Hour Collection"
               className="w-full h-full object-cover"
-              data-strk-img-id="featured-collection-img-8f2a9c"
-              data-strk-img="[featured-collection-subtitle] [featured-collection-title]"
-              data-strk-img-ratio="4x5"
-              data-strk-img-width="800"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>

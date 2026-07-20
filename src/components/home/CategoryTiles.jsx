@@ -5,7 +5,7 @@ const categories = [
   {
     id: 'earrings',
     name: 'Earrings',
-    image: 'https://images.unsplash.com/photo-1599643478518-a86e32dc4c8a?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
   },
   {
     id: 'necklaces',
