@@ -1,0 +1,41 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../ui/Button';
+
+const Hero = () => {
+  return (
+    <section className="relative h-[100dvh] min-h-[600px] flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 bg-[var(--velmora-bg-dark)]">
+        <img 
+          src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=2000&q=85" 
+          alt="Velmora Fine Jewelry - Warm lit gold jewelry on model"
+          className="w-full h-full object-cover opacity-90"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/30" />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 max-w-4xl">
+        <h1 className="font-serif text-5xl md:text-6xl lg:text-7xl text-white tracking-[-0.02em] mb-6">
+          Crafted to be<br />Treasured
+        </h1>
+        <p className="text-white/90 text-lg md:text-xl mb-10 max-w-md mx-auto font-light tracking-wide">
+          Demi-fine gold jewelry, made for the moments that matter.
+        </p>
+        <Link to="/shop">
+          <Button variant="primary" size="lg" className="bg-white text-[var(--velmora-charcoal)] hover:bg-white/90 hover:text-[var(--velmora-charcoal)] border-white">
+            SHOP THE COLLECTION
+          </Button>
+        </Link>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block">
+        <div className="w-px h-12 bg-white/40" />
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
