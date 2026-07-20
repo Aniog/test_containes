@@ -36,7 +36,9 @@ const Navbar = ({ onCartOpen }) => {
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Mobile menu button */}
             <button
-              className="lg:hidden p-2 -ml-2 text-text-primary"
+              className={`lg:hidden p-2 -ml-2 transition-colors ${
+                scrolled || !isHome ? 'text-text-primary' : 'text-white'
+              }`}
               onClick={() => setMobileOpen(true)}
               aria-label="Open menu"
             >
@@ -44,7 +46,12 @@ const Navbar = ({ onCartOpen }) => {
             </button>
 
             {/* Logo */}
-            <Link to="/" className="font-serif text-2xl lg:text-3xl tracking-wider text-text-primary">
+            <Link
+              to="/"
+              className={`font-serif text-2xl lg:text-3xl tracking-wider transition-colors ${
+                scrolled || !isHome ? 'text-text-primary' : 'text-white'
+              }`}
+            >
               VELMORA
             </Link>
 
@@ -55,7 +62,7 @@ const Navbar = ({ onCartOpen }) => {
                 className={`text-sm tracking-widest uppercase transition-colors duration-300 ${
                   scrolled || !isHome
                     ? 'text-text-primary hover:text-accent'
-                    : 'text-dark-text/90 hover:text-dark-text'
+                    : 'text-white/90 hover:text-white'
                 }`}
               >
                 Shop
@@ -65,7 +72,7 @@ const Navbar = ({ onCartOpen }) => {
                 className={`text-sm tracking-widest uppercase transition-colors duration-300 ${
                   scrolled || !isHome
                     ? 'text-text-primary hover:text-accent'
-                    : 'text-dark-text/90 hover:text-dark-text'
+                    : 'text-white/90 hover:text-white'
                 }`}
               >
                 Collections
@@ -75,7 +82,7 @@ const Navbar = ({ onCartOpen }) => {
                 className={`text-sm tracking-widest uppercase transition-colors duration-300 ${
                   scrolled || !isHome
                     ? 'text-text-primary hover:text-accent'
-                    : 'text-dark-text/90 hover:text-dark-text'
+                    : 'text-white/90 hover:text-white'
                 }`}
               >
                 About
@@ -85,7 +92,7 @@ const Navbar = ({ onCartOpen }) => {
                 className={`text-sm tracking-widest uppercase transition-colors duration-300 ${
                   scrolled || !isHome
                     ? 'text-text-primary hover:text-accent'
-                    : 'text-dark-text/90 hover:text-dark-text'
+                    : 'text-white/90 hover:text-white'
                 }`}
               >
                 Journal
@@ -98,7 +105,7 @@ const Navbar = ({ onCartOpen }) => {
                 className={`p-2 transition-colors duration-300 ${
                   scrolled || !isHome
                     ? 'text-text-primary hover:text-accent'
-                    : 'text-dark-text/90 hover:text-dark-text'
+                    : 'text-white/90 hover:text-white'
                 }`}
                 aria-label="Search"
               >
@@ -108,7 +115,7 @@ const Navbar = ({ onCartOpen }) => {
                 className={`p-2 relative transition-colors duration-300 ${
                   scrolled || !isHome
                     ? 'text-text-primary hover:text-accent'
-                    : 'text-dark-text/90 hover:text-dark-text'
+                    : 'text-white/90 hover:text-white'
                 }`}
                 onClick={onCartOpen}
                 aria-label="Shopping cart"
