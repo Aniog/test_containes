@@ -1,76 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  --velmora-cream: #FAF7F2;
+  --velmora-warm: #F5EFE6;
+  --velmora-sand: #E8E0D5;
+  --velmora-taupe: #C9BFB0;
+  --velmora-gold: #C5A572;
+  --velmora-gold-light: #D4B88A;
+  --velmora-gold-dark: #8B7355;
+  --velmora-charcoal: #2C2824;
+  --velmora-charcoal-light: #3D3833;
+  --velmora-espresso: #1A1816;
+  --velmora-text-primary: #2C2824;
+  --velmora-text-secondary: #6B635A;
+  --velmora-text-muted: #9A9088;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--velmora-cream);
+  color: var(--velmora-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Typography utilities */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.text-product {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::-webkit-scrollbar-track {
+  background: var(--velmora-cream);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+::-webkit-scrollbar-thumb {
+  background: var(--velmora-taupe);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--velmora-gold);
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+.animate-slide-out {
+  animation: slideOut 0.3s ease-out forwards;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Hover transitions */
+.transition-luxury {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Image hover effects */
+.img-hover-zoom {
+  overflow: hidden;
+}
+
+.img-hover-zoom img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.img-hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-velmora-gold text-white font-sans font-medium tracking-wide;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  @apply bg-velmora-gold-dark;
+}
+
+.btn-outline {
+  @apply border border-velmora-gold text-velmora-charcoal font-sans font-medium tracking-wide;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  @apply bg-velmora-gold text-white;
+}
+
+/* Hairline divider */
+.divider {
+  @apply border-t border-velmora-sand;
+}
+
+/* Input styles */
+.input-luxury {
+  @apply w-full px-4 py-3 border border-velmora-sand bg-white font-sans text-velmora-charcoal placeholder-velmora-text-muted;
+  transition: border-color 0.3s ease;
+}
+
+.input-luxury:focus {
+  @apply outline-none border-velmora-gold;
+}
