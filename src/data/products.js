@@ -1,0 +1,47 @@
+export const products = [
+  {
+    id: 'vivid-aura',
+    title: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'Earrings',
+    description: 'A striking gold ear cuff adorned with a delicate crystal accent, designed to trace the contour of your ear organically.',
+    material: '18K Gold Plated',
+    imgId: 'vivid-aura-img',
+  },
+  {
+    id: 'majestic-flora',
+    title: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'Necklaces',
+    description: 'An enchanting necklace featuring multicolor floral crystals set in warm golden tones, bringing a touch of nature’s brilliance.',
+    material: '18K Gold Plated',
+    imgId: 'majestic-flora-img',
+  },
+  {
+    id: 'golden-sphere',
+    title: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'Huggies',
+    description: 'Chunky, architectural gold dome huggie earrings that offer a bold yet refined statement for everyday wear.',
+    material: '18K Gold Plated',
+    imgId: 'golden-sphere-img',
+  },
+  {
+    id: 'amber-lace',
+    title: 'Amber Lace Earrings',
+    price: 54,
+    category: 'Earrings',
+    description: 'Intricate filigree drop earrings crafted in textured gold, casting mesmerizing shadows and catching the light playfully.',
+    material: '18K Gold Plated',
+    imgId: 'amber-lace-img',
+  },
+  {
+    id: 'royal-heirloom',
+    title: 'Royal Heirloom Set',
+    price: 95,
+    category: 'Sets',
+    description: 'A thoughtfully curated gift-boxed set featuring a timeless pendant necklace and matching drop earrings for ultimate elegance.',
+    material: '18K Gold Plated',
+    imgId: 'royal-heirloom-img',
+  }
+];
