@@ -1,50 +1,38 @@
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
+  background-color: #F8F3EA;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+.velmora-product-section {
+  grid-template-columns: minmax(0, 1fr);
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.velmora-product-gallery {
+  grid-template-columns: minmax(0, 1fr);
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
-}
-
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
+@media (min-width: 1024px) {
+  .velmora-product-section {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   }
 
-  to {
-    transform: rotate(360deg);
+  .velmora-product-gallery {
+    grid-template-columns: 92px minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .velmora-product-thumbnails {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
   }
 }
+
