@@ -1,12 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
 import AccordionItem from '@/components/storefront/AccordionItem'
 import ProductCard from '@/components/storefront/ProductCard'
 import QuantityControl from '@/components/storefront/QuantityControl'
 import RatingStars from '@/components/storefront/RatingStars'
 import { products } from '@/data/products'
-import { useStrkImages } from '@/lib/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 import { formatCurrency, imagePlaceholder } from '@/lib/storefront'
 
 const ProductDetail = ({ onAddToCart }) => {
@@ -15,7 +16,20 @@ const ProductDetail = ({ onAddToCart }) => {
   const [selectedImage, setSelectedImage] = useState(0)
   const [selectedVariant, setSelectedVariant] = useState(product?.colors[0] ?? 'Gold')
   const [quantity, setQuantity] = useState(1)
-  const containerRef = useStrkImages([slug, selectedImage])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      const result = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof result === 'function' ? result : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [slug, selectedImage])
 
   const relatedProducts = useMemo(() => {
     if (!product) return []

@@ -1,14 +1,29 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
 import ProductCard from '@/components/storefront/ProductCard'
 import { categories, products, testimonials, trustPoints, ugcMoments } from '@/data/products'
-import { useStrkImages } from '@/lib/useStrkImages'
+import strkImgConfig from '@/strk-img-config.json'
 import { imagePlaceholder } from '@/lib/storefront'
 
 const Home = ({ onAddToCart }) => {
-  const containerRef = useStrkImages([])
+  const containerRef = useRef(null)
   const bestsellers = products
   const featuredStory = products[4]
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      const result = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof result === 'function' ? result : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [])
 
   return (
     <div ref={containerRef} className="bg-parchment text-obsidian">
@@ -22,14 +37,14 @@ const Home = ({ onAddToCart }) => {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(33,24,22,0.84)_0%,rgba(33,24,22,0.58)_48%,rgba(33,24,22,0.28)_100%)]" />
         <div className="relative mx-auto flex min-h-[100svh] max-w-7xl items-end px-4 pb-16 pt-32 sm:px-6 md:pb-24 lg:px-8">
-          <div className="max-w-2xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.34em] text-ivory/72">
+          <div className="max-w-2xl rounded-[2rem] border border-white/10 bg-obsidian/50 p-6 shadow-velmora backdrop-blur-sm sm:p-8 lg:p-10">
+            <p className="mb-5 text-xs uppercase tracking-[0.34em] text-ivory/70">
               Fine-feeling demi-fine jewelry for everyday rituals
             </p>
             <h1 id="hero-headline" className="max-w-xl font-serif text-5xl leading-[0.92] text-ivory sm:text-6xl lg:text-8xl">
               Crafted to be Treasured
             </h1>
-            <p id="hero-subhead" className="mt-6 max-w-lg text-base leading-8 text-ivory/78 sm:text-lg">
+            <p id="hero-subhead" className="mt-6 max-w-lg text-base leading-8 text-ivory/80 sm:text-lg">
               Warm gold jewelry designed for self-gifting, effortless layering, and the moments that deserve to last a little longer.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -81,7 +96,7 @@ const Home = ({ onAddToCart }) => {
         </div>
       </section>
 
-      <section className="border-y border-sand/70 bg-rose/35 py-16 md:py-24">
+      <section className="border-y border-sand/70 bg-rose/30 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-8 flex items-end justify-between gap-6">
             <div>
@@ -110,7 +125,7 @@ const Home = ({ onAddToCart }) => {
                   <p id={moment.titleId} className="font-serif text-2xl">
                     {moment.title}
                   </p>
-                  <p id={moment.captionId} className="mt-2 max-w-[16rem] text-sm leading-6 text-ivory/78">
+                  <p id={moment.captionId} className="mt-2 max-w-[16rem] text-sm leading-6 text-ivory/80">
                     {moment.caption}
                   </p>
                 </div>
@@ -149,7 +164,7 @@ const Home = ({ onAddToCart }) => {
                 <p id={category.titleId} className="font-serif text-3xl">
                   {category.name}
                 </p>
-                <p id={category.descId} className="mt-2 max-w-xs text-sm leading-6 text-ivory/78">
+                <p id={category.descId} className="mt-2 max-w-xs text-sm leading-6 text-ivory/80">
                   {category.description}
                 </p>
               </div>
@@ -191,7 +206,7 @@ const Home = ({ onAddToCart }) => {
         </div>
       </section>
 
-      <section id="journal" className="border-y border-sand/70 bg-rose/18 py-16 md:py-24">
+      <section id="journal" className="border-y border-sand/70 bg-rose/20 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
@@ -241,9 +256,9 @@ const Home = ({ onAddToCart }) => {
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.2rem] bg-obsidian px-6 py-10 text-ivory sm:px-10 lg:px-14 lg:py-14">
           <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr] lg:items-center">
             <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-ivory/64">A softer welcome</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-ivory/60">A softer welcome</p>
               <h2 className="mt-3 font-serif text-4xl text-ivory sm:text-5xl">Join for 10% off your first order</h2>
-              <p className="mt-4 max-w-xl text-sm leading-7 text-ivory/76">
+              <p className="mt-4 max-w-xl text-sm leading-7 text-ivory/75">
                 Receive new collection previews, gifting edits, and styling notes from the Velmora journal.
               </p>
             </div>
@@ -255,7 +270,7 @@ const Home = ({ onAddToCart }) => {
                 id="newsletter-email"
                 type="email"
                 placeholder="Email address"
-                className="h-14 rounded-full border border-white/15 bg-white/8 px-5 text-sm text-ivory placeholder:text-ivory/45 focus:border-champagne focus:outline-none"
+                className="h-14 rounded-full border border-white/20 bg-white/8 px-5 text-sm text-ivory placeholder:text-ivory/50 focus:border-champagne focus:outline-none"
               />
               <button
                 type="submit"

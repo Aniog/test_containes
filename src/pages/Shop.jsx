@@ -47,7 +47,7 @@ const sortProducts = (list, value) => {
 
 const Shop = ({ onAddToCart }) => {
   const [searchParams, setSearchParams] = useSearchParams()
-   const category = searchParams.get('category') ?? 'all'
+  const category = searchParams.get('category') ?? 'all'
   const price = searchParams.get('price') ?? 'all'
   const material = searchParams.get('material') ?? 'all'
   const sort = searchParams.get('sort') ?? 'featured'
@@ -75,7 +75,7 @@ const Shop = ({ onAddToCart }) => {
 
   return (
     <div ref={containerRef} className="bg-parchment text-obsidian">
-      <section className="border-b border-sand/70 bg-rose/35 px-4 pb-12 pt-32 sm:px-6 lg:px-8">
+      <section className="border-b border-sand/70 bg-rose/30 px-4 pb-12 pt-32 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs uppercase tracking-[0.3em] text-taupe">Collection</p>
           <h1 className="mt-4 font-serif text-5xl text-obsidian sm:text-6xl">Shop the Velmora collection</h1>

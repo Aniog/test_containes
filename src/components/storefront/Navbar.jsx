@@ -14,7 +14,7 @@ const Navbar = ({ solid, cartCount, onOpenCart }) => {
 
   const navClass = solid
     ? 'border-b border-white/10 bg-obsidian/95 backdrop-blur-xl'
-    : 'bg-transparent'
+    : 'bg-gradient-to-b from-obsidian/60 via-obsidian/20 to-transparent'
 
   return (
     <>
@@ -23,7 +23,7 @@ const Navbar = ({ solid, cartCount, onOpenCart }) => {
           <button
             type="button"
             onClick={() => setMobileOpen(true)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-ivory transition hover:border-champagne hover:text-champagne lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-ivory transition hover:border-champagne hover:text-champagne lg:hidden"
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />
@@ -38,7 +38,7 @@ const Navbar = ({ solid, cartCount, onOpenCart }) => {
               <NavLink
                 key={link.label}
                 to={link.to}
-                className="text-xs uppercase tracking-[0.28em] text-ivory/82 transition hover:text-champagne"
+                className="text-xs uppercase tracking-[0.28em] text-ivory/80 transition hover:text-champagne"
               >
                 {link.label}
               </NavLink>
@@ -48,7 +48,7 @@ const Navbar = ({ solid, cartCount, onOpenCart }) => {
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-ivory transition hover:border-champagne hover:text-champagne"
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-ivory transition hover:border-champagne hover:text-champagne"
               aria-label="Search"
             >
               <Search className="h-4 w-4" />
@@ -56,7 +56,7 @@ const Navbar = ({ solid, cartCount, onOpenCart }) => {
             <button
               type="button"
               onClick={onOpenCart}
-              className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-ivory transition hover:border-champagne hover:text-champagne"
+              className="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-ivory transition hover:border-champagne hover:text-champagne"
               aria-label="Open cart"
             >
               <ShoppingBag className="h-4 w-4" />

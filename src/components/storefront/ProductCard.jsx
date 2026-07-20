@@ -6,6 +6,24 @@ import { formatCurrency, imagePlaceholder } from '@/lib/storefront'
 const ProductCard = ({ product, onAddToCart, priority = false }) => {
   const primaryImage = product.images[0]
   const secondaryImage = product.images[1] ?? product.images[0]
+  const primaryImageQuery = [
+    primaryImage.descId,
+    primaryImage.titleId,
+    product.heroDescId,
+    product.heroTitleId,
+  ]
+    .filter(Boolean)
+    .map((id) => `[${id}]`)
+    .join(' ')
+  const secondaryImageQuery = [
+    secondaryImage.descId,
+    secondaryImage.titleId,
+    product.heroDescId,
+    product.heroTitleId,
+  ]
+    .filter(Boolean)
+    .map((id) => `[${id}]`)
+    .join(' ')
 
   return (
     <article className="group rounded-[2rem] border border-sand/70 bg-ivory p-3 shadow-[0_20px_60px_rgba(33,24,22,0.10)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_80px_rgba(33,24,22,0.14)]">
@@ -15,7 +33,7 @@ const ProductCard = ({ product, onAddToCart, priority = false }) => {
             src={imagePlaceholder}
             alt={primaryImage.alt}
             data-strk-img-id={primaryImage.id}
-            data-strk-img={`[${primaryImage.descId}] [${primaryImage.titleId}] [${product.heroDescId}] [${product.heroTitleId}]`}
+            data-strk-img={primaryImageQuery}
             data-strk-img-ratio={primaryImage.ratio}
             data-strk-img-width={priority ? '900' : '700'}
             className="aspect-[4/5] w-full object-cover transition duration-500 group-hover:scale-[1.03] group-hover:opacity-0"
@@ -25,7 +43,7 @@ const ProductCard = ({ product, onAddToCart, priority = false }) => {
             src={imagePlaceholder}
             alt={secondaryImage.alt}
             data-strk-img-id={secondaryImage.id}
-            data-strk-img={`[${secondaryImage.descId}] [${secondaryImage.titleId}] [${product.heroDescId}] [${product.heroTitleId}]`}
+            data-strk-img={secondaryImageQuery}
             data-strk-img-ratio={secondaryImage.ratio}
             data-strk-img-width={priority ? '900' : '700'}
             className="absolute inset-0 aspect-[4/5] w-full object-cover opacity-0 transition duration-500 group-hover:opacity-100"
@@ -35,7 +53,7 @@ const ProductCard = ({ product, onAddToCart, priority = false }) => {
         <button
           type="button"
           onClick={() => onAddToCart(product, product.colors[0], 1)}
-          className="absolute inset-x-3 bottom-3 translate-y-3 rounded-full bg-obsidian/92 px-4 py-3 text-center text-xs uppercase tracking-[0.24em] text-ivory opacity-0 shadow-lg transition duration-300 hover:bg-espresso group-hover:translate-y-0 group-hover:opacity-100 md:text-[0.7rem]"
+          className="absolute inset-x-3 bottom-3 translate-y-3 rounded-full bg-obsidian/95 px-4 py-3 text-center text-xs uppercase tracking-[0.24em] text-ivory opacity-0 shadow-lg transition duration-300 hover:bg-espresso group-hover:translate-y-0 group-hover:opacity-100 md:text-[0.7rem]"
         >
           Quick add to cart
         </button>

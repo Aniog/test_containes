@@ -8,7 +8,7 @@ const CartDrawer = ({ open, items, onClose, onUpdateQuantity, onRemove }) => {
   return (
     <>
       <div
-        className={`fixed inset-0 z-[70] bg-obsidian/45 transition ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
+        className={`fixed inset-0 z-[70] bg-obsidian/50 transition ${open ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'}`}
         onClick={onClose}
         aria-hidden="true"
       />
