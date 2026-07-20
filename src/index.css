@@ -1,76 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  --color-bone: #FAF7F2;
+  --color-linen: #EFE8DD;
+  --color-sand: #E2D6C5;
+  --color-espresso: #1B1410;
+  --color-mink: #6B5D4F;
+  --color-stone: #9A8B7A;
+  --color-gold: #B08968;
+  --color-gold-deep: #8C6B4A;
+  --color-gold-soft: #D9C2A1;
+  --color-cream: #F4ECDF;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--color-espresso);
+  background-color: var(--color-bone);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
-}
-
-body {
+html, body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  padding: 0;
+  background-color: var(--color-bone);
+  color: var(--color-espresso);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bone);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: border-color 0.25s;
+  color: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+input, select, textarea {
+  font-family: inherit;
+  color: inherit;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Custom thin scrollbar (for cart drawer + horizontal scrollers) */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 2px;
+  width: 2px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: var(--color-sand);
+  border-radius: 999px;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Selection */
+::selection {
+  background: var(--color-gold-soft);
+  color: var(--color-espresso);
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Subtle shimmer for loading states */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-linen) 0%,
+    var(--color-sand) 50%,
+    var(--color-linen) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Focus rings (accessibility, on-brand) */
+*:focus-visible {
+  outline: 1px solid var(--color-gold-deep);
+  outline-offset: 2px;
+}
+
+/* Disable the bright default focus ring on buttons (we use :focus-visible above) */
+button:focus { outline: none; }
+
+/* Reveal-on-scroll base (used by RevealOnScroll) */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+              transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
