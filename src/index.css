@@ -1,76 +1,139 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 bg-cream text-ink font-sans min-h-screen overflow-x-hidden antialiased;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  ::selection {
+    @apply bg-gold-light text-ink;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gold text-white rounded-full px-8 py-3 font-sans font-medium text-sm
+           transition-all duration-300 ease-in-out
+           hover:bg-gold-dark hover:shadow-lg hover:shadow-gold/20
+           active:scale-[0.98]
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline {
+    @apply border border-gold text-gold rounded-full px-8 py-3 font-sans font-medium text-sm
+           transition-all duration-300 ease-in-out
+           hover:bg-gold-light hover:text-gold-dark
+           active:scale-[0.98];
+  }
+
+  .btn-ghost {
+    @apply text-muted hover:text-ink transition-colors duration-300;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .container-page {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .hairline {
+    @apply border-t border-border-light;
+  }
+
+  .product-name {
+    @apply font-serif tracking-wider uppercase text-sm;
+  }
+
+  .heading-xl {
+    @apply font-serif text-4xl md:text-5xl lg:text-6xl leading-tight;
+  }
+
+  .heading-lg {
+    @apply font-serif text-3xl md:text-4xl leading-tight;
+  }
+
+  .heading-md {
+    @apply font-serif text-2xl md:text-3xl;
+  }
+
+  .gold-text {
+    @apply text-gold;
+  }
+}
+
+/* Hero image scale-in */
+@keyframes scaleIn {
+  from {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scroll-triggered fade-in-up animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  opacity: 0;
+}
+
+.animate-in.visible {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-in.visible-delay-1 {
+  animation-delay: 0.1s;
+}
+
+.animate-in.visible-delay-2 {
+  animation-delay: 0.2s;
+}
+
+.animate-in.visible-delay-3 {
+  animation-delay: 0.3s;
+}
+
+/* Custom scrollbar for UGC reel */
+.ugc-scroll::-webkit-scrollbar {
+  height: 0;
+}
+
+/* Smooth cart drawer overlay */
+.cart-overlay {
+  @apply fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-opacity duration-300;
+}
+
+/* Accordion */
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s ease;
+}
+
+.accordion-content.open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-content > div {
+  overflow: hidden;
+}
