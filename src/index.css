@@ -1,74 +1,359 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2C2522;
+  background-color: #F8F5F1;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #F8F5F1;
+  color: #2C2522;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Elegant typography */
+h1, h2, h3, .serif {
+  font-family: 'Playfair Display', Georgia, serif;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Product names in uppercase with wide letter-spacing */
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+}
+
+/* Premium button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  outline: none;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: #B89778;
+  color: #FFFFFF;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: #8C6F52;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+.btn-outline {
+  background-color: transparent;
+  color: #2C2522;
+  border: 1px solid #B89778;
+}
 
-  a:hover {
-    color: #747bff;
-  }
+.btn-outline:hover {
+  background-color: #B89778;
+  color: #FFFFFF;
+}
 
-  button {
-    background-color: #f9f9f9;
+.btn-sm {
+  padding: 10px 20px;
+  font-size: 12px;
+}
+
+/* Hairline dividers */
+.divider {
+  border-top: 1px solid #D9D0C3;
+}
+
+/* Subtle shadows */
+.shadow-soft {
+  box-shadow: 0 2px 8px rgba(44, 37, 34, 0.06);
+}
+
+.shadow-card {
+  box-shadow: 0 4px 20px rgba(44, 37, 34, 0.08);
+}
+
+/* Product card hover effects */
+.product-card {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(44, 37, 34, 0.12);
+}
+
+/* Image hover reveal */
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image {
+  transition: opacity 0.5s ease;
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.product-card:hover .product-image {
+  opacity: 0;
+}
+
+/* Quick add button */
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Variant pills */
+.variant-pill {
+  padding: 8px 18px;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  border: 1px solid #D9D0C3;
+  background: transparent;
+  color: #5C5249;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill.active {
+  border-color: #B89778;
+  background: #B89778;
+  color: #FFFFFF;
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: #B89778;
+  color: #2C2522;
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  cursor: pointer;
+  border-bottom: 1px solid #D9D0C3;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding-bottom: 18px;
+}
+
+/* Cart drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Filter checkbox */
+.filter-checkbox {
+  accent-color: #B89778;
+}
+
+/* Sort dropdown */
+.sort-select {
+  background: transparent;
+  border: 1px solid #D9D0C3;
+  padding: 8px 12px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: #5C5249;
+  cursor: pointer;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #B89778;
+}
+
+/* Newsletter input */
+.newsletter-input {
+  background: transparent;
+  border: 1px solid #B89778;
+  padding: 14px 18px;
+  font-size: 14px;
+  color: #2C2522;
+  width: 100%;
+}
+
+.newsletter-input::placeholder {
+  color: #9A7B5C;
+}
+
+.newsletter-input:focus {
+  outline: none;
+  border-color: #8C6F52;
+}
+
+/* UGC Reel cards */
+.ugc-card {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.ugc-card img {
+  transition: transform 0.6s ease;
+}
+
+.ugc-card:hover img {
+  transform: scale(1.05);
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(44, 37, 34, 0.75), transparent);
+  padding: 40px 16px 16px;
+  color: #FFFFFF;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+/* Category tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform 0.6s ease;
+}
+
+.category-tile:hover img {
+  transform: scale(1.08);
+}
+
+.category-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  background: linear-gradient(to top, rgba(44, 37, 34, 0.6), transparent);
+  color: #FFFFFF;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+}
+
+/* Trust bar */
+.trust-bar {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5C5249;
+}
+
+/* Sticky nav */
+.nav {
+  transition: all 0.3s ease;
+}
+
+.nav.scrolled {
+  background-color: rgba(248, 245, 241, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #D9D0C3;
+}
+
+/* Modal / Drawer overlay */
+.overlay {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Star rating */
+.stars {
+  color: #B89778;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 13px;
   }
+  
+  .product-name {
+    letter-spacing: 0.1em;
+  }
+}
+
+/* Toast notifications */
+.sonner-toast {
+  background: #2C2522 !important;
+  color: #F8F5F1 !important;
+  border: none !important;
+  font-size: 13px !important;
+  letter-spacing: 0.03em !important;
 }
 
 @tailwind base;
