@@ -35,6 +35,7 @@ const storefrontReducer = (state, action) => {
         return {
           ...state,
           isCartOpen: true,
+          isSearchOpen: false,
           cart: state.cart.map((item) =>
             item.itemKey === itemKey
               ? { ...item, quantity: item.quantity + quantity }
@@ -46,6 +47,7 @@ const storefrontReducer = (state, action) => {
       return {
         ...state,
         isCartOpen: true,
+        isSearchOpen: false,
         cart: [
           {
             itemKey,
@@ -77,11 +79,11 @@ const storefrontReducer = (state, action) => {
         cart: state.cart.filter((item) => item.itemKey !== action.payload),
       };
     case "OPEN_CART":
-      return { ...state, isCartOpen: true };
+      return { ...state, isCartOpen: true, isSearchOpen: false };
     case "CLOSE_CART":
       return { ...state, isCartOpen: false };
     case "OPEN_SEARCH":
-      return { ...state, isSearchOpen: true };
+      return { ...state, isSearchOpen: true, isCartOpen: false };
     case "CLOSE_SEARCH":
       return { ...state, isSearchOpen: false };
     case "SET_SEARCH_QUERY":

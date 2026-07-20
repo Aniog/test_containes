@@ -14,7 +14,7 @@ const SiteHeader = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { cartCount, openCart, openSearch } = useStorefront();
+  const { cartCount, openCart, openSearch, isCartOpen, isSearchOpen } = useStorefront();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 18);
@@ -27,7 +27,12 @@ const SiteHeader = () => {
     setMobileOpen(false);
   }, [location.pathname, location.hash]);
 
-  const isTransparent = location.pathname === "/" && !scrolled && !mobileOpen;
+  const isTransparent =
+    location.pathname === "/" &&
+    !scrolled &&
+    !mobileOpen &&
+    !isCartOpen &&
+    !isSearchOpen;
 
   const headerClassName = useMemo(
     () =>
@@ -38,7 +43,7 @@ const SiteHeader = () => {
   );
 
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${headerClassName}`}>
+    <header className={`fixed inset-x-0 top-0 z-[90] border-b transition-all duration-300 ${headerClassName}`}>
       <div className="container-shell">
         <div className="flex h-20 items-center justify-between gap-4">
           <button
