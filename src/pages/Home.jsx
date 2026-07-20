@@ -1,0 +1,25 @@
+import Hero from '../components/home/Hero';
+import TrustBar from '../components/home/TrustBar';
+import Bestsellers from '../components/home/Bestsellers';
+import UGCStrip from '../components/home/UGCStrip';
+import CategoryTiles from '../components/home/CategoryTiles';
+import BrandStory from '../components/home/BrandStory';
+import Testimonials from '../components/home/Testimonials';
+import Newsletter from '../components/home/Newsletter';
+
+const Home = () => {
+  return (
+    <div className="bg-[#0D0D0D]">
+      <Hero />
+      <TrustBar />
+      <Bestsellers />
+      <UGCStrip />
+      <CategoryTiles />
+      <BrandStory />
+      <Testimonials />
+      <Newsletter />
+    </div>
+  );
+};
+
+export default Home;
