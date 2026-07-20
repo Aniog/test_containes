@@ -1,0 +1,128 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    category: 'earrings',
+    price: 42,
+    material: '18k-gold-plated',
+    tone: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural ear cuff that wraps the ear in radiant light. Crystal accents catch every glance, designed for the woman who moves through rooms like a quiet revelation.',
+    materials: '18K gold-plated brass with precision-set cubic zirconia crystals. Nickel-free and hypoallergenic.',
+    care: 'Store in a dry place away from direct sunlight. Avoid contact with perfumes and lotions. Clean gently with a soft cloth.',
+    images: [
+      { id: 'prod-1-img-1', query: 'gold ear cuff crystal jewelry on ear close up warm light editorial', ratio: '3x4', width: 800 },
+      { id: 'prod-1-img-2', query: 'gold ear cuff jewelry product photography dark background luxury', ratio: '3x4', width: 800 },
+      { id: 'prod-1-img-3', query: 'woman wearing gold ear cuff elegant portrait warm tones', ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    category: 'necklaces',
+    price: 68,
+    material: '18k-gold-plated',
+    tone: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    description: 'A cascade of hand-placed crystals in soft multicolor hues, this floral pendant rests at the collarbone like a garden in bloom. The chain adjusts for your perfect length.',
+    materials: '18K gold-plated stainless steel chain with hand-set multicolor cubic zirconia petals. Water-resistant finish.',
+    care: 'Wipe after wear. Keep dry. Store flat in the provided pouch to prevent tangling.',
+    images: [
+      { id: 'prod-2-img-1', query: 'multicolor crystal floral necklace on model neck close up warm editorial', ratio: '3x4', width: 800 },
+      { id: 'prod-2-img-2', query: 'floral crystal necklace gold chain product photography luxury', ratio: '3x4', width: 800 },
+      { id: 'prod-2-img-3', query: 'elegant woman wearing statement floral necklace portrait', ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    category: 'huggies',
+    price: 38,
+    material: '18k-gold-plated',
+    tone: 'gold',
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky yet weightless, these dome huggies hug the lobe with a satisfying curve. The polished surface mirrors light in every direction — your new everyday essential.',
+    materials: '18K gold-plated brass with surgical steel posts. Lightweight hollow construction. Hypoallergenic.',
+    care: 'Avoid sleeping in your huggies. Clean with a soft jewelry cloth after each wear.',
+    images: [
+      { id: 'prod-3-img-1', query: 'chunky gold dome huggie earrings on ear close up warm light', ratio: '3x4', width: 800 },
+      { id: 'prod-3-img-2', query: 'gold huggie earrings product photography dark background luxury', ratio: '3x4', width: 800 },
+      { id: 'prod-3-img-3', query: 'woman wearing gold huggie earrings elegant portrait warm tones', ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    category: 'earrings',
+    price: 54,
+    material: '18k-gold-plated',
+    tone: 'gold',
+    rating: 4.9,
+    reviews: 76,
+    description: 'Delicate filigree drops that sway with every step. Inspired by vintage lace patterns, reimagined in modern gold for the romantic at heart.',
+    materials: '18K gold-plated brass with intricate filigree cutwork. Surgical steel hooks. Nickel-free.',
+    care: 'Handle with care to protect delicate filigree details. Store separately to avoid scratching.',
+    images: [
+      { id: 'prod-4-img-1', query: 'gold filigree drop earrings on model ear warm editorial photography', ratio: '3x4', width: 800 },
+      { id: 'prod-4-img-2', query: 'lace pattern gold earrings product photography dark background', ratio: '3x4', width: 800 },
+      { id: 'prod-4-img-3', query: 'woman wearing delicate gold drop earrings elegant portrait', ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    category: 'sets',
+    price: 95,
+    material: '18k-gold-plated',
+    tone: 'gold',
+    rating: 5.0,
+    reviews: 52,
+    description: 'The perfect gift, wrapped in intention. A curated pairing of our most-loved earring and necklace, presented in a signature Velmora gift box with hand-tied ribbon.',
+    materials: '18K gold-plated brass earrings and necklace set. Includes signature gift packaging. Hypoallergenic.',
+    care: 'Store in the provided gift box. Clean each piece gently with a soft cloth before returning to storage.',
+    images: [
+      { id: 'prod-5-img-1', query: 'gold jewelry gift set necklace earrings in elegant box warm light', ratio: '3x4', width: 800 },
+      { id: 'prod-5-img-2', query: 'gold earring necklace set product photography dark background luxury', ratio: '3x4', width: 800 },
+      { id: 'prod-5-img-3', query: 'woman wearing matching gold necklace and earrings portrait warm', ratio: '3x4', width: 800 },
+    ],
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', label: 'EARRINGS' },
+  { id: 'necklaces', name: 'Necklaces', label: 'NECKLACES' },
+  { id: 'huggies', name: 'Huggies', label: 'HUGGIES' },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality exceeded my expectations. I\'ve worn my huggies every day for three months and they still look brand new.',
+  },
+  {
+    id: 2,
+    name: 'Jessica L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a birthday gift. The packaging alone made her cry. Truly special.',
+  },
+  {
+    id: 3,
+    name: 'Amara K.',
+    rating: 5,
+    text: 'Quiet luxury at an accessible price. The filigree earrings are delicate, light, and impossibly elegant.',
+  },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday gold', query: 'woman wearing gold earrings close up ear warm natural light' },
+  { id: 'ugc-2', caption: 'Layered beauty', query: 'woman wearing gold necklace layered jewelry portrait warm light' },
+  { id: 'ugc-3', caption: 'Minimal glow', query: 'gold huggie earrings on ear close up natural warm light editorial' },
+  { id: 'ugc-4', caption: 'Gift ready', query: 'hands opening jewelry gift box gold earrings warm light' },
+  { id: 'ugc-5', caption: 'Office to evening', query: 'woman wearing gold jewelry at cafe warm light portrait' },
+  { id: 'ugc-6', caption: 'Self love', query: 'woman looking at gold necklace in mirror warm light portrait' },
+]
