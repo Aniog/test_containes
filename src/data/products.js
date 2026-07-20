@@ -1,0 +1,133 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    slug: 'vivid-aura-jewels',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    description: 'A stunning gold ear cuff adorned with a delicate crystal accent. Designed to catch the light with every movement, this piece adds effortless sophistication to any look.',
+    longDescription: 'Our Vivid Aura Jewels ear cuff is crafted from premium 18K gold-plated sterling silver, featuring a hand-set cubic zirconia crystal that sparkles with captivating brilliance. The minimalist design allows for versatile styling — wear it alone for understated elegance or stack it with other pieces for a bolder statement. Hypoallergenic and tarnish-resistant, this piece is built to be treasured.',
+    careInstructions: 'Store in the provided jewelry pouch when not wearing. Avoid contact with perfumes, lotions, and water. Clean gently with a soft cloth.',
+    rating: 4.8,
+    reviewCount: 124,
+    variants: [
+      { name: 'Gold', value: 'gold', inStock: true },
+      { name: 'Silver', value: 'silver', inStock: true },
+    ],
+    images: [
+      { id: 'vivid-aura-1', ratio: '4x3', width: 800, query: 'gold ear cuff crystal jewelry dark background' },
+      { id: 'vivid-aura-2', ratio: '4x3', width: 800, query: 'gold ear cuff closeup worn on ear' },
+      { id: 'vivid-aura-3', ratio: '4x3', width: 800, query: 'gold crystal earring detail macro' },
+    ],
+    featured: true,
+    bestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    slug: 'majestic-flora-nectar',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    description: 'A multicolor floral crystal necklace that blends artistry with elegance. Each petal is carefully set to create a garden of light around your neckline.',
+    longDescription: 'The Majestic Flora Nectar necklace is a celebration of nature\'s beauty, reimagined in fine jewelry. Hand-finished with multicolor crystal petals arranged in a delicate floral pattern, this pendant sits on a dainty 18K gold-plated chain. The adjustable length (16"–20") ensures a perfect fit for any neckline. Each crystal is precision-cut to maximize light refraction, creating a mesmerizing rainbow effect.',
+    careInstructions: 'Clasp closure. Store flat in the provided box. Avoid moisture and chemical exposure. Polish with a jewelry cloth for lasting shine.',
+    rating: 4.9,
+    reviewCount: 89,
+    variants: [
+      { name: 'Gold', value: 'gold', inStock: true },
+      { name: 'Silver', value: 'silver', inStock: false },
+    ],
+    images: [
+      { id: 'majestic-flora-1', ratio: '4x3', width: 800, query: 'floral crystal necklace gold chain dark velvet' },
+      { id: 'majestic-flora-2', ratio: '4x3', width: 800, query: 'multicolor crystal pendant necklace worn on neck' },
+      { id: 'majestic-flora-3', ratio: '4x3', width: 800, query: 'flower crystal jewelry detail closeup' },
+    ],
+    featured: true,
+    bestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    slug: 'golden-sphere-huggies',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    description: 'Chunky gold dome huggie earrings that make a statement. The smooth, polished sphere design hugs your earlobe with contemporary luxury.',
+    longDescription: 'Our Golden Sphere Huggies are the perfect blend of bold and refined. Featuring a chunky dome silhouette in lustrous 18K gold plating, these huggie earrings sit snugly on the earlobe for a sleek, modern look. The click-close mechanism ensures secure wear throughout the day. Whether dressed up for evening or paired with casual daywear, these versatile earrings instantly elevate your style.',
+    careInstructions: 'Click-close fastening. Wipe with a soft cloth after each wear. Store separately to prevent scratching. Keep away from harsh chemicals.',
+    rating: 4.7,
+    reviewCount: 156,
+    variants: [
+      { name: 'Gold', value: 'gold', inStock: true },
+      { name: 'Silver', value: 'silver', inStock: true },
+    ],
+    images: [
+      { id: 'golden-sphere-1', ratio: '4x3', width: 800, query: 'gold dome huggie earrings dark background' },
+      { id: 'golden-sphere-2', ratio: '4x3', width: 800, query: 'chunky gold huggie earrings worn on ear' },
+      { id: 'golden-sphere-3', ratio: '4x3', width: 800, query: 'gold sphere earrings detail polished' },
+    ],
+    featured: true,
+    bestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    slug: 'amber-lace-earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Delicate openwork patterns create an ethereal, romantic silhouette.',
+    longDescription: 'The Amber Lace Earrings draw inspiration from antique lace patterns, translated into stunning 18K gold-plated filigree. Each earring features intricate openwork design that catches light beautifully, creating a soft, romantic glow. The lightweight construction ensures all-day comfort, while the lever-back closure provides secure wear. These statement drop earrings are perfect for weddings, special occasions, or adding a touch of elegance to everyday outfits.',
+    careInstructions: 'Lever-back closure. Handle with care due to delicate filigree design. Store in the provided pouch. Clean with a dry, soft cloth only.',
+    rating: 4.6,
+    reviewCount: 78,
+    variants: [
+      { name: 'Gold', value: 'gold', inStock: true },
+      { name: 'Rose Gold', value: 'rose-gold', inStock: true },
+    ],
+    images: [
+      { id: 'amber-lace-1', ratio: '4x3', width: 800, query: 'gold filigree drop earrings dark background' },
+      { id: 'amber-lace-2', ratio: '4x3', width: 800, query: 'lace texture gold earrings worn on ear' },
+      { id: 'amber-lace-3', ratio: '4x3', width: 800, query: 'vintage filigree earring detail closeup' },
+    ],
+    featured: true,
+    bestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    slug: 'royal-heirloom-set',
+    price: 95,
+    category: 'sets',
+    material: '18K Gold Plated',
+    description: 'A gift-boxed earring and necklace set curated for timeless elegance. The perfect present for someone special — or a well-deserved treat for yourself.',
+    longDescription: 'The Royal Heirloom Set arrives in our signature velvet-lined gift box, ready to delight. This curated pairing includes our bestselling Golden Sphere Huggies and a matching pendant necklace, both crafted in premium 18K gold-plated sterling silver. The coordinated set takes the guesswork out of gifting while offering a 15% savings compared to purchasing separately. Each piece is hypoallergenic, tarnish-resistant, and designed to be mixed, matched, and layered with your existing collection.',
+    careInstructions: 'Set includes: 1x Golden Sphere Huggies, 1x Pendant Necklace (18" chain), 1x Velvet Gift Box. Individual care instructions included for each piece.',
+    rating: 4.9,
+    reviewCount: 203,
+    variants: [
+      { name: 'Gold', value: 'gold', inStock: true },
+      { name: 'Silver', value: 'silver', inStock: true },
+    ],
+    images: [
+      { id: 'royal-heirloom-1', ratio: '4x3', width: 800, query: 'gold jewelry gift set velvet box' },
+      { id: 'royal-heirloom-2', ratio: '4x3', width: 800, query: 'gold earring necklace set luxury packaging' },
+      { id: 'royal-heirloom-3', ratio: '4x3', width: 800, query: 'jewelry gift box open gold pieces' },
+    ],
+    featured: true,
+    bestseller: true,
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', slug: 'earrings' },
+  { id: 'necklaces', name: 'Necklaces', slug: 'necklaces' },
+  { id: 'huggies', name: 'Huggies', slug: 'huggies' },
+];
+
+export const getProductBySlug = (slug) => products.find(p => p.slug === slug);
+export const getProductById = (id) => products.find(p => p.id === id);
+export const getBestsellers = () => products.filter(p => p.bestseller);
+export const getRelatedProducts = (currentId) => products.filter(p => p.id !== currentId).slice(0, 4);
