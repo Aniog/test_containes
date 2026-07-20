@@ -1,27 +1,16 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
-import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, resolveStrkImgUrl } from '@/lib/utils'
 
 export default function CartDrawer() {
   const { isOpen, closeCart, items, updateQuantity, removeItem, subtotal, count } = useCart()
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (!ref.current) return
-    const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, ref.current)
-    })
-    return () => window.cancelAnimationFrame(frameId)
-  }, [isOpen, items.length])
 
   if (!isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-[60]" ref={ref}>
+    <div className="fixed inset-0 z-[60]">
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-ink/40 overlay-in"
@@ -60,12 +49,8 @@ export default function CartDrawer() {
                   <li key={item.key} className="py-5 flex gap-4">
                     <Link to={`/product/${item.slug}`} onClick={closeCart} className="shrink-0">
                       <img
-                        src='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
+                        src={resolveStrkImgUrl(strkImgConfig, item.imgId)}
                         alt={item.name}
-                        data-strk-img-id={item.imgId}
-                        data-strk-img={`[${item.descId}] [${item.titleId}]`}
-                        data-strk-img-ratio="1x1"
-                        data-strk-img-width="200"
                         className="w-20 h-20 object-cover bg-sand"
                       />
                     </Link>
