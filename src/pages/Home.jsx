@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <div ref={containerRef} className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative h-screen min-h-[600px] flex items-center justify-center">
+      <section className="relative h-screen min-h-[600px] flex items-center justify-center -mt-[88px]">
         {/* Background Image using data-strk-bg */}
         <div 
           className="absolute inset-0 z-0 bg-secondary"
@@ -46,7 +46,7 @@ export default function Home() {
         {/* Overlay to ensure text readability */}
         <div className="absolute inset-0 z-10 bg-black/40" />
 
-        <div className="relative z-20 text-center text-white px-4 max-w-3xl mx-auto flex flex-col items-center mt-16">
+        <div className="relative z-20 text-center text-white px-4 max-w-3xl mx-auto flex flex-col items-center mt-20">
           <h1 id="hero-title" className="font-serif text-5xl md:text-7xl mb-6">Crafted to be Treasured</h1>
           <p id="hero-subtitle" className="text-lg md:text-xl mb-10 max-w-xl font-light text-white/90">
             Demi-fine gold jewelry designed for everyday elegance and milestone moments.
