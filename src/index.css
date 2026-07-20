@@ -1,76 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1f171c;
+  background-color: #f7f2ec;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer base {
+  * {
+    @apply border-sandDeep;
   }
 
-  a:hover {
-    color: #747bff;
+  html {
+    scroll-behavior: smooth;
   }
 
-  button {
-    background-color: #f9f9f9;
+  body {
+    @apply m-0 min-h-screen bg-porcelain font-sans text-ink antialiased;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    @apply font-inherit;
+  }
+
+  img {
+    @apply block max-w-full;
+  }
+
+  ::selection {
+    @apply bg-champagne text-champagneInk;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.72rem] font-medium uppercase tracking-[0.28em] text-rosewood;
+  }
+
+  .editorial-heading {
+    @apply font-display text-4xl leading-none text-ink md:text-5xl lg:text-6xl;
+  }
+
+  .luxe-button {
+    @apply inline-flex items-center justify-center rounded-full border border-champagne bg-champagne px-6 py-3 text-sm font-medium text-champagneInk transition-all duration-300 ease-luxe hover:-translate-y-0.5 hover:bg-[#d0af7d] focus:outline-none focus:ring-2 focus:ring-champagne focus:ring-offset-2 focus:ring-offset-porcelain;
+  }
+
+  .luxe-button-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-sandDeep bg-transparent px-6 py-3 text-sm font-medium text-ink transition-all duration-300 ease-luxe hover:-translate-y-0.5 hover:border-rosewood hover:text-rosewood focus:outline-none focus:ring-2 focus:ring-rosewood focus:ring-offset-2 focus:ring-offset-porcelain;
+  }
+
+  .surface-card {
+    @apply rounded-[2rem] border border-sandDeep/70 bg-[#fbf8f4] text-ink shadow-card;
+  }
+}
