@@ -3,8 +3,8 @@ import { Link, useParams } from 'react-router-dom'
 import { Minus, Plus, Star } from 'lucide-react'
 import ProductCard from '../components/product/ProductCard'
 import { findProduct, formatPrice, products } from '../data/products'
+import { getStrkImageUrl } from '../data/strkImageUrls'
 
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
 const accordions = ['Description', 'Materials & Care', 'Shipping & Returns']
 
 export default function ProductDetail({ onAddToCart }) {
@@ -24,7 +24,11 @@ export default function ProductDetail({ onAddToCart }) {
     { id: 'hero', ratio: '4x3', query: `[${product.descId}] [${product.nameId}]` },
     { id: 'worn', ratio: '3x4', query: `[${product.descId}] [${product.nameId}]` },
     { id: 'detail', ratio: '1x1', query: `[${product.descId}] [${product.nameId}]` },
-  ]
+  ].map((image) => ({
+    ...image,
+    thumbId: `pdp-${product.id}-thumb-${image.id}`,
+    mainId: `pdp-${product.id}-main-${image.id}`,
+  }))
 
   const handleAdd = () => {
     onAddToCart(product, { quantity, tone })
@@ -46,11 +50,11 @@ export default function ProductDetail({ onAddToCart }) {
                 <img
                   alt={`${product.name} thumbnail ${index + 1}`}
                   className="h-full w-full object-cover"
-                  data-strk-img-id={`pdp-${product.id}-thumb-${image.id}`}
+                  data-strk-img-id={image.thumbId}
                   data-strk-img={image.query}
                   data-strk-img-ratio="1x1"
                   data-strk-img-width="240"
-                  src={placeholder}
+                  src={getStrkImageUrl(image.thumbId)}
                 />
               </button>
             ))}
@@ -59,11 +63,11 @@ export default function ProductDetail({ onAddToCart }) {
             <img
               alt={`${product.name} gallery image`}
               className="aspect-[4/5] h-full w-full object-cover md:aspect-[4/5]"
-              data-strk-img-id={`pdp-${product.id}-main-${gallery[selectedImage].id}`}
+              data-strk-img-id={gallery[selectedImage].mainId}
               data-strk-img={gallery[selectedImage].query}
               data-strk-img-ratio={gallery[selectedImage].ratio}
               data-strk-img-width="1100"
-              src={placeholder}
+              src={getStrkImageUrl(gallery[selectedImage].mainId)}
             />
           </div>
         </div>

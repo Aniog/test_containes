@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ShoppingBag } from 'lucide-react'
 import { formatPrice } from '../../data/products'
-
-const placeholder = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+import { getStrkImageUrl } from '../../data/strkImageUrls'
 
 export default function ProductCard({ product, onAddToCart, priority = false }) {
   const query = `[${product.descId}] [${product.nameId}]`
+  const primaryImageId = `card-${product.id}-primary`
+  const secondaryImageId = `card-${product.id}-secondary`
 
   return (
     <article className="group overflow-hidden bg-velmora-pearl text-velmora-espresso shadow-[0_20px_60px_rgba(33,25,21,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_80px_rgba(33,25,21,0.14)]">
@@ -14,20 +15,20 @@ export default function ProductCard({ product, onAddToCart, priority = false }) 
           <img
             alt={product.imageAlt}
             className="h-full w-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:opacity-0"
-            data-strk-img-id={`card-${product.id}-primary`}
+            data-strk-img-id={primaryImageId}
             data-strk-img={query}
             data-strk-img-ratio="4x3"
             data-strk-img-width={priority ? '900' : '700'}
-            src={placeholder}
+            src={getStrkImageUrl(primaryImageId)}
           />
           <img
             alt={`${product.name} editorial detail`}
             className="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-all duration-700 group-hover:scale-100 group-hover:opacity-100"
-            data-strk-img-id={`card-${product.id}-secondary`}
-            data-strk-img={`[${product.descId}] [${product.nameId}]`}
+            data-strk-img-id={secondaryImageId}
+            data-strk-img={query}
             data-strk-img-ratio="4x3"
             data-strk-img-width={priority ? '900' : '700'}
-            src={placeholder}
+            src={getStrkImageUrl(secondaryImageId)}
           />
           <button
             type="button"
