@@ -1,0 +1,84 @@
+import React, { createContext, useContext, useState } from 'react'
+import { toast } from 'sonner'
+
+const CartContext = createContext()
+
+export function CartProvider({ children }) {
+  const [cart, setCart] = useState([])
+  const [isCartOpen, setIsCartOpen] = useState(false)
+
+  const addToCart = (product, variant = 'gold', quantity = 1) => {
+    const cartItem = {
+      ...product,
+      selectedVariant: variant,
+      cartId: `${product.id}-${variant}`,
+    }
+
+    setCart((prev) => {
+      const existing = prev.findIndex(
+        (item) => item.cartId === cartItem.cartId
+      )
+      if (existing !== -1) {
+        const updated = [...prev]
+        updated[existing].quantity = (updated[existing].quantity || 1) + quantity
+        return updated
+      }
+      return [...prev, { ...cartItem, quantity }]
+    })
+
+    toast.success('Added to cart', {
+      description: `${product.name} (${variant})`,
+      action: {
+        label: 'View Cart',
+        onClick: () => setIsCartOpen(true),
+      },
+    })
+    setIsCartOpen(true)
+  }
+
+  const removeFromCart = (cartId) => {
+    setCart((prev) => prev.filter((item) => item.cartId !== cartId))
+  }
+
+  const updateQuantity = (cartId, quantity) => {
+    if (quantity < 1) return
+    setCart((prev) =>
+      prev.map((item) =>
+        item.cartId === cartId ? { ...item, quantity } : item
+      )
+    )
+  }
+
+  const cartTotal = cart.reduce(
+    (sum, item) => sum + item.price * (item.quantity || 1),
+    0
+  )
+
+  const cartCount = cart.reduce(
+    (sum, item) => sum + (item.quantity || 1),
+    0
+  )
+
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        cartTotal,
+        cartCount,
+        isCartOpen,
+        setIsCartOpen,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  )
+}
+
+export const useCart = () => {
+  const context = useContext(CartContext)
+  if (!context) throw new Error('useCart must be used within CartProvider')
+  return context
+}
