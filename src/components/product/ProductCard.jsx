@@ -5,9 +5,6 @@ import { useToast } from '@/context/ToastContext'
 import { formatPrice } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating'
 
-const PLACEHOLDER =
-  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"/%3E'
-
 export default function ProductCard({ product, index = 0 }) {
   const { addItem } = useCart()
   const { toast } = useToast()
@@ -39,7 +36,7 @@ export default function ProductCard({ product, index = 0 }) {
           data-strk-img={`[${descId}] [${titleId}] gold jewelry editorial`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
         />
         {/* Secondary image revealed on hover */}
@@ -50,7 +47,7 @@ export default function ProductCard({ product, index = 0 }) {
           data-strk-img={`[${descId}] [${titleId}] gold jewelry worn model`}
           data-strk-img-ratio="4x5"
           data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
             hovered ? 'opacity-100' : 'opacity-0'
           }`}

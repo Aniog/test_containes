@@ -1,23 +1,12 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { X, Plus, Minus, ShoppingBag } from 'lucide-react'
 import { useCart } from '@/context/CartContext'
-import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
-import { formatPrice } from '@/lib/utils'
+import { formatPrice, getStrkImageUrl } from '@/lib/utils'
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, setQty, subtotal, count } = useCart()
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      if (containerRef.current) {
-        ImageHelper.loadImages(strkImgConfig, containerRef.current)
-      }
-    })
-    return () => window.cancelAnimationFrame(frameId)
-  }, [isOpen, items.length])
 
   useEffect(() => {
     if (isOpen) {
@@ -47,7 +36,6 @@ export default function CartDrawer() {
         onClick={closeCart}
       />
       <aside
-        ref={containerRef}
         className="animate-drawer-in absolute right-0 top-0 flex h-full w-full max-w-md flex-col bg-ivory shadow-2xl"
       >
         {/* Header */}
@@ -87,16 +75,9 @@ export default function CartDrawer() {
                   >
                     <img
                       alt={item.name}
-                      data-strk-img-id={`cart-${item.key}`}
-                      data-strk-img={`[cart-${item.key}-name] gold jewelry`}
-                      data-strk-img-ratio="4x3"
-                      data-strk-img-width="200"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                      src={getStrkImageUrl(strkImgConfig, `pc-${item.productId}-img1`)}
                       className="h-full w-full object-cover"
                     />
-                    <span id={`cart-${item.key}-name`} className="sr-only">
-                      {item.name}
-                    </span>
                   </Link>
 
                   {/* Details */}
