@@ -1,0 +1,149 @@
+import { createContext, useContext, useReducer, useEffect } from 'react';
+
+const CartContext = createContext();
+
+const CART_STORAGE_KEY = 'velmora-cart';
+
+const initialState = {
+  items: [],
+  isOpen: false,
+};
+
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case 'LOAD_CART':
+      return { ...state, items: action.payload };
+    
+    case 'ADD_ITEM': {
+      const existingIndex = state.items.findIndex(
+        item => item.id === action.payload.id && item.variant === action.payload.variant
+      );
+      
+      if (existingIndex >= 0) {
+        const newItems = [...state.items];
+        newItems[existingIndex].quantity += action.payload.quantity;
+        return { ...state, items: newItems };
+      }
+      
+      return { ...state, items: [...state.items, action.payload] };
+    }
+    
+    case 'REMOVE_ITEM':
+      return {
+        ...state,
+        items: state.items.filter(
+          item => !(item.id === action.payload.id && item.variant === action.payload.variant)
+        ),
+      };
+    
+    case 'UPDATE_QUANTITY': {
+      const newItems = state.items.map(item => {
+        if (item.id === action.payload.id && item.variant === action.payload.variant) {
+          return { ...item, quantity: action.payload.quantity };
+        }
+        return item;
+      }).filter(item => item.quantity > 0);
+      
+      return { ...state, items: newItems };
+    }
+    
+    case 'TOGGLE_CART':
+      return { ...state, isOpen: !state.isOpen };
+    
+    case 'OPEN_CART':
+      return { ...state, isOpen: true };
+    
+    case 'CLOSE_CART':
+      return { ...state, isOpen: false };
+    
+    case 'CLEAR_CART':
+      return { ...state, items: [] };
+    
+    default:
+      return state;
+  }
+};
+
+export function CartProvider({ children }) {
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+  
+  // Load cart from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+      if (savedCart) {
+        const parsedCart = JSON.parse(savedCart);
+        if (Array.isArray(parsedCart)) {
+          dispatch({ type: 'LOAD_CART', payload: parsedCart });
+        }
+      }
+    } catch (error) {
+      console.error('Failed to load cart from localStorage:', error);
+    }
+  }, []);
+  
+  // Save cart to localStorage on changes
+  useEffect(() => {
+    try {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(state.items));
+    } catch (error) {
+      console.error('Failed to save cart to localStorage:', error);
+    }
+  }, [state.items]);
+  
+  const addItem = (product, quantity = 1, variant = null) => {
+    dispatch({
+      type: 'ADD_ITEM',
+      payload: {
+        id: product.id,
+        slug: product.slug,
+        name: product.name,
+        price: product.price,
+        image: product.images[0],
+        quantity,
+        variant: variant || product.variants?.[0] || 'Gold',
+      },
+    });
+    dispatch({ type: 'OPEN_CART' });
+  };
+  
+  const removeItem = (id, variant) => {
+    dispatch({ type: 'REMOVE_ITEM', payload: { id, variant } });
+  };
+  
+  const updateQuantity = (id, variant, quantity) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, variant, quantity } });
+  };
+  
+  const toggleCart = () => dispatch({ type: 'TOGGLE_CART' });
+  const openCart = () => dispatch({ type: 'OPEN_CART' });
+  const closeCart = () => dispatch({ type: 'CLOSE_CART' });
+  const clearCart = () => dispatch({ type: 'CLEAR_CART' });
+  
+  const itemCount = state.items.reduce((sum, item) => sum + item.quantity, 0);
+  const subtotal = state.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  
+  const value = {
+    items: state.items,
+    isOpen: state.isOpen,
+    addItem,
+    removeItem,
+    updateQuantity,
+    toggleCart,
+    openCart,
+    closeCart,
+    clearCart,
+    itemCount,
+    subtotal,
+  };
+  
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+}
+
+export function useCart() {
+  const context = useContext(CartContext);
+  if (!context) {
+    throw new Error('useCart must be used within a CartProvider');
+  }
+  return context;
+}
