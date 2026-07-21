@@ -1,76 +1,247 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Google Fonts - imported via index.html link */
+
+@layer base {
+  :root {
+    /* Velmora Color Palette - Quiet Luxury */
+    --color-cream: #FAF7F2;
+    --color-charcoal: #2C2C2C;
+    --color-gold: #C9A96E;
+    --color-gold-light: #D4B87A;
+    --color-gold-dark: #A8843E;
+    --color-ivory: #F5F0E8;
+    --color-sand: #E8E0D4;
+    --color-rose: #B8956A;
+
+    --background: 38 33% 96%;
+    --foreground: 0 0% 17%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 17%;
+
+    --primary: 36 47% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 38 33% 94%;
+    --secondary-foreground: 0 0% 17%;
+
+    --muted: 38 20% 90%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 36 47% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 38 20% 87%;
+    --input: 38 20% 87%;
+    --ring: 36 47% 60%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer components {
+  .container-luxury {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply bg-[#C9A96E] text-white px-8 py-3 uppercase tracking-widest text-sm font-medium
+    hover:bg-[#A8843E] transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply border border-[#C9A96E] text-[#C9A96E] px-8 py-3 uppercase tracking-widest text-sm font-medium
+    hover:bg-[#C9A96E] hover:text-white transition-all duration-300;
+  }
+
+  .product-name {
+    @apply font-serif uppercase tracking-[0.2em] text-sm font-medium;
+  }
+
+  .hairline-divider {
+    @apply border-t border-[#C9A96E]/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Navbar Styles */
+  .navbar-transparent {
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-500;
+    background-color: transparent;
+  }
+
+  .navbar-transparent a,
+  .navbar-transparent button {
+    color: white;
+  }
+
+  .navbar-scrolled {
+    @apply fixed top-0 left-0 right-0 z-50 transition-all duration-500;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+
+  .navbar-scrolled a,
+  .navbar-scrolled button {
+    color: #2C2C2C;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .navbar-scrolled .nav-link:hover {
+    color: #C9A96E;
+  }
+
+  .navbar-transparent .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .navbar-transparent .nav-link:hover {
+    color: white;
+  }
+
+  .nav-icon {
+    transition: color 0.3s;
+  }
+
+  .cart-badge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background-color: #C9A96E;
+    color: white;
+    font-size: 0.75rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Smooth Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.5s ease-out;
+  }
+
+  /* Hover Transitions */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Product Image Hover */
+  .product-image-zoom {
+    transition: transform 0.7s ease;
+  }
+
+  .product-image-zoom:hover {
+    transform: scale(1.05);
+  }
+
+  /* Button Hover Effects */
+  .btn-primary {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .btn-primary:hover::after {
+    width: 300px;
+    height: 300px;
+  }
+}
