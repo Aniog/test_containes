@@ -1,0 +1,143 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent — a statement piece that catches the light with every turn.',
+    price: 42,
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      'vivid-aura-jewels-gold-ear-cuff-crystal',
+      'vivid-aura-jewels-ear-cuff-side-view',
+    ],
+    imgId: 'vivid-aura-7a2b',
+    titleId: 'vivid-aura-title',
+    descId: 'vivid-aura-desc',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace — a garden of brilliance resting at your collarbone.',
+    price: 68,
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      'majestic-flora-nectar-floral-crystal-necklace',
+      'majestic-flora-nectar-necklace-worn',
+    ],
+    imgId: 'majestic-flora-3c4d',
+    titleId: 'majestic-flora-title',
+    descId: 'majestic-flora-desc',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings — bold yet refined, the everyday elevation your ears deserve.',
+    price: 38,
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      'golden-sphere-huggies-dome-earrings',
+      'golden-sphere-huggies-worn-ear',
+    ],
+    imgId: 'golden-sphere-5e6f',
+    titleId: 'golden-sphere-title',
+    descId: 'golden-sphere-desc',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings — intricate lacework in warm gold, swaying with grace.',
+    price: 54,
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    tone: ['Gold'],
+    rating: 4.8,
+    reviews: 67,
+    images: [
+      'amber-lace-earrings-filigree-drop-gold',
+      'amber-lace-earrings-detail-view',
+    ],
+    imgId: 'amber-lace-8g9h',
+    titleId: 'amber-lace-title',
+    descId: 'amber-lace-desc',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set — the complete statement, ready to treasure or gift.',
+    price: 95,
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    tone: ['Gold', 'Silver'],
+    rating: 5.0,
+    reviews: 42,
+    images: [
+      'royal-heirloom-set-gift-box-earring-necklace',
+      'royal-heirloom-set-worn-together',
+    ],
+    imgId: 'royal-heirloom-1i2j',
+    titleId: 'royal-heirloom-title',
+    descId: 'royal-heirloom-desc',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    imgId: 'cat-earrings-a1b2',
+    titleId: 'cat-earrings-title',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    imgId: 'cat-necklaces-c3d4',
+    titleId: 'cat-necklaces-title',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    imgId: 'cat-huggies-e5f6',
+    titleId: 'cat-huggies-title',
+  },
+]
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    text: 'The quality is stunning for the price. I wear my Golden Sphere Huggies every single day — they still look brand new after months.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Priya K.',
+    text: 'Bought the Royal Heirloom Set as a gift and the packaging alone made it feel like a luxury experience. She absolutely loved it.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Emma L.',
+    text: 'I was skeptical about demi-fine jewelry, but Velmora changed my mind. The Amber Lace Earrings are my new go-to for everything.',
+    rating: 5,
+  },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday gold', imgId: 'ugc-everyday-1a2b', titleId: 'ugc-title-1' },
+  { id: 'ugc-2', caption: 'Date night vibes', imgId: 'ugc-datenight-3c4d', titleId: 'ugc-title-2' },
+  { id: 'ugc-3', caption: 'Layered & lovely', imgId: 'ugc-layered-5e6f', titleId: 'ugc-title-3' },
+  { id: 'ugc-4', caption: 'Gift ready', imgId: 'ugc-gift-7g8h', titleId: 'ugc-title-4' },
+  { id: 'ugc-5', caption: 'Office to evening', imgId: 'ugc-office-9i0j', titleId: 'ugc-title-5' },
+  { id: 'ugc-6', caption: 'Golden hour', imgId: 'ugc-golden-1k2l', titleId: 'ugc-title-6' },
+]
