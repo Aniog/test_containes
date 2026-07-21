@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Velmora Fine Jewelry — Crafted to be Treasured</title>
   </head>
   <body>
     <div id="root"></div>
@@ -27,7 +30,7 @@
           search: window.location.search,
           hash: window.location.hash,
           title: document.title,
-          source,
+          source: source,
           timestamp: Date.now(),
         });
 
@@ -35,13 +38,12 @@
           if (!window.parent || window.parent === window) {
             return;
           }
-
           try {
             window.parent.postMessage(
               {
                 channel: CHANNEL,
                 version: VERSION,
-                type,
+                type: type,
                 payload: getRoutePayload(source),
               },
               "*",
@@ -62,7 +64,6 @@
           if (typeof originalMethod !== "function") {
             return;
           }
-
           window.history[methodName] = function patchedHistoryMethod(...args) {
             const result = originalMethod.apply(this, args);
             notifyRouteChanged(methodName);
