@@ -1,12 +1,26 @@
+import { useEffect, useRef } from 'react'
 import { Minus, Plus, ShoppingBag, X } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
 import { formatPrice } from '@/data/products'
-import { useStrkImages } from '@/hooks/useStrkImages'
 import { useCart } from './CartContext'
 import ImagePlaceholder from '@/components/ui/ImagePlaceholder'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function CartDrawer() {
   const { enrichedItems, isCartOpen, removeFromCart, setIsCartOpen, subtotal, updateQuantity } = useCart()
-  const cartRef = useStrkImages([isCartOpen, enrichedItems.length])
+  const cartRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, cartRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') cleanup()
+    }
+  }, [isCartOpen, enrichedItems.length])
 
   return (
     <div ref={cartRef} className={`fixed inset-0 z-50 ${isCartOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
@@ -40,12 +54,13 @@ export default function CartDrawer() {
           ) : (
             <div className="space-y-5">
               {enrichedItems.map(({ product, quantity, tone }) => {
-                const titleId = `cart-${product.id}-${tone}-title`.toLowerCase()
+                const titleId = product.cartTitleId
                 return (
-                  <article key={`${product.id}-${tone}`} className="grid grid-cols-[88px_1fr] gap-4 border-b border-velmora-espresso/10 pb-5">
-                    <ImagePlaceholder alt={product.name} className="h-24 w-22 rounded-2xl object-cover" imgId={`cart-${product.id}-${tone}-img`} query={`[${titleId}]`} ratio="1x1" width="300" />
+                  <article key={`${product.id}-${tone}`} className="grid grid-cols-[96px_1fr] gap-4 border-b border-velmora-espresso/10 pb-5">
+                    <span id={titleId} className="sr-only">{product.name}</span>
+                    <ImagePlaceholder alt={product.name} className="h-24 w-24 rounded-2xl object-cover" imgId={product.cartImgId} query={`[${titleId}]`} ratio="1x1" width="300" />
                     <div>
-                      <h3 id={titleId} className="font-serifDisplay text-lg uppercase tracking-product text-velmora-obsidian">{product.name}</h3>
+                      <h3 className="font-serifDisplay text-lg uppercase tracking-product text-velmora-obsidian">{product.name}</h3>
                       <p className="mt-1 font-sansBody text-xs uppercase tracking-nav text-velmora-muted">{tone} tone · {formatPrice(product.price)}</p>
                       <div className="mt-4 flex items-center justify-between">
                         <div className="flex items-center rounded-full border border-velmora-espresso/10 bg-velmora-silk text-velmora-obsidian">

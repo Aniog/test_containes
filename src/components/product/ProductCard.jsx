@@ -23,7 +23,7 @@ export default function ProductCard({ product }) {
             alt={`${product.name} worn detail`}
             className="absolute inset-0 h-full w-full object-cover opacity-0 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
             imgId={product.hoverImgId}
-            query={`[${product.titleId}] worn on model warm gold jewelry editorial`}
+            query={`[${product.descId}] [${product.titleId}]`}
             ratio="4x3"
             width="700"
           />

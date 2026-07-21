@@ -1,5 +1,8 @@
-const placeholder =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+import strkImgConfig from '@/strk-img-config.json'
+
+function getConfiguredImageUrl(imgId) {
+  return strkImgConfig?.[imgId]?.results?.[0]?.url || ''
+}
 
 export default function ImagePlaceholder({
   alt,
@@ -9,6 +12,8 @@ export default function ImagePlaceholder({
   ratio = '4x3',
   width = '800',
 }) {
+  const configuredUrl = getConfiguredImageUrl(imgId)
+
   return (
     <img
       alt={alt}
@@ -17,7 +22,7 @@ export default function ImagePlaceholder({
       data-strk-img={query}
       data-strk-img-ratio={ratio}
       data-strk-img-width={width}
-      src={placeholder}
+      src={configuredUrl || undefined}
     />
   )
 }

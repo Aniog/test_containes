@@ -10,6 +10,8 @@ export const products = [
     care: '18K gold plated over recycled brass with crystal detail. Keep dry, store in the included pouch, and polish gently with a soft cloth.',
     imgId: 'product-vivid-aura-primary-8a7c2f',
     hoverImgId: 'product-vivid-aura-hover-1d9b4e',
+    cartImgId: 'cart-vivid-aura-image-73d9a1',
+    cartTitleId: 'cart-vivid-aura-title',
     titleId: 'product-vivid-aura-title',
     descId: 'product-vivid-aura-desc',
     galleryIds: ['vivid-aura-gallery-one-42a1', 'vivid-aura-gallery-two-42a2', 'vivid-aura-gallery-three-42a3'],
@@ -26,6 +28,8 @@ export const products = [
     care: '18K gold plated chain with glass crystals. Avoid perfume contact and wipe clean after wear.',
     imgId: 'product-majestic-flora-primary-9f1b7c',
     hoverImgId: 'product-majestic-flora-hover-3e7c19',
+    cartImgId: 'cart-majestic-flora-image-08b7c3',
+    cartTitleId: 'cart-majestic-flora-title',
     titleId: 'product-majestic-flora-title',
     descId: 'product-majestic-flora-desc',
     galleryIds: ['majestic-flora-gallery-one-68a1', 'majestic-flora-gallery-two-68a2', 'majestic-flora-gallery-three-68a3'],
@@ -42,6 +46,8 @@ export const products = [
     care: '18K gold plated over brass with hypoallergenic posts. Store separately to preserve the mirror finish.',
     imgId: 'product-golden-sphere-primary-5b6d8a',
     hoverImgId: 'product-golden-sphere-hover-6f4a2d',
+    cartImgId: 'cart-golden-sphere-image-a6d4e2',
+    cartTitleId: 'cart-golden-sphere-title',
     titleId: 'product-golden-sphere-title',
     descId: 'product-golden-sphere-desc',
     galleryIds: ['golden-sphere-gallery-one-38a1', 'golden-sphere-gallery-two-38a2', 'golden-sphere-gallery-three-38a3'],
@@ -58,6 +64,8 @@ export const products = [
     care: 'Gold vermeil with hypoallergenic posts. Keep away from water and store flat in the jewelry box.',
     imgId: 'product-amber-lace-primary-0c8e4b',
     hoverImgId: 'product-amber-lace-hover-2d4a8f',
+    cartImgId: 'cart-amber-lace-image-f8c219',
+    cartTitleId: 'cart-amber-lace-title',
     titleId: 'product-amber-lace-title',
     descId: 'product-amber-lace-desc',
     galleryIds: ['amber-lace-gallery-one-54a1', 'amber-lace-gallery-two-54a2', 'amber-lace-gallery-three-54a3'],
@@ -74,6 +82,8 @@ export const products = [
     care: '18K gold plated jewelry with crystal accents. Store in the box between wears and clean with a dry soft cloth.',
     imgId: 'product-royal-heirloom-primary-7e5d1b',
     hoverImgId: 'product-royal-heirloom-hover-4a2c9f',
+    cartImgId: 'cart-royal-heirloom-image-c94a70',
+    cartTitleId: 'cart-royal-heirloom-title',
     titleId: 'product-royal-heirloom-title',
     descId: 'product-royal-heirloom-desc',
     galleryIds: ['royal-heirloom-gallery-one-95a1', 'royal-heirloom-gallery-two-95a2', 'royal-heirloom-gallery-three-95a3'],
@@ -81,7 +91,7 @@ export const products = [
   },
 ]
 
-export const categories = ['Earrings', 'Necklaces', 'Huggies']
+export const categories = ['Earrings', 'Necklaces', 'Huggies', 'Sets']
 
 export const formatPrice = (price) => `$${price}`
 

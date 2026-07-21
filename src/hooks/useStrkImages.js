@@ -6,11 +6,15 @@ export function useStrkImages(dependencies = []) {
   const containerRef = useRef(null)
 
   useEffect(() => {
+    let cleanup
     const frameId = window.requestAnimationFrame(() => {
-      ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
     })
 
-    return () => window.cancelAnimationFrame(frameId)
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      if (typeof cleanup === 'function') cleanup()
+    }
   }, dependencies)
 
   return containerRef
