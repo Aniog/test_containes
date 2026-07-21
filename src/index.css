@@ -1,76 +1,468 @@
+/* Velmora Fine Jewelry — Quiet Luxury Design System */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+  /* Color Palette — Warm Editorial Luxury */
+  --velmora-bg: #F8F5F0;
+  --velmora-bg-alt: #F1EDE5;
+  --velmora-surface: #FFFFFF;
+  --velmora-text: #2C2823;
+  --velmora-text-muted: #6B655C;
+  --velmora-text-light: #9A9286;
+  --velmora-border: #D9D2C6;
+  --velmora-gold: #B8976A;
+  --velmora-gold-dark: #8C6F4A;
+  --velmora-gold-light: #D4B98A;
+  --velmora-accent: #C5A46E;
+  --velmora-black: #0F0E0C;
+  
+  /* Typography */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Base Reset & Typography */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--velmora-bg);
+  color: var(--velmora-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elegant Serif for Headings */
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Product Names — UPPERCASE with wide tracking */
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 500;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--velmora-gold-dark);
+}
+
+/* Premium Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.875rem 2rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 0;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-gold);
+}
+
+.btn-primary:hover {
+  background-color: var(--velmora-gold-dark);
+  border-color: var(--velmora-gold-dark);
+  color: var(--velmora-bg);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--velmora-text);
+  border-color: var(--velmora-text);
+}
+
+.btn-outline:hover {
+  background-color: var(--velmora-text);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-text);
+}
+
+.btn-gold {
+  background-color: transparent;
+  color: var(--velmora-gold);
+  border-color: var(--velmora-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--velmora-gold);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-gold);
+}
+
+/* Hairline Dividers */
+.divider {
+  height: 1px;
+  background-color: var(--velmora-border);
+}
+
+/* Cards */
+.card {
+  background-color: var(--velmora-surface);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -15px rgba(0, 0, 0, 0.1);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--velmora-surface);
+}
+
+.product-card img {
+  transition: transform var(--transition-slow);
+}
+
+.product-card:hover img:first-child {
+  transform: scale(1.03);
+}
+
+.product-card .secondary-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.product-card:hover .secondary-image {
+  opacity: 1;
+}
+
+/* Quick Add Button */
+.quick-add {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all var(--transition-base);
+  z-index: 10;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--velmora-border);
+  background: var(--velmora-surface);
+  color: var(--velmora-text);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.variant-pill:hover {
+  border-color: var(--velmora-gold);
+}
+
+.variant-pill.active {
+  background: var(--velmora-text);
+  color: var(--velmora-bg);
+  border-color: var(--velmora-text);
+}
+
+/* Accordion */
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--velmora-border);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.accordion-trigger:hover {
+  color: var(--velmora-gold-dark);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-base);
+}
+
+.accordion-content.open {
+  max-height: 200px;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100%;
+  max-width: 420px;
+  background: var(--velmora-surface);
+  z-index: 100;
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 99;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.cart-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sticky Nav */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  transition: all var(--transition-base);
+}
+
+.nav.transparent {
+  background: transparent;
+}
+
+.nav.solid {
+  background: var(--velmora-bg);
+  border-bottom: 1px solid var(--velmora-border);
+}
+
+/* Search Input */
+.search-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--velmora-border);
+  padding: 0.5rem 0;
+  font-size: 0.875rem;
+  width: 200px;
+  transition: border-color var(--transition-fast);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--velmora-gold);
+}
+
+/* Filter Sidebar */
+.filter-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--velmora-text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  width: 180px;
+  aspect-ratio: 9/16;
+}
+
+.ugc-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ugc-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.6));
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+}
+
+.ugc-caption {
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 0.875rem;
+  line-height: 1.3;
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+}
+
+.category-tile img {
+  transition: transform var(--transition-slow);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  color: white;
+  letter-spacing: 0.08em;
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+}
+
+/* Testimonials */
+.testimonial {
+  border-left: 1px solid var(--velmora-gold);
+  padding-left: 1.5rem;
+}
+
+/* Newsletter */
+.newsletter {
+  background: var(--velmora-black);
+  color: var(--velmora-bg);
+}
+
+.newsletter input {
+  background: transparent;
+  border: 1px solid var(--velmora-gold);
+  color: var(--velmora-bg);
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+.newsletter input::placeholder {
+  color: var(--velmora-gold-light);
+}
+
+.newsletter input:focus {
+  outline: none;
+  border-color: var(--velmora-gold-light);
+}
+
+/* Footer */
+.footer-link {
+  font-size: 0.875rem;
+  color: var(--velmora-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--velmora-text);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .search-input {
+    width: 140px;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+/* Focus States for Accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--velmora-gold);
+  outline-offset: 2px;
+}
+
+/* Loading States */
+.skeleton {
+  background: linear-gradient(90deg, var(--velmora-bg-alt) 25%, var(--velmora-border) 50%, var(--velmora-bg-alt) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
