@@ -6401,10 +6401,68 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
     if (typeof expr.start !== 'number' || typeof expr.end !== 'number') return null
     return code.slice(expr.start, expr.end)
   }
+  // Track module-level string constants (e.g. `const PLACEHOLDER_SRC = "..."`)
+  // so `src={PLACEHOLDER_SRC}` can be treated like a literal placeholder.
+  const stringConstants = new Map()
+  // The shared StrkImg placeholder is imported, not declared locally. Treat
+  // any import named PLACEHOLDER_SRC from a StrkImg module as the known
+  // empty-SVG placeholder so the build-time inliner recognizes it.
+  for (const node of ast.program?.body || []) {
+    if (node.type === 'ImportDeclaration') {
+      const source = node.source?.value || ''
+      if (/StrkImg/.test(source)) {
+        for (const spec of node.specifiers || []) {
+          if (spec.type === 'ImportSpecifier') {
+            const imported = spec.imported?.name ?? spec.imported?.value
+            if (imported === 'PLACEHOLDER_SRC' && spec.local?.name) {
+              stringConstants.set(
+                spec.local.name,
+                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E",
+              )
+            }
+          }
+        }
+      }
+      continue
+    }
+    if (node.type !== 'VariableDeclaration') continue
+    for (const decl of node.declarations || []) {
+      if (decl.id?.type !== 'Identifier') continue
+      const init = decl.init
+      const value =
+        init?.type === 'StringLiteral'
+          ? init.value
+          : init?.type === 'TemplateLiteral' && init.expressions?.length === 0
+            ? init.quasis?.[0]?.value?.cooked ?? init.quasis?.[0]?.value?.raw ?? null
+            : null
+      if (typeof value === 'string') stringConstants.set(decl.id.name, value)
+    }
+  }
   const literalSrcFallback = attr => {
     if (!attr) return null
     if (attr.value?.type === 'StringLiteral') return attr.value.value
-    if (attr.value?.expression?.type === 'StringLiteral') return attr.value.expression.value
+    const expr = attr.value?.expression
+    if (expr?.type === 'StringLiteral') return expr.value
+    if (expr?.type === 'Identifier' && stringConstants.has(expr.name)) {
+      return stringConstants.get(expr.name)
+    }
+    if (expr?.type === 'TemplateLiteral' && expr.expressions?.length === 0) {
+      return expr.quasis?.[0]?.value?.cooked ?? expr.quasis?.[0]?.value?.raw ?? null
+    }
+    return null
+  }
+  // Static leading text of a dynamic id expression, e.g.
+  // "`cart-item-${line.id}`" -> "cart-item-" or "'search-' + p.id" -> "search-".
+  const idExprPrefix = idExpr => {
+    if (typeof idExpr !== 'string' || !idExpr) return null
+    const trimmed = idExpr.trim()
+    if (trimmed.startsWith('`')) {
+      const firstExpr = trimmed.indexOf('${')
+      if (firstExpr > 1) return trimmed.slice(1, firstExpr)
+      return null
+    }
+    const m = trimmed.match(/^(['"])([^'"]+)\1\s*\+/)
+    if (m) return m[2]
     return null
   }
   const entriesForOpening = (opening, kind) => {
@@ -6459,7 +6517,24 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
         const fallback = literalSrcFallback(srcAttr)
         if (idExpr) {
           const candidates = entriesForOpening(np.node, 'img')
-          const candidateIds = [...new Set(candidates.map(entry => entry.imgId))]
+          let candidateIds = [...new Set(candidates.map(entry => entry.imgId))]
+          if (!candidateIds.length) {
+            // Runtime-driven collections (e.g. cart lines, filtered product
+            // lists) cannot be statically enumerated. Fall back to
+            // configured ids sharing the template's static prefix, and if
+            // even that yields nothing (e.g. two dynamic segments with a
+            // common prefix like `card-a-`), accept every configured image
+            // id so the runtime helper can still resolve known ids. The
+            // helper returns undefined for unknown ids, which React drops,
+            // leaving the image without a placeholder src.
+            const prefix = idExprPrefix(idExpr)
+            if (prefix) {
+              candidateIds = Object.keys(activeConfigData).filter(key => key.startsWith(prefix))
+            }
+            if (!candidateIds.length) {
+              candidateIds = Object.keys(activeConfigData)
+            }
+          }
           if (!candidateIds.length) {
             reportUnresolved(np.node, {
               expression: idExpr,
