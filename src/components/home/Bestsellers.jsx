@@ -21,19 +21,10 @@ export default function Bestsellers() {
         {bestsellers.map((product) => (
           <div key={product.id} className="group relative">
             <Link to={`/product/${product.id}`} className="block">
-              <div className="relative overflow-hidden mb-4 aspect-square bg-gray-100">
-                <img
-                  src={product.images[0]}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-                {/* Hover overlay with second image */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <img
-                    src={product.images[1]}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
+              <div className="relative overflow-hidden mb-4 aspect-square bg-amber-100 flex items-center justify-center">
+                <div className="text-center p-8">
+                  <h3 className="font-serif text-2xl uppercase tracking-wider text-gray-900 mb-2">{product.name}</h3>
+                  <p className="text-sm text-gray-600">{product.description}</p>
                 </div>
               </div>
 
