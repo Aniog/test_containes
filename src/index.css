@@ -1,76 +1,136 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-cream: #faf7f2;
+    --color-ink: #1a1a1a;
+    --color-gold: #c5953a;
+    --color-gold-light: #d4a643;
+    --color-rose: #f5b8a8;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1a1a1a;
+    background-color: #faf7f2;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: inherit;
+  }
+
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  ::selection {
+    background-color: #c5953a;
+    color: white;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-ink-700 text-cream-50 font-sans text-sm font-medium tracking-ultra-wide uppercase transition-all duration-300 hover:bg-ink-800 active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3.5 border border-ink-700 text-ink-700 font-sans text-sm font-medium tracking-ultra-wide uppercase transition-all duration-300 hover:bg-ink-700 hover:text-cream-50 active:scale-[0.98];
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center px-8 py-3.5 bg-gold-500 text-white font-sans text-sm font-medium tracking-ultra-wide uppercase transition-all duration-300 hover:bg-gold-600 active:scale-[0.98];
+  }
+
+  .section-padding {
+    @apply px-5 md:px-10 lg:px-16 xl:px-24;
+  }
+
+  .section-padding-y {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .hairline-divider {
+    @apply w-full h-px bg-ink-100/60;
+  }
+
+  .product-title {
+    @apply font-serif text-base md:text-lg font-medium tracking-ultra-wide uppercase text-ink-700;
+  }
+
+  .product-price {
+    @apply font-sans text-base font-medium text-gold-600;
+  }
+
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl lg:text-5xl font-medium text-ink-800 text-center;
+  }
+
+  .section-subtitle {
+    @apply font-sans text-sm md:text-base text-ink-300 text-center tracking-wide mt-3;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #faf7f2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d0c8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b0aca4;
+}
