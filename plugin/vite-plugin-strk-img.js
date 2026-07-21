@@ -6482,9 +6482,11 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
           }
           const resolvedCandidateIds = candidateIds.filter(candidateId => dynamicUrlMap[candidateId])
           if (srcAttr?.value && fallback != null && resolvedCandidateIds.length) {
-            const hasUnresolvedCandidates = resolvedCandidateIds.length !== candidateIds.length
-            const fallbackArg = !isImagePlaceholderUrl(fallback) || hasUnresolvedCandidates
-              ? ', ' + JSON.stringify(fallback)
+            const resolvedFallback = !isImagePlaceholderUrl(fallback)
+              ? fallback
+              : dynamicUrlMap[resolvedCandidateIds[0]] || null
+            const fallbackArg = resolvedFallback
+              ? ', ' + JSON.stringify(resolvedFallback)
               : ''
             dynamicSrcPatches.push({
               start: srcAttr.value.start,
