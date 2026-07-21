@@ -11,8 +11,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft polishing cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns. Ships in 2-4 business days.',
     images: [
-      'https://images.unsplash.com/photo-1535632066927-ab7c11ab9b2b?w=800&q=80',
       'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
     ],
     tones: ['gold', 'silver'],
     bestseller: true,
@@ -29,8 +29,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft polishing cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns. Ships in 2-4 business days.',
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a86e2dc221b5?w=800&q=80',
       'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+      'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80',
     ],
     tones: ['gold', 'silver'],
     bestseller: true,
@@ -65,8 +65,8 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfumes and harsh chemicals. Clean with a soft polishing cloth.',
     shipping: 'Free worldwide shipping on orders over $75. 30-day returns. Ships in 2-4 business days.',
     images: [
-      'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=800&q=80',
       'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
     ],
     tones: ['gold', 'silver'],
     bestseller: true,
@@ -92,9 +92,9 @@ export const products = [
 ];
 
 export const categories = [
-  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c11ab9b2b?w=800&q=80' },
-  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a86e2dc221b5?w=800&q=80' },
-  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80' },
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80' },
 ];
 
 export const testimonials = [
@@ -108,5 +108,5 @@ export const ugcItems = [
   { id: 2, handle: '@emma.looks', image: 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=600&q=80', caption: 'Gift ready' },
   { id: 3, handle: '@olivia.wears', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&q=80', caption: 'New favorite' },
   { id: 4, handle: '@chic.daily', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80', caption: 'Date night' },
-  { id: 5, handle: '@golden.hour', image: 'https://images.unsplash.com/photo-1584030373081-f37b7bb4fa33?w=600&q=80', caption: 'Golden hour' },
+  { id: 5, handle: '@golden.hour', image: 'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=600&q=80', caption: 'Golden hour' },
 ];
