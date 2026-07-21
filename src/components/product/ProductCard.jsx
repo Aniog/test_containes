@@ -1,4 +1,7 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating'
@@ -8,6 +11,16 @@ const PLACEHOLDER =
 
 export default function ProductCard({ product, sectionTitleId }) {
   const { addItem } = useCart()
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [product.imgId, product.imgIdAlt])
 
   const handleQuickAdd = (e) => {
     e.preventDefault()
@@ -20,7 +33,7 @@ export default function ProductCard({ product, sectionTitleId }) {
       to={`/product/${product.slug}`}
       className="group block"
     >
-      <div className="relative aspect-[4/5] overflow-hidden bg-sand">
+      <div ref={ref} className="relative aspect-[4/5] overflow-hidden bg-sand">
         {/* Primary image */}
         <img
           alt={product.name}

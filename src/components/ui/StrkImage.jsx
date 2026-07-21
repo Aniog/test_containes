@@ -1,3 +1,6 @@
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { cn } from '@/lib/utils'
 
 const PLACEHOLDER =
@@ -16,8 +19,19 @@ export default function StrkImage({
   className,
   imgClassName,
 }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [imgId])
+
   return (
-    <div className={cn('relative overflow-hidden bg-sand', className)}>
+    <div ref={ref} className={cn('relative overflow-hidden bg-sand', className)}>
       <img
         alt={alt}
         data-strk-img-id={imgId}
