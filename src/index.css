@@ -1,76 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #261B16;
+  background-color: #F7F1E8;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F7F1E8;
+  color: #261B16;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid #C69A54;
+  outline-offset: 3px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #C69A54;
+  color: #261B16;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer utilities {
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-sans { font-family: Manrope, Inter, system-ui, sans-serif; }
+  .tracking-luxury { letter-spacing: 0.22em; }
+
+  .bg-velmora-ivory { background-color: #F7F1E8; }
+  .bg-velmora-blush { background-color: #EFE4D8; }
+  .bg-velmora-pearl { background-color: #FFFAF2; }
+  .bg-velmora-espresso { background-color: #261B16; }
+  .bg-velmora-gold { background-color: #C69A54; }
+  .bg-velmora-bronze { background-color: #9B6F35; }
+  .bg-velmora-champagne { background-color: #E8D6B7; }
+  .bg-velmora-noir { background-color: #18110E; }
+  .bg-velmora-noir\/10 { background-color: rgb(24 17 14 / 0.10); }
+  .bg-velmora-noir\/50 { background-color: rgb(24 17 14 / 0.50); }
+  .bg-velmora-noir\/80 { background-color: rgb(24 17 14 / 0.80); }
+
+  .text-velmora-ivory { color: #F7F1E8; }
+  .text-velmora-blush { color: #EFE4D8; }
+  .text-velmora-pearl { color: #FFFAF2; }
+  .text-velmora-espresso { color: #261B16; }
+  .text-velmora-taupe { color: #7B6A5E; }
+  .text-velmora-gold { color: #C69A54; }
+  .text-velmora-bronze { color: #9B6F35; }
+  .text-velmora-champagne { color: #E8D6B7; }
+  .text-velmora-mist { color: #D8CDC1; }
+  .text-velmora-noir { color: #18110E; }
+
+  .border-velmora-line { border-color: #D8C8AE; }
+  .border-velmora-espresso { border-color: #261B16; }
+  .border-velmora-gold { border-color: #C69A54; }
+  .border-velmora-noir { border-color: #18110E; }
+
+  .shadow-soft { box-shadow: 0 24px 80px rgb(38 27 22 / 0.10); }
+  .shadow-glow { box-shadow: 0 18px 45px rgb(198 154 84 / 0.20); }
+
+  .placeholder\:text-velmora-taupe::placeholder { color: #7B6A5E; }
+  .accent-velmora-gold { accent-color: #C69A54; }
+  .fill-current { fill: currentColor; }
+
+  .from-velmora-noir\/80 {
+    --tw-gradient-from: rgb(24 17 14 / 0.80) var(--tw-gradient-from-position);
+    --tw-gradient-to: rgb(24 17 14 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
   }
-
-  a:hover {
-    color: #747bff;
+  .via-velmora-noir\/10 {
+    --tw-gradient-to: rgb(24 17 14 / 0) var(--tw-gradient-to-position);
+    --tw-gradient-stops: var(--tw-gradient-from), rgb(24 17 14 / 0.10) var(--tw-gradient-via-position), var(--tw-gradient-to);
   }
+  .to-transparent { --tw-gradient-to: transparent var(--tw-gradient-to-position); }
 
-  button {
-    background-color: #f9f9f9;
-  }
+  .hover\:bg-velmora-gold:hover { background-color: #C69A54; }
+  .hover\:bg-velmora-bronze:hover { background-color: #9B6F35; }
+  .hover\:bg-velmora-champagne:hover { background-color: #E8D6B7; }
+  .hover\:bg-velmora-espresso:hover { background-color: #261B16; }
+  .hover\:bg-velmora-blush:hover { background-color: #EFE4D8; }
+  .hover\:text-velmora-gold:hover { color: #C69A54; }
+  .hover\:text-velmora-bronze:hover { color: #9B6F35; }
+  .hover\:text-velmora-espresso:hover { color: #261B16; }
+  .hover\:text-velmora-ivory:hover { color: #F7F1E8; }
+  .hover\:border-velmora-gold:hover { border-color: #C69A54; }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
