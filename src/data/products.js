@@ -11,7 +11,7 @@ export const products = [
     rating: 4.8,
     reviews: 124,
     images: [
-      "https://images.unsplash.com/photo-1630016828657-3c7e1575b27b?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop",
       "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop",
     ],
     variants: [
@@ -53,7 +53,7 @@ export const products = [
     rating: 4.7,
     reviews: 203,
     images: [
-      "https://images.unsplash.com/photo-1630016828657-3c7e1575b27b?w=800&h=1000&fit=crop",
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop",
       "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop",
     ],
     variants: [
@@ -107,7 +107,7 @@ export const products = [
 ];
 
 export const categories = [
-  { id: "earrings", name: "Earrings", image: "https://images.unsplash.com/photo-1630016828657-3c7e1575b27b?w=600&h=800&fit=crop" },
+  { id: "earrings", name: "Earrings", image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=800&fit=crop" },
   { id: "necklaces", name: "Necklaces", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=800&fit=crop" },
   { id: "huggies", name: "Huggies", image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&h=800&fit=crop" },
 ];
