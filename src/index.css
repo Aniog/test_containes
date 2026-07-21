@@ -1,76 +1,105 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ivory-100 text-espresso font-sans;
+    font-feature-settings: "ss01", "cv11";
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif text-espresso;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  /* Reset default link color so Tailwind controls it */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #D9CFC2; border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: #B8A99A; }
+
+  /* Selection */
+  ::selection {
+    background: #E8D5C4;
+    color: #1F1714;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-sans text-[10px] sm:text-[11px] uppercase tracking-widest3 text-taupe-500 font-medium;
+  }
+
+  .product-name {
+    @apply font-serif uppercase tracking-widest2 text-espresso;
+  }
+
+  .hairline {
+    @apply border-t border-hairline;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-espresso text-ivory-50 font-sans text-[11px] uppercase tracking-widest2 px-8 py-4 transition-all duration-300 hover:bg-espresso-100 hover:tracking-widest3 focus:outline-none focus:ring-1 focus:ring-espresso focus:ring-offset-2 focus:ring-offset-ivory-100;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-espresso text-espresso font-sans text-[11px] uppercase tracking-widest2 px-8 py-4 transition-all duration-300 hover:bg-espresso hover:text-ivory-50 focus:outline-none focus:ring-1 focus:ring-espresso focus:ring-offset-2 focus:ring-offset-ivory-100;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-espresso font-sans text-[11px] uppercase tracking-widest2 px-4 py-2 transition-all duration-300 hover:text-gold-500;
+  }
+
+  .nav-link {
+    @apply font-sans text-[12px] uppercase tracking-widest2 text-espresso transition-colors duration-300 hover:text-gold-500;
+  }
+
+  .input-elegant {
+    @apply w-full bg-transparent border-b border-espresso/40 text-espresso placeholder:text-taupe-400 font-sans text-sm py-3 px-0 focus:outline-none focus:border-espresso transition-colors;
+  }
+
+  .pill {
+    @apply inline-flex items-center justify-center min-w-[68px] px-4 py-2 border border-hairline text-[11px] uppercase tracking-widest2 font-sans cursor-pointer transition-all duration-300 hover:border-espresso;
+  }
+
+  .pill-active {
+    @apply border-espresso bg-espresso text-ivory-50;
+  }
+
+  /* Hide scrollbar on horizontal scroll strips */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty { text-wrap: pretty; }
+
+  .gold-gradient-text {
+    background: linear-gradient(120deg, #8E7349 0%, #C7A878 45%, #8E7349 90%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
