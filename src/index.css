@@ -1,76 +1,232 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Colors */
+    --background: 250 249 247;
+    --background-dark: 26 25 24;
+    --foreground: 26 25 24;
+    --foreground-secondary: 107 101 96;
+    --foreground-light: 250 249 247;
+    
+    --accent: 42 38 28;
+    --accent-gold: 201 169 98;
+    --accent-gold-hover: 184 149 79;
+    --accent-gold-light: 232 220 196;
+    
+    --border: 229 226 222;
+    --border-dark: 61 57 53;
+    --card: 255 255 255;
+    --card-foreground: 26 25 24;
+    
+    --muted: 250 249 247;
+    --muted-foreground: 107 101 96;
+    
+    --overlay: 26 25 24 128;
+    
+    /* Typography */
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'Manrope', system-ui, sans-serif;
+    
+    /* Spacing */
+    --spacing-section: 80px;
+    --spacing-section-mobile: 48px;
+    --container-max: 1280px;
+    
+    /* Shadows */
+    --shadow-card: 0 20px 40px rgba(26, 25, 24, 0.08);
+    --shadow-button: 0 8px 24px rgba(201, 169, 98, 0.25);
+    --shadow-drawer: 0 25px 50px rgba(26, 25, 24, 0.15);
+    
+    /* Transitions */
+    --transition: 300ms ease;
+  }
+  
+  * {
+    border-color: rgb(var(--border));
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
+    line-height: 1.6;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  .container-app {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  @media (max-width: 640px) {
+    .container-app {
+      padding: 0 16px;
+    }
+  }
+  
+  .btn-primary {
+    @apply bg-[#C9A962] text-[#1A1918] font-sans font-semibold px-8 py-3.5 
+           transition-all duration-300 ease-out border-none;
+  }
+  
+  .btn-primary:hover {
+    @apply bg-[#B8954F] shadow-[0_8px_24px_rgba(201,169,98,0.25)];
+    transform: translateY(-1px);
+  }
+  
+  .btn-secondary {
+    @apply bg-transparent text-[#C9A962] font-sans font-semibold px-8 py-3.5 
+           border border-[#C9A962] transition-all duration-300 ease-out;
+  }
+  
+  .btn-secondary:hover {
+    @apply bg-[#C9A962] text-[#1A1918];
+  }
+  
+  .divider {
+    @apply w-full h-px bg-[#E5E2DE];
+  }
+  
+  .divider-dark {
+    @apply w-full h-px bg-[#3D3935];
+  }
+  
+  .product-name {
+    @apply font-serif uppercase tracking-[0.15em] text-lg;
+  }
+  
+  .section-title {
+    @apply font-serif text-4xl md:text-5xl font-medium text-[#1A1918];
+  }
+  
+  .link-underline {
+    @apply relative inline-block;
+  }
+  
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-[#C9A962] transition-all duration-300;
+  }
+  
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.4s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Custom scrollbar */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--border)) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--border));
+    border-radius: 3px;
+  }
+}
+
+/* Custom focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid rgb(var(--accent-gold));
+  outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+  background-color: rgb(var(--accent-gold-light));
+  color: rgb(var(--foreground));
+}
