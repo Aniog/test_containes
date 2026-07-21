@@ -1,8 +1,19 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function Hero() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
     <section ref={ref} className="relative h-screen min-h-[640px] w-full overflow-hidden bg-ink">

@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Minus, Plus, ChevronRight } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { getProduct, getRelated } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { useImageLoader } from '@/lib/useImageLoader'
 import { formatPrice, cn } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating'
 import Accordion from '@/components/ui/Accordion'
@@ -24,7 +25,7 @@ export default function ProductDetail() {
   const { slug } = useParams()
   const product = getProduct(slug)
   const { addItem } = useCart()
-  const ref = useImageLoader([slug])
+  const ref = useRef(null)
 
   const [variant, setVariant] = useState(product?.variants[0] || 'Gold')
   const [quantity, setQuantity] = useState(1)
@@ -38,6 +39,15 @@ export default function ProductDetail() {
       window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }, [slug, product])
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [slug])
 
   if (!product) {
     return (

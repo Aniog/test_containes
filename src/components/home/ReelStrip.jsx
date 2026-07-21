@@ -1,14 +1,25 @@
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { reels } from '@/data/products'
-import { useImageLoader } from '@/lib/useImageLoader'
 
 const PLACEHOLDER =
   'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
 
 export default function ReelStrip() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
-    <section ref={ref} className="bg-sand py-20 md:py-28 overflow-hidden">
+    <section className="bg-sand py-20 md:py-28 overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 md:px-10 mb-10">
         <div className="flex items-end justify-between">
           <div>

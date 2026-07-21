@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, X } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { products, categories } from '@/data/products'
 import ProductCard from '@/components/product/ProductCard'
-import { useImageLoader } from '@/lib/useImageLoader'
 import { cn } from '@/lib/utils'
 
 const SORTS = [
@@ -23,7 +24,7 @@ const MATERIALS = ['Gold', 'Silver']
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const ref = useImageLoader([])
+  const ref = useRef(null)
 
   const initialCategory = searchParams.get('category') || ''
   const initialQuery = searchParams.get('q') || ''
@@ -42,6 +43,16 @@ export default function Shop() {
     const cat = searchParams.get('category') || ''
     setSelectedCategories(cat ? [cat] : [])
   }, [searchParams])
+
+  // Load stock images for the visible product grid
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [selectedCategories, selectedPrices, selectedMaterials, sort, query])
 
   const toggle = (list, setList, value) => {
     setList((current) =>

@@ -1,11 +1,22 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { products } from '@/data/products'
 import ProductCard from '@/components/product/ProductCard'
-import { useImageLoader } from '@/lib/useImageLoader'
 
 export default function Bestsellers() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
   const bestsellers = products.filter((p) => p.bestseller).slice(0, 5)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
     <section ref={ref} className="bg-cream py-20 md:py-28">
