@@ -1,11 +1,22 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 const PLACEHOLDER =
   'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
 
 export default function BrandStory() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const node = ref.current
+    if (!node) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
     <section ref={ref} className="bg-ink text-cream py-20 md:py-28">
