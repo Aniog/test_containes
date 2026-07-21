@@ -18,8 +18,8 @@ export const products = [
         'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1599643478518-a86e5802f111?w=800&q=80',
         'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
+        'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80',
       ],
     },
     badge: 'Bestseller',
@@ -68,8 +68,8 @@ export const products = [
         'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1599643478518-a86e5802f111?w=800&q=80',
         'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+        'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
       ],
     },
     badge: null,
@@ -118,8 +118,8 @@ export const products = [
         'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
       ],
       silver: [
-        'https://images.unsplash.com/photo-1599643478518-a86e5802f111?w=800&q=80',
         'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+        'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
       ],
     },
     badge: 'Limited',
