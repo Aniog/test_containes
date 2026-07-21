@@ -1,4 +1,4 @@
-export const CHANNEL = 'openhands-visual-edit';
+export const CHANNEL = 'strikingly-preview';
 export const VERSION = 1;
 
 export const TEXT_SIZE_CLASSES = [
