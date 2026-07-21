@@ -1,0 +1,168 @@
+// Velmora Fine Jewelry - Seed Product Data
+
+export const products = [
+  {
+    id: 1,
+    name: "Vivid Aura Jewels",
+    description: "Gold ear cuff with crystal accent. A delicate statement piece that catches the light with every turn.",
+    price: 42,
+    images: [
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+    ],
+    category: "Earrings",
+    material: "Gold",
+    inStock: true,
+    rating: 4.8,
+    reviews: 124,
+    isBestseller: true,
+  },
+  {
+    id: 2,
+    name: "Majestic Flora Nectar",
+    description: "Multicolor floral crystal necklace. Each crystal is hand-set to capture the beauty of a blooming garden.",
+    price: 68,
+    images: [
+      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+    ],
+    category: "Necklaces",
+    material: "Gold",
+    inStock: true,
+    rating: 4.9,
+    reviews: 89,
+    isBestseller: true,
+  },
+  {
+    id: 3,
+    name: "Golden Sphere Huggies",
+    description: "Chunky gold dome huggie earrings. Perfect everyday luxury with a substantial, premium feel.",
+    price: 38,
+    images: [
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+    ],
+    category: "Huggies",
+    material: "Gold",
+    inStock: true,
+    rating: 4.7,
+    reviews: 156,
+    isBestseller: true,
+  },
+  {
+    id: 4,
+    name: "Amber Lace Earrings",
+    description: "Textured gold filigree drop earrings. Intricate openwork design inspired by vintage lace patterns.",
+    price: 54,
+    images: [
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+    ],
+    category: "Earrings",
+    material: "Gold",
+    inStock: true,
+    rating: 4.6,
+    reviews: 67,
+    isBestseller: false,
+  },
+  {
+    id: 5,
+    name: "Royal Heirloom Set",
+    description: "Gift-boxed earring + necklace set. Our most coveted pieces, beautifully presented for gifting.",
+    price: 95,
+    images: [
+      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+    ],
+    category: "Sets",
+    material: "Gold",
+    inStock: true,
+    rating: 5.0,
+    reviews: 42,
+    isBestseller: true,
+  },
+  {
+    id: 6,
+    name: "Whisper Chain Necklace",
+    description: "Delicate gold chain with minimalist pendant. Layer it or wear alone for effortless elegance.",
+    price: 48,
+    images: [
+      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+    ],
+    category: "Necklaces",
+    material: "Gold",
+    inStock: true,
+    rating: 4.5,
+    reviews: 93,
+    isBestseller: false,
+  },
+  {
+    id: 7,
+    name: "Midnight Huggies",
+    description: "Sleek silver-tone huggies with subtle sparkle. A modern classic for day-to-night wear.",
+    price: 36,
+    images: [
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+      "https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80",
+    ],
+    category: "Huggies",
+    material: "Silver",
+    inStock: true,
+    rating: 4.4,
+    reviews: 78,
+    isBestseller: false,
+  },
+  {
+    id: 8,
+    name: "Eternal Drop Earrings",
+    description: "Graceful gold drop earrings with moving elements. Designed to dance with you.",
+    price: 58,
+    images: [
+      "https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80",
+      "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80",
+    ],
+    category: "Earrings",
+    material: "Gold",
+    inStock: true,
+    rating: 4.8,
+    reviews: 112,
+    isBestseller: false,
+  },
+];
+
+export const categories = ["All", "Earrings", "Necklaces", "Huggies", "Sets"];
+export const materials = ["All", "Gold", "Silver"];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: "Sarah M.",
+    rating: 5,
+    text: "The quality is incredible for the price. I get compliments every time I wear my Velmora pieces.",
+    initial: "S",
+  },
+  {
+    id: 2,
+    name: "Jessica L.",
+    rating: 5,
+    text: "Bought the Royal Heirloom Set as a gift to myself. The packaging alone made it feel so special.",
+    initial: "J",
+  },
+  {
+    id: 3,
+    name: "Emily R.",
+    rating: 5,
+    text: "Finally, jewelry that doesn't irritate my sensitive ears. The gold plating is beautiful and lasting.",
+    initial: "E",
+  },
+];
+
+export const ugcPosts = [
+  { id: 1, alt: "Model wearing gold huggie earrings", caption: "Everyday elegance" },
+  { id: 2, alt: "Close-up of necklace on neck", caption: "Layer it up" },
+  { id: 3, alt: "Ear styling with multiple pieces", caption: "Curated ears" },
+  { id: 4, alt: "Gift box opening", caption: "Unbox joy" },
+  { id: 5, alt: "Model in soft light", caption: "Timeless pieces" },
+  { id: 6, alt: "Stacked rings and necklace", caption: "Full set vibes" },
+];

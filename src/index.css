@@ -1,76 +1,164 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Velmora Design System - Quiet Luxury */
+    --color-cream: #FAF8F5;
+    --color-charcoal: #1A1A1A;
+    --color-warm-gray: #8A8580;
+    --color-gold: #C9A96E;
+    --color-gold-light: #D4B87A;
+    --color-gold-dark: #A6884A;
+    --color-ivory: #F5F0EB;
+    --color-sand: #E8E2D9;
+    --color-rose: #B76E79;
+    --color-white: #FFFFFF;
+    --color-soft-black: #2D2D2D;
+
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    font-weight: 400;
+    color: var(--color-charcoal);
+    background-color: var(--color-cream);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', 'Georgia', serif;
+    font-weight: 400;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+
+  /* Product name style */
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* Smooth transitions */
+  a, button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ivory);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-sand);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-warm-gray);
+  }
+}
+
+@layer components {
+  /* Premium button styles */
+  .btn-primary {
+    @apply bg-[#C9A96E] text-white px-8 py-3 text-sm uppercase tracking-[0.15em] font-medium hover:bg-[#A6884A] transition-all duration-300;
+  }
+
+  .btn-primary-outline {
+    @apply border border-[#C9A96E] text-[#C9A96E] px-8 py-3 text-sm uppercase tracking-[0.15em] font-medium hover:bg-[#C9A96E] hover:text-white transition-all duration-300;
+  }
+
+  .btn-dark {
+    @apply bg-[#1A1A1A] text-white px-8 py-3 text-sm uppercase tracking-[0.15em] font-medium hover:bg-[#2D2D2D] transition-all duration-300;
+  }
+
+  /* Hairline divider */
+  .divider {
+    @apply border-t border-[#E8E2D9];
+  }
+
+  /* Section spacing */
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  /* Container */
+  .container-luxury {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Hide scrollbar for horizontal scroll */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Cart drawer animation */
+.cart-drawer-open {
+  transform: translateX(0);
+}
+.cart-drawer-closed {
+  transform: translateX(100%);
+}
+
+/* Mobile menu animation */
+.mobile-menu-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.mobile-menu-closed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  overflow: hidden;
+}
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.img-zoom:hover img {
+  transform: scale(1.05);
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
