@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description"
+    },
+    "full_description": {
+      "type": "string",
+      "description": "Long description for PDP"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Image shown on hover"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Shown in bestsellers section"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "default": 5,
+      "description": "Average rating"
+    }
+  },
+  "required": ["name", "category", "price", "image_url"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
