@@ -1,76 +1,139 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #FAF8F5;
+    --color-cream: #F5F0E8;
+    --color-charcoal: #1A1A1A;
+    --color-warmblack: #141414;
+    --color-stone: #6B6460;
+    --color-gold: #C9A962;
+    --color-gold-hover: #B8943F;
+    --color-gold-light: #E8DCC4;
+    --color-hairline: #E8E3DD;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-ivory text-warmblack font-sans antialiased;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium;
+    line-height: 1.2;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a {
+    @apply transition-colors duration-300;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-4 sm:px-6;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-20;
+  }
+
+  .hairline {
+    @apply border-t border-hairline;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 
+           bg-gold text-charcoal font-sans font-semibold text-xs uppercase tracking-widest
+           hover:bg-gold-hover transition-all duration-300
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-8 py-3 
+           bg-transparent text-gold font-sans font-semibold text-xs uppercase tracking-widest
+           border border-gold hover:bg-gold hover:text-charcoal transition-all duration-300;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2
+           bg-transparent text-stone font-sans font-medium text-sm
+           hover:text-warmblack transition-colors duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 bg-white border border-hairline
+           font-sans text-sm text-warmblack placeholder:text-stone/60
+           focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/20
+           transition-all duration-300;
+  }
+
+  .product-title {
+    @apply font-serif text-sm uppercase tracking-[0.2em] text-warmblack;
+  }
+
+  .section-title {
+    @apply font-serif text-2xl md:text-3xl lg:text-4xl text-warmblack text-center;
+  }
+
+  .link-underline {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 
+           after:h-px after:bg-gold hover:after:w-full after:transition-all after:duration-300;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .animate-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animate-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animate-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animate-delay-400 {
+    animation-delay: 400ms;
+  }
+}
