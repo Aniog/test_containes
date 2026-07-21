@@ -1,0 +1,37 @@
+import React, { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+export const Accordion = ({ title, children, defaultOpen = false }) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="border-b border-[#C4B8A8]">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between py-5 text-left"
+        aria-expanded={isOpen}
+      >
+        <span className="font-serif text-base tracking-[1px] text-[#1C1917]">
+          {title}
+        </span>
+        <ChevronDown
+          className={cn(
+            'h-4 w-4 text-[#8A8178] transition-transform duration-200',
+            isOpen && 'rotate-180'
+          )}
+        />
+      </button>
+      <div
+        className={cn(
+          'overflow-hidden transition-all duration-300',
+          isOpen ? 'max-h-96 pb-5' : 'max-h-0'
+        )}
+      >
+        <div className="text-sm leading-relaxed text-[#4A4640]">
+          {children}
+        </div>
+      </div>
+    </div>
+  );
+};
