@@ -1,5 +1,7 @@
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react'
-import ProductImage from '../product/ProductImage'
+import { getStrkImageSrc } from '../../lib/strk-image'
+
+const getCartImageSrc = (product) => getStrkImageSrc(`product-${product.id}-primary-img-velmora`)
 
 export default function CartDrawer({
   isOpen,
@@ -54,13 +56,10 @@ export default function CartDrawer({
               {items.map((item) => (
                 <article key={item.key} className="grid grid-cols-[96px_1fr] gap-4 border-b border-velmora-mist pb-5">
                   <div className="aspect-square overflow-hidden bg-velmora-mist">
-                    <ProductImage
-                      product={item.product}
-                      variant={`cart-${item.tone}`}
-                      ratio="1x1"
-                      width="300"
+                    <img
+                      alt={item.product.name}
+                      src={getCartImageSrc(item.product)}
                       className="h-full w-full object-cover"
-                      querySuffix="cart jewelry detail"
                     />
                   </div>
                   <div className="min-w-0 text-velmora-espresso">

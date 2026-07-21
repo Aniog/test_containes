@@ -6,8 +6,8 @@ import Rating from './Rating'
 export default function ProductCard({ product, onAddToCart, compact = false, contextQuery = '' }) {
   return (
     <article className="group relative overflow-hidden bg-velmora-cream text-velmora-espresso shadow-soft transition duration-500 hover:-translate-y-1 hover:shadow-editorial">
-      <Link to={`/products/${product.slug}`} className="block focus:outline-none focus:ring-2 focus:ring-velmora-champagne focus:ring-offset-2 focus:ring-offset-velmora-ivory">
-        <div className="relative aspect-[4/5] overflow-hidden bg-velmora-mist">
+      <div className="relative aspect-[4/5] overflow-hidden bg-velmora-mist">
+        <Link to={`/products/${product.slug}`} className="block h-full focus:outline-none focus:ring-2 focus:ring-velmora-champagne focus:ring-offset-2 focus:ring-offset-velmora-ivory">
           <ProductImage
             product={product}
             variant="primary"
@@ -24,21 +24,18 @@ export default function ProductCard({ product, onAddToCart, compact = false, con
             className="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition duration-700 group-hover:scale-100 group-hover:opacity-100"
             querySuffix={contextQuery}
           />
-          <div className="absolute inset-x-4 bottom-4 translate-y-3 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-            <button
-              type="button"
-              onClick={(event) => {
-                event.preventDefault()
-                onAddToCart(product)
-              }}
-              className="flex w-full items-center justify-center gap-2 bg-velmora-oxblood px-4 py-3 text-xs font-bold uppercase tracking-[0.22em] text-velmora-cream shadow-soft transition hover:bg-velmora-espresso focus:outline-none focus:ring-2 focus:ring-velmora-champagne"
-            >
-              <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-              Add to Cart
-            </button>
-          </div>
+        </Link>
+        <div className="absolute inset-x-4 bottom-4 translate-y-0 opacity-100 transition duration-300 sm:translate-y-3 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 sm:group-focus-within:translate-y-0 sm:group-focus-within:opacity-100">
+          <button
+            type="button"
+            onClick={() => onAddToCart(product)}
+            className="flex w-full items-center justify-center gap-2 bg-velmora-oxblood px-4 py-3 text-xs font-bold uppercase tracking-[0.22em] text-velmora-cream shadow-soft transition hover:bg-velmora-espresso focus:outline-none focus:ring-2 focus:ring-velmora-champagne"
+          >
+            <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+            Add to Cart
+          </button>
         </div>
-      </Link>
+      </div>
       <div className={`${compact ? 'p-4' : 'p-5 sm:p-6'}`}>
         <p className="mb-2 text-[0.68rem] font-bold uppercase tracking-[0.24em] text-velmora-umber">
           {product.category}
