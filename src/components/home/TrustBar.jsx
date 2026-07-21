@@ -1,0 +1,27 @@
+import { Package, RotateCcw, Sparkles, Shield } from 'lucide-react';
+
+const items = [
+  { icon: Package, label: 'Free Worldwide Shipping' },
+  { icon: RotateCcw, label: '30-Day Returns' },
+  { icon: Sparkles, label: '18K Gold Plated' },
+  { icon: Shield, label: 'Hypoallergenic' },
+];
+
+export default function TrustBar() {
+  return (
+    <div className="bg-obsidian border-b border-ivory/10">
+      <div className="section-container">
+        <div className="flex flex-wrap items-center justify-center md:justify-between gap-4 py-3">
+          {items.map(({ icon: Icon, label }) => (
+            <div key={label} className="flex items-center gap-2">
+              <Icon size={13} strokeWidth={1.5} className="text-gold flex-shrink-0" />
+              <span className="text-[11px] uppercase tracking-widest text-ivory/70 whitespace-nowrap">
+                {label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
