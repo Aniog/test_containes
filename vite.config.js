@@ -8,7 +8,6 @@ import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-im
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     checkBrokenImgPlugin(),
     checkPlaceholderImgPlugin(),
@@ -21,6 +20,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: 12000,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,

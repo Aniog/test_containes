@@ -1,15 +1,25 @@
-import './App.css'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { CartProvider } from '@/context/CartContext';
+import { ToastProvider } from '@/components/ui/Toast';
+import Layout from '@/Layout';
+import HomePage from '@/pages/HomePage';
+import ProductPage from '@/pages/ProductPage';
+import ShopPage from '@/pages/ShopPage';
 
-function App() {
+export default function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <ToastProvider>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/shop" element={<ShopPage />} />
+              <Route path="/product/:id" element={<ProductPage />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
+    </ToastProvider>
+  );
 }
-
-export default App
