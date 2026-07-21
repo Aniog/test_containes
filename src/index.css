@@ -1,76 +1,274 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Velmora Design System */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Colors */
+  --color-cream: #F8F5F0;
+  --color-ivory: #FFFEF9;
+  --color-espresso: #2C2420;
+  --color-mocha: #5C4F47;
+  --color-gold: #C9A962;
+  --color-gold-hover: #B8943F;
+  --color-warm-gray: #A89F99;
+  --color-divider: #E8E3DD;
+  --color-charcoal: #1A1715;
+  
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Spacing */
+  --section-padding-desktop: 80px;
+  --section-padding-mobile: 48px;
+  --container-max: 1280px;
+  
+  /* Shadows */
+  --shadow-card: 0 2px 12px rgba(44, 36, 32, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(44, 36, 32, 0.1);
+  --shadow-drawer: 0 12px 40px rgba(44, 36, 32, 0.15);
+  
+  /* Transitions */
+  --transition-fast: 200ms ease;
+  --transition-normal: 300ms ease;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: var(--font-sans);
+  background-color: var(--color-cream);
+  color: var(--color-espresso);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-gold);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-warm-gray);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mocha);
+}
+
+/* Selection */
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ivory);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Utility classes */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.bg-cream {
+  background-color: var(--color-cream);
+}
+
+.bg-ivory {
+  background-color: var(--color-ivory);
+}
+
+.bg-charcoal {
+  background-color: var(--color-charcoal);
+}
+
+.text-espresso {
+  color: var(--color-espresso);
+}
+
+.text-mocha {
+  color: var(--color-mocha);
+}
+
+.text-warm-gray {
+  color: var(--color-warm-gray);
+}
+
+.border-divider {
+  border-color: var(--color-divider);
+}
+
+/* Product name styling */
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.875rem;
+}
+
+/* Section styling */
+.section {
+  padding-top: var(--section-padding-desktop);
+  padding-bottom: var(--section-padding-desktop);
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: var(--section-padding-mobile);
+    padding-bottom: var(--section-padding-mobile);
+  }
+}
+
+/* Container */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Button styles */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all var(--transition-fast);
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary:hover {
+  background-color: var(--color-gold-hover);
+  color: var(--color-charcoal);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 32px;
+  background-color: transparent;
+  color: var(--color-gold);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-gold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-secondary:hover {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+/* Hairline divider */
+.divider {
+  height: 1px;
+  background-color: var(--color-divider);
+  width: 100%;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease forwards;
+}
+
+/* Hide scrollbar for horizontal scroll areas */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
