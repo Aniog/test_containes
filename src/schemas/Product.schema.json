@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product display name"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 140,
+      "description": "URL-friendly unique identifier"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["earrings", "necklaces", "huggies", "sets"],
+      "description": "Product category"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Price in USD"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "Short product description"
+    },
+    "materials": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "Materials and care notes"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average star rating"
+    },
+    "reviews": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Show in homepage bestsellers"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["gold", "silver"]
+      },
+      "description": "Available tone variants"
+    },
+    "imageQuery": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Stock image search hint for the primary product photo"
+    }
+  },
+  "required": ["name", "slug", "category", "price", "description"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
