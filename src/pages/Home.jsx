@@ -1,0 +1,26 @@
+import React from 'react';
+import Hero from '@/components/home/Hero';
+import TrustBar from '@/components/home/TrustBar';
+import ProductGrid from '@/components/home/ProductGrid';
+import UGCStrip from '@/components/home/UGCStrip';
+import CategoryTiles from '@/components/home/CategoryTiles';
+import BrandStory from '@/components/home/BrandStory';
+import Testimonials from '@/components/home/Testimonials';
+import Newsletter from '@/components/home/Newsletter';
+
+const Home = () => {
+  return (
+    <main>
+      <Hero />
+      <TrustBar />
+      <ProductGrid />
+      <UGCStrip />
+      <CategoryTiles />
+      <BrandStory />
+      <Testimonials />
+      <Newsletter />
+    </main>
+  );
+};
+
+export default Home;

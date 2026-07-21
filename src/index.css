@@ -1,76 +1,148 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-ivory: #FAF7F2;
+    --color-cream: #F5F0E8;
+    --color-espresso: #2C2420;
+    --color-cocoa: #5C4D47;
+    --color-champagne: #C9A962;
+    --color-gold-light: #E8D5A3;
+    --color-silk: #8B7E74;
+    --color-rose-gold: #B76E79;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans;
+    font-weight: 400;
+    background-color: var(--color-ivory);
+    color: var(--color-espresso);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  input, textarea {
+    font-family: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-silk);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-cocoa);
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid var(--color-champagne);
+    outline-offset: 2px;
+  }
+
+  /* Selection color */
+  ::selection {
+    background-color: var(--color-gold-light);
+    color: var(--color-espresso);
+  }
+}
+
+@layer components {
+  .container-main {
+    @apply max-w-container mx-auto px-4 md:px-6;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-20;
+  }
+
+  .hairline-divider {
+    @apply h-px bg-champagne/30;
+  }
+
+  .product-name {
+    @apply font-sans text-product uppercase tracking-widest text-espresso;
+  }
+
+  .btn-primary {
+    @apply bg-champagne text-espresso font-medium px-8 py-4 transition-all duration-300;
+  }
+
+  .btn-primary:hover {
+    @apply bg-espresso text-ivory;
+  }
+
+  .btn-secondary {
+    @apply border border-espresso text-espresso font-medium px-8 py-4 transition-all duration-300 bg-transparent;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-espresso text-ivory;
+  }
+}
+
+@layer utilities {
+  .animate-stagger-1 { animation-delay: 100ms; }
+  .animate-stagger-2 { animation-delay: 200ms; }
+  .animate-stagger-3 { animation-delay: 300ms; }
+  .animate-stagger-4 { animation-delay: 400ms; }
+  .animate-stagger-5 { animation-delay: 500ms; }
+}
