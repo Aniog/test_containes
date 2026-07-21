@@ -7,8 +7,16 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode>
 );
+
+// Preview route bridge
+if (typeof window !== "undefined") {
+  window.__STRIKINGLY_PREVIEW_NAVIGATE__ = (path, options) => {
+    // Handled by BrowserRouter
+  };
+}
