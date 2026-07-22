@@ -1,0 +1,35 @@
+import { useEffect, useRef } from "react";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
+import Hero from "@/components/home/Hero";
+import TrustBar from "@/components/home/TrustBar";
+import Bestsellers from "@/components/home/Bestsellers";
+import ReelStrip from "@/components/home/ReelStrip";
+import CategoryTiles from "@/components/home/CategoryTiles";
+import BrandStory from "@/components/home/BrandStory";
+import Testimonials from "@/components/home/Testimonials";
+import Newsletter from "@/components/home/Newsletter";
+
+export default function Home() {
+  const rootRef = useRef(null);
+  useEffect(() => {
+    const node = rootRef.current;
+    if (!node) return undefined;
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, node);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, []);
+  return (
+    <div ref={rootRef}>
+      <Hero />
+      <TrustBar />
+      <Bestsellers />
+      <ReelStrip />
+      <CategoryTiles />
+      <BrandStory />
+      <Testimonials />
+      <Newsletter />
+    </div>
+  );
+}
