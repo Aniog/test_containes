@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react"
-import { Search, Plus, Pencil, Trash2, ChevronUp, ChevronDown } from "lucide-react"
+import { useState, useEffect, useCallback } from "react"
+import { Search, Plus, Pencil, Trash2, ChevronUp, ChevronDown, RefreshCw } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select } from "@/components/ui/select"
@@ -15,7 +15,9 @@ const formatDate = (iso) => {
 }
 
 export default function Dashboard() {
-  const [leads, setLeads] = useState(leadsApi.getAll())
+  const [leads, setLeads] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [search, setSearch] = useState("")
   const [statusFilter, setStatusFilter] = useState("")
   const [sortField, setSortField] = useState("createdAt")
@@ -23,10 +25,23 @@ export default function Dashboard() {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [editingLead, setEditingLead] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
+  const [deleting, setDeleting] = useState(false)
 
-  useEffect(() => {
-    return leadsApi.subscribe(setLeads)
+  const refreshLeads = useCallback(async () => {
+    setLoading(true)
+    setError(null)
+    try {
+      const rows = await leadsApi.fetchAll()
+      setLeads(rows)
+    } catch (err) {
+      console.error('Failed to load leads:', err)
+      setError(err.message || 'Failed to load leads')
+    } finally {
+      setLoading(false)
+    }
   }, [])
+
+  useEffect(() => { refreshLeads() }, [refreshLeads])
 
   const handleSort = (field) => {
     if (sortField === field) setSortDir((d) => (d === "asc" ? "desc" : "asc"))
@@ -63,11 +78,20 @@ export default function Dashboard() {
 
   const openAdd = () => { setEditingLead(null); setDrawerOpen(true) }
   const openEdit = (lead) => { setEditingLead(lead); setDrawerOpen(true) }
-  const closeDrawer = () => { setDrawerOpen(false); setEditingLead(null) }
+  const closeDrawer = () => { setDrawerOpen(false); setEditingLead(null); refreshLeads() }
 
-  const handleDelete = (id) => {
-    leadsApi.delete(id)
-    setDeleteConfirm(null)
+  const handleDelete = async (id) => {
+    setDeleting(true)
+    try {
+      await leadsApi.delete(id)
+      setLeads((prev) => prev.filter((l) => l.id !== id))
+    } catch (err) {
+      console.error('Delete failed:', err)
+      setError(err.message || 'Failed to delete lead')
+    } finally {
+      setDeleting(false)
+      setDeleteConfirm(null)
+    }
   }
 
   return (
@@ -79,14 +103,26 @@ export default function Dashboard() {
             <h1 className="text-2xl font-bold text-slate-900">Leads</h1>
             <p className="text-sm text-slate-500 mt-0.5">Manage and track your sales pipeline</p>
           </div>
-          <Button
-            className="bg-indigo-600 hover:bg-indigo-700 text-white self-start sm:self-auto"
-            onClick={openAdd}
-          >
-            <Plus className="w-4 h-4 mr-2" />
-            Add Lead
-          </Button>
+          <div className="flex gap-2 self-start sm:self-auto">
+            <Button variant="outline" onClick={refreshLeads} disabled={loading} title="Refresh">
+              <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            </Button>
+            <Button
+              className="bg-indigo-600 hover:bg-indigo-700 text-white"
+              onClick={openAdd}
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Lead
+            </Button>
+          </div>
         </div>
+
+        {/* Error banner */}
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm">
+            {error}
+          </div>
+        )}
 
         {/* Stats */}
         <StatsBar leads={leads} />
@@ -141,7 +177,14 @@ export default function Dashboard() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.length === 0 ? (
+                {loading ? (
+                  <tr>
+                    <td colSpan={7} className="text-center py-16 text-slate-400">
+                      <RefreshCw className="w-5 h-5 animate-spin mx-auto mb-2" />
+                      Loading leads...
+                    </td>
+                  </tr>
+                ) : filtered.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="text-center py-16 text-slate-400">
                       {search || statusFilter ? "No leads match your filters." : "No leads yet. Add your first lead!"}
@@ -187,7 +230,7 @@ export default function Dashboard() {
               </tbody>
             </table>
           </div>
-          {filtered.length > 0 && (
+          {!loading && filtered.length > 0 && (
             <div className="px-4 py-3 border-t border-slate-100 text-xs text-slate-400">
               Showing {filtered.length} of {leads.length} leads
             </div>
@@ -209,14 +252,15 @@ export default function Dashboard() {
               This action cannot be undone. The lead will be permanently removed.
             </p>
             <div className="flex gap-3">
-              <Button variant="outline" className="flex-1" onClick={() => setDeleteConfirm(null)}>
+              <Button variant="outline" className="flex-1" onClick={() => setDeleteConfirm(null)} disabled={deleting}>
                 Cancel
               </Button>
               <Button
                 className="flex-1 bg-red-500 hover:bg-red-600 text-white"
                 onClick={() => handleDelete(deleteConfirm)}
+                disabled={deleting}
               >
-                Delete
+                {deleting ? 'Deleting...' : 'Delete'}
               </Button>
             </div>
           </Card>

@@ -1,104 +1,124 @@
-// In-memory lead store with mock data for frontend preview
-import { useState, useCallback } from "react"
+import { DataClient, Utils } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 
-const INITIAL_LEADS = [
-  {
-    id: "1",
-    name: "Sarah Johnson",
-    email: "sarah.johnson@techcorp.com",
-    phone: "+1 (555) 234-5678",
-    company: "TechCorp Inc.",
-    source: "Website",
-    status: "Qualified",
-    notes: "Interested in enterprise plan. Follow up next week.",
-    createdAt: "2026-07-15T09:30:00Z",
-  },
-  {
-    id: "2",
-    name: "Marcus Williams",
-    email: "m.williams@growthco.io",
-    phone: "+1 (555) 876-5432",
-    company: "GrowthCo",
-    source: "Referral",
-    status: "Contacted",
-    notes: "Referred by John Smith. Needs demo.",
-    createdAt: "2026-07-16T14:00:00Z",
-  },
-  {
-    id: "3",
-    name: "Priya Patel",
-    email: "priya@startupxyz.com",
-    phone: "+1 (555) 345-6789",
-    company: "StartupXYZ",
-    source: "LinkedIn",
-    status: "New",
-    notes: "",
-    createdAt: "2026-07-17T11:15:00Z",
-  },
-  {
-    id: "4",
-    name: "David Chen",
-    email: "dchen@enterprise.com",
-    phone: "+1 (555) 456-7890",
-    company: "Enterprise Solutions",
-    source: "Cold Outreach",
-    status: "Proposal",
-    notes: "Sent proposal for 50-seat license. Awaiting response.",
-    createdAt: "2026-07-18T08:45:00Z",
-  },
-  {
-    id: "5",
-    name: "Emily Rodriguez",
-    email: "emily.r@mediagroup.com",
-    phone: "+1 (555) 567-8901",
-    company: "Media Group",
-    source: "Website",
-    status: "Won",
-    notes: "Closed! Annual plan, 20 seats.",
-    createdAt: "2026-07-19T16:20:00Z",
-  },
-  {
-    id: "6",
-    name: "James Thompson",
-    email: "j.thompson@oldschool.biz",
-    phone: "+1 (555) 678-9012",
-    company: "OldSchool Biz",
-    source: "Trade Show",
-    status: "Lost",
-    notes: "Went with competitor. Price was the issue.",
-    createdAt: "2026-07-20T10:00:00Z",
-  },
-]
+// Create the client lazily so it reads the platform-injected cookie on first use.
+let _client = null
+const getClient = () => {
+  if (!_client) {
+    const url = Utils.getCookieItem('__strk_project_url') || STRK_PROJECT_URL
+    const key = Utils.getCookieItem('__strk_project_anon_key') || STRK_PROJECT_ANON_KEY
+    console.log('[leads] DataClient init — url:', url, '| key present:', key !== 'xx')
+    _client = new DataClient(url, key)
+  }
+  return _client
+}
 
-let leadsStore = [...INITIAL_LEADS]
-let listeners = []
+const TABLE = 'Leads'
 
-const notify = () => listeners.forEach((fn) => fn([...leadsStore]))
+const getRows = (response) => response?.data?.list ?? []
+const getEntity = (response) => response?.data ?? null
+const getFields = (entity) => entity?.data ?? {}
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Request failed'
+}
+
+// Normalise a DB entity row into the flat shape the UI expects
+const toUiLead = (entity) => {
+  const fields = getFields(entity)
+  return {
+    id: entity.id,
+    name: fields.name ?? '',
+    email: fields.email ?? '',
+    phone: fields.phone ?? '',
+    company: fields.company ?? '',
+    source: fields.source ?? '',
+    status: fields.status ?? 'New',
+    notes: fields.notes ?? '',
+    createdAt: entity.created_at ?? new Date().toISOString(),
+  }
+}
 
 export const leadsApi = {
-  getAll: () => [...leadsStore],
-  add: (lead) => {
-    const newLead = {
-      ...lead,
-      id: String(Date.now()),
-      status: "New",
-      createdAt: new Date().toISOString(),
+  // Fetch all leads, newest first
+  fetchAll: async () => {
+    const { data: response, error } = await getClient()
+      .from(TABLE)
+      .select('*')
+      .order('created_at', { ascending: false })
+      .range(0, 199)
+
+    if (error) throw error
+    return getRows(response).map(toUiLead)
+  },
+
+  // Add a new lead
+  add: async (lead) => {
+    const payload = {
+      name: lead.name,
+      email: lead.email,
+      phone: lead.phone || '',
+      company: lead.company,
+      source: lead.source || '',
+      status: 'New',
+      notes: lead.notes || '',
     }
-    leadsStore = [newLead, ...leadsStore]
-    notify()
-    return newLead
+
+    const { data: response, error } = await getClient()
+      .from(TABLE)
+      .insert({ data: payload })
+      .select()
+      .single()
+
+    if (error || response?.success === false) {
+      throw new Error(getErrorMessage(response, error))
+    }
+    return toUiLead(getEntity(response))
   },
-  update: (id, updates) => {
-    leadsStore = leadsStore.map((l) => (l.id === id ? { ...l, ...updates } : l))
-    notify()
+
+  // Update an existing lead by id
+  update: async (id, updates) => {
+    // Fetch the current row so we can merge fields correctly
+    const { data: listResp, error: listErr } = await getClient()
+      .from(TABLE)
+      .select('*')
+      .eq('id', id)
+
+    if (listErr) throw listErr
+    const existing = getRows(listResp)[0]
+    if (!existing) throw new Error('Lead not found')
+
+    const merged = { ...getFields(existing), ...updates }
+    delete merged.id
+    delete merged.createdAt
+
+    const { data: response, error } = await getClient()
+      .from(TABLE)
+      .update({ data: merged })
+      .eq('id', id)
+      .select()
+      .single()
+
+    if (error || response?.success === false) {
+      throw new Error(getErrorMessage(response, error))
+    }
+    return toUiLead(getEntity(response))
   },
-  delete: (id) => {
-    leadsStore = leadsStore.filter((l) => l.id !== id)
-    notify()
-  },
-  subscribe: (fn) => {
-    listeners.push(fn)
-    return () => { listeners = listeners.filter((l) => l !== fn) }
+
+  // Delete a lead by id
+  delete: async (id) => {
+    const { data: response, error } = await getClient()
+      .from(TABLE)
+      .delete()
+      .eq('id', id)
+      .select()
+      .maybeSingle()
+
+    if (error || response?.success === false) {
+      throw new Error(getErrorMessage(response, error))
+    }
   },
 }
 

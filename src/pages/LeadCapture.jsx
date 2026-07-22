@@ -1,5 +1,4 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { CheckCircle, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -16,9 +15,9 @@ const BENEFITS = [
 ]
 
 export default function LeadCapture() {
-  const navigate = useNavigate()
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -44,19 +43,22 @@ export default function LeadCapture() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const errs = validate()
-    if (Object.keys(errs).length > 0) {
-      setErrors(errs)
-      return
-    }
+    if (Object.keys(errs).length > 0) { setErrors(errs); return }
+
     setLoading(true)
-    setTimeout(() => {
-      leadsApi.add(form)
-      setLoading(false)
+    setSubmitError(null)
+    try {
+      await leadsApi.add(form)
       setSubmitted(true)
-    }, 600)
+    } catch (err) {
+      console.error("Lead submission failed:", err)
+      setSubmitError(err.message || "Something went wrong. Please try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   if (submitted) {
@@ -75,6 +77,7 @@ export default function LeadCapture() {
             className="w-full"
             onClick={() => {
               setSubmitted(false)
+              setSubmitError(null)
               setForm({ name: "", email: "", phone: "", company: "", source: "", notes: "" })
             }}
           >
@@ -132,15 +135,18 @@ export default function LeadCapture() {
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {submitError && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-3 py-2 text-sm">
+                    {submitError}
+                  </div>
+                )}
+
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <Label htmlFor="name">Full name *</Label>
                     <Input
-                      id="name"
-                      name="name"
-                      placeholder="Jane Smith"
-                      value={form.name}
-                      onChange={handleChange}
+                      id="name" name="name" placeholder="Jane Smith"
+                      value={form.name} onChange={handleChange}
                       className={errors.name ? "border-red-400" : ""}
                     />
                     {errors.name && <p className="text-xs text-red-500">{errors.name}</p>}
@@ -148,12 +154,8 @@ export default function LeadCapture() {
                   <div className="space-y-1.5">
                     <Label htmlFor="email">Work email *</Label>
                     <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="jane@company.com"
-                      value={form.email}
-                      onChange={handleChange}
+                      id="email" name="email" type="email" placeholder="jane@company.com"
+                      value={form.email} onChange={handleChange}
                       className={errors.email ? "border-red-400" : ""}
                     />
                     {errors.email && <p className="text-xs text-red-500">{errors.email}</p>}
@@ -164,11 +166,8 @@ export default function LeadCapture() {
                   <div className="space-y-1.5">
                     <Label htmlFor="company">Company *</Label>
                     <Input
-                      id="company"
-                      name="company"
-                      placeholder="Acme Corp"
-                      value={form.company}
-                      onChange={handleChange}
+                      id="company" name="company" placeholder="Acme Corp"
+                      value={form.company} onChange={handleChange}
                       className={errors.company ? "border-red-400" : ""}
                     />
                     {errors.company && <p className="text-xs text-red-500">{errors.company}</p>}
@@ -176,40 +175,26 @@ export default function LeadCapture() {
                   <div className="space-y-1.5">
                     <Label htmlFor="phone">Phone number</Label>
                     <Input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      placeholder="+1 (555) 000-0000"
-                      value={form.phone}
-                      onChange={handleChange}
+                      id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000"
+                      value={form.phone} onChange={handleChange}
                     />
                   </div>
                 </div>
 
                 <div className="space-y-1.5">
                   <Label htmlFor="source">How did you hear about us?</Label>
-                  <Select
-                    id="source"
-                    name="source"
-                    value={form.source}
-                    onChange={handleChange}
-                  >
+                  <Select id="source" name="source" value={form.source} onChange={handleChange}>
                     <option value="">Select a source</option>
-                    {LEAD_SOURCES.map((s) => (
-                      <option key={s} value={s}>{s}</option>
-                    ))}
+                    {LEAD_SOURCES.map((s) => <option key={s} value={s}>{s}</option>)}
                   </Select>
                 </div>
 
                 <div className="space-y-1.5">
                   <Label htmlFor="notes">Anything else you'd like us to know?</Label>
                   <Textarea
-                    id="notes"
-                    name="notes"
+                    id="notes" name="notes" rows={3}
                     placeholder="Tell us about your team size, goals, or any specific needs..."
-                    value={form.notes}
-                    onChange={handleChange}
-                    rows={3}
+                    value={form.notes} onChange={handleChange}
                   />
                 </div>
 

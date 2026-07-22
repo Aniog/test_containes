@@ -14,6 +14,7 @@ export default function LeadDrawer({ lead, onClose }) {
   )
   const [errors, setErrors] = useState({})
   const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState(null)
 
   const validate = () => {
     const errs = {}
@@ -30,16 +31,24 @@ export default function LeadDrawer({ lead, onClose }) {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: undefined }))
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const errs = validate()
     if (Object.keys(errs).length > 0) { setErrors(errs); return }
     setSaving(true)
-    setTimeout(() => {
-      if (isNew) leadsApi.add(form)
-      else leadsApi.update(lead.id, form)
-      setSaving(false)
+    setSaveError(null)
+    try {
+      if (isNew) {
+        await leadsApi.add(form)
+      } else {
+        await leadsApi.update(lead.id, form)
+      }
       onClose()
-    }, 400)
+    } catch (err) {
+      console.error('Save failed:', err)
+      setSaveError(err.message || 'Failed to save lead')
+    } finally {
+      setSaving(false)
+    }
   }
 
   return (
@@ -58,6 +67,12 @@ export default function LeadDrawer({ lead, onClose }) {
         </div>
 
         <div className="flex-1 px-6 py-5 space-y-4">
+          {saveError && (
+            <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-3 py-2 text-sm">
+              {saveError}
+            </div>
+          )}
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <Label htmlFor="d-name">Full name *</Label>
@@ -110,7 +125,7 @@ export default function LeadDrawer({ lead, onClose }) {
         </div>
 
         <div className="px-6 py-4 border-t border-slate-200 flex gap-3">
-          <Button variant="outline" className="flex-1" onClick={onClose}>Cancel</Button>
+          <Button variant="outline" className="flex-1" onClick={onClose} disabled={saving}>Cancel</Button>
           <Button
             className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white"
             onClick={handleSave}
