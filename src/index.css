@@ -1,76 +1,115 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #F5EFE6;
+    color: #2A1F18;
+  }
+
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
+  }
+
+  /* Custom scrollbar — subtle, warm */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: #F5EFE6; }
+  ::-webkit-scrollbar-thumb { background: #C9BFB1; border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: #A88B5C; }
+
+  /* Hide scrollbar utility */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Focus ring — champagne */
+  *:focus-visible {
+    outline: 1px solid #C9A876;
+    outline-offset: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: #C9A876;
+    color: #1A1410;
+  }
+}
+
+@layer components {
+  .font-display { font-family: "Cormorant Garamond", Georgia, serif; }
+
+  .hairline-light { background: rgba(42, 31, 24, 0.12); }
+  .hairline-dark { background: rgba(245, 239, 230, 0.16); }
+
+  /* Premium button primitives */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-espresso text-cream text-[11px] font-medium tracking-wider-3 uppercase transition-colors duration-300 ease-out-soft hover:bg-cocoa;
+  }
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 bg-champagne text-espresso text-[11px] font-medium tracking-wider-3 uppercase transition-colors duration-300 ease-out-soft hover:bg-champagne-deep;
+  }
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 border border-bone/70 text-bone text-[11px] font-medium tracking-wider-3 uppercase transition-colors duration-300 ease-out-soft hover:bg-bone hover:text-espresso;
+  }
+  .btn-ghost-dark {
+    @apply inline-flex items-center justify-center gap-2 px-8 py-4 border border-ink/80 text-ink text-[11px] font-medium tracking-wider-3 uppercase transition-colors duration-300 ease-out-soft hover:bg-ink hover:text-cream;
+  }
+
+  .eyebrow {
+    @apply text-[10px] font-medium tracking-wider-3 uppercase text-ink-soft;
+  }
+  .eyebrow-light {
+    @apply text-[10px] font-medium tracking-wider-3 uppercase text-bone-soft;
+  }
+
+  .product-name {
+    @apply text-[11px] font-medium tracking-wider-2 uppercase text-ink;
+  }
+  .product-name-light {
+    @apply text-[11px] font-medium tracking-wider-2 uppercase text-bone;
+  }
+
+  .divider-h {
+    @apply h-px w-full bg-ink/10;
+  }
+  .divider-h-dark {
+    @apply h-px w-full bg-bone/15;
+  }
+
+  .container-px {
+    @apply px-6 md:px-10 lg:px-14;
+  }
+  .container-shell {
+    @apply mx-auto max-w-screen-3xl container-px;
+  }
+
+  /* Subtle metallic gold gradient text */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #E8C892 0%, #C9A876 50%, #A88B5C 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
