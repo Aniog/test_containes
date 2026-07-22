@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>Debug Page</title>
+  <script>
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+      document.body.innerHTML += '<div style="padding: 10px; background: #fee; border: 1px solid red; margin: 10px;">Error: ' + msg + '<br>at ' + url + ':' + lineNo + '</div>';
+      return false;
+    };
+    
+    window.addEventListener('error', function(e) {
+      document.body.innerHTML += '<div style="padding: 10px; background: #fee; border: 1px solid red; margin: 10px;">Event Error: ' + e.message + '</div>';
+    });
+  </script>
+</head>
+<body>
+  <h1>Debug Page</h1>
+  <p>Check below for any JavaScript errors:</p>
+  <div id="output"></div>
+  <script>
+    document.getElementById('output').innerHTML = '<p>No errors yet. Trying to load main.jsx...</p>';
+  </script>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
