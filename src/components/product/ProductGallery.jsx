@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PLACEHOLDER_IMG } from "@/data/products";
+import { strkSrc } from "@/lib/strkSrc";
 
 export default function ProductGallery({ product }) {
   const [active, setActive] = useState(0);
@@ -14,7 +14,7 @@ export default function ProductGallery({ product }) {
           data-strk-img={`[${activeImage.descId}] [${activeImage.titleId}]`}
           data-strk-img-ratio="4x3"
           data-strk-img-width="1000"
-          src={PLACEHOLDER_IMG}
+          src={strkSrc(`gallery-${activeImage.imgId}`)}
           alt={activeImage.alt}
           className="aspect-[4/5] w-full animate-fade-in object-cover"
         />
@@ -43,7 +43,7 @@ export default function ProductGallery({ product }) {
               data-strk-img={`[${img.descId}] [${img.titleId}]`}
               data-strk-img-ratio="1x1"
               data-strk-img-width="300"
-              src={PLACEHOLDER_IMG}
+              src={strkSrc(`thumb-${img.imgId}`)}
               alt=""
               aria-hidden="true"
               className="aspect-square w-full object-cover"

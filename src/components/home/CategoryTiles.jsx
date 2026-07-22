@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
-import { PLACEHOLDER_IMG, categories } from "@/data/products";
+import { categories } from "@/data/products";
+import { strkSrc } from "@/lib/strkSrc";
 
 export default function CategoryTiles() {
   return (
@@ -29,7 +30,7 @@ export default function CategoryTiles() {
                 data-strk-img={`[${cat.descId}] [${cat.titleId}]`}
                 data-strk-img-ratio="3x4"
                 data-strk-img-width="700"
-                src={PLACEHOLDER_IMG}
+                src={strkSrc(cat.imgId)}
                 alt={`${cat.name} — ${cat.desc}`}
                 loading="lazy"
                 className="h-full w-full object-cover opacity-95 transition-all duration-700 ease-out group-hover:scale-[1.05] group-hover:opacity-75"

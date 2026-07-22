@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { PLACEHOLDER_IMG } from "@/data/products";
+import { strkSrc } from "@/lib/strkSrc";
 
 export default function BrandStory() {
   return (
@@ -13,7 +13,7 @@ export default function BrandStory() {
               data-strk-img="[story-text] [story-kicker]"
               data-strk-img-ratio="4x3"
               data-strk-img-width="900"
-              src={PLACEHOLDER_IMG}
+              src={strkSrc("story-atelier-6c4e28")}
               alt="A jeweler's hands crafting gold jewelry in the Velmora atelier"
               loading="lazy"
               className="aspect-[4/5] w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03] md:aspect-[4/4.6]"

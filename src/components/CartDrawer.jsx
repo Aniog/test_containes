@@ -4,7 +4,8 @@ import { Lock, Minus, Plus, ShoppingBag, Truck, X } from "lucide-react";
 import { ImageHelper } from "@strikingly/sdk";
 import strkImgConfig from "@/strk-img-config.json";
 import { useCart } from "@/context/CartContext";
-import { PLACEHOLDER_IMG, formatPrice, products } from "@/data/products";
+import { formatPrice, products } from "@/data/products";
+import { strkSrc } from "@/lib/strkSrc";
 
 const FREE_SHIPPING_THRESHOLD = 75;
 
@@ -140,7 +141,7 @@ export default function CartDrawer() {
                         data-strk-img={`${mainImg.desc} ${mainImg.title}`}
                         data-strk-img-ratio="3x4"
                         data-strk-img-width="200"
-                        src={PLACEHOLDER_IMG}
+                        src={strkSrc(`cart-${mainImg.imgId}`)}
                         alt={product.name}
                         className="h-full w-full object-cover"
                       />

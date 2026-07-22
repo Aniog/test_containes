@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { ChevronLeft, ChevronRight, Instagram } from "lucide-react";
-import { PLACEHOLDER_IMG, ugcReels } from "@/data/products";
+import { ugcReels } from "@/data/products";
+import { strkSrc } from "@/lib/strkSrc";
 
 export default function UgcReels() {
   const scrollerRef = useRef(null);
@@ -59,7 +60,7 @@ export default function UgcReels() {
               data-strk-img={`[${reel.captionId}] [${reel.handleId}] ${reel.scene}`}
               data-strk-img-ratio="9x16"
               data-strk-img-width="500"
-              src={PLACEHOLDER_IMG}
+              src={strkSrc(reel.imgId)}
               alt={`${reel.caption} — styled by ${reel.handle}`}
               loading="lazy"
               className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"

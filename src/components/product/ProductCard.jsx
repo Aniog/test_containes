@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Plus, Star } from "lucide-react";
-import { PLACEHOLDER_IMG, formatPrice } from "@/data/products";
+import { formatPrice } from "@/data/products";
 import { useCart } from "@/context/CartContext";
+import { strkSrc } from "@/lib/strkSrc";
 
 export default function ProductCard({ product, eager = false }) {
   const { addItem } = useCart();
@@ -21,7 +22,7 @@ export default function ProductCard({ product, eager = false }) {
             data-strk-img={`[${mainImg.descId}] [${mainImg.titleId}]`}
             data-strk-img-ratio="4x3"
             data-strk-img-width="700"
-            src={PLACEHOLDER_IMG}
+            src={strkSrc(`card-${mainImg.imgId}`)}
             alt={mainImg.alt}
             loading={eager ? "eager" : "lazy"}
             className="h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:opacity-0"
@@ -31,7 +32,7 @@ export default function ProductCard({ product, eager = false }) {
             data-strk-img={`[${hoverImg.descId}] [${hoverImg.titleId}]`}
             data-strk-img-ratio="4x3"
             data-strk-img-width="700"
-            src={PLACEHOLDER_IMG}
+            src={strkSrc(`card-${hoverImg.imgId}`)}
             alt=""
             aria-hidden="true"
             loading="lazy"
