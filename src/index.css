@@ -1,76 +1,97 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background: #f7f4ef;
+    --color-foreground: #1a1814;
+    --color-muted: #78716c;
+    --color-muted-foreground: #57534e;
+    --color-accent: #c9a96e;
+    --color-accent-hover: #b89860;
+    --color-card: #ffffff;
+    --color-border: #e7e5e4;
+    --color-surface: #f7f4ef;
+  }
+
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .font-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-[#1a1814] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-[#2a2620] focus:outline-none focus:ring-2 focus:ring-[#c9a96e] focus:ring-offset-2 disabled:opacity-50;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center rounded-full bg-[#c9a96e] px-6 py-3 text-sm font-medium text-white transition-all hover:bg-[#b89860] focus:outline-none focus:ring-2 focus:ring-[#c9a96e] focus:ring-offset-2 disabled:opacity-50;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center rounded-full border border-[#1a1814] px-6 py-3 text-sm font-medium text-[#1a1814] transition-all hover:bg-[#1a1814] hover:text-white focus:outline-none focus:ring-2 focus:ring-[#c9a96e] focus:ring-offset-2 disabled:opacity-50;
+  }
+
+  .product-card {
+    @apply group cursor-pointer;
+  }
+
+  .product-card-image {
+    @apply relative aspect-[3/4] bg-[#f7f4ef] rounded-lg overflow-hidden mb-4;
+  }
+
+  .product-card-overlay {
+    @apply absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300;
+  }
+
+  .product-card-actions {
+    @apply absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+
+  .section-heading {
+    @apply font-['Cormorant_Garamond'] text-3xl md:text-4xl font-medium text-[#1a1814] tracking-wide;
+  }
+
+  .section-subheading {
+    @apply text-[#78716c] max-w-md mx-auto;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
