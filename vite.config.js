@@ -29,7 +29,15 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
+    },
+    proxy: {
+      '/strk-api': {
+        target: 'https://www.uat.strikingly.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/strk-api/, ''),
+        secure: true,
+      },
     },
   }
 })
