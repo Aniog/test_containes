@@ -1,0 +1,128 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    description: 'A stunning gold ear cuff adorned with a sparkling crystal accent. This piece effortlessly elevates any look, from casual daytime elegance to evening glamour.',
+    materials: '18K Gold Plated, Cubic Zirconia Crystal, Hypoallergenic Stainless Steel',
+    care: 'Avoid contact with water, perfume, and lotions. Store in a cool, dry place. Clean gently with a soft cloth.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1589128777073-263566ae5e4d?w=800&q=80',
+    ],
+    rating: 4.8,
+    reviews: 124,
+    variants: ['Gold'],
+    isBestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    description: 'A multicolor floral crystal necklace that captures the essence of spring. Delicate crystals in rose, mint, and lavender create a garden of elegance on your neckline.',
+    materials: '18K Gold Plated, Multicolor Crystals, Hypoallergenic Stainless Steel Chain',
+    care: 'Avoid water and chemicals. Wipe with soft cloth after wearing. Store separately to prevent scratching.',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&q=80',
+    ],
+    rating: 4.9,
+    reviews: 89,
+    variants: ['Gold'],
+    isBestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    description: 'Chunky, luxurious gold dome huggie earrings that hug your earlobe with style. The perfect everyday statement piece that transitions seamlessly from office to evening.',
+    materials: '18K Gold Plated, Hypoallergenic Stainless Steel',
+    care: 'Wipe with jewelry cloth after use. Avoid swimming pools and hot tubs. Store in provided pouch.',
+    images: [
+      'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80',
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=800&q=80',
+    ],
+    rating: 4.7,
+    reviews: 156,
+    variants: ['Gold', 'Silver'],
+    isBestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    description: 'Exquisite textured gold filigree drop earrings featuring intricate lace-like patterns. These heirloom-quality pieces add sophisticated artistry to any ensemble.',
+    materials: '18K Gold Plated, Hypoallergenic Stainless Steel',
+    care: 'Handle with care to maintain filigree detail. Store flat to prevent bending. Clean with soft brush if needed.',
+    images: [
+      'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&q=80',
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
+    ],
+    rating: 4.9,
+    reviews: 72,
+    variants: ['Gold'],
+    isBestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    description: 'A luxurious gift-boxed set featuring a matching pair of earrings and delicate necklace. The perfect gift for yourself or someone special, presented in our signature keepsake box.',
+    materials: '18K Gold Plated, Hypoallergenic Stainless Steel, Luxury Gift Box Included',
+    care: 'Store in provided box when not wearing. Clean pieces separately. Avoid stacking to prevent tangling.',
+    images: [
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80',
+    ],
+    rating: 5.0,
+    reviews: 45,
+    variants: ['Gold'],
+    isBestseller: true,
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'Absolutely stunning quality. I receive compliments every time I wear my Golden Sphere Huggies. The gold doesn\'t tarnish and the craftsmanship is impeccable.',
+    product: 'Golden Sphere Huggies',
+  },
+  {
+    id: 2,
+    name: 'Jennifer L.',
+    rating: 5,
+    text: 'The Royal Heirloom Set was the perfect anniversary gift for my wife. The presentation was elegant and the jewelry exceeded our expectations.',
+    product: 'Royal Heirloom Set',
+  },
+  {
+    id: 3,
+    name: 'Michelle R.',
+    rating: 5,
+    text: 'Finally found demi-fine jewelry that feels luxury without the luxury price tag. Velmora has become my go-to for all occasions.',
+    product: 'Vivid Aura Jewels',
+  },
+];
+
+export const ugcContent = [
+  { id: 1, image: 'https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=400&h=711&q=80', caption: 'Wearing my favorites' },
+  { id: 2, image: 'https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&h=711&q=80', caption: 'Everyday elegance' },
+  { id: 3, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=711&q=80', caption: 'Golden hour glow' },
+  { id: 4, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=711&q=80', caption: 'Layered perfection' },
+  { id: 5, image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=400&h=711&q=80', caption: 'Gift unwrapping moment' },
+  { id: 6, image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=400&h=711&q=80', caption: 'Date night ready' },
+  { id: 7, image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=711&q=80', caption: 'Summer vibes' },
+  { id: 8, image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400&h=711&q=80', caption: 'Minimalist chic' },
+];
