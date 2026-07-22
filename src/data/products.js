@@ -1,0 +1,121 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'VIVID AURA JEWELS',
+    shortName: 'Vivid Aura Jewels',
+    description: 'A sculptural ear cuff adorned with a single crystal accent. Designed to catch the light with every turn of your head — effortless elegance, no piercing required.',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', src: '', alt: 'Vivid Aura Jewels - gold ear cuff with crystal accent' },
+      { id: 'vivid-aura-2', src: '', alt: 'Vivid Aura Jewels - side view' },
+      { id: 'vivid-aura-3', src: '', alt: 'Vivid Aura Jewels - on model' },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'MAJESTIC FLORA NECTAR',
+    shortName: 'Majestic Flora Nectar',
+    description: 'A delicate necklace featuring multicolor floral crystals suspended from a fine chain. Each petal catches light differently, creating a garden of shimmering color.',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'majestic-flora-1', src: '', alt: 'Majestic Flora Nectar - multicolor floral crystal necklace' },
+      { id: 'majestic-flora-2', src: '', alt: 'Majestic Flora Nectar - detail view' },
+      { id: 'majestic-flora-3', src: '', alt: 'Majestic Flora Nectar - on model' },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'New',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'GOLDEN SPHERE HUGGIES',
+    shortName: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings with a polished finish. The perfect everyday statement — substantial enough to notice, light enough to forget you\'re wearing them.',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'golden-sphere-1', src: '', alt: 'Golden Sphere Huggies - chunky gold dome huggie earrings' },
+      { id: 'golden-sphere-2', src: '', alt: 'Golden Sphere Huggies - detail view' },
+      { id: 'golden-sphere-3', src: '', alt: 'Golden Sphere Huggies - on model' },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'AMBER LACE EARRINGS',
+    shortName: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Each pair is carefully crafted to create an intricate pattern that dances in the light.',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', src: '', alt: 'Amber Lace Earrings - textured gold filigree drop earrings' },
+      { id: 'amber-lace-2', src: '', alt: 'Amber Lace Earrings - detail view' },
+      { id: 'amber-lace-3', src: '', alt: 'Amber Lace Earrings - on model' },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'ROYAL HEIRLOOM SET',
+    shortName: 'Royal Heirloom Set',
+    description: 'A beautifully gift-boxed set featuring matching earrings and necklace. The perfect present for someone special — or a treat for yourself.',
+    price: 95,
+    category: 'sets',
+    material: 'gold',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'royal-heirloom-1', src: '', alt: 'Royal Heirloom Set - gift-boxed earring and necklace set' },
+      { id: 'royal-heirloom-2', src: '', alt: 'Royal Heirloom Set - necklace detail' },
+      { id: 'royal-heirloom-3', src: '', alt: 'Royal Heirloom Set - earrings detail' },
+    ],
+    variants: ['Gold', 'Silver'],
+    badge: 'Gift Set',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 24 },
+  { id: 'necklaces', name: 'Necklaces', count: 18 },
+  { id: 'huggies', name: 'Huggies', count: 12 },
+  { id: 'sets', name: 'Gift Sets', count: 8 },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I\'ve gotten so many compliments on my Golden Sphere Huggies — they look like they cost ten times more.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging was beautiful and she absolutely loved it. Will definitely be ordering again.',
+  },
+  {
+    id: 3,
+    name: 'Jessica R.',
+    rating: 5,
+    text: 'Finally found jewelry that feels luxurious without breaking the bank. The Amber Lace Earrings are my new everyday go-to. So elegant!',
+  },
+];
+
+export const getProductById = (id) => products.find(p => p.id === id);
