@@ -1,76 +1,267 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #FBF7F1;
+    --color-bg-warm: #F5EFE5;
+    --color-ink: #1F1812;
+    --color-ink-muted: #5C5043;
+    --color-gold: #B8956A;
+    --color-cream: #F5EFE5;
+    --color-taupe: #9B8E7E;
+    color-scheme: light;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  /* Smooth focus rings */
+  *:focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Custom scrollbar (subtle) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D8BC8E;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B8956A;
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: #EBDCC1;
+    color: #1F1812;
+  }
+}
+
+@layer components {
+  /* Display utility: serif product name in uppercase with wide tracking */
+  .product-name {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-weight: 500;
+  }
+
+  /* Eyebrow label above headings */
+  .eyebrow {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: var(--color-ink-muted);
+  }
+
+  .eyebrow-gold {
+    color: var(--color-gold);
+  }
+
+  /* Hairline divider */
+  .hairline {
+    height: 1px;
+    background-color: rgba(31, 24, 18, 0.12);
+  }
+
+  .hairline-gold {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #B8956A 50%, transparent);
+  }
+
+  /* Primary button: solid gold */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: #1F1812;
+    color: #F5EFE5;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: 1px solid #1F1812;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .btn-primary:hover {
+    background-color: #2A2118;
+    border-color: #2A2118;
+  }
+
+  /* Outlined button */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: transparent;
+    color: #1F1812;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: 1px solid #1F1812;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .btn-outline:hover {
+    background-color: #1F1812;
+    color: #F5EFE5;
+  }
+
+  /* Inverse outline (on dark bg) */
+  .btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2.25rem;
+    background-color: transparent;
+    color: #F5EFE5;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    border: 1px solid #F5EFE5;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .btn-outline-light:hover {
+    background-color: #F5EFE5;
+    color: #1F1812;
+  }
+
+  /* Gold accent link with underline */
+  .link-underline {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #1F1812;
+    transition: color 0.3s ease;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #1F1812;
+    transform-origin: right;
+    transition: transform 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+  }
+  .link-underline:hover::after {
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: linkUnderlineIn 0.4s 0.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  }
+  .link-underline:hover {
+    color: #B8956A;
+  }
+  @keyframes linkUnderlineIn {
+    from { transform: scaleX(0); transform-origin: left; }
+    to { transform: scaleX(1); transform-origin: left; }
+  }
+
+  /* Product card hover image swap container */
+  .product-card-img {
+    aspect-ratio: 4 / 5;
+    background-color: #EDE3D2;
+    overflow: hidden;
+    position: relative;
+  }
+  .product-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease, transform 1s ease;
+  }
+  .product-card:hover .product-card-img img.secondary {
+    opacity: 1;
+  }
+  .product-card:hover .product-card-img img.primary {
+    opacity: 0;
+  }
+
+  /* Quantity stepper */
+  .qty-btn {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(31, 24, 18, 0.2);
+    background: transparent;
+    color: #1F1812;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .qty-btn:hover {
+    border-color: #1F1812;
+    background-color: rgba(31, 24, 18, 0.04);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Subtle gradient overlay for text legibility on imagery */
+  .overlay-bottom {
+    background: linear-gradient(to top, rgba(31, 24, 18, 0.7) 0%, rgba(31, 24, 18, 0.2) 50%, transparent 100%);
+  }
+  .overlay-top {
+    background: linear-gradient(to bottom, rgba(31, 24, 18, 0.55) 0%, rgba(31, 24, 18, 0.15) 40%, transparent 100%);
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
