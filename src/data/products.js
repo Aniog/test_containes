@@ -1,0 +1,61 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 42,
+    rating: 4.9,
+    reviews: 128,
+    description: 'A sculptural gold ear cuff finished with a tiny crystal accent for a soft flash of light.',
+    detail: 'Designed for an effortless stacked look, this polished cuff slips on without a piercing and layers beautifully with studs or huggies.',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    material: 'Crystal',
+    price: 68,
+    rating: 4.8,
+    reviews: 94,
+    description: 'A delicate floral crystal necklace with warm gold links and a refined multicolor shimmer.',
+    detail: 'A romantic everyday pendant with a fine adjustable chain, designed for gifting moments and elevated daily dressing.',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    price: 38,
+    rating: 4.9,
+    reviews: 176,
+    description: 'Chunky gold dome huggie earrings with a polished rounded profile and secure close.',
+    detail: 'Compact, weight-balanced hoops with a modern dome silhouette that catches the light from every angle.',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 54,
+    rating: 4.7,
+    reviews: 83,
+    description: 'Textured gold filigree drop earrings with lace-like movement and a warm amber glow.',
+    detail: 'A softly dramatic drop earring with intricate texture, made to frame the face for dinners, weddings, and golden-hour plans.',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Sets',
+    material: 'Gift Set',
+    price: 95,
+    rating: 5,
+    reviews: 61,
+    description: 'A gift-boxed earring and necklace pairing with heirloom-inspired sparkle and gold warmth.',
+    detail: 'A ready-to-gift demi-fine set presented in a keepsake box, balancing everyday wearability with occasion-level polish.',
+  },
+]
+
+export const categories = ['Earrings', 'Necklaces', 'Huggies']
+
+export const formatPrice = (price) => `$${price}`
