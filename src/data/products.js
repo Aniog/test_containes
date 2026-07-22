@@ -1,0 +1,112 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A delicate gold ear cuff adorned with a sparkling crystal accent. Designed to sit elegantly along the ear curve for a modern, refined look.',
+    details: '18K gold-plated brass with crystal accent. Hypoallergenic. One size fits most.',
+    materials: '18K gold-plated brass, crystal',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and harsh chemicals. Clean with a soft cloth.',
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A multicolor floral crystal necklace that captures the beauty of a blooming garden. Lightweight and striking, perfect for elevating any outfit.',
+    details: '18K gold-plated chain with multicolor floral crystal pendant. Adjustable length 16"-18".',
+    materials: '18K gold-plated brass, multicolor crystals',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and harsh chemicals. Clean with a soft cloth.',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 203,
+    description: 'Chunky gold dome huggie earrings with a polished finish. A timeless staple that adds instant warmth and dimension to your look.',
+    details: '18K gold-plated brass. Hinge closure. Approximately 12mm diameter.',
+    materials: '18K gold-plated brass',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and harsh chemicals. Clean with a soft cloth.',
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&q=80',
+      'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    price: 54,
+    rating: 4.8,
+    reviewCount: 67,
+    description: 'Textured gold filigree drop earrings inspired by antique lace patterns. Lightweight and intricately detailed for an heirloom feel.',
+    details: '18K gold-plated brass with textured filigree. Drop length approximately 45mm. Hinge closure.',
+    materials: '18K gold-plated brass',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and harsh chemicals. Clean with a soft cloth.',
+    images: [
+      'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&q=80',
+      'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 42,
+    description: 'A gift-boxed set featuring coordinating earrings and a necklace. The perfect present for someone special — or yourself.',
+    details: 'Includes earrings and necklace. Presented in a signature Velmora gift box. 18K gold-plated brass with crystal accents.',
+    materials: '18K gold-plated brass, crystals',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and harsh chemicals. Clean with a soft cloth.',
+    images: [
+      'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
+    ],
+    variants: ['gold', 'silver'],
+    bestseller: true,
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80' },
+  { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80' },
+];
+
+export const testimonials = [
+  { id: 1, name: 'Sarah M.', initial: 'S', text: 'The quality is unreal for the price. I get compliments every time I wear my Vivid Aura cuffs.', rating: 5 },
+  { id: 2, name: 'Emily R.', initial: 'E', text: 'Beautiful packaging, fast shipping, and the necklace is even more stunning in person.', rating: 5 },
+  { id: 3, name: 'Jessica L.', initial: 'J', text: 'Bought the Royal Heirloom Set as a gift and now I want one for myself. Absolutely gorgeous.', rating: 5 },
+];
+
+export const ugcItems = [
+  { id: 1, handle: '@sarahstyle', image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80', caption: 'Golden hour essentials' },
+  { id: 2, handle: '@emilyjewels', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80', caption: 'New favorite necklace' },
+  { id: 3, handle: '@jessicawears', image: 'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=600&q=80', caption: 'Huggie season' },
+  { id: 4, handle: '@lifestylebymia', image: 'https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?w=600&q=80', caption: 'Delicate details' },
+  { id: 5, handle: '@goldengirl', image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&q=80', caption: 'Gift ready' },
+];
