@@ -1,0 +1,21 @@
+import { clsx } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs))
+}
+
+export function formatPrice(cents) {
+  return `$${cents.toFixed(0)}`
+}
+
+export function getStarArray(rating) {
+  const full = Math.floor(rating)
+  const half = rating % 1 >= 0.5 ? 1 : 0
+  const empty = 5 - full - half
+  return [
+    ...Array(full).fill('full'),
+    ...Array(half).fill('half'),
+    ...Array(empty).fill('empty'),
+  ]
+}

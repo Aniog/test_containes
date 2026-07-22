@@ -1,50 +1,75 @@
+/* Velmora Fine Jewelry - App Styles */
+
 #root {
   min-height: 100vh;
   padding: 0;
-  background-color: #e4e8ef;
+  background-color: #FAF7F2;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+/* Smooth page transitions */
+.page-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+/* Cart drawer backdrop */
+.cart-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(28, 25, 23, 0.4);
+  z-index: 40;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.cart-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+/* Product image hover zoom */
+.product-image-wrapper {
+  overflow: hidden;
+}
+.product-image-wrapper img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.product-image-wrapper:hover img {
+  transform: scale(1.05);
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+/* UGC reel horizontal scroll */
+.ugc-scroll {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.ugc-scroll > * {
+  scroll-snap-align: start;
 }
 
-@keyframes app-loading-spin {
-  from {
-    transform: rotate(0deg);
-  }
+/* Animate on scroll utility */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+/* Variant pill active state ring */
+.variant-pill.active {
+  outline: 2px solid #B8956A;
+  outline-offset: 2px;
+}
+
+/* Nav solid state transition */
+.nav-wrapper {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
