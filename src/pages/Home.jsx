@@ -7,17 +7,23 @@ import CategoryTiles from "@/components/home/CategoryTiles";
 import BrandStory from "@/components/home/BrandStory";
 import Testimonials from "@/components/home/Testimonials";
 import Newsletter from "@/components/home/Newsletter";
-import { useStrkImages } from "@/hooks/useStrkImages";
+import { useEffect, useRef } from "react";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
 import { useReveal } from "@/hooks/useReveal";
 
 export default function Home() {
-  const imagesRef = useStrkImages();
+  const containerRef = useRef(null);
   const revealRef = useReveal();
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
 
   return (
     <div
       ref={(node) => {
-        imagesRef.current = node;
+        containerRef.current = node;
         revealRef.current = node;
       }}
     >

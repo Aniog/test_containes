@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
   ChevronRight,
@@ -11,9 +11,10 @@ import {
   Star,
   Truck,
 } from "lucide-react";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
 import { formatPrice, getProduct, products } from "@/data/products";
 import { useCart } from "@/context/CartContext";
-import { useStrkImages } from "@/hooks/useStrkImages";
 import { useReveal } from "@/hooks/useReveal";
 import ProductGallery from "@/components/product/ProductGallery";
 import ProductAccordions from "@/components/product/ProductAccordions";
@@ -32,8 +33,15 @@ export default function ProductPage() {
   const [qty, setQty] = useState(1);
   const [wishlisted, setWishlisted] = useState(false);
 
-  const containerRef = useStrkImages([productId]);
+  const containerRef = useRef(null);
   const revealRef = useReveal([productId]);
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [productId]);
 
   useEffect(() => {
     setVariant("gold");

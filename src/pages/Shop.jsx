@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { ChevronDown, SearchX, SlidersHorizontal, X } from "lucide-react";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
 import { products } from "@/data/products";
 import ProductCard from "@/components/product/ProductCard";
 import FilterSidebar, { priceRangeMap } from "@/components/product/FilterSidebar";
-import { useStrkImages } from "@/hooks/useStrkImages";
 import { useReveal } from "@/hooks/useReveal";
 
 const sortOptions = [
@@ -58,8 +59,15 @@ export default function Shop() {
     return list.sort(sorters[sort]);
   }, [selectedCategories, selectedPrices, selectedMaterials, sort]);
 
-  const containerRef = useStrkImages([filtered.length, sort]);
+  const containerRef = useRef(null);
   const revealRef = useReveal([filtered.length]);
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    });
+    return () => window.cancelAnimationFrame(frameId);
+  }, [filtered.length, sort]);
 
   const activeCount =
     selectedCategories.length + selectedPrices.length + selectedMaterials.length;
