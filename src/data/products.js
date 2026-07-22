@@ -27,7 +27,7 @@ export const products = [
     details: '18K gold-plated brass, multicolor crystals. 16" chain with 2" extender. Hypoallergenic.',
     care: 'Store in a dry place. Avoid contact with perfume, lotion, and water. Clean with a soft polishing cloth.',
     images: [
-      'https://images.unsplash.com/photo-1599643478518-a86e32ef4f57?w=800&q=80',
+      'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
       'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
     ],
     variants: ['gold', 'silver'],
@@ -62,7 +62,7 @@ export const products = [
     care: 'Store in a dry place. Avoid contact with perfume, lotion, and water. Clean with a soft polishing cloth.',
     images: [
       'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&q=80',
-      'https://images.unsplash.com/photo-1599643478518-a86e32ef4f57?w=800&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&q=80',
     ],
     variants: ['gold', 'silver'],
     badge: null,

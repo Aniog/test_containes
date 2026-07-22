@@ -9,7 +9,7 @@ const categories = [
   },
   {
     name: 'Necklaces',
-    image: 'https://images.unsplash.com/photo-1599643478518-a86e32ef4f57?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80',
     to: '/shop?category=Necklaces',
   },
   {
