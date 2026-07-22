@@ -1,76 +1,234 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
+:root {
+  /* Color Palette - Warm Editorial */
+  --color-base: #0F0E0C;
+  --color-cream: #F9F6F1;
+  --color-gold: #C5A46E;
+  --color-gold-dark: #A68B5B;
+  --color-text: #2C2823;
+  --color-text-muted: #6B6359;
+  --color-text-light: #9A8F7E;
+  --color-border: #E5E0D8;
+  --color-surface: #F5F2ED;
+  
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-text);
+  background-color: var(--color-cream);
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography */
+h1, h2, h3, .font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+/* Product names - UPPERCASE with wide letter-spacing */
+.product-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* Editorial headings */
+.editorial-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 1px;
+}
+
+/* Hairline dividers */
+.hairline {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Smooth transitions */
+a, button, .transition-smooth {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Product Card */
+.product-card {
+  position: relative;
+  overflow: hidden;
+  background: white;
+}
+
+.product-card-image {
+  position: relative;
+  overflow: hidden;
+  background: #EDE8DF;
+}
+
+.product-card-image img,
+.product-card-image .image-placeholder {
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-card-image img,
+.product-card:hover .product-card-image .image-placeholder {
+  transform: scale(1.05);
+}
+
+.product-card-hover {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-card-hover {
+  opacity: 1;
+}
+
+/* Category Tile */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  background: #EDE8DF;
+}
+
+.category-tile .overlay {
+  transition: background-color 0.4s ease;
+}
+
+.category-tile:hover .overlay {
+  background-color: rgba(15, 14, 12, 0.35);
+}
+
+.category-tile .label {
+  transition: all 0.3s ease;
+}
+
+.category-tile:hover .label {
+  transform: translateY(-2px);
+}
+
+/* UGC Reel Card */
+.ugc-card {
+  position: relative;
+  overflow: hidden;
+  background: #EDE8DF;
+}
+
+.ugc-card .caption {
+  transition: opacity 0.3s ease;
+}
+
+.ugc-card:hover .caption {
+  opacity: 1;
+}
+
+/* Testimonial */
+.testimonial {
+  border-left: 1px solid var(--color-gold);
+}
+
+/* Newsletter */
+.newsletter-block {
+  background: var(--color-base);
+}
+
+/* Form styles */
+input[type="email"],
+input[type="text"] {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Star rating */
+.star {
+  color: var(--color-gold);
+}
+
+/* Variant pills */
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  letter-spacing: 1px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill:hover {
+  border-color: var(--color-gold);
+}
+
+.variant-pill.active {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-base);
+}
+
+.variant-pill:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Image Gallery */
+.gallery-thumb {
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.gallery-thumb.active,
+.gallery-thumb:hover {
+  border-color: var(--color-gold);
+}
+
+/* Filter sidebar */
+.filter-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-text-light);
+}
+
+/* Sort dropdown */
+.sort-select {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  padding: 8px 36px 8px 12px;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6359' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Loading placeholder */
+.image-placeholder {
+  background: linear-gradient(90deg, #EDE8DF 25%, #F5F2ED 50%, #EDE8DF 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
