@@ -25,7 +25,7 @@ export default defineConfig({
     allowedHosts: true,
     cors: true,
     hmr: {
-      overlay: false
+      overlay: true
     },
     watch: {
       usePolling: true,
