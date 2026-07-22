@@ -18,6 +18,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@strikingly/sdk": path.resolve(__dirname, "./node_modules/@strikingly/sdk/index.js"),
     },
   },
   server: {
