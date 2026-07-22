@@ -1,0 +1,188 @@
+export const categories = ['Earrings', 'Necklaces', 'Huggies', 'Sets', 'Accessories'];
+
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'Earrings',
+    rating: 4.8,
+    reviewCount: 124,
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    description: 'A sculptural ear cuff finished in warm 18K gold plate, set with a single luminous crystal that catches the light with every turn. Designed to be worn solo or stacked for a layered look.',
+    materials: 'Brass base with 18K gold plating. Nickel-free, lead-free, and hypoallergenic. Crystal accent.',
+    care: 'Store in a dry pouch. Avoid contact with perfumes, lotions, and water to preserve the gold finish. Gently wipe with a soft cloth after wear.',
+    images: ['vivid-aura-jewels'],
+    isBestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'Necklaces',
+    rating: 4.9,
+    reviewCount: 89,
+    material: '18K Gold Plated',
+    tone: ['gold'],
+    description: 'A delicate strand of hand-set floral crystals in soft blush, champagne, and ivory tones. Suspended on a fine gold-plated chain for an ethereal, garden-party moment.',
+    materials: 'Brass base with 18K gold plating. Glass crystal accents. Adjustable 16–18 inch chain.',
+    care: 'Lay flat when storing. Avoid moisture and direct sunlight to protect plating and crystal clarity.',
+    images: ['majestic-flora-nectar'],
+    isBestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'Huggies',
+    rating: 4.7,
+    reviewCount: 156,
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    description: 'Chunky yet lightweight dome huggies that hug the lobe with a polished, sculptural silhouette. The everyday hoop elevated.',
+    materials: 'Brass base with 18K gold plating. Hinge closure. Lightweight hollow construction.',
+    care: 'Clean with a soft, dry cloth. Avoid sleeping, showering, or exercising in your huggies to prolong their shine.',
+    images: ['golden-sphere-huggies'],
+    isBestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'Earrings',
+    rating: 4.9,
+    reviewCount: 72,
+    material: '18K Gold Plated',
+    tone: ['gold'],
+    description: 'Intricate filigree drops inspired by vintage lace, finished in rich gold. Light enough for all-day wear, striking enough for evening.',
+    materials: 'Brass base with 18K gold plating. Intricate filigree detail. Surgical steel posts.',
+    care: 'Handle gently to protect filigree. Store separately to prevent tangling or scratching.',
+    images: ['amber-lace-earrings'],
+    isBestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'Sets',
+    rating: 5.0,
+    reviewCount: 47,
+    material: '18K Gold Plated',
+    tone: ['gold'],
+    description: 'A curated gift set featuring a pair of signature earrings and a matching pendant necklace, presented in a Velmora gift box. Perfect for gifting — or keeping.',
+    materials: 'Brass base with 18K gold plating. Includes Velmora gift box, polishing cloth, and care card.',
+    care: 'Store in the provided box. Remove before swimming or showering. Polish gently with included cloth.',
+    images: ['royal-heirloom-set'],
+    isBestseller: true,
+  },
+  {
+    id: 'luna-pearl-huggies',
+    name: 'Luna Pearl Huggies',
+    price: 46,
+    category: 'Huggies',
+    rating: 4.8,
+    reviewCount: 98,
+    material: '18K Gold Plated',
+    tone: ['gold'],
+    description: 'Petite huggies crowned with a single freshwater pearl. A quiet statement of modern femininity.',
+    materials: 'Brass base with 18K gold plating. Freshwater pearl accent. Hinge closure.',
+    care: 'Keep dry and store flat. Pearls are delicate; avoid contact with cosmetics and hairspray.',
+    images: ['luna-pearl-huggies'],
+    isBestseller: false,
+  },
+  {
+    id: 'soleil-chain-necklace',
+    name: 'Soleil Chain Necklace',
+    price: 58,
+    category: 'Necklaces',
+    rating: 4.7,
+    reviewCount: 63,
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    description: 'A liquid-gold chain that drapes beautifully at the collarbone. Minimal, radiant, and endlessly wearable.',
+    materials: 'Brass base with 18K gold plating. Lobster clasp. 18 inch chain with 2 inch extender.',
+    care: 'Wipe clean after wear. Store hanging or flat to prevent kinks.',
+    images: ['soleil-chain-necklace'],
+    isBestseller: false,
+  },
+  {
+    id: 'crystal-arc-earrings',
+    name: 'Crystal Arc Earrings',
+    price: 49,
+    category: 'Earrings',
+    rating: 4.6,
+    reviewCount: 81,
+    material: 'Sterling Silver',
+    tone: ['silver'],
+    description: 'A graceful arc of pavé crystals finished in rhodium-plated sterling silver. Movement, light, and elegance in one pair.',
+    materials: 'Sterling silver base with rhodium plating. Cubic zirconia pavé. Butterfly backing.',
+    care: 'Polish with a silver cloth. Store in an airtight pouch to prevent tarnishing.',
+    images: ['crystal-arc-earrings'],
+    isBestseller: false,
+  },
+  {
+    id: 'velvet-gift-pouch',
+    name: 'Velvet Gift Pouch',
+    price: 12,
+    category: 'Accessories',
+    rating: 4.9,
+    reviewCount: 210,
+    material: 'Velvet',
+    tone: ['gold'],
+    description: 'A soft cream velvet pouch stamped with gold foil. The perfect finishing touch for gifting or travel storage.',
+    materials: 'Premium velvet with gold foil logo. Drawstring closure.',
+    care: 'Spot clean only. Air dry flat.',
+    images: ['velvet-gift-pouch'],
+    isBestseller: false,
+  },
+];
+
+export const relatedMap = {
+  'vivid-aura-jewels': ['golden-sphere-huggies', 'amber-lace-earrings', 'royal-heirloom-set'],
+  'majestic-flora-nectar': ['royal-heirloom-set', 'amber-lace-earrings', 'golden-sphere-huggies'],
+  'golden-sphere-huggies': ['vivid-aura-jewels', 'amber-lace-earrings', 'majestic-flora-nectar'],
+  'amber-lace-earrings': ['vivid-aura-jewels', 'majestic-flora-nectar', 'royal-heirloom-set'],
+  'royal-heirloom-set': ['majestic-flora-nectar', 'golden-sphere-huggies', 'vivid-aura-jewels'],
+};
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sophia M.',
+    text: 'The packaging alone felt like a gift. My huggies have become the only earrings I reach for.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Elena R.',
+    text: 'Quiet luxury at an honest price. I have sensitive ears and these are the first plated pieces I can wear all day.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Naomi K.',
+    text: 'Bought the Heirloom Set for my sister and ended up ordering one for myself. Absolutely stunning.',
+    rating: 5,
+  },
+];
+
+export const ugcItems = [
+  { id: 1, caption: 'Everyday gold', author: '@margot.l' },
+  { id: 2, caption: 'Ear stack obsession', author: '@thealiyahs' },
+  { id: 3, caption: 'Gifted & treasured', author: '@rachelgold' },
+  { id: 4, caption: 'Soft luxury', author: '@linneaa' },
+  { id: 5, caption: 'Date night shine', author: '@vivi.style' },
+  { id: 6, caption: 'New classics', author: '@jenna.d' },
+];
+
+export function getProductById(id) {
+  return products.find((p) => p.id === id);
+}
+
+export function getRelatedProducts(id) {
+  const ids = relatedMap[id] || [];
+  return ids.map(getProductById).filter(Boolean);
+}
+
+export const PLACEHOLDER_SVG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
