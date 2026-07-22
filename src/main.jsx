@@ -3,12 +3,18 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-if (import.meta.env.DEV) {
-  import("./visual-edit/index.js");
-}
+console.log("main.jsx: Starting...");
 
-ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-);
+try {
+  const root = document.getElementById("root");
+  console.log("Root element:", root);
+  
+  if (root) {
+    ReactDOM.createRoot(root).render(<App />);
+    console.log("App rendered");
+  } else {
+    console.error("No root element!");
+  }
+} catch (e) {
+  console.error("Error:", e);
+}
