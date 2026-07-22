@@ -29,7 +29,14 @@ export default defineConfig({
     },
     watch: {
       usePolling: true,
-      interval: 100, // Check for changes every 100ms
+      interval: 100,
+    },
+    proxy: {
+      '/api/v1/sites': {
+        target: 'https://www.strikingly.com',
+        changeOrigin: true,
+        secure: true,
+      },
     },
   }
 })
