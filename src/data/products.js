@@ -1,0 +1,350 @@
+export const PLACEHOLDER_IMG =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
+
+export const products = [
+  {
+    id: "vivid-aura-jewels",
+    name: "Vivid Aura Jewels",
+    tagline: "Gold ear cuff with crystal accent",
+    price: 42,
+    category: "earrings",
+    material: "gold",
+    rating: 4.9,
+    reviews: 128,
+    bestseller: true,
+    isNew: false,
+    description:
+      "A sculptural ear cuff that hugs the ear in a single sweep of 18k gold plated brilliance, finished with a hand-set crystal that catches the light with every turn. No piercing required — simply slide on and glow.",
+    details: [
+      "18k gold plated over recycled brass",
+      "Hand-set AAA cubic zirconia crystal",
+      "No piercing required — adjustable fit",
+      "Sold as a single cuff",
+    ],
+    images: [
+      {
+        imgId: "pdp-vivid-aura-main-9f3a21",
+        titleId: "pdp-vivid-aura-main-title",
+        descId: "pdp-vivid-aura-main-desc",
+        title: "Vivid Aura Jewels",
+        desc: "Gold ear cuff with crystal accent worn on ear, macro shot",
+        alt: "Vivid Aura Jewels gold ear cuff with crystal accent on ear",
+      },
+      {
+        imgId: "pdp-vivid-aura-alt1-2b7c44",
+        titleId: "pdp-vivid-aura-alt1-title",
+        descId: "pdp-vivid-aura-alt1-desc",
+        title: "Vivid Aura Jewels",
+        desc: "Gold ear cuff product still life on dark neutral background",
+        alt: "Vivid Aura Jewels ear cuff still life",
+      },
+      {
+        imgId: "pdp-vivid-aura-alt2-5e1d98",
+        titleId: "pdp-vivid-aura-alt2-title",
+        descId: "pdp-vivid-aura-alt2-desc",
+        title: "Vivid Aura Jewels",
+        desc: "Profile of a woman wearing a delicate gold ear cuff, warm light",
+        alt: "Model wearing Vivid Aura Jewels ear cuff",
+      },
+    ],
+  },
+  {
+    id: "majestic-flora-nectar",
+    name: "Majestic Flora Nectar",
+    tagline: "Multicolor floral crystal necklace",
+    price: 68,
+    category: "necklaces",
+    material: "gold",
+    rating: 4.8,
+    reviews: 96,
+    bestseller: true,
+    isNew: true,
+    description:
+      "A garden captured in gold. Delicate floral stations set with multicolored crystals bloom along a fine 18k gold plated chain — a statement that still whispers. Layers beautifully or shines alone.",
+    details: [
+      "18k gold plated over recycled brass",
+      "Multicolored hand-set crystals",
+      '16" chain with 2" extender',
+      "Lobster clasp closure",
+    ],
+    images: [
+      {
+        imgId: "pdp-majestic-flora-main-4c8b12",
+        titleId: "pdp-majestic-flora-main-title",
+        descId: "pdp-majestic-flora-main-desc",
+        title: "Majestic Flora Nectar",
+        desc: "Multicolor floral crystal necklace on a woman's collarbone, warm light",
+        alt: "Majestic Flora Nectar floral crystal necklace worn on neck",
+      },
+      {
+        imgId: "pdp-majestic-flora-alt1-7a3f56",
+        titleId: "pdp-majestic-flora-alt1-title",
+        descId: "pdp-majestic-flora-alt1-desc",
+        title: "Majestic Flora Nectar",
+        desc: "Floral crystal necklace flat lay on dark neutral linen",
+        alt: "Majestic Flora Nectar necklace flat lay",
+      },
+      {
+        imgId: "pdp-majestic-flora-alt2-1d9e33",
+        titleId: "pdp-majestic-flora-alt2-title",
+        descId: "pdp-majestic-flora-alt2-desc",
+        title: "Majestic Flora Nectar",
+        desc: "Close-up macro of multicolor crystal flower pendant in gold",
+        alt: "Macro of Majestic Flora Nectar crystal flower pendant",
+      },
+    ],
+  },
+  {
+    id: "golden-sphere-huggies",
+    name: "Golden Sphere Huggies",
+    tagline: "Chunky gold dome huggie earrings",
+    price: 38,
+    category: "huggies",
+    material: "gold",
+    rating: 5.0,
+    reviews: 214,
+    bestseller: true,
+    isNew: false,
+    description:
+      "Our signature dome. These chunky huggies curve close to the lobe in a polished sphere of 18k gold plated shine — the everyday pair that goes with absolutely everything, from silk to Sunday denim.",
+    details: [
+      "18k gold plated over recycled brass",
+      "Polished dome silhouette, 12mm",
+      "Secure hinged huggie closure",
+      "Sold as a pair",
+    ],
+    images: [
+      {
+        imgId: "pdp-golden-sphere-main-6f2a77",
+        titleId: "pdp-golden-sphere-main-title",
+        descId: "pdp-golden-sphere-main-desc",
+        title: "Golden Sphere Huggies",
+        desc: "Chunky gold dome huggie earrings worn on ear, warm macro",
+        alt: "Golden Sphere Huggies chunky dome earrings on ear",
+      },
+      {
+        imgId: "pdp-golden-sphere-alt1-8b4c19",
+        titleId: "pdp-golden-sphere-alt1-title",
+        descId: "pdp-golden-sphere-alt1-desc",
+        title: "Golden Sphere Huggies",
+        desc: "Pair of gold dome huggie earrings on dark neutral background",
+        alt: "Golden Sphere Huggies product still life",
+      },
+      {
+        imgId: "pdp-golden-sphere-alt2-3e7d61",
+        titleId: "pdp-golden-sphere-alt2-title",
+        descId: "pdp-golden-sphere-alt2-desc",
+        title: "Golden Sphere Huggies",
+        desc: "Woman tucking hair behind ear wearing gold huggie earrings",
+        alt: "Model wearing Golden Sphere Huggies",
+      },
+    ],
+  },
+  {
+    id: "amber-lace-earrings",
+    name: "Amber Lace Earrings",
+    tagline: "Textured gold filigree drop earrings",
+    price: 54,
+    category: "earrings",
+    material: "gold",
+    rating: 4.7,
+    reviews: 73,
+    bestseller: true,
+    isNew: false,
+    description:
+      "Light as lace, warm as amber. Intricately textured filigree drops sway gently with movement, casting delicate shadows — an heirloom silhouette made effortlessly modern.",
+    details: [
+      "18k gold plated over recycled brass",
+      "Hand-finished filigree texture",
+      "Featherlight drop, 34mm length",
+      "Secure hook fastening",
+    ],
+    images: [
+      {
+        imgId: "pdp-amber-lace-main-2a6f85",
+        titleId: "pdp-amber-lace-main-title",
+        descId: "pdp-amber-lace-main-desc",
+        title: "Amber Lace Earrings",
+        desc: "Textured gold filigree drop earrings worn, warm evening light",
+        alt: "Amber Lace filigree drop earrings on model",
+      },
+      {
+        imgId: "pdp-amber-lace-alt1-9c1b47",
+        titleId: "pdp-amber-lace-alt1-title",
+        descId: "pdp-amber-lace-alt1-desc",
+        title: "Amber Lace Earrings",
+        desc: "Gold filigree drop earrings still life on dark stone",
+        alt: "Amber Lace Earrings still life",
+      },
+      {
+        imgId: "pdp-amber-lace-alt2-4d8e29",
+        titleId: "pdp-amber-lace-alt2-title",
+        descId: "pdp-amber-lace-alt2-desc",
+        title: "Amber Lace Earrings",
+        desc: "Macro detail of gold filigree lace texture earring",
+        alt: "Macro detail of Amber Lace filigree texture",
+      },
+    ],
+  },
+  {
+    id: "royal-heirloom-set",
+    name: "Royal Heirloom Set",
+    tagline: "Gift-boxed earring + necklace set",
+    price: 95,
+    compareAtPrice: 118,
+    category: "sets",
+    material: "gold",
+    rating: 4.9,
+    reviews: 157,
+    bestseller: true,
+    isNew: true,
+    description:
+      "The gift that says everything. A coordinated earring and necklace duo in warm 18k gold plate, presented in our signature linen gift box with a hand-tied ribbon — ready for the moments that matter.",
+    details: [
+      "18k gold plated over recycled brass",
+      "Matching stud earrings + pendant necklace",
+      "Signature linen gift box with ribbon",
+      "Includes blank gift note card",
+    ],
+    images: [
+      {
+        imgId: "pdp-royal-heirloom-main-7f3a54",
+        titleId: "pdp-royal-heirloom-main-title",
+        descId: "pdp-royal-heirloom-main-desc",
+        title: "Royal Heirloom Set",
+        desc: "Gold earring and necklace gift set in an elegant open gift box",
+        alt: "Royal Heirloom gift set in linen box",
+      },
+      {
+        imgId: "pdp-royal-heirloom-alt1-5b9d16",
+        titleId: "pdp-royal-heirloom-alt1-title",
+        descId: "pdp-royal-heirloom-alt1-desc",
+        title: "Royal Heirloom Set",
+        desc: "Woman wearing matching gold stud earrings and pendant necklace",
+        alt: "Model wearing Royal Heirloom Set",
+      },
+      {
+        imgId: "pdp-royal-heirloom-alt2-8e2c73",
+        titleId: "pdp-royal-heirloom-alt2-title",
+        descId: "pdp-royal-heirloom-alt2-desc",
+        title: "Royal Heirloom Set",
+        desc: "Gold pendant necklace and studs arranged on dark silk",
+        alt: "Royal Heirloom Set on dark silk",
+      },
+    ],
+  },
+];
+
+export const categories = [
+  {
+    id: "earrings",
+    name: "Earrings",
+    desc: "Cuffs, drops and statements that frame the face",
+    imgId: "cat-earrings-3f7a91",
+    titleId: "cat-earrings-title",
+    descId: "cat-earrings-desc",
+  },
+  {
+    id: "necklaces",
+    name: "Necklaces",
+    desc: "Fine chains and pendants made for layering",
+    imgId: "cat-necklaces-6b2e48",
+    titleId: "cat-necklaces-title",
+    descId: "cat-necklaces-desc",
+  },
+  {
+    id: "huggies",
+    name: "Huggies",
+    desc: "Everyday domes that hug the lobe",
+    imgId: "cat-huggies-9d4c27",
+    titleId: "cat-huggies-title",
+    descId: "cat-huggies-desc",
+  },
+];
+
+export const ugcReels = [
+  {
+    id: "reel-1",
+    caption: "Sunday layers",
+    handle: "@amara.wears",
+    imgId: "ugc-reel1-4f8b63",
+    captionId: "ugc-reel1-caption",
+    handleId: "ugc-reel1-handle",
+    scene: "woman wearing layered gold necklaces on neck, close-up vertical",
+  },
+  {
+    id: "reel-2",
+    caption: "Golden hour, literally",
+    handle: "@juliette.style",
+    imgId: "ugc-reel2-7c1a39",
+    captionId: "ugc-reel2-caption",
+    handleId: "ugc-reel2-handle",
+    scene: "gold drop earrings on a woman's ear glowing in warm golden hour light",
+  },
+  {
+    id: "reel-3",
+    caption: "The everyday dome",
+    handle: "@noor.adorned",
+    imgId: "ugc-reel3-2e6d85",
+    captionId: "ugc-reel3-caption",
+    handleId: "ugc-reel3-handle",
+    scene: "woman tucking hair behind ear wearing chunky gold huggie earrings",
+  },
+  {
+    id: "reel-4",
+    caption: "Stacked and treasured",
+    handle: "@elenas.edit",
+    imgId: "ugc-reel4-8a5f12",
+    captionId: "ugc-reel4-caption",
+    handleId: "ugc-reel4-handle",
+    scene: "ear stack of gold huggies and ear cuff on woman's ear, macro vertical",
+  },
+  {
+    id: "reel-5",
+    caption: "A little heirloom energy",
+    handle: "@maison.of.may",
+    imgId: "ugc-reel5-5d9b47",
+    captionId: "ugc-reel5-caption",
+    handleId: "ugc-reel5-handle",
+    scene: "woman in knitwear wearing a delicate gold pendant necklace, editorial",
+  },
+  {
+    id: "reel-6",
+    caption: "Cuff season",
+    handle: "@worn.by.willa",
+    imgId: "ugc-reel6-1b3e78",
+    captionId: "ugc-reel6-caption",
+    handleId: "ugc-reel6-handle",
+    scene: "gold ear cuff with crystal on woman's ear, side profile warm light",
+  },
+];
+
+export const testimonials = [
+  {
+    quote:
+      "The Sphere Huggies haven't left my ears since they arrived. They look three times the price — my jeweler asked where they were from.",
+    name: "Amelia R.",
+    piece: "Golden Sphere Huggies",
+  },
+  {
+    quote:
+      "I bought the Heirloom Set for my mother's birthday and ended up ordering one for myself. The gift box alone felt like a ritual.",
+    name: "Sofia M.",
+    piece: "Royal Heirloom Set",
+  },
+  {
+    quote:
+      "Sensitive ears, zero irritation, endless compliments. The Flora Nectar necklace is somehow delicate and a statement at once.",
+    name: "Priya K.",
+    piece: "Majestic Flora Nectar",
+  },
+];
+
+export const formatPrice = (value) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+  }).format(value);
+
+export const getProduct = (id) => products.find((p) => p.id === id);
