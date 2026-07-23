@@ -12,12 +12,13 @@ export default defineConfig({
     strkImgPlugin(),
     checkBrokenImgPlugin(),
     checkPlaceholderImgPlugin(),
-    visualEditPlugin(),
+    // visualEditPlugin(), // Disabled - causing blank page
     react(),
   ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      "@strikingly/sdk": path.resolve(__dirname, "./src/lib/strikingly-sdk.js"),
     },
   },
   server: {

@@ -1,0 +1,125 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    description: 'A sculptural ear cuff adorned with a single crystal accent. Designed to catch the light with every turn of your head.',
+    materials: '18K gold plated over brass. Crystal accent. Hypoallergenic. Nickel-free.',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', query: 'gold ear cuff crystal jewelry closeup model' },
+      { id: 'vivid-aura-2', query: 'gold ear cuff jewelry dark background' },
+      { id: 'vivid-aura-3', query: 'gold ear cuff detail luxury jewelry' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A delicate pendant necklace featuring multicolor floral crystals arranged in a botanical motif. A statement piece that whispers rather than shouts.',
+    materials: '18K gold plated chain. Multicolor Swarovski crystals. Adjustable 16-18 inch chain. Lobster clasp.',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'flora-nectar-1', query: 'floral crystal necklace gold pendant model' },
+      { id: 'flora-nectar-2', query: 'multicolor crystal necklace jewelry dark background' },
+      { id: 'flora-nectar-3', query: 'floral pendant necklace luxury gold jewelry' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'New',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    description: 'Chunky gold dome huggie earrings with a satisfying weight. The perfect everyday earring that elevates any look.',
+    materials: '18K gold plated over brass. Hinged post back. 12mm diameter. Hypoallergenic.',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'sphere-huggies-1', query: 'gold dome huggie earrings model ear' },
+      { id: 'sphere-huggies-2', query: 'chunky gold huggie earrings dark background' },
+      { id: 'sphere-huggies-3', query: 'gold sphere earrings luxury jewelry detail' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Lightweight despite their intricate appearance.',
+    materials: '18K gold plated over brass. Filigree technique. French wire hooks. 2 inch drop. Hypoallergenic.',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', query: 'gold filigree drop earrings model' },
+      { id: 'amber-lace-2', query: 'textured gold lace earrings dark background' },
+      { id: 'amber-lace-3', query: 'gold filigree jewelry luxury detail' },
+    ],
+    variants: ['gold', 'silver'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    material: 'gold',
+    description: 'A curated gift-boxed set featuring matching stud earrings and a pendant necklace. Presented in our signature velvet box.',
+    materials: '18K gold plated over brass. Stud posts with butterfly backs. 16 inch chain. Gift box included. Hypoallergenic.',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'heirloom-set-1', query: 'gold jewelry set earrings necklace gift box' },
+      { id: 'heirloom-set-2', query: 'gold earring necklace set dark background luxury' },
+      { id: 'heirloom-set-3', query: 'gold jewelry gift set velvet box' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'Gift Set',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', imageQuery: 'gold earrings jewelry model editorial' },
+  { id: 'necklaces', name: 'Necklaces', imageQuery: 'gold necklace jewelry model editorial' },
+  { id: 'huggies', name: 'Huggies', imageQuery: 'gold huggie earrings model ear' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. My Vivid Aura cuff gets compliments every single time I wear it.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging was beautiful and she absolutely loved it.',
+  },
+  {
+    id: 3,
+    name: 'Jessica R.',
+    rating: 5,
+    text: 'Finally found jewelry that feels luxurious without the luxury markup. The Golden Sphere Huggies are my everyday go-to.',
+  },
+];
+
+export const trustItems = [
+  'Free Worldwide Shipping',
+  '30-Day Returns',
+  '18K Gold Plated',
+  'Hypoallergenic',
+];
