@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useStore } from '../../context/StoreContext.jsx'
 import { formatPrice } from '../../data/store.js'
-import { imagePlaceholder } from '../../lib/constants.js'
 import RatingStars from '../shared/RatingStars.jsx'
 
 const ProductCard = ({ product }) => {
@@ -21,7 +20,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="relative overflow-hidden rounded-[1.5rem] bg-obsidian/5 aspect-product">
         <img
-          src={imagePlaceholder}
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
           alt={product.name}
           className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.03]"
           data-strk-img-id={`card-${image.imgId}`}

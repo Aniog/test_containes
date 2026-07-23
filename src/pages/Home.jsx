@@ -1,4 +1,5 @@
-import ProductGrid from '../components/store/ProductGrid.jsx'
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import CategoryTiles from '../components/home/CategoryTiles.jsx'
 import HomeHero from '../components/home/HomeHero.jsx'
 import JournalSection from '../components/home/JournalSection.jsx'
@@ -8,11 +9,26 @@ import TestimonialsSection from '../components/home/TestimonialsSection.jsx'
 import TrustBar from '../components/home/TrustBar.jsx'
 import UgcStrip from '../components/home/UgcStrip.jsx'
 import SectionHeading from '../components/shared/SectionHeading.jsx'
+import ProductGrid from '../components/store/ProductGrid.jsx'
 import { products } from '../data/store.js'
-import useLoadStrkImages from '../lib/useLoadStrkImages.js'
+import strkImgConfig from '../strk-img-config.json'
 
 const Home = () => {
-  const containerRef = useLoadStrkImages([])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      const result = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof result === 'function' ? result : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [])
 
   return (
     <div ref={containerRef}>

@@ -1,13 +1,13 @@
+import { ImageHelper } from '@strikingly/sdk'
 import { Minus, Plus, ShoppingBag } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import AccordionItem from '../components/shared/AccordionItem.jsx'
 import RatingStars from '../components/shared/RatingStars.jsx'
 import ProductGrid from '../components/store/ProductGrid.jsx'
-import { formatPrice, getProductBySlug, getRelatedProducts } from '../data/store.js'
 import { useStore } from '../context/StoreContext.jsx'
-import { imagePlaceholder } from '../lib/constants.js'
-import useLoadStrkImages from '../lib/useLoadStrkImages.js'
+import { formatPrice, getProductBySlug, getRelatedProducts } from '../data/store.js'
+import strkImgConfig from '../strk-img-config.json'
 
 const Product = () => {
   const { slug } = useParams()
@@ -18,19 +18,28 @@ const Product = () => {
   const [selectedTone, setSelectedTone] = useState(product?.tones?.[0] || 'Gold Tone')
   const [quantity, setQuantity] = useState(1)
   const [activeAccordion, setActiveAccordion] = useState('Description')
-  const containerRef = useLoadStrkImages([
-    slug,
-    selectedImage?.id || 'none',
-    selectedTone,
-    activeAccordion,
-  ])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      const result = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof result === 'function' ? result : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [slug, selectedImage?.id, selectedTone, activeAccordion])
 
   if (!product) {
     return <Navigate to="/shop" replace />
   }
 
   return (
-    <div ref={containerRef} className="px-6 pb-16 pt-10 md:px-8 md:pb-24 md:pt-16">
+    <div ref={containerRef} className="px-6 pb-16 md:px-8 md:pb-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-taupe">
           <Link to="/">Home</Link>
@@ -44,7 +53,7 @@ const Product = () => {
           <div>
             <div className="overflow-hidden rounded-[2rem] border border-sand/50 bg-pearl shadow-card aspect-product">
               <img
-                src={imagePlaceholder}
+                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt={product.name}
                 className="h-full w-full object-cover"
                 data-strk-img-id={`pdp-main-${selectedImage.imgId}`}
@@ -66,7 +75,7 @@ const Product = () => {
                   }`}
                 >
                   <img
-                    src={imagePlaceholder}
+                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                     alt={image.title}
                     className="aspect-[4/5] w-full rounded-[1rem] object-cover"
                     data-strk-img-id={`pdp-thumb-${image.imgId}`}

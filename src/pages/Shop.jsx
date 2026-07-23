@@ -1,9 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
 import { useSearchParams } from 'react-router-dom'
-import ProductGrid from '../components/store/ProductGrid.jsx'
 import SectionHeading from '../components/shared/SectionHeading.jsx'
+import ProductGrid from '../components/store/ProductGrid.jsx'
 import { products } from '../data/store.js'
-import useLoadStrkImages from '../lib/useLoadStrkImages.js'
+import strkImgConfig from '../strk-img-config.json'
 
 const categories = ['All', 'Earrings', 'Necklaces', 'Huggies', 'Sets']
 const materials = ['All', '18K Gold Plated', 'Gold Vermeil']
@@ -15,7 +16,21 @@ const Shop = () => {
   const [material, setMaterial] = useState(searchParams.get('material') || 'All')
   const [sort, setSort] = useState('Featured')
   const category = searchParams.get('category') || 'All'
-  const containerRef = useLoadStrkImages([category, price, material, sort])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+
+    const frameId = window.requestAnimationFrame(() => {
+      const result = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      cleanup = typeof result === 'function' ? result : () => {}
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [category, price, material, sort])
 
   const filteredProducts = useMemo(() => {
     let result = [...products]
@@ -68,7 +83,7 @@ const Shop = () => {
   }
 
   return (
-    <div ref={containerRef} className="px-6 pb-16 pt-10 md:px-8 md:pb-24 md:pt-16">
+    <div ref={containerRef} className="px-6 pb-16 md:px-8 md:pb-24">
       <div className="mx-auto max-w-7xl">
         <div id="collections" className="rounded-[2rem] border border-sand/50 bg-pearl p-8 shadow-card md:p-12">
           <SectionHeading

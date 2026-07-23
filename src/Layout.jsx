@@ -6,6 +6,7 @@ import CartDrawer from './components/store/CartDrawer.jsx'
 
 const Layout = () => {
   const location = useLocation()
+  const isHomeRoute = location.pathname === '/'
 
   useEffect(() => {
     if (location.hash) {
@@ -26,7 +27,7 @@ const Layout = () => {
   return (
     <div className="min-h-screen bg-porcelain text-obsidian">
       <SiteHeader />
-      <main className="min-h-screen">
+      <main className={`min-h-screen ${isHomeRoute ? '' : 'pt-24 md:pt-28'}`}>
         <Outlet />
       </main>
       <SiteFooter />
