@@ -4,7 +4,7 @@ import App from "./App.jsx";
 import "./index.css";
 
 if (import.meta.env.DEV) {
-  import("./visual-edit/index.js");
+  import("./visual-edit/index.js").catch(() => {});
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
