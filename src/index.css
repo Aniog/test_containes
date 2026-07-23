@@ -1,76 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1f1713;
+  background: #f8f1e7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
+  background: #f8f1e7;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+  background: #f8f1e7;
+  color: #1f1713;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+button:disabled {
+  cursor: not-allowed;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
+::selection {
+  background: #c99a4a;
+  color: #1f1713;
+}
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --velmora-ink: 31 23 19;
+  --velmora-cream: 248 241 231;
+  --velmora-pearl: 255 250 242;
+  --velmora-linen: 232 220 203;
+  --velmora-gold: 201 154 74;
+  --velmora-brass: 173 123 50;
+  --velmora-clay: 143 96 77;
+}
+
+.text-velmora-ink { color: #1f1713; }
+.text-velmora-ink\/45 { color: rgba(31, 23, 19, .45); }
+.text-velmora-ink\/55 { color: rgba(31, 23, 19, .55); }
+.text-velmora-ink\/60 { color: rgba(31, 23, 19, .60); }
+.text-velmora-ink\/65 { color: rgba(31, 23, 19, .65); }
+.text-velmora-ink\/70 { color: rgba(31, 23, 19, .70); }
+.text-velmora-ink\/72 { color: rgba(31, 23, 19, .72); }
+.text-velmora-ink\/75 { color: rgba(31, 23, 19, .75); }
+.text-velmora-cream { color: #f8f1e7; }
+.text-velmora-cream\/60 { color: rgba(248, 241, 231, .60); }
+.text-velmora-cream\/70 { color: rgba(248, 241, 231, .70); }
+.text-velmora-cream\/72 { color: rgba(248, 241, 231, .72); }
+.text-velmora-cream\/75 { color: rgba(248, 241, 231, .75); }
+.text-velmora-cream\/82 { color: rgba(248, 241, 231, .82); }
+.text-velmora-gold { color: #c99a4a; }
+.text-velmora-clay { color: #8f604d; }
+
+.bg-velmora-ink { background-color: #1f1713; }
+.bg-velmora-ink\/10 { background-color: rgba(31, 23, 19, .10); }
+.bg-velmora-ink\/18 { background-color: rgba(31, 23, 19, .18); }
+.bg-velmora-ink\/45 { background-color: rgba(31, 23, 19, .45); }
+.bg-velmora-cream { background-color: #f8f1e7; }
+.bg-velmora-cream\/8 { background-color: rgba(248, 241, 231, .08); }
+.bg-velmora-cream\/95 { background-color: rgba(248, 241, 231, .95); }
+.bg-velmora-pearl { background-color: #fffaf2; }
+.bg-velmora-linen { background-color: #e8dccb; }
+.bg-velmora-gold { background-color: #c99a4a; }
+.bg-velmora-brass { background-color: #ad7b32; }
+
+.border-velmora-ink { border-color: #1f1713; }
+.border-velmora-ink\/10 { border-color: rgba(31, 23, 19, .10); }
+.border-velmora-ink\/15 { border-color: rgba(31, 23, 19, .15); }
+.border-velmora-cream\/10 { border-color: rgba(248, 241, 231, .10); }
+.border-velmora-cream\/15 { border-color: rgba(248, 241, 231, .15); }
+.border-velmora-cream\/20 { border-color: rgba(248, 241, 231, .20); }
+.border-velmora-cream\/25 { border-color: rgba(248, 241, 231, .25); }
+.border-velmora-gold { border-color: #c99a4a; }
+
+.from-velmora-ink\/60 { --tw-gradient-from: rgba(31, 23, 19, .60) var(--tw-gradient-from-position); --tw-gradient-to: rgba(31, 23, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-ink\/80 { --tw-gradient-from: rgba(31, 23, 19, .80) var(--tw-gradient-from-position); --tw-gradient-to: rgba(31, 23, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-ink\/38 { --tw-gradient-to: rgba(31, 23, 19, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(31, 23, 19, .38) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.to-velmora-ink\/85 { --tw-gradient-to: rgba(31, 23, 19, .85) var(--tw-gradient-to-position); }
+
+.decoration-velmora-gold { text-decoration-color: #c99a4a; }
+.accent-velmora-gold { accent-color: #c99a4a; }
+.placeholder\:text-velmora-cream\/55::placeholder { color: rgba(248, 241, 231, .55); }
+
+.hover\:text-velmora-ink:hover { color: #1f1713; }
+.hover\:text-velmora-clay:hover { color: #8f604d; }
+.hover\:text-velmora-cream:hover { color: #f8f1e7; }
+.hover\:text-velmora-gold:hover { color: #c99a4a; }
+.hover\:bg-velmora-gold:hover { background-color: #c99a4a; }
+.hover\:bg-velmora-brass:hover { background-color: #ad7b32; }
+.hover\:bg-velmora-linen:hover { background-color: #e8dccb; }
+.hover\:border-velmora-clay:hover { border-color: #8f604d; }
+.hover\:border-velmora-gold:hover { border-color: #c99a4a; }
+.group:hover .group-hover\:bg-velmora-ink\/35 { background-color: rgba(31, 23, 19, .35); }
+
+.focus\:border-velmora-gold:focus { border-color: #c99a4a; }
+.focus\:ring-velmora-gold:focus { --tw-ring-color: #c99a4a; }
+.focus\:ring-velmora-cream:focus { --tw-ring-color: #f8f1e7; }
+.focus\:ring-offset-velmora-cream:focus { --tw-ring-offset-color: #f8f1e7; }
+.focus\:ring-offset-velmora-ink:focus { --tw-ring-offset-color: #1f1713; }
