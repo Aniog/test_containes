@@ -46,7 +46,7 @@ export default function TodoInput({ onAdd }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Add a new task..."
-            className="flex-1 px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:bg-white transition-colors"
+            className="flex-1 px-4 py-2.5 rounded-lg bg-slate-50 border border-slate-200 text-slate-800 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent focus:bg-white transition-colors"
             disabled={submitting}
           />
           <button
@@ -54,7 +54,7 @@ export default function TodoInput({ onAdd }) {
             onClick={() => setShowOptions((v) => !v)}
             className={`px-3 py-2.5 rounded-lg border text-sm transition-colors ${
               showOptions
-                ? 'border-indigo-300 bg-indigo-50 text-indigo-600'
+                ? 'border-purple-300 bg-purple-50 text-purple-600'
                 : 'border-slate-200 text-slate-500 hover:bg-slate-50'
             }`}
             title="More options"
@@ -64,7 +64,7 @@ export default function TodoInput({ onAdd }) {
           <button
             type="submit"
             disabled={submitting || !title.trim()}
-            className="flex items-center gap-1.5 px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-300 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
+            className="flex items-center gap-1.5 px-4 py-2.5 bg-purple-600 hover:bg-purple-700 disabled:bg-purple-300 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
           >
             <Plus className="w-4 h-4" />
             Add
@@ -83,7 +83,7 @@ export default function TodoInput({ onAdd }) {
                     onClick={() => setPriority(p)}
                     className={`px-2.5 py-1 rounded-md text-xs font-medium border capitalize transition-all ${
                       priority === p
-                        ? priorityColors[p] + ' ring-2 ring-offset-1 ring-indigo-400'
+                        ? priorityColors[p] + ' ring-2 ring-offset-1 ring-purple-400'
                         : 'bg-white text-slate-500 border-slate-200 hover:bg-slate-50'
                     }`}
                   >
@@ -98,7 +98,7 @@ export default function TodoInput({ onAdd }) {
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className="px-2.5 py-1 rounded-md border border-slate-200 bg-slate-50 text-slate-700 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500"
               />
             </div>
           </div>
