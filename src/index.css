@@ -1,76 +1,278 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  
+  /* Quiet luxury palette */
+  --color-bg: #F8F6F3;
+  --color-surface: #FFFFFF;
+  --color-charcoal: #1C1C1C;
+  --color-taupe: #8B7E6F;
+  --color-gold: #C5A26F;
+  --color-gold-dark: #A67C52;
+  --color-cream: #F5F2ED;
+  --color-border: #E5E0D8;
+  
+  font-family: var(--font-sans);
+  color: var(--color-charcoal);
+  background-color: var(--color-bg);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1, h2, h3, .serif {
+  font-family: var(--font-serif);
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Premium button styles */
+.btn-primary {
+  background-color: var(--color-charcoal);
+  color: var(--color-bg);
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-charcoal);
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--color-charcoal);
+  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: var(--color-charcoal);
+  color: var(--color-bg);
+  border-color: var(--color-charcoal);
+}
+
+.btn-gold {
+  background-color: var(--color-gold);
+  color: var(--color-charcoal);
+  padding: 14px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold-dark);
+}
+
+/* Hairline dividers */
+.divider {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Product card */
+.product-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-cream);
+}
+
+.product-image {
+  transition: opacity 0.4s ease;
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+}
+
+/* Variant pills */
+.variant-pill {
+  padding: 8px 20px;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  background: var(--color-surface);
+}
+
+.variant-pill.active {
+  border-color: var(--color-charcoal);
+  background-color: var(--color-charcoal);
+  color: var(--color-bg);
+}
+
+.variant-pill:hover:not(.active) {
+  border-color: var(--color-taupe);
+}
+
+/* Accordion */
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.accordion-content.open {
+  max-height: 200px;
+  padding-bottom: 16px;
+}
+
+/* Cart drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* UGC Reel cards */
+.ugc-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.ugc-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(28,28,28,0.75), transparent);
+  padding: 32px 20px 20px;
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+}
+
+/* Category tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(28,28,28,0.4));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover::after {
+  opacity: 1;
+}
+
+.category-label {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-family: var(--font-serif);
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.category-tile:hover .category-label {
+  opacity: 1;
+}
+
+/* Filter sidebar */
+.filter-label {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-taupe);
+  margin-bottom: 12px;
+}
+
+/* Toast customization */
+.sonner-toast {
+  background: var(--color-charcoal);
+  color: var(--color-bg);
+  border: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+  
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
