@@ -1,76 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #13110f;
+  background-color: #f4ede2;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
+html,
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  padding: 0;
+  background-color: #f4ede2;
+  color: #13110f;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  min-height: 100vh;
+  background-color: #13110f;
+  color: #f4ede2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+::selection {
+  background-color: #c9a875;
+  color: #13110f;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Hairline underline for nav / footer */
+.hairline {
+  background-color: rgba(244, 237, 226, 0.15);
+  height: 1px;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.hairline-dark {
+  background-color: rgba(19, 17, 15, 0.1);
+  height: 1px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+/* Hide scrollbar on horizontal reels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Accordion chevron rotate */
+details[open] > summary .chev {
+  transform: rotate(180deg);
+}
+summary {
+  list-style: none;
+}
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Fade up on scroll (used by IntersectionObserver in components) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtle product card second-image hover */
+.card-hover .card-hover-img-2 {
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+}
+.card-hover:hover .card-hover-img-2 {
+  opacity: 1;
+}
+.card-hover .card-hover-img-1 {
+  transition: opacity 600ms ease-out, transform 800ms ease-out;
+}
+.card-hover:hover .card-hover-img-1 {
+  transform: scale(1.03);
+}
+
+/* Hairline under transparent nav */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 350ms ease-out, left 350ms ease-out;
+}
+.nav-link:hover::after {
+  width: 100%;
+  left: 0;
+}
