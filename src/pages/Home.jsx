@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
+import { ImageHelper, DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 import strkImgConfig from '@/strk-img-config.json';
-import { MoveRight } from 'lucide-react';
+import { MoveRight, Loader2 } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 // Seed product data
 export const seedProducts = [
@@ -139,6 +142,41 @@ const Bestsellers = () => {
 
 const Home = () => {
   const containerRef = useRef(null);
+  
+  // Newsletter state
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState('idle'); // idle, loading, success, error
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email) return;
+    
+    setStatus('loading');
+    setErrorMsg('');
+    
+    try {
+      // Insert Newsletter mapping
+      const { data: response, error } = await client.from('NewsletterSubscriber').insert({
+        data: {
+          email: email
+        }
+      }).select().single();
+      
+      if (error || response?.success === false) {
+          setErrorMsg((error?.message) || 'Failed to subscribe.');
+          setStatus('error');
+          return;
+      }
+      
+      setStatus('success');
+      setEmail('');
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(err.message || 'Something went wrong');
+      setStatus('error');
+    }
+  };
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -309,20 +347,28 @@ const Home = () => {
           <div className="max-w-xl mx-auto flex flex-col items-center">
               <h2 className="font-serif text-3xl md:text-5xl mb-4">Join the Inner Circle</h2>
               <p className="mb-10 text-primary-foreground/80">Sign up for early access to drops, exclusive events, and 10% off your first order.</p>
-              <form className="w-full flex flex-col sm:flex-row gap-0" onSubmit={(e) => e.preventDefault()}>
+              <form className="w-full flex flex-col sm:flex-row gap-0" onSubmit={handleSubscribe}>
                   <input 
                     type="email" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder="ENTER YOUR EMAIL" 
-                    className="flex-1 bg-transparent border border-primary-foreground/30 px-6 py-4 placeholder:text-primary-foreground/50 focus:outline-none focus:border-primary-foreground focus:ring-0 uppercase text-sm tracking-widest"
+                    className="flex-1 bg-transparent border border-primary-foreground/30 px-6 py-4 placeholder:text-primary-foreground/50 focus:outline-none focus:border-primary-foreground focus:ring-0 uppercase text-sm tracking-widest text-primary-foreground"
                     required
+                    disabled={status === 'loading' || status === 'success'}
                   />
                   <button 
                     type="submit" 
-                    className="bg-primary-foreground text-primary px-8 py-4 font-medium uppercase tracking-widest text-sm hover:bg-primary-foreground/90 transition-colors mt-4 sm:mt-0 sm:-ml-px shrink-0 border border-primary-foreground/30"
+                    disabled={status === 'loading' || status === 'success'}
+                    className="bg-primary-foreground flex justify-center items-center get-started-btn text-primary px-8 py-4 font-medium uppercase tracking-widest text-sm hover:bg-primary-foreground/90 transition-colors mt-4 sm:mt-0 sm:-ml-px shrink-0 border border-primary-foreground/30 disabled:opacity-80"
                   >
-                      Subscribe
+                      {status === 'loading' ? <Loader2 className="w-5 h-5 animate-spin" /> : status === 'success' ? 'Subscribed' : 'Subscribe'}
                   </button>
               </form>
+              <div className="h-6 mt-4 flex items-center justify-center">
+                  {status === 'error' && <p className="text-red-400 text-sm">{errorMsg}</p>}
+                  {status === 'success' && <p className="text-green-400 text-sm">Welcome to the Inner Circle!</p>}
+              </div>
           </div>
       </section>
     </div>
