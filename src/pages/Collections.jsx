@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ImageHelper } from "@strikingly/sdk";
+import strkImgConfig from "@/strk-img-config.json";
 
 const collections = [
   {
@@ -33,8 +35,14 @@ const collections = [
 ];
 
 export default function Collections() {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
   return (
-    <div className="pt-20 md:pt-24">
+    <div className="pt-20 md:pt-24" ref={containerRef}>
       <section className="bg-cream-100 border-b border-cream-200">
         <div className="container-editorial py-12 md:py-20">
           <p className="eyebrow mb-3">Curated edits</p>
