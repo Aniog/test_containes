@@ -5,7 +5,47 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          bg: '#F6F3EE',
+          surface: '#FFFFFF',
+          ink: '#1C1917',
+          muted: '#78716C',
+          subtle: '#A8A29E',
+          line: '#E7E5E4',
+          accent: '#B8860B',
+          accentHover: '#9A7009',
+          warm: '#F5F0E8',
+          dark: '#1C1917',
+        }
+      },
+      fontFamily: {
+        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        sans: ['"Manrope"', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      letterSpacing: {
+        widest: '0.25em',
+      },
+      boxShadow: {
+        soft: '0 10px 30px rgba(28, 25, 23, 0.06)',
+        glow: '0 20px 60px rgba(184, 134, 11, 0.12)',
+      },
+      animation: {
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'slide-up': 'slideUp 0.7s ease-out forwards',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+    },
   },
   plugins: [],
 }
