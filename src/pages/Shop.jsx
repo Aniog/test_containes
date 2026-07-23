@@ -1,8 +1,9 @@
-import { useMemo, useState, useEffect } from "react"
+import { useMemo, useState, useEffect, useRef } from "react"
 import { useSearchParams } from "react-router-dom"
 import { SlidersHorizontal, X, ChevronDown } from "lucide-react"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 import { products } from "@/data/products"
-import { useStrkImages } from "@/lib/useStrkImages"
 import ProductCard from "@/components/product/ProductCard"
 import { cn } from "@/lib/utils"
 
@@ -30,7 +31,15 @@ export default function Shop() {
   const [selectedMats, setSelectedMats] = useState([])
   const [sort, setSort] = useState("featured")
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const ref = useStrkImages([selectedCats, selectedPrices, selectedMats, sort, mobileFiltersOpen])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, ref.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [selectedCats, selectedPrices, selectedMats, sort, mobileFiltersOpen])
 
   // Sync category from URL
   useEffect(() => {

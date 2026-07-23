@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useParams, Link } from "react-router-dom"
 import { Plus, Minus, ChevronDown, Check } from "lucide-react"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 import { getProductById, getRelatedProducts } from "@/data/products"
 import { useCart } from "@/context/CartContext"
-import { useStrkImages } from "@/lib/useStrkImages"
 import { PLACEHOLDER } from "@/components/ui/StrkImg"
 import { Stars } from "@/components/ui/Stars"
 import { Button } from "@/components/ui/Button"
@@ -47,7 +48,15 @@ export default function ProductDetail() {
   const [tone, setTone] = useState(product?.tones?.[0] || "Gold")
   const [qty, setQty] = useState(1)
   const [activeImg, setActiveImg] = useState(0)
-  const ref = useStrkImages([id, activeImg])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, ref.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [id, activeImg])
 
   if (!product) {
     return (

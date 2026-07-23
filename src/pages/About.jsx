@@ -1,9 +1,19 @@
-import { useStrkImages } from "@/lib/useStrkImages"
+import { useEffect, useRef } from "react"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 import { Button } from "@/components/ui/Button"
 import { Link } from "react-router-dom"
 
 export default function About() {
-  const ref = useStrkImages([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, ref.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
     <div ref={ref} className="pt-16 md:pt-20">
