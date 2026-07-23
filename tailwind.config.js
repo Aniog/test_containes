@@ -5,7 +5,22 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        cream: '#FAF7F2',
+        ivory: '#F5F0E8',
+        charcoal: '#1A1A1A',
+        muted: '#6B6358',
+        gold: '#B8860B',
+        'gold-hover': '#9A7209',
+        'gold-light': '#F5ECD7',
+        'border-warm': '#E8E0D4',
+      },
+      fontFamily: {
+        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
