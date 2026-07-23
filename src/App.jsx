@@ -1,15 +1,25 @@
-import './App.css'
+import Navbar from './components/hoover/Navbar';
+import Hero from './components/hoover/Hero';
+import Overview from './components/hoover/Overview';
+import Stats from './components/hoover/Stats';
+import History from './components/hoover/History';
+import Engineering from './components/hoover/Engineering';
+import Gallery from './components/hoover/Gallery';
+import Legacy from './components/hoover/Legacy';
+import Footer from './components/hoover/Footer';
 
-function App() {
+export default function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="bg-navyBlack min-h-screen font-sans">
+      <Navbar />
+      <Hero />
+      <Overview />
+      <Stats />
+      <History />
+      <Engineering />
+      <Gallery />
+      <Legacy />
+      <Footer />
+    </div>
+  );
 }
-
-export default App
