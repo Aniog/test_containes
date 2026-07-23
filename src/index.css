@@ -1,24 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Quiet Luxury Palette - Warm Editorial */
+  --color-bg: #F8F5F0;
+  --color-bg-dark: #0F0F0F;
+  --color-text: #1A1A1A;
+  --color-text-light: #F8F5F0;
+  --color-gold: #C5A26F;
+  --color-gold-dark: #A67C52;
+  --color-taupe: #8B7E6F;
+  --color-sage: #6B6B5F;
+  --color-border: #E5E0D8;
+  --color-card: #FFFFFF;
+  
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-text);
+  background-color: var(--color-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -30,47 +33,245 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Typography */
+h1, h2, h3, .serif {
+  font-family: 'Playfair Display', Georgia, serif;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: -0.01em;
+}
+
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Premium Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: 1px solid transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--color-gold);
+  color: var(--color-bg-dark);
+  border-color: var(--color-gold);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: var(--color-gold-dark);
+  border-color: var(--color-gold-dark);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-text);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-text);
+  color: var(--color-text-light);
+}
+
+.btn-gold {
+  background-color: transparent;
+  color: var(--color-gold);
+  border-color: var(--color-gold);
+}
+
+.btn-gold:hover {
+  background-color: var(--color-gold);
+  color: var(--color-bg-dark);
+}
+
+/* Hairline Dividers */
+.divider {
+  border-top: 1px solid var(--color-border);
+}
+
+/* Card Styles */
+.product-card {
+  background: var(--color-card);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.product-card:hover {
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+}
+
+/* Input Styles */
+.input {
+  border: 1px solid var(--color-border);
+  padding: 14px 18px;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+  background: var(--color-card);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-gold);
+}
+
+/* Accordion */
+.accordion-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 18px 0;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.accordion-trigger:hover {
+  color: var(--color-gold);
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 10px 20px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill.active,
+.variant-pill:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Responsive Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
   }
+}
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* UGC Reel Scroll */
+.ugc-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ugc-card {
+  flex: 0 0 180px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .ugc-card {
+    flex: 0 0 220px;
+  }
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.category-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.4));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.category-tile:hover::after {
+  opacity: 1;
+}
+
+.category-tile .label {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.category-tile:hover .label {
+  opacity: 1;
+}
+
+/* Nav */
+.nav {
+  transition: all 0.3s ease;
+}
+
+.nav.scrolled {
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Toast */
+.toast {
+  background: var(--color-bg-dark);
+  color: var(--color-text-light);
+}
