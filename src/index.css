@@ -1,76 +1,199 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ─────────── Velmora — base styles ─────────── */
+@layer base {
+  :root {
+    --color-bg: 246 241 234;        /* bone-100 */
+    --color-fg: 31 26 23;           /* espresso */
+    --color-accent: 176 141 87;     /* gold-300 */
+    --color-muted: 168 154 138;     /* taupe */
+    --color-line: 217 207 194;      /* taupe-light */
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-fg));
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    color: rgb(var(--color-fg));
+    letter-spacing: -0.005em;
+    line-height: 1.1;
+  }
+
+  /* Hairline divider used across the site */
+  hr, .hairline {
+    border: 0;
+    border-top: 1px solid rgb(var(--color-line));
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(176, 141, 87, 0.28);
+    color: rgb(var(--color-fg));
+  }
+
+  /* Focus ring */
+  :focus-visible {
+    outline: 2px solid rgb(var(--color-accent));
+    outline-offset: 2px;
+  }
+
+  /* Better native button reset */
+  button {
+    font-family: inherit;
+  }
+}
+
+/* ─────────── Components / utilities ─────────── */
+@layer components {
+  .container-x {
+    @apply mx-auto px-5 sm:px-8 lg:px-12;
+    max-width: 1440px;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-widest2 text-espresso/60;
+  }
+
+  .display-serif {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+  }
+
+  .product-name {
+    font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    color: rgb(var(--color-fg));
+  }
+
+  .price {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: rgb(var(--color-fg));
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 select-none transition-all duration-300 ease-out-soft;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 14px 28px;
+    border-radius: 2px;
+  }
+  .btn-primary {
+    background-color: rgb(var(--color-fg));
+    color: #FBF7F1;
+  }
+  .btn-primary:hover {
+    background-color: rgb(var(--color-accent));
+  }
+  .btn-accent {
+    background-color: rgb(var(--color-accent));
+    color: #FBF7F1;
+  }
+  .btn-accent:hover {
+    background-color: rgb(var(--color-fg));
+  }
+  .btn-outline {
+    background-color: transparent;
+    color: rgb(var(--color-fg));
+    border: 1px solid rgb(var(--color-fg));
+  }
+  .btn-outline:hover {
+    background-color: rgb(var(--color-fg));
+    color: #FBF7F1;
+  }
+  .btn-ghost {
+    background-color: transparent;
+    color: rgb(var(--color-fg));
+    border: 1px solid rgb(var(--color-line));
+  }
+  .btn-ghost:hover {
+    border-color: rgb(var(--color-fg));
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .link-underline {
+    position: relative;
+    display: inline-block;
+    color: rgb(var(--color-fg));
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover::after,
+  .link-underline.is-active::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  .image-placeholder {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 80% at 30% 20%, rgba(255,255,255,0.04), transparent 60%),
+      linear-gradient(135deg, #2A221C 0%, #1A1411 60%, #100B08 100%);
+  }
+  .image-placeholder::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+  }
+
+  /* Hide scrollbars but keep scroll (used for UGC reel row) */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reveal {
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
