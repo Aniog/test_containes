@@ -3,9 +3,9 @@ import { Menu, X } from 'lucide-react';
 
 const navLinks = [
   { label: '概览', href: '#overview' },
+  { label: '数据', href: '#stats' },
   { label: '历史', href: '#history' },
   { label: '工程', href: '#engineering' },
-  { label: '数据', href: '#stats' },
   { label: '画廊', href: '#gallery' },
   { label: '遗产', href: '#legacy' },
 ];
