@@ -1,0 +1,151 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    description: 'A sculptural gold ear cuff with delicate crystal accents that catches light with every movement. Designed to be worn alone or stacked for a curated ear look.',
+    shortDesc: 'Gold ear cuff with crystal accent',
+    care: '18K gold-plated over brass. Avoid contact with water, perfumes, and lotions. Store in provided pouch. Clean with soft cloth only.',
+    shipping: 'Free worldwide shipping on all orders. Standard delivery 5–10 business days. Express 2–4 business days available at checkout. 30-day hassle-free returns.',
+    rating: 4.8,
+    reviews: 124,
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A96E' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    defaultVariant: 'gold',
+    images: [
+      { id: 'img-1', alt: 'Vivid Aura Jewels front view' },
+      { id: 'img-2', alt: 'Vivid Aura Jewels detail' },
+      { id: 'img-3', alt: 'Vivid Aura Jewels worn' },
+    ],
+    isBestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: '18k-gold-plated',
+    description: 'An enchanting floral pendant necklace featuring multicolor crystals arranged in a blooming garden motif. The delicate chain sits perfectly at the collarbone.',
+    shortDesc: 'Multicolor floral crystal necklace',
+    care: '18K gold-plated over sterling silver base. Handle with care to preserve crystal settings. Avoid moisture and store flat in jewelry box.',
+    shipping: 'Free worldwide shipping on all orders. Standard delivery 5–10 business days. Express 2–4 business days available at checkout. 30-day hassle-free returns.',
+    rating: 4.9,
+    reviews: 89,
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A96E' },
+    ],
+    defaultVariant: 'gold',
+    images: [
+      { id: 'img-1', alt: 'Majestic Flora Nectar front view' },
+      { id: 'img-2', alt: 'Majestic Flora Nectar detail' },
+    ],
+    isBestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: '18k-gold-plated',
+    description: 'Chunky dome huggie earrings that hug the lobe with satisfying weight and a mirror-polished finish. The ultimate everyday statement piece.',
+    shortDesc: 'Chunky gold dome huggie earrings',
+    care: '18K gold-plated over surgical-grade stainless steel. Hypoallergenic and nickel-free. Wipe clean after wear. Store in dry place.',
+    shipping: 'Free worldwide shipping on all orders. Standard delivery 5–10 business days. Express 2–4 business days available at checkout. 30-day hassle-free returns.',
+    rating: 4.7,
+    reviews: 203,
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A96E' },
+      { id: 'silver', name: 'Silver', color: '#C0C0C0' },
+    ],
+    defaultVariant: 'gold',
+    images: [
+      { id: 'img-1', alt: 'Golden Sphere Huggies front view' },
+      { id: 'img-2', alt: 'Golden Sphere Huggies worn' },
+    ],
+    isBestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: '18k-gold-plated',
+    description: 'Intricate filigree drop earrings inspired by vintage lace patterns. Each curve is hand-finished for a texture that feels both timeless and contemporary.',
+    shortDesc: 'Textured gold filigree drop earrings',
+    care: '18K gold-plated over brass with anti-tarnish coating. Keep away from chemicals and abrasives. Store hanging or flat to maintain shape.',
+    shipping: 'Free worldwide shipping on all orders. Standard delivery 5–10 business days. Express 2–4 business days available at checkout. 30-day hassle-free returns.',
+    rating: 4.6,
+    reviews: 76,
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A96E' },
+    ],
+    defaultVariant: 'gold',
+    images: [
+      { id: 'img-1', alt: 'Amber Lace Earrings front view' },
+      { id: 'img-2', alt: 'Amber Lace Earrings detail' },
+    ],
+    isBestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    material: '18k-gold-plated',
+    description: 'A curated gift set featuring our signature drop earrings paired with a matching pendant necklace. Arrives in a velvet-lined presentation box — ready for gifting.',
+    shortDesc: 'Gift-boxed earring + necklace set',
+    care: '18K gold-plated over sterling silver. Each piece individually wrapped in anti-tarnish paper. Keep set in original box for longevity.',
+    shipping: 'Free worldwide shipping on all orders. Complimentary gift packaging. Standard delivery 5–10 business days. Express 2–4 business days available at checkout. 30-day hassle-free returns.',
+    rating: 5.0,
+    reviews: 45,
+    variants: [
+      { id: 'gold', name: 'Gold', color: '#C9A96E' },
+    ],
+    defaultVariant: 'gold',
+    images: [
+      { id: 'img-1', alt: 'Royal Heirloom Set front view' },
+      { id: 'img-2', alt: 'Royal Heirloom Set in box' },
+    ],
+    isBestseller: true,
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', label: 'Earrings' },
+  { id: 'necklaces', name: 'Necklaces', label: 'Necklaces' },
+  { id: 'huggies', name: 'Huggies', label: 'Huggies' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sophia M.',
+    text: 'The quality exceeded my expectations. The Vivid Aura cuff looks like it cost three times the price. Already ordering more for my bridesmaids.',
+    rating: 5,
+  },
+  {
+    id: 2,
+    name: 'Emily R.',
+    text: 'I have sensitive ears and these are the first gold-plated earrings I can wear all day without irritation. The packaging is gorgeous too.',
+    rating: 5,
+  },
+  {
+    id: 3,
+    name: 'Ava L.',
+    text: 'Bought the Heirloom Set as a birthday gift and she absolutely loved it. The velvet box made it feel so luxurious. Will definitely be a repeat customer.',
+    rating: 5,
+  },
+];
+
+export const ugcPosts = [
+  { id: 1, caption: 'Everyday gold ✨' },
+  { id: 2, caption: 'Stacked & styled' },
+  { id: 3, caption: 'Date night ready' },
+  { id: 4, caption: 'New favorites' },
+  { id: 5, caption: 'Gift to myself' },
+  { id: 6, caption: 'Golden hour glow' },
+];

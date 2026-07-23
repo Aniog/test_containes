@@ -1,0 +1,68 @@
+import React, { createContext, useContext, useState, useCallback } from 'react';
+
+const CartContext = createContext(null);
+
+export function CartProvider({ children }) {
+  const [items, setItems] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openCart = useCallback(() => setIsOpen(true), []);
+  const closeCart = useCallback(() => setIsOpen(false), []);
+  const toggleCart = useCallback(() => setIsOpen(v => !v), []);
+
+  const addItem = useCallback((product, variant, quantity = 1) => {
+    setItems(prev => {
+      const existing = prev.find(
+        i => i.product.id === product.id && i.variant.id === variant.id
+      );
+      if (existing) {
+        return prev.map(i =>
+          i.product.id === product.id && i.variant.id === variant.id
+            ? { ...i, quantity: i.quantity + quantity }
+            : i
+        );
+      }
+      return [...prev, { product, variant, quantity }];
+    });
+    setIsOpen(true);
+  }, []);
+
+  const removeItem = useCallback((productId, variantId) => {
+    setItems(prev => prev.filter(
+      i => !(i.product.id === productId && i.variant.id === variantId)
+    ));
+  }, []);
+
+  const updateQuantity = useCallback((productId, variantId, quantity) => {
+    if (quantity < 1) {
+      removeItem(productId, variantId);
+      return;
+    }
+    setItems(prev => prev.map(i =>
+      i.product.id === productId && i.variant.id === variantId
+        ? { ...i, quantity }
+        : i
+    ));
+  }, [removeItem]);
+
+  const clearCart = useCallback(() => setItems([]), []);
+
+  const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
+  const subtotal = items.reduce((sum, i) => sum + i.product.price * i.quantity, 0);
+
+  return (
+    <CartContext.Provider value={{
+      items, isOpen, openCart, closeCart, toggleCart,
+      addItem, removeItem, updateQuantity, clearCart,
+      totalItems, subtotal,
+    }}>
+      {children}
+    </CartContext.Provider>
+  );
+}
+
+export function useCart() {
+  const ctx = useContext(CartContext);
+  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  return ctx;
+}
