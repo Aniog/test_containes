@@ -1,0 +1,111 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural ear cuff adorned with a delicate crystal accent. Designed to catch the light with every movement.',
+    materials: '18K gold plated over brass. Crystal accent. Hypoallergenic. Nickel-free.',
+    variants: ['Gold', 'Silver'],
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop',
+    ],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviews: 89,
+    description: 'A multicolor floral crystal necklace that blooms against the collarbone. Each petal is hand-set with precision.',
+    materials: '18K gold plated over brass. Swarovski crystals. Adjustable chain 16-18 inches.',
+    variants: ['Gold', 'Silver'],
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+    ],
+    badge: 'New',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviews: 203,
+    description: 'Chunky gold dome huggie earrings with a polished finish. The perfect everyday statement piece.',
+    materials: '18K gold plated over brass. Secure click-back closure. 12mm diameter.',
+    variants: ['Gold', 'Silver'],
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+    ],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.6,
+    reviews: 67,
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Lightweight yet statement-making.',
+    materials: '18K gold plated over brass. French hook closure. Drop length: 45mm.',
+    variants: ['Gold', 'Silver'],
+    images: [
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+    ],
+    badge: null,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    reviews: 45,
+    description: 'A gift-boxed earring and necklace set, designed for the modern heirloom. Presented in our signature velvet box.',
+    materials: '18K gold plated over brass. Includes matching stud earrings and pendant necklace. Gift box included.',
+    variants: ['Gold', 'Silver'],
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
+    ],
+    badge: 'Gift Set',
+  },
+];
+
+export const categories = [
+  { id: 'all', name: 'All' },
+  { id: 'earrings', name: 'Earrings' },
+  { id: 'necklaces', name: 'Necklaces' },
+  { id: 'huggies', name: 'Huggies' },
+  { id: 'sets', name: 'Sets' },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my huggies every single day and they still look brand new.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. The packaging was beautiful and she absolutely loved it.',
+  },
+  {
+    id: 3,
+    name: 'Olivia R.',
+    rating: 5,
+    text: 'Finally found jewelry that feels luxurious without the luxury price tag. The Amber Lace earrings are stunning.',
+  },
+];
