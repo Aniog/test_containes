@@ -1,0 +1,113 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    description: 'Gold ear cuff with crystal accent — a bold, sculptural piece that wraps the ear in warm gold and shimmering detail.',
+    price: 42,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 4.8,
+    reviews: 124,
+    imgId: 'vivid-aura-jewels-a1b2c3',
+    titleId: 'vivid-aura-jewels-title',
+    descId: 'vivid-aura-jewels-desc',
+    images: [
+      { imgId: 'vivid-aura-jewels-main-d4e5f6', ratio: '4x3', width: 800 },
+      { imgId: 'vivid-aura-jewels-alt-g7h8i9', ratio: '4x3', width: 800 },
+    ],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    description: 'Multicolor floral crystal necklace — a garden of color captured in gold, with delicate crystal petals that catch the light.',
+    price: 68,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 4.9,
+    reviews: 89,
+    imgId: 'majestic-flora-nectar-j1k2l3',
+    titleId: 'majestic-flora-nectar-title',
+    descId: 'majestic-flora-nectar-desc',
+    images: [
+      { imgId: 'majestic-flora-nectar-main-m4n5o6', ratio: '4x3', width: 800 },
+      { imgId: 'majestic-flora-nectar-alt-p7q8r9', ratio: '4x3', width: 800 },
+    ],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    description: 'Chunky gold dome huggie earrings — bold, rounded, and effortlessly modern. The perfect everyday statement.',
+    price: 38,
+    category: 'huggies',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 4.7,
+    reviews: 156,
+    imgId: 'golden-sphere-huggies-s1t2u3',
+    titleId: 'golden-sphere-huggies-title',
+    descId: 'golden-sphere-huggies-desc',
+    images: [
+      { imgId: 'golden-sphere-huggies-main-v4w5x6', ratio: '4x3', width: 800 },
+      { imgId: 'golden-sphere-huggies-alt-y7z8a9', ratio: '4x3', width: 800 },
+    ],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    description: 'Textured gold filigree drop earrings — intricate lace-like patterns in warm gold, cascading with artisan elegance.',
+    price: 54,
+    category: 'earrings',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 4.8,
+    reviews: 67,
+    imgId: 'amber-lace-earrings-b1c2d3',
+    titleId: 'amber-lace-earrings-title',
+    descId: 'amber-lace-earrings-desc',
+    images: [
+      { imgId: 'amber-lace-earrings-main-e4f5g6', ratio: '4x3', width: 800 },
+      { imgId: 'amber-lace-earrings-alt-h7i8j9', ratio: '4x3', width: 800 },
+    ],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    description: 'Gift-boxed earring + necklace set — a coordinated pairing of elegance, presented in our signature velvet box for the perfect gift.',
+    price: 95,
+    category: 'necklaces',
+    material: '18K Gold Plated',
+    tone: ['gold', 'silver'],
+    rating: 5.0,
+    reviews: 42,
+    imgId: 'royal-heirloom-set-k1l2m3',
+    titleId: 'royal-heirloom-set-title',
+    descId: 'royal-heirloom-set-desc',
+    images: [
+      { imgId: 'royal-heirloom-set-main-n4o5p6', ratio: '4x3', width: 800 },
+      { imgId: 'royal-heirloom-set-alt-q7r8s9', ratio: '4x3', width: 800 },
+    ],
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', imgId: 'cat-earrings-t1u2v3', titleId: 'cat-earrings-title', descId: 'cat-earrings-desc' },
+  { id: 'necklaces', name: 'Necklaces', imgId: 'cat-necklaces-w4x5y6', titleId: 'cat-necklaces-title', descId: 'cat-necklaces-desc' },
+  { id: 'huggies', name: 'Huggies', imgId: 'cat-huggies-z7a8b9', titleId: 'cat-huggies-title', descId: 'cat-huggies-desc' },
+]
+
+export const testimonials = [
+  { name: 'Sarah M.', text: 'The Golden Sphere Huggies are my go-to everyday earrings. They look so much more expensive than they are — I get compliments every time.', rating: 5 },
+  { name: 'Emily R.', text: 'I gifted the Royal Heirloom Set to my sister and she was speechless. The packaging alone feels like luxury. Truly special.', rating: 5 },
+  { name: 'Priya K.', text: 'I was skeptical about gold-plated jewelry, but Velmora changed my mind. The finish is beautiful and it hasn\'t tarnished after months of wear.', rating: 5 },
+]
+
+export const ugcItems = [
+  { id: 'ugc-1', caption: 'Everyday elegance', imgId: 'ugc-1-c1d2e3', titleId: 'ugc-1-title' },
+  { id: 'ugc-2', caption: 'Golden details', imgId: 'ugc-2-f4g5h6', titleId: 'ugc-2-title' },
+  { id: 'ugc-3', caption: 'Stacked & styled', imgId: 'ugc-3-i7j8k9', titleId: 'ugc-3-title' },
+  { id: 'ugc-4', caption: 'Gift-worthy glow', imgId: 'ugc-4-l1m2n3', titleId: 'ugc-4-title' },
+  { id: 'ugc-5', caption: 'Night out sparkle', imgId: 'ugc-5-o4p5q6', titleId: 'ugc-5-title' },
+  { id: 'ugc-6', caption: 'Minimal luxury', imgId: 'ugc-6-r7s8t9', titleId: 'ugc-6-title' },
+]
