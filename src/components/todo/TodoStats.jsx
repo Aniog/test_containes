@@ -18,23 +18,23 @@ export default function TodoStats({ todos }) {
           </div>
           <div className="w-px bg-slate-100" />
           <div className="text-center">
-            <div className="text-xl font-bold text-purple-600">{active}</div>
+            <div className="text-xl font-bold text-emerald-600">{active}</div>
             <div className="text-xs text-slate-400 font-medium">active</div>
           </div>
           <div className="w-px bg-slate-100" />
           <div className="text-center">
-            <div className="text-xl font-bold text-emerald-600">{completed}</div>
+            <div className="text-xl font-bold text-teal-600">{completed}</div>
             <div className="text-xs text-slate-400 font-medium">done</div>
           </div>
         </div>
         <div className="text-right">
-          <span className="text-2xl font-bold text-purple-600">{percent}%</span>
+          <span className="text-2xl font-bold text-emerald-600">{percent}%</span>
           <div className="text-xs text-slate-400">complete</div>
         </div>
       </div>
       <div className="w-full bg-slate-100 rounded-full h-2">
         <div
-          className="h-2 rounded-full transition-all duration-700 bg-gradient-to-r from-purple-500 to-violet-400"
+          className="h-2 rounded-full transition-all duration-700 bg-gradient-to-r from-emerald-500 to-teal-400"
           style={{ width: `${percent}%` }}
         />
       </div>

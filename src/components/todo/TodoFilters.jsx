@@ -23,7 +23,7 @@ export default function TodoFilters({ filter, setFilter, priorityFilter, setPrio
             onClick={() => setFilter(f.value)}
             className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
               filter === f.value
-                ? 'bg-purple-600 text-white shadow-sm'
+                ? 'bg-emerald-600 text-white shadow-sm'
                 : 'text-slate-600 hover:bg-slate-100'
             }`}
           >
@@ -35,7 +35,7 @@ export default function TodoFilters({ filter, setFilter, priorityFilter, setPrio
       <select
         value={priorityFilter}
         onChange={(e) => setPriorityFilter(e.target.value)}
-        className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-purple-500"
+        className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-slate-600 text-xs font-medium focus:outline-none focus:ring-2 focus:ring-emerald-500"
       >
         {PRIORITY_FILTERS.map((f) => (
           <option key={f.value} value={f.value}>{f.label}</option>
