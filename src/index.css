@@ -1,76 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: Manrope, Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #211815;
+  background-color: #fbf7ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #fbf7ef;
+  color: #211815;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #d8bb82;
+  color: #211815;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
 
-  a:hover {
-    color: #747bff;
-  }
+/* Velmora fallback utility layer for the active preview when Tailwind config changes without a server restart. */
+.font-serifDisplay { font-family: 'Cormorant Garamond', Georgia, serif; }
+.tracking-luxe { letter-spacing: 0.22em; }
+.text-velmora-ivory { color: #fbf7ef; }
+.text-velmora-espresso { color: #211815; }
+.text-velmora-cacao { color: #3a2923; }
+.text-velmora-gold { color: #b58a45; }
+.text-velmora-softGold { color: #d8bb82; }
+.text-velmora-parchment { color: #f2eadc; }
+.text-velmora-sand { color: #ddd0bd; }
+.text-velmora-taupe { color: #716159; }
+.bg-velmora-ivory { background-color: #fbf7ef; }
+.bg-velmora-ivory\/95 { background-color: rgba(251, 247, 239, 0.95); }
+.bg-velmora-pearl { background-color: #fffdf8; }
+.bg-velmora-parchment { background-color: #f2eadc; }
+.bg-velmora-sand { background-color: #ddd0bd; }
+.bg-velmora-espresso { background-color: #211815; }
+.bg-velmora-espresso\/45 { background-color: rgba(33, 24, 21, 0.45); }
+.bg-velmora-cacao { background-color: #3a2923; }
+.bg-velmora-gold { background-color: #b58a45; }
+.bg-velmora-softGold { background-color: #d8bb82; }
+.border-velmora-line { border-color: #d8cbb8; }
+.border-velmora-espresso { border-color: #211815; }
+.border-velmora-espresso\/25 { border-color: rgba(33, 24, 21, 0.25); }
+.border-velmora-gold { border-color: #b58a45; }
+.border-velmora-softGold { border-color: #d8bb82; }
+.border-velmora-ivory\/15 { border-color: rgba(251, 247, 239, 0.15); }
+.border-velmora-ivory\/20 { border-color: rgba(251, 247, 239, 0.20); }
+.divide-velmora-line > :not([hidden]) ~ :not([hidden]) { border-color: #d8cbb8; }
+.from-velmora-espresso { --tw-gradient-from: #211815 var(--tw-gradient-from-position); --tw-gradient-to: rgba(33, 24, 21, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/80 { --tw-gradient-from: rgba(33, 24, 21, 0.8) var(--tw-gradient-from-position); --tw-gradient-to: rgba(33, 24, 21, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/85 { --tw-gradient-from: rgba(33, 24, 21, 0.85) var(--tw-gradient-from-position); --tw-gradient-to: rgba(33, 24, 21, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-espresso\/20 { --tw-gradient-to: rgba(33, 24, 21, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(33, 24, 21, 0.2) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.via-velmora-espresso\/45 { --tw-gradient-to: rgba(33, 24, 21, 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgba(33, 24, 21, 0.45) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.to-velmora-espresso\/20 { --tw-gradient-to: rgba(33, 24, 21, 0.2) var(--tw-gradient-to-position); }
+.shadow-soft { box-shadow: 0 18px 50px rgba(33, 24, 21, 0.10); }
+.shadow-glow { box-shadow: 0 18px 70px rgba(181, 138, 69, 0.18); }
+.placeholder\:text-velmora-taupe::placeholder { color: #716159; }
+.hover\:border-velmora-gold:hover { border-color: #b58a45; }
+.hover\:bg-velmora-cacao:hover { background-color: #3a2923; }
+.hover\:bg-velmora-parchment:hover { background-color: #f2eadc; }
+.hover\:bg-velmora-softGold:hover { background-color: #d8bb82; }
+.hover\:text-velmora-espresso:hover { color: #211815; }
+.hover\:text-velmora-gold:hover { color: #b58a45; }
+.hover\:text-velmora-ivory:hover { color: #fbf7ef; }
+.focus\:border-velmora-espresso:focus { border-color: #211815; }
+.focus\:border-velmora-gold:focus { border-color: #b58a45; }
+.group:hover .group-hover\:text-velmora-gold { color: #b58a45; }
 
-  button {
-    background-color: #f9f9f9;
-  }
+
+/* Hero contrast safeguards */
+.velmora-hero { color: #fbf7ef; }
+.velmora-hero-overlay { background: linear-gradient(to top, rgba(33, 24, 21, 0.78), rgba(33, 24, 21, 0.18), rgba(33, 24, 21, 0.10)); }
+.velmora-hero-heading { color: #fbf7ef !important; text-shadow: 0 3px 28px rgba(0, 0, 0, 0.48); }
+.velmora-hero-subhead { color: #f2eadc !important; text-shadow: 0 2px 18px rgba(0, 0, 0, 0.46); }
+.velmora-hero-kicker { color: #d8bb82 !important; text-shadow: 0 2px 14px rgba(0, 0, 0, 0.5); }
+.velmora-hero-cta { background-color: #b58a45 !important; color: #211815 !important; }
+.velmora-hero-cta:hover { background-color: #d8bb82 !important; }
+
+.velmora-hero-bg {
+  background-image: radial-gradient(circle at 72% 30%, rgba(216, 187, 130, 0.24), transparent 34%), linear-gradient(135deg, #211815 0%, #3a2923 48%, #1b1412 100%) !important;
+  background-size: cover !important;
+  background-position: center !important;
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
