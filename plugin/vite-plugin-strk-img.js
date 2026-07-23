@@ -174,6 +174,14 @@ function buildEntriesForSourceFile(filePath) {
   return (_buildEntriesBySourceFile.get(buildSourceFileKey(filePath)) || []).map(entry => ({ ...entry }))
 }
 
+function allBuildEntries() {
+  const out = []
+  for (const rows of _buildEntriesBySourceFile.values()) {
+    for (const row of rows) out.push({ ...row })
+  }
+  return out
+}
+
 function mergeBuildEntries(...groups) {
   const out = []
   const seen = new Set()
@@ -6534,6 +6542,9 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
   const imageEntries = (Array.isArray(entries) ? entries : []).filter(
     entry => entry?.kind === 'img' && entry.imgId,
   )
+  const allImageEntries = (Array.isArray(options.allBuildEntries) ? options.allBuildEntries : []).filter(
+    entry => entry?.kind === 'img' && entry.imgId,
+  )
   const backgroundEntries = (Array.isArray(entries) ? entries : []).filter(
     entry => entry?.kind === 'bg' && entry.imgId,
   )
@@ -6578,11 +6589,12 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
   const entriesForOpening = (opening, kind) => {
     const sourceKey = buildSourceFileKey(filePath)
     const candidateEntries = kind === 'bg' ? backgroundEntries : imageEntries
-    return candidateEntries.filter(entry => {
+    const result = candidateEntries.filter(entry => {
       if (entry.sourceIndex !== opening?.start) return false
       if (!sourceKey) return true
       return buildSourceFileKey(entry.sourceFile) === sourceKey
     })
+    return result
   }
   const reportUnresolved = (opening, details) => {
     onUnresolved({
@@ -6627,7 +6639,29 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
         const fallback = literalSrcFallback(srcAttr)
         if (idExpr) {
           const candidates = entriesForOpening(np.node, 'img')
-          const candidateIds = [...new Set(candidates.map(entry => entry.imgId))]
+          let candidateIds = [...new Set(candidates.map(entry => entry.imgId))]
+          if (!candidateIds.length) {
+            // Fallback for components whose image IDs are discovered at a
+            // different source location (e.g. cart items rendered from context).
+            // Match against ALL build entries using the static parts of the
+            // template-literal id expression, e.g. `${item.imgId}-a` -> suffix `-a`.
+            const idAttrNode = getAttrNode('data-strk-img-id')
+            const idExprNode = idAttrNode?.value?.expression
+            if (idExprNode?.type === 'TemplateLiteral') {
+              const staticParts = idExprNode.quasis.map(q => (q.value.cooked || q.value.raw || '').toLowerCase())
+              const prefix = staticParts[0] || ''
+              const suffix = staticParts.length > 1 ? staticParts[staticParts.length - 1] : ''
+              candidateIds = [...new Set(allImageEntries
+                .map(entry => entry.imgId)
+                .filter(imgId => {
+                  if (typeof imgId !== 'string') return false
+                  const lower = imgId.toLowerCase()
+                  if (prefix && !lower.startsWith(prefix)) return false
+                  if (suffix && !lower.endsWith(suffix)) return false
+                  return true
+                }))]
+            }
+          }
           if (!candidateIds.length) {
             reportUnresolved(np.node, {
               expression: idExpr,
@@ -6649,11 +6683,22 @@ export function inlineBuildImageSourcesFromAst(code, ast, entries = null, option
             })
           }
           const resolvedCandidateIds = candidateIds.filter(candidateId => dynamicUrlMap[candidateId])
-          if (srcAttr?.value && fallback != null && resolvedCandidateIds.length) {
+          if (srcAttr?.value && resolvedCandidateIds.length) {
             const hasUnresolvedCandidates = resolvedCandidateIds.length !== candidateIds.length
-            const fallbackArg = !isImagePlaceholderUrl(fallback) || hasUnresolvedCandidates
-              ? ', ' + JSON.stringify(fallback)
-              : ''
+            // When src is a literal string, use it as the runtime fallback.
+            // When src is a non-literal expression (e.g. an imported PLACEHOLDER
+            // identifier), fall back to the original expression text so the
+            // runtime helper can still resolve it, and to null when there is no
+            // usable expression at all.
+            let fallbackArg = ''
+            if (fallback != null) {
+              fallbackArg = !isImagePlaceholderUrl(fallback) || hasUnresolvedCandidates
+                ? ', ' + JSON.stringify(fallback)
+                : ''
+            } else {
+              const srcExpr = expressionSource(srcAttr)
+              fallbackArg = srcExpr ? ', ' + srcExpr : ', null'
+            }
             dynamicSrcPatches.push({
               start: srcAttr.value.start,
               end: srcAttr.value.end,
@@ -6861,13 +6906,16 @@ export default function strkImgPlugin() {
         const transformed = inlineBuildImageSourcesFromAst(code, ast, buildEntries, {
           filePath: id,
           configData,
+          allBuildEntries: allBuildEntries(),
           onUnresolved: issue => unresolved.push(issue),
         })
         for (const issue of unresolved) {
           const location = issue.line == null ? id : `${id}:${issue.line}`
           this.warn(`[strk-img] ${issue.message || issue.reason} (${location})`)
         }
-        if (transformed !== code) return { code: transformed, map: null }
+        if (transformed !== code) {
+          return { code: transformed, map: null }
+        }
       }
       return null
     },

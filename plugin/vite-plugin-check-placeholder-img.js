@@ -271,6 +271,64 @@ function collectBackgroundStyleProviders(ast) {
   return providers
 }
 
+// Detect the build-time image source resolver helper injected by the
+// strk-img plugin, i.e. `(id, fallback) => MAP[id] || fallback`. After
+// minification this becomes something like `(e,t)=>Df[e]||t`. We recognize it
+// by shape so the placeholder checker does not flag the runtime fallback as a
+// leftover placeholder image.
+function isMapAccessOrFallbackReturn(node) {
+  if (!node) return false
+  if (
+    node.type === 'LogicalExpression' &&
+    (node.operator === '||' || node.operator === '??')
+  ) {
+    const leftIsComputedMember =
+      node.left?.type === 'MemberExpression' && node.left.computed
+    const rightIsIdentifier = node.right?.type === 'Identifier'
+    return Boolean(leftIsComputedMember && rightIsIdentifier)
+  }
+  return false
+}
+
+function collectImageSrcProviders(ast) {
+  const providers = new Set()
+  traverse(ast, {
+    VariableDeclarator(pathRef) {
+      const node = pathRef.node
+      if (node.id?.type !== 'Identifier') return
+      const init = node.init
+      if (
+        init?.type !== 'ArrowFunctionExpression' &&
+        init?.type !== 'FunctionExpression'
+      ) return
+      if (init.body && init.body.type !== 'BlockStatement') {
+        if (isMapAccessOrFallbackReturn(init.body)) providers.add(node.id.name)
+        return
+      }
+      if (init.body?.type === 'BlockStatement') {
+        for (const stmt of init.body.body) {
+          if (
+            stmt.type === 'ReturnStatement' &&
+            isMapAccessOrFallbackReturn(stmt.argument)
+          ) {
+            providers.add(node.id.name)
+            break
+          }
+        }
+      }
+    },
+  })
+  return providers
+}
+
+function callUsesImageSrcProvider(node, providers) {
+  return Boolean(
+    node?.type === 'CallExpression' &&
+    node.callee?.type === 'Identifier' &&
+    providers.has(node.callee.name),
+  )
+}
+
 function styleValueProvidesBackground(node, providers, depth = 0) {
   if (!node || depth > 6) return false
   if (objectHasBackgroundStyle(node)) return true
@@ -333,12 +391,16 @@ function pushRecord(records, record) {
   records.push(withId)
 }
 
-function inspectImageProps({ records, props, tagName, fileName, code, constants }) {
+function inspectImageProps({ records, props, tagName, fileName, code, constants, imageSrcProviders }) {
   if (tagName !== 'img' && tagName !== 'source') return
 
   for (const attrName of ['src', 'srcSet']) {
     const prop = getObjectProp(props, attrName)
     if (!prop || !valueContainsPlaceholder(prop.value, constants)) continue
+    // When the src is produced by the build-time image resolver helper
+    // (e.g. `__strkImgSrc(id, fallback)`), the placeholder only appears as a
+    // runtime fallback and is replaced with a real URL at load time. Skip it.
+    if (callUsesImageSrcProvider(prop.value, imageSrcProviders)) continue
     pushRecord(records, {
       tag: PLACEHOLDER_TAG,
       url: PLACEHOLDER_URL,
@@ -458,6 +520,7 @@ export function scanPlaceholderImagesFromChunk(code, fileName) {
   if (!ast) return []
   const constants = collectStringConstants(ast)
   const backgroundStyleProviders = collectBackgroundStyleProviders(ast)
+  const imageSrcProviders = collectImageSrcProviders(ast)
   const records = []
 
   traverse(ast, {
@@ -475,7 +538,7 @@ export function scanPlaceholderImagesFromChunk(code, fileName) {
         code,
         constants,
       })
-      inspectImageProps({ records, props, tagName, fileName, code, constants })
+      inspectImageProps({ records, props, tagName, fileName, code, constants, imageSrcProviders })
       inspectStrkBackgroundContract({
         records,
         props,
@@ -515,19 +578,29 @@ export function scanPlaceholderImagesFromBundle(bundle) {
     const hasSemanticPlaceholder = semanticRecords.some(
       record => record.reason === PLACEHOLDER_REASON,
     )
+    // The placeholder URL string legitimately survives in the bundle as the
+    // runtime fallback argument to the build-time image resolver helper (e.g.
+    // `__strkImgSrc(id, PLACEHOLDER)`). When semantic analysis found no real
+    // leftover placeholders, only flag the bundle-text occurrence if the
+    // placeholder is used as a direct `src`/`srcSet` string value rather than
+    // only as a helper fallback argument.
     if (isPlaceholderUrl(code) && !hasSemanticPlaceholder) {
-      pushRecord(records, {
-        tag: PLACEHOLDER_TAG,
-        url: PLACEHOLDER_URL,
-        page: 'Build output',
-        route: null,
-        section: 'bundle',
-        kind: 'bundle-text',
-        slot: 'bundle-output',
-        source: 'dist/' + fileName,
-        reason: PLACEHOLDER_REASON,
-        message: 'Placeholder image URL remains in a runtime build asset.',
-      })
+      const directSrcUse = /src:\s*["'`]data:image\/svg\+xml/.test(code)
+        || /srcSet:\s*["'`]data:image\/svg\+xml/.test(code)
+      if (directSrcUse) {
+        pushRecord(records, {
+          tag: PLACEHOLDER_TAG,
+          url: PLACEHOLDER_URL,
+          page: 'Build output',
+          route: null,
+          section: 'bundle',
+          kind: 'bundle-text',
+          slot: 'bundle-output',
+          source: 'dist/' + fileName,
+          reason: PLACEHOLDER_REASON,
+          message: 'Placeholder image URL remains in a runtime build asset.',
+        })
+      }
     }
   }
   return dedupeRecords(records).sort((a, b) => {
