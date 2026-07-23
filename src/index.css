@@ -1,76 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Manrope, Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2A1D18;
+  background-color: #F8F3EA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F8F3EA;
+  color: #2A1D18;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #D8B8A8;
+  color: #2A1D18;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 
-  a:hover {
-    color: #747bff;
+  .scrollbar-none {
+    scrollbar-width: none;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+/* Runtime-safe Velmora design tokens. These mirror tailwind.config.js so the active preview
+   keeps the correct luxury palette even when the dev server was already running before config changes. */
+:root {
+  --velmora-ivory: #F8F3EA;
+  --velmora-parchment: #EFE5D6;
+  --velmora-linen: #FBF8F2;
+  --velmora-espresso: #2A1D18;
+  --velmora-charcoal: #3B302C;
+  --velmora-taupe: #8C7665;
+  --velmora-gold: #B68A4A;
+  --velmora-gold-deep: #8A642E;
+  --velmora-rose: #D8B8A8;
+  --velmora-mist: #E7DED2;
+}
+
+.font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+.font-sans { font-family: Manrope, Inter, system-ui, sans-serif; }
+
+.bg-velmora-ivory { background-color: var(--velmora-ivory); }
+.bg-velmora-parchment { background-color: var(--velmora-parchment); }
+.bg-velmora-linen { background-color: var(--velmora-linen); }
+.bg-velmora-espresso { background-color: var(--velmora-espresso); }
+.bg-velmora-gold { background-color: var(--velmora-gold); }
+.bg-velmora-goldDeep { background-color: var(--velmora-gold-deep); }
+.bg-velmora-ivory\/95 { background-color: rgb(248 243 234 / 0.95); }
+.bg-velmora-espresso\/45 { background-color: rgb(42 29 24 / 0.45); }
+.bg-velmora-ivory\/20 { background-color: rgb(248 243 234 / 0.20); }
+
+.text-velmora-ivory { color: var(--velmora-ivory); }
+.text-velmora-parchment { color: var(--velmora-parchment); }
+.text-velmora-espresso { color: var(--velmora-espresso); }
+.text-velmora-charcoal { color: var(--velmora-charcoal); }
+.text-velmora-taupe { color: var(--velmora-taupe); }
+.text-velmora-gold { color: var(--velmora-gold); }
+.text-velmora-goldDeep { color: var(--velmora-gold-deep); }
+.text-velmora-rose { color: var(--velmora-rose); }
+
+.border-velmora-mist { border-color: var(--velmora-mist); }
+.border-velmora-gold { border-color: var(--velmora-gold); }
+.border-velmora-espresso { border-color: var(--velmora-espresso); }
+.border-velmora-taupe { border-color: var(--velmora-taupe); }
+.border-velmora-ivory\/20 { border-color: rgb(248 243 234 / 0.20); }
+
+.from-velmora-espresso\/45 { --tw-gradient-from: rgb(42 29 24 / 0.45) var(--tw-gradient-from-position); --tw-gradient-to: rgb(42 29 24 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-espresso\/35 { --tw-gradient-to: rgb(42 29 24 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(42 29 24 / 0.35) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+.to-velmora-espresso\/85 { --tw-gradient-to: rgb(42 29 24 / 0.85) var(--tw-gradient-to-position); }
+.from-velmora-espresso\/75 { --tw-gradient-from: rgb(42 29 24 / 0.75) var(--tw-gradient-from-position); --tw-gradient-to: rgb(42 29 24 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.from-velmora-espresso\/80 { --tw-gradient-from: rgb(42 29 24 / 0.80) var(--tw-gradient-from-position); --tw-gradient-to: rgb(42 29 24 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+.via-velmora-espresso\/10 { --tw-gradient-to: rgb(42 29 24 / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(42 29 24 / 0.10) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+
+.shadow-soft { --tw-shadow: 0 18px 50px rgb(42 29 24 / 0.10); --tw-shadow-colored: 0 18px 50px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+.shadow-editorial { --tw-shadow: 0 28px 70px rgb(42 29 24 / 0.16); --tw-shadow-colored: 0 28px 70px var(--tw-shadow-color); box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow); }
+
+.hover\:bg-velmora-ivory:hover { background-color: var(--velmora-ivory); }
+.hover\:bg-velmora-parchment:hover { background-color: var(--velmora-parchment); }
+.hover\:bg-velmora-gold:hover { background-color: var(--velmora-gold); }
+.hover\:bg-velmora-goldDeep:hover { background-color: var(--velmora-gold-deep); }
+.hover\:text-velmora-ivory:hover { color: var(--velmora-ivory); }
+.hover\:text-velmora-espresso:hover { color: var(--velmora-espresso); }
+.hover\:text-velmora-gold:hover { color: var(--velmora-gold); }
+.hover\:text-velmora-goldDeep:hover { color: var(--velmora-gold-deep); }
+.hover\:border-velmora-gold:hover { border-color: var(--velmora-gold); }
+.hover\:border-velmora-taupe:hover { border-color: var(--velmora-taupe); }
+.focus\:border-velmora-gold:focus { border-color: var(--velmora-gold); }
+
