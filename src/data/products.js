@@ -1,0 +1,47 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    description: 'A striking gold ear cuff elevated with a delicate crystal accent. Designed to hug the ear perfectly, this piece adds an unexpected edge to your everyday stack without the need for additional piercings.',
+    material: '18k Gold Plated Brass, Cubic Zirconia',
+    bestseller: true,
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    description: 'A romantic, multicolor floral crystal necklace that captures the essence of spring. The intricate setting and vibrant stones make this a true statement piece for any neckline.',
+    material: '18k Gold Plated Brass, Premium Crystals',
+    bestseller: true,
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    description: 'Chunky, dome-shaped gold huggie earrings that offer a modern take on a classic silhouette. Their substantial weight and high-polish finish reflect light beautifully.',
+    material: '18k Gold Plated Brass',
+    bestseller: true,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    description: 'Textured gold filigree drop earrings that blend vintage charm with contemporary elegance. Lightweight despite their size, they provide graceful movement with every step.',
+    material: '18k Gold Plated Brass',
+    bestseller: true,
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'sets',
+    description: 'A complete, gift-ready set featuring a complementary necklace and earring pair. Designed to be worn together for maximum impact or separately for subtle sophistication.',
+    material: '18k Gold Plated Sterling Silver',
+    bestseller: true,
+  }
+];
