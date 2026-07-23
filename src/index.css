@@ -1,76 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Runtime fallbacks for the Velmora design tokens.
+   These mirror tailwind.config.js so the active preview updates without a server restart. */
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans {
+  font-family: Manrope, Inter, system-ui, sans-serif;
+}
+
+.tracking-velmora {
+  letter-spacing: 0.22em;
+}
+
+.tracking-velmora-wide {
+  letter-spacing: 0.28em;
+}
+
+.aspect-editorial {
+  aspect-ratio: 4 / 5;
+}
+
+.aspect-reel {
+  aspect-ratio: 9 / 16;
+}
+
+.aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.aspect-landscape {
+  aspect-ratio: 16 / 9;
+}
+
+.bg-velmora-ink {
+  background-color: #17110d;
+}
+
+.bg-velmora-espresso {
+  background-color: #2a1c15;
+}
+
+.bg-velmora-ivory {
+  background-color: #fbf7ef;
+}
+
+.bg-velmora-ivory\/95 {
+  background-color: rgb(251 247 239 / 0.95);
+}
+
+.bg-velmora-parchment {
+  background-color: #f2eadc;
+}
+
+.bg-velmora-champagne {
+  background-color: #e8dbc6;
+}
+
+.bg-velmora-gold {
+  background-color: #c6a15b;
+}
+
+.bg-velmora-ink\/45 {
+  background-color: rgb(23 17 13 / 0.45);
+}
+
+.text-velmora-ink {
+  color: #17110d;
+}
+
+.text-velmora-espresso {
+  color: #2a1c15;
+}
+
+.text-velmora-ivory {
+  color: #fbf7ef;
+}
+
+.text-velmora-champagne {
+  color: #e8dbc6;
+}
+
+.text-velmora-gold {
+  color: #c6a15b;
+}
+
+.text-velmora-umber {
+  color: #7c5b3c;
+}
+
+.border-velmora-ink {
+  border-color: #17110d;
+}
+
+.border-velmora-gold {
+  border-color: #c6a15b;
+}
+
+.border-velmora-ink\/10 {
+  border-color: rgb(23 17 13 / 0.10);
+}
+
+.border-velmora-ink\/15 {
+  border-color: rgb(23 17 13 / 0.15);
+}
+
+.border-velmora-ink\/20 {
+  border-color: rgb(23 17 13 / 0.20);
+}
+
+.border-velmora-ivory\/15 {
+  border-color: rgb(251 247 239 / 0.15);
+}
+
+.border-velmora-ivory\/20 {
+  border-color: rgb(251 247 239 / 0.20);
+}
+
+.border-velmora-gold\/60 {
+  border-color: rgb(198 161 91 / 0.60);
+}
+
+.divide-velmora-ink\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(23 17 13 / 0.10);
+}
+
+.from-velmora-ink\/20 {
+  --tw-gradient-from: rgb(23 17 13 / 0.20) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(23 17 13 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.from-velmora-ink\/80 {
+  --tw-gradient-from: rgb(23 17 13 / 0.80) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(23 17 13 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-velmora-ink\/10 {
+  --tw-gradient-to: rgb(23 17 13 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(23 17 13 / 0.10) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.via-velmora-ink\/35 {
+  --tw-gradient-to: rgb(23 17 13 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(23 17 13 / 0.35) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-velmora-ink\/85 {
+  --tw-gradient-to: rgb(23 17 13 / 0.85) var(--tw-gradient-to-position);
+}
+
+.shadow-velmora-soft {
+  --tw-shadow: 0 24px 80px rgb(23 17 13 / 0.12);
+  --tw-shadow-colored: 0 24px 80px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-velmora-card {
+  --tw-shadow: 0 18px 50px rgb(42 28 21 / 0.10);
+  --tw-shadow-colored: 0 18px 50px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.placeholder\:text-velmora-umber\/80::placeholder {
+  color: rgb(124 91 60 / 0.80);
+}
+
+.hover\:bg-velmora-champagne:hover {
+  background-color: #e8dbc6;
+}
+
+.hover\:bg-velmora-espresso:hover {
+  background-color: #2a1c15;
+}
+
+.hover\:bg-velmora-gold:hover {
+  background-color: #c6a15b;
+}
+
+.hover\:bg-velmora-gold\/15:hover {
+  background-color: rgb(198 161 91 / 0.15);
+}
+
+.hover\:bg-velmora-parchment:hover {
+  background-color: #f2eadc;
+}
+
+.hover\:border-velmora-gold:hover {
+  border-color: #c6a15b;
+}
+
+.hover\:border-velmora-umber:hover {
+  border-color: #7c5b3c;
+}
+
+.hover\:text-velmora-gold:hover {
+  color: #c6a15b;
+}
+
+.hover\:text-velmora-ink:hover {
+  color: #17110d;
+}
+
+.hover\:text-velmora-ivory:hover {
+  color: #fbf7ef;
+}
+
+.hover\:text-velmora-umber:hover {
+  color: #7c5b3c;
+}
+
+.focus\:ring-velmora-gold:focus {
+  --tw-ring-color: #c6a15b;
+}
+
+.focus\:ring-velmora-ink:focus {
+  --tw-ring-color: #17110d;
+}
+
+.disabled\:bg-velmora-ink\/30:disabled {
+  background-color: rgb(23 17 13 / 0.30);
+}
+
+.disabled\:text-velmora-ivory:disabled {
+  color: #fbf7ef;
+}
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  font-family: Manrope, Inter, system-ui, sans-serif;
+  color: #17110d;
+  background: #fbf7ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: #fbf7ef;
+  color: #17110d;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #c6a15b;
+  color: #17110d;
 }
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
