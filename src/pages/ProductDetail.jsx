@@ -5,10 +5,9 @@ import { ImageHelper } from "@strikingly/sdk"
 import strkImgConfig from "@/strk-img-config.json"
 import { getProductById, getRelatedProducts } from "@/data/products"
 import { useCart } from "@/context/CartContext"
-import { PLACEHOLDER } from "@/components/ui/StrkImg"
 import { Stars } from "@/components/ui/Stars"
 import { Button } from "@/components/ui/Button"
-import { formatPrice, cn } from "@/lib/utils"
+import { formatPrice, cn, resolveStrkImgUrl } from "@/lib/utils"
 import ProductCard from "@/components/product/ProductCard"
 
 function Accordion({ title, children, defaultOpen = false }) {
@@ -108,7 +107,7 @@ export default function ProductDetail() {
                   data-strk-img={g.q}
                   data-strk-img-ratio="3x4"
                   data-strk-img-width="200"
-                  src={PLACEHOLDER}
+                  src={resolveStrkImgUrl(`${g.imgId}-thumb`)}
                   alt=""
                   className="w-full h-full object-cover"
                 />
@@ -121,7 +120,7 @@ export default function ProductDetail() {
               data-strk-img={gallery[activeImg].q}
               data-strk-img-ratio="3x4"
               data-strk-img-width="900"
-              src={PLACEHOLDER}
+              src={resolveStrkImgUrl(`${gallery[activeImg].imgId}-main`)}
               alt={product.name}
               className="absolute inset-0 w-full h-full object-cover"
             />

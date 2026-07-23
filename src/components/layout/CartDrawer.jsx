@@ -2,7 +2,7 @@ import { useEffect } from "react"
 import { Link } from "react-router-dom"
 import { X, Plus, Minus, ShoppingBag } from "lucide-react"
 import { useCart } from "@/context/CartContext"
-import { formatPrice, resolveStrkImgUrl, PLACEHOLDER } from "@/lib/utils"
+import { formatPrice, resolveStrkImgUrl } from "@/lib/utils"
 import { Button } from "@/components/ui/Button"
 
 export default function CartDrawer() {
@@ -67,7 +67,7 @@ export default function CartDrawer() {
                     className="shrink-0 w-20 h-24 bg-sand overflow-hidden"
                   >
                     <img
-                      src={resolveStrkImgUrl(item.imgId) || PLACEHOLDER}
+                      src={resolveStrkImgUrl(item.imgId)}
                       alt={item.name}
                       className="w-full h-full object-cover"
                     />

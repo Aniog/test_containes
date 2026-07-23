@@ -6,9 +6,6 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs))
 }
 
-export const PLACEHOLDER =
-  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-
 // Resolve a stock image URL directly from the build-time config.
 // Use this for runtime/dynamic contexts (e.g. cart drawer) where the
 // SDK's loadImages re-scan may not reliably pick up newly-mounted elements.

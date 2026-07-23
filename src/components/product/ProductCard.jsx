@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom"
 import { useCart } from "@/context/CartContext"
-import { PLACEHOLDER } from "@/components/ui/StrkImg"
 import { Stars } from "@/components/ui/Stars"
-import { formatPrice } from "@/lib/utils"
+import { formatPrice, resolveStrkImgUrl } from "@/lib/utils"
 
 export default function ProductCard({ product }) {
   const { addItem } = useCart()
@@ -16,7 +15,7 @@ export default function ProductCard({ product }) {
             data-strk-img={`[${product.descId}] [${product.titleId}]`}
             data-strk-img-ratio="3x4"
             data-strk-img-width="600"
-            src={PLACEHOLDER}
+            src={resolveStrkImgUrl(product.imgId)}
             alt={product.name}
             className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 group-hover:opacity-0"
           />
@@ -25,7 +24,7 @@ export default function ProductCard({ product }) {
             data-strk-img={`[${product.descId}] ${product.subtitle} ${product.name} worn detail`}
             data-strk-img-ratio="3x4"
             data-strk-img-width="600"
-            src={PLACEHOLDER}
+            src={resolveStrkImgUrl(product.imgIdAlt)}
             alt=""
             aria-hidden="true"
             className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
