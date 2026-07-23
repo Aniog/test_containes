@@ -1,76 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #2f241d;
+  background-color: #f8f3ec;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --velmora-ivory: #f8f3ec;
+  --velmora-cream: #fdf9f4;
+  --velmora-rose: #efe4db;
+  --velmora-gold: #b08b57;
+  --velmora-mocha: #7a6450;
+  --velmora-ink: #2f241d;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
+  font-family: Inter, system-ui, sans-serif;
+  background: var(--velmora-ivory);
+  color: var(--velmora-ink);
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+a,
+input,
+select {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+  background: transparent;
 }
 
-button:hover {
-  border-color: #646cff;
+* {
+  box-sizing: border-box;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+*::selection {
+  background: rgba(176, 139, 87, 0.22);
+  color: var(--velmora-ink);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+img {
+  display: block;
+  max-width: 100%;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Cormorant Garamond', serif;
+    margin: 0;
   }
 
-  a:hover {
-    color: #747bff;
+  p {
+    margin: 0;
   }
 
-  button {
-    background-color: #f9f9f9;
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .surface-blur {
+    backdrop-filter: blur(18px);
+  }
+}
