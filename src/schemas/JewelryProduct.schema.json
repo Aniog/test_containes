@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jewelry Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Secondary image shown on hover"
+    },
+    "material": {
+      "type": "string",
+      "description": "Materials used (e.g. 18k Gold Plated)"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL slug for the product"
+    },
+    "is_bestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is a bestseller"
+    }
+  },
+  "required": ["name", "price", "category", "slug"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}

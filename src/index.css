@@ -1,76 +1,57 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
+@config "../tailwind.config.cjs";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 40% 98%; /* velmora-cream approximation */
+    --foreground: 20 10% 10%; /* velmora-charcoal */
+    --primary: 40 50% 56%; /* velmora-gold */
+    --primary-foreground: 45 40% 98%;
+  }
+
+  body {
+    @apply bg-velmora-cream text-velmora-charcoal font-sans;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@keyframes slow-zoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer components {
+  .btn-premium {
+    @apply px-8 py-3 bg-velmora-gold text-velmora-cream font-sans uppercase tracking-widest-lg hover:bg-velmora-charcoal transition-colors duration-300;
+  }
+  
+  .btn-outline-premium {
+    @apply px-8 py-3 border border-velmora-charcoal text-velmora-charcoal font-sans uppercase tracking-widest-lg hover:bg-velmora-charcoal hover:text-velmora-cream transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply font-sans text-sm uppercase tracking-widest-lg hover:text-velmora-gold transition-colors duration-300;
+  }
+}
+
+.hairline-divider {
+  @apply h-[1px] w-full bg-velmora-charcoal opacity-10;
+}
