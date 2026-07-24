@@ -1,76 +1,292 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Velmora Fine Jewelry - Quiet Luxury Design System */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F8F5F1;
+  color: #2C2825;
+  min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/* Typography */
+h1, h2, h3, h4, .serif {
+  font-family: var(--font-serif);
+}
+
+.product-name {
+  font-family: var(--font-serif);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+/* Premium Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 32px;
+  font-size: 14px;
   font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  outline: none;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: #1C1917;
+  color: #F8F5F1;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: #2C2825;
+  transform: translateY(-1px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-accent {
+  background-color: #B89778;
+  color: #1C1917;
+}
+
+.btn-accent:hover {
+  background-color: #A67C52;
+  color: #F8F5F1;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #1C1917;
+  border: 1px solid #1C1917;
+}
+
+.btn-outline:hover {
+  background-color: #1C1917;
+  color: #F8F5F1;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: #2C2825;
+  padding: 8px 16px;
+}
+
+.btn-ghost:hover {
+  color: #B89778;
+}
+
+/* Hairline Dividers */
+.divider {
+  border-top: 1px solid #D4CFC6;
+}
+
+/* Product Card */
+.product-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #F1EDE6;
+}
+
+.product-image {
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.quick-add {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-card:hover .quick-add {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Category Tiles */
+.category-tile {
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tile img {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-tile:hover img {
+  transform: scale(1.05);
+}
+
+.category-overlay {
+  transition: all 0.3s ease;
+}
+
+.category-tile:hover .category-overlay {
+  background-color: rgba(28, 25, 23, 0.75);
+}
+
+/* UGC Reel Cards */
+.ugc-card {
+  transition: transform 0.4s ease;
+}
+
+.ugc-card:hover {
+  transform: scale(1.01);
+}
+
+/* Navigation */
+.nav {
+  transition: all 0.3s ease;
+}
+
+.nav-solid {
+  background-color: #F8F5F1;
+  border-bottom: 1px solid #D4CFC6;
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Modal / Drawer Backdrop */
+.backdrop {
+  animation: fadeIn 0.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Accordion */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.accordion-content.open {
+  max-height: 500px;
+}
+
+/* Variant Pills */
+.variant-pill {
+  padding: 10px 20px;
+  border: 1px solid #D4CFC6;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.variant-pill:hover {
+  border-color: #B89778;
+}
+
+.variant-pill.active {
+  border-color: #1C1917;
+  background-color: #1C1917;
+  color: #F8F5F1;
+}
+
+/* Filter Sidebar */
+.filter-checkbox {
+  accent-color: #B89778;
+}
+
+/* Form Inputs */
+.input {
+  padding: 12px 16px;
+  border: 1px solid #D4CFC6;
+  background-color: #F8F5F1;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #B89778;
+}
+
+/* Stars */
+.star {
+  color: #B89778;
+}
+
+/* Trust Bar */
+.trust-bar {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Newsletter */
+.newsletter {
+  background-color: #1C1917;
+  color: #F8F5F1;
+}
+
+/* Footer */
+.footer-link {
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #B89778;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+  .btn {
+    padding: 12px 24px;
+    font-size: 13px;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Image Placeholders */
+.img-placeholder {
+  background: linear-gradient(135deg, #F1EDE6 0%, #E8E2D9 100%);
+}
