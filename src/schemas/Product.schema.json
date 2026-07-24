@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jewelry Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL slug"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Product images"
+    },
+    "colors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Available colors (e.g., Gold, Silver)"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials and care information"
+    },
+    "isBestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is a bestseller"
+    }
+  },
+  "required": ["name", "slug", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
