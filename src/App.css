@@ -1,50 +1,47 @@
 #root {
   min-height: 100vh;
-  padding: 0;
-  background-color: #e4e8ef;
+  background-color: #F8F2EA;
 }
 
-.app-loading-shell {
-  display: flex;
-  min-height: 100vh;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background-color: #e4e8ef;
+.velmora-image {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(232, 216, 197, 0.45), transparent 34%),
+    linear-gradient(135deg, #3A2B24 0%, #7D5A3A 48%, #E8D8C5 100%);
 }
 
-.app-loading-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #b4bdcc;
-  text-align: center;
+.velmora-hero-scrim {
+  background:
+    linear-gradient(90deg, rgba(36, 25, 20, 0.94) 0%, rgba(36, 25, 20, 0.78) 42%, rgba(36, 25, 20, 0.34) 78%, rgba(36, 25, 20, 0.18) 100%),
+    linear-gradient(0deg, rgba(36, 25, 20, 0.62), rgba(36, 25, 20, 0.12));
 }
 
-.app-loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid rgba(180, 189, 204, 0.2);
-  border-top-color: currentColor;
-  border-radius: 999px;
-  animation: app-loading-spin 0.9s linear infinite;
+.velmora-hero-copy,
+.velmora-hero-copy h1,
+.velmora-hero-copy p {
+  color: #FFFDF8 !important;
+  text-shadow: 0 2px 28px rgba(36, 25, 20, 0.7);
 }
 
-.app-loading-text {
-  margin: 20px 0 0;
-  font-size: 1.5rem;
-  line-height: 1.6;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    sans-serif;
+.velmora-hero-copy .velmora-hero-muted {
+  color: #E8D8C5 !important;
 }
 
-@keyframes app-loading-spin {
+.velmora-nav-shadow {
+  text-shadow: 0 1px 16px rgba(36, 25, 20, 0.85);
+}
+
+.velmora-reveal {
+  animation: velmora-reveal 700ms ease both;
+}
+
+@keyframes velmora-reveal {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(18px);
   }
 
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
