@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { useCart } from '../../context/CartContext';
 import { cn } from '../../lib/utils';
 import { Link } from 'react-router-dom';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '../../strk-img-config.json';
 
 const CartDrawer = () => {
   const { cart, cartTotal, updateQuantity, removeFromCart, isCartOpen, setIsCartOpen } = useCart();
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (isCartOpen) {
+      const frameId = window.requestAnimationFrame(() => {
+        ImageHelper.loadImages(strkImgConfig, containerRef.current);
+      });
+      return () => window.cancelAnimationFrame(frameId);
+    }
+  }, [isCartOpen, cart]);
 
   return (
     <>
@@ -20,6 +32,7 @@ const CartDrawer = () => {
 
       {/* Drawer */}
       <div
+        ref={containerRef}
         className={cn(
           'fixed top-0 right-0 bottom-0 w-full max-w-md bg-background z-[101] shadow-2xl transition-transform duration-500 ease-in-out',
           isCartOpen ? 'translate-x-0' : 'translate-x-full'
