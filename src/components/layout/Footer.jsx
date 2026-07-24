@@ -11,17 +11,17 @@ const footerLinks = {
     { label: 'Gift Sets', href: '/shop?category=Sets' },
   ],
   help: [
-    { label: 'Shipping & Returns', href: '#' },
-    { label: 'Care Guide', href: '#' },
-    { label: 'Size Guide', href: '#' },
-    { label: 'FAQ', href: '#' },
-    { label: 'Contact Us', href: '#' },
+    { label: 'Shipping & Returns', href: '/about' },
+    { label: 'Care Guide', href: '/about' },
+    { label: 'Size Guide', href: '/about' },
+    { label: 'FAQ', href: '/about' },
+    { label: 'Contact Us', href: '/about' },
   ],
   company: [
     { label: 'Our Story', href: '/about' },
-    { label: 'Sustainability', href: '#' },
+    { label: 'Sustainability', href: '/about' },
     { label: 'Journal', href: '/journal' },
-    { label: 'Careers', href: '#' },
+    { label: 'Careers', href: '/about' },
   ],
 };
 
