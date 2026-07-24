@@ -1,0 +1,113 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'earrings',
+    price: 42,
+    rating: 4.8,
+    reviews: 124,
+    description: 'A sculptural gold ear cuff adorned with a single brilliant crystal accent. Designed to sit elegantly along the ear without the need for a piercing.',
+    materials: '18K gold-plated brass with cubic zirconia crystal. Nickel-free and hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and water. Polish gently with a soft cloth.',
+    imageQuery: 'gold ear cuff crystal accent jewelry on dark background',
+    images: [
+      { ratio: '3x4', width: 800, query: 'gold ear cuff crystal accent jewelry on dark background' },
+      { ratio: '3x4', width: 800, query: 'gold ear cuff jewelry worn on ear closeup' },
+      { ratio: '1x1', width: 600, query: 'gold ear cuff crystal detail product shot' },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'necklaces',
+    price: 68,
+    rating: 4.9,
+    reviews: 89,
+    description: 'A delicate necklace featuring a multicolor floral crystal pendant that catches light with every movement. A statement piece that feels effortlessly feminine.',
+    materials: '18K gold-plated chain with hand-set multicolor crystals. Length: 40cm + 5cm extender.',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and water. Polish gently with a soft cloth.',
+    imageQuery: 'multicolor floral crystal necklace gold chain jewelry',
+    images: [
+      { ratio: '3x4', width: 800, query: 'multicolor floral crystal necklace gold chain jewelry' },
+      { ratio: '3x4', width: 800, query: 'floral crystal necklace worn on neck closeup' },
+      { ratio: '1x1', width: 600, query: 'gold necklace floral pendant detail' },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'huggies',
+    price: 38,
+    rating: 4.7,
+    reviews: 210,
+    description: 'Chunky gold dome huggie earrings with a satisfying weight and mirror polish. The modern silhouette transitions seamlessly from day to night.',
+    materials: '18K gold-plated brass with surgical steel posts. Nickel-free and hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and water. Polish gently with a soft cloth.',
+    imageQuery: 'chunky gold dome huggie earrings jewelry product',
+    images: [
+      { ratio: '3x4', width: 800, query: 'chunky gold dome huggie earrings jewelry product' },
+      { ratio: '3x4', width: 800, query: 'gold huggie earrings worn on ear closeup' },
+      { ratio: '1x1', width: 600, query: 'gold dome huggie earrings pair detail' },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'earrings',
+    price: 54,
+    rating: 4.9,
+    reviews: 156,
+    description: 'Textured gold filigree drop earrings inspired by vintage lace patterns. Intricate yet lightweight, they bring an artisanal touch to any outfit.',
+    materials: '18K gold-plated brass with intricate filigree texture. Length: 4.5cm. Nickel-free.',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and water. Polish gently with a soft cloth.',
+    imageQuery: 'textured gold filigree drop earrings jewelry',
+    images: [
+      { ratio: '3x4', width: 800, query: 'textured gold filigree drop earrings jewelry' },
+      { ratio: '3x4', width: 800, query: 'gold filigree drop earrings worn on ear' },
+      { ratio: '1x1', width: 600, query: 'gold filigree earrings detail texture' },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'sets',
+    price: 95,
+    rating: 5.0,
+    reviews: 67,
+    description: 'A curated gift-boxed set pairing our signature earrings with a matching necklace. Presented in a Velmora keepsake box, ready for gifting.',
+    materials: '18K gold-plated brass. Set includes one pair of earrings and one necklace. Nickel-free and hypoallergenic.',
+    care: 'Store in a dry place. Avoid contact with perfumes, lotions, and water. Polish gently with a soft cloth.',
+    imageQuery: 'gold jewelry gift set earrings necklace box elegant',
+    images: [
+      { ratio: '3x4', width: 800, query: 'gold jewelry gift set earrings necklace box elegant' },
+      { ratio: '3x4', width: 800, query: 'gold jewelry set worn on model neck ear' },
+      { ratio: '1x1', width: 600, query: 'gold jewelry gift set product flatlay' },
+    ],
+    variants: ['Gold', 'Silver'],
+  },
+]
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', imageQuery: 'gold earrings collection jewelry flatlay dark background' },
+  { id: 'necklaces', name: 'Necklaces', imageQuery: 'gold necklaces collection jewelry draped dark background' },
+  { id: 'huggies', name: 'Huggies', imageQuery: 'gold huggie earrings collection jewelry closeup' },
+]
+
+export const testimonials = [
+  { name: 'Sophia M.', text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day and they still look brand new after 6 months.', rating: 5 },
+  { name: 'Emma R.', text: 'Bought the Royal Heirloom Set as a birthday gift for my sister. The packaging alone made it feel like a $500 purchase. She absolutely loved it.', rating: 5 },
+  { name: 'Olivia K.', text: 'Finally found demi-fine jewelry that does not turn my ears green. These are my new go-to for date nights.', rating: 5 },
+]
+
+export const ugcReels = [
+  { id: 1, caption: 'Everyday luxury', query: 'woman wearing gold huggie earrings closeup ear' },
+  { id: 2, caption: 'Date night ready', query: 'woman wearing gold necklace pendant elegant' },
+  { id: 3, caption: 'Gift yourself', query: 'gold jewelry unboxing elegant box' },
+  { id: 4, caption: 'Stacked & styled', query: 'woman multiple gold earrings stacked ear closeup' },
+  { id: 5, caption: 'Golden hour', query: 'woman gold necklace sunlight warm glow' },
+  { id: 6, caption: 'Minimal magic', query: 'minimal gold earring on ear clean aesthetic' },
+]
