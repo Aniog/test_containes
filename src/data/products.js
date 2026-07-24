@@ -1,0 +1,142 @@
+export const products = [
+  {
+    id: 'vivid-aura',
+    name: 'VIVID AURA JEWELS',
+    slug: 'vivid-aura-jewels',
+    category: 'Earrings',
+    price: 42,
+    colors: ['Gold', 'Silver'],
+    rating: 4.8,
+    reviews: 124,
+    description: 'A luminous gold ear cuff with a single crystal accent, designed to wrap the helix in understated brilliance. Lightweight and comfortable for all-day wear.',
+    details: '18k gold plated over brass. Crystal accent: premium cubic zirconia. Weight: 2.3g per cuff. Sold as a single piece.',
+    materials: '18k Gold Plated Brass · Cubic Zirconia · Nickel-Free',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided Velmora pouch. Gently polish with the included microfiber cloth.',
+    shipping: 'Free worldwide shipping on all orders. Estimated delivery: 5-10 business days. 30-day hassle-free returns.',
+    images: [
+      { id: 1, ratio: '3x4', width: 800 },
+      { id: 2, ratio: '3x4', width: 800 },
+      { id: 3, ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'majestic-flora',
+    name: 'MAJESTIC FLORA NECTAR',
+    slug: 'majestic-flora-nectar',
+    category: 'Necklaces',
+    price: 68,
+    colors: ['Gold', 'Silver'],
+    rating: 4.9,
+    reviews: 89,
+    description: 'A statement floral pendant necklace featuring multicolor crystal accents suspended from a delicate gold chain. An heirloom-quality piece at an accessible price.',
+    details: '18k gold plated over brass. Multicolor crystal accents. Chain length: 16" + 2" extender. Pendant: 22mm diameter. Lobster clasp.',
+    materials: '18k Gold Plated Brass · Multicolor Crystals · Nickel-Free',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided Velmora pouch. Gently polish with the included microfiber cloth.',
+    shipping: 'Free worldwide shipping on all orders. Estimated delivery: 5-10 business days. 30-day hassle-free returns.',
+    images: [
+      { id: 1, ratio: '3x4', width: 800 },
+      { id: 2, ratio: '3x4', width: 800 },
+      { id: 3, ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'golden-sphere',
+    name: 'GOLDEN SPHERE HUGGIES',
+    slug: 'golden-sphere-huggies',
+    category: 'Huggies',
+    price: 38,
+    colors: ['Gold', 'Silver'],
+    rating: 4.7,
+    reviews: 210,
+    description: 'Chunky gold dome huggie earrings with a high-polish finish. The perfect everyday accessory that transitions effortlessly from day to night.',
+    details: '18k gold plated over brass. Diameter: 14mm. Dome width: 6mm. Hinged post closure. Sold as a pair.',
+    materials: '18k Gold Plated Brass · Nickel-Free · Hypoallergenic',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided Velmora pouch. Gently polish with the included microfiber cloth.',
+    shipping: 'Free worldwide shipping on all orders. Estimated delivery: 5-10 business days. 30-day hassle-free returns.',
+    images: [
+      { id: 1, ratio: '3x4', width: 800 },
+      { id: 2, ratio: '3x4', width: 800 },
+      { id: 3, ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'amber-lace',
+    name: 'AMBER LACE EARRINGS',
+    slug: 'amber-lace-earrings',
+    category: 'Earrings',
+    price: 54,
+    colors: ['Gold', 'Silver'],
+    rating: 4.8,
+    reviews: 67,
+    description: 'Intricate textured gold filigree drop earrings that catch the light with every movement. Inspired by vintage lace patterns, reimagined in precious metal.',
+    details: '18k gold plated over brass. Filigree drop length: 38mm. Weight: 4.1g each. French hook closure. Sold as a pair.',
+    materials: '18k Gold Plated Brass · Nickel-Free · Hypoallergenic',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided Velmora pouch. Gently polish with the included microfiber cloth.',
+    shipping: 'Free worldwide shipping on all orders. Estimated delivery: 5-10 business days. 30-day hassle-free returns.',
+    images: [
+      { id: 1, ratio: '3x4', width: 800 },
+      { id: 2, ratio: '3x4', width: 800 },
+      { id: 3, ratio: '3x4', width: 800 },
+    ],
+  },
+  {
+    id: 'royal-heirloom',
+    name: 'ROYAL HEIRLOOM SET',
+    slug: 'royal-heirloom-set',
+    category: 'Sets',
+    price: 95,
+    colors: ['Gold', 'Silver'],
+    rating: 5.0,
+    reviews: 43,
+    description: 'A gift-boxed matching earring and necklace set featuring our signature gold finish and intricate detailing. The ultimate gifting choice, presented in a velvet-lined box.',
+    details: '18k gold plated over brass. Set includes: 1 necklace (16" + 2" extender) and 1 pair of matching stud earrings (8mm). Gift box: velvet-lined magnetic close.',
+    materials: '18k Gold Plated Brass · Nickel-Free · Hypoallergenic',
+    care: 'Avoid contact with water, perfumes, and lotions. Store in the provided Velmora pouch. Gently polish with the included microfiber cloth.',
+    shipping: 'Free worldwide shipping on all orders. Estimated delivery: 5-10 business days. 30-day hassle-free returns.',
+    images: [
+      { id: 1, ratio: '3x4', width: 800 },
+      { id: 2, ratio: '3x4', width: 800 },
+      { id: 3, ratio: '3x4', width: 800 },
+    ],
+  },
+];
+
+export const categories = [
+  { name: 'Earrings', slug: 'earrings', description: 'Studs, drops, and huggies for every occasion.' },
+  { name: 'Necklaces', slug: 'necklaces', description: 'Pendants and chains that make a statement.' },
+  { name: 'Huggies', slug: 'huggies', description: 'The modern essential — wear solo or stack.' },
+];
+
+export const testimonials = [
+  {
+    name: 'Sarah M.',
+    text: 'The quality rivals pieces I own that cost five times as much. I wear my Golden Sphere Huggies every single day and they still look brand new.',
+    rating: 5,
+  },
+  {
+    name: 'Jessica L.',
+    text: 'I bought the Royal Heirloom Set for my sister\'s wedding — the packaging alone was stunning, and the jewelry is genuinely beautiful. She cried.',
+    rating: 5,
+  },
+  {
+    name: 'Amanda K.',
+    text: 'Finally, demi-fine jewelry that feels truly luxurious without the luxury markup. The attention to detail is remarkable. I\'m a customer for life.',
+    rating: 5,
+  },
+];
+
+export const ugcPosts = [
+  { caption: 'Morning light ✨', product: 'Golden Sphere Huggies' },
+  { caption: 'Stacked & styled', product: 'Vivid Aura Jewels' },
+  { caption: 'Date night glow', product: 'Amber Lace Earrings' },
+  { caption: 'Everyday elegance', product: 'Majestic Flora Nectar' },
+  { caption: 'Gift from the best 💛', product: 'Royal Heirloom Set' },
+  { caption: 'New favorite pair', product: 'Golden Sphere Huggies' },
+];
+
+export const trustBadges = [
+  'Free Worldwide Shipping',
+  '30-Day Returns',
+  '18K Gold Plated',
+  'Hypoallergenic',
+];
