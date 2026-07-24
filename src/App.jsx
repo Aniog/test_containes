@@ -1,15 +1,38 @@
-import './App.css'
+import React from 'react';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { CartProvider } from '@/lib/CartContext';
+import Layout from '@/components/layout/Layout';
+import Home from '@/pages/Home';
+import Shop from '@/pages/Shop';
+import ProductDetail from '@/pages/ProductDetail';
 
-function App() {
+function AppRoutes() {
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    window.__STRIKINGLY_PREVIEW_NAVIGATE__ = (path, opts) => {
+      navigate(path, opts);
+    };
+  }, [navigate]);
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <BrowserRouter>
+      <CartProvider>
+        <AppRoutes />
+      </CartProvider>
+    </BrowserRouter>
+  );
+}
+
