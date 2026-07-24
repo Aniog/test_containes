@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velmora Fine Jewelry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F5F0EB;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Sticky Nav */
+        .sticky-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .sticky-nav.scrolled {
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            transition: opacity 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.7;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%231a1a1a" width="1200" height="800"/><text x="50%" y="50%" text-anchor="middle" dy=".3em" fill="%23333" font-size="24">Hero Image Placeholder</text></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 72px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 50px;
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            text-decoration: none;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: white;
+            color: #1a1a1a;
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: #1a1a1a;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            font-size: 12px;
+            letter-spacing: 0.1em;
+        }
+
+        /* Section Styles */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #C9A96E;
+            margin: 0 auto 60px;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            border: 1px solid #e5e5e5;
+            padding: 20px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1;
+            background: #f5f0eb;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            letter-spacing: 0.1em;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-size: 16px;
+            color: #666;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 80px 40px;
+            margin-top: 100px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 60px;
+        }
+
+        .footer h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-weight: 300;
+            letter-spacing: 0.15em;
+            margin-bottom: 30px;
+        }
+
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer li {
+            margin-bottom: 15px;
+        }
+
+        .footer a {
+            color: #999;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #C9A96E;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .trust-bar {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Nav -->
+    <nav class="sticky-nav" id="stickyNav">
+        <div class="logo">VELMORA</div>
+        <ul class="nav-links">
+            <li><a href="#shop">Shop</a></li>
+            <li><a href="#collections">Collections</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#journal">Journal</a></li>
+        </ul>
+        <div>
+            <span style="color: white; cursor: pointer; margin-right: 20px;">🔍</span>
+            <span style="color: white; cursor: pointer;">🛒</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Crafted to be<br>Treasured</h1>
+            <p>Demi-fine jewelry for the modern woman</p>
+            <a href="#shop" class="btn">SHOP THE COLLECTION</a>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <span>✱ Free Worldwide Shipping</span>
+        <span>↩ 30-Day Returns</span>
+        <span>★ 18K Gold Plated</span>
+        <span>✓ Hypoallergenic</span>
+    </div>
+
+    <!-- Bestsellers Section -->
+    <section class="section" id="shop">
+        <h2 class="section-title">Bestsellers</h2>
+        <div class="divider"></div>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">Vivid Aura Jewels</div>
+                <h3 class="product-name">VIDE AURA JEWELS</h3>
+                <p class="product-price">$42</p>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Majestic Flora Nectar</div>
+                <h3 class="product-name">MAJESTIC FLORA NECTAR</h3>
+                <p class="product-price">$68</p>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Golden Sphere Huggies</div>
+                <h3 class="product-name">GOLDEN SPHERE HUGGIES</h3>
+                <p class="product-price">$38</p>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Amber Lace Earrings</div>
+                <h3 class="product-name">AMBER LACE EARRINGS</h3>
+                <p class="product-price">$54</p>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Royal Heirloom Set</div>
+                <h3 class="product-name">ROYAL HEIRLOOM SET</h3>
+                <p class="product-price">$95</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>VELMORA</h3>
+                <p style="color: #999; font-size: 14px; line-height: 1.8;">
+                    Quiet luxury, hand-crafted<br>
+                    demi-fine jewelry for the<br>
+                    modern woman.
+                </p>
+            </div>
+            <div>
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">Earrings</a></li>
+                    <li><a href="#">Necklaces</a></li>
+                    <li><a href="#">Huggies</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Journal</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sticky nav scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('stickyNav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
