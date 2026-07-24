@@ -21,11 +21,13 @@ export default defineConfig({
     },
   },
   server: {
+    port: 12000,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
     hmr: {
-      overlay: false
+      clientPort: 443,
+      path: '/hmr'
     },
     watch: {
       usePolling: true,
