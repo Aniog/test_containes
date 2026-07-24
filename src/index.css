@@ -1,76 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------------------
+   VELMORA — global styles
+   Quiet luxury editorial palette: warm cream + warm charcoal + gold.
+--------------------------------------------------------------------------- */
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* Brand palette */
+  --color-ink: #1A1614;          /* near-black warm */
+  --color-ink-soft: #2A2421;
+  --color-cream: #F5EFE7;        /* page background */
+  --color-cream-warm: #EFE6D8;
+  --color-paper: #FAF6F0;        /* card / surface */
+  --color-paper-edge: #ECE3D4;
+  --color-gold: #B8956A;         /* primary accent */
+  --color-gold-deep: #8B6F4E;    /* hover / pressed */
+  --color-gold-pale: #D9C2A1;    /* borders / hairlines metallic */
+  --color-muted: #6B5D52;        /* warm taupe text */
+  --color-muted-soft: #8C7E72;
+  --color-hairline: #E5DDD0;
+  --color-hairline-dark: rgba(245, 239, 231, 0.12);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  color-scheme: light;
+  color: var(--color-ink);
+  background-color: var(--color-cream);
+  font-family: var(--font-sans);
+  line-height: 1.55;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html, body, #root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  margin: 0;
+  color: var(--color-ink);
+}
+
+p { margin: 0; }
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: none;
+  background: none;
+  color: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+input, select, textarea {
+  font-family: inherit;
+  color: inherit;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+img { display: block; max-width: 100%; }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* Reusable utility classes ----------------------------------------------- */
+
+@layer components {
+  .font-serif { font-family: var(--font-serif); }
+  .font-sans  { font-family: var(--font-sans); }
+
+  .container-velmora {
+    @apply mx-auto w-full px-5 sm:px-8 lg:px-14;
+    max-width: 1480px;
   }
 
-  a:hover {
-    color: #747bff;
+  /* Editorial uppercase product label */
+  .label-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-muted);
   }
 
-  button {
-    background-color: #f9f9f9;
+  .label-product {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
   }
+
+  .hairline {
+    height: 1px;
+    background-color: var(--color-hairline);
+  }
+  .hairline-dark {
+    height: 1px;
+    background-color: var(--color-hairline-dark);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 0.95rem 1.6rem;
+    transition: all 0.35s cubic-bezier(.2,.7,.2,1);
+    border: 1px solid transparent;
+    line-height: 1;
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: var(--color-cream);
+    border-color: var(--color-ink);
+  }
+  .btn-primary:hover {
+    background: var(--color-gold-deep);
+    border-color: var(--color-gold-deep);
+  }
+  .btn-gold {
+    background: var(--color-gold);
+    color: var(--color-ink);
+    border-color: var(--color-gold);
+  }
+  .btn-gold:hover {
+    background: var(--color-gold-deep);
+    border-color: var(--color-gold-deep);
+    color: var(--color-cream);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+  }
+  .btn-outline:hover {
+    background: var(--color-ink);
+    color: var(--color-cream);
+  }
+  .btn-outline-light {
+    background: transparent;
+    color: var(--color-cream);
+    border-color: rgba(245, 239, 231, 0.6);
+  }
+  .btn-outline-light:hover {
+    background: var(--color-cream);
+    color: var(--color-ink);
+  }
+  .btn-ghost {
+    background: transparent;
+    color: var(--color-ink);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--color-ink);
+    border-radius: 0;
+    letter-spacing: 0.18em;
+  }
+  .btn-ghost:hover {
+    color: var(--color-gold-deep);
+    border-color: var(--color-gold-deep);
+  }
+
+  /* Inputs */
+  .field-input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-ink);
+    padding: 0.85rem 0.1rem;
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  .field-input:focus {
+    border-color: var(--color-gold);
+  }
+  .field-input::placeholder {
+    color: var(--color-muted-soft);
+  }
+
+  .field-input-light {
+    border-bottom-color: rgba(245, 239, 231, 0.5);
+    color: var(--color-cream);
+  }
+  .field-input-light::placeholder {
+    color: rgba(245, 239, 231, 0.55);
+  }
+  .field-input-light:focus {
+    border-color: var(--color-gold);
+  }
+
+  /* Reveal-on-hover second image for product card */
+  .product-card-image {
+    transition: opacity 0.6s ease, transform 1.2s ease;
+  }
+  .product-card-image.alt {
+    opacity: 0;
+  }
+  .product-card:hover .product-card-image.primary {
+    opacity: 0;
+  }
+  .product-card:hover .product-card-image.alt {
+    opacity: 1;
+  }
+  .product-card:hover .product-card-image {
+    transform: scale(1.03);
+  }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Custom scrollbar — keep it light */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-cream); }
+  ::-webkit-scrollbar-thumb { background: var(--color-paper-edge); border-radius: 8px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-gold-pale); }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Animation primitives ---------------------------------------------------- */
+@keyframes velmora-fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes velmora-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes velmora-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes velmora-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes velmora-pulse-soft {
+  0%, 100% { opacity: 0.45; }
+  50%      { opacity: 0.8; }
+}
+
+.animate-fade-up   { animation: velmora-fade-up 0.9s cubic-bezier(.2,.7,.2,1) both; }
+.animate-fade-in   { animation: velmora-fade-in 0.8s ease both; }
+.animate-marquee   { animation: velmora-marquee 40s linear infinite; }
+.animate-shimmer   {
+  background: linear-gradient(90deg, transparent, rgba(184, 149, 106, 0.35), transparent);
+  background-size: 200% 100%;
+  animation: velmora-shimmer 2.4s ease-in-out infinite;
+}
+.animate-pulse-soft { animation: velmora-pulse-soft 3s ease-in-out infinite; }
+
+.fade-up-1 { animation-delay: 0.05s; }
+.fade-up-2 { animation-delay: 0.18s; }
+.fade-up-3 { animation-delay: 0.32s; }
+.fade-up-4 { animation-delay: 0.46s; }
