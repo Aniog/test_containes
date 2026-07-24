@@ -1,76 +1,148 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply font-sans text-velmora-charcoal bg-velmora-cream antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  
+  ::selection {
+    @apply bg-velmora-gold/20 text-velmora-charcoal;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-velmora-cream;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-velmora-border rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-velmora-warm-gray;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           bg-velmora-gold text-velmora-charcoal font-medium text-sm
+           rounded-sm transition-all duration-300 ease-out
+           hover:bg-velmora-gold-dark hover:scale-[1.02] hover:shadow-gold
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed
+           disabled:hover:scale-100 disabled:hover:bg-velmora-gold disabled:hover:shadow-none;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 
+           bg-transparent border border-velmora-gold text-velmora-gold 
+           font-medium text-sm rounded-sm transition-all duration-300 ease-out
+           hover:bg-velmora-gold hover:text-velmora-charcoal
+           active:bg-velmora-gold-dark;
+  }
+  
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2
+           bg-transparent text-velmora-charcoal font-medium text-sm
+           transition-all duration-300 ease-out
+           hover:text-velmora-gold;
+  }
+  
+  .section-container {
+    @apply max-w-7xl mx-auto px-6 md:px-8 lg:px-12;
+  }
+  
+  .hairline {
+    @apply h-px bg-velmora-border;
+  }
+  
+  .heading-display {
+    @apply font-serif font-light text-4xl md:text-5xl lg:text-6xl text-velmora-charcoal leading-tight;
+  }
+  
+  .heading-section {
+    @apply font-serif font-normal text-3xl md:text-4xl text-velmora-charcoal;
+  }
+  
+  .text-product-name {
+    @apply text-xs font-medium uppercase tracking-ultra-wide text-velmora-charcoal;
+  }
+  
+  .text-price {
+    @apply text-sm font-normal text-velmora-warm-gray;
+  }
+  
+  .input-field {
+    @apply w-full px-4 py-3 bg-velmora-white border border-velmora-border rounded-sm
+           text-velmora-charcoal placeholder:text-velmora-warm-gray/60
+           transition-all duration-200 ease-out
+           focus:outline-none focus:border-velmora-gold focus:ring-1 focus:ring-velmora-gold/20;
+  }
+  
+  /* Fade-up animation for scroll reveals */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Gradient overlay for hero */
+  .hero-gradient {
+    background: linear-gradient(
+      to bottom,
+      rgba(28, 25, 23, 0.1) 0%,
+      rgba(28, 25, 23, 0.3) 50%,
+      rgba(28, 25, 23, 0.5) 100%
+    );
+  }
+  
+  /* Fade up animation for hero elements */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+}

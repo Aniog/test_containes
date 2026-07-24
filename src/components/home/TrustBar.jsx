@@ -1,0 +1,30 @@
+import { Truck, RotateCcw, Gem, Heart } from 'lucide-react';
+
+const trustItems = [
+  { icon: Truck, text: 'Free Worldwide Shipping' },
+  { icon: RotateCcw, text: '30-Day Returns' },
+  { icon: Gem, text: '18K Gold Plated' },
+  { icon: Heart, text: 'Hypoallergenic' }
+];
+
+export default function TrustBar() {
+  return (
+    <section className="bg-velmora-charcoal py-4">
+      <div className="section-container">
+        <div className="flex items-center justify-center flex-wrap gap-4 md:gap-8">
+          {trustItems.map((item, index) => (
+            <div key={item.text} className="flex items-center gap-2">
+              {index > 0 && (
+                <span className="hidden md:block w-px h-4 bg-white/20" />
+              )}
+              <item.icon className="w-4 h-4 text-velmora-gold" />
+              <span className="text-xs md:text-sm text-white/80 font-medium tracking-wide">
+                {item.text}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
