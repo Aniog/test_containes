@@ -1,76 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #241a13;
+  background-color: #f7f2ea;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+* {
+  box-sizing: border-box;
 }
 
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #f7f2ea;
+  color: #241a13;
+  font-family: Inter, system-ui, sans-serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+#root {
+  min-height: 100vh;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+::selection {
+  background: rgba(193, 154, 107, 0.28);
+  color: #241a13;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.font-display {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.text-velmora-cocoa { color: #6f5946; }
+.text-velmora-gold { color: #c19a6b; }
+.text-velmora-ink { color: #241a13; }
+.text-velmora-ink\/90 { color: rgba(36, 26, 19, 0.9); }
+.text-velmora-pearl { color: #f7f2ea; }
+.text-velmora-pearl\/56 { color: rgba(247, 242, 234, 0.56); }
+.text-velmora-pearl\/60 { color: rgba(247, 242, 234, 0.6); }
+.text-velmora-pearl\/70 { color: rgba(247, 242, 234, 0.7); }
+.text-velmora-pearl\/72 { color: rgba(247, 242, 234, 0.72); }
+.text-velmora-pearl\/76 { color: rgba(247, 242, 234, 0.76); }
+.text-velmora-pearl\/82 { color: rgba(247, 242, 234, 0.82); }
+.text-velmora-pearl\/84 { color: rgba(247, 242, 234, 0.84); }
+.text-velmora-pearl\/90 { color: rgba(247, 242, 234, 0.9); }
+
+.bg-velmora-gold { background-color: #c19a6b; }
+.bg-velmora-ink { background-color: #241a13; }
+.bg-velmora-ink\/45 { background-color: rgba(36, 26, 19, 0.45); }
+.bg-velmora-ink\/88 { background-color: rgba(36, 26, 19, 0.88); }
+.bg-velmora-mist { background-color: #ede3d6; }
+.bg-velmora-mist\/60 { background-color: rgba(237, 227, 214, 0.6); }
+.bg-velmora-pearl { background-color: #f7f2ea; }
+.bg-velmora-pearl\/95 { background-color: rgba(247, 242, 234, 0.95); }
+
+.border-velmora-gold { border-color: #c19a6b; }
+.border-velmora-pearl\/10 { border-color: rgba(247, 242, 234, 0.1); }
+.border-velmora-pearl\/15 { border-color: rgba(247, 242, 234, 0.15); }
+.border-velmora-pearl\/20 { border-color: rgba(247, 242, 234, 0.2); }
+.border-velmora-sand { border-color: #d7c3ab; }
+.border-velmora-sand\/50 { border-color: rgba(215, 195, 171, 0.5); }
+.border-velmora-sand\/60 { border-color: rgba(215, 195, 171, 0.6); }
+.border-velmora-sand\/70 { border-color: rgba(215, 195, 171, 0.7); }
+.border-velmora-sand\/80 { border-color: rgba(215, 195, 171, 0.8); }
+
+.shadow-soft {
+  box-shadow: 0 18px 45px rgba(36, 26, 19, 0.08);
+}
+
+.hover\:bg-velmora-gold:hover { background-color: #c19a6b; }
+.hover\:bg-velmora-ink:hover { background-color: #241a13; }
+.hover\:bg-velmora-pearl:hover { background-color: #f7f2ea; }
+.hover\:border-velmora-gold:hover { border-color: #c19a6b; }
+.hover\:text-velmora-gold:hover { color: #c19a6b; }
+.hover\:text-velmora-ink:hover { color: #241a13; }
+.hover\:text-velmora-pearl:hover { color: #f7f2ea; }
+.focus\:border-velmora-gold:focus { border-color: #c19a6b; }
+.placeholder\:text-velmora-pearl\/60::placeholder {
+  color: rgba(247, 242, 234, 0.6);
+}
+
