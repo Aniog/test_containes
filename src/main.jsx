@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from 'react-router-dom';
+import { CartProvider } from './lib/CartContext';
 import App from "./App.jsx";
 import "./index.css";
 
@@ -9,6 +11,10 @@ if (import.meta.env.DEV) {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
