@@ -1,0 +1,111 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    price: 42,
+    rating: 4.8,
+    reviewCount: 124,
+    description: 'A sculptural gold ear cuff finished with a single crystal accent. Designed to sit high on the ear for an editorial, modern look.',
+    details: '18K gold-plated brass. Crystal accent. Hypoallergenic. One size.',
+    materials: '18K gold-plated brass, crystal',
+    care: 'Avoid contact with perfume, lotions, and water. Store in a dry place. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. Standard delivery 5-10 business days.',
+    returns: '30-day returns. Items must be unworn and in original packaging.',
+    tone: 'Gold',
+    images: [
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=900&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=900&q=80',
+    ],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    price: 68,
+    rating: 4.9,
+    reviewCount: 89,
+    description: 'A delicate necklace centered by a multicolor floral crystal pendant. Light enough for everyday wear, special enough for evenings.',
+    details: '18K gold-plated brass. Multicolor crystals. Adjustable chain 16"-18".',
+    materials: '18K gold-plated brass, multicolor crystals',
+    care: 'Avoid contact with perfume, lotions, and water. Store in a dry place. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. Standard delivery 5-10 business days.',
+    returns: '30-day returns. Items must be unworn and in original packaging.',
+    tone: 'Gold',
+    images: [
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=900&q=80',
+    ],
+    badge: 'New',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    price: 38,
+    rating: 4.7,
+    reviewCount: 210,
+    description: 'Chunky gold dome huggie earrings with a smooth, polished finish. A quiet-luxe staple that layers beautifully.',
+    details: '18K gold-plated brass. Hinge closure. Approx. 12mm diameter.',
+    materials: '18K gold-plated brass',
+    care: 'Avoid contact with perfume, lotions, and water. Store in a dry place. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. Standard delivery 5-10 business days.',
+    returns: '30-day returns. Items must be unworn and in original packaging.',
+    tone: 'Gold',
+    images: [
+      'https://images.unsplash.com/photo-1630019852942-f89202989a59?w=900&q=80',
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=900&q=80',
+    ],
+    badge: null,
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    price: 54,
+    rating: 4.8,
+    reviewCount: 67,
+    description: 'Textured gold filigree drop earrings inspired by antique lace. Lightweight and movement-catching.',
+    details: '18K gold-plated brass. Filigree detail. Approx. 45mm drop length.',
+    materials: '18K gold-plated brass',
+    care: 'Avoid contact with perfume, lotions, and water. Store in a dry place. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. Standard delivery 5-10 business days.',
+    returns: '30-day returns. Items must be unworn and in original packaging.',
+    tone: 'Gold',
+    images: [
+      'https://images.unsplash.com/photo-1524592094714-0f0654e20314?w=900&q=80',
+      'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=900&q=80',
+    ],
+    badge: 'Limited',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Sets',
+    price: 95,
+    rating: 5.0,
+    reviewCount: 42,
+    description: 'A gift-boxed set pairing classic stud earrings with a delicate pendant necklace. The perfect heirloom-worthy present.',
+    details: '18K gold-plated brass. Gift box included. Chain 16" with 2" extender.',
+    materials: '18K gold-plated brass',
+    care: 'Avoid contact with perfume, lotions, and water. Store in a dry place. Clean with a soft cloth.',
+    shipping: 'Free worldwide shipping on orders over $75. Standard delivery 5-10 business days.',
+    returns: '30-day returns. Items must be unworn and in original packaging.',
+    tone: 'Gold',
+    images: [
+      'https://images.unsplash.com/photo-1608042314453-ae338d80c427?w=900&q=80',
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&q=80',
+    ],
+    badge: 'Gift',
+  },
+];
+
+export const categories = ['Earrings', 'Necklaces', 'Huggies', 'Sets'];
+
+export const getProductById = (id) => products.find((p) => p.id === id);
+
+export const getRelatedProducts = (product, limit = 4) =>
+  products.filter((p) => p.category === product.category && p.id !== product.id).slice(0, limit);
+
+export const getBestsellers = () => products.filter((p) => p.badge === 'Bestseller' || p.reviewCount > 100);
