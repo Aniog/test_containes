@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      },
+      "description": "Array of image URLs. For stock images, use tagging pattern in UI."
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "description": "Available material tones"
+    },
+    "isBestseller": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is a bestseller"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "default": 4.5,
+      "description": "Average rating"
+    },
+    "materials": {
+      "type": "string",
+      "description": "Materials information"
+    },
+    "care": {
+      "type": "string",
+      "description": "Care instructions"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
