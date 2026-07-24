@@ -1,76 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  --color-cream: #F9F7F4;
+  --color-sand: #E8E2DA;
+  --color-taupe: #A69F94;
+  --color-charcoal: #2C2A26;
+  --color-gold: #C9A962;
+  --color-gold-light: #D4BC7D;
+  --color-gold-dark: #A68B4B;
+  
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-charcoal);
+  background-color: var(--color-cream);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-button:hover {
-  border-color: #646cff;
+.font-sans {
+  font-family: 'Inter', system-ui, sans-serif;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+::-webkit-scrollbar-track {
+  background: var(--color-sand);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-taupe);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-charcoal);
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Product name styling */
+.product-name {
+  @apply font-serif uppercase tracking-widest text-sm;
+  letter-spacing: 0.2em;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-velmora-charcoal text-white px-8 py-3 uppercase tracking-widest text-xs transition-all duration-300;
+}
+
+.btn-primary:hover {
+  @apply bg-velmora-gold;
+}
+
+.btn-outline {
+  @apply border border-velmora-charcoal text-velmora-charcoal px-8 py-3 uppercase tracking-widest text-xs transition-all duration-300 bg-transparent;
+}
+
+.btn-outline:hover {
+  @apply bg-velmora-charcoal text-white;
+}
+
+/* Hairline divider */
+.hairline {
+  @apply h-px bg-velmora-taupe/30 w-full;
+}
+
+/* Animation utilities */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Stagger animations */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Image hover effect */
+.img-hover-reveal {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-hover-reveal img:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.img-hover-reveal:hover img:last-child {
+  opacity: 1;
+}
+
+/* Horizontal scroll snap */
+.snap-x-mandatory {
+  scroll-snap-type: x mandatory;
+}
+
+.snap-center {
+  scroll-snap-align: center;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
