@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Newsletter Subscribers",
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 254,
+      "description": "Subscriber's email address"
+    },
+    "discount_code": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "10% welcome discount code issued to this subscriber"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["homepage_footer", "popup", "checkout"],
+      "description": "Where on the site the subscriber signed up"
+    },
+    "subscribed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO timestamp of when the subscription was created"
+    }
+  },
+  "required": ["email"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read":   { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
