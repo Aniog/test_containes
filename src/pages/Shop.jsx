@@ -1,5 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '../strk-img-config.json'
 import ProductCard from '../components/common/ProductCard'
 import CollectionHero from '../components/shop/CollectionHero'
 import FilterSidebar from '../components/shop/FilterSidebar'
@@ -10,7 +12,6 @@ import {
   products,
   sortOptions,
 } from '../data/store'
-import useStrkImages from '../lib/useStrkImages'
 
 const matchesPrice = (price, priceFilter) => {
   if (priceFilter === 'under-50') return price < 50
@@ -45,7 +46,19 @@ const Shop = () => {
     material: 'All Materials',
   })
   const [sort, setSort] = useState('featured')
-  const containerRef = useStrkImages([filters, sort])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [filters, sort])
 
   const filteredProducts = useMemo(() => {
     const nextProducts = products.filter((product) => {

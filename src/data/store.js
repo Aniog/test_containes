@@ -50,9 +50,9 @@ export const products = [
     materialsCare: '18K gold plated brass, hypoallergenic finish, cubic crystal accents. Store it dry and wipe gently with a soft cloth after wear.',
     shippingReturns: 'Free worldwide shipping on orders over $75 and easy 30-day returns. Each piece arrives in a suede-style Velmora pouch ready for gifting.',
     gallery: [
-      { id: 'vivid-aura-gallery-1-7c8d1a', cueId: 'vivid-aura-gallery-cue-1', cueText: 'macro still life of gold crystal ear cuff on ivory stone tray', alt: 'Vivid Aura Jewels ear cuff close-up' },
-      { id: 'vivid-aura-gallery-2-7c8d1a', cueId: 'vivid-aura-gallery-cue-2', cueText: 'gold crystal ear cuff styled on model ear with warm light', alt: 'Vivid Aura Jewels worn on ear' },
-      { id: 'vivid-aura-gallery-3-7c8d1a', cueId: 'vivid-aura-gallery-cue-3', cueText: 'editorial jewelry flat lay featuring crystal ear cuff and velvet box', alt: 'Vivid Aura Jewels styled flat lay' },
+      { id: 'vivid-aura-gallery-1-7c8d1a', mainImgId: 'vivid-aura-gallery-1-main-e31d', thumbImgId: 'vivid-aura-gallery-1-thumb-b91f', cueId: 'vivid-aura-gallery-cue-1', cueText: 'macro still life of gold crystal ear cuff on ivory stone tray', alt: 'Vivid Aura Jewels ear cuff close-up' },
+      { id: 'vivid-aura-gallery-2-7c8d1a', mainImgId: 'vivid-aura-gallery-2-main-e31d', thumbImgId: 'vivid-aura-gallery-2-thumb-b91f', cueId: 'vivid-aura-gallery-cue-2', cueText: 'gold crystal ear cuff styled on model ear with warm light', alt: 'Vivid Aura Jewels worn on ear' },
+      { id: 'vivid-aura-gallery-3-7c8d1a', mainImgId: 'vivid-aura-gallery-3-main-e31d', thumbImgId: 'vivid-aura-gallery-3-thumb-b91f', cueId: 'vivid-aura-gallery-cue-3', cueText: 'editorial jewelry flat lay featuring crystal ear cuff and velvet box', alt: 'Vivid Aura Jewels styled flat lay' },
     ],
   },
   {
@@ -76,9 +76,9 @@ export const products = [
     materialsCare: '18K gold plated brass, multicolor crystal stones, hypoallergenic coating. Avoid moisture, fragrance, and direct heat to preserve brilliance.',
     shippingReturns: 'Complimentary worldwide shipping on orders over $75 with 30-day returns. Beautifully boxed for birthdays, bridal events, and meaningful self-gifting moments.',
     gallery: [
-      { id: 'majestic-flora-gallery-1-0ea41c', cueId: 'majestic-flora-gallery-cue-1', cueText: 'close-up floral crystal necklace on champagne silk with warm studio light', alt: 'Majestic Flora Nectar necklace still life' },
-      { id: 'majestic-flora-gallery-2-0ea41c', cueId: 'majestic-flora-gallery-cue-2', cueText: 'floral crystal necklace worn on neckline editorial portrait', alt: 'Majestic Flora Nectar worn on model' },
-      { id: 'majestic-flora-gallery-3-0ea41c', cueId: 'majestic-flora-gallery-cue-3', cueText: 'giftable jewelry flat lay with floral pendant necklace and velvet ribbon', alt: 'Majestic Flora Nectar gift styling' },
+      { id: 'majestic-flora-gallery-1-0ea41c', mainImgId: 'majestic-flora-gallery-1-main-e31d', thumbImgId: 'majestic-flora-gallery-1-thumb-b91f', cueId: 'majestic-flora-gallery-cue-1', cueText: 'close-up floral crystal necklace on champagne silk with warm studio light', alt: 'Majestic Flora Nectar necklace still life' },
+      { id: 'majestic-flora-gallery-2-0ea41c', mainImgId: 'majestic-flora-gallery-2-main-e31d', thumbImgId: 'majestic-flora-gallery-2-thumb-b91f', cueId: 'majestic-flora-gallery-cue-2', cueText: 'floral crystal necklace worn on neckline editorial portrait', alt: 'Majestic Flora Nectar worn on model' },
+      { id: 'majestic-flora-gallery-3-0ea41c', mainImgId: 'majestic-flora-gallery-3-main-e31d', thumbImgId: 'majestic-flora-gallery-3-thumb-b91f', cueId: 'majestic-flora-gallery-cue-3', cueText: 'giftable jewelry flat lay with floral pendant necklace and velvet ribbon', alt: 'Majestic Flora Nectar gift styling' },
     ],
   },
   {
@@ -102,9 +102,9 @@ export const products = [
     materialsCare: '18K gold plated brass with hypoallergenic posts. Clean with a dry jewelry cloth and keep away from water and lotions.',
     shippingReturns: 'Ships worldwide in signature Velmora packaging. Enjoy 30-day returns and easy exchanges for gifting confidence.',
     gallery: [
-      { id: 'golden-sphere-gallery-1-1ad629', cueId: 'golden-sphere-gallery-cue-1', cueText: 'gold dome huggie earrings still life on dark marble', alt: 'Golden Sphere Huggies still life' },
-      { id: 'golden-sphere-gallery-2-1ad629', cueId: 'golden-sphere-gallery-cue-2', cueText: 'chunky gold huggies on model ear editorial close-up', alt: 'Golden Sphere Huggies on model' },
-      { id: 'golden-sphere-gallery-3-1ad629', cueId: 'golden-sphere-gallery-cue-3', cueText: 'luxury jewelry tray with dome huggie earrings and suede pouch', alt: 'Golden Sphere Huggies styling detail' },
+      { id: 'golden-sphere-gallery-1-1ad629', mainImgId: 'golden-sphere-gallery-1-main-e31d', thumbImgId: 'golden-sphere-gallery-1-thumb-b91f', cueId: 'golden-sphere-gallery-cue-1', cueText: 'gold dome huggie earrings still life on dark marble', alt: 'Golden Sphere Huggies still life' },
+      { id: 'golden-sphere-gallery-2-1ad629', mainImgId: 'golden-sphere-gallery-2-main-e31d', thumbImgId: 'golden-sphere-gallery-2-thumb-b91f', cueId: 'golden-sphere-gallery-cue-2', cueText: 'chunky gold huggies on model ear editorial close-up', alt: 'Golden Sphere Huggies on model' },
+      { id: 'golden-sphere-gallery-3-1ad629', mainImgId: 'golden-sphere-gallery-3-main-e31d', thumbImgId: 'golden-sphere-gallery-3-thumb-b91f', cueId: 'golden-sphere-gallery-cue-3', cueText: 'luxury jewelry tray with dome huggie earrings and suede pouch', alt: 'Golden Sphere Huggies styling detail' },
     ],
   },
   {
@@ -128,9 +128,9 @@ export const products = [
     materialsCare: '18K gold plated brass with hypoallergenic posts. Handle gently and store flat in the provided pouch between wears.',
     shippingReturns: 'Free worldwide shipping on orders over $75 with 30-day returns. Every pair is hand-finished and quality checked before dispatch.',
     gallery: [
-      { id: 'amber-lace-gallery-1-f2ac70', cueId: 'amber-lace-gallery-cue-1', cueText: 'gold filigree drop earrings photographed on neutral linen surface', alt: 'Amber Lace Earrings still life' },
-      { id: 'amber-lace-gallery-2-f2ac70', cueId: 'amber-lace-gallery-cue-2', cueText: 'textured gold drop earrings worn in warm portrait lighting', alt: 'Amber Lace Earrings on model' },
-      { id: 'amber-lace-gallery-3-f2ac70', cueId: 'amber-lace-gallery-cue-3', cueText: 'editorial jewelry tray with gold drop earrings and ribbon box', alt: 'Amber Lace Earrings styling flat lay' },
+      { id: 'amber-lace-gallery-1-f2ac70', mainImgId: 'amber-lace-gallery-1-main-e31d', thumbImgId: 'amber-lace-gallery-1-thumb-b91f', cueId: 'amber-lace-gallery-cue-1', cueText: 'gold filigree drop earrings photographed on neutral linen surface', alt: 'Amber Lace Earrings still life' },
+      { id: 'amber-lace-gallery-2-f2ac70', mainImgId: 'amber-lace-gallery-2-main-e31d', thumbImgId: 'amber-lace-gallery-2-thumb-b91f', cueId: 'amber-lace-gallery-cue-2', cueText: 'textured gold drop earrings worn in warm portrait lighting', alt: 'Amber Lace Earrings on model' },
+      { id: 'amber-lace-gallery-3-f2ac70', mainImgId: 'amber-lace-gallery-3-main-e31d', thumbImgId: 'amber-lace-gallery-3-thumb-b91f', cueId: 'amber-lace-gallery-cue-3', cueText: 'editorial jewelry tray with gold drop earrings and ribbon box', alt: 'Amber Lace Earrings styling flat lay' },
     ],
   },
   {
@@ -154,9 +154,9 @@ export const products = [
     materialsCare: '18K gold plated brass, hypoallergenic finish, signature gift box included. Keep the pieces dry and polish lightly with a non-abrasive cloth.',
     shippingReturns: 'Complimentary worldwide shipping and 30-day returns. Beautifully boxed for birthdays, bridal events, and meaningful self-gifting moments.',
     gallery: [
-      { id: 'royal-heirloom-gallery-1-6e4c92', cueId: 'royal-heirloom-gallery-cue-1', cueText: 'gift-boxed gold jewelry set still life with necklace and earrings on velvet', alt: 'Royal Heirloom Set gift box detail' },
-      { id: 'royal-heirloom-gallery-2-6e4c92', cueId: 'royal-heirloom-gallery-cue-2', cueText: 'open gift box with matching gold necklace and earrings editorial styling', alt: 'Royal Heirloom Set open box' },
-      { id: 'royal-heirloom-gallery-3-6e4c92', cueId: 'royal-heirloom-gallery-cue-3', cueText: 'luxury gifting moment with boxed gold jewelry and ribbon on warm surface', alt: 'Royal Heirloom Set styled for gifting' },
+      { id: 'royal-heirloom-gallery-1-6e4c92', mainImgId: 'royal-heirloom-gallery-1-main-e31d', thumbImgId: 'royal-heirloom-gallery-1-thumb-b91f', cueId: 'royal-heirloom-gallery-cue-1', cueText: 'gift-boxed gold jewelry set still life with necklace and earrings on velvet', alt: 'Royal Heirloom Set gift box detail' },
+      { id: 'royal-heirloom-gallery-2-6e4c92', mainImgId: 'royal-heirloom-gallery-2-main-e31d', thumbImgId: 'royal-heirloom-gallery-2-thumb-b91f', cueId: 'royal-heirloom-gallery-cue-2', cueText: 'open gift box with matching gold necklace and earrings editorial styling', alt: 'Royal Heirloom Set open box' },
+      { id: 'royal-heirloom-gallery-3-6e4c92', mainImgId: 'royal-heirloom-gallery-3-main-e31d', thumbImgId: 'royal-heirloom-gallery-3-thumb-b91f', cueId: 'royal-heirloom-gallery-cue-3', cueText: 'luxury gifting moment with boxed gold jewelry and ribbon on warm surface', alt: 'Royal Heirloom Set styled for gifting' },
     ],
   },
 ]

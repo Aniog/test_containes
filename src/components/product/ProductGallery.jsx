@@ -1,21 +1,32 @@
 const ProductGallery = ({ product, activeImage, onImageSelect }) => (
   <div className="space-y-4">
-    <div className="overflow-hidden rounded-[2rem] border border-stone-200/10 bg-stone-900/70">
+    <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-stone-200/10 bg-stone-900/70">
       <span id={`${product.slug}-gallery-title`} className="sr-only">
         {product.name}
       </span>
-      <span id={activeImage.cueId} className="sr-only">
-        {activeImage.cueText}
-      </span>
-      <img
-        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-        alt={activeImage.alt}
-        className="aspect-[4/5] h-full w-full object-cover"
-        data-strk-img-id={`${activeImage.id}-main-e31d`}
-        data-strk-img={`[${activeImage.cueId}] [${product.descId}] [${product.titleId}]`}
-        data-strk-img-ratio="4x3"
-        data-strk-img-width="1200"
-      />
+      {product.gallery.map((image) => (
+        <div
+          key={image.mainImgId}
+          className={[
+            'absolute inset-0 transition duration-500',
+            activeImage.id === image.id ? 'opacity-100' : 'pointer-events-none opacity-0',
+          ].join(' ')}
+          aria-hidden={activeImage.id !== image.id}
+        >
+          <span id={image.cueId} className="sr-only">
+            {image.cueText}
+          </span>
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+            alt={image.alt}
+            className="h-full w-full object-cover"
+            data-strk-img-id={image.mainImgId}
+            data-strk-img={`[${image.cueId}] [${product.descId}] [${product.titleId}]`}
+            data-strk-img-ratio="4x3"
+            data-strk-img-width="1200"
+          />
+        </div>
+      ))}
     </div>
 
     <div className="grid grid-cols-3 gap-3">
@@ -38,7 +49,7 @@ const ProductGallery = ({ product, activeImage, onImageSelect }) => (
             src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
             alt={image.alt}
             className="aspect-square h-full w-full object-cover"
-            data-strk-img-id={`${image.id}-thumb-b91f`}
+            data-strk-img-id={image.thumbImgId}
             data-strk-img={`[${image.cueId}] [${product.descId}] [${product.titleId}]`}
             data-strk-img-ratio="1x1"
             data-strk-img-width="400"

@@ -1,3 +1,6 @@
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '../strk-img-config.json'
 import BestsellersSection from '../components/home/BestsellersSection'
 import CategoryTiles from '../components/home/CategoryTiles'
 import HeroSection from '../components/home/HeroSection'
@@ -14,10 +17,21 @@ import {
   testimonials,
   ugcMoments,
 } from '../data/store'
-import useStrkImages from '../lib/useStrkImages'
 
 const Home = () => {
-  const containerRef = useStrkImages([])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [])
 
   return (
     <div ref={containerRef} className="bg-stone-950 text-stone-50">

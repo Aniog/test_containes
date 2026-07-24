@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { getProductBySlug } from '../data/store'
 
 const CartContext = createContext(null)
 
@@ -8,7 +9,23 @@ const getInitialCart = () => {
   }
 
   const storedCart = window.localStorage.getItem('velmora-cart')
-  return storedCart ? JSON.parse(storedCart) : []
+
+  if (!storedCart) {
+    return []
+  }
+
+  return JSON.parse(storedCart).map((item) => {
+    if (item.imageCueText) {
+      return item
+    }
+
+    const product = getProductBySlug(item.slug)
+
+    return {
+      ...item,
+      imageCueText: product?.primaryCue || 'warm editorial gold jewelry still life',
+    }
+  })
 }
 
 export const CartProvider = ({ children }) => {
@@ -42,7 +59,7 @@ export const CartProvider = ({ children }) => {
           slug: product.slug,
           name: product.name,
           price: product.price,
-          imageCueId: product.primaryCueId,
+          imageCueText: product.primaryCue,
           titleId: product.titleId,
           descId: product.descId,
           tone,

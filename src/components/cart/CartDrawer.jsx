@@ -1,9 +1,12 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { X } from 'lucide-react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '../../strk-img-config.json'
 import { formatCurrency } from '../../data/store'
 import { useCart } from '../../context/CartContext'
-import useStrkImages from '../../lib/useStrkImages'
 import QuantitySelector from '../common/QuantitySelector'
+import CartItemImage from './CartItemImage'
 
 const CartDrawer = () => {
   const {
@@ -14,7 +17,19 @@ const CartDrawer = () => {
     removeFromCart,
     updateQuantity,
   } = useCart()
-  const containerRef = useStrkImages([items, isCartOpen])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [items, isCartOpen])
 
   return (
     <>
@@ -65,15 +80,10 @@ const CartDrawer = () => {
                       <span id={`${item.key}-desc`} className="sr-only">
                         {item.category} in {item.tone} tone
                       </span>
-                      <img
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        className="h-full w-full object-cover"
-                        data-strk-img-id={`cart-${item.key}-image-a1c2`}
-                        data-strk-img={`[${item.imageCueId}] [${item.key}-desc] [${item.key}-title]`}
-                        data-strk-img-ratio="3x4"
-                        data-strk-img-width="500"
-                      />
+                      <span id={`${item.key}-cue`} className="sr-only">
+                        {item.imageCueText}
+                      </span>
+                      <CartItemImage item={item} />
                     </div>
                     <div className="flex flex-1 flex-col justify-between gap-4">
                       <div className="space-y-2">

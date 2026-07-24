@@ -1,9 +1,23 @@
+import { useEffect, useRef } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '../strk-img-config.json'
 import PageIntro from '../components/common/PageIntro'
 import { journalEntries } from '../data/store'
-import useStrkImages from '../lib/useStrkImages'
 
 const Journal = () => {
-  const containerRef = useStrkImages([])
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [])
 
   return (
     <div ref={containerRef} className="bg-stone-950 text-stone-50">
