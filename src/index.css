@@ -1,76 +1,202 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-charcoal: #1a1814;
+    --color-ivory: #f8f6f1;
+    --color-cream: #faf8f5;
+    --color-sand: #e8e4dd;
+    --color-gold: #c9a962;
+    --color-gold-dark: #a68a4a;
+    --color-gold-light: #dfc88a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-ivory text-charcoal font-sans;
+    font-size: 16px;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-charcoal;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-ivory;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-sand rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-ivory;
+  }
+}
+
+@layer components {
+  .heading-display {
+    @apply font-serif text-display font-normal;
+  }
+
+  .heading-1 {
+    @apply font-serif text-h1 font-normal;
+  }
+
+  .heading-2 {
+    @apply font-serif text-h2 font-normal;
+  }
+
+  .heading-3 {
+    @apply font-serif text-h3 font-medium;
+  }
+
+  .heading-4 {
+    @apply font-sans text-h4 font-medium;
+  }
+
+  .product-name {
+    @apply font-serif text-base font-medium uppercase tracking-[0.15em];
+  }
+
+  .overline-text {
+    @apply font-sans text-overline font-medium uppercase;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-8 py-4 font-sans text-overline font-medium uppercase tracking-widest rounded-sm transition-all duration-200;
+    @apply hover:opacity-90 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-gold text-charcoal hover:bg-gold-dark;
+  }
+
+  .btn-secondary {
+    @apply btn bg-transparent text-gold border border-gold hover:bg-gold hover:text-charcoal;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-charcoal hover:bg-sand/50;
+  }
+
+  .card {
+    @apply bg-cream border border-sand rounded-md;
+  }
+
+  .input {
+    @apply w-full px-4 py-3.5 bg-white border border-sand rounded-sm font-sans text-body text-charcoal placeholder:text-stone;
+    @apply focus:border-gold focus:ring-0 focus:outline-none transition-colors duration-200;
+  }
+
+  .section-container {
+    @apply max-w-wide mx-auto px-4 md:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .divider {
+    @apply h-px bg-sand;
+  }
+
+  .img-container {
+    @apply overflow-hidden bg-cream;
+  }
+
+  .img-container img {
+    @apply w-full h-full object-cover transition-transform duration-500;
+  }
+
+  .badge {
+    @apply inline-block px-3 py-1 bg-sand/50 text-caption font-medium rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: var(--color-gold);
+  }
+
+  .tracking-product {
+    letter-spacing: 0.15em;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.img-loading {
+  @apply bg-cream animate-pulse;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
