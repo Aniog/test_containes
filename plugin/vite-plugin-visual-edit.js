@@ -37,10 +37,9 @@ export default function visualEditPlugin() {
 
   return {
     name: 'strikingly-visual-edit-tagger',
-    enforce: 'pre',
     configResolved(config) {
       root = config.root;
-      enabled = config.command === 'serve';
+      enabled = false; // disabled in dev to avoid preamble conflict with @vitejs/plugin-react
     },
     transform(code, id) {
       if (!enabled) {

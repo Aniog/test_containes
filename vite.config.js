@@ -8,12 +8,11 @@ import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-im
 
 export default defineConfig({
   plugins: [
-    // Our plugin runs BEFORE React transform so it sees raw JSX
     strkImgPlugin(),
     checkBrokenImgPlugin(),
     checkPlaceholderImgPlugin(),
-    visualEditPlugin(),
     react(),
+    visualEditPlugin(),
   ],
   resolve: {
     alias: {
