@@ -36,13 +36,14 @@ const testimonials = [
 
 const Home = () => {
   const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
   const bestsellers = getBestsellers();
   const containerRef = useImageLoader();
 
   const handleNewsletter = (e) => {
     e.preventDefault();
     if (email) {
-      alert('Thank you for joining Velmora. Your 10% code is VELMORA10.');
+      setSubscribed(true);
       setEmail('');
     }
   };
@@ -312,19 +313,26 @@ const Home = () => {
           <p className="font-sans text-espresso/80 mb-8">
             Be the first to know about new arrivals, exclusive offers, and styling notes.
           </p>
-          <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              required
-              placeholder="Your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 px-4 py-3.5 bg-white border-0 text-espresso placeholder:text-taupe font-sans text-sm focus:outline-none focus:ring-2 focus:ring-espresso"
-            />
-            <button type="submit" className="btn-secondary border-espresso text-espresso hover:bg-espresso hover:text-cream">
-              Subscribe
-            </button>
-          </form>
+          {subscribed ? (
+            <div className="max-w-md mx-auto px-6 py-4 bg-white/30 text-espresso text-center">
+              <p className="font-serif text-lg mb-1">Welcome to Velmora</p>
+              <p className="font-sans text-sm">Your 10% code is <span className="font-semibold">VELMORA10</span></p>
+            </div>
+          ) : (
+            <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                required
+                placeholder="Your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 px-4 py-3.5 bg-white border-0 text-espresso placeholder:text-taupe font-sans text-sm focus:outline-none focus:ring-2 focus:ring-espresso"
+              />
+              <button type="submit" className="btn-secondary border-espresso text-espresso hover:bg-espresso hover:text-cream">
+                Subscribe
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </div>
