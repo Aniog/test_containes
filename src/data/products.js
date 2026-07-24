@@ -10,7 +10,7 @@ export const products = [
     reviews: 124,
     images: [
       'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop',
-      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&h=1000&fit=crop',
     ],
     variants: ['Gold Tone', 'Silver Tone'],
     badge: 'Bestseller',
@@ -26,7 +26,7 @@ export const products = [
     reviews: 89,
     images: [
       'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=1000&fit=crop',
-      'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&h=1000&fit=crop',
     ],
     variants: ['Gold Tone', 'Silver Tone'],
     badge: 'New',
@@ -41,8 +41,8 @@ export const products = [
     rating: 4.7,
     reviews: 203,
     images: [
-      'https://images.unsplash.com/photo-1630019852982-fa890397fe79?w=800&h=1000&fit=crop',
-      'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=1000&fit=crop',
     ],
     variants: ['Gold Tone', 'Silver Tone'],
     badge: 'Bestseller',
@@ -72,7 +72,7 @@ export const products = [
     rating: 5.0,
     reviews: 45,
     images: [
-      'https://images.unsplash.com/photo-1601121141461-9d6647bca1db?w=800&h=1000&fit=crop',
+      'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=1000&fit=crop',
       'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=1000&fit=crop',
     ],
     variants: ['Gold Tone', 'Silver Tone'],
@@ -83,7 +83,7 @@ export const products = [
 export const categories = [
   { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=800&fit=crop' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=800&fit=crop' },
-  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1630019852982-fa890397fe79?w=600&h=800&fit=crop' },
+  { id: 'huggies', name: 'Huggies', image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=600&h=800&fit=crop' },
 ]
 
 export const testimonials = [
@@ -108,9 +108,9 @@ export const testimonials = [
 ]
 
 export const ugcPosts = [
-  { id: 1, image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&h=700&fit=crop', caption: 'Everyday elegance' },
-  { id: 2, image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=400&h=700&fit=crop', caption: 'Layered & loved' },
-  { id: 3, image: 'https://images.unsplash.com/photo-1588444837495-c6cfeb53f32d?w=400&h=700&fit=crop', caption: 'Golden hour glow' },
-  { id: 4, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=700&fit=crop', caption: 'Stacked perfection' },
-  { id: 5, image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=400&h=700&fit=crop', caption: 'Details matter' },
+  { id: 1, image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=400&h=700&fit=crop', caption: 'Everyday elegance' },
+  { id: 2, image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&h=700&fit=crop', caption: 'Layered & loved' },
+  { id: 3, image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&h=700&fit=crop', caption: 'Golden hour glow' },
+  { id: 4, image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=400&h=700&fit=crop', caption: 'Stacked perfection' },
+  { id: 5, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=700&fit=crop', caption: 'Details matter' },
 ]
