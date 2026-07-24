@@ -1,13 +1,10 @@
 import { useEffect, useRef } from 'react'
 import { X, Minus, Plus, ShoppingBag } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { useCart } from '@/context/CartContext'
 
 export default function CartDrawer({ open, onClose }) {
   const { items, removeItem, updateQuantity, totalPrice, totalItems } = useCart()
-  const containerRef = useRef(null)
   const overlayRef = useRef(null)
 
   useEffect(() => {
@@ -27,10 +24,6 @@ export default function CartDrawer({ open, onClose }) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [onClose])
 
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [open, items])
-
   return (
     <>
       {/* Overlay */}
@@ -44,7 +37,6 @@ export default function CartDrawer({ open, onClose }) {
 
       {/* Drawer */}
       <div
-        ref={containerRef}
         className={`fixed top-0 right-0 z-50 h-full w-full max-w-md bg-cream shadow-soft-lg transition-transform duration-300 ease-out ${
           open ? 'translate-x-0' : 'translate-x-full'
         }`}
@@ -81,16 +73,8 @@ export default function CartDrawer({ open, onClose }) {
                 {items.map((item) => (
                   <li key={`${item.id}-${item.variant}`} className="flex gap-4 pb-5 border-b border-beige last:border-0">
                     {/* Image placeholder */}
-                    <div className="w-20 h-24 bg-warm-light flex-shrink-0">
-                      <img
-                        data-strk-img-id={`cart-${item.id}-${item.variant}`}
-                        data-strk-img={`[cart-title-${item.id}]`}
-                        data-strk-img-ratio="3x4"
-                        data-strk-img-width="200"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-20 h-24 bg-warm-light flex-shrink-0 rounded">
+                      <div className="w-full h-full bg-gold/10" />
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex justify-between items-start">
