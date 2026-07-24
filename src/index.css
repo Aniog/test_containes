@@ -1,76 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------------------------------------- */
+/* Global tokens (kept in sync with design.md)                       */
+/* ---------------------------------------------------------------- */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+  --ivory: #FAF7F2;
+  --champagne: #E8DCC4;
+  --sand: #D9C9AE;
+  --hairline: #E0D6C7;
+  --muted: #8A7B6E;
+  --ink: #1F1815;
+  --ink-soft: #3A2E26;
+  --gold: #A67C3D;
+  --gold-deep: #7A5A2A;
+  --gold-soft: #C9A876;
+  --blush: #D4A89C;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--ivory);
+  color: var(--ink);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+::selection {
+  background-color: rgba(166, 124, 61, 0.25);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---------------------------------------------------------------- */
+/* Component classes — plain CSS (no @apply) to avoid Tailwind 3.x   */
+/* ordering issues with custom theme tokens inside @layer components.*/
+/* ---------------------------------------------------------------- */
+
+.eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  color: var(--gold);
+}
+
+.product-name {
+  font-family: 'Inter', sans-serif;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-soft);
+}
+
+.container-page {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 80rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 768px) {
+  .container-page { padding-left: 2.5rem; padding-right: 2.5rem; }
+}
+@media (min-width: 1024px) {
+  .container-page { padding-left: 4rem; padding-right: 4rem; }
+}
+
+.hairline {
+  height: 1px;
+  width: 100%;
+  background-color: var(--hairline);
+}
+
+.btn-primary,
+.btn-accent,
+.btn-outline,
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  padding: 1rem 2.25rem;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  transition: border-color 0.25s;
+  border-width: 1px;
+  border-style: solid;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: var(--ink);
+  color: var(--ivory);
+  border-color: var(--ink);
 }
+.btn-primary:hover { background-color: var(--ink-soft); border-color: var(--ink-soft); }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-accent {
+  background-color: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
 }
+.btn-accent:hover { background-color: var(--gold-deep); border-color: var(--gold-deep); }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.btn-outline {
+  background-color: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
 }
+.btn-outline:hover { background-color: var(--ink); color: var(--ivory); }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.btn-outline-light {
+  background-color: transparent;
+  color: var(--ivory);
+  border-color: var(--ivory);
+}
+.btn-outline-light:hover { background-color: var(--ivory); color: var(--ink); }
+
+.input-line {
+  width: 100%;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 24, 21, 0.4);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--ink);
+  padding: 0.75rem 0;
+  transition: border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+.input-line::placeholder { color: rgba(138, 123, 110, 0.6); }
+.input-line:focus { border-color: var(--ink); }
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 0.625rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  border: 1px solid var(--hairline);
+  color: var(--ink-soft);
+  background: transparent;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.pill:hover { border-color: var(--ink); }
+.pill-active {
+  background-color: var(--ink);
+  color: var(--ivory);
+  border-color: var(--ink);
+}
