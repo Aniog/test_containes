@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { ImageHelper } from "@strikingly/sdk";
 import strkImgConfig from "@/strk-img-config.json";
 import { products } from "@/data/products";
+import ProductImage from "./ui/ProductImage";
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, subtotal } = useCart();
@@ -86,13 +87,12 @@ export default function CartDrawer() {
                   return (
                     <div key={`${product.id}-${variant}`} className="cart-item flex gap-4">
                       <div className="w-20 h-24 bg-[#EDEAE4] flex-shrink-0 overflow-hidden">
-                        <img
-                          data-strk-img-id={`cart-thumb-${product.id}-${variant}`}
-                          data-strk-img={`[cart-name-${product.id}] ${product.images.primary}`}
-                          data-strk-img-ratio="4x5"
-                          data-strk-img-width={200}
-                          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                        <ProductImage
+                          query={`[cart-name-${product.id}] ${product.images.primary}`}
                           alt={product.name}
+                          ratio="4x5"
+                          width={200}
+                          imgId={`cart-thumb-${product.id}`}
                           className="w-full h-full object-cover"
                         />
                       </div>
