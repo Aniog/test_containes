@@ -1,76 +1,146 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  --color-velmora-ink: #17120F;
+  --color-velmora-espresso: #2B211C;
+  --color-velmora-porcelain: #F7F1EA;
+  --color-velmora-sand: #E8D9C8;
+  --color-velmora-champagne: #C9A46A;
+  --color-velmora-pearl: #FFFDF9;
+  --color-velmora-clay: #8A604B;
+  --velmora-ink-rgb: 23 18 15;
+  --velmora-espresso-rgb: 43 33 28;
+  --velmora-porcelain-rgb: 247 241 234;
+  --velmora-sand-rgb: 232 217 200;
+  --velmora-champagne-rgb: 201 164 106;
+  --velmora-pearl-rgb: 255 253 249;
+  --velmora-clay-rgb: 138 96 75;
+  font-family: Manrope, Inter, system-ui, sans-serif;
+  color: var(--color-velmora-ink);
+  background: var(--color-velmora-porcelain);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background: var(--color-velmora-porcelain);
+  color: var(--color-velmora-ink);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
 
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@layer utilities {
+  .font-serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .font-sans { font-family: Manrope, Inter, system-ui, sans-serif; }
+
+  .text-velmora-ink { color: var(--color-velmora-ink); }
+  .text-velmora-espresso { color: var(--color-velmora-espresso); }
+  .text-velmora-porcelain { color: var(--color-velmora-porcelain); }
+  .text-velmora-sand { color: var(--color-velmora-sand); }
+  .text-velmora-champagne { color: var(--color-velmora-champagne); }
+  .text-velmora-pearl { color: var(--color-velmora-pearl); }
+  .text-velmora-clay { color: var(--color-velmora-clay); }
+
+  .bg-velmora-ink { background-color: var(--color-velmora-ink); }
+  .bg-velmora-espresso { background-color: var(--color-velmora-espresso); }
+  .bg-velmora-porcelain { background-color: var(--color-velmora-porcelain); }
+  .bg-velmora-sand { background-color: var(--color-velmora-sand); }
+  .bg-velmora-champagne { background-color: var(--color-velmora-champagne); }
+  .bg-velmora-pearl { background-color: var(--color-velmora-pearl); }
+  .bg-velmora-clay { background-color: var(--color-velmora-clay); }
+  .bg-velmora-ink\/25 { background-color: rgb(var(--velmora-ink-rgb) / 0.25); }
+  .bg-velmora-ink\/60 { background-color: rgb(var(--velmora-ink-rgb) / 0.60); }
+  .bg-velmora-pearl\/90 { background-color: rgb(var(--velmora-pearl-rgb) / 0.90); }
+  .bg-velmora-pearl\/95 { background-color: rgb(var(--velmora-pearl-rgb) / 0.95); }
+
+  .border-velmora-ink { border-color: var(--color-velmora-ink); }
+  .border-velmora-sand { border-color: var(--color-velmora-sand); }
+  .border-velmora-champagne { border-color: var(--color-velmora-champagne); }
+  .border-velmora-sand\/80 { border-color: rgb(var(--velmora-sand-rgb) / 0.80); }
+  .border-velmora-champagne\/25 { border-color: rgb(var(--velmora-champagne-rgb) / 0.25); }
+  .border-velmora-champagne\/30 { border-color: rgb(var(--velmora-champagne-rgb) / 0.30); }
+  .border-velmora-champagne\/40 { border-color: rgb(var(--velmora-champagne-rgb) / 0.40); }
+  .border-velmora-champagne\/50 { border-color: rgb(var(--velmora-champagne-rgb) / 0.50); }
+
+  .fill-velmora-champagne { fill: var(--color-velmora-champagne); }
+  .accent-velmora-ink { accent-color: var(--color-velmora-ink); }
+  .placeholder\:text-velmora-clay::placeholder { color: var(--color-velmora-clay); opacity: 1; }
+
+  .tracking-logo { letter-spacing: 0.18em; }
+  .tracking-product { letter-spacing: 0.22em; }
+  .tracking-nav { letter-spacing: 0.16em; }
+  .shadow-velmora { box-shadow: 0 24px 70px rgb(var(--velmora-espresso-rgb) / 0.12); }
+  .shadow-jewel { box-shadow: 0 18px 45px rgb(var(--velmora-ink-rgb) / 0.18); }
+  .ease-velmora { transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1); }
+  .opacity-88 { opacity: 0.88; }
+  .duration-350 { transition-duration: 350ms; }
+
+  .from-velmora-ink { --tw-gradient-from: var(--color-velmora-ink) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--velmora-ink-rgb) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/35 { --tw-gradient-from: rgb(var(--velmora-ink-rgb) / 0.35) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--velmora-ink-rgb) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .from-velmora-ink\/75 { --tw-gradient-from: rgb(var(--velmora-ink-rgb) / 0.75) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--velmora-ink-rgb) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
+  .via-velmora-ink\/35 { --tw-gradient-to: rgb(var(--velmora-ink-rgb) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--velmora-ink-rgb) / 0.35) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .via-velmora-ink\/70 { --tw-gradient-to: rgb(var(--velmora-ink-rgb) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--velmora-ink-rgb) / 0.70) var(--tw-gradient-via-position), var(--tw-gradient-to); }
+  .to-velmora-ink\/80 { --tw-gradient-to: rgb(var(--velmora-ink-rgb) / 0.80) var(--tw-gradient-to-position); }
+
+  .hover\:bg-velmora-champagne:hover { background-color: var(--color-velmora-champagne); }
+  .hover\:bg-velmora-ink:hover { background-color: var(--color-velmora-ink); }
+  .hover\:bg-velmora-pearl:hover { background-color: var(--color-velmora-pearl); }
+  .hover\:text-velmora-champagne:hover { color: var(--color-velmora-champagne); }
+  .hover\:text-velmora-clay:hover { color: var(--color-velmora-clay); }
+  .hover\:text-velmora-ink:hover { color: var(--color-velmora-ink); }
+  .hover\:text-velmora-pearl:hover { color: var(--color-velmora-pearl); }
+  .hover\:border-velmora-champagne:hover { border-color: var(--color-velmora-champagne); }
+  .hover\:border-velmora-sand:hover { border-color: var(--color-velmora-sand); }
+  .focus\:border-velmora-champagne:focus { border-color: var(--color-velmora-champagne); }
+  .group:hover .group-hover\:shadow-velmora { box-shadow: 0 24px 70px rgb(var(--velmora-espresso-rgb) / 0.12); }
+
+  .animate-in { animation-duration: 300ms; animation-fill-mode: both; }
+  .slide-in-from-right { animation-name: slideInRight; }
+}
