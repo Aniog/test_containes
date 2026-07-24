@@ -74,3 +74,118 @@ button:focus-visible {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 33% 97%;
+    --foreground: 24 20% 12%;
+    --card: 40 33% 97%;
+    --card-foreground: 24 20% 12%;
+    --popover: 40 33% 97%;
+    --popover-foreground: 24 20% 12%;
+    --primary: 42 44% 62%;
+    --primary-foreground: 40 33% 97%;
+    --secondary: 36 25% 45%;
+    --secondary-foreground: 40 33% 97%;
+    --muted: 40 20% 92%;
+    --muted-foreground: 24 10% 45%;
+    --accent: 42 44% 62%;
+    --accent-foreground: 24 20% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 40 20% 85%;
+    --input: 40 20% 85%;
+    --ring: 42 44% 62%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  body {
+    @apply bg-cream-50 text-espresso-900 font-sans antialiased;
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gold-500 text-cream-50 hover:bg-gold-600 shadow-soft hover:shadow-gold px-6 py-3 tracking-wider uppercase;
+  }
+  
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-gold-500 text-gold-600 hover:bg-gold-50 px-6 py-3 tracking-wider uppercase;
+  }
+  
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20;
+  }
+  
+  .container-wide {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .hairline-divider {
+    @apply border-t border-cream-400/50;
+  }
+  
+  .text-display {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+  }
+  
+  .text-heading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+  }
+  
+  .text-subheading {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+  }
+  
+  .uppercase-tracked {
+    @apply uppercase tracking-[0.15em];
+  }
+  
+  /* Scrollbar hide for UGC row */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Focus styles */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible {
+    @apply outline-none ring-2 ring-gold-500 ring-offset-2;
+  }
+  
+  /* Selection color */
+  ::selection {
+    @apply bg-gold-200 text-espresso-900;
+  }
+}
