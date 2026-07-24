@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jewelry Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies", "Sets"],
+      "description": "Product category"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "storageKey": { "type": "string" },
+          "filename": { "type": "string" }
+        }
+      },
+      "description": "Product images"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold", "Silver"]
+      },
+      "description": "Tone variants"
+    },
+    "details": {
+      "type": "object",
+      "description": "Materials and care details",
+      "properties": {
+        "materials": { "type": "string" },
+        "care": { "type": "string" }
+      }
+    }
+  },
+  "required": ["name", "price", "category"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}
