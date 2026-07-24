@@ -1,11 +1,12 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronDown, Plus, Minus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import { getProductById, getRelatedProducts } from '@/data/products';
 import { useCart } from '@/context/CartContext';
 import StarRating from '@/components/ui/StarRating';
 import ProductCard from '@/components/product/ProductCard';
-import { useImageLoader } from '@/hooks/useImageLoader';
 
 const PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
 
@@ -38,7 +39,13 @@ const ProductDetail = () => {
   const navigate = useNavigate();
   const product = useMemo(() => getProductById(productId), [productId]);
   const { addItem } = useCart();
-  const containerRef = useImageLoader([productId]);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    }
+  }, [productId]);
 
   const [selectedImage, setSelectedImage] = useState(0);
   const [selectedVariant, setSelectedVariant] = useState(product?.variants[0] || null);

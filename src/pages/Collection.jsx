@@ -1,9 +1,10 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SlidersHorizontal, X } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import ProductCard from '@/components/product/ProductCard';
 import { products, CATEGORIES } from '@/data/products';
-import { useImageLoader } from '@/hooks/useImageLoader';
 
 const priceRanges = [
   { label: 'Under $50', min: 0, max: 50 },
@@ -15,7 +16,13 @@ const materials = ['18K Gold Plated', 'Sterling Silver', 'Crystal Accent'];
 
 const Collection = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const containerRef = useImageLoader();
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    }
+  }, []);
 
   const initialCategory = searchParams.get('category') || '';
 
