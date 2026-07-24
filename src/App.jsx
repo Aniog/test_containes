@@ -1,14 +1,16 @@
-import './App.css'
+import { BrowserRouter } from "react-router-dom"
+import { Toaster } from "@/components/ui/sonner"
+import { CartProvider } from "@/context/CartContext"
+import Layout from "@/Layout"
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <BrowserRouter>
+      <CartProvider>
+        <Layout />
+        <Toaster position="bottom-right" />
+      </CartProvider>
+    </BrowserRouter>
   )
 }
 
