@@ -42,13 +42,11 @@ export default function CartDrawer() {
             <div className="flex flex-col gap-6">
               {items.map((item) => (
                 <div key={`${item.id}-${item.variant}`} className="flex gap-4">
-                  {/* Placeholder image */}
+                  {/* Product image */}
                   <div className="w-20 h-24 bg-velmora-sand flex-shrink-0 flex items-center justify-center">
-                    <img
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      alt={item.name}
-                      className="w-full h-full object-cover"
-                    />
+                    <span className="font-serif text-xs uppercase tracking-widest text-velmora-warmgray">
+                      {item.name.charAt(0)}
+                    </span>
                   </div>
                   <div className="flex-1 flex flex-col justify-between py-1">
                     <div>
