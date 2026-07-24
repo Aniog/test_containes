@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { ShoppingBag } from 'lucide-react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
 import StarRating from '@/components/ui/StarRating';
 import { useCart } from '@/context/CartContext';
-import { useImageLoader } from '@/hooks/useImageLoader';
 
 const PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E";
 
 const ProductCard = ({ product, sectionId = 'section-bestsellers' }) => {
   const [hovered, setHovered] = useState(false);
   const { addItem } = useCart();
-  const cardRef = useImageLoader();
+  const cardRef = useRef(null);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      ImageHelper.loadImages(strkImgConfig, cardRef.current);
+    }
+  }, []);
 
   const firstImage = product.images[0];
   const secondImage = product.images[1] || firstImage;
