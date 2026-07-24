@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Product name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short product description"
+    },
+    "price": {
+      "type": "number",
+      "description": "Price in USD"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Earrings", "Necklaces", "Huggies"],
+      "description": "Product category"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary image URL"
+    },
+    "hover_image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Hover reveal image URL"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Gold Tone", "Silver Tone"]
+      },
+      "description": "Available color tones"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "default": 5,
+      "description": "Star rating"
+    },
+    "details": {
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "materials": { "type": "string" },
+        "shipping": { "type": "string" }
+      },
+      "description": "Extended product details for accordions"
+    }
+  },
+  "required": ["name", "price", "category", "image_url"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
