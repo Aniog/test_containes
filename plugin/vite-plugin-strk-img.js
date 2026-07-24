@@ -155,9 +155,16 @@ function isImagePlaceholderUrl(value) {
   return typeof value === 'string' && EMPTY_SVG_PLACEHOLDER_RE.test(value)
 }
 
+function normalizeModuleFilePath(filePath) {
+  if (!filePath || typeof filePath !== 'string') return ''
+  const withoutVirtualPrefix = filePath.startsWith('\0') ? filePath.slice(1) : filePath
+  return withoutVirtualPrefix.split('?')[0].split('#')[0]
+}
+
 function buildSourceFileKey(filePath) {
-  if (!filePath) return ''
-  return path.resolve(filePath)
+  const normalizedPath = normalizeModuleFilePath(filePath)
+  if (!normalizedPath) return ''
+  return path.resolve(normalizedPath)
 }
 
 function rememberBuildEntriesBySourceFile(entries) {
@@ -6825,13 +6832,14 @@ export default function strkImgPlugin() {
     },
 
     async transform(code, id) {
-      if (!/\.(jsx|tsx)$/.test(id))     return null
-      if (id.includes(CONFIG_FILENAME)) return null
-      if (id.includes(CACHE_FILENAME))  return null
+      const normalizedId = normalizeModuleFilePath(id)
+      if (!/\.(jsx|tsx)$/.test(normalizedId)) return null
+      if (normalizedId.includes(CONFIG_FILENAME)) return null
+      if (normalizedId.includes(CACHE_FILENAME)) return null
       if (!hasStrkMarkers(code) && !mayReachStrkMarkersViaLocalComponent(code)) return null
 
       const extractionOptions = {
-        filePath: id,
+        filePath: normalizedId,
         warnUnresolved: !_isBuild,
         onImportResolved: (p) => {
           try { this.addWatchFile(p) } catch {}
@@ -6856,10 +6864,10 @@ export default function strkImgPlugin() {
         if (_dirty) scheduleFlush(server)
       }
       if (_isBuild) {
-        const buildEntries = mergeBuildEntries(entries, buildEntriesForSourceFile(id))
+        const buildEntries = mergeBuildEntries(entries, buildEntriesForSourceFile(normalizedId))
         const unresolved = []
         const transformed = inlineBuildImageSourcesFromAst(code, ast, buildEntries, {
-          filePath: id,
+          filePath: normalizedId,
           configData,
           onUnresolved: issue => unresolved.push(issue),
         })
