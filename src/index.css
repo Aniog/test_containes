@@ -1,76 +1,63 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 45 30% 98%; /* Warm, slightly creamy white */
+    --foreground: 220 10% 20%; /* Soft deep grey, not stark black */
+    --card: 45 30% 98%;
+    --card-foreground: 220 10% 20%;
+    --popover: 45 30% 98%;
+    --popover-foreground: 220 10% 20%;
+    --primary: 35 45% 42%; /* Warm bronze/gold accent */
+    --primary-foreground: 45 30% 98%;
+    --secondary: 40 15% 90%;
+    --secondary-foreground: 220 10% 20%;
+    --muted: 40 15% 90%;
+    --muted-foreground: 220 5% 45%;
+    --accent: 35 45% 42%;
+    --accent-foreground: 45 30% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 40 15% 85%;
+    --input: 40 15% 85%;
+    --ring: 35 45% 42%;
+    --radius: 0.25rem;
+  }
+
+  .dark {
+    --background: 220 10% 12%; /* Deep, refined very dark grey */
+    --foreground: 45 30% 90%; /* Soft off-white */
+    --card: 220 10% 15%;
+    --card-foreground: 45 30% 90%;
+    --popover: 220 10% 15%;
+    --popover-foreground: 45 30% 90%;
+    --primary: 40 50% 65%; /* Soft gold accent for dark mode */
+    --primary-foreground: 220 10% 12%;
+    --secondary: 220 10% 20%;
+    --secondary-foreground: 45 30% 90%;
+    --muted: 220 10% 20%;
+    --muted-foreground: 220 5% 65%;
+    --accent: 40 50% 65%;
+    --accent-foreground: 220 10% 12%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 45 30% 90%;
+    --border: 220 10% 25%;
+    --input: 220 10% 25%;
+    --ring: 40 50% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
