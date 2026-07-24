@@ -1,9 +1,10 @@
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo, useEffect, useRef } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { SlidersHorizontal, X, ChevronDown } from 'lucide-react'
 import { products } from '@/data/products'
 import ProductCard from '@/components/product/ProductCard'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import { cn } from '@/lib/utils'
 
 const CATEGORIES = ['Earrings', 'Necklaces', 'Huggies']
@@ -22,7 +23,7 @@ const SORTS = [
 
 export default function Shop() {
   const [searchParams, setSearchParams] = useSearchParams()
-  const ref = useImageLoader([searchParams.toString()])
+  const ref = useRef(null)
 
   const initialCategory = searchParams.get('category') || ''
   const initialQuery = searchParams.get('q') || ''
@@ -42,6 +43,11 @@ export default function Shop() {
     setSelectedCategories(cat ? [cat] : [])
     setQuery(searchParams.get('q') || '')
   }, [searchParams])
+
+  useEffect(() => {
+    if (!ref.current) return
+    return ImageHelper.loadImages(strkImgConfig, ref.current)
+  }, [searchParams.toString()])
 
   const toggle = (value, list, setter) => {
     setter(list.includes(value) ? list.filter((v) => v !== value) : [...list, value])

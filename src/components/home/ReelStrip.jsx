@@ -1,8 +1,15 @@
+import { useEffect, useRef } from 'react'
 import { reels } from '@/data/products'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function ReelStrip() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    return ImageHelper.loadImages(strkImgConfig, ref.current)
+  }, [])
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-cream">

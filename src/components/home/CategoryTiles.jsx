@@ -1,9 +1,16 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { categories } from '@/data/products'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function CategoryTiles() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    return ImageHelper.loadImages(strkImgConfig, ref.current)
+  }, [])
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-ivory">

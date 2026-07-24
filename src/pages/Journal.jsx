@@ -1,6 +1,8 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 const POSTS = [
   {
@@ -33,7 +35,12 @@ const POSTS = [
 ]
 
 export default function Journal() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (!ref.current) return
+    return ImageHelper.loadImages(strkImgConfig, ref.current)
+  }, [])
 
   return (
     <div ref={ref} className="pt-16 md:pt-20 bg-ivory min-h-screen">

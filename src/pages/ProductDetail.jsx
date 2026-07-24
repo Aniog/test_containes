@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { Minus, Plus, ShoppingBag, ChevronRight } from 'lucide-react'
 import { getProductBySlug, getRelatedProducts, formatPrice } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 import StarRating from '@/components/StarRating'
 import Accordion from '@/components/product/Accordion'
 import ProductCard from '@/components/product/ProductCard'
@@ -15,13 +16,18 @@ const PLACEHOLDER =
 export default function ProductDetail() {
   const { slug } = useParams()
   const product = getProductBySlug(slug)
-  const ref = useImageLoader([slug])
+  const ref = useRef(null)
   const { addItem } = useCart()
 
   const [variant, setVariant] = useState(product?.variants[0] || 'Gold')
   const [quantity, setQuantity] = useState(1)
   const [activeImage, setActiveImage] = useState(0)
   const [added, setAdded] = useState(false)
+
+  useEffect(() => {
+    if (!ref.current) return
+    return ImageHelper.loadImages(strkImgConfig, ref.current)
+  }, [slug])
 
   if (!product) return <Navigate to="/shop" replace />
 

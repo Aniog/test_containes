@@ -1,11 +1,18 @@
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { products } from '@/data/products'
 import ProductCard from '@/components/product/ProductCard'
-import { useImageLoader } from '@/lib/useImageLoader'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
 
 export default function Bestsellers() {
-  const ref = useImageLoader([])
+  const ref = useRef(null)
   const bestsellers = products.filter((p) => p.bestseller).slice(0, 5)
+
+  useEffect(() => {
+    if (!ref.current) return
+    return ImageHelper.loadImages(strkImgConfig, ref.current)
+  }, [])
 
   return (
     <section ref={ref} className="py-20 md:py-28 bg-ivory">
