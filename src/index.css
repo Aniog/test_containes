@@ -1,76 +1,194 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: light;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    @apply bg-velmora-ivory;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    @apply bg-velmora-ivory font-sans text-velmora-ink;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  ::selection {
+    @apply bg-velmora-gold text-velmora-ink;
+  }
+}
+
+@layer components {
+  .velmora-shell {
+    width: min(100%, 1380px);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .velmora-button,
+  .velmora-button-dark,
+  .velmora-button-secondary {
+    display: inline-flex;
+    min-height: 3.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 1rem 1.75rem;
+    border-width: 1px;
+    border-style: solid;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition:
+      background-color 300ms ease,
+      border-color 300ms ease,
+      color 300ms ease,
+      transform 300ms ease,
+      box-shadow 300ms ease;
+    box-shadow: theme('boxShadow.soft');
+  }
+
+  .velmora-button:hover,
+  .velmora-button-dark:hover,
+  .velmora-button-secondary:hover {
+    transform: translateY(-1px);
+  }
+
+  .velmora-button {
+    border-color: theme('colors.velmora-gold');
+    background-color: theme('colors.velmora-gold');
+    color: theme('colors.velmora-ink');
+  }
+
+  .velmora-button:hover {
+    border-color: theme('colors.velmora-bronze');
+    background-color: theme('colors.velmora-bronze');
+    color: theme('colors.velmora-ivory');
+  }
+
+  .velmora-button-dark {
+    border-color: theme('colors.velmora-cocoa');
+    background-color: theme('colors.velmora-cocoa');
+    color: theme('colors.velmora-ivory');
+  }
+
+  .velmora-button-dark:hover {
+    border-color: theme('colors.velmora-ink');
+    background-color: theme('colors.velmora-ink');
+  }
+
+  .velmora-button-secondary {
+    border-color: rgb(255 255 255 / 0.3);
+    background-color: rgb(255 255 255 / 0.1);
+    color: theme('colors.velmora-ivory');
+    backdrop-filter: blur(10px);
+  }
+
+  .velmora-button-secondary:hover {
+    border-color: theme('colors.velmora-blush');
+    background-color: rgb(255 255 255 / 0.16);
+  }
+
+  .velmora-product-media {
+    aspect-ratio: 3 / 4;
+    width: 100%;
+    background-color: theme('colors.velmora-sand');
+  }
+
+  .velmora-cart-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background-color: rgb(45 36 30 / 0.45);
+    transition: opacity 300ms ease;
+  }
+
+  .velmora-cart-overlay.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .velmora-cart-overlay.is-closed {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .velmora-cart-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 70;
+    display: flex;
+    height: 100vh;
+    width: min(100%, 28rem);
+    max-width: 100%;
+    flex-direction: column;
+    overflow: hidden;
+    border-left: 1px solid theme('colors.velmora-sand');
+    background-color: theme('colors.velmora-card');
+    color: theme('colors.velmora-ink');
+    box-shadow: theme('boxShadow.velmora');
+    isolation: isolate;
+    transition: transform 300ms ease;
+  }
+
+  .velmora-cart-drawer.is-open {
+    transform: translateX(0);
+  }
+
+  .velmora-cart-drawer.is-closed {
+    transform: translateX(100%);
+  }
+
+  @media (min-width: 640px) {
+    .velmora-shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .velmora-shell {
+      padding-inline: 2.5rem;
+    }
+  }
+}
