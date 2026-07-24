@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Newsletter Subscribers",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who subscribed",
+      "x-foreignKey": "users.id"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 255,
+      "description": "Subscriber email address (snapshot of the user email at signup time)"
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Optional display name captured at signup"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "homepage",
+      "description": "Where the subscription originated, e.g. homepage, footer, popup"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["subscribed", "unsubscribed"],
+      "default": "subscribed",
+      "description": "Subscription status"
+    },
+    "subscribed_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp the subscriber opted in"
+    }
+  },
+  "required": ["email"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
