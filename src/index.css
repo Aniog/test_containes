@@ -1,76 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #16120E;
+  background-color: #FAF6EF;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #FAF6EF;
+  color: #16120E;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+::selection {
+  background-color: #B08D4F;
+  color: #FAF6EF;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* Thin elegant scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F3EDE2;
+}
+::-webkit-scrollbar-thumb {
+  background: #D9C49A;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B08D4F;
 }
 
-button:hover {
-  border-color: #646cff;
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer components {
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    color: #B08D4F;
   }
-
-  a:hover {
-    color: #747bff;
+  .hairline-t {
+    border-top: 1px solid #E3DACA;
   }
-
-  button {
-    background-color: #f9f9f9;
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0;
+    background-color: #B08D4F;
+    padding: 0.875rem 2rem;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #16120E;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-gold:hover {
+    background-color: #96763C;
+    color: #FAF6EF;
+  }
+  .btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0;
+    border: 1px solid rgba(217, 196, 154, 0.6);
+    background-color: transparent;
+    padding: 0.875rem 2rem;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #D9C49A;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-outline-dark:hover {
+    border-color: #B08D4F;
+    background-color: #B08D4F;
+    color: #16120E;
+  }
+  .btn-outline-light {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0;
+    border: 1px solid rgba(22, 18, 14, 0.7);
+    background-color: transparent;
+    padding: 0.875rem 2rem;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #16120E;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-outline-light:hover {
+    border-color: #16120E;
+    background-color: #16120E;
+    color: #FAF6EF;
+  }
+  .link-underline {
+    position: relative;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #B08D4F;
+  }
+  .link-underline::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #B08D4F;
+    transform-origin: left;
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+  }
+  .link-underline:hover::after {
+    transform: scaleX(0.5);
+  }
+  .input-luxe {
+    width: 100%;
+    border-radius: 0;
+    border: 1px solid #E3DACA;
+    background-color: transparent;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: #16120E;
+  }
+  .input-luxe::placeholder {
+    color: rgba(110, 99, 85, 0.7);
+  }
+  .input-luxe:focus {
+    border-color: #B08D4F;
+    outline: none;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

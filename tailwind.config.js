@@ -5,7 +5,58 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        ink: "#16120E",
+        "ink-soft": "#241D16",
+        "ink-deep": "#0F0C09",
+        ivory: "#FAF6EF",
+        cream: "#F3EDE2",
+        sand: "#E7DDCC",
+        gold: "#B08D4F",
+        "gold-deep": "#96763C",
+        "gold-soft": "#D9C49A",
+        line: "#E3DACA",
+        "line-dark": "rgba(217,196,154,0.22)",
+        muted: "#6E6355",
+        "muted-dark": "#B4A88F",
+      },
+      fontFamily: {
+        serif: ["'Cormorant Garamond'", "Georgia", "serif"],
+        sans: ["Inter", "system-ui", "sans-serif"],
+      },
+      letterSpacing: {
+        widest2: "0.28em",
+        product: "0.16em",
+      },
+      transitionTimingFunction: {
+        luxe: "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
+      keyframes: {
+        "fade-up": {
+          "0%": { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        "slide-in-right": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        "fade-up": "fade-up 0.7s cubic-bezier(0.22,1,0.36,1) both",
+        "fade-in": "fade-in 0.5s ease-out both",
+        "slide-in-right": "slide-in-right 0.45s cubic-bezier(0.22,1,0.36,1) both",
+        marquee: "marquee 30s linear infinite",
+      },
+    },
   },
   plugins: [],
 }
