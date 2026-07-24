@@ -1,18 +1,9 @@
-import { useEffect, useRef } from 'react'
 import { reels } from '@/data/products'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
+import { resolveImageUrl } from '@/lib/resolveImage'
 
 export default function ReelStrip() {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (!ref.current) return
-    return ImageHelper.loadImages(strkImgConfig, ref.current)
-  }, [])
-
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-cream">
+    <section className="py-20 md:py-28 bg-cream">
       <div className="mx-auto max-w-8xl px-6 md:px-10 mb-10">
         <div className="flex items-end justify-between">
           <div>
@@ -26,7 +17,6 @@ export default function ReelStrip() {
       </div>
 
       <div
-        ref={ref}
         className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar px-6 md:px-10 pb-4 snap-x snap-mandatory"
       >
         {reels.map((reel) => (
@@ -36,11 +26,7 @@ export default function ReelStrip() {
           >
             <img
               alt={reel.title}
-              data-strk-img-id={reel.imgId}
-              data-strk-img={`[${reel.titleId}] gold jewelry worn`}
-              data-strk-img-ratio="9x16"
-              data-strk-img-width="600"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src={resolveImageUrl(reel.imgId)}
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent" />

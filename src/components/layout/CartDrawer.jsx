@@ -4,9 +4,6 @@ import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/data/products'
 import { resolveImageUrl } from '@/lib/resolveImage'
 
-const PLACEHOLDER =
-  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
-
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, subtotal, count } = useCart()
 
@@ -51,7 +48,7 @@ export default function CartDrawer() {
                       <div className="relative h-20 w-20 overflow-hidden bg-sand">
                         <img
                           alt={item.name}
-                          src={resolveImageUrl(item.imgId) || PLACEHOLDER}
+                          src={resolveImageUrl(item.imgId)}
                           className="h-full w-full object-cover"
                         />
                       </div>

@@ -1,8 +1,6 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
+import { resolveImageUrl } from '@/lib/resolveImage'
 
 const POSTS = [
   {
@@ -35,15 +33,8 @@ const POSTS = [
 ]
 
 export default function Journal() {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (!ref.current) return
-    return ImageHelper.loadImages(strkImgConfig, ref.current)
-  }, [])
-
   return (
-    <div ref={ref} className="pt-16 md:pt-20 bg-ivory min-h-screen">
+    <div className="pt-16 md:pt-20 bg-ivory min-h-screen">
       <div className="border-b border-sand">
         <div className="mx-auto max-w-8xl px-6 md:px-10 py-12 md:py-16 text-center">
           <p className="text-xs uppercase tracking-[0.3em] text-gold mb-3">Notes</p>
@@ -61,11 +52,7 @@ export default function Journal() {
               <div className="relative aspect-[4x3] overflow-hidden bg-sand mb-5">
                 <img
                   alt={post.title}
-                  data-strk-img-id={post.imgId}
-                  data-strk-img={`[${post.descId}] [${post.titleId}] gold jewelry editorial`}
-                  data-strk-img-ratio="4x3"
-                  data-strk-img-width="700"
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                  src={resolveImageUrl(post.imgId)}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>

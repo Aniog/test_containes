@@ -1,29 +1,16 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
+import { resolveImageUrl } from '@/lib/resolveImage'
 
 export default function BrandStory() {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (!ref.current) return
-    return ImageHelper.loadImages(strkImgConfig, ref.current)
-  }, [])
-
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-cream">
+    <section className="py-20 md:py-28 bg-cream">
       <div className="mx-auto max-w-8xl px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Image */}
           <div className="relative aspect-[4x5] overflow-hidden bg-sand">
             <img
               alt="Velmora atelier — hand-finishing gold jewelry"
-              data-strk-img-id="brand-story-img-3c8e1b"
-              data-strk-img="[brand-story-text] [brand-story-eyebrow] gold jewelry craftsmanship atelier"
-              data-strk-img-ratio="4x5"
-              data-strk-img-width="800"
-              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+              src={resolveImageUrl('brand-story-img-3c8e1b')}
               className="h-full w-full object-cover"
             />
           </div>

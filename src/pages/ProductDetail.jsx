@@ -1,33 +1,23 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { useParams, Link, Navigate } from 'react-router-dom'
 import { Minus, Plus, ShoppingBag, ChevronRight } from 'lucide-react'
 import { getProductBySlug, getRelatedProducts, formatPrice } from '@/data/products'
 import { useCart } from '@/context/CartContext'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
+import { resolveImageUrl } from '@/lib/resolveImage'
 import StarRating from '@/components/StarRating'
 import Accordion from '@/components/product/Accordion'
 import ProductCard from '@/components/product/ProductCard'
 import { cn } from '@/lib/utils'
 
-const PLACEHOLDER =
-  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
-
 export default function ProductDetail() {
   const { slug } = useParams()
   const product = getProductBySlug(slug)
-  const ref = useRef(null)
   const { addItem } = useCart()
 
   const [variant, setVariant] = useState(product?.variants[0] || 'Gold')
   const [quantity, setQuantity] = useState(1)
   const [activeImage, setActiveImage] = useState(0)
   const [added, setAdded] = useState(false)
-
-  useEffect(() => {
-    if (!ref.current) return
-    return ImageHelper.loadImages(strkImgConfig, ref.current)
-  }, [slug])
 
   if (!product) return <Navigate to="/shop" replace />
 
@@ -41,7 +31,7 @@ export default function ProductDetail() {
   }
 
   return (
-    <div ref={ref} className="pt-16 md:pt-20">
+    <div className="pt-16 md:pt-20">
       {/* Breadcrumb */}
       <div className="mx-auto max-w-8xl px-6 md:px-10 py-5">
         <nav className="flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-stone">
@@ -71,11 +61,7 @@ export default function ProductDetail() {
                 >
                   <img
                     alt={`${product.name} thumbnail ${i + 1}`}
-                    data-strk-img-id={`${img.imgId}-thumb`}
-                    data-strk-img={`[${img.titleId}] [${img.descId}] gold jewelry`}
-                    data-strk-img-ratio="1x1"
-                    data-strk-img-width="120"
-                    src={PLACEHOLDER}
+                    src={resolveImageUrl(`${img.imgId}-thumb`)}
                     className="h-full w-full object-cover"
                   />
                 </button>
@@ -87,11 +73,7 @@ export default function ProductDetail() {
               <div className="relative aspect-[4x5] overflow-hidden bg-sand">
                 <img
                   alt={product.name}
-                  data-strk-img-id={images[activeImage].imgId}
-                  data-strk-img={`[${images[activeImage].titleId}] [${images[activeImage].descId}] gold jewelry`}
-                  data-strk-img-ratio="4x5"
-                  data-strk-img-width="900"
-                  src={PLACEHOLDER}
+                  src={resolveImageUrl(images[activeImage].imgId)}
                   className="h-full w-full object-cover"
                 />
               </div>

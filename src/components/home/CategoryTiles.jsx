@@ -1,19 +1,10 @@
-import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { categories } from '@/data/products'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
+import { resolveImageUrl } from '@/lib/resolveImage'
 
 export default function CategoryTiles() {
-  const ref = useRef(null)
-
-  useEffect(() => {
-    if (!ref.current) return
-    return ImageHelper.loadImages(strkImgConfig, ref.current)
-  }, [])
-
   return (
-    <section ref={ref} className="py-20 md:py-28 bg-ivory">
+    <section className="py-20 md:py-28 bg-ivory">
       <div className="mx-auto max-w-8xl px-6 md:px-10">
         <div className="text-center mb-12 md:mb-16">
           <p className="text-xs uppercase tracking-[0.3em] text-gold mb-3">Explore</p>
@@ -29,11 +20,7 @@ export default function CategoryTiles() {
             >
               <img
                 alt={cat.name}
-                data-strk-img-id={cat.imgId}
-                data-strk-img={`[${cat.descId}] [${cat.titleId}] gold jewelry`}
-                data-strk-img-ratio="4x5"
-                data-strk-img-width="700"
-                src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
+                src={resolveImageUrl(cat.imgId)}
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />

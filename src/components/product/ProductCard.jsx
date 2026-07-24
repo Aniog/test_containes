@@ -3,10 +3,8 @@ import { useState } from 'react'
 import { useCart } from '@/context/CartContext'
 import { formatPrice } from '@/data/products'
 import StarRating from '@/components/StarRating'
+import { resolveImageUrl } from '@/lib/resolveImage'
 import { cn } from '@/lib/utils'
-
-const PLACEHOLDER =
-  'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1 1"%3E%3C/svg%3E'
 
 export default function ProductCard({ product, className }) {
   const { addItem } = useCart()
@@ -21,6 +19,8 @@ export default function ProductCard({ product, className }) {
   }
 
   const [primary, secondary] = product.images
+  const primaryUrl = resolveImageUrl(primary.imgId)
+  const secondaryUrl = secondary ? resolveImageUrl(secondary.imgId) : ''
 
   return (
     <Link
@@ -31,22 +31,14 @@ export default function ProductCard({ product, className }) {
         {/* Primary image */}
         <img
           alt={product.name}
-          data-strk-img-id={primary.imgId}
-          data-strk-img={`[${primary.titleId}] [${primary.descId}] gold jewelry`}
-          data-strk-img-ratio="4x5"
-          data-strk-img-width="600"
-          src={PLACEHOLDER}
+          src={primaryUrl}
           className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-0 transition-transform duration-700 group-hover:scale-105"
         />
         {/* Secondary image (revealed on hover) */}
         {secondary && (
           <img
             alt={`${product.name} alternate view`}
-            data-strk-img-id={secondary.imgId}
-            data-strk-img={`[${secondary.titleId}] [${secondary.descId}] gold jewelry worn`}
-            data-strk-img-ratio="4x5"
-            data-strk-img-width="600"
-            src={PLACEHOLDER}
+            src={secondaryUrl}
             className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           />
         )}
