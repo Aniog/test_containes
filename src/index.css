@@ -1,76 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- Base ---------- */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  --color-cream: #faf7f2;
+  --color-onyx: #1a1814;
+  --color-gold: #b8924c;
+  --color-mocha: #7a6a5c;
+
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  color: #1a1814;
+  background-color: #faf7f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html, body, #root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-onyx);
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+::selection {
+  background: #1a1814;
+  color: #faf7f2;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+/* ---------- Custom utilities ---------- */
+@layer components {
+  .font-display {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  .font-display-italic {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
   }
 
-  a:hover {
-    color: #747bff;
+  .eyebrow {
+    @apply font-sans text-[11px] uppercase tracking-widest-2 text-mocha-500;
   }
 
-  button {
-    background-color: #f9f9f9;
+  .product-name {
+    @apply font-sans uppercase tracking-wider-2 text-[12px] sm:text-[13px] text-onyx-800;
+  }
+
+  .product-name-lg {
+    @apply font-sans uppercase tracking-widest-2 text-[15px] sm:text-[18px] text-onyx-800;
+  }
+
+  .divider-hairline {
+    background-image: linear-gradient(to right, transparent, rgba(26,24,20,0.18), transparent);
+    height: 1px;
+    width: 100%;
+  }
+
+  .divider-hairline-v {
+    background-image: linear-gradient(to bottom, transparent, rgba(26,24,20,0.18), transparent);
+    width: 1px;
+    height: 100%;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 bg-onyx-800 text-cream-100 px-7 py-3.5 text-[12px] uppercase tracking-widest-2 font-medium transition-all duration-300 hover:bg-onyx-900 active:scale-[0.99];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border border-onyx-800 text-onyx-800 px-7 py-3.5 text-[12px] uppercase tracking-widest-2 font-medium transition-all duration-300 hover:bg-onyx-800 hover:text-cream-100;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 text-onyx-800 px-3 py-2 text-[12px] uppercase tracking-widest-2 font-medium transition-all duration-200 hover:text-gold-500;
+  }
+  .btn-link {
+    @apply inline-flex items-center gap-2 text-onyx-800 text-[12px] uppercase tracking-widest-2 font-medium border-b border-onyx-800 pb-1 transition-colors duration-300 hover:text-gold-500 hover:border-gold-500;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 text-[11px] uppercase tracking-widest-2 border border-onyx-800/15 text-onyx-700;
+  }
+
+  .input-line {
+    @apply w-full bg-transparent border-b border-onyx-800/30 focus:border-onyx-800 outline-none py-2.5 text-[14px] text-onyx-800 placeholder:text-mocha-400 transition-colors;
+  }
+
+  .container-wide {
+    @apply max-w-[1400px] mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .container-narrow {
+    @apply max-w-[1200px] mx-auto px-5 sm:px-8 lg:px-12;
   }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ---------- Scrollbar ---------- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ---------- Marquee row ---------- */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 38s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* ---------- Product card hover image swap ---------- */
+.product-card .product-img-2 {
+  opacity: 0;
+  transition: opacity 500ms ease, transform 700ms ease;
+}
+.product-card:hover .product-img-2 {
+  opacity: 1;
+}
+.product-card:hover .product-img-1 {
+  opacity: 0;
+}
+.product-img-1 {
+  transition: opacity 500ms ease, transform 700ms ease;
+}
+.product-card .quick-add {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 350ms ease, transform 350ms ease;
+  pointer-events: none;
+}
+.product-card:hover .quick-add,
+.product-card:focus-within .quick-add {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ---------- Smooth focus ---------- */
+button:focus-visible, a:focus-visible, input:focus-visible {
+  outline: 1px solid #b8924c;
+  outline-offset: 3px;
+}
+
+/* ---------- Reduce motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
