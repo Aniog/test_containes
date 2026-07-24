@@ -1,0 +1,4 @@
+- Use `Inter` font for text, and `Cormorant Garamond` for headings.
+- Use a color palette centered around `#FAFAFA` (background), `#2A2A2A` (foreground), `#A68A64` (primary/accent gold).
+- Maintain an editorial, clean, quiet luxury visual identity. Use generous whitespace, hairline borders, muted secondary backgrounds (`#F3F1ED`).
+- Product images should feel editorial and warm. Use the dynamic image loader to generate images based on item descriptions.
