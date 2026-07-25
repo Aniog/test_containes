@@ -1,114 +1,119 @@
 import { useState } from 'react';
 import { Clock, ChevronRight } from 'lucide-react';
 
-const tabs = ['All', 'Live', 'Today', 'Upcoming'];
+const tabs = ['全部', '直播', '今日', '即将开赛'];
 
 const matches = [
   {
     id: 1,
-    league: 'Premier League',
-    leagueShort: 'PL',
+    league: 'A组',
+    leagueShort: 'A',
     status: 'live',
     minute: "67'",
-    homeTeam: 'Manchester City',
-    homeShort: 'MCI',
+    homeTeam: '巴西',
+    homeFlag: '🇧🇷',
     homeScore: 2,
-    awayTeam: 'Arsenal',
-    awayShort: 'ARS',
-    awayScore: 1,
-    stadium: 'Etihad Stadium',
+    awayTeam: '塞尔维亚',
+    awayFlag: '🇷🇸',
+    awayScore: 0,
+    stadium: '卢萨尔体育场',
   },
   {
     id: 2,
-    league: 'La Liga',
-    leagueShort: 'LL',
+    league: 'B组',
+    leagueShort: 'B',
     status: 'live',
-    minute: "45+2'",
-    homeTeam: 'Real Madrid',
-    homeShort: 'RMA',
-    homeScore: 3,
-    awayTeam: 'Barcelona',
-    awayShort: 'BAR',
-    awayScore: 2,
-    stadium: 'Santiago Bernabéu',
+    minute: "45+1'",
+    homeTeam: '阿根廷',
+    homeFlag: '🇦🇷',
+    homeScore: 1,
+    awayTeam: '墨西哥',
+    awayFlag: '🇲🇽',
+    awayScore: 1,
+    stadium: '艾哈迈德·本·阿里体育场',
   },
   {
     id: 3,
-    league: 'Serie A',
-    leagueShort: 'SA',
+    league: 'C组',
+    leagueShort: 'C',
     status: 'today',
-    minute: '20:45',
-    homeTeam: 'Juventus',
-    homeShort: 'JUV',
+    minute: '20:00',
+    homeTeam: '法国',
+    homeFlag: '🇫🇷',
     homeScore: null,
-    awayTeam: 'AC Milan',
-    awayShort: 'ACM',
+    awayTeam: '澳大利亚',
+    awayFlag: '🇦🇺',
     awayScore: null,
-    stadium: 'Allianz Stadium',
+    stadium: '教育城体育场',
   },
   {
     id: 4,
-    league: 'Bundesliga',
-    leagueShort: 'BL',
+    league: 'D组',
+    leagueShort: 'D',
     status: 'today',
-    minute: '18:30',
-    homeTeam: 'Bayern Munich',
-    homeShort: 'BAY',
+    minute: '23:00',
+    homeTeam: '英格兰',
+    homeFlag: '🏴󠁧󠁢󠁥󠁮󠁧󠁿',
     homeScore: null,
-    awayTeam: 'Borussia Dortmund',
-    awayShort: 'BVB',
+    awayTeam: '伊朗',
+    awayFlag: '🇮🇷',
     awayScore: null,
-    stadium: 'Allianz Arena',
+    stadium: '哈利法国际体育场',
   },
   {
     id: 5,
-    league: 'Ligue 1',
-    leagueShort: 'L1',
+    league: 'E组',
+    leagueShort: 'E',
     status: 'upcoming',
-    minute: 'Tomorrow',
-    homeTeam: 'PSG',
-    homeShort: 'PSG',
+    minute: '明日 20:00',
+    homeTeam: '西班牙',
+    homeFlag: '🇪🇸',
     homeScore: null,
-    awayTeam: 'Marseille',
-    awayShort: 'MAR',
+    awayTeam: '哥斯达黎加',
+    awayFlag: '🇨🇷',
     awayScore: null,
-    stadium: 'Parc des Princes',
+    stadium: '阿尔图玛玛体育场',
   },
   {
     id: 6,
-    league: 'Premier League',
-    leagueShort: 'PL',
+    league: 'F组',
+    leagueShort: 'F',
     status: 'upcoming',
-    minute: 'Sat 15:00',
-    homeTeam: 'Liverpool',
-    homeShort: 'LIV',
+    minute: '明日 23:00',
+    homeTeam: '德国',
+    homeFlag: '🇩🇪',
     homeScore: null,
-    awayTeam: 'Chelsea',
-    awayShort: 'CHE',
+    awayTeam: '日本',
+    awayFlag: '🇯🇵',
     awayScore: null,
-    stadium: 'Anfield',
+    stadium: '哈利法国际体育场',
   },
 ];
 
-const leagueColors = {
-  PL: 'bg-purple-500',
-  LL: 'bg-orange-500',
-  SA: 'bg-blue-500',
-  BL: 'bg-yellow-500',
-  L1: 'bg-sky-500',
+const groupColors = {
+  A: 'bg-yellow-500',
+  B: 'bg-orange-500',
+  C: 'bg-blue-500',
+  D: 'bg-red-500',
+  E: 'bg-purple-500',
+  F: 'bg-green-500',
 };
+
+const tabMap = { '全部': 'all', '直播': 'live', '今日': 'today', '即将开赛': 'upcoming' };
 
 function MatchCard({ match }) {
   const isLive = match.status === 'live';
   const hasScore = match.homeScore !== null;
 
   return (
-    <div className="bg-gray-900 border border-gray-800 hover:border-green-500/40 rounded-xl p-4 transition-all duration-200 cursor-pointer group">
+    <div className="bg-gray-900 border border-gray-800 hover:border-yellow-500/40 rounded-xl p-4 transition-all duration-200 cursor-pointer group">
       {/* Header */}
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <span className={`w-2 h-2 rounded-full ${leagueColors[match.leagueShort] || 'bg-gray-500'}`} />
-          <span className="text-xs text-gray-500 font-medium">{match.league}</span>
+          <span className={`w-5 h-5 rounded text-[10px] font-black flex items-center justify-center text-gray-950 ${groupColors[match.leagueShort] || 'bg-gray-500'}`}>
+            {match.leagueShort}
+          </span>
+          <span className="text-xs text-gray-500 font-medium">世界杯 {match.league}</span>
         </div>
         {isLive ? (
           <span className="flex items-center gap-1 text-xs font-bold text-red-400 bg-red-500/10 px-2 py-0.5 rounded-full">
@@ -125,13 +130,11 @@ function MatchCard({ match }) {
 
       {/* Teams & Score */}
       <div className="flex items-center justify-between gap-4">
-        {/* Home */}
         <div className="flex-1 text-right">
-          <div className="text-sm font-semibold text-white group-hover:text-green-400 transition-colors">{match.homeTeam}</div>
-          <div className="text-xs text-gray-600 mt-0.5">{match.homeShort}</div>
+          <div className="text-lg mb-0.5">{match.homeFlag}</div>
+          <div className="text-sm font-semibold text-white group-hover:text-yellow-400 transition-colors">{match.homeTeam}</div>
         </div>
 
-        {/* Score */}
         <div className="flex items-center gap-2 min-w-[80px] justify-center">
           {hasScore ? (
             <>
@@ -140,45 +143,41 @@ function MatchCard({ match }) {
               <span className={`text-2xl font-black ${isLive ? 'text-white' : 'text-gray-400'}`}>{match.awayScore}</span>
             </>
           ) : (
-            <span className="text-gray-600 font-bold text-sm">vs</span>
+            <span className="text-gray-600 font-bold text-sm">VS</span>
           )}
         </div>
 
-        {/* Away */}
         <div className="flex-1 text-left">
-          <div className="text-sm font-semibold text-white group-hover:text-green-400 transition-colors">{match.awayTeam}</div>
-          <div className="text-xs text-gray-600 mt-0.5">{match.awayShort}</div>
+          <div className="text-lg mb-0.5">{match.awayFlag}</div>
+          <div className="text-sm font-semibold text-white group-hover:text-yellow-400 transition-colors">{match.awayTeam}</div>
         </div>
       </div>
 
       {/* Footer */}
       <div className="mt-3 pt-3 border-t border-gray-800 flex items-center justify-between">
         <span className="text-xs text-gray-600">{match.stadium}</span>
-        <ChevronRight className="w-3.5 h-3.5 text-gray-700 group-hover:text-green-500 transition-colors" />
+        <ChevronRight className="w-3.5 h-3.5 text-gray-700 group-hover:text-yellow-500 transition-colors" />
       </div>
     </div>
   );
 }
 
 export default function MatchesSection() {
-  const [activeTab, setActiveTab] = useState('All');
+  const [activeTab, setActiveTab] = useState('全部');
 
   const filtered = matches.filter((m) => {
-    if (activeTab === 'All') return true;
-    if (activeTab === 'Live') return m.status === 'live';
-    if (activeTab === 'Today') return m.status === 'today';
-    if (activeTab === 'Upcoming') return m.status === 'upcoming';
-    return true;
+    const key = tabMap[activeTab];
+    if (key === 'all') return true;
+    return m.status === key;
   });
 
   return (
     <section id="matches" className="py-16 md:py-24 bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <p className="text-xs font-bold text-green-500 uppercase tracking-widest mb-2">Live & Upcoming</p>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Today's Matches</h2>
+            <p className="text-xs font-bold text-yellow-500 uppercase tracking-widest mb-2">小组赛阶段</p>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">今日赛程</h2>
           </div>
           <div className="flex items-center gap-1 bg-gray-900 border border-gray-800 rounded-xl p-1">
             {tabs.map((tab) => (
@@ -187,12 +186,12 @@ export default function MatchesSection() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-150 ${
                   activeTab === tab
-                    ? 'bg-green-500 text-white shadow'
+                    ? 'bg-yellow-500 text-gray-950 shadow'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
                 {tab}
-                {tab === 'Live' && (
+                {tab === '直播' && (
                   <span className="ml-1.5 w-1.5 h-1.5 bg-red-500 rounded-full inline-block animate-pulse" />
                 )}
               </button>
@@ -200,7 +199,6 @@ export default function MatchesSection() {
           </div>
         </div>
 
-        {/* Match Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filtered.map((match) => (
             <MatchCard key={match.id} match={match} />
@@ -209,8 +207,8 @@ export default function MatchesSection() {
 
         {filtered.length === 0 && (
           <div className="text-center py-16 text-gray-600">
-            <p className="text-lg font-semibold">No matches found</p>
-            <p className="text-sm mt-1">Try a different filter</p>
+            <p className="text-lg font-semibold">暂无比赛</p>
+            <p className="text-sm mt-1">请切换其他筛选条件</p>
           </div>
         )}
       </div>

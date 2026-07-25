@@ -1,26 +1,26 @@
 import { useState } from 'react';
-import { Menu, X, Trophy } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 
 const navLinks = [
-  { label: 'Matches', href: '#matches' },
-  { label: 'Standings', href: '#standings' },
-  { label: 'Scorers', href: '#scorers' },
-  { label: 'News', href: '#news' },
+  { label: '小组赛', href: '#matches' },
+  { label: '积分榜', href: '#standings' },
+  { label: '射手榜', href: '#scorers' },
+  { label: '赛事资讯', href: '#news' },
 ];
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-sm border-b border-gray-800">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gray-950/95 backdrop-blur-sm border-b border-yellow-500/20">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between h-16">
         {/* Logo */}
         <a href="#" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center group-hover:bg-green-400 transition-colors">
-            <Trophy className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center group-hover:bg-yellow-400 transition-colors">
+            <Globe className="w-4 h-4 text-gray-950" />
           </div>
           <span className="text-white font-black text-xl tracking-tight">
-            KICK<span className="text-green-500">OFF</span>
+            WORLD<span className="text-yellow-500">CUP</span>
           </span>
         </a>
 
@@ -41,13 +41,13 @@ export default function Navbar() {
         <div className="hidden md:flex items-center gap-3">
           <span className="flex items-center gap-1.5 text-xs font-bold text-red-400 uppercase tracking-widest">
             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-            Live Now
+            直播中
           </span>
           <a
             href="#matches"
-            className="bg-green-500 hover:bg-green-400 text-white font-bold px-4 py-2 rounded-lg text-sm transition-colors"
+            className="bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-bold px-4 py-2 rounded-lg text-sm transition-colors"
           >
-            Watch Live
+            观看直播
           </a>
         </div>
 
@@ -77,9 +77,9 @@ export default function Navbar() {
           <a
             href="#matches"
             onClick={() => setOpen(false)}
-            className="mt-2 bg-green-500 hover:bg-green-400 text-white font-bold px-4 py-3 rounded-lg text-sm text-center transition-colors"
+            className="mt-2 bg-yellow-500 hover:bg-yellow-400 text-gray-950 font-bold px-4 py-3 rounded-lg text-sm text-center transition-colors"
           >
-            Watch Live
+            观看直播
           </a>
         </div>
       )}
