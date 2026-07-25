@@ -1,0 +1,18 @@
+import { useEffect } from 'react'
+import { ImageHelper } from '@strikingly/sdk'
+import strkImgConfig from '@/strk-img-config.json'
+
+export function useImageLoader(containerRef, dependencies = []) {
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      const result = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      if (typeof result === 'function') cleanup = result
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, dependencies)
+}
