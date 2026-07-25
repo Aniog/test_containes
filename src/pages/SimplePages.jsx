@@ -3,10 +3,12 @@ import { ArrowRight } from "lucide-react"
 import StrkImage from "@/components/StrkImage"
 import { Eyebrow, Reveal } from "@/components/ui"
 import { categories, products } from "@/data/products"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 export function CollectionsPage() {
+  const strkRef = useStrkImages()
   return (
-    <div className="bg-ivory pb-24 pt-24 md:pt-32">
+    <div ref={strkRef} className="bg-ivory pb-24 pt-24 md:pt-32">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <Reveal className="text-center">
           <Eyebrow>Collections</Eyebrow>

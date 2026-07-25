@@ -6,6 +6,7 @@ import { Eyebrow, RatingStars, Reveal } from "@/components/ui"
 import { useCart } from "@/context/CartContext"
 import { formatPrice, getProductById, products, PLACEHOLDER_IMG } from "@/data/products"
 import { cn } from "@/lib/utils"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 function Accordion({ title, children, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen)
@@ -43,6 +44,7 @@ export default function ProductPage() {
   const [variant, setVariant] = useState("Gold")
   const [quantity, setQuantity] = useState(1)
   const [liked, setLiked] = useState(false)
+  const strkRef = useStrkImages([product?.id])
 
   useEffect(() => {
     setActiveImage(0)
@@ -71,7 +73,7 @@ export default function ProductPage() {
   const active = product.images[activeImage]
 
   return (
-    <div className="bg-ivory pb-24 pt-24 md:pt-32">
+    <div ref={strkRef} className="bg-ivory pb-24 pt-24 md:pt-32">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <nav className="mb-8 text-[10px] uppercase tracking-[0.2em] text-muted">
           <Link to="/" className="transition-colors hover:text-noir">Home</Link>

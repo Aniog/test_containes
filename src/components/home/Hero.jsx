@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 export default function Hero() {
+  const strkRef = useStrkImages()
   return (
-    <section className="relative flex min-h-[100svh] items-end overflow-hidden bg-noir md:items-center">
+    <section ref={strkRef} className="relative flex min-h-[100svh] items-end overflow-hidden bg-noir md:items-center">
       <div
         className="absolute inset-0 bg-cover bg-center"
         data-strk-bg-id="hero-bg-main-7a3f1c"

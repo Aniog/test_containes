@@ -1,9 +1,11 @@
 import { PLACEHOLDER_IMG } from "@/data/products"
 import { cn } from "@/lib/utils"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 /**
  * Stock-image-tagged <img>. The Vite strk-img plugin resolves the query
  * against the referenced text ids and swaps in a real photo at runtime.
+ * Self-loads via ImageHelper so it works regardless of the surrounding tree.
  */
 export default function StrkImage({
   imgId,
@@ -14,8 +16,11 @@ export default function StrkImage({
   className,
   loading = "lazy",
 }) {
+  const ref = useStrkImages()
+
   return (
     <img
+      ref={ref}
       data-strk-img-id={imgId}
       data-strk-img={query}
       data-strk-img-ratio={ratio}

@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard"
 import StrkImage from "@/components/StrkImage"
 import { Eyebrow, RatingStars, Reveal } from "@/components/ui"
 import { categories, products } from "@/data/products"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 const trustItems = [
   { icon: Globe, label: "Free Worldwide Shipping" },
@@ -117,8 +118,9 @@ export function ReelsRow() {
 }
 
 export function CategoryTiles() {
+  const strkRef = useStrkImages()
   return (
-    <section className="bg-cream py-20 md:py-28">
+    <section ref={strkRef} className="bg-cream py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
         <Reveal className="text-center">
           <Eyebrow>Curated for you</Eyebrow>

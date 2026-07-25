@@ -3,13 +3,15 @@ import { Plus } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 import { formatPrice, PLACEHOLDER_IMG } from "@/data/products"
 import { RatingStars } from "@/components/ui"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 export default function ProductCard({ product, imageWidth = "600" }) {
   const { addItem } = useCart()
+  const containerRef = useStrkImages()
   const query = `[${product.taglineId}] [${product.titleId}]`
 
   return (
-    <article className="group">
+    <article className="group" ref={containerRef}>
       <div className="relative overflow-hidden bg-cream">
         <Link to={`/product/${product.id}`} aria-label={`View ${product.name}`}>
           <div className="relative aspect-[3/4]">

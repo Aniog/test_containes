@@ -4,9 +4,11 @@ import { Minus, Plus, ShoppingBag, X } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 import { formatPrice, PLACEHOLDER_IMG } from "@/data/products"
 import { cn } from "@/lib/utils"
+import { useStrkImages } from "@/lib/use-strk-images"
 
 export default function CartDrawer() {
   const { items, subtotal, count, isCartOpen, closeCart, updateQuantity, removeItem } = useCart()
+  const strkRef = useStrkImages([isCartOpen])
 
   useEffect(() => {
     document.body.style.overflow = isCartOpen ? "hidden" : ""
@@ -17,6 +19,7 @@ export default function CartDrawer() {
 
   return (
     <div
+      ref={strkRef}
       className={cn(
         "fixed inset-0 z-[80] transition-opacity duration-300",
         isCartOpen ? "opacity-100" : "pointer-events-none opacity-0"
