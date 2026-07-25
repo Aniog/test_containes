@@ -1,14 +1,25 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Plus } from "lucide-react"
+import { ImageHelper } from "@strikingly/sdk"
 import { useCart } from "@/context/CartContext"
 import { formatPrice, PLACEHOLDER_IMG } from "@/data/products"
 import { RatingStars } from "@/components/ui"
-import { useStrkImages } from "@/lib/use-strk-images"
+import strkImgConfig from "@/strk-img-config.json"
 
 export default function ProductCard({ product, imageWidth = "600" }) {
   const { addItem } = useCart()
-  const containerRef = useStrkImages()
+  const containerRef = useRef(null)
   const query = `[${product.taglineId}] [${product.titleId}]`
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (containerRef.current) {
+        ImageHelper.loadImages(strkImgConfig, containerRef.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
     <article className="group" ref={containerRef}>

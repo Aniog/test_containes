@@ -1,14 +1,24 @@
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Minus, Plus, ShoppingBag, X } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 import { formatPrice, PLACEHOLDER_IMG } from "@/data/products"
 import { cn } from "@/lib/utils"
-import { useStrkImages } from "@/lib/use-strk-images"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 
 export default function CartDrawer() {
   const { items, subtotal, count, isCartOpen, closeCart, updateQuantity, removeItem } = useCart()
-  const strkRef = useStrkImages([isCartOpen])
+  const strkRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (strkRef.current) {
+        ImageHelper.loadImages(strkImgConfig, strkRef.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [isCartOpen])
 
   useEffect(() => {
     document.body.style.overflow = isCartOpen ? "hidden" : ""

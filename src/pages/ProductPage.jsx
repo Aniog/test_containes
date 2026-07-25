@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import { ChevronDown, Heart, Minus, Plus, RefreshCcw, ShieldCheck, Truck } from "lucide-react"
 import ProductCard from "@/components/ProductCard"
@@ -6,7 +6,8 @@ import { Eyebrow, RatingStars, Reveal } from "@/components/ui"
 import { useCart } from "@/context/CartContext"
 import { formatPrice, getProductById, products, PLACEHOLDER_IMG } from "@/data/products"
 import { cn } from "@/lib/utils"
-import { useStrkImages } from "@/lib/use-strk-images"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 
 function Accordion({ title, children, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen)
@@ -44,7 +45,17 @@ export default function ProductPage() {
   const [variant, setVariant] = useState("Gold")
   const [quantity, setQuantity] = useState(1)
   const [liked, setLiked] = useState(false)
-  const strkRef = useStrkImages([product?.id])
+  const strkRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (strkRef.current) {
+        ImageHelper.loadImages(strkImgConfig, strkRef.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product?.id])
 
   useEffect(() => {
     setActiveImage(0)

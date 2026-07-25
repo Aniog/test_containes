@@ -1,12 +1,23 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
 import StrkImage from "@/components/StrkImage"
 import { Eyebrow, Reveal } from "@/components/ui"
 import { categories, products } from "@/data/products"
-import { useStrkImages } from "@/lib/use-strk-images"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 
 export function CollectionsPage() {
-  const strkRef = useStrkImages()
+  const strkRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (strkRef.current) {
+        ImageHelper.loadImages(strkImgConfig, strkRef.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
   return (
     <div ref={strkRef} className="bg-ivory pb-24 pt-24 md:pt-32">
       <div className="mx-auto max-w-7xl px-4 md:px-8">

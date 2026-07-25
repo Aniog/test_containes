@@ -1,10 +1,12 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, Gem, Globe, Leaf, RefreshCcw } from "lucide-react"
 import ProductCard from "@/components/ProductCard"
 import StrkImage from "@/components/StrkImage"
 import { Eyebrow, RatingStars, Reveal } from "@/components/ui"
 import { categories, products } from "@/data/products"
-import { useStrkImages } from "@/lib/use-strk-images"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 
 const trustItems = [
   { icon: Globe, label: "Free Worldwide Shipping" },
@@ -118,7 +120,16 @@ export function ReelsRow() {
 }
 
 export function CategoryTiles() {
-  const strkRef = useStrkImages()
+  const strkRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (strkRef.current) {
+        ImageHelper.loadImages(strkImgConfig, strkRef.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
   return (
     <section ref={strkRef} className="bg-cream py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">

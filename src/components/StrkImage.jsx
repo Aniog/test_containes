@@ -1,6 +1,8 @@
+import { useEffect, useRef } from "react"
+import { ImageHelper } from "@strikingly/sdk"
 import { PLACEHOLDER_IMG } from "@/data/products"
 import { cn } from "@/lib/utils"
-import { useStrkImages } from "@/lib/use-strk-images"
+import strkImgConfig from "@/strk-img-config.json"
 
 /**
  * Stock-image-tagged <img>. The Vite strk-img plugin resolves the query
@@ -16,7 +18,16 @@ export default function StrkImage({
   className,
   loading = "lazy",
 }) {
-  const ref = useStrkImages()
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (ref.current) {
+        ImageHelper.loadImages(strkImgConfig, ref.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
 
   return (
     <img

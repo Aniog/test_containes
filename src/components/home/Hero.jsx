@@ -1,9 +1,20 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight } from "lucide-react"
-import { useStrkImages } from "@/lib/use-strk-images"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 
 export default function Hero() {
-  const strkRef = useStrkImages()
+  const strkRef = useRef(null)
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (strkRef.current) {
+        ImageHelper.loadImages(strkImgConfig, strkRef.current)
+      }
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [])
   return (
     <section ref={strkRef} className="relative flex min-h-[100svh] items-end overflow-hidden bg-noir md:items-center">
       <div
