@@ -1,0 +1,95 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 42,
+    rating: 4.9,
+    reviewCount: 86,
+    description: 'A sculptural gold ear cuff finished with a luminous crystal accent for effortless daily shine.',
+    detail: 'Designed for no-piercing styling, this crystal ear cuff adds a refined glint to everyday looks and stacks beautifully with studs or huggies.',
+    care: '18K gold plated over brass with crystal detail. Keep dry, store separately, and polish softly after wear.',
+    imagePrompt: 'gold ear cuff with crystal accent demi fine jewelry editorial warm model ear',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    category: 'Necklaces',
+    material: '18K Gold Plated',
+    price: 68,
+    rating: 4.8,
+    reviewCount: 73,
+    description: 'A delicate floral crystal necklace with soft color and heirloom-inspired gold detailing.',
+    detail: 'A romantic pendant necklace that catches the light with multicolor floral crystals, made to layer or stand alone.',
+    care: '18K gold plated chain with crystal pendant. Avoid perfume and lotions directly on the piece.',
+    imagePrompt: 'multicolor floral crystal necklace gold demi fine jewelry editorial warm neck closeup',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    category: 'Huggies',
+    material: '18K Gold Plated',
+    price: 38,
+    rating: 5,
+    reviewCount: 112,
+    description: 'Chunky gold dome huggies with a polished silhouette that feels modern, easy, and collectible.',
+    detail: 'A high-shine huggie silhouette with a rounded dome profile for everyday polish and lightweight comfort.',
+    care: '18K gold plated over brass. Hypoallergenic posts. Store in the pouch between wears.',
+    imagePrompt: 'chunky gold dome huggie earrings demi fine jewelry editorial warm ear closeup',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    category: 'Earrings',
+    material: '18K Gold Plated',
+    price: 54,
+    rating: 4.9,
+    reviewCount: 64,
+    description: 'Textured gold filigree drops that move softly and bring evening elegance to simple styling.',
+    detail: 'Intricate lace-like texture gives these drop earrings a vintage sensibility while remaining light enough for long wear.',
+    care: '18K gold plated filigree. Clean with a dry microfiber cloth and avoid prolonged water exposure.',
+    imagePrompt: 'textured gold filigree drop earrings demi fine jewelry editorial warm portrait',
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    category: 'Gift Sets',
+    material: '18K Gold Plated',
+    price: 95,
+    rating: 4.9,
+    reviewCount: 51,
+    description: 'A gift-boxed earring and necklace pairing curated for birthdays, bridesmaids, and self-celebration.',
+    detail: 'A ready-to-gift pairing with refined gold pieces nestled in a keepsake box for a polished gifting moment.',
+    care: '18K gold plated jewelry set. Includes storage box. Keep pieces separate to preserve finish.',
+    imagePrompt: 'gift boxed gold earring and necklace set demi fine jewelry elegant warm packaging',
+  },
+]
+
+export const categories = [
+  {
+    id: 'earrings',
+    name: 'Earrings',
+    description: 'Quiet statement drops, cuffs, and polished everyday pieces.',
+  },
+  {
+    id: 'necklaces',
+    name: 'Necklaces',
+    description: 'Softly luminous chains and crystal pendants for layering.',
+  },
+  {
+    id: 'huggies',
+    name: 'Huggies',
+    description: 'Close-fit gold silhouettes made for daily wear.',
+  },
+]
+
+export const ugcStories = [
+  { id: 'morning-stack', caption: 'Morning gold stack', context: 'woman wearing layered gold huggies in warm morning light' },
+  { id: 'date-night', caption: 'Soft date-night glow', context: 'gold necklace worn with silk dress editorial closeup' },
+  { id: 'gift-moment', caption: 'The gift she keeps', context: 'woman opening fine jewelry gift box warm luxury' },
+  { id: 'office-polish', caption: 'Everyday office polish', context: 'minimal gold earrings worn with cream blazer' },
+  { id: 'weekend-light', caption: 'Weekend light', context: 'gold ear cuff and huggies warm neutral portrait' },
+]
+
+export const findProduct = (id) => products.find((product) => product.id === id) || products[0]
