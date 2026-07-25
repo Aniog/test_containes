@@ -1,24 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1A1816;
+  background-color: #F5F2ED;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -30,47 +25,150 @@ body {
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* Elegant serif headings */
+h1, h2, .serif-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+/* Product names - uppercase with wide spacing */
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
+/* Premium button styles */
+.btn-premium {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-premium:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-premium:active {
+  transform: translateY(0);
+}
+
+/* Hairline dividers */
+.divider {
+  border-color: rgba(139, 126, 111, 0.2);
+}
+
+/* Product card hover effects */
+.product-card {
+  transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Image hover reveal */
+.product-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image-primary,
+.product-image-secondary {
+  transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.product-image-secondary {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.product-card:hover .product-image-primary {
+  opacity: 0;
+}
+
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+
+/* Variant pill buttons */
+.variant-pill {
+  transition: all 0.15s ease;
+  border: 1px solid #8B7E6F;
+}
+
+.variant-pill.active {
+  background-color: #1A1816;
+  color: #F5F2ED;
+  border-color: #1A1816;
+}
+
+.variant-pill:hover:not(.active) {
+  background-color: #E8D9C2;
+  border-color: #C5A26F;
+}
+
+/* Cart drawer */
+.cart-drawer {
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.cart-drawer.open {
+  transform: translateX(0);
+}
+
+/* Accordion styles */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.accordion-content.open {
+  max-height: 500px;
+}
+
+/* UGC Reel horizontal scroll */
+.ugc-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.ugc-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Filter sidebar */
+.filter-checkbox {
+  accent-color: #C5A26F;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid #C5A26F;
+  outline-offset: 2px;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .product-name {
+    letter-spacing: 0.1em;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
