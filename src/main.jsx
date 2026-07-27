@@ -7,6 +7,8 @@ if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
 }
 
+document.title = import.meta.env.VITE_APP_TITLE || "SSourcing China";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
