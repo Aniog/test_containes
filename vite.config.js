@@ -20,6 +20,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: ['@strikingly/sdk'],
+  },
   server: {
     host: '0.0.0.0',
     allowedHosts: true,
