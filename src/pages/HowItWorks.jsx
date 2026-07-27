@@ -1,6 +1,3 @@
-import { useEffect, useRef } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
-import strkImgConfig from '@/strk-img-config.json'
 import { Link } from 'react-router-dom'
 import { ArrowRight, FileText, Search, ShieldCheck, Package, ClipboardCheck, Ship, CheckCircle } from 'lucide-react'
 
@@ -100,14 +97,8 @@ const steps = [
 ]
 
 export default function HowItWorks() {
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
-  }, [])
-
   return (
-    <div ref={containerRef}>
+    <div>
       {/* Hero */}
       <section className="bg-brand-900 py-16 md:py-20">
         <div className="section-container text-center">
