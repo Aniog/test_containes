@@ -5,8 +5,13 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 
-const Contact = () => {
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const Contact = () =>
+ {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -16,23 +21,61 @@ const Contact = () => {
     message: ''
   });
 
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const getErrorMessage = (response, error) => {
+    if (Array.isArray(response?.errors) && response.errors.length > 0) {
+      return response.errors.join(', ')
+    }
+    return error?.message || 'Submission failed'
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you for your inquiry. Our sourcing expert will contact you within 24 hours.');
-    setFormData({
-      name: '',
-      company: '',
-      email: '',
-      phone: '',
-      productType: '',
-      message: ''
-    });
+    setStatus('loading');
+    setError(null);
+
+    try {
+      // First, check if the Users functionality is available
+      // The API structure has changed and User/AppUser might not be exposed
+      // Skip the user upsert and just submit the form response based on the email
+      
+      const { data: response, error: responseError } = await client
+        .from('ContactFormResponse')
+        .insert({
+          data: {
+            name: formData.name,
+            company: formData.company || undefined,
+            email: formData.email,
+            phone: formData.phone || undefined,
+            productType: formData.productType,
+            message: formData.message,
+          }
+        });
+
+      if (responseError || response?.success === false) {
+        throw new Error(getErrorMessage(response, responseError));
+      }
+
+      setStatus('success');
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        productType: '',
+        message: ''
+      });
+    } catch (err) {
+      setError(err.message || 'Submission failed');
+      setStatus('error');
+    }
   };
 
   return (
@@ -184,9 +227,21 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold h-14 text-lg">
-                    <Send className="w-5 h-5 mr-2" /> Send Inquiry
+                  <Button type="submit" disabled={status === 'loading'} size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold h-14 text-lg">
+                    {status === 'loading' ? 'Sending...' : <><Send className="w-5 h-5 mr-2" /> Send Inquiry</>}
                   </Button>
+                  
+                  {status === 'success' && (
+                    <div className="p-4 bg-green-50 text-green-700 rounded-md">
+                      Thank you for your inquiry. Our sourcing expert will contact you within 24 hours.
+                    </div>
+                  )}
+                  
+                  {status === 'error' && (
+                    <div className="p-4 bg-red-50 text-red-700 rounded-md">
+                      {error || 'Failed to submit form. Please try again.'}
+                    </div>
+                  )}
                 </form>
               </CardContent>
             </Card>

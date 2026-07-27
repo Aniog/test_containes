@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name of the contact"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone or WhatsApp number"
+    },
+    "productType": {
+      "type": "string",
+      "description": "Type of product they are looking for"
+    },
+    "message": {
+      "type": "string",
+      "description": "Detailed requirements"
+    }
+  },
+  "required": ["name", "email", "productType", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
+
