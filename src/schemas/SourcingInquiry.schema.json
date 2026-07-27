@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the person making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "inquiry_type": {
+      "type": "string",
+      "enum": [
+        "General Inquiry",
+        "Product Sourcing",
+        "Supplier Verification",
+        "Quality Control",
+        "Shipping & Logistics",
+        "Factory Audit",
+        "Other"
+      ],
+      "description": "Category of the inquiry"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Description of the products being sourced"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Budget range for the order"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Desired delivery timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Additional information or questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Lead status for internal tracking"
+    }
+  },
+  "required": ["name", "email", "inquiry_type", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

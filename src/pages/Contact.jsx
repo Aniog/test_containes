@@ -1,9 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
 import { 
   Phone, Mail, MapPin, Clock, Send, CheckCircle,
-  MessageSquare, ArrowRight 
+  MessageSquare, ArrowRight, Loader2 
 } from 'lucide-react'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+const getEntity = (response) => response?.data ?? null
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Request failed'
+}
 
 const contactInfo = [
   {
@@ -57,6 +69,8 @@ export default function Contact() {
   })
 
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -66,10 +80,44 @@ export default function Contact() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Form submission logic would go here
-    setIsSubmitted(true)
+    setError(null)
+    setIsSubmitting(true)
+    
+    try {
+      const { data: response, error: submitError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || undefined,
+            phone: formData.phone || undefined,
+            inquiry_type: formData.inquiryType,
+            product_description: formData.productDescription,
+            quantity: formData.quantity || undefined,
+            budget: formData.budget || undefined,
+            timeline: formData.timeline || undefined,
+            message: formData.message || undefined,
+            status: 'new',
+          },
+        })
+        .select()
+        .single()
+
+      if (submitError || response?.success === false) {
+        setError(getErrorMessage(response, submitError))
+        setIsSubmitting(false)
+        return
+      }
+
+      setIsSubmitted(true)
+    } catch (err) {
+      console.error('Form submission error:', err)
+      setError(err.message || 'An unexpected error occurred. Please try again.')
+      setIsSubmitting(false)
+    }
   }
 
   if (isSubmitted) {
@@ -286,11 +334,27 @@ export default function Contact() {
 
                 <button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary-dark text-white px-6 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center gap-2"
+                  disabled={isSubmitting}
+                  className="w-full bg-primary hover:bg-primary-dark disabled:bg-gray-400 text-white px-6 py-4 rounded-lg font-semibold text-lg transition-colors inline-flex items-center justify-center gap-2"
                 >
-                  <Send className="w-5 h-5" />
-                  Submit Inquiry
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Submit Inquiry
+                    </>
+                  )}
                 </button>
+                
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+                    {error}
+                  </div>
+                )}
               </form>
             </div>
 
