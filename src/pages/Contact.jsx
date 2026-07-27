@@ -2,8 +2,12 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Mail, Phone, MapPin, Clock, Send,
-  MessageSquare, Globe, CheckCircle
+  MessageSquare, Globe, CheckCircle, Loader2
 } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,15 +21,53 @@ const Contact = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            full_name: formData.name,
+            email: formData.email,
+            company_name: formData.company || undefined,
+            country: formData.country,
+            product_description: formData.product,
+            estimated_quantity: formData.quantity || undefined,
+            additional_details: formData.message || undefined,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError) throw insertError;
+
+      if (response?.success === false) {
+        const errorMsg = Array.isArray(response?.errors)
+          ? response.errors.join(', ')
+          : 'Submission failed. Please try again.';
+        throw new Error(errorMsg);
+      }
+
+      console.log('Inquiry submitted successfully:', response?.data?.id);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -241,11 +283,24 @@ const Contact = () => {
                     </div>
                     <button
                       type="submit"
-                      className="w-full md:w-auto inline-flex items-center justify-center bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition border-none cursor-pointer text-sm"
+                      disabled={submitting}
+                      className="w-full md:w-auto inline-flex items-center justify-center bg-brand-blue text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition border-none cursor-pointer text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4 mr-2" />
-                      Submit Sourcing Inquiry
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4 mr-2" />
+                          Submit Sourcing Inquiry
+                        </>
+                      )}
                     </button>
+                    {error && (
+                      <p className="text-red-600 text-sm mt-3">{error}</p>
+                    )}
                   </form>
                 </div>
               )}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up communication"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Name of the company or business"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Country where the buyer is located"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product the buyer wants to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity"
+    },
+    "additional_details": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Additional requirements such as specifications, target price, timeline, certifications"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "country", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
