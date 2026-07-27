@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Clock, Phone, Send } from 'lucide-react';
+import { MapPin, Mail, Clock, Phone, Send, CheckCircle } from 'lucide-react';
+import { submitSourcingInquiry } from '@/api/sourcing-inquiry.js';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,14 +13,29 @@ const Contact = () => {
     timeline: '',
     message: '',
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      await submitSourcingInquiry({
+        ...formData,
+        source: 'contact_page',
+      });
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', country: '', product: '', quantity: '', timeline: '', message: '' });
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -222,11 +238,27 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+                    disabled={status === 'submitting'}
+                    className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-400 disabled:cursor-not-allowed text-white font-semibold px-6 py-3 rounded-lg transition-colors"
                   >
-                    <Send className="w-5 h-5" />
-                    Submit Your Sourcing Inquiry
+                    {status === 'submitting' ? 'Submitting...' : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Submit Your Sourcing Inquiry
+                      </>
+                    )}
                   </button>
+
+                  {status === 'success' && (
+                    <div className="flex items-center gap-2 justify-center text-emerald-600 text-sm mt-3">
+                      <CheckCircle className="w-4 h-4" />
+                      Your inquiry has been submitted successfully. We will contact you within 24 hours.
+                    </div>
+                  )}
+
+                  {status === 'error' && error && (
+                    <p className="text-red-600 text-sm text-center mt-3">{error}</p>
+                  )}
 
                   <p className="text-xs text-slate-500 text-center">
                     We respect your privacy. Your information is only used to process your inquiry and will not be shared with third parties.
