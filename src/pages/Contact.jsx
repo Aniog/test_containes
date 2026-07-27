@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, MessageSquare, Globe } from 'lucide-react';
+import { submitInquiry } from '@/api/inquiry.js';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,10 +13,25 @@ const Contact = () => {
     quantity: '',
     message: '',
   });
+  const [formStatus, setFormStatus] = useState('idle');
+  const [formError, setFormError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
+    setFormError(null);
+    if (!formData.name.trim() || !formData.email.trim() || !formData.product.trim() || !formData.message.trim()) {
+      setFormError('Please fill in all required fields.');
+      return;
+    }
+    setFormStatus('submitting');
+    try {
+      await submitInquiry({ ...formData, source_page: 'contact' });
+      setFormStatus('success');
+      setFormData({ name: '', email: '', company: '', country: '', phone: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      setFormError(err.message || 'Submission failed. Please try again.');
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -196,10 +212,19 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-accent-500 text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-accent-600 transition-colors"
+                  disabled={formStatus === 'submitting'}
+                  className="w-full bg-accent-500 text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-accent-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Submit Your Sourcing Inquiry
+                  {formStatus === 'submitting' ? 'Submitting...' : 'Submit Your Sourcing Inquiry'}
                 </button>
+                {formStatus === 'success' && (
+                  <p className="text-green-600 text-sm font-medium mt-3">
+                    Thank you! Your inquiry has been submitted. We will respond within 24 hours.
+                  </p>
+                )}
+                {formError && (
+                  <p className="text-red-600 text-sm font-medium mt-3">{formError}</p>
+                )}
                 <p className="text-xs text-navy-400 text-center">
                   We'll respond within 24 hours. Your information is kept confidential and used only for your sourcing project.
                 </p>
