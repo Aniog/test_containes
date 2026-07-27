@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquiry contact"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product or category the buyer wants to source"
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or target volume"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Requested sourcing support services",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "supplier_verification",
+          "factory_audit",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination market or country"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Inquiry details including product specs, targets, and challenges"
+    }
+  },
+  "required": ["name", "company", "email", "product_name", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
