@@ -1,0 +1,36 @@
+import { useEffect, useRef } from 'react';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '@/strk-img-config.json';
+import Hero from '@/components/home/Hero';
+import ServicesSection from '@/components/home/ServicesSection';
+import ProcessSection from '@/components/home/ProcessSection';
+import ProductsSection from '@/components/home/ProductsSection';
+import ProblemsSection from '@/components/home/ProblemsSection';
+import TrustSection from '@/components/home/TrustSection';
+import CaseStudiesSection from '@/components/home/CaseStudiesSection';
+import FAQSection from '@/components/home/FAQSection';
+import CTAForm from '@/components/home/CTAForm';
+
+const Home = () => {
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
+
+  return (
+    <div ref={containerRef}>
+      <Hero />
+      <ServicesSection />
+      <ProcessSection />
+      <ProductsSection />
+      <ProblemsSection />
+      <TrustSection />
+      <CaseStudiesSection />
+      <FAQSection />
+      <CTAForm />
+    </div>
+  );
+};
+
+export default Home;
