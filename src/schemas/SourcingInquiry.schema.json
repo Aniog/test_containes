@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the visitor record associated with this sourcing inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone or messaging contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer country or market"
+    },
+    "service_needed": {
+      "type": "array",
+      "description": "Sourcing services requested by the buyer",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_sourcing", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination"]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Detailed product requirements, specifications, or reference information"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity or purchasing volume"
+    },
+    "shipping_destination": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Destination country, port, or delivery requirement"
+    },
+    "desired_timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected sourcing, sample, or production timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional buyer notes or commercial context"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "service_needed", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
