@@ -1,8 +1,11 @@
 import { useState } from 'react'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
+import { createInquiry } from '@/api/inquiries.js'
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -16,10 +19,33 @@ export default function Contact() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4000)
+    setSending(true)
+    try {
+      await createInquiry({
+        name: form.name,
+        email: form.email,
+        company: form.company,
+        product: form.product,
+        quantity: form.quantity,
+        message: form.message,
+        source_page: window.location.pathname,
+      })
+      setSubmitted(true)
+      setForm({
+        name: '',
+        email: '',
+        company: '',
+        product: '',
+        quantity: '',
+        message: '',
+      })
+    } catch (err) {
+      toast.error(err?.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -208,10 +234,15 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold text-base px-8 py-3.5 rounded-lg transition-colors"
+                    disabled={sending}
+                    className="w-full inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-white font-semibold text-base px-8 py-3.5 rounded-lg transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-4 h-4" />
-                    Send Inquiry
+                    {sending ? (
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                    ) : (
+                      <Send className="w-4 h-4" />
+                    )}
+                    {sending ? 'Sending…' : 'Send Inquiry'}
                   </button>
 
                   <p className="text-xs text-slate-400 text-center">
