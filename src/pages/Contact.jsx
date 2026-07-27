@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, Loader2 } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,15 +16,51 @@ const Contact = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || '',
+            country: formData.country,
+            product: formData.product,
+            quantity: formData.quantity || '',
+            message: formData.message,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const errMsg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed. Please try again.';
+        throw new Error(errMsg);
+      }
+
+      console.log('Inquiry submitted successfully:', response);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -161,11 +201,27 @@ const Contact = () => {
 
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center bg-brand-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors w-full md:w-auto"
+                    disabled={submitting}
+                    className="inline-flex items-center justify-center bg-brand-orange text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-orange-600 transition-colors w-full md:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="mr-2 w-5 h-5" />
-                    Submit Inquiry
+                    {submitting ? (
+                      <>
+                        <Loader2 className="mr-2 w-5 h-5 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 w-5 h-5" />
+                        Submit Inquiry
+                      </>
+                    )}
                   </button>
+
+                  {error && (
+                    <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                      {error}
+                    </p>
+                  )}
 
                   <p className="text-sm text-brand-gray">
                     We'll respond within 24 hours. Your information is kept confidential.
