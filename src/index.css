@@ -1,76 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #0b1b2b;
+  background-color: #f5f7fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html,
+body,
+#root {
+  height: 100%;
 }
 
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
   color: inherit;
+  background-color: #f5f7fa;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: #0b1b2b;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+/* Eyebrow label — used in section headers, badges */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.eyebrow::before {
+  content: "";
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background-color: #c8102e;
+}
+
+.eyebrow-light {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.eyebrow-light::before {
+  background-color: #d72638;
+}
+
+/* Section heading rhythm */
+.section {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  height: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  border: 1px solid transparent;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.18s ease;
+  white-space: nowrap;
 }
 
-button:hover {
-  border-color: #646cff;
+.btn-primary {
+  background-color: #c8102e;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(200, 16, 46, 0.18);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.btn-primary:hover {
+  background-color: #a40d26;
+  box-shadow: 0 10px 22px rgba(200, 16, 46, 0.26);
+  transform: translateY(-1px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+.btn-secondary {
+  background-color: #0b1b2b;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #1a3a55;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #0b1b2b;
+  border-color: #0b1b2b;
+}
+
+.btn-outline:hover {
+  background-color: #0b1b2b;
+  color: #ffffff;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  color: #0b1b2b;
+  height: auto;
+  padding: 0;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  color: #c8102e;
+}
+
+.btn-sm {
+  height: 40px;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 14px;
+}
+
+/* Card */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e8ecf1;
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: #d5dce4;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Forms */
+.input,
+.textarea,
+.select {
+  width: 100%;
+  border: 1px solid #d5dce4;
+  background-color: #ffffff;
+  color: #0b1b2b;
+  font-size: 15px;
+  line-height: 1.5;
+  border-radius: 6px;
+  padding: 12px 14px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  font-family: inherit;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: #94a3b8;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  outline: none;
+  border-color: #1a3a55;
+  box-shadow: 0 0 0 3px rgba(26, 58, 85, 0.12);
+}
+
+.textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1a3a55;
+  margin-bottom: 6px;
+  letter-spacing: 0.01em;
+}
+
+.helper {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+/* Container helpers */
+.container-x {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (min-width: 1024px) {
+  .container-x {
+    padding-left: 32px;
+    padding-right: 32px;
   }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Decorative red bar used in headers / section markers */
+.accent-bar {
+  display: inline-block;
+  width: 36px;
+  height: 3px;
+  background-color: #c8102e;
+  border-radius: 2px;
+}
+
+/* Simple table look used in case studies */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.data-table th,
+.data-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid #e8ecf1;
+  color: #1a3a55;
+}
+
+.data-table th {
+  font-weight: 600;
+  color: #0b1b2b;
+  background-color: #f5f7fa;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.data-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Dark hero overlay (used on photo backgrounds for legibility) */
+.photo-scrim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(11, 27, 43, 0.65) 0%,
+    rgba(11, 27, 43, 0.85) 100%
+  );
+  pointer-events: none;
+}
