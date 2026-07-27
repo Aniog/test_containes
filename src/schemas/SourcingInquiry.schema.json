@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Work email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Category of product being sourced"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Detailed product description and requirements"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Destination market or country"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Additional requirements or questions"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inquiry submission timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "required": ["name", "email", "product_category", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
