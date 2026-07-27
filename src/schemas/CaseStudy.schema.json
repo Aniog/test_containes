@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "client_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Client company name"
+    },
+    "client_country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Client country"
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Industry or product category"
+    },
+    "challenge": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "The sourcing challenge faced"
+    },
+    "solution": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "How SSourcing China solved it"
+    },
+    "results": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Measurable results and outcomes"
+    },
+    "products_sourced": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Products that were sourced"
+    },
+    "order_value": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Approximate order value range"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published"],
+      "default": "draft",
+      "description": "Publication status"
+    }
+  },
+  "required": ["client_name", "industry", "challenge", "solution"],
+  "x-security": {
+    "create": { "allow": ["admin"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

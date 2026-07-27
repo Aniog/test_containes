@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Blog post title"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short summary"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full post content"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Post category"
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Author name"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published"],
+      "default": "draft",
+      "description": "Publication status"
+    }
+  },
+  "required": ["title", "slug"],
+  "x-security": {
+    "create": { "allow": ["admin"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
