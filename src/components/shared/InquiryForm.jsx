@@ -1,6 +1,8 @@
 import { useState } from "react"
-import { CheckCircle2, ChevronDown, Send } from "lucide-react"
+import { useLocation } from "react-router-dom"
+import { CheckCircle2, ChevronDown, Send, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/Button"
+import { submitInquiry } from "@/api/inquiries"
 
 const productTypes = [
   "Consumer Electronics & Accessories",
@@ -19,17 +21,37 @@ export function InquiryForm({
   title = "Get a Free Sourcing Quote",
   subtitle = "Tell us what you need. We'll come back with a sourcing plan and supplier shortlist within 1–3 business days.",
 }) {
+  const location = useLocation()
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+    setErrorMsg("")
     setSubmitting(true)
-    // Simulated submission (frontend-only stage)
-    setTimeout(() => {
-      setSubmitting(false)
+
+    const formData = new FormData(e.currentTarget)
+    const fields = {
+      name: formData.get("name") || "",
+      company: formData.get("company") || "",
+      email: formData.get("email") || "",
+      country: formData.get("country") || "",
+      productType: formData.get("productType") || "",
+      quantity: formData.get("quantity") || "",
+      requirements: formData.get("requirements") || "",
+      sourcePage: location?.pathname || "",
+    }
+
+    try {
+      await submitInquiry(fields)
       setSubmitted(true)
-    }, 700)
+    } catch (err) {
+      console.error("Inquiry submit failed", err)
+      setErrorMsg(err?.message || "Submission failed. Please try again or email sourcing@ssourcingchina.com.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   const isInvert = variant === "invert"
@@ -143,6 +165,20 @@ export function InquiryForm({
           />
         </div>
       </div>
+
+      {errorMsg && (
+        <div
+          role="alert"
+          className={`mt-6 flex items-start gap-2 rounded-md border p-3 text-sm ${
+            isInvert
+              ? "border-red-400/50 bg-red-500/10 text-red-100"
+              : "border-red-200 bg-red-50 text-red-700"
+          }`}
+        >
+          <AlertCircle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+          <span>{errorMsg}</span>
+        </div>
+      )}
 
       <div className="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <p

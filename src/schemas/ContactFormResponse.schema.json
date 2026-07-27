@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted the inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Submitter's full name"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Submitter's company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Submitter's business email"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Submitter's country or region"
+    },
+    "product_type": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Selected product category"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity (free text)"
+    },
+    "requirements": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Detailed product requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Page path where the inquiry was submitted"
+    }
+  },
+  "required": ["full_name", "company", "email", "country", "requirements"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
