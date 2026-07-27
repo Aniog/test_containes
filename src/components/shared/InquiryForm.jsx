@@ -1,6 +1,17 @@
 import { useState } from 'react'
-import { CheckCircle2, Send } from 'lucide-react'
+import { CheckCircle2, Send, AlertCircle, Loader2 } from 'lucide-react'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 import { cn } from '@/lib/utils'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Something went wrong. Please try again.'
+}
 
 const productOptions = [
   'Consumer Electronics',
@@ -36,6 +47,8 @@ const inputClass =
 
 const InquiryForm = ({ compact = false }) => {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -49,9 +62,36 @@ const InquiryForm = ({ compact = false }) => {
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('[SSourcing China] New sourcing inquiry submitted:', form)
+    setError(null)
+    setSubmitting(true)
+
+    const { data: response, error: insertError } = await client
+      .from('SourcingInquiry')
+      .insert({
+        data: {
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          country: form.country,
+          product: form.product,
+          service: form.service,
+          budget: form.budget,
+          message: form.message,
+          status: 'new',
+        },
+      })
+      .select()
+      .single()
+
+    if (insertError || response?.success === false) {
+      setError(getErrorMessage(response, insertError))
+      setSubmitting(false)
+      return
+    }
+
+    setSubmitting(false)
     setSubmitted(true)
   }
 
@@ -217,11 +257,27 @@ const InquiryForm = ({ compact = false }) => {
         </div>
       </div>
 
+      {error && (
+        <div role="alert" className="mt-5 flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+          <p className="text-sm leading-relaxed text-red-800">{error}</p>
+        </div>
+      )}
+
       <button
         type="submit"
-        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-700 sm:w-auto"
+        disabled={submitting}
+        className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-brand-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
       >
-        <Send className="h-5 w-5" /> Get a Free Sourcing Quote
+        {submitting ? (
+          <>
+            <Loader2 className="h-5 w-5 animate-spin" /> Sending inquiry…
+          </>
+        ) : (
+          <>
+            <Send className="h-5 w-5" /> Get a Free Sourcing Quote
+          </>
+        )}
       </button>
       <p className="mt-4 text-sm text-slate-500">
         No obligation. We reply within one business day. Your information is only
