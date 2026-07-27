@@ -1,4 +1,4 @@
-import { createClient } from '@strikingly/sdk'
+// import { createClient } from '@strikingly/sdk'
 
 const siteId = null
 const token = ''
