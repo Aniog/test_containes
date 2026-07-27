@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Goods",
+        "Apparel & Textiles",
+        "Electronics & Accessories",
+        "Industrial & Hardware",
+        "Packaging & Print",
+        "Furniture & Home Decor",
+        "Other"
+      ],
+      "description": "Main product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Description of the product, including key specs, materials, and any reference links"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target order quantity, e.g. 5,000 units, 1 x 40HQ"
+    },
+    "destination_port": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination port or city for shipping"
+    },
+    "service_required": {
+      "type": "string",
+      "enum": [
+        "Full sourcing (sourcing + QC + shipping)",
+        "Sourcing only",
+        "Quality inspection only",
+        "Factory audit only",
+        "Production follow-up only",
+        "Not sure yet"
+      ],
+      "description": "Type of service the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "When the buyer needs the goods, e.g. need to ship by October"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Any extra information, certifications required, or specific concerns"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Page on the website where the inquiry was submitted"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
