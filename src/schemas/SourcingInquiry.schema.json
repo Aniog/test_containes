@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the buyer submitting the sourcing inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 180,
+      "description": "Work email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 180,
+      "description": "Company name of the buyer"
+    },
+    "destination_market": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Destination market or country for the sourced products"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier search",
+        "Supplier verification",
+        "Factory audit",
+        "QC inspection",
+        "Production follow-up",
+        "Shipping coordination",
+        "Not sure yet"
+      ],
+      "description": "Primary sourcing service requested by the buyer"
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Estimated order quantity or buying volume"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Product specifications, materials, target price, certification needs, packaging, timeline, and other sourcing details"
+    },
+    "page_source": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Website page path where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "responded", "closed"],
+      "default": "new",
+      "description": "Internal status for managing the sourcing inquiry"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the sourcing inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "product_details", "submitted_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
