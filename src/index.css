@@ -1,76 +1,87 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --color-navy: #0F2A4A;
+    --color-china-red: #C8102E;
+    --color-steel: #2563EB;
+    --color-surface: #F8FAFC;
+
+    font-family: Inter, system-ui, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #0F172A;
+    background-color: #F8FAFC;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    font-family: Inter, system-ui, sans-serif;
+    background-color: #F8FAFC;
+    color: #0F172A;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
+
+/* Brand color utilities — guaranteed to be in the CSS bundle */
+@layer utilities {
+  /* Backgrounds */
+  .bg-navy        { background-color: #0F2A4A; }
+  .bg-china-red   { background-color: #C8102E; }
+  .bg-steel       { background-color: #2563EB; }
+  .bg-surface     { background-color: #F8FAFC; }
+
+  /* Background opacity variants */
+  .bg-navy\/5     { background-color: rgb(15 42 74 / 0.05); }
+  .bg-navy\/10    { background-color: rgb(15 42 74 / 0.10); }
+  .bg-navy\/20    { background-color: rgb(15 42 74 / 0.20); }
+  .bg-navy\/30    { background-color: rgb(15 42 74 / 0.30); }
+  .bg-navy\/50    { background-color: rgb(15 42 74 / 0.50); }
+  .bg-navy\/80    { background-color: rgb(15 42 74 / 0.80); }
+
+  /* Text */
+  .text-navy      { color: #0F2A4A; }
+  .text-china-red { color: #C8102E; }
+  .text-steel     { color: #2563EB; }
+
+  /* Borders */
+  .border-navy    { border-color: #0F2A4A; }
+  .border-china-red { border-color: #C8102E; }
+  .border-steel   { border-color: #2563EB; }
+
+  /* Hover states */
+  .hover\:bg-navy:hover       { background-color: #0F2A4A; }
+  .hover\:bg-navy\/10:hover   { background-color: rgb(15 42 74 / 0.10); }
+  .hover\:bg-china-red:hover  { background-color: #C8102E; }
+  .hover\:bg-steel:hover      { background-color: #2563EB; }
+  .hover\:text-navy:hover     { color: #0F2A4A; }
+  .hover\:text-china-red:hover { color: #C8102E; }
+  .hover\:border-navy:hover   { border-color: #0F2A4A; }
+
+  /* Focus ring */
+  .focus\:ring-navy\/20:focus {
+    --tw-ring-color: rgb(15 42 74 / 0.20);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+                var(--tw-ring-shadow, 0 0 #0000),
+                0 0 0 2px var(--tw-ring-color);
+  }
+}
