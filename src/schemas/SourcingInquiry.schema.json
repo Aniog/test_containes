@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "minLength": 5,
+      "maxLength": 254,
+      "description": "Email address for correspondence"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Country where the buyer is located"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Detailed description of the product to be sourced"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price per unit or total budget"
+    },
+    "target_carbon_copy": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target carbon copy or reference number"
+    },
+    "shipping_address": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Destination shipping address"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_search", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination", "sample_management", "negotiation", "customs_clearance"]
+      },
+      "description": "List of services the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Project timeline or urgency level"
+    },
+    "referral_source": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "How the buyer heard about SSourcing China"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Any additional requirements or questions"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
