@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Search, Samples, Factory, ShieldCheck, Truck, Check } from 'lucide-react';
+import { Mail, Search, Factory, ShieldCheck, Truck, Check } from 'lucide-react';
 import { ImageHelper } from "@strikingly/sdk";
 import strkImgConfig from "@/strk-img-config.json";
 
