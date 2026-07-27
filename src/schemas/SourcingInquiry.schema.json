@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquiry contact"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer or importing business"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Primary business email for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Main product category the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Short description of the product requirements"
+    },
+    "order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Approximate order quantity or MOQ target"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price or cost range if available"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Services requested by the buyer",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "supplier_verification",
+          "factory_audit",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "shipping_destination": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination country or port for shipping"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected sourcing or shipment timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional inquiry details and requirements"
+    },
+    "consent": {
+      "type": "boolean",
+      "description": "Confirms the user agrees to be contacted about the sourcing inquiry"
+    }
+  },
+  "required": [
+    "contact_name",
+    "company_name",
+    "email",
+    "country",
+    "product_category",
+    "product_description",
+    "consent"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    },
+    "read": {
+      "allow": ["admin"]
+    },
+    "update": {
+      "allow": ["admin"]
+    },
+    "delete": {
+      "allow": ["admin"]
+    }
+  }
+}
