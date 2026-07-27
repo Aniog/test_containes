@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for reply"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number"
+    },
+    "website": {
+      "type": "string",
+      "format": "uri",
+      "description": "Company website URL"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "Product details, specifications, or sourcing brief"
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity or volume information"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Target sales market or destination region"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_search",
+          "supplier_verification",
+          "factory_audit",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Services requested by the buyer"
+    },
+    "shipping_destination": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Destination country or port for shipment"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes or requirements"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": [
+    "company_name",
+    "full_name",
+    "email",
+    "product_details",
+    "services_needed",
+    "shipping_destination",
+    "submitted_at"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": [
+        "*"
+      ]
+    }
+  }
+}
