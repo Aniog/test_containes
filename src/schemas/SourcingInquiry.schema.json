@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Contact person name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Professional email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Furniture", "Textiles", "Machinery", "Home Decor", "Other"],
+      "description": "Category of the product being sourced"
+    },
+    "estimated_annual_volume": {
+      "type": "string",
+      "description": "Expected order volume per year"
+    },
+    "message": {
+      "type": "string",
+      "description": "Detailed sourcing requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal lead status"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Associated user if logged in",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}

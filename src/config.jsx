@@ -1,5 +1,5 @@
-export const STRK_PROJECT_URL = 'https://www.uat.strikingly.com/api/v1/sites/64001/form_entities'
-export const STRK_PROJECT_ANON_KEY = 'xx'
-export const SITE_ID = '64001'
-export const REQUEST_DOMAIN = 'https://www.uat.strikingly.com'
-export const S3_DOMAIN = 'https://strikingly-user-asset-images-dev.s3.ap-northeast-1.amazonaws.com'
+export const STRK_PROJECT_URL = "";
+export const STRK_PROJECT_ANON_KEY = "";
+export const SITE_ID = "";
+export const REQUEST_DOMAIN = "";
+export const S3_DOMAIN = "https://s3.amazonaws.com";

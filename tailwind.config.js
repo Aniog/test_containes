@@ -5,7 +5,22 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: {
+          DEFAULT: "#003b71", // Deep Professional Blue
+          foreground: "#ffffff",
+        },
+        secondary: {
+          DEFAULT: "#f1f5f9",
+          foreground: "#1e293b",
+        },
+        accent: {
+          DEFAULT: "#ff6b00", // Trustworthy Orange
+          foreground: "#ffffff",
+        }
+      },
+    },
   },
   plugins: [],
 }
