@@ -477,6 +477,54 @@ const FAQSection = () => {
 };
 
 const InquirySection = () => {
+  const [status, setStatus] = React.useState('idle');
+  const [error, setError] = React.useState(null);
+  const [values, setValues] = React.useState({
+    full_name: '',
+    email: '',
+    company_name: '',
+    country: '',
+    product_description: '',
+  });
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const validate = () => {
+    if (!values.full_name.trim()) return 'Full name is required';
+    if (!values.email.trim()) return 'Email address is required';
+    if (!/^\S+@\S+\.\S+$/.test(values.email)) return 'Please enter a valid email address';
+    if (!values.product_description.trim()) return 'Product description is required';
+    return null;
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const validationError = validate();
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    setStatus('submitting');
+    try {
+      const { submitSourcingInquiry } = await import('@/api/inquiries.js');
+      await submitSourcingInquiry({
+        ...values,
+        source_page: 'home',
+      });
+      setStatus('success');
+      setValues({ full_name: '', email: '', company_name: '', country: '', product_description: '' });
+    } catch (err) {
+      console.error('Home form submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
+  };
+
   return (
     <section className="py-16 md:py-24 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -486,59 +534,101 @@ const InquirySection = () => {
           description="Tell us about your sourcing needs and we'll get back to you within 24 hours with a tailored proposal."
         />
         <div className="bg-neutral-50 rounded-xl border border-neutral-200 p-6 md:p-10">
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1.5">Full Name *</label>
-              <input
-                type="text"
-                placeholder="John Smith"
-                className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1.5">Email Address *</label>
-              <input
-                type="email"
-                placeholder="john@company.com"
-                className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1.5">Company Name</label>
-              <input
-                type="text"
-                placeholder="Your Company Ltd."
-                className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-neutral-700 mb-1.5">Country</label>
-              <input
-                type="text"
-                placeholder="United States"
-                className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium text-neutral-700 mb-1.5">Product Description *</label>
-              <textarea
-                rows={4}
-                placeholder="Describe the product you want to source, including specifications, target quantity, and budget range..."
-                className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <button
-                type="submit"
-                className="w-full md:w-auto bg-accent text-white font-semibold px-8 py-3 rounded-lg hover:bg-accent-dark transition-colors text-sm border-none cursor-pointer"
-              >
-                Get a Free Sourcing Quote
-              </button>
-              <p className="text-xs text-neutral-500 mt-3">
-                We typically respond within 24 hours. Your information is kept confidential.
+          {status === 'success' ? (
+            <div className="text-center py-6">
+              <CheckCircle className="w-12 h-12 text-green-500 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-neutral-900 mb-2">Inquiry Submitted!</h3>
+              <p className="text-neutral-600 mb-4">
+                Thank you! Our team will review your requirements and respond within 24 hours.
               </p>
+              <button
+                onClick={() => setStatus('idle')}
+                className="text-primary font-medium text-sm hover:underline cursor-pointer bg-transparent border-none"
+              >
+                Submit another inquiry
+              </button>
             </div>
-          </form>
+          ) : (
+            <>
+              {error && (
+                <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3 mb-5">
+                  {error}
+                </div>
+              )}
+              <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1.5">Full Name *</label>
+                  <input
+                    type="text"
+                    name="full_name"
+                    value={values.full_name}
+                    onChange={onChange}
+                    placeholder="John Smith"
+                    required
+                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1.5">Email Address *</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={values.email}
+                    onChange={onChange}
+                    placeholder="john@company.com"
+                    required
+                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1.5">Company Name</label>
+                  <input
+                    type="text"
+                    name="company_name"
+                    value={values.company_name}
+                    onChange={onChange}
+                    placeholder="Your Company Ltd."
+                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-neutral-700 mb-1.5">Country</label>
+                  <input
+                    type="text"
+                    name="country"
+                    value={values.country}
+                    onChange={onChange}
+                    placeholder="United States"
+                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-neutral-700 mb-1.5">Product Description *</label>
+                  <textarea
+                    name="product_description"
+                    value={values.product_description}
+                    onChange={onChange}
+                    rows={4}
+                    required
+                    placeholder="Describe the product you want to source, including specifications, target quantity, and budget range..."
+                    className="w-full px-4 py-2.5 rounded-lg border border-neutral-200 text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    disabled={status === 'submitting'}
+                    className="w-full md:w-auto bg-accent text-white font-semibold px-8 py-3 rounded-lg hover:bg-accent-dark transition-colors text-sm border-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === 'submitting' ? 'Submitting...' : 'Get a Free Sourcing Quote'}
+                  </button>
+                  <p className="text-xs text-neutral-500 mt-3">
+                    We typically respond within 24 hours. Your information is kept confidential.
+                  </p>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </section>

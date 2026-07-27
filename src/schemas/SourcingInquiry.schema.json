@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up communication"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is located"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number for contact"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Description of the product to source, including specifications, quantity, and budget"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity or MOQ expectations"
+    },
+    "target_budget": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target budget or price range"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Expected timeline or delivery deadline"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Which page the inquiry was submitted from"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "in_progress", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
