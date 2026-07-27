@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { CheckCircle2, Send, ShieldCheck, Clock3, FileText } from 'lucide-react'
+import { CheckCircle2, Send, ShieldCheck, Clock3, FileText, AlertCircle } from 'lucide-react'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config'
 import { INQUIRY_PRODUCT_OPTIONS, INQUIRY_QUANTITY_OPTIONS } from '@/data/content'
 
 const initialForm = {
@@ -20,12 +21,67 @@ const labelClass = 'mb-1.5 block text-sm font-medium text-ink'
 export default function InquiryForm() {
   const [form, setForm] = useState(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   const update = (field) => (e) => setForm((f) => ({ ...f, [field]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const getErrorMessage = (response, err) => {
+    if (Array.isArray(response?.errors) && response.errors.length > 0) {
+      return response.errors.join(', ')
+    }
+    return err?.message || null
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+
+    try {
+      const res = await fetch(
+        `${STRK_PROJECT_URL}/${encodeURIComponent('Sourcing Inquiries')}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: STRK_PROJECT_ANON_KEY,
+            Authorization: `Bearer ${STRK_PROJECT_ANON_KEY}`,
+            Prefer: 'return=representation',
+          },
+          body: JSON.stringify({
+            data: {
+              name: form.name,
+              email: form.email,
+              company: form.company,
+              country: form.country,
+              product_category: form.product,
+              estimated_quantity: form.quantity,
+              message: form.message,
+            },
+          }),
+        }
+      )
+
+      const body = await res.json().catch(() => null)
+
+      if (!res.ok || !body || body.success === false || !body?.data?.id) {
+        setError(
+          getErrorMessage(body, null) ||
+            'Your inquiry could not be sent. Please try again or email us directly.'
+        )
+        setSubmitting(false)
+        return
+      }
+
+      setSubmitted(true)
+      setSubmitting(false)
+    } catch (err) {
+      setError(
+        err?.message || 'Your inquiry could not be sent. Please try again or email us directly.'
+      )
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -110,12 +166,22 @@ export default function InquiryForm() {
           />
         </div>
         <div className="md:col-span-2">
+          {error && (
+            <div
+              role="alert"
+              className="mb-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+            >
+              <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
+              {error}
+            </div>
+          )}
           <button
             type="submit"
-            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-accent-dark hover:text-white sm:w-auto"
+            disabled={submitting}
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-accent-dark hover:text-white disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
           >
             <Send className="h-4 w-4" aria-hidden="true" />
-            Request Free Quote
+            {submitting ? 'Sending your inquiry…' : 'Request Free Quote'}
           </button>
           <div className="mt-5 grid grid-cols-1 gap-3 border-t border-line pt-5 sm:grid-cols-3">
             <div className="flex items-center gap-2 text-xs text-slate-500">
