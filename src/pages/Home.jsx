@@ -462,12 +462,24 @@ const InquirySection = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', product: '', quantity: '', message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Inquiry submitted:', formData);
-    alert('Thank you! We will get back to you within 24 hours.');
-    setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      const { submitSourcingInquiry } = await import('@/api/inquiries.js');
+      await submitSourcingInquiry(formData, 'home');
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -550,11 +562,22 @@ const InquirySection = () => {
           <div className="mt-6">
             <button
               type="submit"
-              className="w-full sm:w-auto bg-brand-orange text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors border-none cursor-pointer text-base"
+              disabled={status === 'submitting'}
+              className="w-full sm:w-auto bg-brand-orange text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors border-none cursor-pointer text-base disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Submit Inquiry
+              {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
             </button>
           </div>
+          {status === 'success' && (
+            <p className="text-brand-green text-sm mt-4 m-0 font-medium">
+              Thank you! We received your inquiry and will respond within 24 hours.
+            </p>
+          )}
+          {status === 'error' && error && (
+            <p className="text-red-500 text-sm mt-4 m-0 font-medium">
+              {error}
+            </p>
+          )}
           <p className="text-xs text-brand-gray-400 mt-4 m-0">
             We respect your privacy. Your information will only be used to respond to your inquiry.
           </p>

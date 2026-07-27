@@ -5,12 +5,24 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', phone: '', product: '', quantity: '', timeline: '', message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    alert('Thank you for your inquiry! Our team will respond within 24 hours.');
-    setFormData({ name: '', email: '', company: '', phone: '', product: '', quantity: '', timeline: '', message: '' });
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      const { submitSourcingInquiry } = await import('@/api/inquiries.js');
+      await submitSourcingInquiry(formData, 'contact');
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', phone: '', product: '', quantity: '', timeline: '', message: '' });
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -123,10 +135,21 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="bg-brand-orange text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors border-none cursor-pointer text-base"
+                  disabled={status === 'submitting'}
+                  className="bg-brand-orange text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors border-none cursor-pointer text-base disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Submit Inquiry
+                  {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
+                {status === 'success' && (
+                  <p className="text-brand-green text-sm mt-3 m-0 font-medium">
+                    Thank you! We received your inquiry and will respond within 24 hours.
+                  </p>
+                )}
+                {status === 'error' && error && (
+                  <p className="text-red-500 text-sm mt-3 m-0 font-medium">
+                    {error}
+                  </p>
+                )}
                 <p className="text-xs text-brand-gray-400 mt-2 m-0">
                   We respond to all inquiries within 24 hours during business days.
                 </p>
