@@ -31,6 +31,13 @@ export default {
         success: { 600: "#15803D" },
         warning: { 500: "#D97706" },
         info: { 600: "#1D4ED8" },
+        danger: {
+          50: "#FDECEF",
+          200: "#FBD5DC",
+          500: "#D72638",
+          600: "#C8102E",
+          700: "#A40D26",
+        },
       },
       fontFamily: {
         sans: [

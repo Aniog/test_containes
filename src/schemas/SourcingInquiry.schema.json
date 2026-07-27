@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or brand of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Work email of the buyer; primary identifier for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone or WhatsApp number including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Destination country for the goods"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Short description of the product to source"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Optional product category bucket (e.g. consumer electronics, apparel)"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity, free text (e.g. 1000 units / 20' FCL)"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target delivery timeline, free text"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Optional target FOB or landed price, free text"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Free-form brief, specs, certifications, packaging requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page path where the inquiry was submitted (e.g. /, /services, /contact)"
+    },
+    "source_referrer": {
+      "type": "string",
+      "maxLength": 240,
+      "description": "HTTP referrer at the time of submission"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "replied", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal sales pipeline status managed by the team"
+    }
+  },
+  "required": ["name", "email", "product"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { CheckCircle2, Loader2, AlertCircle } from "lucide-react";
+import { submitInquiry } from "@/api/inquiries";
 
-// Static, no-backend form. The current stage is frontend-only.
-// On submit it simulates a successful submission and surfaces a confirmation.
 const initial = {
   name: "",
   company: "",
@@ -10,21 +9,44 @@ const initial = {
   country: "",
   product: "",
   quantity: "",
+  timeline: "",
   message: "",
 };
 
 const InquiryForm = ({ idPrefix = "inquiry", accent = "ink" }) => {
   const [data, setData] = useState(initial);
-  const [status, setStatus] = useState("idle"); // idle | sending | sent
+  const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [error, setError] = useState("");
 
-  const update = (key) => (e) => setData({ ...data, [key]: e.target.value });
+  const update = (key) => (e) => {
+    setData((d) => ({ ...d, [key]: e.target.value }));
+    if (status === "error") {
+      setStatus("idle");
+      setError("");
+    }
+  };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     if (status === "sending") return;
     setStatus("sending");
-    // Simulate a network round-trip
-    setTimeout(() => setStatus("sent"), 700);
+    setError("");
+
+    try {
+      await submitInquiry({
+        values: data,
+        source: {
+          page:
+            typeof window !== "undefined" ? window.location.pathname : "",
+          referrer:
+            typeof document !== "undefined" ? document.referrer || "" : "",
+        },
+      });
+      setStatus("sent");
+    } catch (err) {
+      setError(err?.message || "Something went wrong. Please try again.");
+      setStatus("error");
+    }
   };
 
   if (status === "sent") {
@@ -56,6 +78,7 @@ const InquiryForm = ({ idPrefix = "inquiry", accent = "ink" }) => {
           onClick={() => {
             setData(initial);
             setStatus("idle");
+            setError("");
           }}
           className="btn btn-ghost mt-1 text-[14.5px] font-semibold text-accent-600 hover:text-accent-700"
         >
@@ -167,6 +190,8 @@ const InquiryForm = ({ idPrefix = "inquiry", accent = "ink" }) => {
             type="text"
             className="input"
             placeholder="e.g. by end of Q3"
+            value={data.timeline}
+            onChange={update("timeline")}
           />
         </div>
         <div className="md:col-span-2">
@@ -187,6 +212,17 @@ const InquiryForm = ({ idPrefix = "inquiry", accent = "ink" }) => {
           </p>
         </div>
       </div>
+
+      {status === "error" && error && (
+        <div
+          role="alert"
+          className="mt-5 flex items-start gap-2 rounded-md border border-danger-200 bg-danger-50 p-3 text-[14px] text-danger-700"
+        >
+          <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
+
       <div className="mt-6 flex flex-col-reverse items-stretch gap-3 md:flex-row md:items-center md:justify-between">
         <p className="text-[13px] text-ink-500">
           By submitting, you agree to be contacted about your sourcing project.
