@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, CheckCircle, Send, Globe } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const productCategories = [
   'Electronics & Components',
@@ -45,7 +49,9 @@ const initialForm = {
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,15 +77,55 @@ export default function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitError('');
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    console.log('Form submitted:', form);
-    setSubmitted(true);
+
+    setSubmitting(true);
+    console.log('Submitting sourcing inquiry:', form);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: form.name,
+            company: form.company || undefined,
+            email: form.email,
+            phone: form.phone || undefined,
+            country: form.country || undefined,
+            product_category: form.productCategory || undefined,
+            product_description: form.productDescription,
+            target_quantity: form.targetQuantity || undefined,
+            target_price: form.targetPrice || undefined,
+            services_needed: form.servicesNeeded.length > 0 ? form.servicesNeeded : undefined,
+            timeline: form.timeline || undefined,
+            message: form.message || undefined,
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const msg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed. Please try again.';
+        throw new Error(msg);
+      }
+
+      console.log('Inquiry saved successfully:', response?.data);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Inquiry submission error:', err);
+      setSubmitError(err.message || 'Something went wrong. Please try again or email us directly.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -356,7 +402,7 @@ export default function Contact() {
                     </div>
                   </div>
 
-                  {/* Timeline & Message */}
+                  {/* Timeline */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-1.5">Required Timeline</label>
@@ -388,12 +434,19 @@ export default function Contact() {
                     />
                   </div>
 
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                      <p className="text-red-700 text-sm">{submitError}</p>
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-lg text-base transition-colors"
+                    disabled={submitting}
+                    className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-3.5 rounded-lg text-base transition-colors"
                   >
                     <Send className="w-4 h-4" />
-                    Submit Sourcing Inquiry
+                    {submitting ? 'Submitting…' : 'Submit Sourcing Inquiry'}
                   </button>
                   <p className="text-xs text-slate-500 text-center">
                     We respond within 1 business day. Your information is kept confidential.
@@ -407,3 +460,4 @@ export default function Contact() {
     </div>
   );
 }
+
