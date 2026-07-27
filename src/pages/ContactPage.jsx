@@ -5,7 +5,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { toast } from 'sonner'
-import { Send, Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react'
+import { Send, Mail, Phone, MapPin, Clock, MessageSquare, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -19,15 +20,24 @@ export function ContactPage() {
     budget: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    toast.success('Thank you! We will review your inquiry and respond within 24 hours.')
-    setFormData({ name: '', email: '', company: '', country: '', phone: '', product: '', quantity: '', budget: '', message: '' })
+    setIsSubmitting(true)
+    try {
+      await submitInquiry(formData)
+      toast.success('Thank you! We will review your inquiry and respond within 24 hours.')
+      setFormData({ name: '', email: '', company: '', country: '', phone: '', product: '', quantity: '', budget: '', message: '' })
+    } catch (err) {
+      toast.error(err.message || 'Failed to submit inquiry. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -114,9 +124,18 @@ export function ContactPage() {
                       />
                     </div>
 
-                    <Button type="submit" className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800">
-                      <Send className="mr-2 h-4 w-4" />
-                      Submit Inquiry
+                    <Button type="submit" className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800" disabled={isSubmitting}>
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          Submit Inquiry
+                        </>
+                      )}
                     </Button>
                   </form>
                 </CardContent>

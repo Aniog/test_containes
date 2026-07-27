@@ -5,7 +5,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { toast } from 'sonner'
-import { Send, Mail, Phone, MapPin, Clock } from 'lucide-react'
+import { Send, Mail, Phone, MapPin, Clock, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 export function InquiryForm() {
   const [formData, setFormData] = useState({
@@ -13,19 +14,30 @@ export function InquiryForm() {
     email: '',
     company: '',
     country: '',
+    phone: '',
     product: '',
     quantity: '',
+    budget: '',
     message: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    toast.success('Thank you! We will review your inquiry and respond within 24 hours.')
-    setFormData({ name: '', email: '', company: '', country: '', product: '', quantity: '', message: '' })
+    setIsSubmitting(true)
+    try {
+      await submitInquiry(formData)
+      toast.success('Thank you! We will review your inquiry and respond within 24 hours.')
+      setFormData({ name: '', email: '', company: '', country: '', phone: '', product: '', quantity: '', budget: '', message: '' })
+    } catch (err) {
+      toast.error(err.message || 'Failed to submit inquiry. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -82,6 +94,17 @@ export function InquiryForm() {
                     </div>
                   </div>
 
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="phone">Phone / WhatsApp</Label>
+                      <Input id="phone" name="phone" placeholder="+1 XXX XXX XXXX" value={formData.phone} onChange={handleChange} />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="budget">Target Budget</Label>
+                      <Input id="budget" name="budget" placeholder="e.g., $10,000" value={formData.budget} onChange={handleChange} />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
                     <Label htmlFor="message">Additional Details</Label>
                     <Textarea
@@ -94,9 +117,18 @@ export function InquiryForm() {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800">
-                    <Send className="mr-2 h-4 w-4" />
-                    Submit Inquiry
+                  <Button type="submit" className="w-full sm:w-auto bg-blue-700 hover:bg-blue-800" disabled={isSubmitting}>
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="mr-2 h-4 w-4" />
+                        Submit Inquiry
+                      </>
+                    )}
                   </Button>
                 </form>
               </CardContent>
