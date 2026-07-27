@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, ArrowRight } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -14,6 +18,8 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,14 +39,60 @@ export default function ContactPage() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const { data: response, error } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            company: formData.company.trim() || null,
+            country: formData.country.trim() || null,
+            product: formData.product.trim(),
+            quantity: formData.quantity.trim() || null,
+            message: formData.message.trim(),
+            status: 'new',
+            created_at: new Date().toISOString(),
+          },
+        })
+        .select()
+        .single();
+
+      if (error || response?.success === false) {
+        const errorMsg = Array.isArray(response?.errors)
+          ? response.errors.join(', ')
+          : error?.message || 'Failed to submit your request. Please try again.';
+        setSubmitError(errorMsg);
+        setSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        country: '',
+        product: '',
+        quantity: '',
+        message: '',
+      });
+    } catch (err) {
+      setSubmitError(err.message || 'An unexpected error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -209,11 +261,27 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center bg-blue-800 hover:bg-blue-900 text-white px-8 py-4 rounded-lg font-semibold text-lg transition w-full sm:w-auto justify-center"
+                  disabled={submitting}
+                  className="inline-flex items-center bg-blue-800 hover:bg-blue-900 disabled:bg-blue-400 text-white px-8 py-4 rounded-lg font-semibold text-lg transition w-full sm:w-auto justify-center"
                 >
-                  <Send className="mr-2 w-5 h-5" />
-                  Submit Sourcing Request
+                  {submitting ? (
+                    <>
+                      <svg className="animate-spin mr-2 w-5 h-5" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="mr-2 w-5 h-5" />
+                      Submit Sourcing Request
+                    </>
+                  )}
                 </button>
+                {submitError && (
+                  <p className="text-sm text-red-600 mt-2">{submitError}</p>
+                )}
               </form>
             </div>
 
