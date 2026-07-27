@@ -1,13 +1,51 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { createInquiry } from '../api/inquiries';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
+  const [values, setValues] = useState({
+    full_name: '',
+    email: '',
+    company: '',
+    phone: '',
+    product_category: '',
+    product_description: '',
+    order_quantity: '',
+    target_delivery: '',
+  });
 
-  const handleSubmit = (e) => {
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      await createInquiry(values);
+      setSubmitted(true);
+      setStatus('success');
+      setValues({
+        full_name: '',
+        email: '',
+        company: '',
+        phone: '',
+        product_category: '',
+        product_description: '',
+        order_quantity: '',
+        target_delivery: '',
+      });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err?.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -137,7 +175,10 @@ export default function Contact() {
                         </label>
                         <input
                           required
+                          name="full_name"
                           type="text"
+                          value={values.full_name}
+                          onChange={onChange}
                           placeholder="John Smith"
                           className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"
                         />
@@ -148,7 +189,10 @@ export default function Contact() {
                         </label>
                         <input
                           required
+                          name="email"
                           type="email"
+                          value={values.email}
+                          onChange={onChange}
                           placeholder="john@company.com"
                           className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"
                         />
@@ -161,7 +205,10 @@ export default function Contact() {
                           Company Name
                         </label>
                         <input
+                          name="company"
                           type="text"
+                          value={values.company}
+                          onChange={onChange}
                           placeholder="Your Company Ltd."
                           className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"
                         />
@@ -171,7 +218,10 @@ export default function Contact() {
                           Phone / WhatsApp
                         </label>
                         <input
+                          name="phone"
                           type="tel"
+                          value={values.phone}
+                          onChange={onChange}
                           placeholder="+1 555 123 4567"
                           className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"
                         />
@@ -182,15 +232,20 @@ export default function Contact() {
                       <label className="block text-sm font-medium text-slate-700 mb-1.5">
                         Product Category
                       </label>
-                      <select className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand bg-white text-slate-600">
+                      <select
+                        name="product_category"
+                        value={values.product_category}
+                        onChange={onChange}
+                        className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand bg-white text-slate-600"
+                      >
                         <option value="">Select a category</option>
-                        <option value="electronics">Electronics & Components</option>
-                        <option value="machinery">Machinery & Industrial Equipment</option>
-                        <option value="textiles">Textiles & Apparel</option>
-                        <option value="home">Home & Hardware</option>
-                        <option value="automotive">Automotive Parts</option>
-                        <option value="packaging">Packaging & Printing</option>
-                        <option value="other">Other</option>
+                        <option value="Electronics & Components">Electronics & Components</option>
+                        <option value="Machinery & Industrial Equipment">Machinery & Industrial Equipment</option>
+                        <option value="Textiles & Apparel">Textiles & Apparel</option>
+                        <option value="Home & Hardware">Home & Hardware</option>
+                        <option value="Automotive Parts">Automotive Parts</option>
+                        <option value="Packaging & Printing">Packaging & Printing</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
 
@@ -200,6 +255,9 @@ export default function Contact() {
                       </label>
                       <textarea
                         required
+                        name="product_description"
+                        value={values.product_description}
+                        onChange={onChange}
                         rows={5}
                         placeholder="Describe the product you want to source, target quantity, quality standards, certifications, budget range, and any other requirements..."
                         className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand resize-none"
@@ -212,7 +270,10 @@ export default function Contact() {
                           Estimated Order Quantity
                         </label>
                         <input
+                          name="order_quantity"
                           type="text"
+                          value={values.order_quantity}
+                          onChange={onChange}
                           placeholder="e.g., 1,000 units"
                           className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"
                         />
@@ -222,19 +283,38 @@ export default function Contact() {
                           Target Delivery Date
                         </label>
                         <input
+                          name="target_delivery"
                           type="text"
+                          value={values.target_delivery}
+                          onChange={onChange}
                           placeholder="e.g., Q4 2026"
                           className="w-full px-4 py-2.5 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand/30 focus:border-brand"
                         />
                       </div>
                     </div>
 
+                    {error && (
+                      <p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-3">
+                        {error}
+                      </p>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors"
+                      disabled={status === 'submitting'}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-colors disabled:opacity-60"
                     >
-                      <Send className="w-4 h-4" />
-                      Submit Inquiry
+                      {status === 'submitting' ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Submit Inquiry
+                        </>
+                      )}
                     </button>
 
                     <p className="text-xs text-slate-400">
