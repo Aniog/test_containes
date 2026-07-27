@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Buyer's full name"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Buyer's company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer's country / market"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "consumer-electronics",
+        "home-kitchen",
+        "apparel",
+        "beauty-personal-care",
+        "industrial",
+        "outdoor-sports",
+        "kids-baby",
+        "packaging",
+        "other"
+      ],
+      "description": "Product category for the inquiry"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product, materials, and required features"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Target order quantity (e.g. 500 units, 1x40HQ)"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Target unit price or budget range (optional)"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier-search",
+          "factory-verification",
+          "sampling",
+          "production-follow-up",
+          "quality-inspection",
+          "shipping",
+          "private-label",
+          "compliance"
+        ]
+      },
+      "description": "List of services the buyer is interested in"
+    },
+    "need_sample": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the buyer needs pre-production samples"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional context, deadlines, or compliance needs"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
