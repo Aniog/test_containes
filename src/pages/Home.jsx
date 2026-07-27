@@ -1,4 +1,6 @@
-import StrkImageLoader from "@/components/shared/StrkImageLoader"
+import { useEffect, useRef } from "react"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 import Hero from "@/components/home/Hero"
 import Services from "@/components/home/Services"
 import Process from "@/components/home/Process"
@@ -10,8 +12,15 @@ import FAQ from "@/components/home/FAQ"
 import Inquiry from "@/components/home/Inquiry"
 
 export default function Home() {
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (!containerRef.current) return
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
+  }, [])
+
   return (
-    <StrkImageLoader>
+    <div ref={containerRef}>
       <Hero />
       <Services />
       <Process />
@@ -21,6 +30,6 @@ export default function Home() {
       <CaseStudies />
       <FAQ />
       <Inquiry />
-    </StrkImageLoader>
+    </div>
   )
 }
