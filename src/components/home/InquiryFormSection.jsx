@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const InquiryFormSection = () => {
   const [formData, setFormData] = useState({
@@ -11,14 +15,46 @@ const InquiryFormSection = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            product: formData.product,
+            message: formData.message,
+            source: 'homepage_form',
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const msgs = Array.isArray(response?.errors) ? response.errors.join(', ') : insertError?.message || 'Submission failed';
+        throw new Error(msgs);
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -57,6 +93,12 @@ const InquiryFormSection = () => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-md p-3 flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                    <p className="text-red-600 text-sm">{error}</p>
+                  </div>
+                )}
                 <div>
                   <label className="block text-neutral-700 text-sm font-medium mb-1">Your Name *</label>
                   <input
@@ -65,7 +107,8 @@ const InquiryFormSection = () => {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    disabled={submitting}
+                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                     placeholder="John Smith"
                   />
                 </div>
@@ -77,7 +120,8 @@ const InquiryFormSection = () => {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    disabled={submitting}
+                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                     placeholder="john@company.com"
                   />
                 </div>
@@ -88,7 +132,8 @@ const InquiryFormSection = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleChange}
-                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    disabled={submitting}
+                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                     placeholder="Your Company"
                   />
                 </div>
@@ -100,7 +145,8 @@ const InquiryFormSection = () => {
                     required
                     value={formData.product}
                     onChange={handleChange}
-                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    disabled={submitting}
+                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                     placeholder="e.g., stainless steel kitchen utensils"
                   />
                 </div>
@@ -111,16 +157,18 @@ const InquiryFormSection = () => {
                     rows={3}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none"
+                    disabled={submitting}
+                    className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none disabled:bg-neutral-100 disabled:text-neutral-400"
                     placeholder="Quantity, specifications, target price, timeline..."
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-md text-sm font-semibold transition-colors inline-flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="w-full bg-accent-500 hover:bg-accent-600 text-white px-6 py-3 rounded-md text-sm font-semibold transition-colors inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  Submit Your Inquiry
+                  {submitting ? 'Submitting...' : 'Submit Your Inquiry'}
                 </button>
               </form>
             )}

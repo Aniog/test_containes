@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Phone, Clock, CheckCircle, Send } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock, CheckCircle, Send, AlertCircle } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,14 +17,49 @@ const Contact = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            country: formData.country,
+            product: formData.product,
+            volume: formData.volume,
+            timeline: formData.timeline,
+            message: formData.message,
+            source: 'contact_page',
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const msgs = Array.isArray(response?.errors) ? response.errors.join(', ') : insertError?.message || 'Submission failed';
+        throw new Error(msgs);
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -49,6 +88,12 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 rounded-md p-3 flex items-start gap-2">
+                      <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 flex-shrink-0" />
+                      <p className="text-red-600 text-sm">{error}</p>
+                    </div>
+                  )}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-neutral-700 text-sm font-medium mb-1">Your Name *</label>
@@ -58,7 +103,8 @@ const Contact = () => {
                         required
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        disabled={submitting}
+                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                         placeholder="John Smith"
                       />
                     </div>
@@ -70,7 +116,8 @@ const Contact = () => {
                         required
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        disabled={submitting}
+                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                         placeholder="john@company.com"
                       />
                     </div>
@@ -84,7 +131,8 @@ const Contact = () => {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        disabled={submitting}
+                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                         placeholder="Your Company"
                       />
                     </div>
@@ -95,7 +143,8 @@ const Contact = () => {
                         name="country"
                         value={formData.country}
                         onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        disabled={submitting}
+                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                         placeholder="United States"
                       />
                     </div>
@@ -109,7 +158,8 @@ const Contact = () => {
                       required
                       value={formData.product}
                       onChange={handleChange}
-                      className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      disabled={submitting}
+                      className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                       placeholder="e.g., stainless steel kitchen utensils"
                     />
                   </div>
@@ -122,7 +172,8 @@ const Contact = () => {
                         name="volume"
                         value={formData.volume}
                         onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        disabled={submitting}
+                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                         placeholder="e.g., 500 units, 1 container"
                       />
                     </div>
@@ -133,7 +184,8 @@ const Contact = () => {
                         name="timeline"
                         value={formData.timeline}
                         onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                        disabled={submitting}
+                        className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 disabled:bg-neutral-100 disabled:text-neutral-400"
                         placeholder="e.g., delivery within 3 months"
                       />
                     </div>
@@ -146,17 +198,19 @@ const Contact = () => {
                       rows={4}
                       value={formData.message}
                       onChange={handleChange}
-                      className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none"
+                      disabled={submitting}
+                      className="w-full border border-neutral-300 rounded-md px-3 py-2 text-sm text-neutral-800 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none disabled:bg-neutral-100 disabled:text-neutral-400"
                       placeholder="Specifications, quality requirements, target price, current supplier issues..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-md text-sm font-semibold transition-colors inline-flex items-center gap-2"
+                    disabled={submitting}
+                    className="bg-accent-500 hover:bg-accent-600 text-white px-8 py-3 rounded-md text-sm font-semibold transition-colors inline-flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-4 h-4" />
-                    Submit Your Inquiry
+                    {submitting ? 'Submitting...' : 'Submit Your Inquiry'}
                   </button>
                 </form>
               )}
