@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from 'react';
 import { ArrowRight, CheckCircle, Shield, Truck, Search, Factory } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { ImageHelper } from '@strikingly/sdk';
+import strkImgConfig from '../strk-img-config.json';
 
 const Home = () => {
   const containerRef = useRef(null);
+
+  useEffect(() => {
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+  }, []);
 
   return (
     <div ref={containerRef}>
@@ -21,7 +27,7 @@ const Home = () => {
             <h1 id="hero-title" className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6">
               China Sourcing Agent for Global Buyers
             </h1>
-            <p id="hero-subtitle" className="text-xl text-slate-200 mb-10 leading-relaxed italic">
+            <p id="hero-subtitle" className="text-xl text-slate-200 mb-10 leading-relaxed italic border-l-4 border-accent pl-4">
               "Your boots on the ground in China since 2012."
             </p>
             <p className="text-lg md:text-xl text-slate-300 mb-10 leading-relaxed">
@@ -49,7 +55,7 @@ const Home = () => {
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 id="services-title" className="text-3xl md:text-4xl font-bold text-primary mb-4">Our End-to-End Sourcing Services</h2>
+            <h2 id="services-title" className="text-3xl md:text-4xl font-bold text-primary mb-4 text-center">Our End-to-End Sourcing Services</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               We provide comprehensive sourcing solutions to ensure your products are manufactured to your standards and delivered on time.
             </p>
@@ -121,11 +127,11 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Why Choose Us */}
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-16">
           <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6">Why Overseas Buyers Trust SSourcing China</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-6 text-left">Why Overseas Buyers Trust SSourcing China</h2>
             <p className="text-lg text-slate-600 mb-8 leading-relaxed">
               Navigating the Chinese market can be challenging. We bridge the gap between global buyers and Chinese manufacturers, mitigating risks and ensuring a smooth supply chain.
             </p>
@@ -151,7 +157,7 @@ const Home = () => {
                     <input type="text" placeholder="Full Name" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" required />
                     <input type="email" placeholder="Business Email" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" required />
                     <textarea placeholder="Describe your sourcing needs..." className="w-full border p-3 rounded-lg h-32 focus:ring-2 focus:ring-primary/20 outline-none" required></textarea>
-                    <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-slate-800 transition-all shadow-md">SUBMIT INQUIRY</button>
+                    <button type="submit" className="w-full bg-accent text-slate-900 font-bold py-4 rounded-lg hover:bg-yellow-500 transition-all shadow-md">SUBMIT INQUIRY</button>
                 </form>
             </div>
           </div>

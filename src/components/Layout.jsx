@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { Toaster } from "@/components/ui/sonner";
+import { Toaster } from "sonner";
 
 const Layout = ({ children }) => {
   return (
@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
         {children}
       </main>
       <Footer />
-      <Toaster />
+      <Toaster position="top-right" />
     </div>
   );
 };
