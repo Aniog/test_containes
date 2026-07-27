@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user record",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": ["Sourcing", "Verification", "QC Inspection", "Shipping", "Full Managed Solution"],
+      "description": "Type of service requested"
+    },
+    "product_category": {
+      "type": "string",
+      "description": "Product category interested in"
+    },
+    "order_value": {
+      "type": "string",
+      "description": "Estimated annual order value"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Details of the inquiry"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["New", "Contacted", "Qualified", "Lost"],
+      "default": "New",
+      "description": "Lead status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of inquiry"
+    }
+  },
+  "required": ["name", "email", "message", "service_needed"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
