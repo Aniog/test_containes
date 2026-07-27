@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100,
+      "description": "Full name of the inquiry contact"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Category of products to source"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 2000,
+      "description": "Detailed sourcing requirements"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inquiry submission timestamp"
+    }
+  },
+  "required": ["name", "company", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
