@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Phone or WhatsApp number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country the buyer is based in"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Living",
+        "Apparel & Textiles",
+        "Promotional & Gifts",
+        "Hardware & Tools",
+        "Beauty & Personal Care",
+        "Outdoor & Sports",
+        "Packaging & Printing",
+        "Other"
+      ],
+      "description": "Category of product the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target order quantity (free text, e.g. 2,000 units)"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Search",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-Up",
+        "Shipping & Logistics",
+        "End-to-End Order Management"
+      ],
+      "description": "Primary service the buyer is requesting"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Product description, specs, target price, certifications, and timeline"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "won", "lost"],
+      "default": "new",
+      "description": "Pipeline status of the inquiry"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the Users record for this buyer",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["full_name", "email", "country", "description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { CheckCircle2, Send } from 'lucide-react'
+import { CheckCircle2, Send, AlertCircle, Loader2 } from 'lucide-react'
 import Button from '@/components/ui/Button'
+import { submitSourcingInquiry } from '@/api/inquiries'
 
 const productCategories = [
   'Consumer Electronics',
@@ -23,15 +24,44 @@ const services = [
   'End-to-End Order Management',
 ]
 
-export default function InquiryForm({ compact = false }) {
-  const [submitted, setSubmitted] = useState(false)
+const emptyValues = {
+  full_name: '',
+  company_name: '',
+  email: '',
+  phone: '',
+  country: '',
+  product_category: '',
+  target_quantity: '',
+  service_needed: '',
+  description: '',
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
+export default function InquiryForm({ compact = false }) {
+  const [values, setValues] = useState(emptyValues)
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setValues((v) => ({ ...v, [name]: value }))
   }
 
-  if (submitted) {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    setStatus('submitting')
+    try {
+      await submitSourcingInquiry(values)
+      setStatus('success')
+      setValues(emptyValues)
+    } catch (err) {
+      console.error('Inquiry submission failed:', err)
+      setError(err.message || 'Submission failed. Please try again.')
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
     return (
       <div className="rounded-xl border border-slate-200 bg-white p-8 text-center shadow-sm">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
@@ -46,7 +76,7 @@ export default function InquiryForm({ compact = false }) {
         </p>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
+          onClick={() => setStatus('idle')}
           className="mt-6 text-sm font-semibold text-brand-blue hover:text-brand-blue-600"
         >
           Submit another request
@@ -60,62 +90,97 @@ export default function InquiryForm({ compact = false }) {
       onSubmit={handleSubmit}
       className="rounded-xl border border-slate-200 bg-white p-6 md:p-8 shadow-sm"
     >
+      {error && (
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
+          <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-red-600" />
+          <p className="text-sm text-red-700">{error}</p>
+        </div>
+      )}
+
       <div className={compact ? 'grid grid-cols-1 gap-5' : 'grid grid-cols-1 gap-5 md:grid-cols-2'}>
-        <Field label="Full name" required>
+        <Field label="Full name" name="full_name" required>
           <input
             type="text"
+            name="full_name"
             required
+            value={values.full_name}
+            onChange={handleChange}
             placeholder="Jane Doe"
             className={inputClass}
           />
         </Field>
-        <Field label="Company name">
+        <Field label="Company name" name="company_name">
           <input
             type="text"
+            name="company_name"
+            value={values.company_name}
+            onChange={handleChange}
             placeholder="Your company"
             className={inputClass}
           />
         </Field>
-        <Field label="Email" required>
+        <Field label="Email" name="email" required>
           <input
             type="email"
+            name="email"
             required
+            value={values.email}
+            onChange={handleChange}
             placeholder="you@company.com"
             className={inputClass}
           />
         </Field>
-        <Field label="Phone / WhatsApp">
+        <Field label="Phone / WhatsApp" name="phone">
           <input
             type="tel"
+            name="phone"
+            value={values.phone}
+            onChange={handleChange}
             placeholder="+1 555 000 0000"
             className={inputClass}
           />
         </Field>
-        <Field label="Country" required>
+        <Field label="Country" name="country" required>
           <input
             type="text"
+            name="country"
             required
+            value={values.country}
+            onChange={handleChange}
             placeholder="United States"
             className={inputClass}
           />
         </Field>
-        <Field label="Product category">
-          <select className={inputClass} defaultValue="">
+        <Field label="Product category" name="product_category">
+          <select
+            name="product_category"
+            value={values.product_category}
+            onChange={handleChange}
+            className={inputClass}
+          >
             <option value="" disabled>Select a category</option>
             {productCategories.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
           </select>
         </Field>
-        <Field label="Target order quantity">
+        <Field label="Target order quantity" name="target_quantity">
           <input
             type="text"
+            name="target_quantity"
+            value={values.target_quantity}
+            onChange={handleChange}
             placeholder="e.g. 2,000 units"
             className={inputClass}
           />
         </Field>
-        <Field label="Service needed">
-          <select className={inputClass} defaultValue="">
+        <Field label="Service needed" name="service_needed">
+          <select
+            name="service_needed"
+            value={values.service_needed}
+            onChange={handleChange}
+            className={inputClass}
+          >
             <option value="" disabled>Select a service</option>
             {services.map((s) => (
               <option key={s} value={s}>{s}</option>
@@ -125,10 +190,13 @@ export default function InquiryForm({ compact = false }) {
       </div>
 
       <div className="mt-5">
-        <Field label="Product description & requirements" required>
+        <Field label="Product description & requirements" name="description" required>
           <textarea
+            name="description"
             required
             rows={compact ? 4 : 5}
+            value={values.description}
+            onChange={handleChange}
             placeholder="Describe your product, specs, target price, certifications, and timeline."
             className={`${inputClass} resize-y`}
           />
@@ -140,9 +208,18 @@ export default function InquiryForm({ compact = false }) {
           By submitting, you agree to be contacted about your sourcing request.
           We never share your information.
         </p>
-        <Button type="submit" size="lg" className="w-full sm:w-auto">
-          <Send className="h-4 w-4" />
-          Get My Free Quote
+        <Button
+          type="submit"
+          size="lg"
+          disabled={status === 'submitting'}
+          className="w-full sm:w-auto"
+        >
+          {status === 'submitting' ? (
+            <Loader2 className="h-4 w-4 animate-spin" />
+          ) : (
+            <Send className="h-4 w-4" />
+          )}
+          {status === 'submitting' ? 'Sending…' : 'Get My Free Quote'}
         </Button>
       </div>
     </form>
