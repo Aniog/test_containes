@@ -2,6 +2,18 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Building2, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { DataClient, User } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getEntity = (response) => response?.data ?? null;
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Request failed';
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -17,15 +29,74 @@ export default function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    toast.success('Your inquiry has been submitted! We will respond within 24 hours.');
+    setSubmitting(true);
+
+    try {
+      // Step 1: Upsert the User (CRM Record)
+      const userRecord = await User.upsert({
+        email: formData.email,
+        name: formData.name,
+        role: 'guest',
+      });
+
+      if (!userRecord || !userRecord.id) {
+        throw new Error('Failed to create user profile.');
+      }
+
+      // Step 2: Insert Sourcing Inquiry
+      const { data: response, error: insertError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            country: formData.country,
+            phone: formData.phone,
+            productType: formData.productType,
+            quantity: formData.quantity,
+            budget: formData.budget,
+            timeline: formData.timeline,
+            message: formData.message,
+            status: 'new',
+            createdAt: new Date().toISOString(),
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        throw new Error(getErrorMessage(response, insertError));
+      }
+
+      setSubmitted(true);
+      toast.success('Your inquiry has been submitted! We will respond within 24 hours.');
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        country: '',
+        phone: '',
+        productType: '',
+        quantity: '',
+        budget: '',
+        timeline: '',
+        message: '',
+      });
+    } catch (err) {
+      console.error('Submission failed:', err);
+      toast.error(err.message || 'Failed to submit inquiry. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -195,9 +266,9 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full md:w-auto">
+                <Button type="submit" size="lg" className="w-full md:w-auto" disabled={submitting}>
                   <Send className="mr-2 h-5 w-5" />
-                  Submit Sourcing Inquiry
+                  {submitting ? 'Submitting...' : 'Submit Sourcing Inquiry'}
                 </Button>
               </form>
             </div>
