@@ -1,11 +1,38 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight, CheckCircle, Shield, Truck, Search, Factory } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '../strk-img-config.json';
+import { submitInquiry } from '../api/inquiry';
+import { toast } from 'sonner';
 
 const Home = () => {
   const containerRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await submitInquiry(formData);
+      toast.success('Inquiry submitted successfully! We will contact you soon.');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      toast.error(error.message || 'Failed to submit inquiry. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -153,11 +180,40 @@ const Home = () => {
           <div className="flex-1 w-full">
             <div className="bg-white p-8 rounded-2xl shadow-xl border border-slate-100">
                 <h3 className="text-2xl font-bold text-primary mb-6">Get Your Free Quote</h3>
-                <form className="space-y-4">
-                    <input type="text" placeholder="Full Name" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" required />
-                    <input type="email" placeholder="Business Email" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" required />
-                    <textarea placeholder="Describe your sourcing needs..." className="w-full border p-3 rounded-lg h-32 focus:ring-2 focus:ring-primary/20 outline-none" required></textarea>
-                    <button type="submit" className="w-full bg-accent text-slate-900 font-bold py-4 rounded-lg hover:bg-yellow-500 transition-all shadow-md">SUBMIT INQUIRY</button>
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                    <input 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Full Name" 
+                      className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" 
+                      required 
+                    />
+                    <input 
+                      type="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      placeholder="Business Email" 
+                      className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" 
+                      required 
+                    />
+                    <textarea 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleInputChange}
+                      placeholder="Describe your sourcing needs..." 
+                      className="w-full border p-3 rounded-lg h-32 focus:ring-2 focus:ring-primary/20 outline-none" 
+                      required
+                    ></textarea>
+                    <button 
+                      type="submit" 
+                      disabled={loading}
+                      className="w-full bg-accent text-slate-900 font-bold py-4 rounded-lg hover:bg-yellow-500 transition-all shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {loading ? 'SUBMITTING...' : 'SUBMIT INQUIRY'}
+                    </button>
                 </form>
             </div>
           </div>

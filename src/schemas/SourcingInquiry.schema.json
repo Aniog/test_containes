@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the User table",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Professional email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Contact phone number"
+    },
+    "product_type": {
+      "type": "string",
+      "description": "Type of product to source"
+    },
+    "quantity": {
+      "type": "string",
+      "description": "Estimated order quantity"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Detailed sourcing requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "processing", "completed"],
+      "default": "new",
+      "description": "Lead status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission timestamp"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

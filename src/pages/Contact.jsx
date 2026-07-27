@@ -1,10 +1,48 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '../strk-img-config.json';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import { submitInquiry } from '../api/inquiry';
+import { toast } from 'sonner';
 
 const Contact = () => {
   const containerRef = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    phone: '',
+    product_type: 'Product Sourcing Inquiry',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      await submitInquiry(formData);
+      toast.success('Message sent successfully! Our sourcing team will review it and get back to you.');
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        product_type: 'Product Sourcing Inquiry',
+        message: ''
+      });
+    } catch (error) {
+      toast.error(error.message || 'Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
@@ -55,24 +93,61 @@ const Contact = () => {
         </div>
 
         <div className="flex-1 w-full bg-slate-50 p-10 rounded-2xl border border-slate-200 shadow-xl">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700">Name</label>
-                    <input type="text" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" required />
+                    <input 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" 
+                      required 
+                    />
                 </div>
                 <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700">Email</label>
-                    <input type="email" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" required />
+                    <input 
+                      type="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" 
+                      required 
+                    />
+                </div>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700">Company Name</label>
+                    <input 
+                      type="text" 
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" 
+                    />
+                </div>
+                <div className="space-y-2">
+                    <label className="text-sm font-bold text-slate-700">Phone Number</label>
+                    <input 
+                      type="tel" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" 
+                    />
                 </div>
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700">Company Name</label>
-                <input type="text" className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none" />
-            </div>
-            <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700">Subject</label>
-                <select className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none">
+                <label className="text-sm font-bold text-slate-700">Subject / Interest</label>
+                <select 
+                  name="product_type"
+                  value={formData.product_type}
+                  onChange={handleInputChange}
+                  className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-primary/20 outline-none"
+                >
                     <option>Product Sourcing Inquiry</option>
                     <option>Factory Audit Request</option>
                     <option>Quality Inspection Service</option>
@@ -80,10 +155,22 @@ const Contact = () => {
                 </select>
             </div>
             <div className="space-y-2">
-                <label className="text-sm font-bold text-slate-700">Message</label>
-                <textarea className="w-full border p-3 rounded-lg h-32 focus:ring-2 focus:ring-primary/20 outline-none" required></textarea>
+                <label className="text-sm font-bold text-slate-700">Message / Requirements</label>
+                <textarea 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  className="w-full border p-3 rounded-lg h-32 focus:ring-2 focus:ring-primary/20 outline-none" 
+                  required
+                ></textarea>
             </div>
-            <button type="submit" className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-slate-800 transition-all shadow-md">SEND MESSAGE</button>
+            <button 
+              type="submit" 
+              disabled={loading}
+              className="w-full bg-primary text-white font-bold py-4 rounded-lg hover:bg-slate-800 transition-all shadow-md disabled:opacity-50"
+            >
+              {loading ? 'SENDING...' : 'SEND MESSAGE'}
+            </button>
           </form>
         </div>
       </section>

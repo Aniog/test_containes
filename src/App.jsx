@@ -8,10 +8,12 @@ import Products from './pages/Products';
 import CaseStudies from './pages/CaseStudies';
 import Blog from './pages/Blog';
 import Contact from './pages/Contact';
+import { Toaster } from 'sonner';
 
 function App() {
   return (
     <Router>
+      <Toaster position="top-center" richColors />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
