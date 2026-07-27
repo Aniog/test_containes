@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Selected product category (e.g. electronics, home-garden, machinery)"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Estimated order quantity range"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Budget range selected by the inquirer"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Desired delivery timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Product details and requirements submitted by the inquirer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Processing status of the inquiry"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "country", "product_category", "message"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}

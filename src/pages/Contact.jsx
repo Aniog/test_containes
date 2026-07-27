@@ -1,9 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import {
   Mail, Phone, MapPin, Clock, Send, ArrowRight, MessageSquare,
   Globe, CheckCircle, Users, Building2
 } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Submission failed. Please try again.';
+};
 
 const Contact = () => {
   const [formData, setFormData] = React.useState({
@@ -19,19 +30,54 @@ const Contact = () => {
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [submitError, setSubmitError] = React.useState(null);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+    if (submitError) setSubmitError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real implementation, this would send to a backend
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            country: formData.country,
+            phone: formData.phone,
+            product_category: formData.productCategory,
+            quantity: formData.quantity,
+            budget: formData.budget,
+            timeline: formData.timeline,
+            message: formData.message,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        throw new Error(getErrorMessage(response, insertError));
+      }
+
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Inquiry submission error:', err);
+      setSubmitError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -347,15 +393,32 @@ const Contact = () => {
                         />
                       </div>
 
+                      {/* Error Message */}
+                      {submitError && (
+                        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 text-sm">
+                          {submitError}
+                        </div>
+                      )}
+
                       {/* Submit */}
                       <div>
                         <button
                           type="submit"
-                          className="btn-primary w-full text-lg py-4 flex items-center justify-center gap-2 group"
+                          disabled={isSubmitting}
+                          className="btn-primary w-full text-lg py-4 flex items-center justify-center gap-2 group disabled:opacity-60 disabled:cursor-not-allowed"
                         >
-                          <Send className="w-5 h-5" />
-                          Submit Inquiry
-                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                          {isSubmitting ? (
+                            <>
+                              <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                              Submitting...
+                            </>
+                          ) : (
+                            <>
+                              <Send className="w-5 h-5" />
+                              Submit Inquiry
+                              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                            </>
+                          )}
                         </button>
                         <p className="text-sm text-slate-500 mt-3 text-center">
                           We respond within 24 hours. No spam, no obligation.
