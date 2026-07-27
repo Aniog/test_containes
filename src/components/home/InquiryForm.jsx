@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, Loader2 } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const productCategories = [
   'Electronics & Components',
@@ -14,25 +18,55 @@ const productCategories = [
   'Other',
 ];
 
+const EMPTY_FORM = { name: '', email: '', company: '', country: '', category: '', message: '' };
+
 export default function InquiryForm({ compact = false }) {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: '',
-    email: '',
-    company: '',
-    country: '',
-    category: '',
-    message: '',
-  });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const [form, setForm] = useState(EMPTY_FORM);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Inquiry submitted:', form);
+    setError(null);
+    setSubmitting(true);
+
+    console.log('Submitting sourcing inquiry:', form);
+
+    const { data: response, error: insertError } = await client
+      .from('Sourcing Inquiries')
+      .insert({
+        data: {
+          name: form.name,
+          email: form.email,
+          ...(form.company && { company: form.company }),
+          ...(form.country && { country: form.country }),
+          ...(form.category && { category: form.category }),
+          message: form.message,
+          status: 'new',
+        },
+      })
+      .select()
+      .single();
+
+    setSubmitting(false);
+
+    if (insertError || response?.success === false) {
+      const msg = Array.isArray(response?.errors) && response.errors.length
+        ? response.errors.join(', ')
+        : insertError?.message || 'Submission failed. Please try again.';
+      console.error('Inquiry submission error:', msg);
+      setError(msg);
+      return;
+    }
+
+    console.log('Inquiry saved successfully:', response?.data);
     setSubmitted(true);
+    setForm(EMPTY_FORM);
   };
 
   if (submitted) {
@@ -137,11 +171,24 @@ export default function InquiryForm({ compact = false }) {
 
       <button
         type="submit"
-        className="mt-6 w-full flex items-center justify-center gap-2 bg-brand-orange hover:bg-orange-600 text-white font-semibold px-6 py-3.5 rounded-lg transition-colors text-sm"
+        disabled={submitting}
+        className="mt-6 w-full flex items-center justify-center gap-2 bg-brand-orange hover:bg-orange-600 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-3.5 rounded-lg transition-colors text-sm"
       >
-        <Send className="w-4 h-4" />
-        Submit Sourcing Request
+        {submitting ? (
+          <>
+            <Loader2 className="w-4 h-4 animate-spin" />
+            Submitting…
+          </>
+        ) : (
+          <>
+            <Send className="w-4 h-4" />
+            Submit Sourcing Request
+          </>
+        )}
       </button>
+      {error && (
+        <p className="text-red-600 text-xs text-center mt-3" role="alert">{error}</p>
+      )}
       <p className="text-brand-muted text-xs text-center mt-3">
         We respond within 1 business day. No spam, no obligation.
       </p>
