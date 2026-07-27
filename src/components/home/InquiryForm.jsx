@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { toast } from "sonner"
+import { submitInquiry } from "@/api/inquiries"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -26,22 +27,28 @@ export default function InquiryForm() {
     e.preventDefault()
     setLoading(true)
 
-    // Frontend-only demo submission
-    await new Promise((resolve) => setTimeout(resolve, 800))
+    try {
+      await submitInquiry(formData, "homepage")
 
-    toast.success("Inquiry submitted", {
-      description: "Our team will review your request and reply within one business day.",
-    })
+      toast.success("Inquiry submitted", {
+        description: "Our team will review your request and reply within one business day.",
+      })
 
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      product: "",
-      quantity: "",
-      message: "",
-    })
-    setLoading(false)
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        product: "",
+        quantity: "",
+        message: "",
+      })
+    } catch (err) {
+      toast.error("Submission failed", {
+        description: err?.message || "Please try again later.",
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

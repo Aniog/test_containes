@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { toast } from "sonner"
 import { Mail, Phone, MapPin, Clock, Linkedin } from "lucide-react"
+import { submitInquiry } from "@/api/inquiries"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -27,19 +28,29 @@ export default function ContactPage() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    await new Promise((resolve) => setTimeout(resolve, 800))
-    toast.success("Message sent", {
-      description: "We will get back to you within one business day.",
-    })
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      product: "",
-      quantity: "",
-      message: "",
-    })
-    setLoading(false)
+
+    try {
+      await submitInquiry(formData, "contact_page")
+
+      toast.success("Message sent", {
+        description: "We will get back to you within one business day.",
+      })
+
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        product: "",
+        quantity: "",
+        message: "",
+      })
+    } catch (err) {
+      toast.error("Submission failed", {
+        description: err?.message || "Please try again later.",
+      })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
