@@ -1,8 +1,21 @@
 import { useState } from 'react'
 import { Send, CheckCircle } from 'lucide-react'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../../config.jsx'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Request failed'
+}
 
 export default function InquirySection() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -16,8 +29,38 @@ export default function InquirySection() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
+    setSubmitting(true)
+
+    const parts = []
+    if (form.product.trim()) parts.push(`Product: ${form.product.trim()}`)
+    if (form.quantity.trim()) parts.push(`Quantity: ${form.quantity.trim()}`)
+    if (form.message.trim()) parts.push(form.message.trim())
+    const fullMessage = parts.join('\n\n')
+
+    const { data: response, error: insertError } = await client
+      .from('ContactInquiry')
+      .insert({
+        data: {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim(),
+          subject: 'Free Sourcing Quote',
+          message: fullMessage || form.message.trim(),
+        },
+      })
+      .select()
+      .single()
+
+    setSubmitting(false)
+
+    if (insertError || response?.success === false) {
+      setError(getErrorMessage(response, insertError))
+      return
+    }
+
     setSubmitted(true)
   }
 
@@ -133,12 +176,20 @@ export default function InquirySection() {
                     placeholder="Describe your requirements, specifications, target price, timeline, etc."
                   />
                 </div>
+
+                {error && (
+                  <p role="alert" className="text-sm text-red-600">
+                    {error}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-600 text-white font-medium px-6 py-3 rounded-md transition-colors"
+                  disabled={submitting}
+                  className="w-full inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-600 text-white font-medium px-6 py-3 rounded-md transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  Request Free Quote
+                  {submitting ? 'Sending…' : 'Request Free Quote'}
                 </button>
               </form>
             )}

@@ -1,8 +1,21 @@
 import { useState } from 'react'
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Request failed'
+}
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -16,8 +29,33 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
+    setSubmitting(true)
+
+    const { data: response, error: insertError } = await client
+      .from('ContactInquiry')
+      .insert({
+        data: {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim(),
+          phone: form.phone.trim(),
+          subject: form.subject,
+          message: form.message.trim(),
+        },
+      })
+      .select()
+      .single()
+
+    setSubmitting(false)
+
+    if (insertError || response?.success === false) {
+      setError(getErrorMessage(response, insertError))
+      return
+    }
+
     setSubmitted(true)
   }
 
@@ -195,12 +233,19 @@ export default function Contact() {
                       />
                     </div>
 
+                    {error && (
+                      <p role="alert" className="text-sm text-red-600">
+                        {error}
+                      </p>
+                    )}
+
                     <button
                       type="submit"
-                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent-600 text-white font-medium px-8 py-3 rounded-md transition-colors"
+                      disabled={submitting}
+                      className="inline-flex items-center gap-2 bg-accent hover:bg-accent-600 text-white font-medium px-8 py-3 rounded-md transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                     >
                       <Send className="w-4 h-4" />
-                      Send Message
+                      {submitting ? 'Sending…' : 'Send Message'}
                     </button>
                   </form>
                 )}
