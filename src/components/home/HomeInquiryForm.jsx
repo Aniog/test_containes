@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Send, CheckCircle } from 'lucide-react';
+import { submitInquiry } from '@/api/inquiries';
 
 const productTypes = [
   'Electronics & Components',
@@ -15,6 +16,8 @@ const productTypes = [
 
 export default function HomeInquiryForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '', company: '', email: '', country: '',
     product: '', quantity: '', budget: '', message: '',
@@ -24,10 +27,28 @@ export default function HomeInquiryForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Inquiry submitted:', form);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submitInquiry({
+        name: form.name,
+        company: form.company,
+        email: form.email,
+        country: form.country,
+        product_category: form.product,
+        quantity: form.quantity,
+        budget: form.budget,
+        message: form.message,
+        source_page: 'home',
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -172,11 +193,16 @@ export default function HomeInquiryForm() {
 
           <button
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-brand-accent hover:bg-blue-700 text-white font-bold py-3.5 rounded-lg text-base transition-colors"
+            disabled={submitting}
+            className="w-full flex items-center justify-center gap-2 bg-brand-accent hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 rounded-lg text-base transition-colors"
           >
             <Send className="w-4 h-4" />
-            Send Sourcing Inquiry
+            {submitting ? 'Sending…' : 'Send Sourcing Inquiry'}
           </button>
+
+          {error && (
+            <p className="text-center text-sm text-red-600">{error}</p>
+          )}
 
           <p className="text-center text-xs text-slate-400">
             We respond within 1 business day. Your information is kept confidential.

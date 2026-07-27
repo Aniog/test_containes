@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organisation name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number (optional)"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "service": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Service requested (e.g. Supplier Sourcing, Factory Audit, QC Inspection)"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category being sourced"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target budget in USD"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Product description and sourcing requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Which page the form was submitted from (home or contact)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "responded", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
