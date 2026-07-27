@@ -1,0 +1,127 @@
+export const products = [
+  {
+    id: 'vivid-aura-jewels',
+    name: 'Vivid Aura Jewels',
+    price: 42,
+    category: 'earrings',
+    material: 'gold',
+    description: 'A sculptural ear cuff adorned with a delicate crystal accent. Designed to catch the light with every movement.',
+    materials: '18K gold plated over brass. Crystal accent. Hypoallergenic and nickel-free.',
+    rating: 4.8,
+    reviews: 124,
+    images: [
+      { id: 'vivid-aura-1', alt: 'Vivid Aura Jewels - gold ear cuff with crystal accent' },
+      { id: 'vivid-aura-2', alt: 'Vivid Aura Jewels - side view' },
+      { id: 'vivid-aura-3', alt: 'Vivid Aura Jewels - on model' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'majestic-flora-nectar',
+    name: 'Majestic Flora Nectar',
+    price: 68,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A cascading floral pendant featuring multicolor crystals set in warm gold. A statement piece that whispers elegance.',
+    materials: '18K gold plated over brass. Swarovski crystals. Adjustable chain 16-18 inches.',
+    rating: 4.9,
+    reviews: 89,
+    images: [
+      { id: 'majestic-flora-1', alt: 'Majestic Flora Nectar - multicolor floral crystal necklace' },
+      { id: 'majestic-flora-2', alt: 'Majestic Flora Nectar - detail view' },
+      { id: 'majestic-flora-3', alt: 'Majestic Flora Nectar - on model' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'New',
+  },
+  {
+    id: 'golden-sphere-huggies',
+    name: 'Golden Sphere Huggies',
+    price: 38,
+    category: 'huggies',
+    material: 'gold',
+    description: 'Chunky gold dome huggie earrings with a polished finish. Effortlessly chic for everyday wear.',
+    materials: '18K gold plated over brass. Secure hinged closure. 12mm diameter.',
+    rating: 4.7,
+    reviews: 203,
+    images: [
+      { id: 'golden-sphere-1', alt: 'Golden Sphere Huggies - chunky gold dome huggie earrings' },
+      { id: 'golden-sphere-2', alt: 'Golden Sphere Huggies - detail view' },
+      { id: 'golden-sphere-3', alt: 'Golden Sphere Huggies - on model' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'Bestseller',
+  },
+  {
+    id: 'amber-lace-earrings',
+    name: 'Amber Lace Earrings',
+    price: 54,
+    category: 'earrings',
+    material: 'gold',
+    description: 'Textured gold filigree drop earrings inspired by vintage lacework. Romantic and refined.',
+    materials: '18K gold plated over brass. French hook closure. 2 inch drop.',
+    rating: 4.6,
+    reviews: 67,
+    images: [
+      { id: 'amber-lace-1', alt: 'Amber Lace Earrings - textured gold filigree drop earrings' },
+      { id: 'amber-lace-2', alt: 'Amber Lace Earrings - detail view' },
+      { id: 'amber-lace-3', alt: 'Amber Lace Earrings - on model' },
+    ],
+    variants: ['gold', 'silver'],
+  },
+  {
+    id: 'royal-heirloom-set',
+    name: 'Royal Heirloom Set',
+    price: 95,
+    category: 'necklaces',
+    material: 'gold',
+    description: 'A curated gift-boxed set featuring matching earrings and necklace. The perfect expression of timeless elegance.',
+    materials: '18K gold plated over brass. Presented in signature Velmora gift box. Hypoallergenic.',
+    rating: 5.0,
+    reviews: 45,
+    images: [
+      { id: 'royal-heirloom-1', alt: 'Royal Heirloom Set - gift-boxed earring and necklace set' },
+      { id: 'royal-heirloom-2', alt: 'Royal Heirloom Set - detail view' },
+      { id: 'royal-heirloom-3', alt: 'Royal Heirloom Set - gift box' },
+    ],
+    variants: ['gold', 'silver'],
+    badge: 'Gift Set',
+  },
+];
+
+export const categories = [
+  { id: 'earrings', name: 'Earrings', count: 2 },
+  { id: 'necklaces', name: 'Necklaces', count: 2 },
+  { id: 'huggies', name: 'Huggies', count: 1 },
+];
+
+export const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah M.',
+    rating: 5,
+    text: 'The quality is incredible for the price. I wear my Golden Sphere Huggies every single day.',
+  },
+  {
+    id: 2,
+    name: 'Emma L.',
+    rating: 5,
+    text: 'Bought the Royal Heirloom Set as a gift for my sister. She was absolutely thrilled. Beautiful packaging.',
+  },
+  {
+    id: 3,
+    name: 'Olivia R.',
+    rating: 5,
+    text: 'Finally found jewelry that looks expensive without the designer price tag. Velmora is my new go-to.',
+  },
+];
+
+export const ugcPosts = [
+  { id: 1, caption: 'Everyday elegance', imgId: 'ugc-earring-1' },
+  { id: 2, caption: 'Layered perfection', imgId: 'ugc-necklace-1' },
+  { id: 3, caption: 'Golden hour glow', imgId: 'ugc-huggie-1' },
+  { id: 4, caption: 'Stacked & styled', imgId: 'ugc-earring-2' },
+  { id: 5, caption: 'Date night ready', imgId: 'ugc-necklace-2' },
+  { id: 6, caption: 'Minimalist magic', imgId: 'ugc-huggie-2' },
+];
