@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "product_industry": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Product or industry the inquirer is sourcing"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "project_details": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed project requirements, quality standards, target budget"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Inquiry status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Inquiry timestamp"
+    }
+  },
+  "required": ["name", "company", "email", "product_industry", "project_details"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] }
+  }
+}

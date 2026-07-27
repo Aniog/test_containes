@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Blog post title"
+    },
+    "slug": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "URL slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Short excerpt for listing"
+    },
+    "content": {
+      "type": "string",
+      "maxLength": 50000,
+      "description": "Full blog post content (HTML/markdown)"
+    },
+    "author": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Author name"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Post category"
+    },
+    "read_time": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Estimated read time"
+    },
+    "img_storage_key": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Storage key for featured image"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published"],
+      "default": "published",
+      "description": "Publication status"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publish date"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    }
+  },
+  "required": ["title", "excerpt", "content"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}

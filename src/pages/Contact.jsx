@@ -1,11 +1,22 @@
-import React, { useEffect, useRef } from 'react';
-import { Phone, Mail, MapPin, Clock, ArrowRight, CheckCircle, Send, MessageSquare } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Phone, Mail, MapPin, Clock, ArrowRight, CheckCircle, Send, MessageSquare, Check } from 'lucide-react';
 import Button from '@/components/ui/button';
 import { ImageHelper } from '@strikingly/sdk';
+import { client, getEntity, getErrorMessage } from '@/api/postgrest-client.js';
 import strkImgConfig from '@/strk-img-config.json';
 
 export default function Contact() {
   const containerRef = useRef(null);
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
+  const [values, setValues] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: '',
+  });
 
   useEffect(() => {
     if (containerRef.current) {
@@ -15,6 +26,43 @@ export default function Contact() {
       return () => window.cancelAnimationFrame(frameId);
     }
   }, []);
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setStatus('submitting');
+
+    const { data: response, error: submitError } = await client
+      .from('Sourcing Inquiries')
+      .insert({
+        data: {
+          name: values.name,
+          company: values.company,
+          email: values.email,
+          phone: values.phone,
+          product_industry: values.subject,
+          project_details: values.message,
+          status: 'new',
+          created_at: new Date().toISOString(),
+        },
+      })
+      .select()
+      .single();
+
+    if (submitError || response?.success === false) {
+      setError(getErrorMessage(response, submitError));
+      setStatus('error');
+      return;
+    }
+
+    setStatus('success');
+    setValues({ name: '', company: '', email: '', phone: '', subject: '', message: '' });
+  };
 
   return (
     <div ref={containerRef}>
@@ -103,51 +151,75 @@ export default function Contact() {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-lg border border-gray-100 shadow-sm p-6 md:p-10">
-                <h2 className="text-2xl font-bold text-primary mb-2">Send Us a Message</h2>
-                <p className="text-gray-600 mb-8">Fill out the form below and we will get back to you within 24 hours.</p>
-                <form>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                      <input type="text" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="John Smith" />
+                {status === 'success' ? (
+                  <div className="text-center py-12">
+                    <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Check className="w-8 h-8 text-green-600" />
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
-                      <input type="text" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="Your Company Ltd" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                      <input type="email" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="john@company.com" />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                      <input type="tel" className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="+1 234 567 8900" />
-                    </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
-                      <select required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors bg-white">
-                        <option value="">Select a subject</option>
-                        <option value="sourcing">New Sourcing Project</option>
-                        <option value="inspection">Quality Inspection Request</option>
-                        <option value="verification">Supplier Verification</option>
-                        <option value="shipping">Shipping & Logistics Inquiry</option>
-                        <option value="partnership">Partnership Opportunity</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                    <div className="md:col-span-2">
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
-                      <textarea rows={5} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors resize-none" placeholder="Tell us about your project, requirements, and any questions you have..." />
-                    </div>
-                  </div>
-                  <div className="mt-8">
-                    <Button variant="accent" size="lg" type="submit">
-                      <Send className="w-4 h-4" />
-                      Send Message
+                    <h3 className="text-2xl font-bold text-primary mb-2">Thank You!</h3>
+                    <p className="text-gray-600">Your message has been received. We will get back to you within 24 hours.</p>
+                    <Button variant="accent" className="mt-6" onClick={() => setStatus('idle')}>
+                      Send Another Message
                     </Button>
-                    <p className="text-gray-400 text-sm mt-3">We respect your privacy. Your information will never be shared.</p>
                   </div>
-                </form>
+                ) : (
+                  <>
+                    <h2 className="text-2xl font-bold text-primary mb-2">Send Us a Message</h2>
+                    <p className="text-gray-600 mb-8">Fill out the form below and we will get back to you within 24 hours.</p>
+                    {error && (
+                      <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md text-red-700 text-sm">
+                        {error}
+                      </div>
+                    )}
+                    <form onSubmit={handleSubmit}>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                          <input type="text" name="name" value={values.name} onChange={onChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="John Smith" />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                          <input type="text" name="company" value={values.company} onChange={onChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="Your Company Ltd" />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                          <input type="email" name="email" value={values.email} onChange={onChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="john@company.com" />
+                        </div>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                          <input type="tel" name="phone" value={values.phone} onChange={onChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="+1 234 567 8900" />
+                        </div>
+                        <div className="md:col-span-2">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Subject *</label>
+                          <select name="subject" value={values.subject} onChange={onChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors bg-white">
+                            <option value="">Select a subject</option>
+                            <option value="sourcing">New Sourcing Project</option>
+                            <option value="inspection">Quality Inspection Request</option>
+                            <option value="verification">Supplier Verification</option>
+                            <option value="shipping">Shipping & Logistics Inquiry</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                        <div className="md:col-span-2">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Message *</label>
+                          <textarea rows={5} name="message" value={values.message} onChange={onChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors resize-none" placeholder="Tell us about your project, requirements, and any questions you have..." />
+                        </div>
+                      </div>
+                      <div className="mt-8">
+                        <Button variant="accent" size="lg" type="submit" disabled={status === 'submitting'}>
+                          {status === 'submitting' ? 'Sending...' : (
+                            <>
+                              <Send className="w-4 h-4" />
+                              Send Message
+                            </>
+                          )}
+                        </Button>
+                        <p className="text-gray-400 text-sm mt-3">We respect your privacy. Your information will never be shared.</p>
+                      </div>
+                    </form>
+                  </>
+                )}
               </div>
             </div>
           </div>

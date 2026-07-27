@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Factory, ClipboardCheck, Shield, Ship, ChevronRight, Star, CheckCircle, Users, Package, TrendingUp, HeadphonesIcon, FileText, Clock, Award, Building2, Truck, BarChart3, Phone, Mail, MapPin, MessageSquare, ArrowRight, X } from 'lucide-react';
+import { Search, Factory, ClipboardCheck, Shield, Ship, ChevronRight, Star, CheckCircle, Users, Package, TrendingUp, HeadphonesIcon, FileText, Clock, Award, Building2, Truck, BarChart3, Phone, Mail, MapPin, MessageSquare, ArrowRight, X, Check } from 'lucide-react';
 import Button from '@/components/ui/button';
 import { ImageHelper } from '@strikingly/sdk';
+import { client, getEntity, getErrorMessage } from '@/api/postgrest-client.js';
 import strkImgConfig from '@/strk-img-config.json';
 
 const services = [
@@ -111,12 +112,61 @@ const faqs = [
 
 export default function Home() {
   const containerRef = useRef(null);
+  const [formStatus, setFormStatus] = useState('idle');
+  const [formError, setFormError] = useState(null);
+  const [formValues, setFormValues] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    product_industry: '',
+    estimated_quantity: '',
+    project_details: '',
+  });
 
   useEffect(() => {
     if (containerRef.current) {
       return ImageHelper.loadImages(strkImgConfig, containerRef.current);
     }
   }, []);
+
+  const onFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const handleInquirySubmit = async (e) => {
+    e.preventDefault();
+    setFormError(null);
+    setFormStatus('submitting');
+
+    const { data: response, error: submitError } = await client
+      .from('Sourcing Inquiries')
+      .insert({
+        data: {
+          name: formValues.name,
+          company: formValues.company,
+          email: formValues.email,
+          phone: formValues.phone,
+          product_industry: formValues.product_industry,
+          estimated_quantity: formValues.estimated_quantity,
+          project_details: formValues.project_details,
+          status: 'new',
+          created_at: new Date().toISOString(),
+        },
+      })
+      .select()
+      .single();
+
+    if (submitError || response?.success === false) {
+      setFormError(getErrorMessage(response, submitError));
+      setFormStatus('error');
+      return;
+    }
+
+    setFormStatus('success');
+    setFormValues({ name: '', company: '', email: '', phone: '', product_industry: '', estimated_quantity: '', project_details: '' });
+  };
 
   return (
     <div ref={containerRef}>
@@ -441,52 +491,74 @@ export default function Home() {
               Tell us about your project and we will get back to you within 24 hours with a detailed plan.
             </p>
           </div>
-          <form className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 md:p-10">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
-                <input type="text" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="John Smith" />
+          {formStatus === 'success' ? (
+            <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-10 text-center">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Check className="w-8 h-8 text-green-600" />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
-                <input type="text" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="Your Company Ltd" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
-                <input type="email" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="john@company.com" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-                <input type="tel" className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="+1 234 567 8900" />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Product / Industry *</label>
-                <input type="text" required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="Describe the product you want to source" />
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Quantity</label>
-                <select className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors bg-white">
-                  <option value="">Select approximate quantity</option>
-                  <option value="100-500">100 - 500 units</option>
-                  <option value="500-1000">500 - 1,000 units</option>
-                  <option value="1000-5000">1,000 - 5,000 units</option>
-                  <option value="5000-10000">5,000 - 10,000 units</option>
-                  <option value="10000+">10,000+ units</option>
-                </select>
-              </div>
-              <div className="md:col-span-2">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Project Details *</label>
-                <textarea rows={4} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors resize-none" placeholder="Describe your requirements, quality standards, target budget, and any other relevant details..." />
-              </div>
-            </div>
-            <div className="mt-8">
-              <Button variant="accent" size="lg" className="w-full md:w-auto">
-                Submit Inquiry
-                <ArrowRight className="w-5 h-5" />
+              <h3 className="text-2xl font-bold text-primary mb-2">Inquiry Received!</h3>
+              <p className="text-gray-600 mb-6">Thank you for reaching out. Our team will review your project and get back to you within 24 hours with a detailed sourcing plan.</p>
+              <Button variant="accent" onClick={() => setFormStatus('idle')}>
+                Submit Another Inquiry
               </Button>
-              <p className="text-gray-400 text-sm mt-3">We respect your privacy. Your information will never be shared.</p>
             </div>
-          </form>
+          ) : (
+            <form onSubmit={handleInquirySubmit} className="bg-white rounded-lg shadow-sm border border-gray-100 p-6 md:p-10">
+              {formError && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-md text-red-700 text-sm">
+                  {formError}
+                </div>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Full Name *</label>
+                  <input type="text" name="name" value={formValues.name} onChange={onFormChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="John Smith" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+                  <input type="text" name="company" value={formValues.company} onChange={onFormChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="Your Company Ltd" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                  <input type="email" name="email" value={formValues.email} onChange={onFormChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="john@company.com" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                  <input type="tel" name="phone" value={formValues.phone} onChange={onFormChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="+1 234 567 8900" />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Product / Industry *</label>
+                  <input type="text" name="product_industry" value={formValues.product_industry} onChange={onFormChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors" placeholder="Describe the product you want to source" />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Estimated Quantity</label>
+                  <select name="estimated_quantity" value={formValues.estimated_quantity} onChange={onFormChange} className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors bg-white">
+                    <option value="">Select approximate quantity</option>
+                    <option value="100-500">100 - 500 units</option>
+                    <option value="500-1000">500 - 1,000 units</option>
+                    <option value="1000-5000">1,000 - 5,000 units</option>
+                    <option value="5000-10000">5,000 - 10,000 units</option>
+                    <option value="10000+">10,000+ units</option>
+                  </select>
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Project Details *</label>
+                  <textarea rows={4} name="project_details" value={formValues.project_details} onChange={onFormChange} required className="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-colors resize-none" placeholder="Describe your requirements, quality standards, target budget, and any other relevant details..." />
+                </div>
+              </div>
+              <div className="mt-8">
+                <Button variant="accent" size="lg" className="w-full md:w-auto" type="submit" disabled={formStatus === 'submitting'}>
+                  {formStatus === 'submitting' ? 'Submitting...' : (
+                    <>
+                      Submit Inquiry
+                      <ArrowRight className="w-5 h-5" />
+                    </>
+                  )}
+                </Button>
+                <p className="text-gray-400 text-sm mt-3">We respect your privacy. Your information will never be shared.</p>
+              </div>
+            </form>
+          )}
         </div>
       </section>
     </div>
