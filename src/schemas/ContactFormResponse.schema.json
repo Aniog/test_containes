@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this form",
+      "x-foreignKey": "users.id"
+    },
+    "first_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "First name"
+    },
+    "last_name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Last name"
+    },
+    "company_name": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "service_required": {
+      "type": "string",
+      "description": "Service required"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product details and requirements"
+    }
+  },
+  "required": ["first_name", "last_name", "email", "product_details"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

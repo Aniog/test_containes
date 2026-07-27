@@ -1,15 +1,81 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { createContactFormResponse, upsertUser } from '@/api/contact';
 
 export default function Contact() {
   const containerRef = useRef(null);
+  
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    companyName: '',
+    email: '',
+    serviceRequired: 'Product Sourcing & Manufacturing',
+    productDetails: ''
+  });
+  
+  const [submitStatus, setSubmitStatus] = useState('idle'); // 'idle', 'submitting', 'success', 'error'
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitStatus('submitting');
+    setErrorMessage('');
+
+    try {
+      // 1. Upsert User (CRM Record)
+      const userRecord = await upsertUser({
+        email: formData.email,
+        name: `${formData.firstName} ${formData.lastName}`.trim(),
+        role: 'guest',
+      });
+
+      if (!userRecord || !userRecord.id) {
+        throw new Error('Failed to retrieve user profile.');
+      }
+
+      // 2. Insert Form Response
+      const response = await createContactFormResponse({
+        user_id: userRecord.id,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        company_name: formData.companyName,
+        email: formData.email,
+        service_required: formData.serviceRequired,
+        product_details: formData.productDetails
+      });
+
+      if (response.success) {
+        setSubmitStatus('success');
+        setFormData({
+          firstName: '',
+          lastName: '',
+          companyName: '',
+          email: '',
+          serviceRequired: 'Product Sourcing & Manufacturing',
+          productDetails: ''
+        });
+      } else {
+        throw new Error(response.error || 'Submission failed');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setErrorMessage(error.message || 'Something went wrong. Please try again.');
+      setSubmitStatus('error');
+    }
+  };
 
   return (
     <div ref={containerRef} className="bg-white">
@@ -37,31 +103,72 @@ export default function Contact() {
             {/* Contact Form */}
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Request a Free Sourcing Quote</h2>
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="John" required />
+                    <input 
+                      type="text" 
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      placeholder="John" 
+                      required 
+                      disabled={submitStatus === 'submitting'}
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                    <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Doe" required />
+                    <input 
+                      type="text" 
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                      placeholder="Doe" 
+                      required 
+                      disabled={submitStatus === 'submitting'}
+                    />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Company Name</label>
-                  <input type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Your Company Ltd" />
+                  <input 
+                    type="text" 
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="Your Company Ltd" 
+                    disabled={submitStatus === 'submitting'}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="john@example.com" required />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" 
+                    placeholder="john@example.com" 
+                    required 
+                    disabled={submitStatus === 'submitting'}
+                  />
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Service Required</label>
-                  <select className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+                  <select 
+                    name="serviceRequired"
+                    value={formData.serviceRequired}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                    disabled={submitStatus === 'submitting'}
+                  >
                     <option>Product Sourcing & Manufacturing</option>
                     <option>Quality Control Inspection only</option>
                     <option>Logistics & Shipping only</option>
@@ -72,15 +179,36 @@ export default function Contact() {
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Product Details & Requirements</label>
                   <textarea 
+                    name="productDetails"
+                    value={formData.productDetails}
+                    onChange={handleInputChange}
                     rows={5} 
                     className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" 
                     placeholder="Please provide product links, specifications, estimated order quantities, and any other relevant details..."
                     required
+                    disabled={submitStatus === 'submitting'}
                   ></textarea>
                 </div>
 
-                <Button size="lg" className="w-full bg-blue-600 text-white py-6 text-lg" type="submit">
-                  Send Inquiry
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 text-green-700 rounded-lg border border-green-200">
+                    Thank you! Your quote request has been sent successfully. We will get back to you within 24 hours.
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 text-red-700 rounded-lg border border-red-200">
+                    {errorMessage}
+                  </div>
+                )}
+
+                <Button 
+                  size="lg" 
+                  className="w-full bg-blue-600 text-white py-6 text-lg" 
+                  type="submit"
+                  disabled={submitStatus === 'submitting'}
+                >
+                  {submitStatus === 'submitting' ? 'Sending...' : 'Send Inquiry'}
                 </Button>
               </form>
             </div>
