@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { submitInquiry } from "@/api/inquiries";
 
 const InquiryForm = ({ compact = false, title = "Get a Free Sourcing Quote" }) => {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,14 +17,47 @@ const InquiryForm = ({ compact = false, title = "Get a Free Sourcing Quote" }) =
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (error) setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const validate = (values) => {
+    if (!values.name.trim()) return "Full name is required.";
+    if (!values.email.trim()) return "Business email is required.";
+    if (!/^\S+@\S+\.\S+$/.test(values.email)) return "Please enter a valid email address.";
+    if (!values.product.trim()) return "Product category is required.";
+    return null;
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setError(null);
+
+    const validationError = validate(formData);
+    if (validationError) {
+      setError(validationError);
+      return;
+    }
+
+    setStatus("submitting");
+
+    try {
+      await submitInquiry(formData);
+      setStatus("success");
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        product: "",
+        quantity: "",
+        message: "",
+      });
+    } catch (err) {
+      setError(err.message || "Something went wrong. Please try again.");
+      setStatus("error");
+    }
   };
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-8 md:p-10 text-center">
         <div className="w-16 h-16 rounded-full bg-teal-50 flex items-center justify-center mx-auto mb-4">
@@ -36,6 +71,8 @@ const InquiryForm = ({ compact = false, title = "Get a Free Sourcing Quote" }) =
     );
   }
 
+  const isSubmitting = status === "submitting";
+
   return (
     <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-6 md:p-8">
       {!compact && <h3 className="text-2xl font-bold text-slate-900 mb-2">{title}</h3>}
@@ -44,7 +81,7 @@ const InquiryForm = ({ compact = false, title = "Get a Free Sourcing Quote" }) =
           Tell us what you are looking for. We will get back to you with next steps.
         </p>
       )}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4" aria-busy={isSubmitting}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
@@ -128,12 +165,29 @@ const InquiryForm = ({ compact = false, title = "Get a Free Sourcing Quote" }) =
           />
         </div>
 
+        {error && (
+          <div className="rounded-lg bg-red-50 border border-red-100 p-4 flex items-start gap-3" role="alert">
+            <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+            <p className="text-sm text-red-700">{error}</p>
+          </div>
+        )}
+
         <button
           type="submit"
-          className="w-full inline-flex items-center justify-center gap-2 bg-teal-600 text-white hover:bg-teal-700 px-6 py-3.5 rounded-lg font-medium transition-colors"
+          disabled={isSubmitting}
+          className="w-full inline-flex items-center justify-center gap-2 bg-teal-600 text-white hover:bg-teal-700 disabled:bg-teal-400 disabled:cursor-not-allowed px-6 py-3.5 rounded-lg font-medium transition-colors"
         >
-          <Send className="w-4 h-4" />
-          Submit Inquiry
+          {isSubmitting ? (
+            <>
+              <Loader2 className="w-4 h-4 animate-spin" />
+              Submitting...
+            </>
+          ) : (
+            <>
+              <Send className="w-4 h-4" />
+              Submit Inquiry
+            </>
+          )}
         </button>
 
         <p className="text-xs text-slate-500 text-center">
