@@ -3,10 +3,11 @@ import {
   Mail, Phone, MapPin, Clock, CheckCircle, Send,
   MessageSquare, FileText, ArrowRight, Building2
 } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
+import { ImageHelper, DataClient } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 
-
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const containerRef = useRef(null);
@@ -95,16 +96,58 @@ const Contact = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    // Simulate form submission
-    setSubmitted(true);
-    console.log('Form submitted:', formData);
+    
+    setIsSubmitting(true);
+    setSubmitError('');
+    
+    try {
+      const { data: response, error } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: formData.name,
+            company: formData.company,
+            email: formData.email,
+            phone: formData.phone,
+            country: formData.country,
+            product_type: formData.productType,
+            order_quantity: formData.orderQuantity,
+            target_budget: formData.budget,
+            timeline: formData.timeline,
+            services_needed: formData.services,
+            project_details: formData.message,
+            status: 'new',
+            source: 'website'
+          }
+        })
+        .select()
+        .single();
+      
+      if (error || response?.success === false) {
+        console.error('Form submission error:', error || response.errors);
+        setSubmitError('There was an error submitting your inquiry. Please try again or email us directly.');
+        setIsSubmitting(false);
+        return;
+      }
+      
+      console.log('Form submitted successfully:', response);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setSubmitError('There was an error submitting your inquiry. Please try again or email us directly.');
+    }
+    
+    setIsSubmitting(false);
   };
 
   if (submitted) {
@@ -397,12 +440,28 @@ const Contact = () => {
                     {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                   </div>
 
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                      {submitError}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="btn-primary w-full text-lg py-4 flex items-center justify-center gap-2"
+                    disabled={isSubmitting}
+                    className="btn-primary w-full text-lg py-4 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-5 h-5" />
-                    Submit Inquiry
+                    {isSubmitting ? (
+                      <>
+                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5" />
+                        Submit Inquiry
+                      </>
+                    )}
                   </button>
 
                   <p className="text-xs text-gray-500 text-center">
