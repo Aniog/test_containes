@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
+import { submitInquiry } from '@/api/inquiries'
 import {
   Mail, Phone, MapPin, Clock, Send, ArrowRight,
   MessageSquare, Globe, CheckCircle
@@ -59,6 +60,7 @@ const Contact = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     if (containerRef.current) {
@@ -69,18 +71,23 @@ const Contact = () => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+    if (error) setError(null)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
+    setError(null)
 
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      await submitInquiry(formData)
       setIsSubmitting(false)
       setIsSubmitted(true)
-      console.log('Form submitted:', formData)
-    }, 1500)
+    } catch (err) {
+      console.error('Inquiry submission failed:', err)
+      setError(err.message || 'Submission failed. Please try again.')
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -170,6 +177,11 @@ const Contact = () => {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700 text-sm">
+                      {error}
+                    </div>
+                  )}
                   {/* Contact Info */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
