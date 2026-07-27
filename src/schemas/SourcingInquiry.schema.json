@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number (optional)"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Furniture & Home Décor",
+        "Apparel & Textiles",
+        "Hardware & Tools",
+        "Packaging & Printing",
+        "Home & Kitchen",
+        "Sports & Outdoor",
+        "Beauty & Personal Care",
+        "Toys & Baby Products",
+        "Other"
+      ],
+      "description": "Product category the buyer is interested in sourcing"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping Coordination",
+        "Full Sourcing Package",
+        "Not Sure Yet"
+      ],
+      "description": "Primary service the buyer is looking for"
+    },
+    "estimated_order_value": {
+      "type": "string",
+      "enum": [
+        "Under $5,000",
+        "$5,000 – $20,000",
+        "$20,000 – $100,000",
+        "Over $100,000",
+        "Not sure yet"
+      ],
+      "description": "Estimated order value in USD"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product the buyer wants to source, including specs, quantity, and any special requirements"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Desired delivery or project timeline"
+    },
+    "how_did_you_hear": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "How the buyer found SSourcing China"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user record in the Users table",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
