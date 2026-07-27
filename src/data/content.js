@@ -1,0 +1,533 @@
+export const NAV_LINKS = [
+  { to: '/', label: 'Home' },
+  { to: '/services', label: 'Services' },
+  { to: '/how-it-works', label: 'How It Works' },
+  { to: '/products', label: 'Products We Source' },
+  { to: '/case-studies', label: 'Case Studies' },
+  { to: '/blog', label: 'Blog' },
+  { to: '/contact', label: 'Contact' },
+]
+
+export const CONTACT_INFO = {
+  email: 'inquiry@ssourcingchina.com',
+  phone: '+86 755 8321 4400',
+  whatsapp: '+86 138 2655 9017',
+  address: 'Room 1206, Block B, Nanshan iPark, Shenzhen, Guangdong, China',
+  hours: 'Monday – Friday, 9:00 – 18:30 (GMT+8)',
+}
+
+export const SERVICES = [
+  {
+    id: 'supplier-sourcing',
+    title: 'Supplier Sourcing',
+    icon: 'Search',
+    short: 'We identify and shortlist qualified Chinese manufacturers that match your product, target price and certification requirements.',
+    points: [
+      'Sourcing from verified manufacturer pools, not just marketplace listings',
+      'Shortlist of 3–5 candidate factories with quotations in 5–7 working days',
+      'Comparison of pricing, MOQs, lead times and tooling costs',
+      'Sample coordination and side-by-side sample evaluation',
+    ],
+    deliverables: ['Supplier shortlist report', 'Quotation comparison sheet', 'Sample evaluation notes'],
+  },
+  {
+    id: 'factory-verification',
+    title: 'Factory Audit & Verification',
+    icon: 'Factory',
+    short: 'On-site factory audits and business verification so you know exactly who you are dealing with before you pay a deposit.',
+    points: [
+      'Business license, export record and legal status checks',
+      'On-site audits covering capacity, equipment and quality systems',
+      'Verification of claimed certifications (ISO, BSCI, CE-related docs)',
+      'Clear audit report with photos, findings and risk notes',
+    ],
+    deliverables: ['Factory audit report (PDF)', 'Photo & video documentation', 'Risk assessment summary'],
+  },
+  {
+    id: 'quality-inspection',
+    title: 'Quality Control & Inspection',
+    icon: 'ClipboardCheck',
+    short: 'Independent product inspections at every critical stage — before, during and after production.',
+    points: [
+      'Pre-production checks of materials, components and golden samples',
+      'During-production inspection (DUPRO) when 20–60% is complete',
+      'Pre-shipment inspection (PSI) based on AQL sampling standards',
+      'Container loading supervision to confirm quantity and packing',
+    ],
+    deliverables: ['Inspection report within 24 hours', 'Photo & video evidence', 'Defect classification and pass/fail verdict'],
+  },
+  {
+    id: 'production-followup',
+    title: 'Production Follow-up',
+    icon: 'Gauge',
+    short: 'A dedicated merchandiser tracks your order on the ground and keeps you informed from deposit to dispatch.',
+    points: [
+      'Weekly production updates with photos from the factory floor',
+      'Early warning on delays, material substitutions or quality drift',
+      'Coordination of changes, approvals and corrective actions',
+      'Timeline management against your launch or season dates',
+    ],
+    deliverables: ['Weekly status report', 'Production timeline tracker', 'Issue & resolution log'],
+  },
+  {
+    id: 'shipping-logistics',
+    title: 'Shipping & Logistics Coordination',
+    icon: 'Ship',
+    short: 'We coordinate freight, consolidation and export documents so your goods leave China smoothly and arrive on time.',
+    points: [
+      'Sea, air, rail and express freight booking with vetted forwarders',
+      'Consolidation of orders from multiple suppliers into one shipment',
+      'Export documentation: commercial invoice, packing list, B/L, CO',
+      'Incoterms guidance (FOB, EXW, DDP) and customs coordination',
+    ],
+    deliverables: ['Freight quotation comparison', 'Document package review', 'Shipment tracking updates'],
+  },
+  {
+    id: 'oem-odm',
+    title: 'Custom & OEM/ODM Projects',
+    icon: 'Settings',
+    short: 'End-to-end support for custom products: from specification sheets and tooling to mass production.',
+    points: [
+      'Translation of your specs into factory-ready technical documents',
+      'Mold, tooling and packaging development coordination',
+      'NDA and IP-conscious supplier matching',
+      'Pre-production sample approval workflow',
+    ],
+    deliverables: ['Technical specification pack', 'Tooling cost breakdown', 'Sample approval record'],
+  },
+]
+
+export const PROCESS_STEPS = [
+  {
+    id: 'inquiry',
+    step: 1,
+    title: 'Send Your Inquiry',
+    duration: 'Day 0',
+    short: 'Tell us what you want to source — specs, target price, quantity and destination.',
+    detail: 'Share your product specifications, drawings or reference links, target price, expected quantity and destination market. The more detail you give us, the more accurate our sourcing. We reply within one business day with initial questions or a sourcing plan.',
+  },
+  {
+    id: 'sourcing',
+    step: 2,
+    title: 'Sourcing & Quotation',
+    duration: 'Days 1–7',
+    short: 'We shortlist qualified factories and present a clear quotation comparison.',
+    detail: 'We search our verified supplier network and the wider market, filter out traders posing as factories, and shortlist 3–5 qualified manufacturers. You receive a comparison of quotations, MOQs, lead times and factory backgrounds — not just a single price.',
+  },
+  {
+    id: 'verification',
+    step: 3,
+    title: 'Sample & Factory Verification',
+    duration: 'Days 7–14',
+    short: 'Samples are checked and factories are audited before you commit.',
+    detail: 'We coordinate samples from the top candidates and evaluate them against your spec. For orders that need it, we run an on-site factory audit to confirm capacity, quality systems and legal status. You approve the supplier based on evidence, not promises.',
+  },
+  {
+    id: 'production',
+    step: 4,
+    title: 'Order & Production Follow-up',
+    duration: 'Weeks 2–6',
+    short: 'We place the order, track production weekly and flag issues early.',
+    detail: 'After you confirm the supplier and pay the deposit, our merchandiser follows production on the ground. You get weekly updates with photos, and we intervene early if we see delays, material changes or quality drift — while there is still time to fix them.',
+  },
+  {
+    id: 'inspection',
+    step: 5,
+    title: 'Quality Inspection',
+    duration: 'Before shipment',
+    short: 'Independent AQL inspection confirms quality before the balance payment.',
+    detail: 'Before the goods ship — and before you pay the balance — our inspector checks the finished products using AQL sampling. You receive a detailed report with photos, measurements and defect classification within 24 hours, plus our clear pass/fail recommendation.',
+  },
+  {
+    id: 'shipping',
+    step: 6,
+    title: 'Shipping & Delivery',
+    duration: 'Weeks 6–10',
+    short: 'We coordinate freight, documents and customs until goods arrive.',
+    detail: 'We book freight with vetted forwarders, supervise container loading, prepare and check export documents, and track the shipment to destination. You receive the full document package and tracking updates until the goods are in your warehouse.',
+  },
+]
+
+export const PROBLEMS = [
+  {
+    id: 'problem-suppliers',
+    problem: 'You found suppliers online but cannot tell who is real',
+    detail: 'Marketplace listings mix factories, traders and agents. We verify business licenses, visit factories in person and confirm who actually makes the product.',
+  },
+  {
+    id: 'problem-quality',
+    problem: 'Samples look great, but bulk quality is a gamble',
+    detail: 'We lock specifications with a signed golden sample and inspect during and after production — so bulk goods match what you approved.',
+  },
+  {
+    id: 'problem-communication',
+    problem: 'Slow replies, language barriers and misunderstandings',
+    detail: 'Our bilingual team communicates with factories daily in Chinese and reports to you in clear English — nothing gets lost in translation.',
+  },
+  {
+    id: 'problem-ontheground',
+    problem: 'You cannot be in China to watch your production',
+    detail: 'We are your eyes on the factory floor: weekly photo updates, unannounced visits and early intervention when something slips.',
+  },
+  {
+    id: 'problem-hidden-costs',
+    problem: 'Hidden costs and last-minute price changes',
+    detail: 'Quotations are compared line by line, and shipping, packaging and tooling costs are made transparent before you commit.',
+  },
+  {
+    id: 'problem-shipping',
+    problem: 'Shipping, customs and documents are a maze',
+    detail: 'We coordinate freight, consolidation and the full export document package — and keep tracking your shipment until it arrives.',
+  },
+]
+
+export const PRODUCT_CATEGORIES = [
+  {
+    id: 'consumer-electronics',
+    name: 'Consumer Electronics & Accessories',
+    desc: 'TWS earphones, chargers, smart home devices, wearables and cables from Shenzhen and Dongguan.',
+    items: ['TWS earbuds', 'GaN chargers & power banks', 'Smart home sensors', 'Bluetooth speakers'],
+    markets: 'EU, US, Middle East',
+  },
+  {
+    id: 'home-kitchen',
+    name: 'Home, Kitchen & Furniture',
+    desc: 'Kitchenware, small furniture, storage and home textiles from Foshan, Ningbo and Qingdao.',
+    items: ['Cookware & cutlery', 'Flat-pack furniture', 'Storage & organization', 'Bedding & towels'],
+    markets: 'EU, US, Australia',
+  },
+  {
+    id: 'beauty-personal-care',
+    name: 'Beauty & Personal Care',
+    desc: 'Private-label skincare, hair tools and cosmetic accessories from Guangzhou and Yiwu.',
+    items: ['Private-label skincare', 'Hair dryers & stylers', 'Makeup brushes & tools', 'Bottles & packaging'],
+    markets: 'US, EU, Southeast Asia',
+  },
+  {
+    id: 'fitness-outdoor',
+    name: 'Fitness & Outdoor',
+    desc: 'Gym equipment, camping gear and cycling accessories from Xiamen, Nantong and Tianjin.',
+    items: ['Resistance & yoga gear', 'Tents & sleeping bags', 'Cycling accessories', 'Home gym equipment'],
+    markets: 'US, EU, Japan',
+  },
+  {
+    id: 'pet-supplies',
+    name: 'Pet Supplies',
+    desc: 'Pet beds, toys, feeders and grooming products from Hangzhou, Yiwu and Qingdao.',
+    items: ['Pet beds & carriers', 'Interactive toys', 'Automatic feeders', 'Grooming tools'],
+    markets: 'US, EU, UK',
+  },
+  {
+    id: 'packaging-printing',
+    name: 'Packaging & Printing',
+    desc: 'Custom retail packaging, mailer boxes, labels and paper products from Guangdong and Zhejiang.',
+    items: ['Rigid & folding boxes', 'Mailer boxes', 'Labels & stickers', 'Paper bags'],
+    markets: 'Global',
+  },
+  {
+    id: 'apparel-textiles',
+    name: 'Apparel & Textiles',
+    desc: 'Basics, activewear, workwear and accessories from Guangzhou, Ningbo and Quanzhou.',
+    items: ['T-shirts & hoodies', 'Activewear', 'Workwear & uniforms', 'Caps & bags'],
+    markets: 'EU, US, Africa',
+  },
+  {
+    id: 'tools-hardware',
+    name: 'Tools & Hardware',
+    desc: 'Hand tools, fasteners and construction hardware from Yongkang, Linyi and Foshan.',
+    items: ['Hand & power tools', 'Fasteners & fittings', 'Construction hardware', 'Garden tools'],
+    markets: 'US, EU, South America',
+  },
+  {
+    id: 'toys-baby',
+    name: 'Toys & Baby Products',
+    desc: 'Educational toys, plush and baby essentials with EN71/ASTM compliance from Shantou and Yangzhou.',
+    items: ['Educational & STEM toys', 'Plush toys', 'Baby feeding & care', 'Outdoor play'],
+    markets: 'EU, US',
+  },
+]
+
+export const TRUST_STATS = [
+  { id: 'stat-years', value: '12+', label: 'Years sourcing from China' },
+  { id: 'stat-orders', value: '1,400+', label: 'Orders managed end-to-end' },
+  { id: 'stat-countries', value: '32', label: 'Countries served' },
+  { id: 'stat-inspections', value: '3,600+', label: 'Inspections performed' },
+]
+
+export const TRUST_POINTS = [
+  {
+    id: 'trust-team',
+    title: 'A real team on the ground in China',
+    desc: 'Our sourcing, QC and logistics staff work from Shenzhen and visit factories in person — no remote-only middlemen.',
+  },
+  {
+    id: 'trust-english',
+    title: 'Clear English reporting',
+    desc: 'Every audit, inspection and production update is delivered in clear written English with photos and video evidence.',
+  },
+  {
+    id: 'trust-pricing',
+    title: 'Transparent, agreed-up-front pricing',
+    desc: 'Fixed service fees or a clearly stated commission agreed before we start. No hidden margins added to factory prices.',
+  },
+  {
+    id: 'trust-independent',
+    title: 'Independent quality verdicts',
+    desc: 'Our inspectors report to you, not to the factory. A failed inspection means a failed shipment — we do not soften findings.',
+  },
+  {
+    id: 'trust-network',
+    title: 'Verified supplier network',
+    desc: 'We reuse factories only when they have passed our audits and delivered consistently for past clients.',
+  },
+  {
+    id: 'trust-ip',
+    title: 'NDA & IP-conscious process',
+    desc: 'Custom designs are shared with suppliers under NDA, and we help you split production steps when IP risk is high.',
+  },
+]
+
+export const CASE_STUDIES = [
+  {
+    id: 'case-kitchenware',
+    industry: 'Home & Kitchen',
+    title: 'German retailer moves kitchenware line to a verified factory',
+    client: 'Mid-size kitchenware retailer, Germany',
+    challenge: 'The client was buying through a trading company at unstable prices and wanted to work directly with a real manufacturer without risking quality.',
+    approach: 'We audited six candidate factories in Guangdong and Zhejiang, ran side-by-side sample tests, and negotiated direct pricing with the strongest manufacturer.',
+    results: [
+      '14% unit cost reduction versus the previous trading-company pricing',
+      'Direct factory relationship with confirmed production capacity',
+      'Pre-shipment inspection pass rate above 98% across 8 orders',
+    ],
+    duration: 'Ongoing relationship, 2+ years',
+    category: 'Kitchenware & cookware',
+  },
+  {
+    id: 'case-audio',
+    industry: 'Consumer Electronics',
+    title: 'US audio brand rescues a delayed TWS earphone launch',
+    client: 'DTC audio accessories brand, United States',
+    challenge: 'A first production run of TWS earphones failed the client’s own spot check: battery life below spec and pairing issues on 6% of units.',
+    approach: 'We ran a full during-production inspection, isolated the faulty battery batch, supervised rework at the factory and re-inspected 100% of the affected lot.',
+    results: [
+      'Defective batch identified before shipment — no defective units reached customers',
+      'Rework completed in 9 days under our supervision',
+      'Launch delayed by 2 weeks instead of a full re-production cycle',
+    ],
+    duration: '6-week engagement',
+    category: 'TWS earphones & audio accessories',
+  },
+  {
+    id: 'case-fitness',
+    industry: 'Fitness & Outdoor',
+    title: 'Australian gym equipment importer cuts transit cost by 22%',
+    client: 'Gym equipment distributor, Australia',
+    challenge: 'The client ordered from four suppliers and paid for four separate less-than-container shipments, with frequent document errors at customs.',
+    approach: 'We consolidated all four suppliers into one warehouse, combined orders into full-container loads and standardized the export document package.',
+    results: [
+      '22% freight cost reduction through FCL consolidation',
+      'Zero customs document errors in the following 5 shipments',
+      'Single weekly shipment schedule instead of ad-hoc bookings',
+    ],
+    duration: 'Ongoing relationship, 18 months',
+    category: 'Home gym & fitness equipment',
+  },
+  {
+    id: 'case-beauty',
+    industry: 'Beauty & Personal Care',
+    title: 'French beauty startup launches private-label skincare on spec',
+    client: 'Indie skincare startup, France',
+    challenge: 'The founders had no China experience and needed a compliant manufacturer for a 3-SKU private-label line with custom packaging.',
+    approach: 'We shortlisted GMP-certified cosmetics manufacturers, coordinated formulation samples, verified EU compliance documentation and inspected the first production run.',
+    results: [
+      'First order produced to spec with compliant CPNP documentation',
+      'Custom packaging approved after 2 sample rounds',
+      'Reorder cycle now runs at a stable 35 days',
+    ],
+    duration: '4-month project, now ongoing',
+    category: 'Private-label skincare',
+  },
+]
+
+export const FAQS = [
+  {
+    id: 'faq-cost',
+    q: 'How much does your sourcing service cost?',
+    a: 'Most clients work with us on a sourcing commission of 5–10% of the order value, depending on order size and complexity. Standalone services such as factory audits and inspections are charged at fixed fees. All fees are agreed in writing before we start — we never add hidden margins to factory prices.',
+  },
+  {
+    id: 'faq-moq',
+    q: 'What is the minimum order quantity you work with?',
+    a: 'MOQs are set by factories, not by us, and vary by product — typically from 100 to 1,000 units for standard products. For smaller trial orders, we can often negotiate lower MOQs or match you with factories that accept them, especially for standard (non-custom) products.',
+  },
+  {
+    id: 'faq-timeline',
+    q: 'How long does the whole sourcing process take?',
+    a: 'A supplier shortlist usually takes 5–7 working days. Sampling adds 1–2 weeks. Production for a typical order runs 25–45 days, and sea freight to Europe or the US adds roughly 4–6 weeks. A realistic end-to-end timeline for a first order is 2–3 months.',
+  },
+  {
+    id: 'faq-payment',
+    q: 'How do payments to factories work? Is it safe?',
+    a: 'The standard structure is a 30% deposit to start production and 70% balance after a passed pre-shipment inspection. You pay the factory directly — we do not hold your funds. Our verification and inspection steps exist precisely to protect you at the two riskiest moments: before the deposit and before the balance.',
+  },
+  {
+    id: 'faq-countries',
+    q: 'Which countries do you ship to?',
+    a: 'We have coordinated shipments to 32 countries, including the US, Canada, UK, Germany, France, Australia, Japan and the UAE. We work with sea, air, rail and express freight and can advise on the right Incoterms (FOB, EXW, DDP) for your situation.',
+  },
+  {
+    id: 'faq-vs-alibaba',
+    q: 'Why use a sourcing agent instead of buying on Alibaba directly?',
+    a: 'Marketplaces are a good starting point, but listings mix factories with traders, and there is no independent check on what is actually produced. We verify who the supplier really is, negotiate in Chinese, follow production on the ground and inspect goods before you pay the balance — the steps a marketplace does not do for you.',
+  },
+  {
+    id: 'faq-small',
+    q: 'Can you help if I am a small business or first-time importer?',
+    a: 'Yes. Many of our clients are first-time importers. We explain each step, keep minimums realistic, and tell you honestly if your order is too small for China sourcing to make sense. The free quote is a good way to find out before committing to anything.',
+  },
+  {
+    id: 'faq-ip',
+    q: 'How do you protect my product idea and intellectual property?',
+    a: 'We sign NDAs before sharing your designs with any supplier, distribute sensitive production steps across suppliers when risk is high, and work with factories that have a track record with overseas brands. For highly sensitive projects we can also advise on registered design and trademark steps in China.',
+  },
+]
+
+export const BLOG_POSTS = [
+  {
+    id: 'post-verify-supplier',
+    title: 'How to Verify a Chinese Supplier Before You Pay a Deposit',
+    category: 'Supplier Verification',
+    date: '2026-07-14',
+    readTime: '8 min read',
+    excerpt: 'Business licenses, export records, factory audits and video calls — a practical checklist to confirm who you are really dealing with before money changes hands.',
+    content: [
+      { type: 'p', text: 'The single most expensive mistake new importers make is paying a deposit to a supplier they have not verified. Verification is not about distrust — it is standard practice in China trade, and legitimate factories expect it.' },
+      { type: 'h3', text: '1. Check the business license' },
+      { type: 'p', text: 'Every Chinese company has a business license with a unified social credit code, registered capital, legal representative and business scope. Ask for a copy and check that the company name matches the bank account you would pay. A mismatch between the beneficiary name and the licensed company is a serious red flag.' },
+      { type: 'h3', text: '2. Confirm they are a factory, not just a trader' },
+      { type: 'p', text: 'Trading companies are not automatically bad, but you should know which you are dealing with. Look at the business scope on the license, ask for a factory tour video call, and check whether the address is an industrial zone or an office building. An on-site audit settles the question definitively.' },
+      { type: 'h3', text: '3. Review export history and references' },
+      { type: 'p', text: 'Ask which markets they export to and request references or evidence of past shipments (redacted bills of lading work well). A factory that has shipped to the EU or US repeatedly has already passed other buyers’ due diligence.' },
+      { type: 'h3', text: '4. Visit, or send someone who can' },
+      { type: 'p', text: 'Nothing replaces standing on the factory floor. If you cannot travel, a third-party audit gives you photos of the production lines, equipment lists, worker counts and quality system documentation — usually within a few days and for a modest fixed fee.' },
+      { type: 'p', text: 'Verification takes days; recovering a lost deposit takes months. Do the checks first.' },
+    ],
+  },
+  {
+    id: 'post-first-order-mistakes',
+    title: '5 Mistakes First-Time Importers Make When Sourcing from China',
+    category: 'Sourcing Basics',
+    date: '2026-06-30',
+    readTime: '6 min read',
+    excerpt: 'From vague specifications to skipping inspections — the five errors we see most often, and the simple habits that prevent them.',
+    content: [
+      { type: 'p', text: 'After managing more than a thousand orders, we see the same first-time mistakes again and again. All five are avoidable with simple habits.' },
+      { type: 'h3', text: '1. Sourcing with a vague specification' },
+      { type: 'p', text: '“Good quality yoga mat” is not a specification. Material, thickness, density, dimensions, tolerance, color standard, packaging — write it all down. Factories quote and produce to what is written, not to what you imagined.' },
+      { type: 'h3', text: '2. Choosing the cheapest quote' },
+      { type: 'p', text: 'When one quote is 30% below the others, the difference usually comes from thinner materials, weaker components or a supplier who plans to renegotiate later. Compare quotes line by line and ask why the cheap one is cheap.' },
+      { type: 'h3', text: '3. Approving a sample, then never referencing it again' },
+      { type: 'p', text: 'Your approved sample should become a signed “golden sample” kept by you, the factory and your inspector. It is the objective standard for the final inspection — without it, quality disputes become opinion versus opinion.' },
+      { type: 'h3', text: '4. Skipping the pre-shipment inspection' },
+      { type: 'p', text: 'The 70% balance is your last leverage. An AQL inspection before that payment costs very little compared to receiving a container of unsellable goods. Inspect first, then pay.' },
+      { type: 'h3', text: '5. Underestimating the total timeline' },
+      { type: 'p', text: 'Sampling, production, inspection and sea freight add up to 2–3 months for a first order. Plan your launch dates backwards from that reality, and add buffer for Chinese New Year.' },
+    ],
+  },
+  {
+    id: 'post-aql-explained',
+    title: 'AQL Explained: What a Pre-Shipment Inspection Actually Checks',
+    category: 'Quality Control',
+    date: '2026-06-12',
+    readTime: '7 min read',
+    excerpt: 'What inspectors sample, how defect levels are classified, and how to read a PSI report before you release the balance payment.',
+    content: [
+      { type: 'p', text: 'A pre-shipment inspection (PSI) is the most common quality checkpoint in China trade — and the most misunderstood. Here is what actually happens.' },
+      { type: 'h3', text: 'Sampling by AQL' },
+      { type: 'p', text: 'Inspectors do not check every unit. They pull a statistically valid random sample based on AQL (Acceptable Quality Limit) tables — for a 5,000-unit order, typically 200–315 units. Defects are classified as critical, major or minor, each with its own acceptance threshold.' },
+      { type: 'h3', text: 'What gets checked' },
+      { type: 'p', text: 'Workmanship and appearance, function and safety tests, measurements against your spec, packaging and labeling, carton drop tests, and quantity verification. The checklist is agreed with you before the inspection, based on your product’s real risks.' },
+      { type: 'h3', text: 'Reading the report' },
+      { type: 'p', text: 'A good report gives you the verdict (pass / fail / pending), defect photos with counts by classification, measurement tables, and on-site findings about packaging and loading readiness. Read the defect list, not just the verdict — a marginal pass on a first order may still deserve a conversation with the factory.' },
+      { type: 'h3', text: 'What a fail means' },
+      { type: 'p', text: 'A failed PSI does not mean lost money — it means leverage. The factory reworks or replaces the defective goods, and a re-inspection confirms the fix before you pay the balance. This is exactly the moment the 30/70 payment structure is designed for.' },
+    ],
+  },
+  {
+    id: 'post-fob-exw-ddp',
+    title: 'FOB, EXW or DDP? Choosing the Right Incoterm for Your Shipment',
+    category: 'Shipping & Logistics',
+    date: '2026-05-26',
+    readTime: '6 min read',
+    excerpt: 'The three Incoterms most used in China sourcing, what each one really costs, and which one fits first-time importers.',
+    content: [
+      { type: 'p', text: 'The Incoterm on your invoice decides who pays for — and who is responsible for — every leg of the journey from the factory floor to your door. Choosing wrong can add unexpected cost or risk.' },
+      { type: 'h3', text: 'EXW (Ex Works)' },
+      { type: 'p', text: 'You take responsibility at the factory gate. The price looks lowest, but you (or your agent) must arrange export customs, inland trucking, the main freight and import clearance. Fine if you have logistics support in China; risky if you do not.' },
+      { type: 'h3', text: 'FOB (Free On Board)' },
+      { type: 'p', text: 'The supplier delivers the goods loaded onto the vessel at a Chinese port; you control and pay for the ocean freight and everything after. FOB is the most common choice for experienced importers because it splits responsibility cleanly and lets you shop for freight.' },
+      { type: 'h3', text: 'DDP (Delivered Duty Paid)' },
+      { type: 'p', text: 'The seller delivers to your door with duties paid. Simplest for first-time importers, but compare the all-in price carefully — DDP quotes sometimes hide fat logistics margins. Ask for the freight and duty breakdown.' },
+      { type: 'p', text: 'Rule of thumb: first orders and small shipments — consider DDP for simplicity. Recurring container orders — move to FOB and control your own freight.' },
+    ],
+  },
+  {
+    id: 'post-sourcing-agent-cost',
+    title: 'How Much Does a China Sourcing Agent Cost — and What Should You Get?',
+    category: 'Sourcing Basics',
+    date: '2026-05-08',
+    readTime: '5 min read',
+    excerpt: 'Commission models, fixed fees and the red flags to watch for when comparing sourcing agents.',
+    content: [
+      { type: 'p', text: 'Sourcing agents in China generally charge in one of three ways. Understanding the models helps you compare offers and spot conflicts of interest.' },
+      { type: 'h3', text: 'Commission on order value' },
+      { type: 'p', text: 'Typically 5–10%, scaled by order size and complexity. The agent is paid when your orders run, so incentives align with reorders. Make sure the commission is stated openly and that factory prices are passed through to you transparently.' },
+      { type: 'h3', text: 'Fixed fees per service' },
+      { type: 'p', text: 'Audits, inspections and sourcing projects are often priced as fixed fees — for example a per-day inspection rate or a per-project sourcing fee. This model suits one-off needs and lets you test an agent before committing to a commission relationship.' },
+      { type: 'h3', text: 'Hidden margin (the one to avoid)' },
+      { type: 'p', text: 'Some “agents” quote you a product price with an undisclosed markup and no service fee. You cannot see the real factory price, and the agent profits from your supplier never improving. Insist on transparent factory pricing plus a stated fee.' },
+      { type: 'h3', text: 'What a good fee should include' },
+      { type: 'p', text: 'Supplier shortlisting with real quotations, sample coordination, production follow-up with photo reporting, inspection coordination and shipping support. If the fee only buys you an introduction to a factory, keep looking.' },
+    ],
+  },
+  {
+    id: 'post-cny-planning',
+    title: 'Chinese New Year and Your Supply Chain: A Practical Planning Guide',
+    category: 'Production Planning',
+    date: '2026-04-15',
+    readTime: '5 min read',
+    excerpt: 'Factories close for weeks, capacity tightens before the holiday, and quality dips after it. How to plan orders around CNY.',
+    content: [
+      { type: 'p', text: 'Chinese New Year (CNY) is the biggest scheduled disruption in China sourcing. Factories close for 2–4 weeks, workers travel home, and the effects start well before the holiday itself.' },
+      { type: 'h3', text: 'Before the holiday: the rush' },
+      { type: 'p', text: 'In the 4–6 weeks before CNY, every buyer pushes to ship before the shutdown. Capacity tightens, freight rates rise, and factories under time pressure make more mistakes. Place orders early and inspect — do not skip QC in the rush.' },
+      { type: 'h3', text: 'After the holiday: the reset' },
+      { type: 'p', text: 'Factories restart with new workers replacing those who did not return. The first production runs after CNY historically show higher defect rates. Schedule a during-production inspection on the first post-holiday run for your product.' },
+      { type: 'h3', text: 'A simple planning rule' },
+      { type: 'p', text: 'If you need goods in March or April, place orders by early December. If you need goods in May, brief your supplier before CNY so production starts in the first week after reopening — with an inspection attached.' },
+    ],
+  },
+]
+
+export const INQUIRY_PRODUCT_OPTIONS = [
+  'Consumer Electronics & Accessories',
+  'Home, Kitchen & Furniture',
+  'Beauty & Personal Care',
+  'Fitness & Outdoor',
+  'Pet Supplies',
+  'Packaging & Printing',
+  'Apparel & Textiles',
+  'Tools & Hardware',
+  'Toys & Baby Products',
+  'Other / Not sure yet',
+]
+
+export const INQUIRY_QUANTITY_OPTIONS = [
+  'Under 500 units',
+  '500 – 1,000 units',
+  '1,000 – 5,000 units',
+  '5,000 – 20,000 units',
+  '20,000+ units',
+  'Not sure yet',
+]
