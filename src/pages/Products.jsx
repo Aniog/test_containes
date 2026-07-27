@@ -1,7 +1,9 @@
+import { useEffect, useRef } from "react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
-import StrkImageLoader from "@/components/shared/StrkImageLoader"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
 import {
   Cpu,
   Cog,
@@ -69,9 +71,15 @@ const categories = [
 ]
 
 export default function Products() {
+  const containerRef = useRef(null)
+
+  useEffect(() => {
+    if (!containerRef.current) return
+    return ImageHelper.loadImages(strkImgConfig, containerRef.current)
+  }, [])
+
   return (
-    <StrkImageLoader>
-      <div className="bg-white">
+    <div ref={containerRef} className="bg-white">
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-center">
@@ -137,7 +145,6 @@ export default function Products() {
             </div>
           </div>
         </section>
-      </div>
-    </StrkImageLoader>
+    </div>
   )
 }
