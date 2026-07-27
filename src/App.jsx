@@ -7,21 +7,33 @@ import Products from "@/pages/Products";
 import CaseStudies from "@/pages/CaseStudies";
 import Blog from "@/pages/Blog";
 import Contact from "@/pages/Contact";
+import AdminInquiries from "@/pages/AdminInquiries";
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/case-studies" element={<CaseStudies />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route
+          path="/admin/inquiries"
+          element={<AdminInquiries />}
+        />
+        <Route
+          path="/*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/how-it-works" element={<HowItWorks />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/case-studies" element={<CaseStudies />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

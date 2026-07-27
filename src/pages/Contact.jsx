@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { Send, CheckCircle, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Send, CheckCircle, Mail, Phone, MapPin, Clock, Loader2 } from "lucide-react";
+import { createInquiry } from "@/api/inquiries";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -15,12 +18,30 @@ export default function Contact() {
 
   const handleChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (error) setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await createInquiry(form);
+      setSubmitted(true);
+      setForm({
+        name: "",
+        email: "",
+        company: "",
+        phone: "",
+        product: "",
+        volume: "",
+        message: "",
+      });
+    } catch (err) {
+      setError(err.message || "Failed to submit inquiry. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -210,12 +231,27 @@ export default function Contact() {
                       placeholder="Target price, timeline, certifications, shipping destination, or any other requirements..."
                     />
                   </div>
+                  {error && (
+                    <div className="p-4 bg-red-50 rounded-lg border border-red-100">
+                      <p className="text-sm text-red-700">{error}</p>
+                    </div>
+                  )}
                   <button
                     type="submit"
-                    className="w-full bg-amber-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-amber-700 transition-colors flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="w-full bg-amber-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-amber-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    <Send className="w-4 h-4" />
-                    Get My Free Sourcing Quote
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4" />
+                        Get My Free Sourcing Quote
+                      </>
+                    )}
                   </button>
                 </form>
               )}
