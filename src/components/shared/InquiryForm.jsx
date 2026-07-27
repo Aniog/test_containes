@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { CheckCircle2, Send } from 'lucide-react'
+import { CheckCircle2, Send, Loader2, AlertCircle } from 'lucide-react'
+import { submitSourcingInquiry } from '@/api/inquiries'
 
 const productTypes = [
   'Consumer Electronics',
@@ -21,7 +22,8 @@ const services = [
 ]
 
 export default function InquiryForm({ compact = false }) {
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | submitting | success | error
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -43,14 +45,21 @@ export default function InquiryForm({ compact = false }) {
       services: f.services.includes(s) ? f.services.filter((x) => x !== s) : [...f.services, s],
     }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Frontend-only: simulate submission. Backend wiring comes after design approval.
-    console.log('Inquiry submitted:', form)
-    setSubmitted(true)
+    setError(null)
+    setStatus('submitting')
+    try {
+      await submitSourcingInquiry(form)
+      setStatus('success')
+    } catch (err) {
+      console.error('Inquiry submission failed:', err)
+      setError(err.message || 'Something went wrong. Please try again.')
+      setStatus('error')
+    }
   }
 
-  if (submitted) {
+  if (status === 'success') {
     return (
       <div className="rounded-2xl border border-slate-200 bg-white p-8 text-center">
         <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-verified/10">
@@ -64,7 +73,7 @@ export default function InquiryForm({ compact = false }) {
           type="button"
           className="btn-ghost mt-6"
           onClick={() => {
-            setSubmitted(false)
+            setStatus('idle')
             setForm({
               name: '', email: '', company: '', country: '', product: '',
               productType: '', quantity: '', targetPrice: '', services: [], message: '',
@@ -159,9 +168,20 @@ export default function InquiryForm({ compact = false }) {
         </div>
       </div>
 
-      <button type="submit" className="btn-primary mt-6 w-full">
-        <Send className="h-4 w-4" />
-        Get My Free Quote
+      {status === 'error' && error && (
+        <div className="mb-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <button type="submit" disabled={status === 'submitting'} className="btn-primary mt-6 w-full disabled:cursor-not-allowed disabled:opacity-60">
+        {status === 'submitting' ? (
+          <Loader2 className="h-4 w-4 animate-spin" />
+        ) : (
+          <Send className="h-4 w-4" />
+        )}
+        {status === 'submitting' ? 'Sending…' : 'Get My Free Quote'}
       </button>
       <p className="mt-3 text-center text-xs text-muted">
         We respect your privacy. Your details are only used to prepare your quote.
