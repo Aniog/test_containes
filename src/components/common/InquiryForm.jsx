@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { Send, CheckCircle2 } from "lucide-react"
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { submitSourcingInquiry } from "@/api/inquiries"
 
 const PRODUCT_OPTIONS = [
   "Consumer Electronics",
@@ -26,21 +27,32 @@ const initialForm = {
 
 export default function InquiryForm() {
   const [form, setForm] = useState(initialForm)
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState("idle")
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Frontend-only: simulate submission. Backend wiring comes later.
-    console.log("Inquiry submitted:", form)
-    setSubmitted(true)
+    setError(null)
+    setStatus("submitting")
+
+    const result = await submitSourcingInquiry(form)
+
+    if (!result.success) {
+      setError(result.error || "Submission failed. Please try again.")
+      setStatus("error")
+      return
+    }
+
+    setForm(initialForm)
+    setStatus("success")
   }
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="rounded-xl border border-slate-200 bg-white p-8 text-center shadow-sm">
         <CheckCircle2 className="mx-auto h-12 w-12 text-green-600" />
@@ -56,7 +68,7 @@ export default function InquiryForm() {
           variant="outline"
           onClick={() => {
             setForm(initialForm)
-            setSubmitted(false)
+            setStatus("idle")
           }}
         >
           Submit another inquiry
@@ -70,6 +82,13 @@ export default function InquiryForm() {
       onSubmit={handleSubmit}
       className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm md:p-8"
     >
+      {status === "error" && error && (
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 p-4">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+          <p className="text-sm text-red-700">{error}</p>
+        </div>
+      )}
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Full name" name="name" value={form.name} onChange={handleChange} required />
         <Field label="Email" name="email" type="email" value={form.email} onChange={handleChange} required />
@@ -110,9 +129,18 @@ export default function InquiryForm() {
           We respond within one business day. Your information is used only to
           prepare your quote.
         </p>
-        <Button type="submit" size="lg">
-          <Send className="h-4 w-4" />
-          Send inquiry
+        <Button type="submit" size="lg" disabled={status === "submitting"}>
+          {status === "submitting" ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Sending…
+            </>
+          ) : (
+            <>
+              <Send className="h-4 w-4" />
+              Send inquiry
+            </>
+          )}
         </Button>
       </div>
     </form>

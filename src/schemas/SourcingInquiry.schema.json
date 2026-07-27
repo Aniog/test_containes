@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name, if provided"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country of the inquirer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category the buyer is interested in sourcing"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity as entered by the buyer"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Project details and requirements described by the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "won", "lost"],
+      "default": "new",
+      "description": "Pipeline status of the inquiry"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the User record created or updated for this inquirer",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
