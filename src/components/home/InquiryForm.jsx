@@ -1,8 +1,14 @@
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const InquiryForm = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -17,9 +23,43 @@ const InquiryForm = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Inquiry submitted:', form);
+    setError(null);
+    setSubmitting(true);
+
+    console.log('Submitting sourcing inquiry:', form);
+
+    const { data: response, error: insertError } = await client
+      .from('Sourcing Inquiries')
+      .insert({
+        data: {
+          name: form.name,
+          email: form.email,
+          company: form.company || undefined,
+          country: form.country,
+          product: form.product,
+          quantity: form.quantity || undefined,
+          message: form.message || undefined,
+          status: 'new',
+        },
+      })
+      .select()
+      .single();
+
+    setSubmitting(false);
+
+    if (insertError || response?.success === false) {
+      const msg =
+        Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed. Please try again.';
+      console.error('Inquiry submission error:', msg);
+      setError(msg);
+      return;
+    }
+
+    console.log('Inquiry saved successfully:', response?.data);
     setSubmitted(true);
   };
 
@@ -123,12 +163,19 @@ const InquiryForm = () => {
           className="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent resize-none"
         />
       </div>
+      {error && (
+        <div className="flex items-start gap-2 bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm">
+          <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+          <span>{error}</span>
+        </div>
+      )}
       <button
         type="submit"
-        className="w-full flex items-center justify-center gap-2 bg-brand-blue hover:bg-blue-700 text-white font-semibold px-6 py-3.5 rounded-lg transition-colors text-base"
+        disabled={submitting}
+        className="w-full flex items-center justify-center gap-2 bg-brand-blue hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-3.5 rounded-lg transition-colors text-base"
       >
         <Send className="w-4 h-4" />
-        Submit Sourcing Request
+        {submitting ? 'Sending…' : 'Submit Sourcing Request'}
       </button>
       <p className="text-xs text-slate-500 text-center">
         We respond within 1 business day. Your information is kept confidential.
