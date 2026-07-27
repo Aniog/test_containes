@@ -54,7 +54,7 @@ export default function Home() {
                 ))}
               </ul>
             </div>
-            <InquiryForm />
+            <InquiryForm source="home" />
           </div>
         </div>
       </section>

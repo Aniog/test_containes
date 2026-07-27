@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Work email address of the inquirer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Phone or WhatsApp number of the inquirer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Apparel & Textiles",
+        "Home & Kitchen",
+        "Industrial & Hardware",
+        "Sports & Outdoor",
+        "Packaging & Printing",
+        "Garden & Outdoor",
+        "General Merchandise",
+        "Other"
+      ],
+      "description": "Product category the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "enum": [
+        "Under 500 units",
+        "500 – 2,000 units",
+        "2,000 – 10,000 units",
+        "10,000+ units",
+        "Not sure yet"
+      ],
+      "description": "Estimated order quantity range"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": [
+        "ASAP",
+        "1 – 3 months",
+        "3 – 6 months",
+        "Just exploring"
+      ],
+      "description": "Target sourcing timeline"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed description of the product and requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Lead status used by the team to track follow-up"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Page or section where the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
