@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Work email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name of the inquirer"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Country where the buyer is located"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Product details: materials, dimensions, target price, certifications, reference links"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["home", "contact"],
+      "description": "Page where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal lead status for the sourcing team"
+    }
+  },
+  "required": ["name", "email", "country", "product", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

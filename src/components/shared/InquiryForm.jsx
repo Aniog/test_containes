@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import { CheckCircle2, Loader2, Send } from 'lucide-react'
+import { AlertCircle, CheckCircle2, Loader2, Send } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { submitSourcingInquiry } from '@/api/inquiries'
 
 const inputClass =
   'w-full rounded-lg border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-100'
 
 const labelClass = 'mb-1.5 block text-sm font-medium text-slate-700'
 
-export default function InquiryForm({ compact = false }) {
+export default function InquiryForm({ compact = false, source = 'home' }) {
   const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -21,10 +23,17 @@ export default function InquiryForm({ compact = false }) {
 
   const update = (key) => (e) => setForm({ ...form, [key]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
     setStatus('submitting')
-    setTimeout(() => setStatus('success'), 900)
+    try {
+      await submitSourcingInquiry(form, source)
+      setStatus('success')
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.')
+      setStatus('error')
+    }
   }
 
   if (status === 'success') {
@@ -89,6 +98,12 @@ export default function InquiryForm({ compact = false }) {
           className={inputClass}
         />
       </div>
+      {status === 'error' && error && (
+        <div role="alert" className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-4">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-red-600" />
+          <p className="text-sm leading-relaxed text-red-700">{error}</p>
+        </div>
+      )}
       <button
         type="submit"
         disabled={status === 'submitting'}

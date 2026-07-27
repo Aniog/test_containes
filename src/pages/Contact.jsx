@@ -110,7 +110,7 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="pt-6">
-                  <InquiryForm />
+                  <InquiryForm source="contact" />
                 </div>
               </div>
             </div>
