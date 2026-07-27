@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the visitor or buyer profile that submitted the inquiry.",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer contact."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or organization name."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or market where the buyer is based."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Main product category the buyer wants to source."
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Product specifications, requirements, materials, target standards, or reference details."
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity or estimated annual volume."
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing support services requested by the buyer.",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_search", "factory_verification", "price_negotiation", "quality_inspection", "production_follow_up", "shipping_coordination"]
+      },
+      "uniqueItems": true
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected sourcing, sample, production, or shipment timeline."
+    },
+    "budget_range": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Indicative target budget or price range if available."
+    },
+    "shipping_destination": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Destination country, port, warehouse, or address for shipment coordination."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes or questions from the buyer."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal review status for the inquiry."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when the inquiry was submitted."
+    }
+  },
+  "required": ["name", "email", "product_details", "services_needed", "submitted_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
