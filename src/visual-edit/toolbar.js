@@ -14,19 +14,19 @@ import {
   setPanelUpdateCallback,
   showPanel,
 } from './panels.js';
-import backgroundColorIcon from './icons/background-color.svg?raw';
-import closeIcon from './icons/close.svg?raw';
-import deleteIcon from './icons/delete.svg?raw';
-import editElementIcon from './icons/edit-element.svg?raw';
-import opacityIcon from './icons/opacity.svg?raw';
-import sourceCodeIcon from './icons/source-code.svg?raw';
-import spacingIcon from './icons/spacing.svg?raw';
-import submitIcon from './icons/submit.svg?raw';
-import tailwindClassesIcon from './icons/tailwind-classes.svg?raw';
-import textColorIcon from './icons/text-color.svg?raw';
-import textContentIcon from './icons/text-content.svg?raw';
-import textStyleIcon from './icons/text-style.svg?raw';
-import backIcon from './icons/back.svg?raw';
+import backgroundColorIcon from './icons/background-color.svg';
+import closeIcon from './icons/close.svg';
+import deleteIcon from './icons/delete.svg';
+import editElementIcon from './icons/edit-element.svg';
+import opacityIcon from './icons/opacity.svg';
+import sourceCodeIcon from './icons/source-code.svg';
+import spacingIcon from './icons/spacing.svg';
+import submitIcon from './icons/submit.svg';
+import tailwindClassesIcon from './icons/tailwind-classes.svg';
+import textColorIcon from './icons/text-color.svg';
+import textContentIcon from './icons/text-content.svg';
+import textStyleIcon from './icons/text-style.svg';
+import backIcon from './icons/back.svg';
 
 function icon(svg) {
   return svg
