@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Buyer's company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number, including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Category of product to be sourced"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Description of the product, specifications, materials, target use"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity (e.g. 500 units, 1 container)"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price range (e.g. USD 5-8 per unit)"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "factory_verification",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_logistics",
+          "sample_consolidation"
+        ]
+      },
+      "description": "List of services the buyer is interested in"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any additional requirements or context"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Page or campaign that the inquiry came from"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
