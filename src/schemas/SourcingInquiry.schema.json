@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer submitting the inquiry"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Main contact person for the sourcing inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country or region of the buyer"
+    },
+    "product_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product or category the buyer wants to source"
+    },
+    "quantity": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Estimated order quantity if known"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier verification",
+        "Factory verification",
+        "Quality inspection",
+        "Production follow-up",
+        "Shipping coordination",
+        "Need advice on the right support"
+      ],
+      "description": "Primary support service requested by the buyer"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target sales market or region for the product"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Detailed sourcing request, requirements, or current issues"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "product_type",
+    "service_needed",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
