@@ -59,7 +59,7 @@ const Blog = () => {
   ];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col" ref={containerRef}>
       <section className="bg-primary text-white py-20">
         <div className="container px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">Sourcing Insights</h1>
