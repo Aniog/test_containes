@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number with country code"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Machinery & Industrial", "Textiles & Apparel", "Home & Garden", "Consumer Goods", "Automotive Parts", "Packaging & Printing", "Other"],
+      "description": "Product category being sourced"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Detailed description of the product(s) to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or volume"
+    },
+    "target_market": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target market or destination country"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Sourcing", "Factory Verification", "Quality Inspection", "Production Follow-up", "Shipping Coordination", "Custom Packaging"]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "budget_range": {
+      "type": "string",
+      "enum": ["Under $10,000", "$10,000 - $50,000", "$50,000 - $100,000", "$100,000 - $500,000", "Over $500,000"],
+      "description": "Approximate budget range"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional message or requirements"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "How they found SSourcing China"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
