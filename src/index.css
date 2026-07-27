@@ -1,76 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #172033;
+  background-color: #F5F7FA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F5F7FA;
+  color: #172033;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+img {
+  max-width: 100%;
 }
 
-button:hover {
-  border-color: #646cff;
+::selection {
+  background: #1F6FEB;
+  color: white;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+/* Brand utility fallbacks for the active Vite preview when Tailwind config changes are not hot-reloaded. */
+.bg-brand-blue { background-color: #1F6FEB; }
+.bg-brand-navy { background-color: #10243E; }
+.bg-brand-sky { background-color: #EAF3FF; }
+.bg-brand-mist { background-color: #F5F7FA; }
+.bg-brand-navy\/55 { background-color: rgb(16 36 62 / 0.55); }
+.bg-white\/8 { background-color: rgb(255 255 255 / 0.08); }
+.text-brand-amber { color: #D98A16; }
+.text-brand-blue { color: #1F6FEB; }
+.text-brand-ink { color: #172033; }
+.text-brand-muted { color: #5F6B7A; }
+.text-brand-navy { color: #10243E; }
+.border-brand-line { border-color: #DDE5EE; }
+.shadow-soft { box-shadow: 0 18px 60px rgb(16 36 62 / 0.12); }
+.hover\:bg-brand-blue:hover { background-color: #1F6FEB; }
+.hover\:bg-brand-navy:hover { background-color: #10243E; }
+.hover\:border-brand-blue:hover { border-color: #1F6FEB; }
+.hover\:text-brand-blue:hover { color: #1F6FEB; }
+.hover\:text-brand-navy:hover { color: #10243E; }
+.focus\:border-brand-blue:focus { border-color: #1F6FEB; }
+.focus\:ring-brand-blue\/10:focus { --tw-ring-color: rgb(31 111 235 / 0.1); }
+.focus\:ring-brand-blue\/20:focus { --tw-ring-color: rgb(31 111 235 / 0.2); }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
