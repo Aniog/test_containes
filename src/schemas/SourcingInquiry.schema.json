@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name (optional)"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Buyer's country"
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Product category to source"
+    },
+    "details": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Sourcing requirements, specifications, quantity, target price"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 60,
+      "default": "website",
+      "description": "Where the inquiry was submitted from"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal handling status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "country", "category", "details"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
