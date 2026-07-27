@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Home & Garden",
+        "Apparel & Textiles",
+        "Toys & Hobbies",
+        "Packaging & Print",
+        "Industrial & Hardware",
+        "Other"
+      ],
+      "description": "Category of the product to source"
+    },
+    "estimated_budget": {
+      "type": "string",
+      "enum": [
+        "Under $10,000",
+        "$10,000 - $50,000",
+        "$50,000 - $100,000",
+        "Over $100,000"
+      ],
+      "description": "Estimated sourcing budget"
+    },
+    "target_destination": {
+      "type": "string",
+      "description": "Target country or destination for shipping"
+    },
+    "service_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Audit",
+          "Quality Inspection",
+          "Logistics & Shipping"
+        ]
+      },
+      "description": "Specific services needed"
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Detailed description of the product, requirements, and timeline."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["New", "In Progress", "Closed"],
+      "default": "New",
+      "description": "Status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_category", "details"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
