@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "First name of the person submitting the inquiry"
+    },
+    "last_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Last name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for contact"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the company is located"
+    },
+    "product_type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Description of products to source"
+    },
+    "estimated_budget": {
+      "type": "string",
+      "enum": ["under-5k", "5k-25k", "25k-100k", "100k-500k", "500k-plus", ""],
+      "description": "Estimated budget range for the project"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["asap", "1-2-months", "3-6-months", "6-plus-months", "exploring", ""],
+      "description": "Project timeline"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional message or questions"
+    },
+    "how_did_you_hear": {
+      "type": "string",
+      "enum": ["google", "linkedin", "referral", "blog", "other", ""],
+      "description": "How the user heard about SSourcing China"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in-review", "responded", "converted", "archived"],
+      "default": "new",
+      "description": "Status of the inquiry"
+    }
+  },
+  "required": ["first_name", "last_name", "email", "company", "product_type"],
+  "additionalProperties": false
+}
