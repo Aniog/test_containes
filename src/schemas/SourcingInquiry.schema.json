@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the CRM user record for this inquiry submitter",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquiry submitter"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or organisation name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number (optional)"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "Full Sourcing Service",
+        "Supplier Identification Only",
+        "Factory Audit / Verification",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping Coordination",
+        "General Inquiry"
+      ],
+      "description": "Type of service the buyer is requesting"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Furniture & Home Goods",
+        "Apparel & Textiles",
+        "Industrial Machinery",
+        "Packaging & Printing",
+        "Health & Beauty",
+        "Toys & Games",
+        "Automotive Parts",
+        "Sports & Outdoor",
+        "Other"
+      ],
+      "description": "Product category the buyer wants to source"
+    },
+    "estimated_budget": {
+      "type": "string",
+      "enum": [
+        "Under $5,000",
+        "$5,000 – $20,000",
+        "$20,000 – $100,000",
+        "Over $100,000",
+        "Not sure yet"
+      ],
+      "description": "Buyer's estimated order budget range"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed description of the sourcing requirements"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["homepage_form", "contact_page"],
+      "description": "Which form on the site the inquiry was submitted from"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "responded", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { submitSourcingInquiry } from '@/api/inquiries';
 
 const productCategories = [
   'Electronics & Components',
@@ -23,6 +24,8 @@ const budgetRanges = [
 
 export default function HomeInquiryForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -37,10 +40,19 @@ export default function HomeInquiryForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Inquiry submitted:', form);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submitSourcingInquiry(form, 'homepage_form');
+      setSubmitted(true);
+    } catch (err) {
+      console.error('[HomeInquiryForm] submission failed:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -196,11 +208,19 @@ export default function HomeInquiryForm() {
 
                 <button
                   type="submit"
-                  className="btn-primary w-full flex items-center justify-center gap-2 py-3"
+                  disabled={submitting}
+                  className="btn-primary w-full flex items-center justify-center gap-2 py-3 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <Send className="w-4 h-4" />
-                  Submit Sourcing Inquiry
+                  {submitting ? 'Submitting…' : 'Submit Sourcing Inquiry'}
                 </button>
+
+                {error && (
+                  <div className="flex items-start gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-3.5 py-3">
+                    <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                    <span>{error}</span>
+                  </div>
+                )}
 
                 <p className="text-xs text-gray-400 text-center">
                   We respect your privacy. Your information will not be shared with third parties.
