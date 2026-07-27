@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import InquiryForm from '@/components/shared/InquiryForm';
 import {
   Search, ShieldCheck, ClipboardCheck, Truck, ArrowRight,
   CheckCircle2, AlertTriangle, Globe, Factory, Package,
@@ -429,55 +430,7 @@ const InquirySection = () => (
           </div>
         </div>
         <div className="bg-slate-50 rounded-lg p-6 md:p-8 border border-slate-200">
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-navy-900 mb-1">Full Name *</label>
-                <input type="text" className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="John Smith" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-navy-900 mb-1">Company Name</label>
-                <input type="text" className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="Your Company" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-navy-900 mb-1">Email *</label>
-                <input type="email" className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="john@company.com" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-navy-900 mb-1">Phone</label>
-                <input type="tel" className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="+1 234 567 890" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-navy-900 mb-1">Product You Want to Source *</label>
-              <input type="text" className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="e.g. Stainless steel water bottles" />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-navy-900 mb-1">Estimated Quantity</label>
-              <select className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900">
-                <option value="">Select range</option>
-                <option>1 - 500 units</option>
-                <option>500 - 5,000 units</option>
-                <option>5,000 - 50,000 units</option>
-                <option>50,000+ units</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-navy-900 mb-1">Additional Details</label>
-              <textarea rows={3} className="w-full px-3 py-2 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="Tell us more about your requirements, target price, timeline, etc." />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-brand-blue text-white py-3 rounded-md text-base font-semibold hover:bg-blue-700 transition-colors border-none cursor-pointer"
-            >
-              Submit Your Sourcing Request
-            </button>
-            <p className="text-xs text-slate-500 text-center">
-              We'll respond within 24 hours. Your information is kept confidential.
-            </p>
-          </form>
+          <InquiryForm sourcePage="home" compact />
         </div>
       </div>
     </div>

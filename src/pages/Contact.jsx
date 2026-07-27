@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import InquiryForm from '@/components/shared/InquiryForm';
 import {
   Mail, Phone, MapPin, Clock, ArrowRight, CheckCircle2,
   Globe, Factory, ShieldCheck
@@ -26,83 +27,7 @@ const Contact = () => {
             {/* Form */}
             <div className="lg:col-span-2">
               <h2 className="text-2xl font-bold text-navy-900 mb-6">Send Us Your Sourcing Request</h2>
-              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-navy-900 mb-1">Full Name *</label>
-                    <input type="text" className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="John Smith" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-navy-900 mb-1">Company Name</label>
-                    <input type="text" className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="Your Company" />
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-navy-900 mb-1">Email Address *</label>
-                    <input type="email" className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="john@company.com" />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-navy-900 mb-1">Phone Number</label>
-                    <input type="tel" className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="+1 234 567 890" />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-navy-900 mb-1">Country *</label>
-                  <select className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900">
-                    <option value="">Select your country</option>
-                    <option>United States</option>
-                    <option>United Kingdom</option>
-                    <option>Germany</option>
-                    <option>France</option>
-                    <option>Australia</option>
-                    <option>Canada</option>
-                    <option>Netherlands</option>
-                    <option>Japan</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-navy-900 mb-1">Product You Want to Source *</label>
-                  <input type="text" className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="e.g. Stainless steel water bottles, CNC machines, LED panels" />
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-navy-900 mb-1">Estimated Quantity</label>
-                    <select className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900">
-                      <option value="">Select range</option>
-                      <option>1 - 500 units</option>
-                      <option>500 - 5,000 units</option>
-                      <option>5,000 - 50,000 units</option>
-                      <option>50,000+ units</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-navy-900 mb-1">Service Needed</label>
-                    <select className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900">
-                      <option value="">Select service</option>
-                      <option>Supplier Sourcing</option>
-                      <option>Factory Verification</option>
-                      <option>Quality Inspection</option>
-                      <option>Full-Service Sourcing</option>
-                      <option>Shipping Coordination</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-navy-900 mb-1">Additional Details</label>
-                  <textarea rows={4} className="w-full px-3 py-2.5 border border-slate-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue focus:border-transparent bg-white text-slate-900" placeholder="Tell us more about your requirements, target price, quality standards, timeline, etc." />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-brand-blue text-white py-3 rounded-md text-base font-semibold hover:bg-blue-700 transition-colors border-none cursor-pointer"
-                >
-                  Submit Your Sourcing Request
-                </button>
-                <p className="text-xs text-slate-500 text-center">
-                  We'll respond within 24 hours on business days. Your information is kept confidential.
-                </p>
-              </form>
+              <InquiryForm sourcePage="contact" showCountry showService />
             </div>
 
             {/* Contact Info */}
