@@ -1,0 +1,32 @@
+import { useEffect, useRef } from "react"
+import { Outlet, useLocation } from "react-router-dom"
+import { ImageHelper } from "@strikingly/sdk"
+import strkImgConfig from "@/strk-img-config.json"
+import Navbar from "./Navbar"
+import Footer from "./Footer"
+
+export default function Layout() {
+  const containerRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" })
+  }, [location.pathname])
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+    return () => window.cancelAnimationFrame(frameId)
+  }, [location.pathname])
+
+  return (
+    <div ref={containerRef} className="flex min-h-screen flex-col bg-surface">
+      <Navbar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  )
+}
