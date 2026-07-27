@@ -1,7 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import "./index.css";
+import App from "./App.jsx";
+import Home from './pages/Home'
+import Services from './pages/Services'
+import HowItWorks from './pages/HowItWorks'
+import ProductsWeSource from './pages/ProductsWeSource'
+import CaseStudies from './pages/CaseStudies'
+import Blog from './pages/Blog'
+import Contact from './pages/Contact'
 
 if (import.meta.env.DEV) {
   import("./visual-edit/index.js");
@@ -9,6 +17,18 @@ if (import.meta.env.DEV) {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Services />} />
+          <Route path="how-it-works" element={<HowItWorks />} />
+          <Route path="products-we-source" element={<ProductsWeSource />} />
+          <Route path="case-studies" element={<CaseStudies />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
 );

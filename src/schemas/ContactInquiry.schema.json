@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the prospect"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the prospect"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "productCategory": {
+      "type": "string",
+      "description": "The category of product they want to source"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Details about their sourcing needs"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Status of this lead"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
