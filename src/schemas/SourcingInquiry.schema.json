@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Contact email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Country the buyer is based in"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Contact phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Apparel & Textiles",
+        "Home & Furniture",
+        "Industrial & Hardware",
+        "Packaging & Printing",
+        "Sports & Outdoor",
+        "Kitchen & Dining",
+        "Baby & Kids",
+        "Eco & Sustainable",
+        "Other"
+      ],
+      "description": "Primary product category being sourced"
+    },
+    "order_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or volume"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["ASAP", "1-3 months", "3-6 months", "Just exploring"],
+      "description": "Expected project timeline"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Quality Inspection",
+          "Production Follow-Up",
+          "Shipping & Logistics",
+          "Order Management"
+        ]
+      },
+      "description": "Services the buyer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Details about the product and sourcing requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Inquiry status used by the team"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
