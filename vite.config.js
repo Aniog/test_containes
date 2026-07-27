@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { fileURLToPath } from 'url'
 import path from 'path'
 import strkImgPlugin from './plugin/vite-plugin-strk-img.js'
 import visualEditPlugin from './plugin/vite-plugin-visual-edit.js'
 import checkBrokenImgPlugin from './plugin/vite-plugin-check-broken-img.js'
 import checkPlaceholderImgPlugin from './plugin/vite-plugin-check-placeholder-img.js'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default defineConfig({
   plugins: [
@@ -21,6 +25,7 @@ export default defineConfig({
     },
   },
   server: {
+    port: 8080,
     host: '0.0.0.0',
     allowedHosts: true,
     cors: true,
