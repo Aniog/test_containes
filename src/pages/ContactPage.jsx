@@ -1,7 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Request failed';
+};
 
 export default function ContactPage() {
   const containerRef = useRef(null);
@@ -21,14 +32,45 @@ export default function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setSubmitting(true);
+
+    const { data: response, error: submitError } = await client
+      .from('SourcingInquiry')
+      .insert({
+        data: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          productCategory: formData.productCategory,
+          quantity: formData.quantity,
+          targetPrice: formData.targetPrice,
+          message: formData.message,
+          status: 'new',
+          createdAt: new Date().toISOString(),
+        },
+      })
+      .select()
+      .single();
+
+    if (submitError || response?.success === false) {
+      setError(getErrorMessage(response, submitError));
+      setSubmitting(false);
+      return;
+    }
+
     setSubmitted(true);
+    setSubmitting(false);
   };
 
   if (submitted) {
@@ -235,10 +277,14 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary w-full sm:w-auto">
+                <button type="submit" className="btn-primary w-full sm:w-auto" disabled={submitting}>
                   <Send className="mr-2 h-5 w-5" />
-                  Submit Sourcing Request
+                  {submitting ? 'Submitting...' : 'Submit Sourcing Request'}
                 </button>
+
+                {error && (
+                  <p className="text-red-600 text-sm mt-2">{error}</p>
+                )}
               </form>
             </div>
 

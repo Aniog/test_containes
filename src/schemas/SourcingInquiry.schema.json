@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Contact person name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number"
+    },
+    "productCategory": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Product category being sourced"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Order quantity"
+    },
+    "targetPrice": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Target price per unit"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Detailed sourcing requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewed", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Inquiry status"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "productCategory", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
