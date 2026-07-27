@@ -1,76 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #334155;
+  background-color: #F8FAFC;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: #F8FAFC;
+  color: #334155;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+img {
+  max-width: 100%;
 }
 
-button:hover {
-  border-color: #646cff;
+::selection {
+  background: #1D4ED8;
+  color: white;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* Named brand utilities mirror design.md so the active preview keeps correct contrast after theme edits. */
+.font-sans {
+  font-family: Inter, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
+.bg-brand-navy {
+  background-color: #0B1F3A;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.bg-brand-blue {
+  background-color: #1D4ED8;
+}
+
+.bg-brand-cyan {
+  background-color: #0E7490;
+}
+
+.bg-brand-amber {
+  background-color: #F59E0B;
+}
+
+.bg-brand-mist {
+  background-color: #F1F5F9;
+}
+
+.bg-brand-ice {
+  background-color: #F8FAFC;
+}
+
+.text-brand-navy {
+  color: #0B1F3A;
+}
+
+.text-brand-blue {
+  color: #1D4ED8;
+}
+
+.text-brand-cyan {
+  color: #0E7490;
+}
+
+.text-brand-amber {
+  color: #F59E0B;
+}
+
+.text-brand-slate {
+  color: #334155;
+}
+
+.border-brand-line {
+  border-color: #D8E1EC;
+}
+
+.shadow-b2b {
+  box-shadow: 0 18px 45px rgba(11, 31, 58, 0.10);
+}
+
+.from-brand-navy {
+  --tw-gradient-from: #0B1F3A var(--tw-gradient-from-position);
+  --tw-gradient-to: rgb(11 31 58 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.via-brand-navy\/95 {
+  --tw-gradient-to: rgb(11 31 58 / 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(11 31 58 / 0.95) var(--tw-gradient-via-position), var(--tw-gradient-to);
+}
+
+.to-brand-blue\/80 {
+  --tw-gradient-to: rgb(29 78 216 / 0.8) var(--tw-gradient-to-position);
+}
+
+.hover\:bg-brand-navy:hover {
+  background-color: #0B1F3A;
+}
+
+.hover\:text-brand-blue:hover {
+  color: #1D4ED8;
+}
+
+.hover\:text-brand-navy:hover {
+  color: #0B1F3A;
+}
+
+.focus\:border-brand-blue:focus {
+  border-color: #1D4ED8;
+}
+
