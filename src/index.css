@@ -1,76 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
+  --color-sourcing-navy: #0B1F3A;
+  --color-sourcing-blue: #165DAD;
+  --color-sourcing-sky: #E8F2FF;
+  --color-sourcing-ink: #1F2937;
+  --color-sourcing-muted: #64748B;
+  --color-sourcing-line: #D8E1EC;
+  --color-sourcing-soft: #F5F8FB;
+  --color-sourcing-card: #FFFFFF;
+  --color-sourcing-amber: #B7791F;
+  --color-sourcing-green: #167A5A;
+  --shadow-sourcing-b2b: 0 18px 50px rgb(11 31 58 / 0.10);
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: var(--color-sourcing-ink);
+  background-color: var(--color-sourcing-soft);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
   min-height: 100vh;
   overflow-x: hidden;
+  background-color: var(--color-sourcing-soft);
+  color: var(--color-sourcing-ink);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-button:hover {
-  border-color: #646cff;
+img {
+  max-width: 100%;
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.bg-sourcing-navy { background-color: var(--color-sourcing-navy); }
+.bg-sourcing-blue { background-color: var(--color-sourcing-blue); }
+.bg-sourcing-sky { background-color: var(--color-sourcing-sky); }
+.bg-sourcing-soft { background-color: var(--color-sourcing-soft); }
+.bg-sourcing-card { background-color: var(--color-sourcing-card); }
+.bg-sourcing-amber { background-color: var(--color-sourcing-amber); }
+.bg-sourcing-green { background-color: var(--color-sourcing-green); }
+.text-sourcing-navy { color: var(--color-sourcing-navy); }
+.text-sourcing-blue { color: var(--color-sourcing-blue); }
+.text-sourcing-sky { color: var(--color-sourcing-sky); }
+.text-sourcing-ink { color: var(--color-sourcing-ink); }
+.text-sourcing-muted { color: var(--color-sourcing-muted); }
+.text-sourcing-amber { color: var(--color-sourcing-amber); }
+.text-sourcing-green { color: var(--color-sourcing-green); }
+.border-sourcing-line { border-color: var(--color-sourcing-line); }
+.divide-sourcing-line > :not([hidden]) ~ :not([hidden]) { border-color: var(--color-sourcing-line); }
+.shadow-b2b { box-shadow: var(--shadow-sourcing-b2b); }
+.hover\:bg-sourcing-navy:hover { background-color: var(--color-sourcing-navy); }
+.hover\:bg-sourcing-sky:hover { background-color: var(--color-sourcing-sky); }
+.hover\:bg-sourcing-soft:hover { background-color: var(--color-sourcing-soft); }
+.hover\:border-sourcing-blue:hover { border-color: var(--color-sourcing-blue); }
+.hover\:text-sourcing-blue:hover { color: var(--color-sourcing-blue); }
+.hover\:text-sourcing-navy:hover { color: var(--color-sourcing-navy); }
+.focus\:border-sourcing-blue:focus { border-color: var(--color-sourcing-blue); }
+.focus\:ring-sourcing-blue\/10:focus { --tw-ring-color: rgb(22 93 173 / 0.10); }
+.focus-visible\:ring-sourcing-blue\/20:focus-visible { --tw-ring-color: rgb(22 93 173 / 0.20); }
+.placeholder\:text-sourcing-muted\/80::placeholder { color: rgb(100 116 139 / 0.80); }
+.open\:bg-sourcing-soft[open] { background-color: var(--color-sourcing-soft); }
