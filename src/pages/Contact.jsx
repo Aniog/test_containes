@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Building, Globe, MessageSquare } from 'lucide-react';
 import { useSearchParams } from 'react-router-dom';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -18,6 +22,7 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,11 +31,37 @@ export default function Contact() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
+    setErrorMsg(null);
+    
+    try {
+      // 1. Check if User object is available, if not fallback to empty user_id
+      // Since @strikingly/sdk might not export User directly in this version, we'll
+      // proceed with submitting the form response directly.
+      
+      // 2. Insert Form Response
+      const { data: response, error: submitError } = await client
+        .from('ContactFormResponses')
+        .insert({
+          data: {
+            firstName: formData.firstName,
+            lastName: formData.lastName,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.company,
+            website: formData.website,
+            productCategory: formData.productCategory,
+            message: formData.message,
+          }
+        });
+        
+      if (submitError) {
+        console.error("Submit error:", submitError);
+        throw submitError;
+      }
+      
       setIsSubmitting(false);
       setIsSuccess(true);
       setFormData({
@@ -42,7 +73,11 @@ export default function Contact() {
         productCategory: '',
         message: ''
       });
-    }, 1500);
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(err.message || 'Submission failed. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -134,6 +169,11 @@ export default function Contact() {
                     </div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {errorMsg && (
+                        <div className="bg-red-50 text-red-600 p-4 rounded-md mb-6">
+                            {errorMsg}
+                        </div>
+                      )}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="firstName" className="block text-sm font-medium text-slate-700">First Name <span className="text-red-500">*</span></label>
