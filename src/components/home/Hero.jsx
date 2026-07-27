@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, CheckCircle } from "lucide-react"
+import StrkImageLoader from "@/components/shared/StrkImageLoader"
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <StrkImageLoader>
+      <section className="relative overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
@@ -72,5 +74,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
+    </StrkImageLoader>
   )
 }

@@ -1,5 +1,6 @@
 import { Card, CardContent, CardTitle } from "@/components/ui/card"
 import { Cpu, Cog, ShoppingBag, Package, Shirt, Sofa } from "lucide-react"
+import StrkImageLoader from "@/components/shared/StrkImageLoader"
 
 const products = [
   { icon: Cpu, title: "Electronics & Components", examples: "PCBA, cables, chargers, IoT devices" },
@@ -12,7 +13,8 @@ const products = [
 
 export default function Products() {
   return (
-    <section className="bg-background py-16 md:py-24" id="products">
+    <StrkImageLoader>
+      <section className="bg-background py-16 md:py-24" id="products">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-start gap-12 lg:grid-cols-2">
           <div>
@@ -49,5 +51,6 @@ export default function Products() {
         </div>
       </div>
     </section>
+    </StrkImageLoader>
   )
 }
