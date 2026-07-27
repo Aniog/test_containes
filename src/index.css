@@ -1,76 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #0f172a;
+  background-color: #f7f8fa;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
+html,
+body,
+#root {
+  min-height: 100%;
 }
 
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
-  min-height: 100vh;
-  overflow-x: hidden;
+  background-color: #f7f8fa;
+  color: #0f172a;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #0f172a;
+  letter-spacing: -0.01em;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
 }
 
-button:hover {
-  border-color: #646cff;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-
-  a:hover {
-    color: #747bff;
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-accent;
   }
-
-  button {
-    background-color: #f9f9f9;
+  .section-title {
+    @apply text-3xl font-semibold text-ink-900 md:text-4xl;
+    letter-spacing: -0.015em;
+  }
+  .section-subtitle {
+    @apply mt-4 max-w-2xl text-base text-ink-700 md:text-lg;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-accent-soft focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-navy bg-white px-6 py-3 text-sm font-semibold text-navy transition-colors hover:bg-slate-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-navy transition-colors hover:text-accent;
+  }
+  .card {
+    @apply rounded-2xl border border-border-soft bg-white shadow-sm;
+  }
+  .input {
+    @apply w-full rounded-lg border border-border-soft bg-white px-3.5 py-2.5 text-sm text-ink-900 placeholder:text-ink-400 focus:border-navy focus:outline-none focus:ring-2 focus:ring-navy/15;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink-700;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-border-soft bg-white px-3 py-1 text-xs font-medium text-ink-700;
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
