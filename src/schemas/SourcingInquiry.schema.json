@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Buyer's company or brand name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number including country code (optional)"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Buyer's country or region"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Category of product they want to source (e.g. consumer electronics, home goods, apparel)"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Detailed description of the product, specs, materials, target use"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity or quantity range (e.g. 1000 units, 1x40HQ)"
+    },
+    "target_unit_price": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Target unit price or budget per unit (e.g. USD 5-8 per unit)"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Which SSourcing services the buyer is interested in",
+      "items": {
+        "type": "string",
+        "enum": [
+          "supplier_sourcing",
+          "factory_audit",
+          "sample_coordination",
+          "price_negotiation",
+          "quality_inspection",
+          "production_follow_up",
+          "shipping_logistics",
+          "other"
+        ]
+      }
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Any additional requirements, certifications needed, or context"
+    },
+    "preferred_contact_method": {
+      "type": "string",
+      "enum": ["email", "phone", "wechat", "whatsapp"],
+      "description": "How the buyer prefers to be contacted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_category", "product_description"],
+  "additionalProperties": false
+}
