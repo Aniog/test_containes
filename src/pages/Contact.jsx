@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { 
   Mail, Phone, MapPin, Clock, Send, MessageCircle, 
   Globe, ArrowRight, CheckCircle, Users
 } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +21,8 @@ const Contact = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -25,11 +31,42 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real app, this would submit to an API
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const { data: response, error } = await client
+        .from('SourcingInquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            product_category: formData.product,
+            estimated_quantity: formData.quantity,
+            timeline: formData.timeline,
+            requirements: formData.requirements,
+            status: 'new'
+          }
+        })
+        .select()
+        .single();
+
+      if (error) {
+        throw new Error(error.message || 'Failed to submit inquiry');
+      }
+
+      console.log('Inquiry submitted successfully:', response);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -67,7 +104,7 @@ const Contact = () => {
                     We've received your sourcing request. Our team will review your requirements and get back to you within 24 hours with a detailed proposal.
                   </p>
                   <button
-                    onClick={() => setIsSubmitted(false)}
+                    onClick={() => { setIsSubmitted(false); setSubmitError(null); }}
                     className="bg-brand-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-brand-900 transition-colors"
                   >
                     Submit Another Inquiry
@@ -216,12 +253,31 @@ const Contact = () => {
                       />
                     </div>
 
+                    {submitError && (
+                      <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+                        {submitError}
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full bg-brand-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-900 transition-colors flex items-center justify-center"
+                      disabled={isSubmitting}
+                      className="w-full bg-brand-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-brand-900 transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-5 h-5 mr-2" />
-                      Submit Sourcing Inquiry
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Submit Sourcing Inquiry
+                        </>
+                      )}
                     </button>
                   </form>
                 </div>
