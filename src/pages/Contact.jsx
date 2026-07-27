@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { toast } from 'sonner'
+import { submitInquiry } from '../api/inquiries'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -17,35 +18,41 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    // Basic validation
+
     if (!formData.name || !formData.company || !formData.email || !formData.product) {
       toast.error('Please fill in all required fields.')
       return
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formData.email)) {
       toast.error('Please enter a valid email address.')
       return
     }
 
-    // Success
-    toast.success('Thank you. Your inquiry has been submitted. We will respond within 24 hours.')
-    
-    // Reset form
-    setFormData({
-      name: '',
-      company: '',
-      email: '',
-      phone: '',
-      product: '',
-      volume: '',
-      message: '',
-    })
+    setSubmitting(true)
+
+    try {
+      await submitInquiry(formData)
+      toast.success('Thank you. Your inquiry has been submitted. We will respond within 24 hours.')
+      setFormData({
+        name: '',
+        company: '',
+        email: '',
+        phone: '',
+        product: '',
+        volume: '',
+        message: '',
+      })
+    } catch (err) {
+      toast.error(err.message || 'Submission failed. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -171,8 +178,8 @@ const Contact = () => {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary w-full md:w-auto text-lg px-12 py-3.5">
-                  Submit Inquiry
+                <button type="submit" disabled={submitting} className="btn-primary w-full md:w-auto text-lg px-12 py-3.5 disabled:opacity-60">
+                  {submitting ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
 
                 <p className="text-xs text-[#64748B]">

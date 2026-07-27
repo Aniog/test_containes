@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product category or description"
+    },
+    "volume": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated annual volume"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details and requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Inquiry status"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of submission"
+    }
+  },
+  "required": ["name", "company", "email", "product"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
