@@ -61,10 +61,10 @@ export default function InquirySection() {
 
             <div className="relative mt-8 overflow-hidden rounded-xl">
               <img
-                data-strk-bg-id="inquiry-bg-9k0l1m"
-                data-strk-bg="[inquiry-heading] [inquiry-subtitle]"
-                data-strk-bg-ratio="16x9"
-                data-strk-bg-width="800"
+                data-strk-img-id="inquiry-img-9k0l1m"
+                data-strk-img="[inquiry-heading] [inquiry-subtitle]"
+                data-strk-img-ratio="16x9"
+                data-strk-img-width="800"
                 src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
                 alt=""
                 className="h-48 w-full rounded-xl object-cover"
