@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Search, 
@@ -25,6 +25,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { createInquiry } from '@/api/inquiries';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -73,10 +74,43 @@ const Home = () => {
     return ImageHelper.loadImages(strkImgConfig, inquiryRef.current);
   }, []);
 
-  const handleInquirySubmit = (e) => {
+  const [inquiryStatus, setInquiryStatus] = useState('idle');
+  const [inquiryError, setInquiryError] = useState(null);
+
+  const handleInquirySubmit = async (e) => {
     e.preventDefault();
-    toast.success('Thank you! Your inquiry has been submitted. We will contact you within 24 hours.');
-    e.target.reset();
+    setInquiryError(null);
+    setInquiryStatus('submitting');
+
+    const form = e.target;
+    const data = new FormData(form);
+    const message = (data.get('message') || '').toString().trim();
+    const product = (data.get('product') || '').toString().trim();
+
+    if (!message) {
+      setInquiryError('Please describe your requirements.');
+      setInquiryStatus('error');
+      return;
+    }
+
+    try {
+      await createInquiry({
+        name: (data.get('name') || '').toString().trim(),
+        email: (data.get('email') || '').toString().trim(),
+        company: (data.get('company') || '').toString().trim(),
+        phone: '',
+        productCategory: product,
+        message,
+      });
+
+      setInquiryStatus('success');
+      toast.success('Thank you! Your inquiry has been submitted. We will contact you within 24 hours.');
+      form.reset();
+    } catch (err) {
+      console.error(err);
+      setInquiryError(err.message || 'Submission failed');
+      setInquiryStatus('error');
+    }
   };
 
   const services = [
@@ -583,10 +617,22 @@ const Home = () => {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
-                  <MessageSquare className="mr-2 w-5 h-5" />
-                  Submit Inquiry
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-blue-600 hover:bg-blue-700"
+                  disabled={inquiryStatus === 'submitting'}
+                >
+                  {inquiryStatus === 'submitting' ? 'Submitting...' : (
+                    <>
+                      <MessageSquare className="mr-2 w-5 h-5" />
+                      Submit Inquiry
+                    </>
+                  )}
                 </Button>
+                {inquiryStatus === 'error' && inquiryError && (
+                  <p className="text-red-600 text-sm mt-2">{inquiryError}</p>
+                )}
               </form>
             </CardContent>
           </Card>

@@ -6,6 +6,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
+import { createInquiry } from '@/api/inquiries';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,8 @@ const Contact = () => {
     productCategory: '',
     message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -25,19 +28,36 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    toast.success('Thank you for your inquiry! We will contact you within 24 hours.');
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      phone: '',
-      productCategory: '',
-      message: ''
-    });
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      await createInquiry({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        productCategory: formData.productCategory,
+        message: formData.message,
+      })
+
+      setStatus('success')
+      toast.success('Thank you for your inquiry! We will contact you within 24 hours.')
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        productCategory: '',
+        message: ''
+      })
+    } catch (err) {
+      console.error(err)
+      setError(err.message || 'Submission failed')
+      setStatus('error')
+    }
   };
 
   const contactInfo = [
@@ -231,10 +251,22 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700">
-                    <Send className="mr-2 w-5 h-5" />
-                    Send Message
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    disabled={status === 'submitting'}
+                  >
+                    {status === 'submitting' ? 'Sending...' : (
+                      <>
+                        <Send className="mr-2 w-5 h-5" />
+                        Send Message
+                      </>
+                    )}
                   </Button>
+                  {status === 'error' && error && (
+                    <p className="text-red-600 text-sm mt-2">{error}</p>
+                  )}
                 </form>
               </CardContent>
             </Card>
