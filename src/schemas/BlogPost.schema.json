@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Article Title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL Slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary"
+    },
+    "content": {
+      "type": "string",
+      "description": "Main body text"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Sourcing Tips", "Industry News", "Logistics", "QC Standards"],
+      "description": "Blog category"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author Name"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date"
+    },
+    "image_id": {
+      "type": "string",
+      "description": "Stock image search ID"
+    }
+  },
+  "required": ["title", "slug", "content"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}

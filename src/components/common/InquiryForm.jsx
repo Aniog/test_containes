@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 import { toast } from 'sonner';
+import { DataClient, User } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const InquiryForm = ({ title = "Get Your Free Sourcing Quote" }) => {
   const [formData, setFormData] = useState({
@@ -11,12 +15,43 @@ const InquiryForm = ({ title = "Get Your Free Sourcing Quote" }) => {
     quantity: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    toast.success("Thank you! Your inquiry has been sent. We'll contact you within 24 hours.");
-    setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    setIsSubmitting(true);
+    
+    try {
+      // 1. Upsert User
+      const userRecord = await User.upsert({
+        email: formData.email,
+        name: formData.name,
+        role: 'guest',
+      });
+
+      // 2. Insert Inquiry
+      const { error } = await client.from('SourcingInquiry').insert({
+        data: {
+          user_id: userRecord.id,
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          product_category: 'Other', // Simplified for demo
+          message: `Product: ${formData.product}\nQuantity: ${formData.quantity}\n\n${formData.message}`,
+          status: 'new'
+        }
+      });
+
+      if (error) throw error;
+
+      toast.success("Thank you! Your inquiry has been sent. We'll contact you within 24 hours.");
+      setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      console.error('Submission error:', err);
+      toast.error('Failed to send inquiry. Please try again or email us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -110,9 +145,10 @@ const InquiryForm = ({ title = "Get Your Free Sourcing Quote" }) => {
 
         <button 
           type="submit"
-          className="w-full bg-secondary hover:bg-secondary-dark text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2"
+          disabled={isSubmitting}
+          className="w-full bg-secondary hover:bg-secondary-dark text-white font-bold py-4 rounded-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          <span>Send Free Quote Request</span>
+          <span>{isSubmitting ? 'Sending inquiry...' : 'Send Free Quote Request'}</span>
           <Send size={18} />
         </button>
         
