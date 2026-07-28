@@ -5,7 +5,24 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          blue: "#1B4F8A",
+          "blue-dark": "#163F6E",
+          red: "#C0392B",
+          "red-dark": "#A93226",
+          dark: "#1A2332",
+          mid: "#4A5568",
+          light: "#F7F9FC",
+          border: "#E2E8F0",
+          green: "#27AE60",
+        },
+      },
+      fontFamily: {
+        sans: ["Inter", "system-ui", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 }
