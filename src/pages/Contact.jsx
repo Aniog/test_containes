@@ -10,6 +10,7 @@ import {
   Globe,
   MessageSquare
 } from 'lucide-react';
+import { createInquiry } from '../api/inquiries';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,21 +22,36 @@ const Contact = () => {
     product: '',
     message: '',
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a server
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      const payload = {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        company: formData.company.trim() || undefined,
+        phone: formData.phone.trim() || undefined,
+        product_interest: formData.product.trim() || undefined,
+        message: formData.message.trim(),
+        source_page: 'contact',
+      };
+
+      if (formData.country.trim()) {
+        payload.message = `${payload.message}\n\nCountry: ${formData.country.trim()}`
+      }
+
+      await createInquiry(payload)
+      setStatus('success')
       setFormData({
         name: '',
         email: '',
@@ -44,8 +60,11 @@ const Contact = () => {
         phone: '',
         product: '',
         message: '',
-      });
-    }, 5000);
+      })
+    } catch (err) {
+      setError(err.message || 'Failed to submit inquiry')
+      setStatus('error')
+    }
   };
 
   const contactInfo = [
@@ -130,7 +149,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="lg:col-span-2">
               <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8">
-                {isSubmitted ? (
+                {status === 'success' ? (
                   <div className="text-center py-12">
                     <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                       <CheckCircle className="w-8 h-8 text-green-600" />
@@ -268,12 +287,16 @@ const Contact = () => {
                           placeholder="Describe the products you're looking for, estimated quantities, budget range, and any specific requirements..."
                         />
                       </div>
+                      {error && (
+                        <p className="text-sm text-red-600" role="alert">{error}</p>
+                      )}
                       <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center"
+                        disabled={status === 'submitting'}
+                        className="w-full bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:bg-blue-700 transition-colors flex items-center justify-center disabled:opacity-70"
                       >
                         <Send className="w-5 h-5 mr-2" />
-                        Submit Inquiry
+                        {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
                       </button>
                     </form>
                   </>

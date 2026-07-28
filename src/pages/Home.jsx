@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   Search, 
@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { createInquiry } from '../api/inquiries';
 
 const Home = () => {
   const heroRef = useRef(null);
@@ -27,6 +28,58 @@ const Home = () => {
   const caseStudiesRef = useRef(null);
   const faqRef = useRef(null);
   const inquiryRef = useRef(null);
+
+  const [homeForm, setHomeForm] = useState({
+    name: '',
+    email: '',
+    company: '',
+    country: '',
+    product: '',
+    message: '',
+  });
+  const [homeStatus, setHomeStatus] = useState('idle');
+  const [homeError, setHomeError] = useState(null);
+
+  const handleHomeChange = (e) => {
+    const { name, value } = e.target;
+    setHomeForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleHomeSubmit = async (e) => {
+    e.preventDefault();
+    setHomeError(null);
+    setHomeStatus('submitting');
+
+    try {
+      const payload = {
+        name: homeForm.name.trim(),
+        email: homeForm.email.trim(),
+        company: homeForm.company.trim() || undefined,
+        phone: undefined,
+        product_interest: homeForm.product.trim() || undefined,
+        message: homeForm.message.trim(),
+        source_page: 'home',
+      };
+
+      if (homeForm.country.trim()) {
+        payload.message = `${payload.message}\n\nCountry: ${homeForm.country.trim()}`
+      }
+
+      await createInquiry(payload)
+      setHomeStatus('success')
+      setHomeForm({
+        name: '',
+        email: '',
+        company: '',
+        country: '',
+        product: '',
+        message: '',
+      })
+    } catch (err) {
+      setHomeError(err.message || 'Failed to submit inquiry')
+      setHomeStatus('error')
+    }
+  };
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, heroRef.current);
@@ -520,104 +573,135 @@ const Home = () => {
                 Tell us about your sourcing needs and we'll get back to you within 24 hours.
               </p>
             </div>
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
-                    Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                    placeholder="John Smith"
-                  />
+            {homeStatus === 'success' ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                    placeholder="john@company.com"
-                  />
-                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Thank You!</h3>
+                <p className="text-slate-600 mb-4">
+                  Your inquiry has been received. Our team will get back to you within 24 hours.
+                </p>
+                <p className="text-sm text-slate-500">
+                  For urgent inquiries, please call us at +86 755 8123 4567
+                </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">
-                    Company Name
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                    placeholder="Your Company Ltd."
-                  />
+            ) : (
+              <form onSubmit={handleHomeSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      value={homeForm.name}
+                      onChange={handleHomeChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      value={homeForm.email}
+                      onChange={handleHomeChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                      placeholder="john@company.com"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      id="company"
+                      name="company"
+                      value={homeForm.company}
+                      onChange={handleHomeChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                      placeholder="Your Company Ltd."
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="country" className="block text-sm font-medium text-slate-700 mb-2">
+                      Country *
+                    </label>
+                    <input
+                      type="text"
+                      id="country"
+                      name="country"
+                      required
+                      value={homeForm.country}
+                      onChange={handleHomeChange}
+                      className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                      placeholder="United States"
+                    />
+                  </div>
                 </div>
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-slate-700 mb-2">
-                    Country *
+                  <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-2">
+                    Product Category *
                   </label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
+                  <select
+                    id="product"
+                    name="product"
                     required
+                    value={homeForm.product}
+                    onChange={handleHomeChange}
                     className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
-                    placeholder="United States"
+                  >
+                    <option value="">Select a category</option>
+                    <option value="electronics">Electronics & Components</option>
+                    <option value="home-garden">Home & Garden</option>
+                    <option value="apparel">Apparel & Textiles</option>
+                    <option value="industrial">Industrial Equipment</option>
+                    <option value="consumer-goods">Consumer Goods</option>
+                    <option value="auto-parts">Auto Parts</option>
+                    <option value="health-beauty">Health & Beauty</option>
+                    <option value="toys-gifts">Toys & Gifts</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
+                    Tell Us About Your Needs *
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={5}
+                    required
+                    value={homeForm.message}
+                    onChange={handleHomeChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
+                    placeholder="Describe the products you're looking for, estimated quantities, budget range, and any specific requirements..."
                   />
                 </div>
-              </div>
-              <div>
-                <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-2">
-                  Product Category *
-                </label>
-                <select
-                  id="product"
-                  name="product"
-                  required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                {homeError && (
+                  <p className="text-sm text-red-600" role="alert">{homeError}</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={homeStatus === 'submitting'}
+                  className="w-full bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:bg-blue-700 transition-colors text-lg disabled:opacity-70"
                 >
-                  <option value="">Select a category</option>
-                  <option value="electronics">Electronics & Components</option>
-                  <option value="home-garden">Home & Garden</option>
-                  <option value="apparel">Apparel & Textiles</option>
-                  <option value="industrial">Industrial Equipment</option>
-                  <option value="consumer-goods">Consumer Goods</option>
-                  <option value="auto-parts">Auto Parts</option>
-                  <option value="health-beauty">Health & Beauty</option>
-                  <option value="toys-gifts">Toys & Gifts</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-2">
-                  Tell Us About Your Needs *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows={5}
-                  required
-                  className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
-                  placeholder="Describe the products you're looking for, estimated quantities, budget range, and any specific requirements..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-blue-600 text-white font-semibold py-4 px-8 rounded-lg hover:bg-blue-700 transition-colors text-lg"
-              >
-                Submit Inquiry
-              </button>
-            </form>
+                  {homeStatus === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
+                </button>
+              </form>
+            )}
           </div>
         </div>
       </section>
