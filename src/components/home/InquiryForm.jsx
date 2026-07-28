@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { Send, CheckCircle } from 'lucide-react'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 
-export default function InquiryForm() {
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+export default function InquiryForm({ sourcePage = 'home' }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,16 +16,53 @@ export default function InquiryForm() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // In production, this would send to a backend
-    console.log('Inquiry submitted:', formData)
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+
+    try {
+      const { data: response, error: submitError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            full_name: formData.name,
+            email: formData.email,
+            company_name: formData.company,
+            country: formData.country,
+            product_description: formData.product,
+            estimated_quantity: formData.quantity,
+            additional_details: formData.message,
+            status: 'new',
+            source_page: sourcePage,
+            created_at: new Date().toISOString(),
+          },
+        })
+        .select()
+        .single()
+
+      if (submitError || response?.success === false) {
+        const errorMsg = Array.isArray(response?.errors)
+          ? response.errors.join(', ')
+          : submitError?.message || 'Submission failed'
+        setError(errorMsg)
+        setSubmitting(false)
+        return
+      }
+
+      setSubmitted(true)
+      setSubmitting(false)
+    } catch (err) {
+      setError(err.message || 'Submission failed')
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -53,6 +94,11 @@ export default function InquiryForm() {
           </div>
 
           <form onSubmit={handleSubmit} className="card">
+            {error && (
+              <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-700 text-sm">
+                {error}
+              </div>
+            )}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-1">
@@ -162,9 +208,13 @@ export default function InquiryForm() {
               />
             </div>
 
-            <button type="submit" className="btn-primary w-full">
+            <button
+              type="submit"
+              disabled={submitting}
+              className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+            >
               <Send className="w-5 h-5 mr-2" />
-              Submit Inquiry
+              {submitting ? 'Submitting...' : 'Submit Inquiry'}
             </button>
 
             <p className="text-xs text-slate-500 text-center mt-3">

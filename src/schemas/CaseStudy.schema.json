@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Case study title"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "URL-friendly slug for the case study"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["electronics", "home-garden", "apparel-textiles", "packaging", "machinery", "automotive", "health-beauty"],
+      "description": "Product category"
+    },
+    "client_type": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Type of client (e.g., European Retailer, US Distributor)"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "Description of the challenge faced by the client"
+    },
+    "solution": {
+      "type": "string",
+      "description": "Description of the solution provided"
+    },
+    "cost_reduction": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Cost reduction percentage or amount"
+    },
+    "time_to_production": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Time to production or lead time"
+    },
+    "order_value": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Order value or annual orders"
+    },
+    "featured_image": {
+      "type": "string",
+      "format": "uri",
+      "description": "Featured image URL"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this case study is featured"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["draft", "published"],
+      "default": "draft",
+      "description": "Publication status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the case study was created"
+    }
+  },
+  "required": ["title", "slug", "category", "client_type", "challenge", "solution"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["admin"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the person submitting the inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name of the person submitting the inquiry"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the person submitting the inquiry"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Description of the product they want to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated quantity or order volume"
+    },
+    "additional_details": {
+      "type": "string",
+      "description": "Any additional details or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "The page where the inquiry was submitted from"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was created"
+    }
+  },
+  "required": ["full_name", "email", "country", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
