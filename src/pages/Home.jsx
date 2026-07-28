@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
+import { ImageHelper, DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 import strkImgConfig from '@/strk-img-config.json'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from 'sonner'
 import { 
   Shield, 
   Search, 
@@ -31,6 +33,8 @@ import {
   Send,
   Star
 } from 'lucide-react'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
 const services = [
   {
@@ -211,11 +215,43 @@ export default function Home() {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
   }, [])
 
-  const handleSubmit = (e) => {
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Form submission would go here
-    alert('Thank you for your inquiry! We will get back to you within 24 hours.')
-    setFormData({ name: '', email: '', company: '', product: '', message: '' })
+    setSubmitting(true)
+
+    try {
+      const { data: response, error } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            product: formData.product,
+            message: formData.message,
+            source: 'homepage_form',
+            status: 'new',
+            created_at: new Date().toISOString(),
+          },
+        })
+
+      if (error || response?.success === false) {
+        const errMsg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : error?.message || 'Submission failed'
+        toast.error(errMsg)
+        setSubmitting(false)
+        return
+      }
+
+      toast.success('Thank you! We will review your requirements and get back to you within 24 hours.')
+      setFormData({ name: '', email: '', company: '', product: '', message: '' })
+    } catch (err) {
+      toast.error(err.message || 'Something went wrong. Please try again.')
+    }
+    setSubmitting(false)
   }
 
   return (
@@ -558,9 +594,9 @@ export default function Home() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
               </div>
-              <Button type="submit" variant="default" size="lg" className="w-full">
+              <Button type="submit" variant="default" size="lg" className="w-full" disabled={submitting}>
                 <Send className="mr-2 w-4 h-4" />
-                Submit Sourcing Inquiry
+                {submitting ? 'Submitting...' : 'Submit Sourcing Inquiry'}
               </Button>
               <p className="text-xs text-gray-400 text-center">
                 We respect your privacy. Your information will never be shared with third parties.

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, Phone, Mail, MapPin } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Toaster } from '@/components/ui/sonner'
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -19,6 +20,7 @@ export default function Layout({ children }) {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 flex flex-col">
+      <Toaster />
       {/* Top Bar */}
       <div className="hidden lg:block bg-brand-500 text-white text-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">

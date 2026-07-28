@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
-import { ImageHelper } from '@strikingly/sdk'
+import { ImageHelper, DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 import strkImgConfig from '@/strk-img-config.json'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { toast } from 'sonner'
 import { 
   Phone, 
   Mail, 
@@ -14,6 +16,8 @@ import {
   CheckCircle,
   ArrowRight
 } from 'lucide-react'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
 const contactInfo = [
   { icon: MapPin, label: 'Office Address', value: 'Baiyun District, Guangzhou, Guangdong Province, China' },
@@ -39,13 +43,49 @@ export default function Contact() {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
   }, [])
 
-  const handleSubmit = (e) => {
+  const [submitting, setSubmitting] = useState(false)
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    alert('Thank you for your inquiry! We will review your requirements and get back to you within 24 hours with a personalized sourcing plan.')
-    setFormData({
-      name: '', email: '', company: '', phone: '',
-      product: '', quantity: '', budget: '', message: ''
-    })
+    setSubmitting(true)
+
+    try {
+      const { data: response, error } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            product: formData.product,
+            quantity: formData.quantity,
+            budget: formData.budget,
+            message: formData.message,
+            source: 'contact_page',
+            status: 'new',
+            created_at: new Date().toISOString(),
+          },
+        })
+
+      if (error || response?.success === false) {
+        const errMsg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : error?.message || 'Submission failed'
+        toast.error(errMsg)
+        setSubmitting(false)
+        return
+      }
+
+      toast.success('Thank you for your inquiry! We will review your requirements and get back to you within 24 hours with a personalized sourcing plan.')
+      setFormData({
+        name: '', email: '', company: '', phone: '',
+        product: '', quantity: '', budget: '', message: ''
+      })
+    } catch (err) {
+      toast.error(err.message || 'Something went wrong. Please try again.')
+    }
+    setSubmitting(false)
   }
 
   const handleChange = (field) => (e) => {
@@ -163,9 +203,9 @@ export default function Contact() {
                       />
                     </div>
 
-                    <Button type="submit" variant="default" size="lg" className="w-full">
+                    <Button type="submit" variant="default" size="lg" className="w-full" disabled={submitting}>
                       <Send className="mr-2 w-4 h-4" />
-                      Submit Sourcing Inquiry
+                      {submitting ? 'Submitting...' : 'Submit Sourcing Inquiry'}
                     </Button>
 
                     <p className="text-xs text-gray-400 text-center">
