@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { submitInquiry } from '@/api/inquiries';
 
 const Contact = () => {
   const containerRef = useRef(null);
@@ -19,6 +20,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   React.useEffect(() => {
     const cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -32,12 +34,22 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage('');
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    try {
+      const result = await submitInquiry(formData);
+      
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setErrorMessage(result.error || 'Failed to submit inquiry. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setErrorMessage('An unexpected error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -143,6 +155,11 @@ const Contact = () => {
                     <p className="text-gray-600 mb-8">
                       Fill out the form below and our team will provide customized recommendations.
                     </p>
+                    {errorMessage && (
+                      <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-6">
+                        {errorMessage}
+                      </div>
+                    )}
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
