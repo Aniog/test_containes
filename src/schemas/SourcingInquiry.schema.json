@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the person submitting the sourcing inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Work email address of the buyer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "destination_market": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination market or country for the sourced products"
+    },
+    "product_details": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Product requirements, quantities, target price, packaging, certification, and timeline details"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page where the inquiry form was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewed", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal inquiry follow-up status"
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "product_details", "status", "submitted_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
