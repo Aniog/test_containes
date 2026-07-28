@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Globe, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, Globe, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { submitSourcingInquiry } from '@/api/inquiries.js';
 
 const Contact = () => {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,10 +29,20 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    setSubmitted(true);
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      await submitSourcingInquiry(formData, 'contact_page');
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', country: '', product: '', quantity: '', services: [], message: '' });
+    } catch (err) {
+      console.error('Contact form submission failed:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   const serviceOptions = [
@@ -42,7 +54,7 @@ const Contact = () => {
     'Full-Service Package',
   ];
 
-  if (submitted) {
+  if (status === 'success') {
     return (
       <div>
         <section className="bg-brand-navy py-16 md:py-20">
@@ -205,11 +217,25 @@ const Contact = () => {
 
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition text-base border-none cursor-pointer"
+                  disabled={status === 'submitting'}
+                  className="inline-flex items-center gap-2 bg-brand-blue text-white px-8 py-3.5 rounded-lg font-semibold hover:bg-blue-700 transition text-base border-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5" />
-                  Submit Inquiry
+                  {status === 'submitting' ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5" />
+                      Submit Inquiry
+                    </>
+                  )}
                 </button>
+
+                {status === 'error' && error && (
+                  <p className="text-red-600 text-sm mt-2">{error}</p>
+                )}
 
                 <p className="text-neutral-500 text-xs">
                   We'll respond within 24 hours. No spam, no obligations.
