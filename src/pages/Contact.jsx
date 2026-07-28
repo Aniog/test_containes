@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Phone, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { MapPin, Mail, Phone, Clock, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Submission failed. Please try again.';
+};
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -17,10 +30,40 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', form);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: submitError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            name: form.name,
+            email: form.email,
+            company: form.company,
+            country: form.country,
+            product: form.product,
+            quantity: form.quantity,
+            message: form.message,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (submitError || response?.success === false) {
+        setError(getErrorMessage(response, submitError));
+        setSubmitting(false);
+        return;
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.');
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -165,11 +208,19 @@ const Contact = () => {
 
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center gap-2 bg-accent-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-accent-600 transition-colors"
+                      disabled={submitting}
+                      className="inline-flex items-center justify-center gap-2 bg-accent-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-accent-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      Submit Inquiry
+                      {submitting ? 'Submitting...' : 'Submit Inquiry'}
                       <Send className="w-5 h-5" />
                     </button>
+
+                    {error && (
+                      <div className="mt-4 flex items-center gap-2 text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                        <AlertCircle className="w-5 h-5" />
+                        <span className="text-sm">{error}</span>
+                      </div>
+                    )}
                   </form>
                 </div>
               )}
