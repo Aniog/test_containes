@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { Phone, Mail, MapPin, Clock, Send, CheckCircle, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,15 +18,46 @@ export default function Contact() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
+    setSending(true)
+    setError(null)
+
+    try {
+      const { error: submitError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || null,
+            phone: formData.phone || null,
+            product: formData.product,
+            quantity: formData.quantity || null,
+            budget: formData.budget || null,
+            message: formData.message,
+            status: 'new',
+          },
+        })
+
+      if (submitError) {
+        throw new Error(submitError.message || 'Failed to submit inquiry')
+      }
+
+      setSubmitted(true)
+    } catch (err) {
+      console.error('Error submitting inquiry:', err)
+      setError(err.message || 'Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -253,9 +288,14 @@ export default function Contact() {
                       />
                     </div>
                   </div>
-                  <Button variant="accent" size="lg" type="submit" className="w-full md:w-auto">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 rounded-md p-3 mb-4">
+                      <p className="text-sm text-red-600">{error}</p>
+                    </div>
+                  )}
+                  <Button variant="accent" size="lg" type="submit" className="w-full md:w-auto" disabled={sending}>
                     <Send className="mr-2 w-4 h-4" />
-                    Submit Inquiry
+                    {sending ? 'Sending...' : 'Submit Inquiry'}
                   </Button>
                   <p className="text-xs text-gray-400 mt-3">
                     By submitting this form, you agree to our privacy policy. We'll never share your information.
