@@ -5,14 +5,53 @@ import { Input } from '@/components/ui/input.tsx';
 import { Textarea } from '@/components/ui/textarea.tsx';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { toast } from 'sonner';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 export const Contact = () => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Inquiry Submitted", {
-      description: "Thank you for reaching out. We will get back to you within 24 hours.",
-    });
-    e.target.reset();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // Insert Form Response
+      const { error, data: response } = await client
+        .from('SourcingInquiries')
+        .insert({
+          data: {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            email: data.email,
+            product: data.product,
+            quantity: data.quantity,
+            target_price: data.targetPrice,
+            details: data.details,
+          }
+        });
+
+      if (error || response?.success === false) {
+        throw new Error(error?.message || response?.errors?.join(', ') || 'Failed to submit inquiry');
+      }
+
+      toast.success("Inquiry Submitted", {
+        description: "Thank you for reaching out. We will get back to you within 24 hours.",
+      });
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
+      toast.error("Submission Failed", {
+        description: err.message || "An unexpected error occurred. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -37,46 +76,48 @@ export const Contact = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label htmlFor="firstName" className="text-sm font-medium text-slate-700">First Name *</label>
-                            <Input id="firstName" required placeholder="John" />
+                            <Input id="firstName" name="firstName" disabled={isSubmitting} required placeholder="John" />
                         </div>
                         <div className="space-y-2">
                             <label htmlFor="lastName" className="text-sm font-medium text-slate-700">Last Name *</label>
-                            <Input id="lastName" required placeholder="Doe" />
+                            <Input id="lastName" name="lastName" disabled={isSubmitting} required placeholder="Doe" />
                         </div>
                     </div>
                     
                     <div className="space-y-2">
                         <label htmlFor="email" className="text-sm font-medium text-slate-700">Company Email *</label>
-                        <Input id="email" type="email" required placeholder="john@company.com" />
+                        <Input id="email" name="email" disabled={isSubmitting} type="email" required placeholder="john@company.com" />
                     </div>
                     
                     <div className="space-y-2">
                         <label htmlFor="product" className="text-sm font-medium text-slate-700">Product Name / Category *</label>
-                        <Input id="product" required placeholder="e.g. Wireless Earbuds" />
+                        <Input id="product" name="product" disabled={isSubmitting} required placeholder="e.g. Wireless Earbuds" />
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                             <label htmlFor="quantity" className="text-sm font-medium text-slate-700">Estimated Quantity</label>
-                            <Input id="quantity" placeholder="e.g. 5,000 units" />
+                            <Input id="quantity" name="quantity" disabled={isSubmitting} placeholder="e.g. 5,000 units" />
                         </div>
                         <div className="space-y-2">
                             <label htmlFor="targetPrice" className="text-sm font-medium text-slate-700">Target Price (Optional)</label>
-                            <Input id="targetPrice" placeholder="e.g. $5.00 / unit" />
+                            <Input id="targetPrice" name="targetPrice" disabled={isSubmitting} placeholder="e.g. $5.00 / unit" />
                         </div>
                     </div>
 
                     <div className="space-y-2">
                         <label htmlFor="details" className="text-sm font-medium text-slate-700">Project Details *</label>
                         <Textarea 
-                            id="details" 
+                            id="details"
+                            name="details"
+                            disabled={isSubmitting} 
                             required 
                             placeholder="Please provide product specifications, materials, packaging requirements, and any other relevant details."
                             className="min-h-[150px]"
                         />
                     </div>
 
-                    <Button type="submit" size="lg" className="w-full text-lg h-12">Submit Inquiry</Button>
+                    <Button type="submit" size="lg" className="w-full text-lg h-12" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Submit Inquiry'}</Button>
                 </form>
             </div>
 

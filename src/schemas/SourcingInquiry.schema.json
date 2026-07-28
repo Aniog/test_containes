@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "First name of the inquirer"
+    },
+    "last_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Last name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Product name or category"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price (Optional)"
+    },
+    "details": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Project details and specifications"
+    }
+  },
+  "required": ["first_name", "last_name", "email", "product", "details"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
