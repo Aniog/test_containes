@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
+import React, { useEffect, useRef, useState } from 'react';
+import { ImageHelper, DataClient, User } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
 import { ArrowRight, Clock, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const blogPosts = [
   {
@@ -69,10 +72,46 @@ const blogPosts = [
 
 export default function Blog() {
   const containerRef = useRef(null);
+  const [email, setEmail] = useState('');
+  const [subscribeStatus, setSubscribeStatus] = useState('idle'); // idle, loading, success, error
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setSubscribeStatus('loading');
+    
+    try {
+      const userRecord = await User.upsert({
+        email: email,
+        role: 'guest',
+      });
+
+      if (!userRecord || !userRecord.id) {
+        throw new Error('Failed to retrieve user profile.');
+      }
+
+      const { error: responseError } = await client
+        .from('NewsletterSubscribers')
+        .insert({
+          data: {
+            user_id: userRecord.id,
+            email: email
+          }
+        });
+
+      if (responseError) throw responseError;
+
+      setSubscribeStatus('success');
+      setEmail('');
+      setTimeout(() => setSubscribeStatus('idle'), 5000);
+    } catch (error) {
+      console.error('Subscription failed:', error);
+      setSubscribeStatus('error');
+    }
+  };
 
   return (
     <div ref={containerRef} className="pb-20">
@@ -180,20 +219,30 @@ export default function Blog() {
          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-2xl text-center">
             <h2 className="text-2xl font-bold text-slate-900 mb-4">Subscribe to Our Sourcing Newsletter</h2>
             <p className="text-slate-600 mb-8">Get the latest insights on China manufacturing, shipping updates, and sourcing tips delivered straight to your inbox.</p>
-            <form className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
                <input 
                   type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address" 
                   className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   required
+                  disabled={subscribeStatus === 'loading'}
                />
                <button 
                   type="submit" 
-                  className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+                  disabled={subscribeStatus === 'loading'}
+                  className="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-sm disabled:bg-blue-400"
                >
-                  Subscribe
+                  {subscribeStatus === 'loading' ? 'Subscribing...' : 'Subscribe'}
                </button>
             </form>
+            {subscribeStatus === 'success' && (
+              <p className="mt-3 text-sm text-green-600 font-medium">Thanks for subscribing!</p>
+            )}
+            {subscribeStatus === 'error' && (
+              <p className="mt-3 text-sm text-red-600 font-medium">Something went wrong. Please try again.</p>
+            )}
             <p className="text-xs text-slate-500 mt-4">We respect your privacy. No spam, ever.</p>
          </div>
       </section>

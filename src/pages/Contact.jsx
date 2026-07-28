@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Mail, Phone, MapPin, Send, MessageSquareCheck, Clock } from 'lucide-react';
-import { ImageHelper } from '@strikingly/sdk';
+import { ImageHelper, DataClient, User } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -25,16 +28,47 @@ export default function Contact() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    
+    try {
+      // Upsert user first
+      const userRecord = await User.upsert({
+        email: formData.email,
+        name: formData.name,
+        role: 'guest',
+      });
+
+      if (!userRecord || !userRecord.id) {
+        throw new Error('Failed to retrieve user profile.');
+      }
+
+      // Insert contact inquiry
+      const { error: responseError } = await client
+        .from('ContactInquiries')
+        .insert({
+          data: {
+            user_id: userRecord.id,
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            productType: formData.productType,
+            message: formData.message,
+          }
+        });
+
+      if (responseError) throw responseError;
+
       setIsSuccess(true);
       setFormData({ name: '', email: '', company: '', productType: '', message: '' });
       setTimeout(() => setIsSuccess(false), 5000);
-    }, 1500);
+    } catch (error) {
+      console.error('Submission failed:', error);
+      // In a real app we'd show an error state here, for now we just log it
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
