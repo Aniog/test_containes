@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { Mail, Phone, MapPin, Clock, Send, Globe, MessageSquare } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,15 +16,51 @@ const Contact = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || undefined,
+            country: formData.country,
+            product: formData.product,
+            quantity: formData.quantity || undefined,
+            message: formData.message || undefined,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const errMsg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed';
+        throw new Error(errMsg);
+      }
+
+      console.log('Inquiry submitted successfully:', response);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -147,10 +187,15 @@ const Contact = () => {
 
                     <button
                       type="submit"
-                      className="w-full md:w-auto px-8 py-3 bg-brand-orange text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors border-none cursor-pointer text-base"
+                      disabled={submitting}
+                      className="w-full md:w-auto px-8 py-3 bg-brand-orange text-white font-semibold rounded-lg hover:bg-orange-600 transition-colors border-none cursor-pointer text-base disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Submit Sourcing Inquiry
+                      {submitting ? 'Submitting...' : 'Submit Sourcing Inquiry'}
                     </button>
+
+                    {error && (
+                      <p className="text-red-600 text-sm mt-2" role="alert">{error}</p>
+                    )}
                   </form>
                 </div>
               )}
