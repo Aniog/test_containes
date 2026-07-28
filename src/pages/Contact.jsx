@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { ImageHelper } from '@strikingly/sdk'
 import loadStrkImgConfig from '../strk-img-config.js'
-import { Phone, Mail, MapPin, Clock, Send } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react'
+import { client, getErrorMessage } from '../api/postgrest-client.js'
 
 export default function Contact() {
   const containerRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     let cancelled = false
@@ -17,9 +20,41 @@ export default function Contact() {
     return () => { cancelled = true }
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setStatus('submitting')
+
+    const form = e.target
+    const formData = {
+      name: form.fullName.value.trim(),
+      email: form.email.value.trim(),
+      company: form.company.value.trim(),
+      country: form.country.value.trim(),
+      phone: form.phone.value.trim() || undefined,
+      budget: form.budget.value || undefined,
+      product_description: form.product.value.trim(),
+      additional_info: form.message.value.trim() || undefined,
+    }
+
+    try {
+      const { data: response, error: submitError } = await client
+        .from('Sourcing Inquiries')
+        .insert({ data: formData })
+        .select()
+        .single()
+
+      if (submitError || response?.success === false) {
+        throw new Error(getErrorMessage(response, submitError))
+      }
+
+      setSubmitted(true)
+      setStatus('success')
+    } catch (err) {
+      console.error('Inquiry submission failed:', err)
+      setError(err.message || 'Failed to submit inquiry. Please try again.')
+      setStatus('error')
+    }
   }
 
   return (
@@ -115,30 +150,36 @@ export default function Contact() {
                 <form onSubmit={handleSubmit} className="bg-white border border-slate-200 rounded-lg p-6 md:p-8">
                   <h2 className="text-xl font-bold text-slate-900 mb-6">Get a Free Sourcing Quote</h2>
 
+                  {status === 'error' && error && (
+                    <div className="mb-5 bg-red-50 border border-red-200 rounded-md p-4 text-sm text-red-700" role="alert">
+                      {error}
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="fullName" className="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-                      <input type="text" id="fullName" required className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="John Smith" />
+                      <input type="text" id="fullName" required disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="John Smith" />
                     </div>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
-                      <input type="email" id="email" required className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="john@company.com" />
+                      <input type="email" id="email" required disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="john@company.com" />
                     </div>
                     <div>
                       <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
-                      <input type="text" id="company" required className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="Your Company Ltd." />
+                      <input type="text" id="company" required disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="Your Company Ltd." />
                     </div>
                     <div>
                       <label htmlFor="country" className="block text-sm font-medium text-slate-700 mb-1">Country *</label>
-                      <input type="text" id="country" required className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="United States" />
+                      <input type="text" id="country" required disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="United States" />
                     </div>
                     <div>
                       <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
-                      <input type="tel" id="phone" className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="+1 234 567 8900" />
+                      <input type="tel" id="phone" disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="+1 234 567 8900" />
                     </div>
                     <div>
                       <label htmlFor="budget" className="block text-sm font-medium text-slate-700 mb-1">Estimated Budget</label>
-                      <select id="budget" className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500">
+                      <select id="budget" disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed">
                         <option value="">Select budget range</option>
                         <option value="under-5k">Under $5,000</option>
                         <option value="5k-25k">$5,000 - $25,000</option>
@@ -151,19 +192,27 @@ export default function Contact() {
 
                   <div className="mt-5">
                     <label htmlFor="product" className="block text-sm font-medium text-slate-700 mb-1">Product Description *</label>
-                    <textarea id="product" rows={5} required className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="Please describe the products you want to source. Include details such as:&#10;&#10;- Product type and specifications&#10;- Target quantity and order frequency&#10;- Quality standards and certifications needed&#10;- Target price range&#10;- Any specific requirements or preferences" />
+                    <textarea id="product" rows={5} required disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="Please describe the products you want to source. Include details such as:&#10;&#10;- Product type and specifications&#10;- Target quantity and order frequency&#10;- Quality standards and certifications needed&#10;- Target price range&#10;- Any specific requirements or preferences" />
                   </div>
 
                   <div className="mt-5">
                     <label htmlFor="message" className="block text-sm font-medium text-slate-700 mb-1">Additional Information</label>
-                    <textarea id="message" rows={3} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" placeholder="Any other details you would like to share about your project..." />
+                    <textarea id="message" rows={3} disabled={status === 'submitting'} className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 disabled:opacity-60 disabled:cursor-not-allowed" placeholder="Any other details you would like to share about your project..." />
                   </div>
 
                   <button
                     type="submit"
-                    className="mt-6 w-full bg-red-600 text-white px-8 py-3.5 rounded-md text-base font-semibold hover:bg-red-700 transition-colors"
+                    disabled={status === 'submitting'}
+                    className="mt-6 w-full bg-red-600 text-white px-8 py-3.5 rounded-md text-base font-semibold hover:bg-red-700 transition-colors disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    Submit Inquiry
+                    {status === 'submitting' ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      'Submit Inquiry'
+                    )}
                   </button>
 
                   <p className="mt-3 text-xs text-slate-500 text-center">

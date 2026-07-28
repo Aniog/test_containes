@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name of the inquirer"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Country of the inquirer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number of the inquirer"
+    },
+    "budget": {
+      "type": "string",
+      "enum": ["under-5k", "5k-25k", "25k-100k", "100k-500k", "over-500k"],
+      "description": "Estimated budget range for the sourcing project"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Description of the products to source"
+    },
+    "additional_info": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Any additional information about the sourcing project"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "company", "country", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
