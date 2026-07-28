@@ -37,7 +37,7 @@ const Contact = () => (
             <p className="mt-2">We review feasibility, information gaps, supplier screening needs, and the most suitable next step.</p>
           </div>
         </aside>
-        <InquiryForm />
+        <InquiryForm pageSource="contact page inquiry form" />
       </div>
     </section>
   </main>

@@ -51,7 +51,7 @@ const CaseStudies = () => {
         </div>
         <h2 id="case-page-heading" className="sr-only">China sourcing supplier verification and quality inspection case studies</h2>
       </section>
-      <InquirySection />
+      <InquirySection pageSource="case studies page inquiry section" />
     </main>
   )
 }

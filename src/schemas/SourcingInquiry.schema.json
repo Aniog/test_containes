@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the buyer submitting the sourcing inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer, if provided."
+    },
+    "destination_country": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination country or target market for the goods."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Product category or sourcing area requested by the buyer."
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity, MOQ target, or expected order size."
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed sourcing request including specifications, quality needs, packaging, pricing target, and timeline."
+    },
+    "page_source": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Website page or section where the inquiry was submitted."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "responded", "closed"],
+      "default": "new",
+      "description": "Internal follow-up status for the sourcing inquiry."
+    },
+    "submitted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted."
+    }
+  },
+  "required": ["name", "email", "message", "status", "submitted_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

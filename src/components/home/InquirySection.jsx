@@ -1,7 +1,7 @@
 import InquiryForm from '@/components/shared/InquiryForm'
 import SectionHeader from '@/components/shared/SectionHeader'
 
-const InquirySection = () => (
+const InquirySection = ({ pageSource = 'homepage inquiry section' }) => (
   <section className="bg-slate-50 py-16 text-slate-950 md:py-24">
     <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
       <div>
@@ -20,7 +20,7 @@ const InquirySection = () => (
           </ul>
         </div>
       </div>
-      <InquiryForm />
+      <InquiryForm pageSource={pageSource} />
     </div>
   </section>
 )

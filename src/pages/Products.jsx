@@ -46,7 +46,7 @@ const Products = () => {
         </div>
         <h2 id="products-page-title" className="sr-only">Product categories sourced from China</h2>
       </section>
-      <InquirySection />
+      <InquirySection pageSource="products page inquiry section" />
     </main>
   )
 }
