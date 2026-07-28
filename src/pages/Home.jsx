@@ -1,12 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
+import { ImageHelper, DataClient } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx'
 import {
   Search, ShieldCheck, ClipboardCheck, Truck, ArrowRight, CheckCircle2,
   ChevronDown, Factory, Users, Globe, Award, Clock, Headphones,
-  AlertTriangle, Ban, Eye, FileCheck, Ship, Package
+  AlertTriangle, Ban, Eye, FileCheck, Ship, Package, Send, Loader2
 } from 'lucide-react'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Submission failed. Please try again.'
+}
 
 /* ─── Hero ─── */
 const Hero = () => {
@@ -431,74 +441,144 @@ const FAQ = () => {
 }
 
 /* ─── Inquiry Form (CTA) ─── */
-const InquiryForm = () => (
-  <section className="py-16 md:py-24 bg-white">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-navy rounded-2xl p-8 md:p-12 lg:p-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Start Sourcing from China?
-            </h2>
-            <p className="text-slate-300 text-lg leading-relaxed mb-6">
-              Tell us about your product requirements and we'll provide a free sourcing assessment within 24 hours.
+const InquiryForm = () => {
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
+  const [values, setValues] = useState({
+    name: '', company: '', email: '', phone: '', product: '', details: ''
+  })
+
+  const onChange = (e) => {
+    const { name, value } = e.target
+    setValues((v) => ({ ...v, [name]: value }))
+  }
+
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    setError(null)
+    setStatus('submitting')
+
+    const { data: response, error: createError } = await client
+      .from('SourcingInquiry')
+      .insert({
+        data: {
+          name: values.name,
+          company: values.company,
+          email: values.email,
+          phone: values.phone,
+          product: values.product,
+          details: values.details,
+          source_page: 'home',
+        }
+      })
+      .select()
+      .single()
+
+    if (createError || response?.success === false) {
+      setError(getErrorMessage(response, createError))
+      setStatus('error')
+      return
+    }
+
+    setStatus('success')
+    setValues({ name: '', company: '', email: '', phone: '', product: '', details: '' })
+  }
+
+  if (status === 'success') {
+    return (
+      <section className="py-16 md:py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-navy rounded-2xl p-8 md:p-12 lg:p-16 text-center">
+            <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle2 className="w-8 h-8 text-green-400" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">Inquiry Submitted</h2>
+            <p className="text-slate-300 mb-6">
+              Thank you! Our team will review your requirements and respond within 24 hours.
             </p>
-            <ul className="space-y-3">
-              {['No upfront fees for initial consultation', 'Response within 24 hours', 'Dedicated account manager assigned'].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0" />
-                  <span className="text-sm">{item}</span>
-                </li>
-              ))}
-            </ul>
+            <button
+              onClick={() => setStatus('idle')}
+              className="text-blue-300 font-semibold hover:underline"
+            >
+              Submit Another Inquiry
+            </button>
           </div>
-          <div className="bg-white rounded-xl p-6 md:p-8">
-            <h3 className="text-xl font-semibold text-navy mb-6">Get a Free Sourcing Quote</h3>
-            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-                  <input type="text" className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="John Smith" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
-                  <input type="text" className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="Your Company" />
-                </div>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Email *</label>
-                  <input type="email" className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="john@company.com" />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-1">Phone</label>
-                  <input type="tel" className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="+1 234 567 8900" />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Product You Want to Source *</label>
-                <input type="text" className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="e.g. Stainless steel water bottles" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Details / Requirements</label>
-                <textarea rows={3} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent resize-none" placeholder="Quantity, specs, target price, timeline..." />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-accent-blue text-white py-3 rounded-lg font-semibold hover:bg-navy transition-colors"
-              >
-                Submit Your Inquiry
-              </button>
-              <p className="text-xs text-slate-400 text-center">
-                We'll respond within 24 hours. Your information is kept confidential.
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className="py-16 md:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-navy rounded-2xl p-8 md:p-12 lg:p-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Start Sourcing from China?
+              </h2>
+              <p className="text-slate-300 text-lg leading-relaxed mb-6">
+                Tell us about your product requirements and we'll provide a free sourcing assessment within 24 hours.
               </p>
-            </form>
+              <ul className="space-y-3">
+                {['No upfront fees for initial consultation', 'Response within 24 hours', 'Dedicated account manager assigned'].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-slate-300">
+                    <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0" />
+                    <span className="text-sm">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-white rounded-xl p-6 md:p-8">
+              <h3 className="text-xl font-semibold text-navy mb-6">Get a Free Sourcing Quote</h3>
+              <form className="space-y-4" onSubmit={onSubmit}>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
+                    <input name="name" type="text" required value={values.name} onChange={onChange} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="John Smith" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Company Name</label>
+                    <input name="company" type="text" value={values.company} onChange={onChange} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="Your Company" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Email *</label>
+                    <input name="email" type="email" required value={values.email} onChange={onChange} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="john@company.com" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-slate-700 mb-1">Phone</label>
+                    <input name="phone" type="tel" value={values.phone} onChange={onChange} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="+1 234 567 8900" />
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Product You Want to Source *</label>
+                  <input name="product" type="text" required value={values.product} onChange={onChange} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent" placeholder="e.g. Stainless steel water bottles" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Details / Requirements</label>
+                  <textarea name="details" rows={3} value={values.details} onChange={onChange} className="w-full border border-slate-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-blue focus:border-transparent resize-none" placeholder="Quantity, specs, target price, timeline..." />
+                </div>
+                {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                <button
+                  type="submit"
+                  disabled={status === 'submitting'}
+                  className="w-full bg-accent-blue text-white py-3 rounded-lg font-semibold hover:bg-navy transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
+                >
+                  {status === 'submitting' ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</> : <><Send className="w-4 h-4" /> Submit Your Inquiry</>}
+                </button>
+                <p className="text-xs text-slate-400 text-center">
+                  We'll respond within 24 hours. Your information is kept confidential.
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-)
+    </section>
+  )
+}
 
 /* ─── Home Page ─── */
 const Home = () => {

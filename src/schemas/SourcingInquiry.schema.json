@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "industry": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Industry category"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Product the inquirer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price per unit"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Supplier Sourcing", "Factory Verification", "Quality Inspection", "Production Follow-up", "Shipping Coordination", "Full Service"]
+      },
+      "description": "Services the inquirer is interested in"
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details and requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Page where the inquiry was submitted (home or contact)"
+    }
+  },
+  "required": ["name", "email", "product"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
