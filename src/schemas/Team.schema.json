@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Teams",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Team full name, e.g. Brazil"
+    },
+    "name_zh": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Team name in Chinese, e.g. 巴西"
+    },
+    "flag": {
+      "type": "string",
+      "maxLength": 10,
+      "description": "Flag emoji of the team's country"
+    },
+    "group": {
+      "type": "string",
+      "maxLength": 2,
+      "description": "Group stage assignment, e.g. A, B, C"
+    },
+    "confederation": {
+      "type": "string",
+      "enum": ["UEFA", "CONMEBOL", "CONCACAF", "CAF", "AFC", "OFC"],
+      "description": "FIFA confederation the team belongs to"
+    },
+    "coach": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Head coach name"
+    },
+    "fifa_ranking": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 300,
+      "description": "FIFA world ranking at time of tournament"
+    },
+    "played": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of matches played"
+    },
+    "won": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of matches won"
+    },
+    "drawn": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of matches drawn"
+    },
+    "lost": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of matches lost"
+    },
+    "goals_for": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total goals scored"
+    },
+    "goals_against": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total goals conceded"
+    },
+    "points": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total points in group stage"
+    },
+    "stage": {
+      "type": "string",
+      "enum": ["group", "round_of_16", "quarter_final", "semi_final", "final", "champion", "eliminated"],
+      "description": "Current stage reached in the tournament"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Additional notes about the team"
+    }
+  },
+  "required": ["name", "flag", "group", "confederation"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
