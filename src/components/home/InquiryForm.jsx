@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { submitInquiry } from '@/api/inquiries';
 
 export default function InquiryForm() {
   const [formData, setFormData] = useState({
@@ -12,22 +13,42 @@ export default function InquiryForm() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Frontend-only: simulate submission
-    if (formData.name && formData.email && formData.product) {
+    setError('');
+
+    if (!formData.name || !formData.email || !formData.product) {
+      setError('Please fill in all required fields (Name, Email, Product).');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      await submitInquiry({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        country: formData.country,
+        product: formData.product,
+        quantity: formData.quantity,
+        message: formData.message,
+        source: 'homepage',
+      });
       setSubmitted(true);
-      setError(false);
-    } else {
-      setError(true);
+    } catch (err) {
+      setError(err.message || 'Failed to submit inquiry. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(false);
+    setError('');
   };
 
   if (submitted) {
@@ -68,7 +89,7 @@ export default function InquiryForm() {
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center gap-3">
               <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-              <p className="text-red-700 text-sm">Please fill in all required fields (Name, Email, Product).</p>
+              <p className="text-red-700 text-sm">{error}</p>
             </div>
           )}
           
@@ -184,9 +205,18 @@ export default function InquiryForm() {
               />
             </div>
             
-            <button type="submit" className="btn-primary w-full sm:w-auto">
-              <Send className="w-5 h-5 mr-2" />
-              Submit Sourcing Inquiry
+            <button type="submit" className="btn-primary w-full sm:w-auto" disabled={submitting}>
+              {submitting ? (
+                <>
+                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  Submitting...
+                </>
+              ) : (
+                <>
+                  <Send className="w-5 h-5 mr-2" />
+                  Submit Sourcing Inquiry
+                </>
+              )}
             </button>
             
             <p className="text-xs text-slate-500">

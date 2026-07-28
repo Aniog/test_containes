@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle, Globe, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle, Globe, MessageCircle, Loader2 } from 'lucide-react';
+import { submitInquiry } from '@/api/inquiries';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -15,21 +16,44 @@ export default function ContactPage() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.name && formData.email && formData.message) {
+    setError('');
+
+    if (!formData.name || !formData.email || !formData.message) {
+      setError('Please fill in all required fields (Name, Email, Message).');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      await submitInquiry({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        country: formData.country,
+        phone: formData.phone,
+        service: formData.service,
+        product: formData.product,
+        quantity: formData.quantity,
+        message: formData.message,
+        source: 'contact',
+      });
       setSubmitted(true);
-      setError(false);
-    } else {
-      setError(true);
+    } catch (err) {
+      setError(err.message || 'Failed to submit inquiry. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    setError(false);
+    setError('');
   };
 
   if (submitted) {
@@ -160,7 +184,7 @@ export default function ContactPage() {
                 {error && (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center gap-3">
                     <AlertCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                    <p className="text-red-700 text-sm">Please fill in all required fields.</p>
+                    <p className="text-red-700 text-sm">{error}</p>
                   </div>
                 )}
                 
@@ -313,9 +337,18 @@ export default function ContactPage() {
                     />
                   </div>
                   
-                  <button type="submit" className="btn-primary">
-                    <Send className="w-5 h-5 mr-2" />
-                    Send Message
+                  <button type="submit" className="btn-primary" disabled={submitting}>
+                    {submitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-5 h-5 mr-2" />
+                        Send Message
+                      </>
+                    )}
                   </button>
                   
                   <p className="text-xs text-slate-500">
