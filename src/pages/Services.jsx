@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+// import { ImageHelper } from '@strikingly/sdk';
+// import strkImgConfig from '@/strk-img-config.json';
 import {
   Search,
   Shield,
@@ -19,7 +19,7 @@ const ServicesPage = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    // return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
 
   const services = [

@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 // Temporarily disabled for debugging
-import { ImageHelper } from '@strikingly/sdk';
-import strkImgConfig from '@/strk-img-config.json';
+// import { ImageHelper } from '@strikingly/sdk';
+// import strkImgConfig from '@/strk-img-config.json';
 import {
   Search,
   Shield,
@@ -27,7 +27,7 @@ const HeroSection = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    // return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
 
   return (
@@ -201,7 +201,7 @@ const ProductsSection = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    // return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
 
   const products = [
@@ -370,7 +370,7 @@ const CaseStudiesSection = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    return ImageHelper.loadImages(strkImgConfig, containerRef.current);
+    // return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
 
   const caseStudies = [

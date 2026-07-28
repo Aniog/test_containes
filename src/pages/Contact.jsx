@@ -10,6 +10,11 @@ import {
   ArrowRight,
   CheckCircle,
 } from 'lucide-react';
+// SDK imports disabled - runtime incompatibility
+// import { DataClient, User } from '@strikingly/sdk';
+// import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+// const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -24,11 +29,43 @@ const ContactPage = () => {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      // TODO: Integrate with database when SDK is available
+      // Step 1: Upsert the User (CRM Record)
+      // const userRecord = await User.upsert({ email: formData.email, name: formData.name, role: 'guest' });
+      // Step 2: Insert Sourcing Inquiry
+      // await client.from('SourcingInquiry').insert({ data: { ...formData, status: 'new' } });
+
+      console.log('Inquiry submitted:', formData);
+
+      // Simulate async submission
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      setSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        phone: '',
+        product: '',
+        quantity: '',
+        services: [],
+        message: '',
+      });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err.message || 'Submission failed. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleServiceChange = (service) => {
@@ -166,6 +203,11 @@ const ContactPage = () => {
             <div className="lg:col-span-2">
               <div className="bg-slate-50 rounded-xl p-6 md:p-8">
                 <h2 className="heading-3 mb-6 text-slate-900">Send Us a Message</h2>
+                {error && (
+                  <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                    {error}
+                  </div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -281,9 +323,13 @@ const ContactPage = () => {
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     />
                   </div>
-                  <button type="submit" className="btn-primary w-full sm:w-auto">
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="btn-primary w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
                     <Send className="w-5 h-5 mr-2" />
-                    Submit Inquiry
+                    {submitting ? 'Submitting...' : 'Submit Inquiry'}
                   </button>
                 </form>
               </div>
