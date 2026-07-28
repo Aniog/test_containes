@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company or organization name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number with country code"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Description of the product to source, including specifications and requirements"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target order quantity (e.g., 1,000 units)"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target price per unit in USD"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": ["sourcing", "verification", "qc", "shipping", "oem", "full", "other", ""],
+      "description": "Type of service the client is interested in"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country the client is based in"
+    },
+    "additional_details": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Any extra information provided by the client"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "The page from which the inquiry was submitted (home or contact)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "proposal_sent", "negotiating", "won", "lost"],
+      "default": "new",
+      "description": "Current status of the inquiry in the sales pipeline"
+    }
+  },
+  "required": ["name", "company_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
-import { Phone, Mail, MapPin, Clock, Send, ArrowRight, CheckCircle } from 'lucide-react'
+import { Phone, Mail, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 const contactInfo = [
   {
@@ -29,14 +30,40 @@ const contactInfo = [
 export default function Contact() {
   const containerRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+
+    const form = e.target
+    const formData = {
+      name: form.name.value,
+      company: form.company.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      product: form.product.value,
+      service: form.service.value,
+      country: form.country.value,
+      message: form.message.value,
+      sourcePage: 'contact',
+    }
+
+    const result = await submitInquiry(formData)
+
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      setError(result.error)
+    }
+
+    setSubmitting(false)
   }
 
   return (
@@ -215,13 +242,28 @@ export default function Contact() {
                     </div>
                   </div>
 
+                  {error && (
+                    <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                      {error}
+                    </div>
+                  )}
                   <div className="mt-6">
                     <button
                       type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors shadow-sm text-base"
+                      disabled={submitting}
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors shadow-sm text-base disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Send Inquiry
-                      <Send className="w-5 h-5" />
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          Send Inquiry
+                          <Send className="w-5 h-5" />
+                        </>
+                      )}
                     </button>
                     <p className="text-xs text-gray-500 text-center mt-3">
                       We respect your privacy. Your information will never be shared with third parties.

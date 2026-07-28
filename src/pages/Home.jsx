@@ -18,8 +18,10 @@ import {
   Clock,
   ChevronRight,
   Package,
+  Loader2,
 } from 'lucide-react'
 import CTABanner from '@/components/CTABanner'
+import { submitInquiry } from '@/api/inquiries'
 
 const services = [
   {
@@ -242,10 +244,41 @@ const faqs = [
 export default function Home() {
   const containerRef = useRef(null)
   const [openFaq, setOpenFaq] = useState(null)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formSubmitting, setFormSubmitting] = useState(false)
+  const [formError, setFormError] = useState(null)
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
   }, [])
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault()
+    setFormError(null)
+    setFormSubmitting(true)
+
+    const form = e.target
+    const formData = {
+      name: form.name.value,
+      company: form.company.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      product: form.product.value,
+      quantity: form.quantity.value,
+      budget: form.budget.value,
+      sourcePage: 'home',
+    }
+
+    const result = await submitInquiry(formData)
+
+    if (result.success) {
+      setFormSubmitted(true)
+    } else {
+      setFormError(result.error)
+    }
+
+    setFormSubmitting(false)
+  }
 
   return (
     <div ref={containerRef}>
@@ -586,7 +619,19 @@ export default function Home() {
             </p>
           </div>
 
-          <form className="bg-gray-50 rounded-2xl p-8 sm:p-10 border border-gray-100" onSubmit={(e) => e.preventDefault()}>
+          <form className="bg-gray-50 rounded-2xl p-8 sm:p-10 border border-gray-100" onSubmit={handleFormSubmit}>
+            {formSubmitted ? (
+              <div className="text-center py-8">
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                  <CheckCircle className="w-8 h-8 text-green-600" />
+                </div>
+                <h3 className="text-2xl font-bold text-navy-950 mb-2">Thank You!</h3>
+                <p className="text-gray-600">
+                  Your inquiry has been submitted. Our team will get back to you within 24 hours.
+                </p>
+              </div>
+            ) : (
+              <>
             <div className="grid sm:grid-cols-2 gap-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-navy-950 mb-1.5">
@@ -594,6 +639,7 @@ export default function Home() {
                 </label>
                 <input
                   id="name"
+                  name="name"
                   type="text"
                   required
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
@@ -606,6 +652,7 @@ export default function Home() {
                 </label>
                 <input
                   id="company"
+                  name="company"
                   type="text"
                   required
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
@@ -618,6 +665,7 @@ export default function Home() {
                 </label>
                 <input
                   id="email"
+                  name="email"
                   type="email"
                   required
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
@@ -630,6 +678,7 @@ export default function Home() {
                 </label>
                 <input
                   id="phone"
+                  name="phone"
                   type="tel"
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
                   placeholder="+1 555 123 4567"
@@ -641,6 +690,7 @@ export default function Home() {
                 </label>
                 <textarea
                   id="product"
+                  name="product"
                   rows={4}
                   required
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm resize-none"
@@ -653,6 +703,7 @@ export default function Home() {
                 </label>
                 <input
                   id="quantity"
+                  name="quantity"
                   type="text"
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
                   placeholder="e.g., 1,000 units"
@@ -664,6 +715,7 @@ export default function Home() {
                 </label>
                 <input
                   id="budget"
+                  name="budget"
                   type="text"
                   className="w-full px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent text-sm"
                   placeholder="e.g., $5 - $10"
@@ -671,18 +723,35 @@ export default function Home() {
               </div>
             </div>
 
+            {formError && (
+              <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                {formError}
+              </div>
+            )}
+
             <div className="mt-6">
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors shadow-sm text-base"
+                disabled={formSubmitting}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-600 text-white font-semibold rounded-lg hover:bg-brand-700 transition-colors shadow-sm text-base disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit Inquiry
-                <ArrowRight className="w-5 h-5" />
+                {formSubmitting ? (
+                  <>
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Submit Inquiry
+                    <ArrowRight className="w-5 h-5" />
+                  </>
+                )}
               </button>
               <p className="text-xs text-gray-500 text-center mt-3">
                 We respect your privacy. Your information will never be shared with third parties.
               </p>
             </div>
+              </>)}
           </form>
         </div>
       </section>
