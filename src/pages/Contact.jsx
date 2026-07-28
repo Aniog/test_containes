@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,15 +16,50 @@ const Contact = () => {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            country: formData.country,
+            product: formData.product,
+            quantity: formData.quantity,
+            message: formData.message,
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const errMsg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed. Please try again.';
+        throw new Error(errMsg);
+      }
+
+      console.log('Inquiry submitted successfully:', response);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -139,10 +178,14 @@ const Contact = () => {
                   </div>
                   <button
                     type="submit"
-                    className="mt-6 w-full bg-orange text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-orange-dark transition-colors border-none cursor-pointer text-base"
+                    disabled={submitting}
+                    className="mt-6 w-full bg-orange text-white px-6 py-3.5 rounded-lg font-semibold hover:bg-orange-dark transition-colors border-none cursor-pointer text-base disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Submit Sourcing Inquiry
+                    {submitting ? 'Submitting...' : 'Submit Sourcing Inquiry'}
                   </button>
+                  {error && (
+                    <p className="text-sm text-red-600 mt-3 text-center">{error}</p>
+                  )}
                   <p className="text-xs text-slate-400 mt-3 text-center">
                     We'll respond within 48 hours with a customized sourcing plan. No commitment required.
                   </p>
