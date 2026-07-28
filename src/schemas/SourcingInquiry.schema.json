@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "First name of the user"
+    },
+    "lastName": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Last name of the user"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Work email address"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Product the user is looking to source"
+    },
+    "details": {
+      "type": "string",
+      "description": "Detailed project requirements or challenges"
+    }
+  },
+  "required": ["firstName", "email", "product", "details"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["admin"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

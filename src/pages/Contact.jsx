@@ -1,9 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 export default function Contact() {
+  const [values, setValues] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    product: '',
+    details: ''
+  });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const validate = (v) => {
+    if (!v.firstName.trim()) return 'First name is required';
+    if (!v.email.trim()) return 'Email is required';
+    if (!/^\\S+@\\S+\\.\\S+$/.test(v.email)) return 'Provide a valid email';
+    if (!v.product.trim()) return 'Product is required';
+    if (!v.details.trim()) return 'Details are required';
+    return null;
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const err = validate(values);
+    if (err) { setError(err); return; }
+
+    setStatus('submitting');
+
+    try {
+      // Insert Form Response using the backend schema
+      const { error: responseError } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            email: values.email,
+            product: values.product,
+            details: values.details,
+          }
+        });
+
+      if (responseError) throw responseError;
+
+      setStatus('success');
+      setValues({ firstName: '', lastName: '', email: '', product: '', details: '' });
+
+    } catch (err) {
+      console.error(err);
+      setError(err.message || 'Submission failed');
+      setStatus('error');
+    }
+  };
+
   return (
     <div className="flex flex-col w-full py-16 bg-slate-50">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -11,40 +73,47 @@ export default function Contact() {
         <p className="text-xl text-slate-600 mb-12 text-center">Fill out the form below and one of our sourcing experts will get back to you within 24 hours.</p>
         
         <div className="bg-white p-8 rounded-lg shadow-sm border border-slate-200">
-           <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+           <form className="space-y-6" onSubmit={onSubmit} aria-busy={status === 'submitting'}>
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <label htmlFor="firstName" className="text-sm font-medium text-slate-700">First Name</label>
-                  <Input id="firstName" placeholder="John" />
+                  <Input id="firstName" name="firstName" placeholder="John" value={values.firstName} onChange={onChange} required />
                 </div>
                 <div className="space-y-2">
                   <label htmlFor="lastName" className="text-sm font-medium text-slate-700">Last Name</label>
-                  <Input id="lastName" placeholder="Doe" />
+                  <Input id="lastName" name="lastName" placeholder="Doe" value={values.lastName} onChange={onChange} />
                 </div>
               </div>
               
               <div className="space-y-2">
                 <label htmlFor="email" className="text-sm font-medium text-slate-700">Work Email</label>
-                <Input id="email" type="email" placeholder="john@company.com" />
+                <Input id="email" name="email" type="email" placeholder="john@company.com" value={values.email} onChange={onChange} required />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="product" className="text-sm font-medium text-slate-700">What product are you looking to source?</label>
-                <Input id="product" placeholder="e.g. Wireless earbuds, stainless steel water bottles..." />
+                <Input id="product" name="product" placeholder="e.g. Wireless earbuds, stainless steel water bottles..." value={values.product} onChange={onChange} required />
               </div>
               
               <div className="space-y-2">
                  <label htmlFor="details" className="text-sm font-medium text-slate-700">Project Details</label>
                  <Textarea 
                    id="details" 
+                   name="details"
                    placeholder="Please provide details like target quantity, specifications, target price, or any challenges you are facing..."
                    rows={5}
+                   value={values.details}
+                   onChange={onChange}
+                   required
                  />
               </div>
 
-              <Button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white py-6 text-lg">
-                Submit Inquiry
+              <Button type="submit" className="w-full bg-sky-600 hover:bg-sky-700 text-white py-6 text-lg" disabled={status === 'submitting'}>
+                {status === 'submitting' ? 'Sending...' : 'Submit Inquiry'}
               </Button>
+              
+              {status === 'success' && <p role="status" className="text-green-600 text-center font-medium mt-4">Thanks! We received your inquiry and will contact you shortly.</p>}
+              {status === 'error' && !!error && <p role="alert" className="text-red-600 text-center font-medium mt-4">{error}</p>}
            </form>
         </div>
       </div>
