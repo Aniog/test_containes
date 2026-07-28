@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Send, CheckCircle } from 'lucide-react'
+import { Send, CheckCircle, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 export default function InquirySection() {
   const [formData, setFormData] = useState({
@@ -12,15 +13,28 @@ export default function InquirySection() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setError(null)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Frontend only - form submission would connect to backend
-    setSubmitted(true)
+    setSubmitting(true)
+    setError(null)
+
+    const result = await submitInquiry(formData, 'Homepage')
+
+    if (result.success) {
+      setSubmitted(true)
+      setFormData({ name: '', email: '', company: '', phone: '', product: '', quantity: '', message: '' })
+    } else {
+      setError(result.error || 'Something went wrong. Please try again.')
+    }
+    setSubmitting(false)
   }
 
   if (submitted) {
@@ -170,12 +184,28 @@ export default function InquirySection() {
                 />
               </div>
 
+              {error && (
+                <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg text-sm">
+                  {error}
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg font-medium transition-all hover:shadow-lg flex items-center justify-center gap-2"
+                disabled={submitting}
+                className="w-full bg-primary hover:bg-primary/90 disabled:bg-primary/70 text-white px-6 py-4 rounded-lg font-medium transition-all hover:shadow-lg flex items-center justify-center gap-2"
               >
-                <Send className="h-5 w-5" />
-                Get Free Quote
+                {submitting ? (
+                  <>
+                    <Loader2 className="h-5 w-5 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-5 w-5" />
+                    Get Free Quote
+                  </>
+                )}
               </button>
             </form>
           </div>

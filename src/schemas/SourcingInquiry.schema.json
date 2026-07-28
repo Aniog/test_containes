@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Product or product category to be sourced"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target budget range"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["urgent", "1month", "2-3months", "flexible", ""],
+      "description": "Desired timeline for the sourcing project"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Additional details, specifications, or requirements"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The page where the inquiry was submitted from"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry in the sales pipeline"
+    }
+  },
+  "required": ["name", "email", "product"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}

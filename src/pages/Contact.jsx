@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { ImageHelper } from '@strikingly/sdk'
 import strkImgConfig from '@/strk-img-config.json'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 export default function Contact() {
   const containerRef = useRef(null)
@@ -18,6 +19,8 @@ export default function Contact() {
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
@@ -25,11 +28,23 @@ export default function Contact() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    setError(null)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setSubmitting(true)
+    setError(null)
+
+    const result = await submitInquiry(formData, 'Contact Page')
+
+    if (result.success) {
+      setSubmitted(true)
+      setFormData({ name: '', email: '', company: '', phone: '', country: '', product: '', quantity: '', budget: '', timeline: '', message: '' })
+    } else {
+      setError(result.error || 'Something went wrong. Please try again.')
+    }
+    setSubmitting(false)
   }
 
   const contactInfo = [
@@ -334,12 +349,28 @@ export default function Contact() {
                   />
                 </div>
 
+                {error && (
+                  <div className="bg-red-50 text-red-700 px-4 py-3 rounded-lg text-sm">
+                    {error}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full bg-primary hover:bg-primary/90 text-white px-6 py-4 rounded-lg font-medium transition-all hover:shadow-lg flex items-center justify-center gap-2"
+                  disabled={submitting}
+                  className="w-full bg-primary hover:bg-primary/90 disabled:bg-primary/70 text-white px-6 py-4 rounded-lg font-medium transition-all hover:shadow-lg flex items-center justify-center gap-2"
                 >
-                  <Send className="h-5 w-5" />
-                  Submit Sourcing Request
+                  {submitting ? (
+                    <>
+                      <Loader2 className="h-5 w-5 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-5 w-5" />
+                      Submit Sourcing Request
+                    </>
+                  )}
                 </button>
 
                 <p className="text-sm text-gray-500 text-center">
