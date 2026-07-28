@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category of interest"
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Project details, specs, target price, volume, timeline"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["home", "contact"],
+      "description": "Page where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "archived"],
+      "default": "new",
+      "description": "Inquiry status"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "required": ["id", "name", "email", "source", "status", "created_at", "updated_at"],
+  "additionalProperties": false
+}

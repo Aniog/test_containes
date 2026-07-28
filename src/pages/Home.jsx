@@ -25,6 +25,7 @@ import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { createContactInquiry } from '@/api/contactInquiries';
 
 const services = [
   {
@@ -136,10 +137,25 @@ const Home = () => {
     return () => window.cancelAnimationFrame(frameId);
   }, []);
 
-  const handleInquiry = (e) => {
+  const handleInquiry = async (e) => {
     e.preventDefault();
-    toast.success('Inquiry received. We will reply within 1 business day.');
-    e.target.reset();
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      company: form.company?.value,
+      category: form.category?.value,
+      details: form.details?.value,
+      source: 'home',
+    };
+
+    try {
+      await createContactInquiry(data);
+      toast.success('Inquiry received. We will reply within 1 business day.');
+      form.reset();
+    } catch (err) {
+      toast.error(err.message || 'Failed to send inquiry');
+    }
   };
 
   return (
@@ -350,6 +366,10 @@ const Home = () => {
                     <label className="text-xs font-medium text-slate-700">Email</label>
                     <Input name="email" type="email" required placeholder="you@company.com" className="mt-1" />
                   </div>
+                </div>
+                <div>
+                  <label className="text-xs font-medium text-slate-700">Company</label>
+                  <Input name="company" placeholder="Company name" className="mt-1" />
                 </div>
                 <div>
                   <label className="text-xs font-medium text-slate-700">Product category</label>

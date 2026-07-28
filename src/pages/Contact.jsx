@@ -6,12 +6,28 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
+import { createContactInquiry } from '@/api/contactInquiries';
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success('Inquiry received. We will reply within 1 business day.');
-    e.target.reset();
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      company: form.company?.value,
+      category: form.category?.value,
+      details: form.details?.value,
+      source: 'contact',
+    };
+
+    try {
+      await createContactInquiry(data);
+      toast.success('Inquiry received. We will reply within 1 business day.');
+      form.reset();
+    } catch (err) {
+      toast.error(err.message || 'Failed to send inquiry');
+    }
   };
 
   return (
