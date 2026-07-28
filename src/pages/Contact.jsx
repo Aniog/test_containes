@@ -2,14 +2,40 @@ import { useState } from "react"
 import { Button } from "@/components/ui/Button"
 import { Input, Textarea } from "@/components/ui/Input"
 import { Card, CardContent } from "@/components/ui/Card"
-import { Mail, Phone, MapPin, Send, Clock, MessageSquare } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Clock, MessageSquare, Loader2 } from "lucide-react"
+import { createInquiry } from "@/api/inquiries"
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    company: "",
+    phone: "",
+    product_description: "",
+  })
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setValues((v) => ({ ...v, [name]: value }))
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+
+    try {
+      await createInquiry(values)
+      setSubmitted(true)
+      setValues({ name: "", email: "", company: "", phone: "", product_description: "" })
+    } catch (err) {
+      setError(err.message || "Failed to submit. Please try again.")
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -105,7 +131,7 @@ export default function Contact() {
                       <Button
                         className="mt-6"
                         variant="secondary"
-                        onClick={() => setSubmitted(false)}
+                        onClick={() => { setSubmitted(false); setError(null); }}
                       >
                         Send Another Inquiry
                       </Button>
@@ -117,13 +143,26 @@ export default function Contact() {
                           <label className="mb-1.5 block text-sm font-medium text-text-primary">
                             Full Name
                           </label>
-                          <Input required placeholder="John Smith" />
+                          <Input
+                            name="name"
+                            value={values.name}
+                            onChange={handleChange}
+                            required
+                            placeholder="John Smith"
+                          />
                         </div>
                         <div>
                           <label className="mb-1.5 block text-sm font-medium text-text-primary">
                             Email
                           </label>
-                          <Input type="email" required placeholder="john@company.com" />
+                          <Input
+                            name="email"
+                            type="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            required
+                            placeholder="john@company.com"
+                          />
                         </div>
                       </div>
                       <div className="grid gap-5 sm:grid-cols-2">
@@ -131,13 +170,23 @@ export default function Contact() {
                           <label className="mb-1.5 block text-sm font-medium text-text-primary">
                             Company
                           </label>
-                          <Input placeholder="Your company name" />
+                          <Input
+                            name="company"
+                            value={values.company}
+                            onChange={handleChange}
+                            placeholder="Your company name"
+                          />
                         </div>
                         <div>
                           <label className="mb-1.5 block text-sm font-medium text-text-primary">
                             Phone / WhatsApp
                           </label>
-                          <Input placeholder="+1 555 000 0000" />
+                          <Input
+                            name="phone"
+                            value={values.phone}
+                            onChange={handleChange}
+                            placeholder="+1 555 000 0000"
+                          />
                         </div>
                       </div>
                       <div>
@@ -145,14 +194,34 @@ export default function Contact() {
                           Product Description
                         </label>
                         <Textarea
+                          name="product_description"
+                          value={values.product_description}
+                          onChange={handleChange}
                           required
                           rows={5}
                           placeholder="Describe the product, quantity, target price, and any requirements..."
                         />
                       </div>
-                      <Button type="submit" className="w-full" size="lg">
-                        Get a Free Sourcing Quote
-                        <Send className="ml-2 h-4 w-4" />
+                      {error && (
+                        <p className="text-sm text-red-600 text-center">{error}</p>
+                      )}
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        size="lg"
+                        disabled={submitting}
+                      >
+                        {submitting ? (
+                          <>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Get a Free Sourcing Quote
+                            <Send className="ml-2 h-4 w-4" />
+                          </>
+                        )}
                       </Button>
                       <p className="text-xs text-text-muted text-center">
                         By submitting, you agree to our privacy policy. No spam — ever.
