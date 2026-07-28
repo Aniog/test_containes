@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "User Records",
+  "type": "object",
+  "properties": {
+    "userid": {
+      "type": "integer",
+      "title": "User ID",
+      "description": "Foreign key referencing the internal user ID; displays localId to site owner",
+      "x-foreignKey": "users.id"
+    },
+    "note": {
+      "type": "string",
+      "title": "Note",
+      "description": "Optional note for this record",
+      "maxLength": 500
+    }
+  },
+  "required": ["userid"],
+  "additionalProperties": false
+}

@@ -138,47 +138,72 @@ export default function Services() {
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-20">
-            {services.map((svc, i) => {
-              const Icon = svc.icon;
-              const isEven = i % 2 === 0;
-              return (
-                <div key={svc.id} className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}>
-                  <div className={isEven ? '' : 'lg:order-2'}>
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center">
-                        <Icon className="w-5 h-5" />
-                      </div>
-                      <span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span>
-                    </div>
-                    <h2 id={svc.titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{svc.title}</h2>
-                    <p id={svc.descId} className="text-gray-500 leading-relaxed mb-6">{svc.summary}</p>
-                    <ul className="space-y-2 mb-8">
-                      {svc.details.map((d) => (
-                        <li key={d} className="flex items-start gap-2 text-sm text-gray-600">
-                          <CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
-                    <CTAButton to="/contact" variant="primary">
-                      Enquire About This Service
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </CTAButton>
-                  </div>
-                  <div className={`rounded-xl overflow-hidden shadow-md ${isEven ? '' : 'lg:order-1'}`}>
-                    <img
-                      alt={svc.title}
-                      data-strk-img-id={svc.imgId}
-                      data-strk-img={`[${svc.descId}] [${svc.titleId}]`}
-                      data-strk-img-ratio="4x3"
-                      data-strk-img-width="700"
-                      src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                      className="w-full h-72 object-cover"
-                    />
-                  </div>
-                </div>
-              );
-            })}
+            {/* Supplier Sourcing */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center"><Search className="w-5 h-5" /></div><span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span></div>
+                <h2 id={services[0].titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{services[0].title}</h2>
+                <p id={services[0].descId} className="text-gray-500 leading-relaxed mb-6">{services[0].summary}</p>
+                <ul className="space-y-2 mb-8">{services[0].details.map((d) => (<li key={d} className="flex items-start gap-2 text-sm text-gray-600"><CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />{d}</li>))}</ul>
+                <CTAButton to="/contact" variant="primary">Enquire About This Service<ArrowRight className="w-4 h-4 ml-2" /></CTAButton>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-md"><img alt={services[0].title} data-strk-img-id="svc-pg-img-sourcing-a1b2c3" data-strk-img={`[${services[0].descId}] [${services[0].titleId}]`} data-strk-img-ratio="4x3" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-72 object-cover" /></div>
+            </div>
+            {/* Factory Audit */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="lg:order-2">
+                <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center"><Factory className="w-5 h-5" /></div><span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span></div>
+                <h2 id={services[1].titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{services[1].title}</h2>
+                <p id={services[1].descId} className="text-gray-500 leading-relaxed mb-6">{services[1].summary}</p>
+                <ul className="space-y-2 mb-8">{services[1].details.map((d) => (<li key={d} className="flex items-start gap-2 text-sm text-gray-600"><CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />{d}</li>))}</ul>
+                <CTAButton to="/contact" variant="primary">Enquire About This Service<ArrowRight className="w-4 h-4 ml-2" /></CTAButton>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-md lg:order-1"><img alt={services[1].title} data-strk-img-id="svc-pg-img-audit-b2c3d4" data-strk-img={`[${services[1].descId}] [${services[1].titleId}]`} data-strk-img-ratio="4x3" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-72 object-cover" /></div>
+            </div>
+            {/* Quality Inspection */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center"><ShieldCheck className="w-5 h-5" /></div><span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span></div>
+                <h2 id={services[2].titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{services[2].title}</h2>
+                <p id={services[2].descId} className="text-gray-500 leading-relaxed mb-6">{services[2].summary}</p>
+                <ul className="space-y-2 mb-8">{services[2].details.map((d) => (<li key={d} className="flex items-start gap-2 text-sm text-gray-600"><CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />{d}</li>))}</ul>
+                <CTAButton to="/contact" variant="primary">Enquire About This Service<ArrowRight className="w-4 h-4 ml-2" /></CTAButton>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-md"><img alt={services[2].title} data-strk-img-id="svc-pg-img-qc-c3d4e5" data-strk-img={`[${services[2].descId}] [${services[2].titleId}]`} data-strk-img-ratio="4x3" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-72 object-cover" /></div>
+            </div>
+            {/* Production Follow-up */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="lg:order-2">
+                <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center"><ClipboardCheck className="w-5 h-5" /></div><span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span></div>
+                <h2 id={services[3].titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{services[3].title}</h2>
+                <p id={services[3].descId} className="text-gray-500 leading-relaxed mb-6">{services[3].summary}</p>
+                <ul className="space-y-2 mb-8">{services[3].details.map((d) => (<li key={d} className="flex items-start gap-2 text-sm text-gray-600"><CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />{d}</li>))}</ul>
+                <CTAButton to="/contact" variant="primary">Enquire About This Service<ArrowRight className="w-4 h-4 ml-2" /></CTAButton>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-md lg:order-1"><img alt={services[3].title} data-strk-img-id="svc-pg-img-production-d4e5f6" data-strk-img={`[${services[3].descId}] [${services[3].titleId}]`} data-strk-img-ratio="4x3" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-72 object-cover" /></div>
+            </div>
+            {/* Shipping */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center"><Truck className="w-5 h-5" /></div><span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span></div>
+                <h2 id={services[4].titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{services[4].title}</h2>
+                <p id={services[4].descId} className="text-gray-500 leading-relaxed mb-6">{services[4].summary}</p>
+                <ul className="space-y-2 mb-8">{services[4].details.map((d) => (<li key={d} className="flex items-start gap-2 text-sm text-gray-600"><CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />{d}</li>))}</ul>
+                <CTAButton to="/contact" variant="primary">Enquire About This Service<ArrowRight className="w-4 h-4 ml-2" /></CTAButton>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-md"><img alt={services[4].title} data-strk-img-id="svc-pg-img-shipping-e5f6a7" data-strk-img={`[${services[4].descId}] [${services[4].titleId}]`} data-strk-img-ratio="4x3" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-72 object-cover" /></div>
+            </div>
+            {/* Consulting */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <div className="lg:order-2">
+                <div className="flex items-center gap-3 mb-4"><div className="w-10 h-10 bg-brand-blue text-white rounded-lg flex items-center justify-center"><FileText className="w-5 h-5" /></div><span className="text-xs font-semibold uppercase tracking-widest text-brand-blue">Service</span></div>
+                <h2 id={services[5].titleId} className="text-2xl md:text-3xl font-bold text-brand-navy mb-3">{services[5].title}</h2>
+                <p id={services[5].descId} className="text-gray-500 leading-relaxed mb-6">{services[5].summary}</p>
+                <ul className="space-y-2 mb-8">{services[5].details.map((d) => (<li key={d} className="flex items-start gap-2 text-sm text-gray-600"><CheckCircle className="w-4 h-4 text-brand-blue mt-0.5 flex-shrink-0" />{d}</li>))}</ul>
+                <CTAButton to="/contact" variant="primary">Enquire About This Service<ArrowRight className="w-4 h-4 ml-2" /></CTAButton>
+              </div>
+              <div className="rounded-xl overflow-hidden shadow-md lg:order-1"><img alt={services[5].title} data-strk-img-id="svc-pg-img-consulting-f6a7b8" data-strk-img={`[${services[5].descId}] [${services[5].titleId}]`} data-strk-img-ratio="4x3" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-72 object-cover" /></div>
+            </div>
           </div>
         </div>
       </section>

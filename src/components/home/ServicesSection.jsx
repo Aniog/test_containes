@@ -71,31 +71,61 @@ export default function ServicesSection() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((svc) => {
-            const Icon = svc.icon;
-            return (
-              <div key={svc.id} className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
-                <div className="relative h-44 overflow-hidden bg-slate-100">
-                  <img
-                    alt={svc.title}
-                    data-strk-img-id={svc.imgId}
-                    data-strk-img={`[${svc.descId}] [${svc.titleId}]`}
-                    data-strk-img-ratio="3x2"
-                    data-strk-img-width="600"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-3 left-3 bg-brand-blue text-white p-2 rounded-lg">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 id={svc.titleId} className="text-lg font-semibold text-brand-navy mb-2">{svc.title}</h3>
-                  <p id={svc.descId} className="text-gray-500 text-sm leading-relaxed">{svc.desc}</p>
-                </div>
-              </div>
-            );
-          })}
+          {/* Supplier Sourcing */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+            <div className="relative h-44 overflow-hidden bg-slate-100">
+              <img alt={services[0].title} data-strk-img-id="svc-img-supplier-sourcing-4a1b2c" data-strk-img={`[${services[0].descId}] [${services[0].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute top-3 left-3 bg-brand-blue text-white p-2 rounded-lg"><Search className="w-5 h-5" /></div>
+            </div>
+            <div className="p-6">
+              <h3 id={services[0].titleId} className="text-lg font-semibold text-brand-navy mb-2">{services[0].title}</h3>
+              <p id={services[0].descId} className="text-gray-500 text-sm leading-relaxed">{services[0].desc}</p>
+            </div>
+          </div>
+          {/* Factory Verification */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+            <div className="relative h-44 overflow-hidden bg-slate-100">
+              <img alt={services[1].title} data-strk-img-id="svc-img-factory-verification-5b2c3d" data-strk-img={`[${services[1].descId}] [${services[1].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute top-3 left-3 bg-brand-blue text-white p-2 rounded-lg"><Factory className="w-5 h-5" /></div>
+            </div>
+            <div className="p-6">
+              <h3 id={services[1].titleId} className="text-lg font-semibold text-brand-navy mb-2">{services[1].title}</h3>
+              <p id={services[1].descId} className="text-gray-500 text-sm leading-relaxed">{services[1].desc}</p>
+            </div>
+          </div>
+          {/* Quality Inspection */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+            <div className="relative h-44 overflow-hidden bg-slate-100">
+              <img alt={services[2].title} data-strk-img-id="svc-img-quality-inspection-6c3d4e" data-strk-img={`[${services[2].descId}] [${services[2].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute top-3 left-3 bg-brand-blue text-white p-2 rounded-lg"><ShieldCheck className="w-5 h-5" /></div>
+            </div>
+            <div className="p-6">
+              <h3 id={services[2].titleId} className="text-lg font-semibold text-brand-navy mb-2">{services[2].title}</h3>
+              <p id={services[2].descId} className="text-gray-500 text-sm leading-relaxed">{services[2].desc}</p>
+            </div>
+          </div>
+          {/* Production Follow-up */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+            <div className="relative h-44 overflow-hidden bg-slate-100">
+              <img alt={services[3].title} data-strk-img-id="svc-img-production-followup-7d4e5f" data-strk-img={`[${services[3].descId}] [${services[3].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute top-3 left-3 bg-brand-blue text-white p-2 rounded-lg"><ClipboardCheck className="w-5 h-5" /></div>
+            </div>
+            <div className="p-6">
+              <h3 id={services[3].titleId} className="text-lg font-semibold text-brand-navy mb-2">{services[3].title}</h3>
+              <p id={services[3].descId} className="text-gray-500 text-sm leading-relaxed">{services[3].desc}</p>
+            </div>
+          </div>
+          {/* Shipping Coordination */}
+          <div className="bg-white rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+            <div className="relative h-44 overflow-hidden bg-slate-100">
+              <img alt={services[4].title} data-strk-img-id="svc-img-shipping-coordination-8e5f6a" data-strk-img={`[${services[4].descId}] [${services[4].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <div className="absolute top-3 left-3 bg-brand-blue text-white p-2 rounded-lg"><Truck className="w-5 h-5" /></div>
+            </div>
+            <div className="p-6">
+              <h3 id={services[4].titleId} className="text-lg font-semibold text-brand-navy mb-2">{services[4].title}</h3>
+              <p id={services[4].descId} className="text-gray-500 text-sm leading-relaxed">{services[4].desc}</p>
+            </div>
+          </div>
 
           {/* CTA card */}
           <div className="bg-brand-blue rounded-xl p-6 flex flex-col justify-between text-white">
