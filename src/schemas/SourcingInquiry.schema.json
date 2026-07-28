@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "fullName": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Buyer's company or brand"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Work email for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Optional phone number including country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer's country or primary market"
+    },
+    "productCategory": {
+      "type": "string",
+      "enum": [
+        "consumer_electronics",
+        "home_kitchen",
+        "hardware_tools",
+        "apparel_textiles",
+        "beauty_personal_care",
+        "industrial_parts",
+        "packaging_printing",
+        "furniture_outdoor",
+        "other"
+      ],
+      "description": "Product category the buyer wants to source"
+    },
+    "orderSize": {
+      "type": "string",
+      "enum": [
+        "sample",
+        "under_500",
+        "500_to_2000",
+        "2000_to_10000",
+        "10000_plus",
+        "unsure"
+      ],
+      "description": "Estimated order size for the first PO"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Free-form brief: product, specs, target price, timing"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Marketing attribution source, e.g. 'home_inquiry_section'"
+    }
+  },
+  "required": ["fullName", "email"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

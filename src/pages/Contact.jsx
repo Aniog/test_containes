@@ -134,7 +134,7 @@ export default function Contact() {
                 description="The more we know about your product, quantity, and timing, the more useful our first reply will be. Reference photos or spec sheets are very welcome."
               />
               <div className="mt-8">
-                <InquiryForm />
+                <InquiryForm source="contact_page" />
               </div>
             </div>
           </div>

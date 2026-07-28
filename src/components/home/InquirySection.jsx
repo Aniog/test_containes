@@ -73,7 +73,7 @@ export default function InquirySection() {
                 Send the details
               </h2>
             </div>
-            <InquiryForm />
+            <InquiryForm source="home_inquiry_section" />
           </div>
         </div>
       </div>
