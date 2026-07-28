@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { submitSourcingInquiry } from '../api/inquiries.js';
 import {
   Search, ShieldCheck, ClipboardCheck, Factory, Ship,
   CheckCircle, Users, Globe, Award, ArrowRight,
@@ -439,12 +440,23 @@ const InquirySection = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', product: '', quantity: '', message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you! We will get back to you within 24 hours.');
-    setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    setStatus('submitting');
+    setError(null);
+
+    try {
+      await submitSourcingInquiry(formData, 'home_page');
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -526,13 +538,26 @@ const InquirySection = () => {
             <div className="md:col-span-2">
               <button
                 type="submit"
-                className="w-full bg-orange text-white px-6 py-3.5 rounded-lg font-semibold text-base hover:bg-orange-dark transition-colors border-none cursor-pointer"
+                disabled={status === 'submitting'}
+                className="w-full bg-orange text-white px-6 py-3.5 rounded-lg font-semibold text-base hover:bg-orange-dark transition-colors border-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit Inquiry — It's Free
+                {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry — It\u2019s Free'}
               </button>
-              <p className="text-xs text-slate-500 text-center mt-3">
-                No commitment required. We'll review your request and respond within 24 hours.
-              </p>
+              {status === 'success' && (
+                <p className="text-sm text-emerald-600 text-center mt-3 font-medium">
+                  Thank you! Your inquiry has been received. We will respond within 24 hours.
+                </p>
+              )}
+              {status === 'error' && error && (
+                <p className="text-sm text-red-600 text-center mt-3 font-medium">
+                  {error}
+                </p>
+              )}
+              {status !== 'success' && status !== 'error' && (
+                <p className="text-xs text-slate-500 text-center mt-3">
+                  No commitment required. We'll review your request and respond within 24 hours.
+                </p>
+              )}
             </div>
           </form>
         </div>

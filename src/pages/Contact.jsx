@@ -1,16 +1,28 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, MessageSquare, ArrowRight } from 'lucide-react';
+import { submitSourcingInquiry } from '../api/inquiries.js';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', phone: '', product: '', quantity: '', timeline: '', message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    alert('Thank you for your inquiry! We will respond within 24 hours.');
-    setFormData({ name: '', email: '', company: '', phone: '', product: '', quantity: '', timeline: '', message: '' });
+    setStatus('submitting');
+    setError(null);
+
+    try {
+      await submitSourcingInquiry(formData, 'contact_page');
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', phone: '', product: '', quantity: '', timeline: '', message: '' });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -119,13 +131,26 @@ const Contact = () => {
                 <div className="md:col-span-2">
                   <button
                     type="submit"
-                    className="w-full bg-orange text-white px-6 py-3.5 rounded-lg font-semibold text-base hover:bg-orange-dark transition-colors border-none cursor-pointer"
+                    disabled={status === 'submitting'}
+                    className="w-full bg-orange text-white px-6 py-3.5 rounded-lg font-semibold text-base hover:bg-orange-dark transition-colors border-none cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Submit Inquiry — Get Free Quote
+                    {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry — Get Free Quote'}
                   </button>
-                  <p className="text-xs text-slate-500 text-center mt-3">
-                    We respond to all inquiries within 24 hours. Your information is kept confidential.
-                  </p>
+                  {status === 'success' && (
+                    <p className="text-sm text-emerald-600 text-center mt-3 font-medium">
+                      Thank you! Your inquiry has been received. We will respond within 24 hours.
+                    </p>
+                  )}
+                  {status === 'error' && error && (
+                    <p className="text-sm text-red-600 text-center mt-3 font-medium">
+                      {error}
+                    </p>
+                  )}
+                  {status !== 'success' && status !== 'error' && (
+                    <p className="text-xs text-slate-500 text-center mt-3">
+                      We respond to all inquiries within 24 hours. Your information is kept confidential.
+                    </p>
+                  )}
                 </div>
               </form>
             </div>
