@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { createInquiry } from '../api/sourcing-inquiries.js';
 import {
   Search,
   ShieldCheck,
@@ -24,6 +25,7 @@ import {
   Lightbulb,
   Stethoscope,
   Hammer,
+  Loader2,
 } from 'lucide-react';
 
 const serviceCards = [
@@ -193,10 +195,44 @@ function FAQItem({ item }) {
 
 export default function Home() {
   const containerRef = useRef(null);
+  const [ctaSubmitting, setCtaSubmitting] = useState(false);
+  const [ctaSuccess, setCtaSuccess] = useState(false);
+  const [ctaError, setCtaError] = useState(null);
+  const [ctaForm, setCtaForm] = useState({ name: '', email: '', product: '' });
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
+
+  const handleCtaChange = (e) => {
+    setCtaForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleCtaSubmit = async (e) => {
+    e.preventDefault();
+    setCtaSubmitting(true);
+    setCtaError(null);
+    try {
+      await createInquiry({
+        name: ctaForm.name,
+        email: ctaForm.email,
+        product: ctaForm.product,
+        company: '',
+        phone: '',
+        quantity: '',
+        budget: '',
+        timeline: '',
+        message: '',
+        hearAbout: 'Homepage Quick Inquiry',
+      });
+      setCtaSuccess(true);
+      setCtaForm({ name: '', email: '', product: '' });
+    } catch (err) {
+      setCtaError(err?.message || 'Submission failed. Please try again.');
+    } finally {
+      setCtaSubmitting(false);
+    }
+  };
 
   return (
     <div ref={containerRef}>
@@ -484,52 +520,76 @@ export default function Home() {
 
             <div className="bg-white rounded-lg p-8 shadow-lg">
               <h3 className="text-xl font-semibold text-neutral-nearblack mb-6">Quick Inquiry</h3>
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  alert('Thank you for your inquiry. We will contact you within 24 hours.');
-                }}
-                className="space-y-4"
-              >
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-neutral-darkgray mb-1">Name</label>
-                    <input
-                      type="text"
-                      required
-                      className="w-full border border-neutral-lightgray rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                      placeholder="Your name"
-                    />
+              {ctaSuccess ? (
+                <div className="text-center py-8">
+                  <CheckCircle className="w-10 h-10 text-green-600 mx-auto mb-3" />
+                  <p className="text-neutral-nearblack font-medium">Thanks for your inquiry!</p>
+                  <p className="text-sm text-neutral-mediumgray mt-1">We will contact you within 24 hours.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleCtaSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-darkgray mb-1">Name</label>
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={ctaForm.name}
+                        onChange={handleCtaChange}
+                        className="w-full border border-neutral-lightgray rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="Your name"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-neutral-darkgray mb-1">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={ctaForm.email}
+                        onChange={handleCtaChange}
+                        className="w-full border border-neutral-lightgray rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="you@company.com"
+                      />
+                    </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-neutral-darkgray mb-1">Email</label>
-                    <input
-                      type="email"
+                    <label className="block text-sm font-medium text-neutral-darkgray mb-1">Product Description</label>
+                    <textarea
+                      name="product"
                       required
+                      rows={4}
+                      value={ctaForm.product}
+                      onChange={handleCtaChange}
                       className="w-full border border-neutral-lightgray rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                      placeholder="you@company.com"
+                      placeholder="Describe the product, quantity, target price, and any special requirements..."
                     />
                   </div>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-neutral-darkgray mb-1">Product Description</label>
-                  <textarea
-                    required
-                    rows={4}
-                    className="w-full border border-neutral-lightgray rounded-md px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    placeholder="Describe the product, quantity, target price, and any special requirements..."
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="w-full bg-accent hover:bg-accent-dark text-white py-3 rounded-md text-base font-semibold transition-colors"
-                >
-                  Submit Inquiry
-                </button>
-                <p className="text-xs text-neutral-mediumgray text-center">
-                  We respect your privacy. Your information will not be shared with third parties.
-                </p>
-              </form>
+                  {ctaError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 rounded-md px-4 py-3 text-sm">
+                      {ctaError}
+                    </div>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={ctaSubmitting}
+                    className="w-full bg-accent hover:bg-accent-dark disabled:opacity-60 disabled:cursor-not-allowed text-white py-3 rounded-md text-base font-semibold transition-colors flex items-center justify-center gap-2"
+                  >
+                    {ctaSubmitting ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        Submitting…
+                      </>
+                    ) : (
+                      'Submit Inquiry'
+                    )}
+                  </button>
+                  <p className="text-xs text-neutral-mediumgray text-center">
+                    We respect your privacy. Your information will not be shared with third parties.
+                  </p>
+                </form>
+              )}
             </div>
           </div>
         </div>

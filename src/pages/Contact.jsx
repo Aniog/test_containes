@@ -8,10 +8,14 @@ import {
   CheckCircle,
   Globe,
   MessageSquare,
+  Loader2,
 } from 'lucide-react';
+import { createInquiry } from '../api/sourcing-inquiries.js';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const [form, setForm] = useState({
     name: '',
     company: '',
@@ -29,10 +33,19 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      await createInquiry(form);
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      setSubmitError(err?.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -336,12 +349,28 @@ export default function Contact() {
                       </select>
                     </div>
 
+                    {submitError && (
+                      <div className="bg-red-50 border border-red-200 text-red-700 rounded-md px-4 py-3 text-sm">
+                        {submitError}
+                      </div>
+                    )}
+
                     <button
                       type="submit"
-                      className="w-full bg-accent hover:bg-accent-dark text-white py-3.5 rounded-md text-base font-semibold transition-colors flex items-center justify-center gap-2"
+                      disabled={submitting}
+                      className="w-full bg-accent hover:bg-accent-dark disabled:opacity-60 disabled:cursor-not-allowed text-white py-3.5 rounded-md text-base font-semibold transition-colors flex items-center justify-center gap-2"
                     >
-                      <Send className="w-4 h-4" />
-                      Submit Inquiry
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Submitting…
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Submit Inquiry
+                        </>
+                      )}
                     </button>
 
                     <p className="text-xs text-neutral-mediumgray text-center">
