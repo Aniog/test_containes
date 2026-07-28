@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name of the inquirer"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product category or product name being sourced"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or volume"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed project requirements and special requests"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry in the sales pipeline"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 100,
+      "default": "website",
+      "description": "Source of the inquiry, e.g. website, referral, campaign"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the Users table for CRM linkage",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "product", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

@@ -4,9 +4,11 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { submitSourcingInquiry } from '@/api/inquiries'
 
 export default function InquiryForm({ compact = false, title = "Get a Free Sourcing Quote" }) {
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle')
+  const [error, setError] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -21,12 +23,20 @@ export default function InquiryForm({ compact = false, title = "Get a Free Sourc
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Inquiry submitted:', formData)
-    setSubmitted(true)
-    setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' })
-    setTimeout(() => setSubmitted(false), 5000)
+    setError(null)
+    setStatus('submitting')
+
+    try {
+      await submitSourcingInquiry(formData)
+      setStatus('success')
+      setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' })
+      setTimeout(() => setStatus('idle'), 6000)
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.')
+      setStatus('error')
+    }
   }
 
   return (
@@ -38,7 +48,7 @@ export default function InquiryForm({ compact = false, title = "Get a Free Sourc
         </CardDescription>
       </CardHeader>
       <CardContent>
-        {submitted ? (
+        {status === 'success' ? (
           <div className="rounded-lg bg-secondary-light p-6 text-center">
             <h4 className="mb-2 text-lg font-semibold text-secondary-dark">Thank You</h4>
             <p className="text-sm text-secondary-dark">
@@ -120,8 +130,20 @@ export default function InquiryForm({ compact = false, title = "Get a Free Sourc
               />
             </div>
 
-            <Button type="submit" variant="cta" size="lg" className="w-full">
-              Get a Free Sourcing Quote
+            {error && (
+              <div className="rounded-md bg-red-50 p-3 text-sm text-red-700" role="alert">
+                {error}
+              </div>
+            )}
+
+            <Button
+              type="submit"
+              variant="cta"
+              size="lg"
+              className="w-full"
+              disabled={status === 'submitting'}
+            >
+              {status === 'submitting' ? 'Submitting…' : 'Get a Free Sourcing Quote'}
             </Button>
 
             <p className="text-center text-xs text-gray-500">
