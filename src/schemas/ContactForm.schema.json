@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Contact Form Responses",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this form",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "Phone number"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product they want to source"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Inquiry message or project details"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Source of the inquiry"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "required": ["id", "name", "email", "product", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
