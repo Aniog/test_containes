@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Send, CheckCircle2, Loader2 } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { Send, CheckCircle2, Loader2, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { submitSourcingInquiry } from "@/api/sourcingInquiries";
 
 const PRODUCT_TYPES = [
   "Consumer goods",
@@ -21,17 +23,22 @@ const SERVICES_NEEDED = [
   "Sourcing strategy & consulting",
 ];
 
+const EMPTY_FORM = {
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  country: "",
+  productType: "",
+  services: [],
+  details: "",
+};
+
 export default function InquiryForm({ compact = false }) {
-  const [form, setForm] = useState({
-    name: "",
-    company: "",
-    email: "",
-    country: "",
-    productType: "",
-    services: [],
-    details: "",
-  });
+  const location = useLocation();
+  const [form, setForm] = useState(EMPTY_FORM);
   const [status, setStatus] = useState("idle"); // idle | sending | success | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   const update = (k) => (e) => setForm((s) => ({ ...s, [k]: e.target.value }));
 
@@ -44,13 +51,37 @@ export default function InquiryForm({ compact = false }) {
     }));
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     setStatus("sending");
-    // Frontend-only: simulate submission. In a real backend, this would POST to an API.
-    setTimeout(() => {
-      setStatus("success");
-    }, 900);
+    setErrorMsg("");
+
+    const sourcePage =
+      typeof window !== "undefined"
+        ? window.location.pathname + window.location.search + window.location.hash
+        : location.pathname;
+
+    const payload = {
+      name: form.name.trim(),
+      company: form.company.trim(),
+      email: form.email.trim(),
+      phone: form.phone.trim(),
+      country: form.country.trim(),
+      productType: form.productType,
+      services: form.services,
+      details: form.details.trim(),
+      sourcePage,
+    };
+
+    const result = await submitSourcingInquiry(payload);
+
+    if (!result.success) {
+      setStatus("error");
+      setErrorMsg(result.error || "We could not submit your inquiry. Please try again or email us directly.");
+      return;
+    }
+
+    setStatus("success");
   };
 
   if (status === "success") {
@@ -68,15 +99,8 @@ export default function InquiryForm({ compact = false }) {
           type="button"
           onClick={() => {
             setStatus("idle");
-            setForm({
-              name: "",
-              company: "",
-              email: "",
-              country: "",
-              productType: "",
-              services: [],
-              details: "",
-            });
+            setErrorMsg("");
+            setForm(EMPTY_FORM);
           }}
           className="btn-ghost mt-6"
         >
@@ -130,6 +154,17 @@ export default function InquiryForm({ compact = false }) {
             value={form.email}
             onChange={update("email")}
             placeholder="you@company.com"
+            className="input"
+          />
+        </div>
+        <div>
+          <label htmlFor="inq-phone" className="label">Phone / WhatsApp</label>
+          <input
+            id="inq-phone"
+            type="tel"
+            value={form.phone}
+            onChange={update("phone")}
+            placeholder="+1 555 123 4567"
             className="input"
           />
         </div>
@@ -222,6 +257,16 @@ export default function InquiryForm({ compact = false }) {
           )}
         </button>
       </div>
+
+      {status === "error" && (
+        <div
+          role="alert"
+          className="mt-4 flex items-start gap-2 rounded-md border border-danger/30 bg-danger/10 px-3 py-2 text-sm text-danger"
+        >
+          <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+          <p>{errorMsg}</p>
+        </div>
+      )}
     </form>
   );
 }

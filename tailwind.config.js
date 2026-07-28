@@ -35,6 +35,7 @@ export default {
         },
         success: "#16A34A",
         warning: "#D97706",
+        danger: "#DC2626",
         info: "#0284C7",
       },
       fontFamily: {

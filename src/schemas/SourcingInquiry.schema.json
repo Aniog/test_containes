@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the prospective buyer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Buyer's company name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Business email address used for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Optional phone or WhatsApp number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Buyer's country or region (destination market)"
+    },
+    "productType": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category selected from the form"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "description": "List of services the buyer is interested in"
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Free-form project description, quantities, target price, timeline, certifications"
+    },
+    "sourcePage": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "URL or path where the inquiry was submitted from"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal CRM status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "country", "details"],
+  "additionalProperties": false
+}
