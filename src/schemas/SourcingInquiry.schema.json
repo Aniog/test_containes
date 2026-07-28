@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Work email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name, if provided"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "product_type": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category the buyer wants to source"
+    },
+    "service": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Sourcing service the buyer is interested in"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity as free text"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Project details and requirements from the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "won", "lost"],
+      "default": "new",
+      "description": "Pipeline status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

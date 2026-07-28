@@ -1,6 +1,7 @@
 import { useState } from "react"
-import { Send, CheckCircle2, Loader2 } from "lucide-react"
+import { Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react"
 import Button from "@/components/ui/button"
+import { submitSourcingInquiry } from "@/api/inquiries"
 
 const productTypes = [
   "Consumer Electronics",
@@ -22,7 +23,8 @@ const services = [
 ]
 
 export default function InquiryForm({ compact = false }) {
-  const [status, setStatus] = useState("idle") // idle | loading | success
+  const [status, setStatus] = useState("idle") // idle | loading | success | error
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -36,14 +38,18 @@ export default function InquiryForm({ compact = false }) {
 
   const update = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
     setStatus("loading")
-    // Frontend-only: simulate submission. Backend wiring comes later.
-    setTimeout(() => {
-      console.log("Inquiry submitted:", form)
+    try {
+      await submitSourcingInquiry(form)
       setStatus("success")
-    }, 900)
+    } catch (err) {
+      console.error("Inquiry submission failed:", err)
+      setError(err.message || "Submission failed. Please try again.")
+      setStatus("error")
+    }
   }
 
   if (status === "success") {
@@ -154,6 +160,13 @@ export default function InquiryForm({ compact = false }) {
           )}
         </Button>
       </div>
+
+      {status === "error" && (
+        <div className="mt-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+          <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
     </form>
   )
 }
