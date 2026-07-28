@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare, Globe } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare, Globe, Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
 import SectionTitle from '../components/shared/SectionTitle'
+import { createInquiry } from '../api/inquiries'
 
 const productCategories = [
   'Electronics & Components',
@@ -35,6 +37,7 @@ const servicesNeeded = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -62,11 +65,29 @@ export default function Contact() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Simulate form submission
-    setSubmitted(true)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    setSubmitting(true)
+    try {
+      await createInquiry({
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        phone: formData.phone,
+        country: formData.country,
+        product_category: formData.productCategory,
+        order_volume: formData.orderVolume,
+        services_needed: formData.services,
+        product_description: formData.productDescription,
+        message: formData.message,
+      })
+      setSubmitted(true)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    } catch (err) {
+      toast.error(err.message || 'Failed to submit inquiry. Please try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -389,10 +410,20 @@ export default function Contact() {
                   <div className="pt-4">
                     <button
                       type="submit"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-lg text-base font-semibold hover:bg-accent-hover transition-colors shadow-lg"
+                      disabled={submitting}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent text-white px-8 py-4 rounded-lg text-base font-semibold hover:bg-accent-hover transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-5 h-5" />
-                      Submit Inquiry
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5" />
+                          Submit Inquiry
+                        </>
+                      )}
                     </button>
                     <p className="text-xs text-text-muted mt-3">
                       By submitting this form, you agree to our privacy policy. We never share your information with third parties.
