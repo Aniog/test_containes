@@ -9,6 +9,7 @@ import Products from '@/pages/Products';
 import CaseStudies from '@/pages/CaseStudies';
 import Blog from '@/pages/Blog';
 import Contact from '@/pages/Contact';
+import UserRecords from '@/pages/UserRecords';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -32,6 +33,7 @@ function AppRoutes() {
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/user-records" element={<UserRecords />} />
         </Routes>
       </Layout>
     </>
