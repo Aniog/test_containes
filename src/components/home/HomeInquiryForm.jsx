@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Send, CheckCircle } from 'lucide-react';
+import { Send, CheckCircle, Loader2 } from 'lucide-react';
 import SectionHeader from '../shared/SectionHeader';
+import { submitSourcingInquiry } from '../../api/inquiries';
 
 const productCategories = [
   'Electronics & Components',
@@ -16,6 +17,8 @@ const productCategories = [
 
 export default function HomeInquiryForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '', company: '', email: '', country: '',
     category: '', quantity: '', description: '',
@@ -25,10 +28,18 @@ export default function HomeInquiryForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Inquiry submitted:', form);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submitSourcingInquiry({ ...form, source: 'home_form' });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -150,11 +161,18 @@ export default function HomeInquiryForm() {
             </div>
             <button
               type="submit"
-              className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-sm mt-2"
+              disabled={submitting}
+              className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-sm mt-2"
             >
-              <Send className="w-4 h-4" />
-              Submit Sourcing Inquiry
+              {submitting ? (
+                <><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</>
+              ) : (
+                <><Send className="w-4 h-4" /> Submit Sourcing Inquiry</>
+              )}
             </button>
+            {error && (
+              <p className="text-red-600 text-sm text-center">{error}</p>
+            )}
             <p className="text-slate-400 text-xs text-center">
               We respond within 24 business hours. Your information is kept strictly confidential.
             </p>

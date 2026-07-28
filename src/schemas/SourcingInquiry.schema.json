@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the buyer submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number of the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Furniture & Home Goods",
+        "Apparel & Textiles",
+        "Machinery & Equipment",
+        "Packaging & Printing",
+        "Toys & Sporting Goods",
+        "Health & Beauty",
+        "Food & Agriculture",
+        "Other"
+      ],
+      "description": "Product category the buyer is interested in sourcing"
+    },
+    "service": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Audit",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping Coordination",
+        "Compliance Support",
+        "Full-Service Sourcing",
+        ""
+      ],
+      "description": "Specific service the buyer is requesting"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target budget in USD"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed product description and sourcing requirements"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["home_form", "contact_page"],
+      "description": "Which form on the site the inquiry was submitted from"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewed", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "country", "category", "description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

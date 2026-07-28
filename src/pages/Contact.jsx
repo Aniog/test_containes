@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Mail, MapPin, Globe, Clock, Send, CheckCircle } from 'lucide-react';
+import { Mail, MapPin, Globe, Clock, Send, CheckCircle, Loader2 } from 'lucide-react';
+import { submitSourcingInquiry } from '../api/inquiries';
 
 const productCategories = [
   'Electronics & Components',
@@ -25,6 +26,8 @@ const services = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '', company: '', email: '', phone: '', country: '',
     category: '', service: '', quantity: '', budget: '', description: '',
@@ -34,10 +37,18 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', form);
-    setSubmitted(true);
+    setError(null);
+    setSubmitting(true);
+    try {
+      await submitSourcingInquiry({ ...form, source: 'contact_page' });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Submission failed. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -207,10 +218,17 @@ export default function Contact() {
                         className="w-full border border-slate-300 rounded-lg px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" />
                     </div>
                     <button type="submit"
-                      className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-sm mt-2">
-                      <Send className="w-4 h-4" />
-                      Submit Sourcing Inquiry
+                      disabled={submitting}
+                      className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-sm mt-2">
+                      {submitting ? (
+                        <><Loader2 className="w-4 h-4 animate-spin" /> Submitting…</>
+                      ) : (
+                        <><Send className="w-4 h-4" /> Submit Sourcing Inquiry</>
+                      )}
                     </button>
+                    {error && (
+                      <p className="text-red-600 text-sm text-center">{error}</p>
+                    )}
                     <p className="text-slate-400 text-xs text-center">
                       We respond within 24 business hours. Your information is kept strictly confidential.
                     </p>
