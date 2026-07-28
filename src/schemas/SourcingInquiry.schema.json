@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the guest user record connected to this inquiry.",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Name of the buyer submitting the sourcing inquiry."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Work email address for responding to the inquiry."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name provided by the buyer."
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Product category the buyer wants to source."
+    },
+    "support_needed": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Primary sourcing service requested by the buyer."
+    },
+    "project_details": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Detailed project brief, including specifications, quantity, destination, timeline, and concerns."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Website page where the inquiry form was submitted."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "responded", "closed"],
+      "default": "new",
+      "description": "Internal follow-up status for the sourcing inquiry."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted."
+    }
+  },
+  "required": ["name", "email", "product_category", "support_needed", "project_details", "status", "created_at"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

@@ -7,7 +7,7 @@ import ProcessSection from '@/components/home/ProcessSection.jsx?ssourcing=20260
 import ProductsSection from '@/components/home/ProductsSection.jsx?ssourcing=20260728'
 import ServicesSection from '@/components/home/ServicesSection.jsx?ssourcing=20260728'
 import FinalCTA from '@/components/common/FinalCTA.jsx?ssourcing=20260728'
-import InquiryForm from '@/components/common/InquiryForm.jsx?ssourcing=20260728'
+import InquiryForm from '@/components/common/InquiryForm.jsx?ssourcing=20260728_backend'
 
 const Home = () => (
   <>

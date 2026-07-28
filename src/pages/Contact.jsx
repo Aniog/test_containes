@@ -1,5 +1,5 @@
 import { Mail, MapPin, MessageSquare, Phone } from 'lucide-react'
-import InquiryForm from '@/components/common/InquiryForm.jsx?ssourcing=20260728'
+import InquiryForm from '@/components/common/InquiryForm.jsx?ssourcing=20260728_backend'
 
 const Contact = () => (
   <section className="bg-slate-50 py-16 text-slate-950 lg:py-24">
