@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person making the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category selected from dropdown"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Description of the product to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price in USD"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Expected timeline for delivery"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional notes or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "in_progress", "won", "lost"],
+      "default": "new",
+      "description": "Lead status"
+    }
+  },
+  "required": ["name", "email", "company", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

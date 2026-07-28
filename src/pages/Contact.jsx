@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
-import { ImageHelper } from '@strikingly/sdk';
+import { ImageHelper, DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 import strkImgConfig from '@/strk-img-config.json';
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, ArrowRight, AlertCircle } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const initialForm = {
   name: '',
@@ -21,6 +24,7 @@ export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
@@ -30,14 +34,47 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
+    setError(null);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: form.name,
+            email: form.email,
+            company: form.company,
+            phone: form.phone,
+            product_category: form.productCategory,
+            product_description: form.productDescription,
+            quantity: form.quantity,
+            target_price: form.targetPrice,
+            timeline: form.timeline,
+            message: form.message,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        const errMsg = Array.isArray(response?.errors)
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed';
+        throw new Error(errMsg);
+      }
+
       setSubmitted(true);
-      console.log('Inquiry submitted:', form);
-    }, 1500);
+      console.log('Inquiry submitted successfully:', response);
+    } catch (err) {
+      console.error('Submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -99,6 +136,12 @@ export default function Contact() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
+                {error && (
+                  <div className="flex items-start gap-3 p-4 rounded-md bg-red-50 border border-red-200 text-red-700 text-sm">
+                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                    <span>{error}</span>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-b2b-text mb-1.5">
