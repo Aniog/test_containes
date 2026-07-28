@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name, if provided"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Phone or WhatsApp number"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target budget per unit"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Sourcing",
+          "Factory Verification",
+          "Quality Inspection",
+          "Production Follow-Up",
+          "Shipping Coordination",
+          "Warehousing & Consolidation"
+        ]
+      },
+      "description": "Selected services the inquirer is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Additional project details and requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Processing status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

@@ -2,6 +2,7 @@ import { useState } from "react"
 import { CheckCircle2, Loader2, Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { submitSourcingInquiry } from "@/api/inquiries"
 
 const inputClass =
   "w-full rounded-lg border border-border bg-white px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary-400 focus:outline-none focus:ring-2 focus:ring-primary-100"
@@ -32,7 +33,8 @@ const serviceOptions = [
 
 export default function InquiryForm({ className }) {
   const [form, setForm] = useState(initialState)
-  const [status, setStatus] = useState("idle") // idle | submitting | success
+  const [status, setStatus] = useState("idle") // idle | submitting | success | error
+  const [error, setError] = useState(null)
 
   const update = (field) => (e) => {
     const value = e.target.value
@@ -51,14 +53,18 @@ export default function InquiryForm({ className }) {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
     setStatus("submitting")
-    // Frontend-only: simulate submission. Backend wiring comes after approval.
-    setTimeout(() => {
-      console.log("Inquiry submitted:", form)
+    try {
+      await submitSourcingInquiry(form)
       setStatus("success")
-    }, 900)
+    } catch (err) {
+      console.error("Inquiry submission failed:", err)
+      setError(err.message || "Something went wrong. Please try again.")
+      setStatus("error")
+    }
   }
 
   if (status === "success") {
@@ -271,6 +277,15 @@ export default function InquiryForm({ className }) {
           )}
         </Button>
       </div>
+
+      {status === "error" && error && (
+        <p
+          role="alert"
+          className="mt-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+        >
+          {error}
+        </p>
+      )}
     </form>
   )
 }
