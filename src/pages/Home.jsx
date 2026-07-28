@@ -1,14 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { submitSourcingInquiry } from '../api/inquiries.js';
 import {
   Search, ShieldCheck, ClipboardCheck, Truck, Factory,
   CheckCircle, Users, Globe, Award, ArrowRight,
   ChevronDown, ChevronUp, Package, Cpu, Shirt,
   Wrench, Sofa, Lightbulb
 } from 'lucide-react';
-import { useState } from 'react';
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -494,16 +494,35 @@ const InquirySection = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', company: '', product: '', quantity: '', message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Thank you! We will get back to you within 24 hours.');
-    setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      await submitSourcingInquiry({
+        full_name: formData.name,
+        email: formData.email,
+        company_name: formData.company,
+        product_description: formData.product,
+        estimated_quantity: formData.quantity,
+        additional_details: formData.message,
+      });
+
+      setStatus('success');
+      setFormData({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err.message || 'Submission failed. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -614,10 +633,26 @@ const InquirySection = () => {
               </div>
               <button
                 type="submit"
-                className="w-full bg-accent text-white font-semibold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors text-sm"
+                disabled={status === 'submitting'}
+                className="w-full bg-accent text-white font-semibold px-6 py-3 rounded-lg hover:bg-accent-dark transition-colors text-sm disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Get a Free Sourcing Quote
+                {status === 'submitting' ? 'Submitting...' : 'Get a Free Sourcing Quote'}
               </button>
+
+              {status === 'success' && (
+                <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-lg">
+                  <p className="text-green-800 text-sm font-medium flex items-center gap-2">
+                    <CheckCircle className="w-4 h-4" />
+                    Thank you! We will get back to you within 24 hours.
+                  </p>
+                </div>
+              )}
+
+              {status === 'error' && error && (
+                <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-800 text-sm font-medium">{error}</p>
+                </div>
+              )}
             </form>
           </div>
         </div>

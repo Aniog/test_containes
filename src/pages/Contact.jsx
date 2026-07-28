@@ -1,24 +1,47 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, MessageSquare, CheckCircle } from 'lucide-react';
+import { submitSourcingInquiry } from '../api/inquiries.js';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '', email: '', phone: '', company: '', country: '',
     product: '', quantity: '', timeline: '', message: ''
   });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    alert('Thank you for your inquiry! We will respond within 24 hours.');
-    setFormData({
-      name: '', email: '', phone: '', company: '', country: '',
-      product: '', quantity: '', timeline: '', message: ''
-    });
+    setError(null);
+    setStatus('submitting');
+
+    try {
+      await submitSourcingInquiry({
+        full_name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company_name: formData.company,
+        country: formData.country,
+        timeline: formData.timeline || undefined,
+        product_description: formData.product,
+        estimated_quantity: formData.quantity,
+        additional_details: formData.message,
+      });
+
+      setStatus('success');
+      setFormData({
+        name: '', email: '', phone: '', company: '', country: '',
+        product: '', quantity: '', timeline: '', message: ''
+      });
+    } catch (err) {
+      console.error('Inquiry submission failed:', err);
+      setError(err.message || 'Submission failed. Please try again.');
+      setStatus('error');
+    }
   };
 
   return (
@@ -112,10 +135,10 @@ const Contact = () => {
                       className="w-full px-4 py-3 rounded-lg border border-neutral-200 text-sm text-neutral-900 bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                     >
                       <option value="">Select timeline</option>
-                      <option value="urgent">Urgent (within 2 weeks)</option>
-                      <option value="1month">Within 1 month</option>
-                      <option value="2-3months">2-3 months</option>
-                      <option value="flexible">Flexible / Just researching</option>
+                      <option value="Urgent (within 2 weeks)">Urgent (within 2 weeks)</option>
+                      <option value="Within 1 month">Within 1 month</option>
+                      <option value="2-3 months">2-3 months</option>
+                      <option value="Flexible / Just researching">Flexible / Just researching</option>
                     </select>
                   </div>
                 </div>
@@ -157,10 +180,26 @@ const Contact = () => {
                 </div>
                 <button
                   type="submit"
-                  className="bg-accent text-white font-semibold px-8 py-3.5 rounded-lg hover:bg-accent-dark transition-colors text-sm"
+                  disabled={status === 'submitting'}
+                  className="bg-accent text-white font-semibold px-8 py-3.5 rounded-lg hover:bg-accent-dark transition-colors text-sm disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Submit Inquiry
+                  {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
                 </button>
+
+                {status === 'success' && (
+                  <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 text-sm font-medium flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4" />
+                      Thank you for your inquiry! We will respond within 24 hours.
+                    </p>
+                  </div>
+                )}
+
+                {status === 'error' && error && (
+                  <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 text-sm font-medium">{error}</p>
+                  </div>
+                )}
               </form>
             </div>
 
