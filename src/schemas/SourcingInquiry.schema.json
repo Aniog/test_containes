@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiry",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user record who submitted the inquiry (created via User.upsert).",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer."
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Company name."
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Country or region of the buyer."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Work email of the inquirer (snapshot for audit trail)."
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number (optional)."
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Consumer Electronics",
+        "Apparel & Textiles",
+        "Home & Kitchen",
+        "Industrial Equipment",
+        "Beauty & Personal Care",
+        "Furniture & Home Decor",
+        "Sports & Outdoors",
+        "Packaging & Printing",
+        "Other"
+      ],
+      "description": "Product category the buyer is sourcing."
+    },
+    "orderSize": {
+      "type": "string",
+      "enum": [
+        "Sample / prototype only",
+        "1 – 100 units",
+        "100 – 1,000 units",
+        "1,000 – 10,000 units",
+        "10,000+ units"
+      ],
+      "description": "Estimated order size for the inquiry."
+    },
+    "details": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Free-form description of the product, specifications, target price, and destination."
+    },
+    "sourcePage": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Page path on the website where the inquiry was submitted."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "qualified", "archived"],
+      "default": "new",
+      "description": "Pipeline status managed by the sales team (admin only)."
+    }
+  },
+  "required": ["name", "company", "country", "email", "category", "orderSize", "details"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] }
+  }
+}
