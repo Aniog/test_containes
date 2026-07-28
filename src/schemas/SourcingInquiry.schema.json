@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the guest user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number of the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is based"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Electronics & Components",
+        "Furniture & Home Goods",
+        "Apparel & Textiles",
+        "Hardware & Industrial",
+        "Packaging",
+        "Health & Beauty",
+        "Toys & Sporting Goods",
+        "Other"
+      ],
+      "description": "Product category the buyer is sourcing"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": [
+        "Supplier Sourcing",
+        "Factory Verification / Audit",
+        "Quality Inspection",
+        "Production Follow-up",
+        "Shipping Coordination",
+        "Full Sourcing Management"
+      ],
+      "description": "The primary service the buyer requires"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed description of the product the buyer wants to source"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target order quantity or volume (e.g. 500 units/month)"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target unit price range in USD"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Buyer's desired timeline for first shipment or project completion"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional notes or context from the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry for the sales team"
+    }
+  },
+  "required": ["name", "email", "product_description", "service_needed"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

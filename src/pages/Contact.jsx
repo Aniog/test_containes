@@ -1,5 +1,16 @@
 import { useState } from 'react';
 import { MapPin, Mail, Phone, Clock, CheckCircle, Send } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Submission failed. Please try again.';
+};
 
 const productCategories = [
   'Electronics & Components',
@@ -37,6 +48,8 @@ export default function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
   const [errors, setErrors] = useState({});
 
   const validate = () => {
@@ -53,17 +66,55 @@ export default function Contact() {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
+    if (submitError) setSubmitError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    console.log('Form submitted:', form);
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: form.name,
+            company: form.company || undefined,
+            email: form.email,
+            phone: form.phone || undefined,
+            country: form.country || undefined,
+            product_category: form.productCategory || undefined,
+            service_needed: form.serviceNeeded,
+            product_description: form.productDescription,
+            target_quantity: form.targetQuantity || undefined,
+            target_price: form.targetPrice || undefined,
+            timeline: form.timeline || undefined,
+            message: form.message || undefined,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (insertError || response?.success === false) {
+        throw new Error(getErrorMessage(response, insertError));
+      }
+
+      console.log('Inquiry saved, id:', response?.data?.id);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Submission error:', err);
+      setSubmitError(err.message || 'Submission failed. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = (field) =>
@@ -327,11 +378,17 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full bg-brand-red text-white py-4 rounded-lg font-semibold text-base hover:bg-red-700 transition-colors flex items-center justify-center gap-2"
+                    disabled={submitting}
+                    className="w-full bg-brand-red text-white py-4 rounded-lg font-semibold text-base hover:bg-red-700 transition-colors flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     <Send className="w-5 h-5" />
-                    Submit Sourcing Inquiry
+                    {submitting ? 'Submitting…' : 'Submit Sourcing Inquiry'}
                   </button>
+                  {submitError && (
+                    <p className="text-sm text-red-600 text-center mt-2" role="alert">
+                      {submitError}
+                    </p>
+                  )}
                   <p className="text-xs text-neutral-400 text-center mt-3">
                     We respond within 24 business hours. Your information is kept confidential.
                   </p>
