@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle, Loader2, MessageSquare } from 'lucide-react';
 import Hero from '../components/sections/Hero';
-import InquiryForm from '../components/sections/InquiryForm';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,11 +8,12 @@ const Contact = () => {
     company: '',
     email: '',
     phone: '',
-    inquiryType: '',
+    inquiry_type: '',
     message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,10 +23,43 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    console.log('Contact form submitted:', formData);
+    setError(null);
+
+    try {
+      const contactData = {
+        name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        inquiry_type: formData.inquiry_type,
+        message: formData.message,
+        status: 'new'
+      };
+
+      console.log('Contact form submitted:', contactData);
+      
+      // Simulate successful submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error('Error submitting contact form:', err);
+      setError('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
+    setIsSubmitted(false);
+    setError(null);
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      inquiry_type: '',
+      message: ''
+    });
   };
 
   return (
@@ -130,25 +163,18 @@ const Contact = () => {
                   <p className="text-text-secondary mb-8 max-w-md mx-auto">
                     Thank you for reaching out. Our team will review your message and get back to you within 24 hours.
                   </p>
-                  <button
-                    onClick={() => {
-                      setIsSubmitted(false);
-                      setFormData({
-                        name: '',
-                        company: '',
-                        email: '',
-                        phone: '',
-                        inquiryType: '',
-                        message: ''
-                      });
-                    }}
-                    className="btn-secondary"
-                  >
+                  <button onClick={resetForm} className="btn-secondary">
                     Send Another Message
                   </button>
                 </div>
               ) : (
                 <div className="bg-white rounded-2xl shadow-lg p-8">
+                  {error && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                      {error}
+                    </div>
+                  )}
+                  
                   <h3 className="text-xl font-bold text-primary mb-6">Send Us a Message</h3>
                   
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -217,13 +243,13 @@ const Contact = () => {
                     </div>
                     
                     <div>
-                      <label htmlFor="inquiryType" className="block text-sm font-medium text-text-primary mb-2">
+                      <label htmlFor="inquiry_type" className="block text-sm font-medium text-text-primary mb-2">
                         Inquiry Type
                       </label>
                       <select
-                        id="inquiryType"
-                        name="inquiryType"
-                        value={formData.inquiryType}
+                        id="inquiry_type"
+                        name="inquiry_type"
+                        value={formData.inquiry_type}
                         onChange={handleChange}
                         className="w-full px-4 py-3 rounded-lg border border-border focus:ring-2 focus:ring-accent focus:border-transparent bg-white"
                       >
