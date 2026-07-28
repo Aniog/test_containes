@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name, if provided"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Phone or WhatsApp number, if provided"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Product or category the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity, if provided"
+    },
+    "service": {
+      "type": "string",
+      "enum": ["sourcing", "verification", "qc", "production", "shipping", "full"],
+      "description": "Primary service requested"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Project details and requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "won", "lost"],
+      "default": "new",
+      "description": "Lead status used by the team"
+    },
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the User who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "product", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

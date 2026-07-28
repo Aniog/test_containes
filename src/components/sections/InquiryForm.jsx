@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { CheckCircle2, Send } from "lucide-react"
+import { CheckCircle2, Send, AlertCircle, Loader2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input, Textarea, Label, Select } from "@/components/ui/form"
+import { submitSourcingInquiry } from "@/api/inquiries"
 
 const initialForm = {
   name: "",
@@ -16,21 +17,29 @@ const initialForm = {
 
 export default function InquiryForm({ compact = false }) {
   const [form, setForm] = useState(initialForm)
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState("idle") // idle | submitting | success | error
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm((prev) => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Frontend-only: simulate a successful submission for the preview.
-    console.log("Inquiry submitted:", form)
-    setSubmitted(true)
+    setError(null)
+    setStatus("submitting")
+    try {
+      await submitSourcingInquiry(form)
+      setStatus("success")
+    } catch (err) {
+      console.error("Inquiry submission failed:", err)
+      setError(err?.message || "Something went wrong. Please try again.")
+      setStatus("error")
+    }
   }
 
-  if (submitted) {
+  if (status === "success") {
     return (
       <div className="flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-white p-8 text-center shadow-sm">
         <span className="flex h-14 w-14 items-center justify-center rounded-full bg-green-100">
@@ -46,7 +55,7 @@ export default function InquiryForm({ compact = false }) {
           className="mt-6"
           onClick={() => {
             setForm(initialForm)
-            setSubmitted(false)
+            setStatus("idle")
           }}
         >
           Submit another request
@@ -158,9 +167,33 @@ export default function InquiryForm({ compact = false }) {
         />
       </div>
 
-      <Button type="submit" size="lg" className="mt-6 w-full">
-        <Send className="h-4 w-4" />
-        Get a Free Sourcing Quote
+      {status === "error" && error && (
+        <div
+          role="alert"
+          className="mt-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700"
+        >
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <Button
+        type="submit"
+        size="lg"
+        className="mt-6 w-full"
+        disabled={status === "submitting"}
+      >
+        {status === "submitting" ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Sending...
+          </>
+        ) : (
+          <>
+            <Send className="h-4 w-4" />
+            Get a Free Sourcing Quote
+          </>
+        )}
       </Button>
       <p className="mt-3 text-center text-xs text-muted">
         We reply within one business day. Your information is kept confidential.
