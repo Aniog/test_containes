@@ -20,6 +20,13 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  optimizeDeps: {
+    include: [
+      '@strikingly/sdk',
+      'axios',
+      '@supabase/postgrest-js',
+    ],
+  },
   server: {
     host: '0.0.0.0',
     allowedHosts: true,

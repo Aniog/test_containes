@@ -5,7 +5,37 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brand: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#1e3a5f',
+          600: '#1a2f4e',
+          700: '#15243d',
+          800: '#0f1a2d',
+          900: '#0a111c',
+        },
+        accent: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#d97706',
+          600: '#b45309',
+          700: '#92400e',
+          800: '#78350f',
+          900: '#451a03',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 }
