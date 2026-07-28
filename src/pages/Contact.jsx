@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Send, CheckCircle, Mail, Phone, MapPin, Clock } from 'lucide-react';
+import { Send, CheckCircle, Mail, Phone, MapPin, Clock, AlertCircle, Loader2 } from 'lucide-react';
+import { submitInquiry } from '@/api/inquiries.js';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -18,9 +21,18 @@ export default function Contact() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError(null);
+    try {
+      await submitInquiry(form);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Failed to submit inquiry. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -168,12 +180,28 @@ export default function Contact() {
                         placeholder="Tell us about your target price, quality standards, certifications needed, timeline, or any other requirements..."
                       />
                     </div>
+                    {error && (
+                      <div className="flex items-center gap-2 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                        {error}
+                      </div>
+                    )}
                     <button
                       type="submit"
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-base font-semibold text-white bg-brand-orange hover:bg-brand-orange-dark transition-colors shadow-lg shadow-brand-orange/25"
+                      disabled={submitting}
+                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-base font-semibold text-white bg-brand-orange hover:bg-brand-orange-dark transition-colors shadow-lg shadow-brand-orange/25 disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4" />
-                      Submit Inquiry
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Submit Inquiry
+                        </>
+                      )}
                     </button>
                     <p className="text-xs text-slate-500 text-center">
                       By submitting, you agree to our privacy policy. Your information is confidential and will not be shared.
