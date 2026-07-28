@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { createSourcingInquiry } from '../api/sourcingInquiries';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,26 +13,36 @@ const Contact = () => {
     message: '',
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, this would send the form data to a server
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    setFormData({
-      name: '',
-      email: '',
-      company: '',
-      country: '',
-      phone: '',
-      productCategory: '',
-      message: '',
-    });
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      await createSourcingInquiry(formData);
+      setIsSubmitted(true);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        country: '',
+        phone: '',
+        productCategory: '',
+        message: '',
+      });
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -120,6 +131,9 @@ const Contact = () => {
                   <>
                     <h2 className="text-2xl font-bold text-slate-900 mb-6">Get a Free Sourcing Quote</h2>
                     <form onSubmit={handleSubmit} className="space-y-6">
+                      {error && (
+                        <p className="text-sm text-red-600" role="alert">{error}</p>
+                      )}
                       <div className="grid md:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">
@@ -241,10 +255,11 @@ const Contact = () => {
 
                       <button
                         type="submit"
-                        className="w-full inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                        disabled={isSubmitting}
+                        className="w-full inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
                       >
                         <Send className="w-4 h-4 mr-2" />
-                        Send Inquiry
+                        {isSubmitting ? 'Sending...' : 'Send Inquiry'}
                       </button>
                     </form>
                   </>

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Buyer email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Buyer country"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Requested product category"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Sourcing requirements and details"
+    }
+  },
+  "required": ["name", "email", "country", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
