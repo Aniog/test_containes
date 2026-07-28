@@ -1,6 +1,38 @@
 import { useState } from "react";
-import { Send, CheckCircle2 } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { DataClient } from "@strikingly/sdk";
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from "@/config.jsx";
 import { cn } from "@/lib/utils";
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getErrorMessage = (response, error) => {
+  // The Postgrest-style response can carry validation errors in several places.
+  // 1) Inside `response.errors` directly
+  // 2) Inside `response.data.errors` (when the server wraps a success:false body
+  //    under data)
+  // 3) The thrown error itself (network / CORS / 4xx-5xx)
+  const candidateLists = [
+    response?.errors,
+    response?.data?.errors,
+    error?.response?.errors,
+    error?.response?.data?.errors,
+  ];
+  for (const list of candidateLists) {
+    if (Array.isArray(list) && list.length > 0) {
+      return list.join(", ");
+    }
+  }
+  if (error?.statusCode === 0 || error?.message === "Network Error") {
+    return "We could not reach the server. Please check your connection and try again.";
+  }
+  return (
+    error?.message ||
+    response?.statusText ||
+    "Submission failed. Please try again."
+  );
+};
 
 const PRODUCT_TYPES = [
   "Consumer electronics",
@@ -39,6 +71,7 @@ export default function InquiryForm({
   title = "Get a free sourcing quote",
   subtitle = "Tell us what you are looking for. We reply within one business day with a short-list of suppliers and a transparent cost estimate.",
 }) {
+  const location = useLocation();
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -51,6 +84,23 @@ export default function InquiryForm({
   });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+
+  const resetForm = () => {
+    setForm({
+      name: "",
+      company: "",
+      email: "",
+      country: "",
+      product: defaultProduct || "",
+      services: defaultService ? [defaultService] : [],
+      budget: "",
+      message: "",
+    });
+    setErrors({});
+    setSubmitError(null);
+  };
 
   const setField = (k, v) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -82,15 +132,53 @@ export default function InquiryForm({
     return e;
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
       return;
     }
-    // Frontend-only — no backend in this stage.
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Insert the inquiry directly. Per the SourcingInquiry schema's RLS,
+      // public visitors are allowed to create rows, so we treat this lead as
+      // a guest submission and write only the business fields. We still stamp
+      // the source page so we can attribute leads per page in the admin view.
+      const { data: response, error: insertError } = await client
+        .from("SourcingInquiry")
+        .insert({
+          data: {
+            name: form.name.trim(),
+            company: form.company.trim(),
+            email: form.email.trim(),
+            country: form.country.trim(),
+            product_category: form.product,
+            services_needed: form.services,
+            estimated_order_value: form.budget || null,
+            brief: form.message.trim(),
+            source_page: location?.pathname || null,
+            status: "new",
+          },
+        })
+        .select()
+        .maybeSingle();
+
+      if (insertError || response?.success === false || response?.data?.success === false) {
+        throw new Error(getErrorMessage(response, insertError));
+      }
+
+      console.info("SourcingInquiry submitted:", response);
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Inquiry submission failed:", err, { response });
+      setSubmitError(err?.message || "Submission failed. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -125,16 +213,7 @@ export default function InquiryForm({
               type="button"
               onClick={() => {
                 setSubmitted(false);
-                setForm({
-                  name: "",
-                  company: "",
-                  email: "",
-                  country: "",
-                  product: defaultProduct || "",
-                  services: defaultService ? [defaultService] : [],
-                  budget: "",
-                  message: "",
-                });
+                resetForm();
               }}
               className="mt-5 text-sm font-medium text-brand-navy hover:text-brand-red"
             >
@@ -312,14 +391,38 @@ export default function InquiryForm({
           )}
         </div>
 
+        {submitError && (
+          <div
+            role="alert"
+            className="flex items-start gap-2.5 rounded-md border border-brand-red/30 bg-red-50 px-4 py-3 text-sm text-brand-red"
+          >
+            <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
+            <span>{submitError}</span>
+          </div>
+        )}
+
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-2">
           <p className="text-xs text-brand-slate">
             By submitting, you agree to our reply by email. We do not share
             your brief with any party other than vetted suppliers.
           </p>
-          <button type="submit" className="btn-primary">
-            <Send className="w-4 h-4" />
-            Send inquiry
+          <button
+            type="submit"
+            className="btn-primary"
+            disabled={submitting}
+            aria-busy={submitting}
+          >
+            {submitting ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Sending…
+              </>
+            ) : (
+              <>
+                <Send className="w-4 h-4" />
+                Send inquiry
+              </>
+            )}
           </button>
         </div>
       </form>

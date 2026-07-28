@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Sourcing Inquiry",
+  "description": "A qualified sourcing inquiry submitted by an overseas buyer through the SSourcing China website.",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the visitor who submitted the inquiry. Created/upserted in the system Users table first, then linked here.",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the inquiry."
+    },
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Buyer's company or trading entity."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 200,
+      "description": "Email address used to reply to the inquiry."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or region the buyer is based in."
+    },
+    "product_category": {
+      "type": "string",
+      "enum": [
+        "Consumer electronics",
+        "Apparel & textiles",
+        "Home & kitchenware",
+        "Beauty & personal care",
+        "Industrial machinery",
+        "Outdoor & sporting goods",
+        "Packaging & printing",
+        "Furniture & furnishing",
+        "Other"
+      ],
+      "description": "Primary product category the buyer wants to source."
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier sourcing",
+          "Supplier verification",
+          "Quality inspection",
+          "Production follow-up",
+          "Shipping & logistics",
+          "Sample management"
+        ]
+      },
+      "uniqueItems": true,
+      "description": "Services the buyer wants the agent to cover for this inquiry."
+    },
+    "estimated_order_value": {
+      "type": "string",
+      "enum": [
+        "Under $10,000",
+        "$10,000 – $50,000",
+        "$50,000 – $200,000",
+        "Over $200,000",
+        "Not sure yet"
+      ],
+      "description": "Buyer's rough estimate of the order value, used to qualify the lead."
+    },
+    "brief": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Free-form project brief: product spec, target price, quantity, certifications, destination port, timeline."
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Page path on the SSourcing China site where the inquiry was submitted (for attribution)."
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal sales-pipeline status. Starts at 'new' when submitted by a visitor."
+    }
+  },
+  "required": [
+    "name",
+    "company",
+    "email",
+    "country",
+    "product_category",
+    "services_needed",
+    "brief"
+  ],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": ["owner"] }
+  }
+}
