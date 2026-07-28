@@ -1,5 +1,17 @@
 import { useState } from 'react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ArrowRight } from 'lucide-react';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getEntity = (response) => response?.data ?? null;
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Request failed';
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,6 +25,8 @@ export default function ContactPage() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -32,14 +46,48 @@ export default function ContactPage() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const { data: response, error: createError } = await client
+      .from('SourcingInquiry')
+      .insert({
+        data: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          productType: formData.productType,
+          quantity: formData.quantity,
+          message: formData.message,
+          status: 'new',
+          createdAt: new Date().toISOString(),
+        },
+      })
+      .select()
+      .single();
+
+    if (createError || response?.success === false) {
+      setSubmitError(getErrorMessage(response, createError));
+      setSubmitting(false);
+      return;
+    }
+
+    const createdInquiry = getEntity(response);
+    if (createdInquiry) {
+      setSubmitted(true);
+    } else {
+      setSubmitError('Failed to submit inquiry. Please try again.');
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -89,6 +137,12 @@ export default function ContactPage() {
             <div className="lg:col-span-3">
               <h2 className="heading-2 text-slate-900 mb-2">Get a Free Sourcing Quote</h2>
               <p className="text-slate-600 mb-8">Fill out the form below and our team will review your requirements.</p>
+
+              {submitError && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  {submitError}
+                </div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -203,9 +257,9 @@ export default function ContactPage() {
                   {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
                 </div>
 
-                <button type="submit" className="btn-accent w-full sm:w-auto">
+                <button type="submit" className="btn-accent w-full sm:w-auto" disabled={submitting}>
                   <Send className="w-5 h-5 mr-2" />
-                  Submit Sourcing Inquiry
+                  {submitting ? 'Submitting...' : 'Submit Sourcing Inquiry'}
                 </button>
               </form>
             </div>
