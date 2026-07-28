@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle, Mail, Phone, MapPin, Clock, MessageSquare } from 'lucide-react';
+import { Send, CheckCircle, Mail, Phone, MapPin, Clock, MessageSquare, AlertCircle, Loader2 } from 'lucide-react';
+import { createInquiry } from '../api/inquiries';
 
 const Contact = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,11 +17,25 @@ const Contact = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(null);
+
+    try {
+      await createInquiry({
+        ...formData,
+        source: 'contact_page',
+      });
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
@@ -209,12 +226,28 @@ const Contact = () => {
                     placeholder="Describe specifications, target price, certifications needed, shipping destination, etc."
                   />
                 </div>
+                {error && (
+                  <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md flex items-start gap-2">
+                    <AlertCircle className="w-4 h-4 text-red-600 mt-0.5 shrink-0" />
+                    <p className="text-sm text-red-700">{error}</p>
+                  </div>
+                )}
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-teal-700 hover:bg-teal-800 text-white font-semibold rounded-md transition-colors"
+                  disabled={loading}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-teal-700 hover:bg-teal-800 disabled:bg-teal-400 text-white font-semibold rounded-md transition-colors"
                 >
-                  <Send className="w-4 h-4" />
-                  Get a Free Sourcing Quote
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-4 h-4" />
+                      Get a Free Sourcing Quote
+                    </>
+                  )}
                 </button>
               </form>
             </div>

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for the inquiry"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for contact"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Company name of the buyer"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product they want to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Estimated quantity or order size"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details about the sourcing request"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    },
+    "source": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Where the inquiry came from (e.g., contact_page, homepage, services_page)"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was last updated"
+    }
+  },
+  "required": ["name", "email", "product"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
