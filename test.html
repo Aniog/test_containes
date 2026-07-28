@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Page</title>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="test-message" style="display:none">Test page loaded</div>
+  <script type="module">
+    import React from "https://ta-01kymyzb6s8ar3eg15s4jqm96s-12000-amvqazu9s1ll6tvsf41o5n6xm.w.modal.host/node_modules/.vite/deps/react.js?v=fb8849a0";
+    import ReactDOM from "https://ta-01kymyzb6s8ar3eg15s4jqm96s-12000-amvqazu9s1ll6tvsf41o5n6xm.w.modal.host/node_modules/.vite/deps/react-dom_client.js?v=fb8849a0";
+
+    console.log("Test page: React imported", React);
+    console.log("Test page: ReactDOM imported", ReactDOM);
+
+    const root = document.getElementById("root");
+    console.log("Test page: root element", root);
+
+    try {
+      ReactDOM.createRoot(root).render(
+        React.createElement('div', null,
+          React.createElement('h1', null, 'TEST RENDER'),
+          React.createElement('p', null, 'If you can see this, React is working.')
+        )
+      );
+      console.log("Test page: render succeeded");
+      document.getElementById("test-message").style.display = "block";
+    } catch (e) {
+      console.error("Test page: render error", e);
+    }
+  </script>
+</body>
+</html>

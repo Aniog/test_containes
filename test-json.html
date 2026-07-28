@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test JSON Import</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import React from "https://ta-01kymyzb6s8ar3eg15s4jqm96s-12000-amvqazu9s1ll6tvsf41o5n6xm.w.modal.host/node_modules/.vite/deps/react.js?v=fb8849a0";
+    import ReactDOM from "https://ta-01kymyzb6s8ar3eg15s4jqm96s-12000-amvqazu9s1ll6tvsf41o5n6xm.w.modal.host/node_modules/.vite/deps/react-dom_client.js?v=fb8849a0";
+
+    console.log("Test JSON: React imported");
+
+    const root = document.getElementById("root");
+    root.textContent = 'Loading...';
+
+    // Try importing the JSON
+    import("https://ta-01kymyzb6s8ar3eg15s4jqm96s-12000-amvqazu9s1ll6tvsf41o5n6xm.w.modal.host/src/strk-img-config.json")
+      .then(mod => {
+        console.log("JSON imported successfully, keys:", Object.keys(mod).length);
+        ReactDOM.createRoot(root).render(
+          React.createElement('div', null,
+            React.createElement('h1', null, 'JSON Import Works'),
+            React.createElement('p', null, 'Keys: ' + Object.keys(mod).join(', '))
+          )
+        );
+      })
+      .catch(err => {
+        console.error("JSON import failed:", err);
+        root.innerHTML = '<h1 style="color:red">JSON Import Failed</h1><pre>' + err.message + '</pre>';
+      });
+  </script>
+</body>
+</html>
