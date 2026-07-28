@@ -1,15 +1,17 @@
 import { useState } from "react"
-import { CheckCircle2, Send, Loader2 } from "lucide-react"
+import { CheckCircle2, Send, Loader2, AlertCircle } from "lucide-react"
 import Button from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { submitSourcingInquiry } from "@/api/inquiries"
 
 const inputClass =
   "w-full rounded-lg border border-border bg-card px-3.5 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
 
 const labelClass = "mb-1.5 block text-sm font-medium text-foreground"
 
-export default function InquiryForm({ compact = false }) {
-  const [status, setStatus] = useState("idle") // idle | submitting | success
+export default function InquiryForm({ compact = false, sourcePage = "home" }) {
+  const [status, setStatus] = useState("idle") // idle | submitting | success | error
+  const [error, setError] = useState(null)
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -23,14 +25,21 @@ export default function InquiryForm({ compact = false }) {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setError(null)
     setStatus("submitting")
-    // Frontend-only preview: simulate submission. Backend wiring comes later.
-    setTimeout(() => {
-      console.log("Inquiry submitted (preview):", form)
+    try {
+      await submitSourcingInquiry(form, sourcePage)
       setStatus("success")
-    }, 900)
+    } catch (err) {
+      console.error("Inquiry submission failed:", err)
+      setError(
+        err?.message ||
+          "Something went wrong while sending your request. Please try again or email us directly."
+      )
+      setStatus("error")
+    }
   }
 
   if (status === "success") {
@@ -73,6 +82,17 @@ export default function InquiryForm({ compact = false }) {
         "rounded-2xl border border-border bg-card p-6 shadow-sm md:p-8",
       )}
     >
+      {status === "error" && (
+        <div className="mb-5 flex items-start gap-3 rounded-lg border border-danger/30 bg-danger/5 p-4">
+          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-danger" />
+          <div>
+            <p className="text-sm font-semibold text-danger">
+              We couldn't send your request
+            </p>
+            <p className="mt-0.5 text-sm text-foreground">{error}</p>
+          </div>
+        </div>
+      )}
       <div className={cn("grid gap-4", !compact && "sm:grid-cols-2")}>
         <div>
           <label htmlFor="name" className={labelClass}>

@@ -57,7 +57,7 @@ export default function HomeInquiry() {
           </div>
 
           <div id="quote-form">
-            <InquiryForm />
+            <InquiryForm sourcePage="home" />
           </div>
         </div>
       </Container>

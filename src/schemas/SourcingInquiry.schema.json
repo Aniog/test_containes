@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Work email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name, if provided"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "The product the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity, free text"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "Project details, specs, target price, timeline, or concerns"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "The page from which the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "product", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}

@@ -78,7 +78,7 @@ export default function Contact() {
             </div>
 
             <div className="lg:col-span-3">
-              <InquiryForm />
+              <InquiryForm sourcePage="contact" />
             </div>
           </div>
         </Container>
