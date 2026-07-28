@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const productCategories = [
   'Electronics & Components',
@@ -39,7 +42,9 @@ const initialForm = {
 export default function Contact() {
   const [form, setForm] = useState(initialForm);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
 
   const validate = () => {
     const newErrors = {};
@@ -56,15 +61,55 @@ export default function Contact() {
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    console.log('Form submitted:', form);
-    setSubmitted(true);
+
+    setSubmitting(true);
+    setSubmitError('');
+
+    try {
+      // Save inquiry to database
+      const { data: response, error } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: form.name,
+            company: form.company || undefined,
+            email: form.email,
+            phone: form.phone || undefined,
+            country: form.country || undefined,
+            product_category: form.productCategory || undefined,
+            service: form.service || undefined,
+            order_value: form.orderValue || undefined,
+            message: form.message,
+            status: 'new',
+          },
+        })
+        .select()
+        .single();
+
+      if (error || response?.success === false) {
+        const msg = Array.isArray(response?.errors) && response.errors.length
+          ? response.errors.join(', ')
+          : error?.message || 'Submission failed. Please try again.';
+        setSubmitError(msg);
+        console.error('Inquiry submission error:', msg);
+        return;
+      }
+
+      console.log('Inquiry saved:', response?.data);
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Unexpected error submitting inquiry:', err);
+      setSubmitError(err.message || 'An unexpected error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -176,7 +221,7 @@ export default function Contact() {
                     Thank you for contacting SSourcing China. A sourcing specialist will review your inquiry and get back to you within 24 business hours.
                   </p>
                   <button
-                    onClick={() => { setSubmitted(false); setForm(initialForm); }}
+                    onClick={() => { setSubmitted(false); setForm(initialForm); setSubmitError(''); }}
                     className="inline-flex items-center gap-2 bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold px-6 py-3 rounded-lg text-sm transition-colors"
                   >
                     Submit Another Inquiry
@@ -322,11 +367,15 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark text-white font-semibold px-8 py-4 rounded-lg transition-colors text-base"
+                    disabled={submitting}
+                    className="w-full flex items-center justify-center gap-2 bg-brand-red hover:bg-brand-red-dark disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-8 py-4 rounded-lg transition-colors text-base"
                   >
                     <Send className="w-5 h-5" />
-                    Submit Sourcing Inquiry
+                    {submitting ? 'Submitting…' : 'Submit Sourcing Inquiry'}
                   </button>
+                  {submitError && (
+                    <p className="text-brand-red text-sm text-center mt-3">{submitError}</p>
+                  )}
                   <p className="text-brand-mid text-xs text-center mt-3">
                     We respond within 24 business hours. Your information is kept confidential.
                   </p>
