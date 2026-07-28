@@ -4,7 +4,8 @@ import strkImgConfig from '@/strk-img-config.json'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare, Globe } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare, Globe, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 const contactInfo = [
   {
@@ -32,14 +33,40 @@ const contactInfo = [
 export default function Contact() {
   const containerRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
+  const [values, setValues] = useState({
+    fullName: '',
+    companyName: '',
+    email: '',
+    phone: '',
+    country: '',
+    productCategory: '',
+    productDescription: '',
+  })
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current)
   }, [])
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setValues((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+
+    const result = await submitInquiry(values, 'contact')
+    setSubmitting(false)
+
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      setError(result.error || 'Something went wrong. Please try again.')
+    }
   }
 
   return (
@@ -124,48 +151,66 @@ export default function Contact() {
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
-                        <Input placeholder="John Smith" required className="h-11 bg-white" />
+                        <Input name="fullName" value={values.fullName} onChange={handleChange} placeholder="John Smith" required className="h-11 bg-white" />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">Company Name</label>
-                        <Input placeholder="Your Company Ltd." className="h-11 bg-white" />
+                        <Input name="companyName" value={values.companyName} onChange={handleChange} placeholder="Your Company Ltd." className="h-11 bg-white" />
                       </div>
                     </div>
                     
                     <div className="grid sm:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address *</label>
-                        <Input type="email" placeholder="john@company.com" required className="h-11 bg-white" />
+                        <Input name="email" type="email" value={values.email} onChange={handleChange} placeholder="john@company.com" required className="h-11 bg-white" />
                       </div>
                       <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone / WhatsApp</label>
-                        <Input placeholder="+1 234 567 8900" className="h-11 bg-white" />
+                        <Input name="phone" value={values.phone} onChange={handleChange} placeholder="+1 234 567 8900" className="h-11 bg-white" />
                       </div>
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Country / Region</label>
-                      <Input placeholder="e.g., United States, United Kingdom, Australia" className="h-11 bg-white" />
+                      <Input name="country" value={values.country} onChange={handleChange} placeholder="e.g., United States, United Kingdom, Australia" className="h-11 bg-white" />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Category</label>
-                      <Input placeholder="e.g., Electronics, Home Goods, Apparel, Machinery" className="h-11 bg-white" />
+                      <Input name="productCategory" value={values.productCategory} onChange={handleChange} placeholder="e.g., Electronics, Home Goods, Apparel, Machinery" className="h-11 bg-white" />
                     </div>
                     
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-1.5">Message *</label>
                       <Textarea
+                        name="productDescription"
+                        value={values.productDescription}
+                        onChange={handleChange}
                         placeholder="Please describe the products you need, including specifications, quantity, target price, and any special requirements. The more detail you provide, the better we can assist you."
                         rows={5}
                         required
                         className="bg-white"
                       />
                     </div>
+
+                    {error && (
+                      <div className="rounded-lg bg-red-50 border border-red-200 p-3">
+                        <p className="text-sm text-red-700">{error}</p>
+                      </div>
+                    )}
                     
-                    <Button type="submit" className="w-full bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold h-12 text-base">
-                      <Send className="h-4 w-4 mr-2" />
-                      Send Inquiry
+                    <Button type="submit" disabled={submitting} className="w-full bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold h-12 text-base">
+                      {submitting ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-4 w-4 mr-2" />
+                          Send Inquiry
+                        </>
+                      )}
                     </Button>
                     
                     <p className="text-xs text-center text-gray-500">

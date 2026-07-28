@@ -2,14 +2,41 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { Send, CheckCircle } from 'lucide-react'
+import { Send, CheckCircle, Loader2 } from 'lucide-react'
+import { submitInquiry } from '@/api/inquiries'
 
 export default function InquiryForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
+  const [values, setValues] = useState({
+    fullName: '',
+    companyName: '',
+    email: '',
+    phone: '',
+    productCategory: '',
+    productDescription: '',
+    targetDelivery: '',
+  })
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setValues((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setError(null)
+    setSubmitting(true)
+
+    const result = await submitInquiry(values, 'home')
+    setSubmitting(false)
+
+    if (result.success) {
+      setSubmitted(true)
+    } else {
+      setError(result.error || 'Something went wrong. Please try again.')
+    }
   }
 
   if (submitted) {
@@ -70,33 +97,36 @@ export default function InquiryForm() {
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Full Name *</label>
-                  <Input placeholder="John Smith" required className="h-11" />
+                  <Input name="fullName" value={values.fullName} onChange={handleChange} placeholder="John Smith" required className="h-11" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Company Name</label>
-                  <Input placeholder="Your Company Ltd." className="h-11" />
+                  <Input name="companyName" value={values.companyName} onChange={handleChange} placeholder="Your Company Ltd." className="h-11" />
                 </div>
               </div>
               
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Email Address *</label>
-                  <Input type="email" placeholder="john@company.com" required className="h-11" />
+                  <Input name="email" type="email" value={values.email} onChange={handleChange} placeholder="john@company.com" required className="h-11" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone / WhatsApp</label>
-                  <Input placeholder="+1 234 567 8900" className="h-11" />
+                  <Input name="phone" value={values.phone} onChange={handleChange} placeholder="+1 234 567 8900" className="h-11" />
                 </div>
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Category</label>
-                <Input placeholder="e.g., Electronics, Home Goods, Apparel" className="h-11" />
+                <Input name="productCategory" value={values.productCategory} onChange={handleChange} placeholder="e.g., Electronics, Home Goods, Apparel" className="h-11" />
               </div>
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Product Description *</label>
                 <Textarea
+                  name="productDescription"
+                  value={values.productDescription}
+                  onChange={handleChange}
                   placeholder="Describe the products you need, including specifications, quantity, target price, and any special requirements..."
                   rows={4}
                   required
@@ -105,12 +135,27 @@ export default function InquiryForm() {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Target Delivery Date</label>
-                <Input placeholder="e.g., Within 2 months" className="h-11" />
+                <Input name="targetDelivery" value={values.targetDelivery} onChange={handleChange} placeholder="e.g., Within 2 months" className="h-11" />
               </div>
+
+              {error && (
+                <div className="rounded-lg bg-red-50 border border-red-200 p-3">
+                  <p className="text-sm text-red-700">{error}</p>
+                </div>
+              )}
               
-              <Button type="submit" className="w-full bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold h-12 text-base">
-                <Send className="h-4 w-4 mr-2" />
-                Submit Sourcing Inquiry
+              <Button type="submit" disabled={submitting} className="w-full bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold h-12 text-base">
+                {submitting ? (
+                  <>
+                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    <Send className="h-4 w-4 mr-2" />
+                    Submit Sourcing Inquiry
+                  </>
+                )}
               </Button>
               
               <p className="text-xs text-center text-gray-500">

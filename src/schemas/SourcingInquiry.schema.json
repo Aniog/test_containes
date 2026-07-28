@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "company_name": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Company or business name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number or WhatsApp contact"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or region of the buyer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Category of products the buyer is interested in sourcing"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Detailed description of products needed, including specifications, quantity, and requirements"
+    },
+    "target_delivery": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Desired delivery timeline or date"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Which page the inquiry was submitted from (home or contact)"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["user"] },
+    "update": { "allow": ["user"] },
+    "delete": { "allow": ["user"] }
+  }
+}
