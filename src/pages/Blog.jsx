@@ -1,9 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, CheckCircle, AlertCircle } from 'lucide-react';
 import { SectionHeader, CtaButton } from '@/components/shared';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { subscribeNewsletter } from '@/api/sourcing';
 
 const posts = [
   {
@@ -76,10 +77,29 @@ const posts = [
 
 const Blog = () => {
   const containerRef = useRef(null);
+  const [email, setEmail] = useState('');
+  const [subStatus, setSubStatus] = useState('idle'); // idle | submitting | success | error
+  const [subError, setSubError] = useState('');
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSubStatus('submitting');
+    setSubError('');
+    try {
+      await subscribeNewsletter(email.trim());
+      setSubStatus('success');
+      setEmail('');
+    } catch (err) {
+      console.error('[Blog] Newsletter subscribe error:', err);
+      setSubError(err.message || 'Subscription failed. Please try again.');
+      setSubStatus('error');
+    }
+  };
 
   const featured = posts[0];
   const rest = posts.slice(1);
@@ -167,16 +187,36 @@ const Blog = () => {
           <p className="text-gray-600 mb-6 text-sm">
             Subscribe to our newsletter for practical guides, industry updates, and sourcing advice for global buyers.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-            <input
-              type="email"
-              placeholder="Your email address"
-              className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-navy"
-            />
-            <button className="bg-red-china hover:bg-[#a93226] text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap">
-              Subscribe
-            </button>
-          </div>
+          {subStatus === 'success' ? (
+            <div className="flex items-center justify-center gap-2 text-green-700 bg-green-50 border border-green-200 rounded-lg px-5 py-3 text-sm max-w-md mx-auto">
+              <CheckCircle className="w-4 h-4 flex-shrink-0" />
+              You're subscribed! Thanks for joining.
+            </div>
+          ) : (
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email address"
+                className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-navy"
+              />
+              <button
+                type="submit"
+                disabled={subStatus === 'submitting'}
+                className="bg-red-china hover:bg-[#a93226] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors whitespace-nowrap"
+              >
+                {subStatus === 'submitting' ? 'Subscribing…' : 'Subscribe'}
+              </button>
+            </form>
+          )}
+          {subStatus === 'error' && (
+            <div className="mt-3 flex items-center justify-center gap-2 text-red-600 text-sm">
+              <AlertCircle className="w-4 h-4 flex-shrink-0" />
+              {subError}
+            </div>
+          )}
         </div>
       </section>
     </div>
