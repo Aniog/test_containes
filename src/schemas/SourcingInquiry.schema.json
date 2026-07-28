@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone number of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the inquirer"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category the inquirer is interested in sourcing"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Detailed description of the product to be sourced"
+    },
+    "order_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewed", "contacted", "qualified", "closed"],
+      "default": "new",
+      "description": "Status of the inquiry in the processing pipeline"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

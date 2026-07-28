@@ -2,12 +2,13 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ImageHelper } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { submitSourcingInquiry } from '../api/sourcing-inquiry.js';
 import {
   Search, ShieldCheck, ClipboardCheck, Truck, ArrowRight,
   CheckCircle2, ChevronDown, ChevronUp, Factory, Users,
   Globe2, Award, ThumbsUp, Package, Building2, Wrench,
   Zap, Shirt, Utensils, Dumbbell, Baby, Home as HomeIcon,
-  Cpu, Car, Flower2
+  Cpu, Car, Flower2, AlertCircle
 } from 'lucide-react';
 
 const HeroSection = () => {
@@ -436,67 +437,117 @@ const FAQSection = () => {
   );
 };
 
-const InquirySection = () => (
-  <section className="py-16 md:py-24 bg-primary">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Sourcing from China?</h2>
-          <p className="text-blue-100 text-lg leading-relaxed mb-6">
-            Tell us about your product requirements and we will provide a free sourcing assessment within 24 hours.
-          </p>
-          <ul className="space-y-3">
-            {[
-              'Free initial consultation and feasibility assessment',
-              'No commitment required — explore your options',
-              'Response within 24 business hours',
-            ].map((item) => (
-              <li key={item} className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
-                <span className="text-blue-100">{item}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="bg-white rounded-2xl p-6 md:p-8">
-          <h3 className="text-xl font-bold text-gray-900 mb-6">Get a Free Sourcing Quote</h3>
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
-                <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="John Smith" />
+const InquirySection = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
+  const [values, setValues] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    product_description: '',
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues((v) => ({ ...v, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      await submitSourcingInquiry(values);
+      setSubmitted(true);
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <section className="py-16 md:py-24 bg-primary">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Start Sourcing from China?</h2>
+            <p className="text-blue-100 text-lg leading-relaxed mb-6">
+              Tell us about your product requirements and we will provide a free sourcing assessment within 24 hours.
+            </p>
+            <ul className="space-y-3">
+              {[
+                'Free initial consultation and feasibility assessment',
+                'No commitment required — explore your options',
+                'Response within 24 business hours',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-accent flex-shrink-0" />
+                  <span className="text-blue-100">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-white rounded-2xl p-6 md:p-8">
+            {submitted ? (
+              <div className="text-center py-8">
+                <CheckCircle2 className="w-12 h-12 text-green-500 mx-auto mb-4" />
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
+                <p className="text-gray-600">Your inquiry has been received. Our team will contact you within 24 business hours.</p>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
-                <input type="text" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="Your Company" />
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
-                <input type="email" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="john@company.com" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
-                <input type="tel" className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none" placeholder="+1 234 567 890" />
-              </div>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Product Description *</label>
-              <textarea rows={4} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none" placeholder="Describe the product you want to source, including specifications, quantity, and target price..." />
-            </div>
-            <button
-              type="submit"
-              className="w-full bg-accent hover:bg-accent-hover text-white py-3 rounded-lg font-semibold transition-colors"
-            >
-              Submit Your Inquiry
-            </button>
-          </form>
+            ) : (
+              <>
+                <h3 className="text-xl font-bold text-gray-900 mb-6">Get a Free Sourcing Quote</h3>
+                {error && (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-3 flex items-center gap-3 mb-4">
+                    <AlertCircle className="w-4 h-4 text-red-500 flex-shrink-0" />
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                )}
+                <form className="space-y-4" onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                      <input type="text" name="name" required value={values.name} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none text-gray-900" placeholder="John Smith" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+                      <input type="text" name="company" value={values.company} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none text-gray-900" placeholder="Your Company" />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                      <input type="email" name="email" required value={values.email} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none text-gray-900" placeholder="john@company.com" />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                      <input type="tel" name="phone" value={values.phone} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none text-gray-900" placeholder="+1 234 567 890" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Product Description *</label>
+                    <textarea name="product_description" rows={4} required value={values.product_description} onChange={handleChange} className="w-full border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary focus:border-primary outline-none resize-none text-gray-900" placeholder="Describe the product you want to source, including specifications, quantity, and target price..." />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full bg-accent hover:bg-accent-hover text-white py-3 rounded-lg font-semibold transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {submitting ? 'Submitting...' : 'Submit Your Inquiry'}
+                  </button>
+                </form>
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Home = () => (
   <>
