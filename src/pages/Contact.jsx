@@ -1,11 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ImageHelper } from '@strikingly/sdk'
+import { ImageHelper, DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config'
 import strkImgConfig from '@/strk-img-config.json'
 import {
   Mail, Phone, MapPin, Clock, Send, CheckCircle, ArrowRight,
   MessageSquare, FileText, Package
 } from 'lucide-react'
+
+const dataClient = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
+
+const inquiryTypeMap = {
+  'new-sourcing': 'new_sourcing_project',
+  'quality-control': 'quality_control',
+  'supplier-verification': 'supplier_verification',
+  'shipping': 'shipping_logistics',
+  'other': 'other',
+}
 
 const SectionHeader = ({ eyebrow, title, description, centered = true }) => (
   <div className={`mb-12 ${centered ? 'text-center max-w-3xl mx-auto' : ''}`}>
@@ -114,10 +125,42 @@ const Contact = () => {
     if (!validateForm()) return
 
     setIsSubmitting(true)
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setErrors({})
+
+    try {
+      const inquiryData = {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        company: formData.company,
+        country: formData.country,
+        inquiry_type: inquiryTypeMap[formData.inquiryType] || 'other',
+        product_category: formData.productCategory,
+        estimated_quantity: formData.estimatedQuantity,
+        product_details: formData.productDetails,
+        project_description: formData.message,
+      }
+
+      const { data: response, error } = await dataClient
+        .from('SourcingInquiry')
+        .insert({ data: inquiryData })
+        .select()
+        .single()
+
+      if (error || response?.success === false) {
+        const errorMsg = response?.errors?.join(', ') || error?.message || 'Failed to submit inquiry'
+        setErrors({ submit: errorMsg })
+        setIsSubmitting(false)
+        return
+      }
+
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+    } catch (err) {
+      console.error('Error submitting inquiry:', err)
+      setErrors({ submit: 'An error occurred. Please try again.' })
+      setIsSubmitting(false)
+    }
   }
 
   const resetForm = () => {
@@ -444,6 +487,11 @@ const Contact = () => {
 
                       {/* Submit */}
                       <div className="pt-4">
+                        {errors.submit && (
+                          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                            {errors.submit}
+                          </div>
+                        )}
                         <button
                           type="submit"
                           disabled={isSubmitting}
