@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Clock, Globe, MessageSquare } from 'lucide-react';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +19,7 @@ const Contact = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (e) => {
     setFormData({
@@ -23,16 +28,46 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setError(null);
+
+    try {
+      const { data: response, error: submitError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || '',
+            phone: formData.phone || '',
+            product: formData.product,
+            quantity: formData.quantity || '',
+            timeline: formData.timeline || '',
+            requirements: formData.requirements,
+            status: 'new',
+            source: 'website',
+          },
+        })
+        .select()
+        .single();
+
+      if (submitError || response?.success === false) {
+        const errorMsg = Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : submitError?.message || 'Submission failed';
+        throw new Error(errorMsg);
+      }
+
       setIsSubmitting(false);
       setSubmitted(true);
-      console.log('Form submitted:', formData);
-    }, 1500);
+      console.log('Inquiry submitted successfully:', response);
+    } catch (err) {
+      console.error('Submission error:', err);
+      setError(err.message || 'Something went wrong. Please try again.');
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -94,6 +129,11 @@ const Contact = () => {
                 </p>
 
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {error && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                      {error}
+                    </div>
+                  )}
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
