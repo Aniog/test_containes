@@ -2,6 +2,17 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ');
+  }
+  return error?.message || 'Request failed';
+};
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,17 +24,44 @@ export default function ContactPage() {
     quantity: '',
     message: '',
   });
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+
+    const { data: response, error } = await client
+      .from('SourcingInquiry')
+      .insert({
+        data: {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          phone: formData.phone,
+          product_type: formData.productType,
+          quantity: formData.quantity,
+          message: formData.message,
+          status: 'new',
+        },
+      })
+      .select()
+      .single();
+
+    if (error || response?.success === false) {
+      toast.error(getErrorMessage(response, error));
+      setSubmitting(false);
+      return;
+    }
+
     setSubmitted(true);
     toast.success('Your sourcing request has been submitted! We will respond within 24 hours.');
     setFormData({ name: '', email: '', company: '', phone: '', productType: '', quantity: '', message: '' });
+    setSubmitting(false);
     setTimeout(() => setSubmitted(false), 3000);
   };
 
@@ -154,11 +192,16 @@ export default function ContactPage() {
                     placeholder="Please describe your product requirements, specifications, target price, timeline, and any other relevant details..."
                   />
                 </div>
-                <button type="submit" className="btn-primary w-full md:w-auto" disabled={submitted}>
+                <button type="submit" className="btn-primary w-full md:w-auto" disabled={submitting || submitted}>
                   {submitted ? (
                     <>
                       <CheckCircle className="w-5 h-5 mr-2" />
                       Request Submitted
+                    </>
+                  ) : submitting ? (
+                    <>
+                      <Send className="w-5 h-5 mr-2 animate-pulse" />
+                      Submitting...
                     </>
                   ) : (
                     <>
