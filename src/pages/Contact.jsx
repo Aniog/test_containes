@@ -9,7 +9,19 @@ import {
   CheckCircle2,
   ArrowRight,
   Globe,
+  Loader2,
 } from 'lucide-react'
+import { DataClient } from '@strikingly/sdk'
+import { SITE_ID, STRK_PROJECT_ANON_KEY } from '../config.jsx'
+
+const client = new DataClient(SITE_ID, STRK_PROJECT_ANON_KEY)
+
+const getErrorMessage = (response, error) => {
+  if (Array.isArray(response?.errors) && response.errors.length > 0) {
+    return response.errors.join(', ')
+  }
+  return error?.message || 'Request failed'
+}
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -26,6 +38,8 @@ const Contact = () => {
   })
 
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState(null)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -35,11 +49,42 @@ const Contact = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // In production, this would send to an API
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
+    setSubmitError(null)
+    setIsSubmitting(true)
+
+    try {
+      // Insert the sourcing inquiry
+      const { data: response, error: insertError } = await client
+        .from('Sourcing Inquiries')
+        .insert({
+          data: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            phone: formData.phone,
+            country: formData.country,
+            product_category: formData.productCategory,
+            quantity: formData.quantity,
+            target_price: formData.targetPrice,
+            timeline: formData.timeline,
+            product_details: formData.message,
+            status: 'new',
+          }
+        })
+
+      if (insertError || response?.success === false) {
+        throw new Error(getErrorMessage(response, insertError))
+      }
+
+      setIsSubmitted(true)
+    } catch (err) {
+      console.error('Inquiry submission failed:', err)
+      setSubmitError(err.message || 'Failed to submit inquiry. Please try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const contactInfo = [
@@ -369,6 +414,13 @@ const Contact = () => {
                     />
                   </div>
 
+                  {/* Error Message */}
+                  {submitError && (
+                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                      {submitError}
+                    </div>
+                  )}
+
                   {/* Submit */}
                   <div className="flex items-center justify-between pt-4">
                     <p className="text-sm text-muted-foreground">
@@ -376,10 +428,20 @@ const Contact = () => {
                     </p>
                     <button
                       type="submit"
-                      className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-white font-semibold rounded-lg hover:bg-secondary-dark transition-colors group"
+                      disabled={isSubmitting}
+                      className="inline-flex items-center justify-center px-8 py-4 bg-secondary text-white font-semibold rounded-lg hover:bg-secondary-dark transition-colors group disabled:opacity-60 disabled:cursor-not-allowed"
                     >
-                      Submit Inquiry
-                      <Send className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          Submit Inquiry
+                          <Send className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
                     </button>
                   </div>
                 </form>
