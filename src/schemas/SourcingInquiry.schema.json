@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "title": "Sourcing Inquiry",
+  "description": "Sourcing inquiry submitted by an overseas buyer. Linked to a guest User record for CRM tracking.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Company or brand name."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Work email of the inquirer."
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or primary market of the buyer."
+    },
+    "productType": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Short description of the product to be sourced."
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Estimated order quantity (free text to allow units, ranges, or MOQ)."
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 4000,
+      "description": "Project details, target specs, timeline, and any other context the inquirer wants to share."
+    },
+    "sourcePage": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Path of the page where the inquiry was submitted (for attribution)."
+    },
+    "userId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the guest User record that submitted this inquiry.",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email"],
+  "x-security": {
+    "x-ownerColumn": "userId",
+    "create": { "allow": ["*"] }
+  }
+}

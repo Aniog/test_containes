@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Send, CheckCircle2, Mail, Phone, MessageSquare } from "lucide-react";
-import Button from "@/components/ui/Button";
+import { useLocation } from "react-router-dom";
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
+import { submitSourcingInquiry } from "@/api/sourcingInquiries";
 import { cn } from "@/lib/utils";
 
-const initial = {
+const initialValues = {
   name: "",
   company: "",
   email: "",
@@ -13,300 +14,299 @@ const initial = {
   message: "",
 };
 
+function validate(values) {
+  if (!values.name.trim()) return "Please tell us your name.";
+  if (!values.email.trim()) return "Please share a work email so we can reply.";
+  if (!/^\S+@\S+\.\S+$/.test(values.email.trim()))
+    return "That email address does not look right.";
+  return null;
+}
+
 export default function InquiryForm({
-  variant = "default",
+  variant = "light",
   title = "Get a Free Sourcing Quote",
   subtitle = "Tell us about your product and target specs. We reply within one business day with next steps and a clear plan.",
-  id = "inquiry-form",
 }) {
-  const [form, setForm] = useState(initial);
-  const [submitted, setSubmitted] = useState(false);
+  const location = useLocation();
+  const [values, setValues] = useState(initialValues);
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
 
   const isDark = variant === "dark";
 
-  function update(field) {
-    return (e) => setForm((f) => ({ ...f, [field]: e.target.value }));
-  }
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setValues((v) => ({ ...v, [name]: value }));
+  };
 
-  function onSubmit(e) {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    // Frontend-only: simulate a successful submission.
-    setSubmitted(true);
-  }
+    setError(null);
 
-  if (submitted) {
+    const validation = validate(values);
+    if (validation) {
+      setError(validation);
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
+    try {
+      await submitSourcingInquiry({
+        values,
+        sourcePage: location.pathname,
+      });
+      setStatus("success");
+      setValues(initialValues);
+    } catch (err) {
+      setError(err?.message || "Something went wrong. Please try again.");
+      setStatus("error");
+    }
+  };
+
+  if (status === "success") {
     return (
       <div
-        id={id}
+        id="inquiry-form"
         className={cn(
-          "rounded-lg border p-8 md:p-10",
+          "rounded-lg border p-8 shadow-card md:p-10",
           isDark
             ? "border-white/15 bg-white/5 text-white"
-            : "border-line bg-surface text-ink shadow-card"
+            : "border-line bg-surface text-ink"
         )}
       >
-        <div className="flex items-start gap-4">
-          <div
-            className={cn(
-              "flex h-12 w-12 shrink-0 items-center justify-center rounded-full",
-              isDark ? "bg-accent/20 text-accent" : "bg-accent-100 text-accent"
-            )}
-          >
-            <CheckCircle2 className="h-6 w-6" />
-          </div>
-          <div>
-            <h3
-              className={cn(
-                "text-xl font-semibold",
-                isDark ? "text-white" : "text-primary"
-              )}
-            >
-              Inquiry received
-            </h3>
-            <p
-              className={cn(
-                "mt-2 text-base leading-relaxed",
-                isDark ? "text-white/80" : "text-muted"
-              )}
-            >
-              Thank you, {form.name || "we have your details"}. A sourcing
-              specialist will review your brief and reply within one business
-              day. For urgent requests, write to us at{" "}
-              <span className="font-medium">hello@ssourcing.cn</span>.
-            </p>
-          </div>
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-green-500/10 text-success">
+          <CheckCircle2 className="h-6 w-6" />
         </div>
+        <h3
+          className={cn(
+            "mt-5 text-2xl font-bold tracking-tight",
+            isDark ? "text-white" : "text-primary"
+          )}
+        >
+          Inquiry received
+        </h3>
+        <p
+          className={cn(
+            "mt-3 text-base leading-relaxed",
+            isDark ? "text-white/80" : "text-muted"
+          )}
+        >
+          Thanks for the brief. A senior sourcing specialist will review it and
+          reply to your inbox within one business day. In the meantime, feel
+          free to reach us on WhatsApp for anything urgent.
+        </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-6 text-sm font-semibold text-accent underline-offset-4 hover:underline"
+        >
+          Send another inquiry
+        </button>
       </div>
     );
   }
 
   return (
-    <div
-      id={id}
+    <form
+      id="inquiry-form"
+      onSubmit={onSubmit}
+      noValidate
       className={cn(
-        "rounded-lg border p-8 md:p-10",
+        "rounded-lg border p-6 shadow-card md:p-8",
         isDark
           ? "border-white/15 bg-white/5 text-white"
-          : "border-line bg-surface text-ink shadow-card"
+          : "border-line bg-surface text-ink"
       )}
+      aria-busy={status === "submitting"}
     >
-      <div className="mb-6">
-        <h3
+      {(title || subtitle) && (
+        <div className="mb-6">
+          {title && (
+            <h3
+              className={cn(
+                "text-xl font-bold tracking-tight md:text-2xl",
+                isDark ? "text-white" : "text-primary"
+              )}
+            >
+              {title}
+            </h3>
+          )}
+          {subtitle && (
+            <p
+              className={cn(
+                "mt-2 text-sm leading-relaxed",
+                isDark ? "text-white/75" : "text-muted"
+              )}
+            >
+              {subtitle}
+            </p>
+          )}
+        </div>
+      )}
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <Field
+          label="Your name"
+          name="name"
+          value={values.name}
+          onChange={onChange}
+          required
+          variant={variant}
+        />
+        <Field
+          label="Company"
+          name="company"
+          value={values.company}
+          onChange={onChange}
+          variant={variant}
+        />
+        <Field
+          label="Work email"
+          name="email"
+          type="email"
+          value={values.email}
+          onChange={onChange}
+          required
+          variant={variant}
+        />
+        <Field
+          label="Country / market"
+          name="country"
+          value={values.country}
+          onChange={onChange}
+          variant={variant}
+        />
+        <Field
+          label="Product type"
+          name="productType"
+          value={values.productType}
+          onChange={onChange}
+          variant={variant}
+        />
+        <Field
+          label="Estimated quantity"
+          name="quantity"
+          value={values.quantity}
+          onChange={onChange}
+          variant={variant}
+        />
+      </div>
+
+      <div className="mt-4">
+        <Field
+          label="Project details"
+          name="message"
+          value={values.message}
+          onChange={onChange}
+          textarea
+          placeholder="Target specs, certifications, timeline, and any other context that helps us reply usefully."
+          variant={variant}
+        />
+      </div>
+
+      {error && status === "error" && (
+        <div
+          role="alert"
           className={cn(
-            "text-2xl md:text-3xl font-bold tracking-tight",
-            isDark ? "text-white" : "text-primary"
+            "mt-5 flex items-start gap-2.5 rounded-md border px-4 py-3 text-sm",
+            isDark
+              ? "border-red-400/30 bg-red-500/10 text-red-100"
+              : "border-red-200 bg-red-50 text-red-700"
           )}
         >
-          {title}
-        </h3>
+          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+          <span>{error}</span>
+        </div>
+      )}
+
+      <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p
           className={cn(
-            "mt-2 text-base leading-relaxed",
-            isDark ? "text-white/80" : "text-muted"
+            "text-xs",
+            isDark ? "text-white/60" : "text-muted"
           )}
         >
-          {subtitle}
+          We respond within one business day. No spam, no sharing of your brief.
         </p>
+        <button
+          type="submit"
+          disabled={status === "submitting"}
+          className={cn(
+            "inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors",
+            "bg-accent text-white shadow-card hover:bg-accent/90",
+            "disabled:cursor-not-allowed disabled:opacity-70"
+          )}
+        >
+          {status === "submitting" ? (
+            <>
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Sending…
+            </>
+          ) : (
+            <>
+              <Send className="h-4 w-4" />
+              Send inquiry
+            </>
+          )}
+        </button>
       </div>
-
-      <form onSubmit={onSubmit} className="grid gap-4">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Field
-            label="Your name"
-            required
-            value={form.name}
-            onChange={update("name")}
-            placeholder="Jane Cooper"
-            isDark={isDark}
-          />
-          <Field
-            label="Company"
-            value={form.company}
-            onChange={update("company")}
-            placeholder="Acme Imports Ltd."
-            isDark={isDark}
-          />
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          <Field
-            label="Work email"
-            type="email"
-            required
-            value={form.email}
-            onChange={update("email")}
-            placeholder="you@company.com"
-            isDark={isDark}
-          />
-          <Field
-            label="Country / market"
-            value={form.country}
-            onChange={update("country")}
-            placeholder="United States"
-            isDark={isDark}
-          />
-        </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          <Field
-            label="Product type"
-            value={form.productType}
-            onChange={update("productType")}
-            placeholder="e.g. Bluetooth speakers, cotton tote bags"
-            isDark={isDark}
-          />
-          <Field
-            label="Estimated quantity"
-            value={form.quantity}
-            onChange={update("quantity")}
-            placeholder="e.g. 1,000 units / first order"
-            isDark={isDark}
-          />
-        </div>
-        <TextareaField
-          label="Project details"
-          value={form.message}
-          onChange={update("message")}
-          placeholder="Target specs, target price, sample requirements, timeline, certification needs…"
-          isDark={isDark}
-        />
-
-        <div className="mt-2 flex flex-col-reverse items-stretch gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <p
-            className={cn(
-              "text-xs",
-              isDark ? "text-white/60" : "text-muted"
-            )}
-          >
-            We respond within one business day. No spam, no sharing of your
-            brief.
-          </p>
-          <Button type="submit" variant="accent" size="md">
-            Send inquiry
-            <Send className="h-4 w-4" />
-          </Button>
-        </div>
-      </form>
-
-      <div
-        className={cn(
-          "mt-6 grid gap-3 border-t pt-6 text-sm sm:grid-cols-3",
-          isDark ? "border-white/10" : "border-line"
-        )}
-      >
-        <ContactLine
-          icon={<Mail className="h-4 w-4" />}
-          label="Email"
-          value="hello@ssourcing.cn"
-          isDark={isDark}
-        />
-        <ContactLine
-          icon={<MessageSquare className="h-4 w-4" />}
-          label="WhatsApp / WeChat"
-          value="+86 138 0000 0000"
-          isDark={isDark}
-        />
-        <ContactLine
-          icon={<Phone className="h-4 w-4" />}
-          label="Office hours"
-          value="Mon–Fri, 09:00–18:00 CST"
-          isDark={isDark}
-        />
-      </div>
-    </div>
+    </form>
   );
 }
 
 function Field({
   label,
+  name,
   type = "text",
-  required,
   value,
   onChange,
+  required,
+  textarea,
   placeholder,
-  isDark,
+  variant = "light",
 }) {
-  return (
-    <label className="block">
-      <span
-        className={cn(
-          "mb-1.5 block text-sm font-medium",
-          isDark ? "text-white/90" : "text-ink"
-        )}
-      >
-        {label} {required && <span className="text-accent">*</span>}
-      </span>
-      <input
-        type={type}
-        required={required}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={cn(
-          "w-full rounded-md border bg-transparent px-4 py-3 text-base placeholder:text-muted focus:outline-none focus:ring-2",
-          isDark
-            ? "border-white/20 text-white placeholder:text-white/40 focus:border-white/50 focus:ring-white/10"
-            : "border-line text-ink focus:border-primary focus:ring-primary/20"
-        )}
-      />
-    </label>
+  const isDark = variant === "dark";
+  const id = `inquiry-${name}`;
+  const baseClass = cn(
+    "mt-1.5 w-full rounded-md border bg-transparent px-3.5 py-2.5 text-sm transition-colors placeholder:text-current/40 focus:outline-none focus:ring-2",
+    isDark
+      ? "border-white/20 text-white placeholder:text-white/40 focus:border-accent focus:ring-accent/30"
+      : "border-line text-ink placeholder:text-muted focus:border-accent focus:ring-accent/20"
   );
-}
+  const labelClass = cn(
+    "text-sm font-medium",
+    isDark ? "text-white" : "text-ink"
+  );
 
-function TextareaField({ label, value, onChange, placeholder, isDark }) {
   return (
-    <label className="block">
-      <span
-        className={cn(
-          "mb-1.5 block text-sm font-medium",
-          isDark ? "text-white/90" : "text-ink"
-        )}
-      >
+    <label htmlFor={id} className="block">
+      <span className={labelClass}>
         {label}
+        {required && <span className="ml-0.5 text-accent">*</span>}
       </span>
-      <textarea
-        rows={5}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        className={cn(
-          "w-full resize-y rounded-md border bg-transparent px-4 py-3 text-base placeholder:text-muted focus:outline-none focus:ring-2",
-          isDark
-            ? "border-white/20 text-white placeholder:text-white/40 focus:border-white/50 focus:ring-white/10"
-            : "border-line text-ink focus:border-primary focus:ring-primary/20"
-        )}
-      />
+      {textarea ? (
+        <textarea
+          id={id}
+          name={name}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          rows={5}
+          className={baseClass}
+        />
+      ) : (
+        <input
+          id={id}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          required={required}
+          placeholder={placeholder}
+          className={baseClass}
+        />
+      )}
     </label>
-  );
-}
-
-function ContactLine({ icon, label, value, isDark }) {
-  return (
-    <div className="flex items-start gap-2.5">
-      <span
-        className={cn(
-          "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full",
-          isDark ? "bg-white/10 text-white" : "bg-primary-100 text-primary"
-        )}
-      >
-        {icon}
-      </span>
-      <div className="min-w-0">
-        <div
-          className={cn(
-            "text-xs font-medium uppercase tracking-wider",
-            isDark ? "text-white/60" : "text-muted"
-          )}
-        >
-          {label}
-        </div>
-        <div
-          className={cn(
-            "truncate text-sm font-medium",
-            isDark ? "text-white" : "text-ink"
-          )}
-        >
-          {value}
-        </div>
-      </div>
-    </div>
   );
 }
