@@ -88,7 +88,7 @@ export default function Blog() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-navy-dark to-brand-navy text-white py-16 md:py-20">
+      <section style={{ background: "linear-gradient(135deg, #0F2A5C 0%, #1A4B8C 100%)" }} className="text-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-wider text-blue-200 bg-white/10 px-3 py-1 rounded-full">
@@ -108,7 +108,7 @@ export default function Blog() {
       {/* Featured Post */}
       <section className="py-12 md:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-brand-surface rounded-2xl border border-brand-border overflow-hidden">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden">
             <div className="aspect-[4/3] overflow-hidden">
               <img
                 alt={featured.title}
@@ -121,14 +121,14 @@ export default function Blog() {
               />
             </div>
             <div className="p-8">
-              <span className="text-xs font-semibold uppercase tracking-wider text-brand-navy bg-brand-blue-tint px-3 py-1 rounded-full">
+              <span className="text-xs font-semibold uppercase tracking-wider text-[#1A4B8C] bg-blue-50 px-3 py-1 rounded-full">
                 {featured.category}
               </span>
-              <h2 id={featured.titleId} className="text-2xl md:text-3xl font-bold text-brand-dark mt-4 mb-3">
+              <h2 id={featured.titleId} className="text-2xl md:text-3xl font-bold text-[#1E293B] mt-4 mb-3">
                 {featured.title}
               </h2>
-              <p id={featured.descId} className="text-brand-mid leading-relaxed mb-5">{featured.excerpt}</p>
-              <div className="flex items-center gap-4 text-brand-muted text-sm mb-6">
+              <p id={featured.descId} className="text-slate-500 leading-relaxed mb-5">{featured.excerpt}</p>
+              <div className="flex items-center gap-4 text-slate-400 text-sm mb-6">
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5" />
                   {new Date(featured.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -140,7 +140,7 @@ export default function Blog() {
               </div>
               <Link
                 to={`/blog/${featured.id}`}
-                className="inline-flex items-center gap-2 text-brand-navy font-semibold hover:text-brand-navy-light transition-colors"
+                className="inline-flex items-center gap-2 text-[#1A4B8C] font-semibold hover:text-[#2563EB] transition-colors"
               >
                 Read Article <ArrowRight className="w-4 h-4" />
               </Link>
@@ -154,7 +154,7 @@ export default function Blog() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {rest.map((post) => (
-              <article key={post.id} className="bg-brand-surface rounded-xl border border-brand-border overflow-hidden hover:shadow-md transition-shadow">
+              <article key={post.id} className="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
                 <div className="aspect-[16/9] overflow-hidden">
                   <img
                     alt={post.title}
@@ -167,17 +167,17 @@ export default function Blog() {
                   />
                 </div>
                 <div className="p-5">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-brand-navy bg-brand-blue-tint px-2 py-1 rounded-full">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-[#1A4B8C] bg-blue-50 px-2 py-1 rounded-full">
                     {post.category}
                   </span>
-                  <h3 id={post.titleId} className="text-base font-semibold text-brand-dark mt-3 mb-2 leading-snug">
+                  <h3 id={post.titleId} className="text-base font-semibold text-[#1E293B] mt-3 mb-2 leading-snug">
                     {post.title}
                   </h3>
-                  <p id={post.descId} className="text-brand-mid text-sm leading-relaxed mb-4 line-clamp-3">
+                  <p id={post.descId} className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-3">
                     {post.excerpt}
                   </p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3 text-brand-muted text-xs">
+                    <div className="flex items-center gap-3 text-slate-400 text-xs">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
                         {new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
@@ -189,7 +189,7 @@ export default function Blog() {
                     </div>
                     <Link
                       to={`/blog/${post.id}`}
-                      className="text-brand-navy text-sm font-semibold hover:text-brand-navy-light transition-colors flex items-center gap-1"
+                      className="text-[#1A4B8C] text-sm font-semibold hover:text-[#2563EB] transition-colors flex items-center gap-1"
                     >
                       Read <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -202,21 +202,21 @@ export default function Blog() {
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-14 bg-brand-blue-tint">
+      <section className="py-14 bg-blue-50">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-brand-dark mb-3">
+          <h2 className="text-2xl font-bold text-[#1E293B] mb-3">
             Get Sourcing Insights in Your Inbox
           </h2>
-          <p className="text-brand-mid mb-6">
+          <p className="text-slate-500 mb-6">
             Practical guides for importers, delivered monthly. No spam.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
               placeholder="Your email address"
-              className="flex-1 px-4 py-3 rounded-lg border border-brand-border text-brand-dark placeholder-brand-muted focus:outline-none focus:ring-2 focus:ring-brand-navy text-sm"
+              className="flex-1 px-4 py-3 rounded-lg border border-slate-200 text-[#1E293B] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#1A4B8C] text-sm"
             />
-            <button className="bg-brand-navy hover:bg-brand-navy-light text-white font-semibold px-5 py-3 rounded-lg transition-colors text-sm whitespace-nowrap">
+            <button className="bg-[#1A4B8C] hover:bg-[#2563EB] text-white font-semibold px-5 py-3 rounded-lg transition-colors text-sm whitespace-nowrap">
               Subscribe
             </button>
           </div>

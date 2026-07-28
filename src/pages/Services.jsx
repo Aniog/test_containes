@@ -125,7 +125,7 @@ export default function Services() {
   return (
     <div ref={containerRef}>
       {/* Page Header */}
-      <section className="bg-gradient-to-br from-brand-navy-dark to-brand-navy text-white py-16 md:py-20">
+      <section style={{ background: "linear-gradient(135deg, #0F2A5C 0%, #1A4B8C 100%)" }} className="text-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-wider text-blue-200 bg-white/10 px-3 py-1 rounded-full">
@@ -154,19 +154,19 @@ export default function Services() {
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}
               >
                 <div className={!isEven ? 'lg:order-2' : ''}>
-                  <div className="w-12 h-12 bg-brand-blue-tint rounded-xl flex items-center justify-center mb-4">
-                    <Icon className="w-6 h-6 text-brand-navy" />
+                  <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-4">
+                    <Icon className="w-6 h-6 text-[#1A4B8C]" />
                   </div>
-                  <h2 id={svc.titleId} className="text-2xl md:text-3xl font-bold text-brand-dark mb-2">
+                  <h2 id={svc.titleId} className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-2">
                     {svc.title}
                   </h2>
-                  <p className="text-brand-navy font-medium mb-4">{svc.subtitle}</p>
-                  <p id={svc.descId} className="text-brand-mid leading-relaxed mb-6">{svc.desc}</p>
+                  <p className="text-[#1A4B8C] font-medium mb-4">{svc.subtitle}</p>
+                  <p id={svc.descId} className="text-slate-500 leading-relaxed mb-6">{svc.desc}</p>
                   <ul className="space-y-2">
                     {svc.points.map((pt) => (
                       <li key={pt} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-brand-navy flex-shrink-0 mt-0.5" />
-                        <span className="text-brand-mid text-sm">{pt}</span>
+                        <CheckCircle className="w-4 h-4 text-[#1A4B8C] flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-500 text-sm">{pt}</span>
                       </li>
                     ))}
                   </ul>
@@ -189,17 +189,17 @@ export default function Services() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-brand-surface">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-brand-dark mb-4">
+          <h2 className="text-3xl font-bold text-[#1E293B] mb-4">
             Not Sure Which Service You Need?
           </h2>
-          <p className="text-brand-mid text-lg mb-8">
+          <p className="text-slate-500 text-lg mb-8">
             Contact us and describe your sourcing challenge. We'll recommend the right approach and provide a transparent quote.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C0392B] hover:bg-[#E74C3C] text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
           >
             Get a Free Sourcing Quote <ArrowRight className="w-4 h-4" />
           </Link>

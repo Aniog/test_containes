@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "product": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Description of the product to be sourced"
+    },
+    "category": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Product category selected from the dropdown"
+    },
+    "service": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Sourcing service requested"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional details, requirements, or notes from the buyer"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "country", "product"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}

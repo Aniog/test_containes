@@ -20,14 +20,14 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-brand-navy-dark text-white">
+    <footer style={{ background: '#0F2A5C' }} className="text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-                <span className="text-brand-navy font-bold text-sm">SS</span>
+                <span className="text-[#1A4B8C] font-bold text-sm">SS</span>
               </div>
               <span className="text-white font-bold text-lg">
                 SSourcing<span className="text-red-400">China</span>

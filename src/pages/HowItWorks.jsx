@@ -116,7 +116,7 @@ export default function HowItWorks() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-navy-dark to-brand-navy text-white py-16 md:py-20">
+      <section style={{ background: "linear-gradient(135deg, #0F2A5C 0%, #1A4B8C 100%)" }} className="text-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-wider text-blue-200 bg-white/10 px-3 py-1 rounded-full">
@@ -146,20 +146,20 @@ export default function HowItWorks() {
               >
                 <div className={!isEven ? 'lg:order-2' : ''}>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-5xl font-bold text-brand-border">{phase.num}</span>
-                    <div className="w-10 h-10 bg-brand-blue-tint rounded-lg flex items-center justify-center">
-                      <Icon className="w-5 h-5 text-brand-navy" />
+                    <span className="text-5xl font-bold text-slate-200">{phase.num}</span>
+                    <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-[#1A4B8C]" />
                     </div>
                   </div>
-                  <h2 id={phase.titleId} className="text-2xl md:text-3xl font-bold text-brand-dark mb-3">
+                  <h2 id={phase.titleId} className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-3">
                     {phase.title}
                   </h2>
-                  <p id={phase.descId} className="text-brand-mid leading-relaxed mb-6">{phase.desc}</p>
+                  <p id={phase.descId} className="text-slate-500 leading-relaxed mb-6">{phase.desc}</p>
                   <ul className="space-y-2">
                     {phase.details.map((d) => (
                       <li key={d} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-brand-navy flex-shrink-0 mt-0.5" />
-                        <span className="text-brand-mid text-sm">{d}</span>
+                        <CheckCircle className="w-4 h-4 text-[#1A4B8C] flex-shrink-0 mt-0.5" />
+                        <span className="text-slate-500 text-sm">{d}</span>
                       </li>
                     ))}
                   </ul>
@@ -182,13 +182,13 @@ export default function HowItWorks() {
       </section>
 
       {/* Timeline Summary */}
-      <section className="py-16 bg-brand-surface">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-3">
               Typical Sourcing Timeline
             </h2>
-            <p className="text-brand-mid">
+            <p className="text-slate-500">
               Timelines vary by product complexity and order size. Here's a general guide.
             </p>
           </div>
@@ -201,9 +201,9 @@ export default function HowItWorks() {
               { phase: 'Inspection', time: '1–2 days' },
               { phase: 'Sea Freight', time: '15–35 days' },
             ].map((item) => (
-              <div key={item.phase} className="bg-white rounded-xl border border-brand-border p-5 text-center">
-                <div className="text-xl font-bold text-brand-navy mb-1">{item.time}</div>
-                <div className="text-brand-mid text-sm">{item.phase}</div>
+              <div key={item.phase} className="bg-white rounded-xl border border-slate-200 p-5 text-center">
+                <div className="text-xl font-bold text-[#1A4B8C] mb-1">{item.time}</div>
+                <div className="text-slate-500 text-sm">{item.phase}</div>
               </div>
             ))}
           </div>
@@ -211,7 +211,7 @@ export default function HowItWorks() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-gradient-to-r from-brand-navy-dark to-brand-navy text-white">
+      <section style={{ background: "linear-gradient(90deg, #0F2A5C 0%, #1A4B8C 100%)" }} className="py-16 text-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
           <p className="text-blue-200 text-lg mb-8">
@@ -219,7 +219,7 @@ export default function HowItWorks() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C0392B] hover:bg-[#E74C3C] text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
           >
             Get a Free Sourcing Quote <ArrowRight className="w-4 h-4" />
           </Link>

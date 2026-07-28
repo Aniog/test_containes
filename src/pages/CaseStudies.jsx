@@ -122,7 +122,7 @@ export default function CaseStudies() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-gradient-to-br from-brand-navy-dark to-brand-navy text-white py-16 md:py-20">
+      <section style={{ background: "linear-gradient(135deg, #0F2A5C 0%, #1A4B8C 100%)" }} className="text-white py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <span className="text-xs font-semibold uppercase tracking-wider text-blue-200 bg-white/10 px-3 py-1 rounded-full">
@@ -144,33 +144,33 @@ export default function CaseStudies() {
           {caseStudies.map((cs, i) => {
             const isEven = i % 2 === 0;
             return (
-              <div key={cs.id} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start border-b border-brand-border pb-16 last:border-0 last:pb-0">
+              <div key={cs.id} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start border-b border-slate-200 pb-16 last:border-0 last:pb-0">
                 <div className={!isEven ? 'lg:order-2' : ''}>
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-semibold uppercase tracking-wider text-brand-navy bg-brand-blue-tint px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-[#1A4B8C] bg-blue-50 px-3 py-1 rounded-full">
                       {cs.tag}
                     </span>
-                    <div className="flex items-center gap-1 text-brand-muted text-sm">
+                    <div className="flex items-center gap-1 text-slate-400 text-sm">
                       <MapPin className="w-3.5 h-3.5" />
                       {cs.country}
                     </div>
                   </div>
-                  <h2 id={cs.titleId} className="text-2xl md:text-3xl font-bold text-brand-dark mb-2">
+                  <h2 id={cs.titleId} className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-2">
                     {cs.client}
                   </h2>
 
                   <div className="space-y-4 mt-5">
                     <div>
-                      <h4 className="text-sm font-semibold text-brand-dark uppercase tracking-wider mb-1">Challenge</h4>
-                      <p id={cs.descId} className="text-brand-mid text-sm leading-relaxed">{cs.challenge}</p>
+                      <h4 className="text-sm font-semibold text-[#1E293B] uppercase tracking-wider mb-1">Challenge</h4>
+                      <p id={cs.descId} className="text-slate-500 text-sm leading-relaxed">{cs.challenge}</p>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-brand-dark uppercase tracking-wider mb-1">Our Approach</h4>
-                      <p className="text-brand-mid text-sm leading-relaxed">{cs.solution}</p>
+                      <h4 className="text-sm font-semibold text-[#1E293B] uppercase tracking-wider mb-1">Our Approach</h4>
+                      <p className="text-slate-500 text-sm leading-relaxed">{cs.solution}</p>
                     </div>
                     <div>
-                      <h4 className="text-sm font-semibold text-brand-dark uppercase tracking-wider mb-1">Result</h4>
-                      <p className="text-brand-mid text-sm leading-relaxed">{cs.result}</p>
+                      <h4 className="text-sm font-semibold text-[#1E293B] uppercase tracking-wider mb-1">Result</h4>
+                      <p className="text-slate-500 text-sm leading-relaxed">{cs.result}</p>
                     </div>
                   </div>
 
@@ -178,9 +178,9 @@ export default function CaseStudies() {
                     {cs.metrics.map((m) => {
                       const Icon = m.icon;
                       return (
-                        <div key={m.label} className="bg-brand-surface rounded-xl border border-brand-border p-4 text-center">
-                          <div className="text-xl font-bold text-brand-navy mb-1">{m.value}</div>
-                          <div className="text-brand-muted text-xs">{m.label}</div>
+                        <div key={m.label} className="bg-slate-50 rounded-xl border border-slate-200 p-4 text-center">
+                          <div className="text-xl font-bold text-[#1A4B8C] mb-1">{m.value}</div>
+                          <div className="text-slate-400 text-xs">{m.label}</div>
                         </div>
                       );
                     })}
@@ -205,17 +205,17 @@ export default function CaseStudies() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-brand-surface">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-brand-dark mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1E293B] mb-4">
             Ready to Write Your Own Success Story?
           </h2>
-          <p className="text-brand-mid text-lg mb-8">
+          <p className="text-slate-500 text-lg mb-8">
             Tell us about your sourcing challenge and we'll put together a plan.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-red-light text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C0392B] hover:bg-[#E74C3C] text-white font-semibold px-7 py-3.5 rounded-lg transition-colors"
           >
             Get a Free Sourcing Quote <ArrowRight className="w-4 h-4" />
           </Link>
