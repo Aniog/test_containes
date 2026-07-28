@@ -83,14 +83,16 @@ const posts = [
 
 const categories = ['All', 'Supplier Verification', 'Quality Control', 'Sourcing Strategy', 'Manufacturing', 'Shipping & Logistics'];
 
+// Destructured at module level so data-strk-img-id can be static string literals
+const featured = posts[0];
+const restPosts = posts.slice(1);
+
 export default function Blog() {
   const containerRef = useRef(null);
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
-
-  const [featured, ...rest] = posts;
 
   return (
     <div ref={containerRef}>
@@ -132,7 +134,7 @@ export default function Blog() {
             <div className="relative h-64 lg:h-auto bg-slate-200 overflow-hidden">
               <img
                 alt={featured.title}
-                data-strk-img-id={featured.imgId}
+                data-strk-img-id="blog-img-verify-supplier-1a2b3c"
                 data-strk-img={`[${featured.descId}] [${featured.titleId}]`}
                 data-strk-img-ratio="4x3"
                 data-strk-img-width="700"
@@ -165,35 +167,31 @@ export default function Blog() {
 
           {/* Post grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rest.map((post) => (
-              <article key={post.id} className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
-                <div className="relative h-44 bg-slate-100 overflow-hidden">
-                  <img
-                    alt={post.title}
-                    data-strk-img-id={post.imgId}
-                    data-strk-img={`[${post.descId}] [${post.titleId}]`}
-                    data-strk-img-ratio="3x2"
-                    data-strk-img-width="500"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-5 flex-1 flex flex-col">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">{post.category}</span>
-                    <span className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{post.readTime}</span>
-                  </div>
-                  <h3 id={post.titleId} className="font-semibold text-brand-navy mb-2 leading-snug">{post.title}</h3>
-                  <p id={post.descId} className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{post.excerpt}</p>
-                  <div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100">
-                    <span className="text-xs text-gray-400">{post.date}</span>
-                    <Link to={`/blog/${post.id}`} className="text-sm font-medium text-brand-blue hover:text-brand-navy flex items-center gap-1 no-underline">
-                      Read more <ArrowRight className="w-3 h-3" />
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
+            {/* PSI Guide */}
+            <article className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+              <div className="relative h-44 bg-slate-100 overflow-hidden"><img alt={restPosts[0].title} data-strk-img-id="blog-img-psi-guide-2b3c4d" data-strk-img={`[${restPosts[0].descId}] [${restPosts[0].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="500" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-5 flex-1 flex flex-col"><div className="flex items-center gap-2 mb-3"><span className="text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">{restPosts[0].category}</span><span className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{restPosts[0].readTime}</span></div><h3 id={restPosts[0].titleId} className="font-semibold text-brand-navy mb-2 leading-snug">{restPosts[0].title}</h3><p id={restPosts[0].descId} className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{restPosts[0].excerpt}</p><div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100"><span className="text-xs text-gray-400">{restPosts[0].date}</span><Link to={`/blog/${restPosts[0].id}`} className="text-sm font-medium text-brand-blue hover:text-brand-navy flex items-center gap-1 no-underline">Read more <ArrowRight className="w-3 h-3" /></Link></div></div>
+            </article>
+            {/* Agent vs Trading */}
+            <article className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+              <div className="relative h-44 bg-slate-100 overflow-hidden"><img alt={restPosts[1].title} data-strk-img-id="blog-img-agent-vs-trading-3c4d5e" data-strk-img={`[${restPosts[1].descId}] [${restPosts[1].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="500" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-5 flex-1 flex flex-col"><div className="flex items-center gap-2 mb-3"><span className="text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">{restPosts[1].category}</span><span className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{restPosts[1].readTime}</span></div><h3 id={restPosts[1].titleId} className="font-semibold text-brand-navy mb-2 leading-snug">{restPosts[1].title}</h3><p id={restPosts[1].descId} className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{restPosts[1].excerpt}</p><div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100"><span className="text-xs text-gray-400">{restPosts[1].date}</span><Link to={`/blog/${restPosts[1].id}`} className="text-sm font-medium text-brand-blue hover:text-brand-navy flex items-center gap-1 no-underline">Read more <ArrowRight className="w-3 h-3" /></Link></div></div>
+            </article>
+            {/* OEM ODM */}
+            <article className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+              <div className="relative h-44 bg-slate-100 overflow-hidden"><img alt={restPosts[2].title} data-strk-img-id="blog-img-oem-odm-4d5e6f" data-strk-img={`[${restPosts[2].descId}] [${restPosts[2].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="500" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-5 flex-1 flex flex-col"><div className="flex items-center gap-2 mb-3"><span className="text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">{restPosts[2].category}</span><span className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{restPosts[2].readTime}</span></div><h3 id={restPosts[2].titleId} className="font-semibold text-brand-navy mb-2 leading-snug">{restPosts[2].title}</h3><p id={restPosts[2].descId} className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{restPosts[2].excerpt}</p><div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100"><span className="text-xs text-gray-400">{restPosts[2].date}</span><Link to={`/blog/${restPosts[2].id}`} className="text-sm font-medium text-brand-blue hover:text-brand-navy flex items-center gap-1 no-underline">Read more <ArrowRight className="w-3 h-3" /></Link></div></div>
+            </article>
+            {/* Incoterms */}
+            <article className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+              <div className="relative h-44 bg-slate-100 overflow-hidden"><img alt={restPosts[3].title} data-strk-img-id="blog-img-incoterms-5e6f7a" data-strk-img={`[${restPosts[3].descId}] [${restPosts[3].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="500" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-5 flex-1 flex flex-col"><div className="flex items-center gap-2 mb-3"><span className="text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">{restPosts[3].category}</span><span className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{restPosts[3].readTime}</span></div><h3 id={restPosts[3].titleId} className="font-semibold text-brand-navy mb-2 leading-snug">{restPosts[3].title}</h3><p id={restPosts[3].descId} className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{restPosts[3].excerpt}</p><div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100"><span className="text-xs text-gray-400">{restPosts[3].date}</span><Link to={`/blog/${restPosts[3].id}`} className="text-sm font-medium text-brand-blue hover:text-brand-navy flex items-center gap-1 no-underline">Read more <ArrowRight className="w-3 h-3" /></Link></div></div>
+            </article>
+            {/* Mistakes */}
+            <article className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow flex flex-col">
+              <div className="relative h-44 bg-slate-100 overflow-hidden"><img alt={restPosts[4].title} data-strk-img-id="blog-img-mistakes-6f7a8b" data-strk-img={`[${restPosts[4].descId}] [${restPosts[4].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="500" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-5 flex-1 flex flex-col"><div className="flex items-center gap-2 mb-3"><span className="text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">{restPosts[4].category}</span><span className="text-xs text-gray-400 flex items-center gap-1"><Clock className="w-3 h-3" />{restPosts[4].readTime}</span></div><h3 id={restPosts[4].titleId} className="font-semibold text-brand-navy mb-2 leading-snug">{restPosts[4].title}</h3><p id={restPosts[4].descId} className="text-gray-500 text-sm leading-relaxed flex-1 mb-4">{restPosts[4].excerpt}</p><div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-100"><span className="text-xs text-gray-400">{restPosts[4].date}</span><Link to={`/blog/${restPosts[4].id}`} className="text-sm font-medium text-brand-blue hover:text-brand-navy flex items-center gap-1 no-underline">Read more <ArrowRight className="w-3 h-3" /></Link></div></div>
+            </article>
           </div>
         </div>
       </section>

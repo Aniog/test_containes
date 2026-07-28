@@ -118,32 +118,51 @@ export default function Products() {
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat) => (
-              <div key={cat.id} className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                <div className="relative h-48 bg-slate-100 overflow-hidden">
-                  <img
-                    alt={cat.title}
-                    data-strk-img-id={cat.imgId}
-                    data-strk-img={`[${cat.descId}] [${cat.titleId}]`}
-                    data-strk-img-ratio="3x2"
-                    data-strk-img-width="600"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 id={cat.titleId} className="text-lg font-semibold text-brand-navy mb-2">{cat.title}</h3>
-                  <p id={cat.descId} className="text-gray-500 text-sm leading-relaxed mb-4">{cat.desc}</p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {cat.examples.map((ex) => (
-                      <span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">
-                        {ex}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+            {/* Electronics */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[0].title} data-strk-img-id="prod-pg-img-electronics-a1b2c3" data-strk-img={`[${categories[0].descId}] [${categories[0].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[0].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[0].title}</h3><p id={categories[0].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[0].desc}</p><div className="flex flex-wrap gap-1.5">{categories[0].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Furniture */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[1].title} data-strk-img-id="prod-pg-img-furniture-b2c3d4" data-strk-img={`[${categories[1].descId}] [${categories[1].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[1].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[1].title}</h3><p id={categories[1].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[1].desc}</p><div className="flex flex-wrap gap-1.5">{categories[1].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Apparel */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[2].title} data-strk-img-id="prod-pg-img-apparel-c3d4e5" data-strk-img={`[${categories[2].descId}] [${categories[2].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[2].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[2].title}</h3><p id={categories[2].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[2].desc}</p><div className="flex flex-wrap gap-1.5">{categories[2].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Machinery */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[3].title} data-strk-img-id="prod-pg-img-machinery-d4e5f6" data-strk-img={`[${categories[3].descId}] [${categories[3].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[3].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[3].title}</h3><p id={categories[3].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[3].desc}</p><div className="flex flex-wrap gap-1.5">{categories[3].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Toys */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[4].title} data-strk-img-id="prod-pg-img-toys-e5f6a7" data-strk-img={`[${categories[4].descId}] [${categories[4].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[4].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[4].title}</h3><p id={categories[4].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[4].desc}</p><div className="flex flex-wrap gap-1.5">{categories[4].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Packaging */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[5].title} data-strk-img-id="prod-pg-img-packaging-f6a7b8" data-strk-img={`[${categories[5].descId}] [${categories[5].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[5].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[5].title}</h3><p id={categories[5].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[5].desc}</p><div className="flex flex-wrap gap-1.5">{categories[5].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Health & Beauty */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[6].title} data-strk-img-id="prod-pg-img-health-a7b8c9" data-strk-img={`[${categories[6].descId}] [${categories[6].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[6].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[6].title}</h3><p id={categories[6].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[6].desc}</p><div className="flex flex-wrap gap-1.5">{categories[6].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Auto Parts */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[7].title} data-strk-img-id="prod-pg-img-auto-b8c9d0" data-strk-img={`[${categories[7].descId}] [${categories[7].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[7].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[7].title}</h3><p id={categories[7].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[7].desc}</p><div className="flex flex-wrap gap-1.5">{categories[7].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
+            {/* Sports */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-48 bg-slate-100 overflow-hidden"><img alt={categories[8].title} data-strk-img-id="prod-pg-img-sports-c9d0e1" data-strk-img={`[${categories[8].descId}] [${categories[8].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="600" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /></div>
+              <div className="p-6"><h3 id={categories[8].titleId} className="text-lg font-semibold text-brand-navy mb-2">{categories[8].title}</h3><p id={categories[8].descId} className="text-gray-500 text-sm leading-relaxed mb-4">{categories[8].desc}</p><div className="flex flex-wrap gap-1.5">{categories[8].examples.map((ex) => (<span key={ex} className="text-xs bg-brand-light text-brand-blue px-2.5 py-1 rounded-full font-medium">{ex}</span>))}</div></div>
+            </div>
           </div>
 
           <div className="mt-16 bg-brand-light rounded-2xl p-8 md:p-12 text-center">

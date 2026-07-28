@@ -126,56 +126,36 @@ export default function CaseStudies() {
       <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {caseStudies.map((cs) => (
-              <div key={cs.id} className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
-                <div className="relative h-52 bg-slate-100 overflow-hidden">
-                  <img
-                    alt={cs.product}
-                    data-strk-img-id={cs.imgId}
-                    data-strk-img={`[${cs.descId}] [${cs.titleId}]`}
-                    data-strk-img-ratio="3x2"
-                    data-strk-img-width="700"
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute top-3 left-3">
-                    <span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{cs.tag}</span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 id={cs.titleId} className="text-lg font-semibold text-brand-navy">{cs.product}</h3>
-                      <p className="text-sm text-gray-400">{cs.country} · {cs.client}</p>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 mb-5">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p>
-                      <p id={cs.descId} className="text-gray-600 text-sm leading-relaxed">{cs.challenge}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p>
-                      <p className="text-gray-600 text-sm leading-relaxed">{cs.solution}</p>
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p>
-                      <p className="text-gray-600 text-sm leading-relaxed">{cs.result}</p>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
-                    {cs.metrics.map((m) => (
-                      <span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full">
-                        <Star className="w-3 h-3 text-brand-gold fill-brand-gold" />
-                        {m}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+            {/* Electronics US */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-52 bg-slate-100 overflow-hidden"><img alt={caseStudies[0].product} data-strk-img-id="cs-img-electronics-us-1a2b3c" data-strk-img={`[${caseStudies[0].descId}] [${caseStudies[0].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /><div className="absolute top-3 left-3"><span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{caseStudies[0].tag}</span></div></div>
+              <div className="p-6"><div className="flex items-start justify-between mb-4"><div><h3 id={caseStudies[0].titleId} className="text-lg font-semibold text-brand-navy">{caseStudies[0].product}</h3><p className="text-sm text-gray-400">{caseStudies[0].country} · {caseStudies[0].client}</p></div></div><div className="space-y-3 mb-5"><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p><p id={caseStudies[0].descId} className="text-gray-600 text-sm leading-relaxed">{caseStudies[0].challenge}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[0].solution}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[0].result}</p></div></div><div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">{caseStudies[0].metrics.map((m) => (<span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full"><Star className="w-3 h-3 text-brand-gold fill-brand-gold" />{m}</span>))}</div></div>
+            </div>
+            {/* Bamboo UK */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-52 bg-slate-100 overflow-hidden"><img alt={caseStudies[1].product} data-strk-img-id="cs-img-bamboo-uk-2b3c4d" data-strk-img={`[${caseStudies[1].descId}] [${caseStudies[1].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /><div className="absolute top-3 left-3"><span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{caseStudies[1].tag}</span></div></div>
+              <div className="p-6"><div className="flex items-start justify-between mb-4"><div><h3 id={caseStudies[1].titleId} className="text-lg font-semibold text-brand-navy">{caseStudies[1].product}</h3><p className="text-sm text-gray-400">{caseStudies[1].country} · {caseStudies[1].client}</p></div></div><div className="space-y-3 mb-5"><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p><p id={caseStudies[1].descId} className="text-gray-600 text-sm leading-relaxed">{caseStudies[1].challenge}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[1].solution}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[1].result}</p></div></div><div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">{caseStudies[1].metrics.map((m) => (<span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full"><Star className="w-3 h-3 text-brand-gold fill-brand-gold" />{m}</span>))}</div></div>
+            </div>
+            {/* Activewear AU */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-52 bg-slate-100 overflow-hidden"><img alt={caseStudies[2].product} data-strk-img-id="cs-img-activewear-au-3c4d5e" data-strk-img={`[${caseStudies[2].descId}] [${caseStudies[2].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /><div className="absolute top-3 left-3"><span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{caseStudies[2].tag}</span></div></div>
+              <div className="p-6"><div className="flex items-start justify-between mb-4"><div><h3 id={caseStudies[2].titleId} className="text-lg font-semibold text-brand-navy">{caseStudies[2].product}</h3><p className="text-sm text-gray-400">{caseStudies[2].country} · {caseStudies[2].client}</p></div></div><div className="space-y-3 mb-5"><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p><p id={caseStudies[2].descId} className="text-gray-600 text-sm leading-relaxed">{caseStudies[2].challenge}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[2].solution}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[2].result}</p></div></div><div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">{caseStudies[2].metrics.map((m) => (<span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full"><Star className="w-3 h-3 text-brand-gold fill-brand-gold" />{m}</span>))}</div></div>
+            </div>
+            {/* Tools DE */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-52 bg-slate-100 overflow-hidden"><img alt={caseStudies[3].product} data-strk-img-id="cs-img-tools-de-4d5e6f" data-strk-img={`[${caseStudies[3].descId}] [${caseStudies[3].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /><div className="absolute top-3 left-3"><span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{caseStudies[3].tag}</span></div></div>
+              <div className="p-6"><div className="flex items-start justify-between mb-4"><div><h3 id={caseStudies[3].titleId} className="text-lg font-semibold text-brand-navy">{caseStudies[3].product}</h3><p className="text-sm text-gray-400">{caseStudies[3].country} · {caseStudies[3].client}</p></div></div><div className="space-y-3 mb-5"><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p><p id={caseStudies[3].descId} className="text-gray-600 text-sm leading-relaxed">{caseStudies[3].challenge}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[3].solution}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[3].result}</p></div></div><div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">{caseStudies[3].metrics.map((m) => (<span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full"><Star className="w-3 h-3 text-brand-gold fill-brand-gold" />{m}</span>))}</div></div>
+            </div>
+            {/* Toys CA */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-52 bg-slate-100 overflow-hidden"><img alt={caseStudies[4].product} data-strk-img-id="cs-img-toys-ca-5e6f7a" data-strk-img={`[${caseStudies[4].descId}] [${caseStudies[4].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /><div className="absolute top-3 left-3"><span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{caseStudies[4].tag}</span></div></div>
+              <div className="p-6"><div className="flex items-start justify-between mb-4"><div><h3 id={caseStudies[4].titleId} className="text-lg font-semibold text-brand-navy">{caseStudies[4].product}</h3><p className="text-sm text-gray-400">{caseStudies[4].country} · {caseStudies[4].client}</p></div></div><div className="space-y-3 mb-5"><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p><p id={caseStudies[4].descId} className="text-gray-600 text-sm leading-relaxed">{caseStudies[4].challenge}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[4].solution}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[4].result}</p></div></div><div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">{caseStudies[4].metrics.map((m) => (<span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full"><Star className="w-3 h-3 text-brand-gold fill-brand-gold" />{m}</span>))}</div></div>
+            </div>
+            {/* Packaging SG */}
+            <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+              <div className="relative h-52 bg-slate-100 overflow-hidden"><img alt={caseStudies[5].product} data-strk-img-id="cs-img-packaging-sg-6f7a8b" data-strk-img={`[${caseStudies[5].descId}] [${caseStudies[5].titleId}]`} data-strk-img-ratio="3x2" data-strk-img-width="700" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E" className="w-full h-full object-cover" /><div className="absolute top-3 left-3"><span className="bg-brand-blue text-white text-xs font-semibold px-3 py-1 rounded-full">{caseStudies[5].tag}</span></div></div>
+              <div className="p-6"><div className="flex items-start justify-between mb-4"><div><h3 id={caseStudies[5].titleId} className="text-lg font-semibold text-brand-navy">{caseStudies[5].product}</h3><p className="text-sm text-gray-400">{caseStudies[5].country} · {caseStudies[5].client}</p></div></div><div className="space-y-3 mb-5"><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Challenge</p><p id={caseStudies[5].descId} className="text-gray-600 text-sm leading-relaxed">{caseStudies[5].challenge}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Our Solution</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[5].solution}</p></div><div><p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-1">Result</p><p className="text-gray-600 text-sm leading-relaxed">{caseStudies[5].result}</p></div></div><div className="flex flex-wrap gap-2 pt-4 border-t border-slate-100">{caseStudies[5].metrics.map((m) => (<span key={m} className="inline-flex items-center gap-1 text-xs font-medium text-brand-blue bg-blue-50 px-2.5 py-1 rounded-full"><Star className="w-3 h-3 text-brand-gold fill-brand-gold" />{m}</span>))}</div></div>
+            </div>
           </div>
 
           <div className="mt-16 text-center">
