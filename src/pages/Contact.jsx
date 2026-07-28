@@ -1,10 +1,94 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Mail, MapPin, Phone, MessageSquare, Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
+  const [values, setValues] = useState({
+    name: '',
+    company: '',
+    email: '',
+    country: '',
+    service: '',
+    details: ''
+  });
+  const [status, setStatus] = useState('idle');
+  const [error, setError] = useState(null);
+
+  const onChange = (e) => {
+    const { id, value } = e.target;
+    setValues((prev) => ({ ...prev, [id]: value }));
+  };
+
+  const validate = (v) => {
+    if (!v.name.trim()) return 'Name is required.';
+    if (!v.email.trim()) return 'Email is required.';
+    if (!/^\S+@\S+\.\S+$/.test(v.email)) return 'Please provide a valid email.';
+    if (!v.service) return 'Please select a service.';
+    if (!v.details.trim()) return 'Project details are required.';
+    return null;
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    const err = validate(values);
+    if (err) {
+      setError(err);
+      return;
+    }
+
+    setStatus('submitting');
+
+    try {
+      // Create user record or simply save the contact form without a user_id
+      // Since 'User' is not exported by version of @strikingly/sdk, we'll omit the upsert
+      // and just record the submission in ContactFormResponse
+
+      const { error: responseError, data } = await client
+        .from('ContactFormResponse')
+        .insert({
+          data: {
+            name: values.name,
+            company: values.company,
+            email: values.email,
+            country: values.country,
+            service: values.service,
+            details: values.details
+          }
+        });
+
+      if (responseError || data?.success === false) {
+        let msg = 'Failed to submit inquiry.';
+        if (data?.errors && Array.isArray(data.errors)) {
+          msg = data.errors.join(', ');
+        } else if (responseError?.message) {
+          msg = responseError.message;
+        }
+        throw new Error(msg);
+      }
+
+      setStatus('success');
+      setValues({
+        name: '',
+        company: '',
+        email: '',
+        country: '',
+        service: '',
+        details: ''
+      });
+    } catch (err) {
+      console.error('Contact form submission error:', err);
+      setError(err.message || 'An error occurred while submitting your inquiry.');
+      setStatus('error');
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       {/* Header */}
@@ -27,33 +111,33 @@ const Contact = () => {
               <h2 className="text-2xl font-bold text-slate-900 mb-6">Get a Free Sourcing Quote</h2>
               <p className="text-slate-600 mb-8">Please provide as much detail as possible about your product, target price, and volume so we can assist you better.</p>
               
-              <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-6" onSubmit={onSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-slate-900">Full Name *</label>
-                    <Input id="name" placeholder="John Doe" required className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <label htmlFor="name" className="text-sm font-medium text-slate-900">FullName *</label>
+                    <Input id="name" placeholder="John Doe" required className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" value={values.name} onChange={onChange} />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="company" className="text-sm font-medium text-slate-900">Company Name</label>
-                    <Input id="company" placeholder="Example Inc." className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input id="company" placeholder="Example Inc." className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" value={values.company} onChange={onChange} />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-slate-900">Email Address *</label>
-                    <Input id="email" type="email" placeholder="john@example.com" required className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input id="email" type="email" placeholder="john@example.com" required className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" value={values.email} onChange={onChange} />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="country" className="text-sm font-medium text-slate-900">Country</label>
-                    <Input id="country" placeholder="United States" className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" />
+                    <Input id="country" placeholder="United States" className="bg-slate-50 border-slate-200 focus-visible:ring-blue-600" value={values.country} onChange={onChange} />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <label htmlFor="service" className="text-sm font-medium text-slate-900">Service Required *</label>
-                  <select id="service" className="flex h-10 w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-                    <option value="" disabled selected>Select a service...</option>
+                  <select id="service" className="flex h-10 w-full rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={values.service} onChange={onChange} required>
+                    <option value="" disabled>Select a service...</option>
                     <option value="sourcing">Product Sourcing</option>
                     <option value="verification">Factory Verification</option>
                     <option value="quality">Quality Control / Inspection</option>
@@ -68,14 +152,28 @@ const Contact = () => {
                     id="details" 
                     placeholder="Tell us about the product you want to source, specifications, estimated order quantity, and target price..." 
                     className="min-h-[150px] bg-slate-50 border-slate-200 focus-visible:ring-blue-600 resize-y" 
-                    required 
+                    required
+                    value={values.details}
+                    onChange={onChange}
                   />
                   <p className="text-xs text-slate-500">Provide links to similar products on Alibaba or Amazon if available.</p>
                 </div>
 
-                <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg">
-                  Submit Inquiry
+                <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg" disabled={status === 'submitting'}>
+                  {status === 'submitting' ? 'Submitting...' : 'Submit Inquiry'}
                 </Button>
+                
+                {status === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-md text-green-700 font-medium text-center">
+                    Thank you for your inquiry! We'll get back to you within 24 hours.
+                  </div>
+                )}
+                
+                {error && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-md text-red-700 font-medium text-center">
+                    {error}
+                  </div>
+                )}
                 <p className="text-center text-sm text-slate-500 mt-4">
                   We aim to respond to all inquiries within 24 working hours.
                 </p>
