@@ -1,23 +1,70 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
-import { ImageHelper } from '@strikingly/sdk';
+import { ImageHelper, DataClient } from '@strikingly/sdk';
 import strkImgConfig from '@/strk-img-config.json';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
   const containerRef = useRef(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    product: '',
+    quantity: '',
+    destination: '',
+    requirements: ''
+  });
 
   useEffect(() => {
     return ImageHelper.loadImages(strkImgConfig, containerRef.current);
   }, []);
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Thank you for your inquiry! Our sourcing experts will get back to you within 24 hours.");
-    e.target.reset();
+    setIsSubmitting(true);
+
+    try {
+      // Insert Inquiry into Database
+      const { error: insertError } = await client.from('SourcingInquiry').insert({
+        data: {
+          name: formData.name,
+          email: formData.email,
+          product: formData.product,
+          quantity: formData.quantity,
+          destination: formData.destination,
+          requirements: formData.requirements
+        }
+      });
+
+      if (insertError) throw insertError;
+
+      toast.success("Inquiry received! Our sourcing experts will contact you within 24 hours.");
+      setFormData({
+        name: '',
+        email: '',
+        product: '',
+        quantity: '',
+        destination: '',
+        requirements: ''
+      });
+    } catch (error) {
+      console.error('Submission error:', error);
+      toast.error("Failed to submit inquiry. Please try again or contact us directly via email.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -95,37 +142,83 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label className="text-sm font-bold text-primary/80 uppercase tracking-widest">Full Name</label>
-                    <Input placeholder="e.g. Michael Smith" required className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" />
+                    <Input 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="e.g. Michael Smith" 
+                      required 
+                      className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" 
+                    />
                   </div>
                   <div className="space-y-3">
                     <label className="text-sm font-bold text-primary/80 uppercase tracking-widest">Company Email</label>
-                    <Input type="email" placeholder="e.g. michael@business.com" required className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" />
+                    <Input 
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="e.g. michael@business.com" 
+                      required 
+                      className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" 
+                    />
                   </div>
                 </div>
                 
                 <div className="space-y-3">
                   <label className="text-sm font-bold text-primary/80 uppercase tracking-widest">Product Information</label>
-                  <Input placeholder="What product are you looking to source?" required className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" />
+                  <Input 
+                    name="product"
+                    value={formData.product}
+                    onChange={handleChange}
+                    placeholder="What product are you looking to source?" 
+                    required 
+                    className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" 
+                  />
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label className="text-sm font-bold text-primary/80 uppercase tracking-widest">Estimated Quantity</label>
-                    <Input placeholder="e.g. 5,000 units" required className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" />
+                    <Input 
+                      name="quantity"
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      placeholder="e.g. 5,000 units" 
+                      required 
+                      className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" 
+                    />
                   </div>
                   <div className="space-y-3">
                     <label className="text-sm font-bold text-primary/80 uppercase tracking-widest">Product Destination</label>
-                    <Input placeholder="e.g. Port of Los Angeles, USA" required className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" />
+                    <Input 
+                      name="destination"
+                      value={formData.destination}
+                      onChange={handleChange}
+                      placeholder="e.g. Port of Los Angeles, USA" 
+                      required 
+                      className="bg-muted/50 border-slate-200 h-14 rounded-xl focus:border-secondary transition-colors" 
+                    />
                   </div>
                 </div>
                 
                 <div className="space-y-3">
                   <label className="text-sm font-bold text-primary/80 uppercase tracking-widest">Additional Requirements</label>
-                  <Textarea placeholder="Describe target price, material specs, or special certifications needed..." className="bg-muted/50 border-slate-200 min-h-[160px] rounded-xl focus:border-secondary transition-colors" required />
+                  <Textarea 
+                    name="requirements"
+                    value={formData.requirements}
+                    onChange={handleChange}
+                    placeholder="Describe target price, material specs, or special certifications needed..." 
+                    className="bg-muted/50 border-slate-200 min-h-[160px] rounded-xl focus:border-secondary transition-colors" 
+                  />
                 </div>
                 
-                <Button type="submit" className="w-full bg-secondary hover:bg-secondary/90 text-white font-black py-8 text-xl rounded-xl shadow-[0_10px_30px_rgba(217,119,6,0.3)] transition-all hover:-translate-y-1">
-                  <Send className="mr-3 h-6 w-6" /> SUBMIT SOURCING REQUEST
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full bg-secondary hover:bg-secondary/90 text-white font-black py-8 text-xl rounded-xl shadow-[0_10px_30px_rgba(217,119,6,0.3)] transition-all hover:-translate-y-1"
+                >
+                  {isSubmitting ? "Submitting..." : <><Send className="mr-3 h-6 w-6" /> SUBMIT SOURCING REQUEST</>}
                 </Button>
                 
                 <p className="text-center text-muted-foreground text-sm font-medium">
