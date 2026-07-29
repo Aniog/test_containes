@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, MessageSquare, Loader2 } from 'lucide-react';
+import { submitInquiry } from '../api/inquiries';
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -14,12 +17,23 @@ export default function Contact() {
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    setError(null);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setError(null);
+    setSubmitting(true);
+
+    try {
+      await submitInquiry({ ...form, source: 'contact-page' });
+      setSubmitted(true);
+      setForm({ name: '', email: '', company: '', product: '', quantity: '', message: '' });
+    } catch (err) {
+      setError(err.message || 'Something went wrong. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -205,12 +219,27 @@ export default function Contact() {
                       />
                     </div>
 
+                    {error && (
+                      <p className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-md px-4 py-3">
+                        {error}
+                      </p>
+                    )}
                     <button
                       type="submit"
-                      className="w-full bg-secondary hover:bg-secondary-dark text-white font-semibold px-6 py-4 rounded-md transition-colors flex items-center justify-center gap-2"
+                      disabled={submitting}
+                      className="w-full bg-secondary hover:bg-secondary-dark disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-6 py-4 rounded-md transition-colors flex items-center justify-center gap-2"
                     >
-                      <Send className="w-4 h-4" />
-                      Send Inquiry
+                      {submitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-4 h-4" />
+                          Send Inquiry
+                        </>
+                      )}
                     </button>
 
                     <p className="text-xs text-text-muted text-center">
