@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Company name of the sourcing inquiry"
+    },
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "maxLength": 160,
+      "description": "Business email address for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone number or messaging contact"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country of the buyer or company"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Main product the buyer wants to source"
+    },
+    "product_description": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Product requirements, materials, specs, or compliance notes"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected order quantity, MOQ target, or annual volume"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price, budget range, or current benchmark"
+    },
+    "shipping_destination": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Destination country or port for shipping"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier search",
+          "Factory verification",
+          "Sample coordination",
+          "Quality inspection",
+          "Production follow-up",
+          "Shipping coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "description": "Requested sourcing support services"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 3000,
+      "description": "Additional details, questions, or sourcing context"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_name",
+    "email",
+    "product_name",
+    "services_needed",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
