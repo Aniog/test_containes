@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 2,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Electronics", "Furniture", "Textiles", "Machinery", "Industrial Supplies", "Consumer Goods", "Other"],
+      "description": "Category of the product to be sourced"
+    },
+    "estimated_annual_volume": {
+      "type": "string",
+      "description": "Estimated annual order volume or value"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 10,
+      "description": "Details of the sourcing request"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "qualified", "lost"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "Reference to the visitor record",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Client or company name (can be anonymized)"
+    },
+    "project_title": {
+      "type": "string",
+      "description": "Short title of the project"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "Problem the client faced"
+    },
+    "solution": {
+      "type": "string",
+      "description": "Actions taken by SSourcing China"
+    },
+    "result": {
+      "type": "string",
+      "description": "Outcome and benefits achieved"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Electronics", "Furniture", "Consumer Goods", "Industrial"],
+      "description": "Industry category"
+    },
+    "image": {
+      "type": "object",
+      "description": "Project image",
+      "properties": {
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["project_title", "challenge", "solution", "result"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
