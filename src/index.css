@@ -1,76 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Brand color variables ── */
+:root {
+  --color-navy:          #1A3A5C;
+  --color-navy-dark:     #122840;
+  --color-navy-light:    #2A5080;
+  --color-brand-red:     #C0392B;
+  --color-brand-red-dark:#a93226;
+  --color-brand-gold:    #D4A017;
+  --color-site-bg:       #F7F8FA;
+}
+
+/* ── Brand background utilities ── */
+.bg-navy        { background-color: var(--color-navy) !important; }
+.bg-navy-dark   { background-color: var(--color-navy-dark) !important; }
+.bg-navy-light  { background-color: var(--color-navy-light) !important; }
+.bg-brand-red   { background-color: var(--color-brand-red) !important; }
+.bg-brand-red-dark { background-color: var(--color-brand-red-dark) !important; }
+.bg-brand-gold  { background-color: var(--color-brand-gold) !important; }
+.bg-site-bg     { background-color: var(--color-site-bg) !important; }
+
+/* ── Brand text utilities ── */
+.text-navy        { color: var(--color-navy) !important; }
+.text-navy-dark   { color: var(--color-navy-dark) !important; }
+.text-navy-light  { color: var(--color-navy-light) !important; }
+.text-brand-red   { color: var(--color-brand-red) !important; }
+.text-brand-red-dark { color: var(--color-brand-red-dark) !important; }
+.text-brand-gold  { color: var(--color-brand-gold) !important; }
+
+/* ── Brand border utilities ── */
+.border-navy      { border-color: var(--color-navy) !important; }
+.border-brand-red { border-color: var(--color-brand-red) !important; }
+.border-brand-gold{ border-color: var(--color-brand-gold) !important; }
+
+/* ── Hover variants ── */
+.hover\:bg-navy:hover        { background-color: var(--color-navy) !important; }
+.hover\:bg-navy-dark:hover   { background-color: var(--color-navy-dark) !important; }
+.hover\:bg-brand-red:hover   { background-color: var(--color-brand-red) !important; }
+.hover\:bg-brand-red-dark:hover { background-color: var(--color-brand-red-dark) !important; }
+.hover\:text-navy:hover      { color: var(--color-navy) !important; }
+.hover\:text-brand-red:hover { color: var(--color-brand-red) !important; }
+.hover\:text-brand-gold:hover{ color: var(--color-brand-gold) !important; }
+.hover\:border-navy:hover    { border-color: var(--color-navy) !important; }
+
+/* ── Ring/focus variants ── */
+.focus\:ring-navy:focus      { --tw-ring-color: var(--color-navy); }
+.focus\:ring-brand-red:focus { --tw-ring-color: var(--color-brand-red); }
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color: #1F2937;
+  background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #1F2937;
+  background-color: #ffffff;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+html {
+  scroll-behavior: smooth;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+* {
+  box-sizing: border-box;
 }
 
-button:hover {
-  border-color: #646cff;
+a {
+  text-decoration: none;
+  color: inherit;
 }
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
