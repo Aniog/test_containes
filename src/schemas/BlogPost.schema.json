@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Post title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short summary"
+    },
+    "content": {
+      "type": "string",
+      "description": "Markdown or HTML content"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Sourcing Tips", "Industry News", "Factory Verification", "Quality Control", "Shipping"],
+      "description": "Post category"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author name"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["title", "slug", "content"],
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

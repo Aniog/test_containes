@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company name (optional)"
+    },
+    "product_category": {
+      "type": "string",
+      "description": "Target product category"
+    },
+    "order_volume": {
+      "type": "string",
+      "description": "Expected order volume"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Detailed sourcing requirements"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "Linked user if logged in",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "product_category", "message"],
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
