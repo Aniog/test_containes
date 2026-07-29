@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Project title"
+    },
+    "client": {
+      "type": "string",
+      "description": "Client name or industry"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "The problem we solved"
+    },
+    "solution": {
+      "type": "string",
+      "description": "How we helped"
+    },
+    "result": {
+      "type": "string",
+      "description": "Final outcome"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Relevant tags (e.g., Electronics, QC)"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    }
+  },
+  "required": ["title", "challenge", "solution"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}

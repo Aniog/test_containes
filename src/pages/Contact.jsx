@@ -4,12 +4,58 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { DataClient, User } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Contact = () => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Message received! Our team will contact you within 24 hours.");
-    e.target.reset();
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.target);
+    const data = {
+      fullName: formData.get('fullName'),
+      email: formData.get('email'),
+      phone: formData.get('phone'),
+      projectType: formData.get('projectType'),
+      message: formData.get('message'),
+    };
+
+    try {
+      // Step 1: Upsert the User record
+      const userRecord = await User.upsert({
+        email: data.email,
+        name: data.fullName,
+        phone: data.phone,
+        role: 'guest',
+      });
+
+      // Step 2: Insert the inquiry linked to the user
+      const { error } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            ...data,
+            user_id: userRecord.id,
+          },
+        })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      toast.success("Inquiry received! Our team will contact you within 24 hours.");
+      e.target.reset();
+    } catch (err) {
+      console.error('Submission error:', err);
+      toast.error("Failed to send inquiry. Please try again or contact us via email.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -90,21 +136,21 @@ const Contact = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700">Full Name</label>
-                    <Input placeholder="John Doe" required />
+                    <Input name="fullName" placeholder="John Doe" required />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700">Work Email</label>
-                    <Input type="email" placeholder="john@company.com" required />
+                    <Input name="email" type="email" placeholder="john@company.com" required />
                   </div>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700">Phone (optional)</label>
-                    <Input placeholder="+1 123 456 7890" />
+                    <Input name="phone" placeholder="+1 123 456 7890" />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-semibold text-slate-700">Project Type</label>
-                    <select className="w-full h-10 px-3 rounded-md border border-slate-200 text-sm bg-white">
+                    <select name="projectType" className="w-full h-10 px-3 rounded-md border border-slate-200 text-sm bg-white">
                       <option>Product Sourcing</option>
                       <option>Quality Inspection</option>
                       <option>Factory Audit</option>
@@ -115,10 +161,10 @@ const Contact = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-semibold text-slate-700">Your Message</label>
-                  <Textarea placeholder="Tell us more about your sourcing needs..." rows={6} required />
+                  <Textarea name="message" placeholder="Tell us more about your sourcing needs..." rows={6} required />
                 </div>
-                <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6">
-                  Send Inquiry
+                <Button type="submit" size="lg" className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Send Inquiry'}
                 </Button>
                 <p className="text-center text-slate-400 text-sm italic">
                   We usually respond within 12-24 hours.

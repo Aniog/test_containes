@@ -3,12 +3,54 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { DataClient, User } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config';
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const BriefContactForm = () => {
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    toast.success("Inquiry sent successfully! We'll get back to you within 24 hours.");
-    e.target.reset();
+    setIsSubmitting(true);
+    
+    const formData = new FormData(e.target);
+    const data = {
+      fullName: formData.get('fullName'),
+      email: formData.get('email'),
+      projectType: formData.get('projectType'),
+      message: formData.get('message'),
+    };
+
+    try {
+      const userRecord = await User.upsert({
+        email: data.email,
+        name: data.fullName,
+        role: 'guest',
+      });
+
+      const { error } = await client
+        .from('SourcingInquiry')
+        .insert({
+          data: {
+            ...data,
+            user_id: userRecord.id,
+          },
+        })
+        .select()
+        .single();
+      
+      if (error) throw error;
+
+      toast.success("Inquiry sent successfully! We'll get back to you within 24 hours.");
+      e.target.reset();
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to send inquiry. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -45,23 +87,23 @@ const BriefContactForm = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Name</label>
-                    <Input placeholder="Your name" required />
+                    <Input name="fullName" placeholder="Your name" required />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Email</label>
-                    <Input type="email" placeholder="your@email.com" required />
+                    <Input name="email" type="email" placeholder="your@email.com" required />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700">Product Interest</label>
-                  <Input placeholder="e.g. Smart Watch, Bamboo Furniture" required />
+                  <Input name="projectType" placeholder="e.g. Smart Watch, Bamboo Furniture" required />
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-700">Message</label>
-                  <Textarea placeholder="Tell us about your sourcing needs..." rows={4} required />
+                  <Textarea name="message" placeholder="Tell us about your sourcing needs..." rows={4} required />
                 </div>
-                <Button type="submit" className="w-full bg-slate-900 hover:bg-slate-800 h-12 text-lg">
-                  Submit Inquiry
+                <Button type="submit" className="w-full bg-slate-900 hover:bg-slate-800 h-12 text-lg" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Submit Inquiry'}
                 </Button>
               </form>
             </div>

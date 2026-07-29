@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "description": "Post title"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "URL slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Brief summary"
+    },
+    "content": {
+      "type": "string",
+      "description": "Main post content (Markdown/HTML)"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["Sourcing Tips", "QC & Inspection", "China Business", "Logistics"],
+      "description": "Industry category"
+    },
+    "author": {
+      "type": "string",
+      "description": "Author name"
+    },
+    "coverImage": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["title", "slug", "content"],
+  "x-security": {
+    "read": { "allow": ["*"] }
+  }
+}

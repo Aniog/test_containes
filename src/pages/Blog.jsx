@@ -1,35 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
+import { DataClient } from '@strikingly/sdk';
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: 'How to Find Reliable Suppliers on Alibaba: A Step-by-Step Guide',
-    excerpt: 'Alibaba is a goldmine for sourcing, but only if you know how to filter legitimate factories from trading companies...',
-    date: 'July 15, 2026',
-    category: 'Sourcing Basics',
-    imageQuery: 'alibaba website homepage laptop screen'
-  },
-  {
-    id: 2,
-    title: 'Understanding AQL Standards: What You Need to Know for Quality Inspection',
-    excerpt: 'Acceptable Quality Limit (AQL) is the backbone of QC. Learn how to choose the right level for your niche...',
-    date: 'June 28, 2026',
-    category: 'Quality Control',
-    imageQuery: 'quality inspection paperwork chart data'
-  },
-  {
-    id: 3,
-    title: 'China Shipping Crisis: 5 Strategies to Reduce Your Logistics Costs in 2026',
-    excerpt: 'Freight rates remain volatile. Here are five actionable tips to keep your shipping margins healthy this year...',
-    date: 'June 10, 2026',
-    category: 'Logistics',
-    imageQuery: 'shipping containers cargo ship ocean'
-  }
-];
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 const Blog = () => {
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const { data: response, error } = await client
+          .from('BlogPost')
+          .select('*')
+          .order('publishedAt', { ascending: false });
+        
+        if (error) throw error;
+        setPosts(response?.data?.list || []);
+      } catch (err) {
+        console.error('Error fetching blog posts:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  const blogPosts = posts.length > 0 ? posts.map(p => ({
+    id: p.id,
+    title: p.data.title,
+    excerpt: p.data.excerpt,
+    date: p.data.publishedAt ? new Date(p.data.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Recently',
+    category: p.data.category || 'General',
+    imageQuery: p.data.title
+  })) : [
+    {
+      id: 1,
+      title: 'How to Find Reliable Suppliers on Alibaba: A Step-by-Step Guide',
+      excerpt: 'Alibaba is a goldmine for sourcing, but only if you know how to filter legitimate factories from trading companies...',
+      date: 'July 15, 2026',
+      category: 'Sourcing Basics',
+      imageQuery: 'alibaba website homepage laptop screen'
+    },
+    {
+      id: 2,
+      title: 'Understanding AQL Standards: What You Need to Know for Quality Inspection',
+      excerpt: 'Acceptable Quality Limit (AQL) is the backbone of QC. Learn how to choose the right level for your niche...',
+      date: 'June 28, 2026',
+      category: 'Quality Control',
+      imageQuery: 'quality inspection paperwork chart data'
+    },
+    {
+      id: 3,
+      title: 'China Shipping Crisis: 5 Strategies to Reduce Your Logistics Costs in 2026',
+      excerpt: 'Freight rates remain volatile. Here are five actionable tips to keep your shipping margins healthy this year...',
+      date: 'June 10, 2026',
+      category: 'Logistics',
+      imageQuery: 'shipping containers cargo ship ocean'
+    }
+  ];
   return (
     <div className="blog-page">
       <section className="bg-slate-50 py-20 border-b">
