@@ -1,15 +1,48 @@
+import { ImageHelper } from '@strikingly/sdk'
+import { useEffect, useRef } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
+import Layout from './components/Layout.jsx'
+import Blog from './pages/Blog.jsx'
+import CaseStudies from './pages/CaseStudies.jsx'
+import Contact from './pages/Contact.jsx'
+import Home from './pages/Home.jsx'
+import HowItWorks from './pages/HowItWorks.jsx'
+import Products from './pages/Products.jsx'
+import Services from './pages/Services.jsx'
+import strkImgConfig from './strk-img-config.json'
 
-function App() {
+function AppRoutes() {
+  const containerRef = useRef(null)
+  const location = useLocation()
+
+  useEffect(() => {
+    let cleanup = () => {}
+    const frameId = window.requestAnimationFrame(() => {
+      cleanup = ImageHelper.loadImages(strkImgConfig, containerRef.current)
+    })
+
+    return () => {
+      window.cancelAnimationFrame(frameId)
+      cleanup()
+    }
+  }, [location.pathname])
+
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
+    <div ref={containerRef}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Services />} />
+          <Route path="how-it-works" element={<HowItWorks />} />
+          <Route path="products" element={<Products />} />
+          <Route path="case-studies" element={<CaseStudies />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
+      </Routes>
+    </div>
   )
 }
 
-export default App
+export default AppRoutes
