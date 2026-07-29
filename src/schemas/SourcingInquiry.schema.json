@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Primary contact name for the sourcing request"
+    },
+    "company_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Company name of the buyer or importer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email for follow-up"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Phone or WhatsApp number for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Country or market of the buyer"
+    },
+    "product_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "description": "Product or item name the buyer wants to source"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Broad product category for the inquiry"
+    },
+    "estimated_order_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity, MOQ target, or container planning note"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Requested sourcing or delivery timeline"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Requested sourcing support services",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Supplier Search & Shortlisting",
+          "Supplier Verification",
+          "Factory Audit Coordination",
+          "Quality Inspection",
+          "Production Follow-Up",
+          "Shipping Coordination"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "message": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 3000,
+      "description": "Buyer brief including specifications, quality targets, and sourcing context"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Website page where the inquiry was submitted"
+    }
+  },
+  "required": [
+    "contact_name",
+    "company_name",
+    "email",
+    "product_name",
+    "services_needed",
+    "message"
+  ],
+  "additionalProperties": false,
+  "x-security": {
+    "create": {
+      "allow": ["*"]
+    }
+  }
+}
