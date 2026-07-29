@@ -1,76 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  /* Brand colors — declared explicitly so JIT always emits them */
+  .bg-navy          { background-color: #0F2A4A; }
+  .text-navy        { color: #0F2A4A; }
+  .border-navy      { border-color: #0F2A4A; }
+  .ring-navy        { --tw-ring-color: #0F2A4A; }
+
+  .bg-brand-red     { background-color: #C8102E; }
+  .text-brand-red   { color: #C8102E; }
+  .border-brand-red { border-color: #C8102E; }
+  .ring-brand-red   { --tw-ring-color: #C8102E; }
+
+  .bg-steel         { background-color: #1E6091; }
+  .text-steel       { color: #1E6091; }
+  .border-steel     { border-color: #1E6091; }
+
+  .bg-surface       { background-color: #F8FAFC; }
+  .bg-surface-alt   { background-color: #EEF2F7; }
+
+  /* Hover / focus variants */
+  .hover\:bg-navy:hover        { background-color: #0F2A4A; }
+  .hover\:text-navy:hover      { color: #0F2A4A; }
+  .hover\:border-navy:hover    { border-color: #0F2A4A; }
+  .hover\:bg-brand-red:hover   { background-color: #C8102E; }
+  .hover\:text-brand-red:hover { color: #C8102E; }
+  .hover\:bg-steel:hover       { background-color: #1E6091; }
+  .hover\:text-steel:hover     { color: #1E6091; }
+  .hover\:border-steel:hover   { border-color: #1E6091; }
+  .hover\:bg-surface-alt:hover { background-color: #EEF2F7; }
+
+  .focus\:ring-navy:focus      { --tw-ring-color: #0F2A4A; }
+  .focus\:ring-brand-red:focus { --tw-ring-color: #C8102E; }
+  .focus\:ring-steel:focus     { --tw-ring-color: #1E6091; }
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #e4e8ef;
+  color-scheme: light;
+  color: #0F2A4A;
+  background-color: #F8FAFC;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   font-family: inherit;
-  background-color: inherit;
-  color: inherit;
+  background-color: #F8FAFC;
+  color: #0F2A4A;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+* {
+  box-sizing: border-box;
 }
 
-button:hover {
-  border-color: #646cff;
+html {
+  scroll-behavior: smooth;
 }
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #e4e8ef;
-  }
-
-  a:hover {
-    color: #747bff;
-  }
-
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;

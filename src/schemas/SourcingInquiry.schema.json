@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "full_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Company or business name"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country of the buyer"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 2000,
+      "description": "Description of the product the buyer wants to source"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target unit price or budget range"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity or MOQ"
+    },
+    "service_needed": {
+      "type": "string",
+      "enum": ["supplier_sourcing", "factory_audit", "quality_inspection", "production_followup", "shipping", "full_service", "not_sure"],
+      "description": "Primary service the buyer is interested in"
+    },
+    "timeline": {
+      "type": "string",
+      "enum": ["asap", "1_month", "1_3_months", "3_6_months", "flexible"],
+      "description": "Desired timeline for the sourcing project"
+    },
+    "additional_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Any additional information or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "contacted", "in_progress", "closed"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    }
+  },
+  "required": ["full_name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": [] },
+    "update": { "allow": [] },
+    "delete": { "allow": [] }
+  }
+}
