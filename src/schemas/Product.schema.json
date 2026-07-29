@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Products",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Product name, e.g. species common name"
+    },
+    "scientific_name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Scientific/Latin species name"
+    },
+    "slug": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "URL-friendly identifier"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Full product description"
+    },
+    "short_description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Short summary for product cards"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Price in USD"
+    },
+    "original_price": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Original price before discount (if on sale)"
+    },
+    "stock": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Available stock quantity"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["nudibranch", "sea-hare", "sacoglossan", "dorid", "aeolid", "accessories", "food", "care-kit"],
+      "description": "Product category"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "expert"],
+      "description": "Care difficulty level"
+    },
+    "size_cm": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Typical adult size in centimeters"
+    },
+    "lifespan_years": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Typical lifespan in years"
+    },
+    "origin": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Geographic origin / ocean region"
+    },
+    "diet": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Diet and feeding requirements"
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true,
+      "description": "Search and filter tags"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to feature on homepage"
+    },
+    "is_new": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to show a New badge"
+    },
+    "is_sale": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the product is on sale"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Primary product image URL"
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Average customer rating"
+    },
+    "review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of customer reviews"
+    },
+    "img_id": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Stable unique image identifier for the stock image system (data-strk-img-id)"
+    }
+  },
+  "required": ["name", "price", "category"],
+  "additionalProperties": false,
+  "x-security": {
+    "read": { "allow": ["*"] },
+    "create": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}

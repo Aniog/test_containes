@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Orders",
+  "type": "object",
+  "properties": {
+    "customer_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Full name of the customer"
+    },
+    "customer_email": {
+      "type": "string",
+      "format": "email",
+      "description": "Customer email address"
+    },
+    "customer_phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Customer phone number"
+    },
+    "shipping_address": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Full shipping address"
+    },
+    "items_json": {
+      "type": "string",
+      "description": "JSON string of ordered items with product id, name, quantity, price"
+    },
+    "subtotal": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Order subtotal before shipping"
+    },
+    "shipping_cost": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Shipping cost"
+    },
+    "total": {
+      "type": "number",
+      "minimum": 0,
+      "multipleOf": 0.01,
+      "description": "Total order amount"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pending", "confirmed", "shipped", "delivered", "cancelled"],
+      "default": "pending",
+      "description": "Order status"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Special instructions or notes from customer"
+    }
+  },
+  "required": ["customer_name", "customer_email", "shipping_address", "items_json", "total"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["*"] },
+    "delete": { "allow": ["*"] }
+  }
+}
