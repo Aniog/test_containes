@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Full name of the contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for contact"
+    },
+    "product": {
+      "type": "string",
+      "description": "The product or category to source"
+    },
+    "message": {
+      "type": "string",
+      "description": "Additional details about the sourcing request"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "processed", "replied", "archived"],
+      "default": "new",
+      "description": "Internal status of the inquiry"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "Reference to the User record",
+      "x-foreignKey": "users.id"
+    }
+  },
+  "required": ["name", "email", "product"],
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["admin"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

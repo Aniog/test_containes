@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Blog Posts",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Title of the blog post"
+    },
+    "content": {
+      "type": "string",
+      "description": "Main body text"
+    },
+    "category": {
+      "type": "string",
+      "description": "Sourcing, QC, Shipping, etc."
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Featured image"
+    },
+    "published_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication timestamp"
+    }
+  },
+  "required": ["title", "content"],
+  "x-security": {
+    "create": { "allow": ["admin"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}

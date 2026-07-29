@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Case Studies",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Title of the case study"
+    },
+    "client": {
+      "type": "string",
+      "description": "Client industry or name"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "The problem the client faced"
+    },
+    "solution": {
+      "type": "string",
+      "description": "How SSourcing China solved it"
+    },
+    "result": {
+      "type": "string",
+      "description": "The positive outcome achieved"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "storageKey": { "type": "string" },
+        "filename": { "type": "string" }
+      },
+      "x-upload": true,
+      "x-fileType": "image",
+      "description": "Visual for the case study"
+    }
+  },
+  "required": ["title", "challenge", "solution"],
+  "x-security": {
+    "create": { "allow": ["admin"] },
+    "read": { "allow": ["*"] },
+    "update": { "allow": ["admin"] },
+    "delete": { "allow": ["admin"] }
+  }
+}
