@@ -1173,16 +1173,23 @@ function resolveExprValue(node, subs) {
     }
     return out
   }
-  if (
-    node.type === 'NewExpression' &&
-    node.callee?.type === 'Identifier' &&
-    node.callee.name === 'Array'
-  ) {
-    const arg = resolveExprValue(node.arguments?.[0], subs)
-    if (node.arguments.length === 1 && Number.isInteger(arg) && arg >= 0 && arg <= 1000) {
-      return Array.from({ length: arg })
+  if (node.type === 'NewExpression' && node.callee?.type === 'Identifier') {
+    if (node.callee.name === 'Array') {
+      const arg = resolveExprValue(node.arguments?.[0], subs)
+      if (node.arguments.length === 1 && Number.isInteger(arg) && arg >= 0 && arg <= 1000) {
+        return Array.from({ length: arg })
+      }
+      return undefined
     }
-    return undefined
+    if (node.callee.name === 'Set') {
+      if (!node.arguments.length) return []
+      if (node.arguments.length !== 1) return undefined
+      const values = resolveExprValue(node.arguments[0], subs)
+      if ((!Array.isArray(values) && typeof values !== 'string') || values.length > 1000) {
+        return undefined
+      }
+      return [...new Set(values)]
+    }
   }
   if (node.type === 'CallExpression' || node.type === 'OptionalCallExpression') {
     const calledFn = functionMarkerValue(resolveExprValue(node.callee, subs))
@@ -3303,6 +3310,10 @@ function resolveSelectedItemSource(node, parentRegistry, additions, depth = 0, s
       ? resolvedIndex
       : undefined
     if (items && Number.isInteger(selectedIndex)) {
+      const runtimeCandidates = runtimeCollectionItemsAtIndex(items, selectedIndex)
+      if (runtimeCandidates.length) {
+        return { items: runtimeCandidates, indexName: null }
+      }
       const selected = items[selectedIndex]
       return selected === undefined ? null : { items: [selected], indexName: null }
     }
@@ -3834,6 +3845,48 @@ function collectArrayStateSetterItems(blockNode, setterName, parentRegistry, bas
   return found.length ? mergeCandidateArrays(found) : null
 }
 
+function resolveItemsAcrossScalarStateBranches(node, parentRegistry, additions, subs) {
+  const stateBranches = scalarRuntimeStateBranches([node], subs)
+  if (stateBranches.length) {
+    const arrays = []
+    for (const branch of stateBranches) {
+      // These substitutions represent one exact state branch. Omitting the
+      // runtime metadata lets filters evaluate against that concrete value.
+      const exactBranch = branch.map(sub => ({ paramName: sub.paramName, item: sub.item }))
+      const branchSubs = [...(subs || []), ...exactBranch]
+      const items =
+        resolveItemsAlias(node, parentRegistry, additions, 0, branchSubs) ||
+        resolveExprValue(node, branchSubs)
+      if (Array.isArray(items)) arrays.push(items)
+    }
+    const merged = mergeCollectionBranchCandidates(arrays)
+    if (merged) return merged
+  }
+  const fallback = (
+    resolveItemsAlias(node, parentRegistry, additions, 0, subs) ||
+    resolveExprValue(node, subs)
+  )
+  return Array.isArray(fallback) ? fallback : null
+}
+
+function runtimeCollectionItemsAtIndex(items, index) {
+  const rows = collectionIterationRows(items)
+  if (!rows?.length) return []
+  return mergeCandidateArrays([
+    rows.filter(row => row.index === index).map(row => row.item),
+  ])
+}
+
+function runtimeCollectionRestItems(items, offset) {
+  const rows = collectionIterationRows(items)
+  if (!rows?.length) return items.slice(offset)
+  const shiftedRows = rows
+    .filter(row => row.index >= offset)
+    .map(row => ({ ...row, index: row.index - offset }))
+  const candidates = mergeCandidateArrays([shiftedRows.map(row => row.item)])
+  return setCollectionIterationRows(candidates, shiftedRows)
+}
+
 // Walk a BlockStatement's direct statements (NOT nested blocks — those get
 // their own scope when the visitor recurses into them).
 //   regMap additions — `const list = items.filter(...)` for `.map(list => …)`
@@ -4094,9 +4147,9 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
           }
           continue
         }
-        const arr =
-          resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, localSubs) ||
-          resolveExprValue(d.init, localSubs)
+        const arr = resolveItemsAcrossScalarStateBranches(
+          d.init, parentRegistry, regAdditions, localSubs,
+        )
         if (!Array.isArray(arr)) continue
         let offset = 0
         for (const el of d.id.elements || []) {
@@ -4105,17 +4158,36 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
             continue
           }
           if (el.type === 'RestElement' && el.argument?.type === 'Identifier') {
-            addValueSub(el.argument.name, arr.slice(offset))
+            addValueSub(el.argument.name, runtimeCollectionRestItems(arr, offset))
             break
           }
           if (el.type === 'Identifier') {
-            addValueSub(el.name, arr[offset])
+            const candidates = runtimeCollectionItemsAtIndex(arr, offset)
+            if (candidates.length > 1) {
+              if (candidates.every(isScalarStateCandidate)) {
+                addValueSub(el.name, candidates[0], {
+                  runtimeState: true,
+                  scalarCandidates: candidates,
+                })
+              } else {
+                if (!itemAliasAdditions) itemAliasAdditions = new Map()
+                itemAliasAdditions.set(el.name, {
+                  items: candidates,
+                  indexName: null,
+                  setterName: null,
+                })
+              }
+            } else {
+              addValueSub(el.name, candidates[0] ?? arr[offset])
+            }
           } else if (
             el.type === 'AssignmentPattern' &&
             el.left?.type === 'Identifier'
           ) {
             const fallback = resolveExprValue(el.right, localSubs)
-            addValueSub(el.left.name, arr[offset] === undefined ? fallback : arr[offset])
+            const candidates = runtimeCollectionItemsAtIndex(arr, offset)
+            const value = candidates[0] ?? arr[offset]
+            addValueSub(el.left.name, value === undefined ? fallback : value)
           }
           offset++
         }
@@ -4149,7 +4221,9 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
       // `product.images[selectedTone]` is also a valid candidate collection;
       // classifying it as a selected scalar first prevents downstream image
       // slots from seeing the available keys.
-      const items = resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, localSubs)
+      const items = resolveItemsAcrossScalarStateBranches(
+        d.init, parentRegistry, regAdditions, localSubs,
+      )
       if (items) {
         addValueSub(d.id.name, items)
         if (!regAdditions) regAdditions = new Map()
@@ -4231,7 +4305,9 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
       if (stmt?.type !== 'VariableDeclaration') continue
       for (const d of stmt.declarations || []) {
         if (d?.id?.type !== 'Identifier' || !d.init) continue
-        const items = resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, finalizedSubs)
+        const items = resolveItemsAcrossScalarStateBranches(
+          d.init, parentRegistry, regAdditions, finalizedSubs,
+        )
         if (!Array.isArray(items)) continue
         let target = null
         for (let index = valueSubs.length - 1; index >= 0; index--) {
