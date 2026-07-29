@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SourcingInquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer submitting the sourcing inquiry"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or region where the buyer is based"
+    },
+    "productCategory": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Product category or item the buyer wants to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity or purchasing volume"
+    },
+    "servicesNeeded": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_search", "factory_verification", "quality_inspection", "production_follow_up", "shipping_coordination", "cost_review"]
+      },
+      "uniqueItems": true,
+      "description": "Sourcing services requested by the buyer"
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Project details, target specifications, timing, and other sourcing requirements"
+    },
+    "submittedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the inquiry was submitted"
+    }
+  },
+  "required": ["name", "email", "productCategory", "message"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
