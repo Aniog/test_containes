@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the guest user who submitted the inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120,
+      "description": "Full name of the buyer or contact person"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Business email address for follow-up"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Company name of the buyer"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country or market where the buyer is located"
+    },
+    "product_category": {
+      "type": "string",
+      "maxLength": 140,
+      "description": "Main product or product category the buyer wants to source"
+    },
+    "product_details": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Detailed sourcing requirements, specifications, standards, or packaging needs"
+    },
+    "target_quantity": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Estimated order quantity, trial order volume, or annual demand"
+    },
+    "services_needed": {
+      "type": "array",
+      "description": "Sourcing services requested by the buyer",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_search", "factory_verification", "price_negotiation", "quality_inspection", "production_follow_up", "shipping_coordination"]
+      },
+      "uniqueItems": true
+    },
+    "budget_range": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Target price range or estimated purchasing budget"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Expected project timeline or delivery window"
+    },
+    "preferred_contact": {
+      "type": "string",
+      "enum": ["email", "whatsapp", "wechat", "phone"],
+      "description": "Preferred contact channel for follow-up"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "Additional notes or questions from the buyer"
+    },
+    "source_page": {
+      "type": "string",
+      "maxLength": 160,
+      "description": "Website page or section where the inquiry was submitted"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "reviewing", "qualified", "closed"],
+      "default": "new",
+      "description": "Internal status of the sourcing inquiry"
+    },
+    "consent": {
+      "type": "boolean",
+      "description": "Whether the buyer agreed to be contacted about the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_category", "product_details", "consent"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
