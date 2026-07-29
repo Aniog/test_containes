@@ -1133,11 +1133,13 @@ function resolveExprValue(node, subs) {
   }
   if (node.type === 'ArrayExpression') {
     const out = []
+    let hasRuntimePositions = false
     for (const el of node.elements) {
       if (!el) return undefined
       if (el.type === 'SpreadElement') {
         const spread = resolveExprValue(el.argument, subs)
         if (!Array.isArray(spread)) return undefined
+        if (collectionIterationRows(spread)) hasRuntimePositions = true
         out.push(...spread)
         continue
       }
@@ -1145,7 +1147,9 @@ function resolveExprValue(node, subs) {
       if (v === undefined) return undefined
       out.push(v)
     }
-    return out
+    return hasRuntimePositions
+      ? setCollectionIterationRows(out, rowsForRuntimeOrder(out))
+      : out
   }
   if (node.type === 'ObjectExpression') {
     const out = {}
@@ -1169,16 +1173,23 @@ function resolveExprValue(node, subs) {
     }
     return out
   }
-  if (
-    node.type === 'NewExpression' &&
-    node.callee?.type === 'Identifier' &&
-    node.callee.name === 'Array'
-  ) {
-    const arg = resolveExprValue(node.arguments?.[0], subs)
-    if (node.arguments.length === 1 && Number.isInteger(arg) && arg >= 0 && arg <= 1000) {
-      return Array.from({ length: arg })
+  if (node.type === 'NewExpression' && node.callee?.type === 'Identifier') {
+    if (node.callee.name === 'Array') {
+      const arg = resolveExprValue(node.arguments?.[0], subs)
+      if (node.arguments.length === 1 && Number.isInteger(arg) && arg >= 0 && arg <= 1000) {
+        return Array.from({ length: arg })
+      }
+      return undefined
     }
-    return undefined
+    if (node.callee.name === 'Set') {
+      if (!node.arguments.length) return []
+      if (node.arguments.length !== 1) return undefined
+      const values = resolveExprValue(node.arguments[0], subs)
+      if ((!Array.isArray(values) && typeof values !== 'string') || values.length > 1000) {
+        return undefined
+      }
+      return [...new Set(values)]
+    }
   }
   if (node.type === 'CallExpression' || node.type === 'OptionalCallExpression') {
     const calledFn = functionMarkerValue(resolveExprValue(node.callee, subs))
@@ -1280,6 +1291,16 @@ function resolveExprValue(node, subs) {
           const a0 = node.arguments[0] ? resolveExprValue(node.arguments[0], subs) : 0
           const a1 = node.arguments[1] ? resolveExprValue(node.arguments[1], subs) : obj.length
           if (typeof a0 !== 'number' || typeof a1 !== 'number') return undefined
+          if (
+            collectionIterationRows(obj) ||
+            collectionHasRuntimeSensitiveSliceBase(callee.object, null, null, subs)
+          ) {
+            const maxSlots = Math.max(0, Math.min(obj.length, a1) - Math.max(0, a0))
+            return setCollectionIterationRows(
+              obj.slice(),
+              rowsForRuntimeOrder(obj).filter(row => row.index < maxSlots),
+            )
+          }
           return obj.slice(a0, a1)
         }
         if (method === 'flat') {
@@ -2654,6 +2675,15 @@ function collectionHasRuntimeSensitiveSliceBase(node, parentRegistry, additions,
     return true
   }
 
+  if (node.type === 'Identifier') {
+    const items = resolveItemsAlias(node, parentRegistry, additions, depth + 1, subs)
+    return Boolean(collectionIterationRows(items))
+  }
+
+  if (node.type === 'ArrayExpression') {
+    return (node.elements || []).some(element => element?.type === 'SpreadElement')
+  }
+
   if (
     (node.type !== 'CallExpression' && node.type !== 'OptionalCallExpression') ||
     !node.callee ||
@@ -3280,6 +3310,10 @@ function resolveSelectedItemSource(node, parentRegistry, additions, depth = 0, s
       ? resolvedIndex
       : undefined
     if (items && Number.isInteger(selectedIndex)) {
+      const runtimeCandidates = runtimeCollectionItemsAtIndex(items, selectedIndex)
+      if (runtimeCandidates.length) {
+        return { items: runtimeCandidates, indexName: null }
+      }
       const selected = items[selectedIndex]
       return selected === undefined ? null : { items: [selected], indexName: null }
     }
@@ -3811,6 +3845,48 @@ function collectArrayStateSetterItems(blockNode, setterName, parentRegistry, bas
   return found.length ? mergeCandidateArrays(found) : null
 }
 
+function resolveItemsAcrossScalarStateBranches(node, parentRegistry, additions, subs) {
+  const stateBranches = scalarRuntimeStateBranches([node], subs)
+  if (stateBranches.length) {
+    const arrays = []
+    for (const branch of stateBranches) {
+      // These substitutions represent one exact state branch. Omitting the
+      // runtime metadata lets filters evaluate against that concrete value.
+      const exactBranch = branch.map(sub => ({ paramName: sub.paramName, item: sub.item }))
+      const branchSubs = [...(subs || []), ...exactBranch]
+      const items =
+        resolveItemsAlias(node, parentRegistry, additions, 0, branchSubs) ||
+        resolveExprValue(node, branchSubs)
+      if (Array.isArray(items)) arrays.push(items)
+    }
+    const merged = mergeCollectionBranchCandidates(arrays)
+    if (merged) return merged
+  }
+  const fallback = (
+    resolveItemsAlias(node, parentRegistry, additions, 0, subs) ||
+    resolveExprValue(node, subs)
+  )
+  return Array.isArray(fallback) ? fallback : null
+}
+
+function runtimeCollectionItemsAtIndex(items, index) {
+  const rows = collectionIterationRows(items)
+  if (!rows?.length) return []
+  return mergeCandidateArrays([
+    rows.filter(row => row.index === index).map(row => row.item),
+  ])
+}
+
+function runtimeCollectionRestItems(items, offset) {
+  const rows = collectionIterationRows(items)
+  if (!rows?.length) return items.slice(offset)
+  const shiftedRows = rows
+    .filter(row => row.index >= offset)
+    .map(row => ({ ...row, index: row.index - offset }))
+  const candidates = mergeCandidateArrays([shiftedRows.map(row => row.item)])
+  return setCollectionIterationRows(candidates, shiftedRows)
+}
+
 // Walk a BlockStatement's direct statements (NOT nested blocks — those get
 // their own scope when the visitor recurses into them).
 //   regMap additions — `const list = items.filter(...)` for `.map(list => …)`
@@ -4071,9 +4147,9 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
           }
           continue
         }
-        const arr =
-          resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, localSubs) ||
-          resolveExprValue(d.init, localSubs)
+        const arr = resolveItemsAcrossScalarStateBranches(
+          d.init, parentRegistry, regAdditions, localSubs,
+        )
         if (!Array.isArray(arr)) continue
         let offset = 0
         for (const el of d.id.elements || []) {
@@ -4082,17 +4158,36 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
             continue
           }
           if (el.type === 'RestElement' && el.argument?.type === 'Identifier') {
-            addValueSub(el.argument.name, arr.slice(offset))
+            addValueSub(el.argument.name, runtimeCollectionRestItems(arr, offset))
             break
           }
           if (el.type === 'Identifier') {
-            addValueSub(el.name, arr[offset])
+            const candidates = runtimeCollectionItemsAtIndex(arr, offset)
+            if (candidates.length > 1) {
+              if (candidates.every(isScalarStateCandidate)) {
+                addValueSub(el.name, candidates[0], {
+                  runtimeState: true,
+                  scalarCandidates: candidates,
+                })
+              } else {
+                if (!itemAliasAdditions) itemAliasAdditions = new Map()
+                itemAliasAdditions.set(el.name, {
+                  items: candidates,
+                  indexName: null,
+                  setterName: null,
+                })
+              }
+            } else {
+              addValueSub(el.name, candidates[0] ?? arr[offset])
+            }
           } else if (
             el.type === 'AssignmentPattern' &&
             el.left?.type === 'Identifier'
           ) {
             const fallback = resolveExprValue(el.right, localSubs)
-            addValueSub(el.left.name, arr[offset] === undefined ? fallback : arr[offset])
+            const candidates = runtimeCollectionItemsAtIndex(arr, offset)
+            const value = candidates[0] ?? arr[offset]
+            addValueSub(el.left.name, value === undefined ? fallback : value)
           }
           offset++
         }
@@ -4126,7 +4221,9 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
       // `product.images[selectedTone]` is also a valid candidate collection;
       // classifying it as a selected scalar first prevents downstream image
       // slots from seeing the available keys.
-      const items = resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, localSubs)
+      const items = resolveItemsAcrossScalarStateBranches(
+        d.init, parentRegistry, regAdditions, localSubs,
+      )
       if (items) {
         addValueSub(d.id.name, items)
         if (!regAdditions) regAdditions = new Map()
@@ -4208,7 +4305,9 @@ function extendRegistryWithBlock(parentRegistry, blockNode, subs) {
       if (stmt?.type !== 'VariableDeclaration') continue
       for (const d of stmt.declarations || []) {
         if (d?.id?.type !== 'Identifier' || !d.init) continue
-        const items = resolveItemsAlias(d.init, parentRegistry, regAdditions, 0, finalizedSubs)
+        const items = resolveItemsAcrossScalarStateBranches(
+          d.init, parentRegistry, regAdditions, finalizedSubs,
+        )
         if (!Array.isArray(items)) continue
         let target = null
         for (let index = valueSubs.length - 1; index >= 0; index--) {
@@ -4686,8 +4785,6 @@ function buildComponentCallSubs(
   registry = null,
 ) {
   const attrs = openingElement?.attributes || []
-  const attrValueByName = {}
-  const attrCandidatesByName = new Map()
   const passedSetterNames = new Set()
 
   for (const a of attrs) {
@@ -4698,7 +4795,7 @@ function buildComponentCallSubs(
     if (setterName) passedSetterNames.add(setterName)
   }
 
-  function evalAttr(valueNode) {
+  function evalAttr(valueNode, subs = currentSubs) {
     if (valueNode == null) return true
     if (valueNode.type === 'StringLiteral') return valueNode.value
     if (valueNode.type === 'JSXExpressionContainer') {
@@ -4710,20 +4807,26 @@ function buildComponentCallSubs(
           return undefined
         }
       }
-      return resolveExprValue(valueNode.expression, currentSubs)
+      return resolveExprValue(valueNode.expression, subs)
     }
     return undefined
   }
 
-  function candidateAttrValues(valueNode) {
+  function candidateAttrValues(valueNode, subs = currentSubs, exactStateNames = null) {
     if (
       !registry ||
       valueNode?.type !== 'JSXExpressionContainer' ||
       !valueNode.expression
     ) return []
+    if (
+      exactStateNames?.size &&
+      [...exactStateNames].some(name => (
+        expressionReferencesIdentifierName(valueNode.expression, name)
+      ))
+    ) return []
     return resolveExprCandidates(
       valueNode.expression,
-      currentSubs,
+      subs,
       registry,
     ).filter(value => (
       value !== undefined &&
@@ -4732,33 +4835,62 @@ function buildComponentCallSubs(
     ))
   }
 
-  for (const a of attrs) {
-    if (a.type === 'JSXSpreadAttribute') {
-      const spreadObj = resolveExprValue(a.argument, currentSubs)
-      if (spreadObj && typeof spreadObj === 'object' && !Array.isArray(spreadObj)) {
-        for (const [k, v] of Object.entries(spreadObj)) attrValueByName[k] = v
+  function attrValueBranches(subs, exactStateNames = null) {
+    const valuesByName = {}
+    const candidatesByName = new Map()
+    for (const a of attrs) {
+      if (a.type === 'JSXSpreadAttribute') {
+        const spreadObj = resolveExprValue(a.argument, subs)
+        if (spreadObj && typeof spreadObj === 'object' && !Array.isArray(spreadObj)) {
+          for (const [k, v] of Object.entries(spreadObj)) valuesByName[k] = v
+        }
+        continue
       }
-      continue
+      if (a.type !== 'JSXAttribute' || a.name?.type !== 'JSXIdentifier') continue
+      const v = evalAttr(a.value, subs)
+      if (v !== undefined) valuesByName[a.name.name] = v
+      const candidates = [...new Set(candidateAttrValues(a.value, subs, exactStateNames))]
+      if (candidates.length > 1) candidatesByName.set(a.name.name, candidates)
     }
-    if (a.type !== 'JSXAttribute' || a.name?.type !== 'JSXIdentifier') continue
-    const v = evalAttr(a.value)
-    if (v !== undefined) attrValueByName[a.name.name] = v
-    const candidates = [...new Set(candidateAttrValues(a.value))]
-    if (candidates.length > 1) attrCandidatesByName.set(a.name.name, candidates)
+
+    let branches = [valuesByName]
+    for (const [name, candidates] of candidatesByName) {
+      const next = []
+      for (const branch of branches) {
+        for (const value of candidates) {
+          next.push({ ...branch, [name]: value })
+        }
+      }
+      branches = next
+    }
+    return branches
   }
 
   if (!comp.paramShape) return []
-  if (!Object.keys(attrValueByName).length) return null
-  let branches = [attrValueByName]
-  for (const [name, candidates] of attrCandidatesByName) {
-    const next = []
-    for (const branch of branches) {
-      for (const value of candidates) {
-        next.push({ ...branch, [name]: value })
-      }
+  const attrExpressions = attrs.flatMap(attr => {
+    if (attr.type === 'JSXSpreadAttribute') return attr.argument ? [attr.argument] : []
+    return attr.value?.type === 'JSXExpressionContainer' && attr.value.expression
+      ? [attr.value.expression]
+      : []
+  })
+  // Resolve every prop under the same finite state branch so component
+  // inlining preserves relationships such as gallery[index].id + query.
+  const stateBranches = scalarRuntimeStateBranches(attrExpressions, currentSubs)
+  let branches = []
+  if (stateBranches.length) {
+    const exactStateNames = new Set(stateBranches.flatMap(branch => (
+      branch.map(sub => sub.paramName)
+    )))
+    for (const stateBranch of stateBranches) {
+      branches.push(...attrValueBranches(
+        [...currentSubs, ...stateBranch],
+        exactStateNames,
+      ))
     }
-    branches = next
+  } else {
+    branches = attrValueBranches(currentSubs)
   }
+  if (!branches.some(branch => Object.keys(branch).length)) return null
 
   const out = []
   const seen = new Set()
