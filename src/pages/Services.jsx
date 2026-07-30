@@ -125,10 +125,10 @@ export default function Services() {
   return (
     <div ref={containerRef}>
       {/* Page Header */}
-      <section className="bg-navy py-16 md:py-20">
+      <section className="bg-[#0F2A4A] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Our Services</span>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Our Services</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">
               China Sourcing Services for Global Buyers
             </h1>
@@ -152,11 +152,11 @@ export default function Services() {
                   className={`grid grid-cols-1 lg:grid-cols-2 gap-10 items-center ${!isEven ? 'lg:flex-row-reverse' : ''}`}
                 >
                   <div className={!isEven ? 'lg:order-2' : ''}>
-                    <div className="w-12 h-12 bg-red-china/10 rounded-xl flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-red-china" />
+                    <div className="w-12 h-12 bg-[#C8102E]/10 rounded-xl flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-[#C8102E]" />
                     </div>
-                    <span className="text-red-china text-sm font-semibold">{svc.subtitle}</span>
-                    <h2 id={svc.titleId} className="text-2xl md:text-3xl font-bold text-navy mt-1 mb-4">{svc.title}</h2>
+                    <span className="text-[#C8102E] text-sm font-semibold">{svc.subtitle}</span>
+                    <h2 id={svc.titleId} className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mt-1 mb-4">{svc.title}</h2>
                     <p id={svc.descId} className="text-slate-600 leading-relaxed mb-6">{svc.desc}</p>
                     <ul className="flex flex-col gap-2 mb-6">
                       {svc.features.map((f) => (
@@ -168,7 +168,7 @@ export default function Services() {
                     </ul>
                     <Link
                       to="/contact"
-                      className="inline-flex items-center gap-2 bg-red-china text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-red-china-600 transition-colors"
+                      className="inline-flex items-center gap-2 bg-[#C8102E] text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-[#A80D26] transition-colors"
                     >
                       Get a Quote for This Service <ArrowRight className="w-4 h-4" />
                     </Link>
@@ -194,13 +194,13 @@ export default function Services() {
       {/* CTA */}
       <section className="py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">Not Sure Which Service You Need?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-4">Not Sure Which Service You Need?</h2>
           <p className="text-slate-600 mb-8">
             Tell us about your product and sourcing goals. We'll recommend the right combination of services and provide a free quote.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-red-china text-white px-7 py-3.5 rounded-md font-semibold hover:bg-red-china-600 transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C8102E] text-white px-7 py-3.5 rounded-md font-semibold hover:bg-[#A80D26] transition-colors"
           >
             Get a Free Sourcing Quote <ArrowRight className="w-4 h-4" />
           </Link>

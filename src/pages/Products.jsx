@@ -113,10 +113,10 @@ export default function Products() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-navy py-16 md:py-20">
+      <section className="bg-[#0F2A4A] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Product Categories</span>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Product Categories</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">
               Products We Source from China
             </h1>
@@ -138,7 +138,7 @@ export default function Products() {
                 onClick={() => setActive(cat.id)}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
                   active === cat.id
-                    ? 'bg-red-china text-white'
+                    ? 'bg-[#C8102E] text-white'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                 }`}
               >
@@ -151,10 +151,10 @@ export default function Products() {
           {activeCat && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
               <div>
-                <h2 id={activeCat.titleId} className="text-2xl md:text-3xl font-bold text-navy mb-3">{activeCat.title}</h2>
+                <h2 id={activeCat.titleId} className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-3">{activeCat.title}</h2>
                 <p id={activeCat.descId} className="text-slate-600 leading-relaxed mb-6">{activeCat.desc}</p>
                 <div className="mb-6">
-                  <h3 className="text-navy font-semibold text-sm uppercase tracking-wider mb-3">Common Products</h3>
+                  <h3 className="text-[#0F2A4A] font-semibold text-sm uppercase tracking-wider mb-3">Common Products</h3>
                   <div className="flex flex-wrap gap-2">
                     {activeCat.examples.map((ex) => (
                       <span key={ex} className="bg-slate-100 text-slate-700 text-sm px-3 py-1.5 rounded-full">
@@ -165,7 +165,7 @@ export default function Products() {
                 </div>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 bg-red-china text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-red-china-600 transition-colors"
+                  className="inline-flex items-center gap-2 bg-[#C8102E] text-white px-5 py-2.5 rounded-md font-semibold text-sm hover:bg-[#A80D26] transition-colors"
                 >
                   Source This Product Category <ArrowRight className="w-4 h-4" />
                 </Link>
@@ -190,7 +190,7 @@ export default function Products() {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-3xl font-bold text-navy mb-3">All Product Categories</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-3">All Product Categories</h2>
             <p className="text-slate-600">Click any category to learn more about what we source.</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -198,9 +198,9 @@ export default function Products() {
               <button
                 key={cat.id}
                 onClick={() => { setActive(cat.id); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
-                className="bg-white border border-slate-200 rounded-xl p-5 text-left hover:border-red-china/40 hover:shadow-sm transition-all group"
+                className="bg-white border border-slate-200 rounded-xl p-5 text-left hover:border-[#C8102E]/40 hover:shadow-sm transition-all group"
               >
-                <h3 className="text-navy font-semibold mb-1 group-hover:text-red-china transition-colors">{cat.title}</h3>
+                <h3 className="text-[#0F2A4A] font-semibold mb-1 group-hover:text-[#C8102E] transition-colors">{cat.title}</h3>
                 <p className="text-slate-500 text-sm line-clamp-2">{cat.desc}</p>
               </button>
             ))}
@@ -209,7 +209,7 @@ export default function Products() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-navy">
+      <section className="py-16 bg-[#0F2A4A]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Don't See Your Product?</h2>
           <p className="text-slate-300 mb-8">
@@ -217,7 +217,7 @@ export default function Products() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-red-china text-white px-7 py-3.5 rounded-md font-semibold hover:bg-red-china-600 transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C8102E] text-white px-7 py-3.5 rounded-md font-semibold hover:bg-[#A80D26] transition-colors"
           >
             Submit Your Sourcing Request <ArrowRight className="w-4 h-4" />
           </Link>

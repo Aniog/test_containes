@@ -88,10 +88,10 @@ export default function Blog() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-navy py-16 md:py-20">
+      <section className="bg-[#0F2A4A] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Sourcing Insights</span>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Sourcing Insights</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">
               China Sourcing Blog
             </h1>
@@ -112,7 +112,7 @@ export default function Blog() {
                 key={cat}
                 className={`px-4 py-1.5 rounded-full text-sm font-medium cursor-default ${
                   cat === 'All'
-                    ? 'bg-navy text-white'
+                    ? 'bg-[#0F2A4A] text-white'
                     : 'bg-slate-100 text-slate-600'
                 }`}
               >
@@ -135,14 +135,14 @@ export default function Blog() {
               />
             </div>
             <div className="flex flex-col justify-center">
-              <span className="text-xs font-medium bg-red-china/10 text-red-china px-3 py-1 rounded-full w-fit mb-3">{posts[0].category}</span>
-              <h2 id={posts[0].titleId} className="text-2xl md:text-3xl font-bold text-navy mb-3">{posts[0].title}</h2>
+              <span className="text-xs font-medium bg-[#C8102E]/10 text-[#C8102E] px-3 py-1 rounded-full w-fit mb-3">{posts[0].category}</span>
+              <h2 id={posts[0].titleId} className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-3">{posts[0].title}</h2>
               <p id={posts[0].descId} className="text-slate-600 leading-relaxed mb-4">{posts[0].excerpt}</p>
               <div className="flex items-center gap-4 text-sm text-slate-500 mb-5">
                 <span className="flex items-center gap-1"><Calendar className="w-4 h-4" />{posts[0].date}</span>
                 <span className="flex items-center gap-1"><Clock className="w-4 h-4" />{posts[0].readTime}</span>
               </div>
-              <a href="#" className="inline-flex items-center gap-2 text-red-china font-semibold text-sm hover:underline">
+              <a href="#" className="inline-flex items-center gap-2 text-[#C8102E] font-semibold text-sm hover:underline">
                 Read Article <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -165,7 +165,7 @@ export default function Blog() {
                 </div>
                 <div className="p-5">
                   <span className="text-xs font-medium bg-slate-100 text-slate-600 px-2 py-1 rounded-full">{post.category}</span>
-                  <h3 id={post.titleId} className="text-navy font-semibold text-base mt-3 mb-2 leading-snug">{post.title}</h3>
+                  <h3 id={post.titleId} className="text-[#0F2A4A] font-semibold text-base mt-3 mb-2 leading-snug">{post.title}</h3>
                   <p id={post.descId} className="text-slate-500 text-sm leading-relaxed mb-4 line-clamp-2">{post.excerpt}</p>
                   <div className="flex items-center justify-between text-xs text-slate-400">
                     <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{post.date}</span>
@@ -181,7 +181,7 @@ export default function Blog() {
       {/* Newsletter / CTA */}
       <section className="py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-navy mb-3">Get Sourcing Insights in Your Inbox</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-3">Get Sourcing Insights in Your Inbox</h2>
           <p className="text-slate-600 mb-8">
             Practical guides and industry updates for global buyers sourcing from China. No spam, unsubscribe anytime.
           </p>
@@ -189,9 +189,9 @@ export default function Blog() {
             <input
               type="email"
               placeholder="Your business email"
-              className="flex-1 border border-slate-300 rounded-md px-4 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+              className="flex-1 border border-slate-300 rounded-md px-4 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
             />
-            <button className="bg-red-china text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-red-china-600 transition-colors whitespace-nowrap">
+            <button className="bg-[#C8102E] text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#A80D26] transition-colors whitespace-nowrap">
               Subscribe
             </button>
           </div>

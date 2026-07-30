@@ -38,12 +38,12 @@ export default function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 flex-shrink-0">
             <div className="flex items-center gap-1">
-              <div className="w-8 h-8 bg-red-china rounded-sm flex items-center justify-center">
+              <div className="w-8 h-8 bg-[#C8102E] rounded-sm flex items-center justify-center">
                 <span className="text-white font-bold text-sm">SS</span>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-navy font-bold text-base tracking-tight">SSourcing</span>
-                <span className="text-red-china text-xs font-medium tracking-widest uppercase">China</span>
+                <span className="text-[#0F2A4A] font-bold text-base tracking-tight">SSourcing</span>
+                <span className="text-[#C8102E] text-xs font-medium tracking-widest uppercase">China</span>
               </div>
             </div>
           </Link>
@@ -56,8 +56,8 @@ export default function Navbar() {
                 to={link.href}
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   location.pathname === link.href
-                    ? 'text-red-china bg-red-china/5'
-                    : 'text-navy hover:text-red-china hover:bg-slate-50'
+                    ? 'text-[#C8102E] bg-[#C8102E]/5'
+                    : 'text-[#0F2A4A] hover:text-[#C8102E] hover:bg-slate-50'
                 }`}
               >
                 {link.label}
@@ -69,12 +69,12 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               to="/contact"
-              className="hidden md:inline-flex items-center bg-red-china text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-red-china-600 transition-colors"
+              className="hidden md:inline-flex items-center bg-[#C8102E] text-white px-4 py-2 rounded-md text-sm font-semibold hover:bg-[#A80D26] transition-colors"
             >
               Get a Free Quote
             </Link>
             <button
-              className="lg:hidden p-2 rounded-md text-navy hover:bg-slate-100 transition-colors"
+              className="lg:hidden p-2 rounded-md text-[#0F2A4A] hover:bg-slate-100 transition-colors"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label="Toggle menu"
             >
@@ -94,8 +94,8 @@ export default function Navbar() {
                 to={link.href}
                 className={`px-4 py-3 text-sm font-medium rounded-md transition-colors ${
                   location.pathname === link.href
-                    ? 'text-red-china bg-red-china/5'
-                    : 'text-navy hover:text-red-china hover:bg-slate-50'
+                    ? 'text-[#C8102E] bg-[#C8102E]/5'
+                    : 'text-[#0F2A4A] hover:text-[#C8102E] hover:bg-slate-50'
                 }`}
               >
                 {link.label}
@@ -103,7 +103,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/contact"
-              className="mt-2 bg-red-china text-white px-4 py-3 rounded-md text-sm font-semibold text-center hover:bg-red-china-600 transition-colors"
+              className="mt-2 bg-[#C8102E] text-white px-4 py-3 rounded-md text-sm font-semibold text-center hover:bg-[#A80D26] transition-colors"
             >
               Get a Free Sourcing Quote
             </Link>

@@ -119,10 +119,10 @@ export default function HowItWorks() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-navy py-16 md:py-20">
+      <section className="bg-[#0F2A4A] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Our Process</span>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Our Process</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">
               How We Work With You
             </h1>
@@ -145,8 +145,8 @@ export default function HowItWorks() {
                   className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
                 >
                   <div className={!isEven ? 'lg:order-2' : ''}>
-                    <div className="text-5xl font-bold text-red-china/20 mb-2">{step.step}</div>
-                    <h2 id={step.titleId} className="text-2xl md:text-3xl font-bold text-navy mb-3">{step.title}</h2>
+                    <div className="text-5xl font-bold text-[#C8102E]/20 mb-2">{step.step}</div>
+                    <h2 id={step.titleId} className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-3">{step.title}</h2>
                     <p id={step.descId} className="text-slate-600 leading-relaxed mb-5">{step.desc}</p>
                     <ul className="flex flex-col gap-2">
                       {step.details.map((d) => (
@@ -179,8 +179,8 @@ export default function HowItWorks() {
       <section className="py-16 md:py-20 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Typical Timelines</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-navy mt-2 mb-3">How Long Does It Take?</h2>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Typical Timelines</span>
+            <h2 className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mt-2 mb-3">How Long Does It Take?</h2>
             <p className="text-slate-600">
               Timelines vary by product complexity and order size. Here are typical ranges for each phase.
             </p>
@@ -188,9 +188,9 @@ export default function HowItWorks() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {timelines.map((t) => (
               <div key={t.phase} className="bg-white border border-slate-200 rounded-xl p-5 flex items-center gap-4">
-                <Clock className="w-8 h-8 text-red-china flex-shrink-0" />
+                <Clock className="w-8 h-8 text-[#C8102E] flex-shrink-0" />
                 <div>
-                  <div className="text-navy font-semibold text-sm">{t.phase}</div>
+                  <div className="text-[#0F2A4A] font-semibold text-sm">{t.phase}</div>
                   <div className="text-slate-500 text-sm">{t.duration}</div>
                 </div>
               </div>
@@ -200,7 +200,7 @@ export default function HowItWorks() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 bg-navy">
+      <section className="py-16 bg-[#0F2A4A]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <MessageSquare className="w-10 h-10 text-white/40 mx-auto mb-4" />
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Ready to Get Started?</h2>
@@ -209,7 +209,7 @@ export default function HowItWorks() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-red-china text-white px-7 py-3.5 rounded-md font-semibold hover:bg-red-china-600 transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C8102E] text-white px-7 py-3.5 rounded-md font-semibold hover:bg-[#A80D26] transition-colors"
           >
             Get a Free Sourcing Quote <ArrowRight className="w-4 h-4" />
           </Link>

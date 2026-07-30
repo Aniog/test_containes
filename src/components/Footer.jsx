@@ -20,18 +20,18 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white">
+    <footer className="bg-[#0F2A4A] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link to="/" className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 bg-red-china rounded-sm flex items-center justify-center">
+              <div className="w-9 h-9 bg-[#C8102E] rounded-sm flex items-center justify-center">
                 <span className="text-white font-bold text-sm">SS</span>
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-white font-bold text-base tracking-tight">SSourcing</span>
-                <span className="text-red-china-300 text-xs font-medium tracking-widest uppercase">China</span>
+                <span className="text-[#E85066] text-xs font-medium tracking-widest uppercase">China</span>
               </div>
             </Link>
             <p className="text-slate-300 text-sm leading-relaxed mb-5">
@@ -39,15 +39,15 @@ export default function Footer() {
             </p>
             <div className="flex flex-col gap-2 text-sm text-slate-300">
               <a href="mailto:info@ssourcing.cn" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Mail className="w-4 h-4 text-red-china flex-shrink-0" />
+                <Mail className="w-4 h-4 text-[#C8102E] flex-shrink-0" />
                 info@ssourcing.cn
               </a>
               <a href="https://wa.me/8618600000000" className="flex items-center gap-2 hover:text-white transition-colors">
-                <Phone className="w-4 h-4 text-red-china flex-shrink-0" />
+                <Phone className="w-4 h-4 text-[#C8102E] flex-shrink-0" />
                 +86 186 0000 0000
               </a>
               <span className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-red-china flex-shrink-0" />
+                <MapPin className="w-4 h-4 text-[#C8102E] flex-shrink-0" />
                 Shenzhen & Yiwu, China
               </span>
             </div>
@@ -80,7 +80,7 @@ export default function Footer() {
             </p>
             <Link
               to="/contact"
-              className="inline-block bg-red-china text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-red-china-600 transition-colors"
+              className="inline-block bg-[#C8102E] text-white px-5 py-2.5 rounded-md text-sm font-semibold hover:bg-[#A80D26] transition-colors"
             >
               Get a Free Sourcing Quote
             </Link>

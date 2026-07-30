@@ -128,10 +128,10 @@ export default function CaseStudies() {
   return (
     <div ref={containerRef}>
       {/* Header */}
-      <section className="bg-navy py-16 md:py-20">
+      <section className="bg-[#0F2A4A] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Client Results</span>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Client Results</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">
               Case Studies
             </h1>
@@ -155,20 +155,20 @@ export default function CaseStudies() {
                       <span className="text-xs font-medium bg-slate-100 text-slate-600 px-3 py-1 rounded-full">{cs.category}</span>
                       <span className="text-sm text-slate-500">{cs.country}</span>
                     </div>
-                    <h2 id={cs.titleId} className="text-2xl md:text-3xl font-bold text-navy mb-1">{cs.product}</h2>
-                    <p className="text-red-china font-medium text-sm mb-5">{cs.client}</p>
+                    <h2 id={cs.titleId} className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-1">{cs.product}</h2>
+                    <p className="text-[#C8102E] font-medium text-sm mb-5">{cs.client}</p>
 
                     <div className="flex flex-col gap-4 mb-6">
                       <div>
-                        <h3 className="text-navy font-semibold text-sm uppercase tracking-wider mb-1">Challenge</h3>
+                        <h3 className="text-[#0F2A4A] font-semibold text-sm uppercase tracking-wider mb-1">Challenge</h3>
                         <p className="text-slate-600 text-sm leading-relaxed">{cs.challenge}</p>
                       </div>
                       <div>
-                        <h3 className="text-navy font-semibold text-sm uppercase tracking-wider mb-1">Our Solution</h3>
+                        <h3 className="text-[#0F2A4A] font-semibold text-sm uppercase tracking-wider mb-1">Our Solution</h3>
                         <p className="text-slate-600 text-sm leading-relaxed">{cs.solution}</p>
                       </div>
                       <div>
-                        <h3 className="text-navy font-semibold text-sm uppercase tracking-wider mb-1">Result</h3>
+                        <h3 className="text-[#0F2A4A] font-semibold text-sm uppercase tracking-wider mb-1">Result</h3>
                         <p id={cs.descId} className="text-slate-600 text-sm leading-relaxed">{cs.result}</p>
                       </div>
                     </div>
@@ -176,7 +176,7 @@ export default function CaseStudies() {
                     <div className="flex gap-4">
                       {cs.metrics.map((m) => (
                         <div key={m.label} className="bg-slate-50 border border-slate-200 rounded-lg p-3 text-center flex-1">
-                          <div className="text-xl font-bold text-navy">{m.value}</div>
+                          <div className="text-xl font-bold text-[#0F2A4A]">{m.value}</div>
                           <div className="text-xs text-slate-500 mt-0.5">{m.label}</div>
                         </div>
                       ))}
@@ -203,13 +203,13 @@ export default function CaseStudies() {
       {/* CTA */}
       <section className="py-16 bg-slate-50 border-t border-slate-200">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-navy mb-4">Ready to Be Our Next Success Story?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#0F2A4A] mb-4">Ready to Be Our Next Success Story?</h2>
           <p className="text-slate-600 mb-8">
             Tell us about your sourcing project. We'll put together a tailored plan and a free quote within 24 hours.
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-red-china text-white px-7 py-3.5 rounded-md font-semibold hover:bg-red-china-600 transition-colors"
+            className="inline-flex items-center gap-2 bg-[#C8102E] text-white px-7 py-3.5 rounded-md font-semibold hover:bg-[#A80D26] transition-colors"
           >
             Get a Free Sourcing Quote <ArrowRight className="w-4 h-4" />
           </Link>

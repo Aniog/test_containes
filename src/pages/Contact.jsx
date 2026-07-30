@@ -120,10 +120,10 @@ export default function Contact() {
   return (
     <div>
       {/* Header */}
-      <section className="bg-navy py-16 md:py-20">
+      <section className="bg-[#0F2A4A] py-16 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Get in Touch</span>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Get in Touch</span>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-2 mb-4">
               Get a Free Sourcing Quote
             </h1>
@@ -140,53 +140,53 @@ export default function Contact() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Info */}
             <div className="lg:col-span-1">
-              <h2 className="text-xl font-bold text-navy mb-6">Contact Information</h2>
+              <h2 className="text-xl font-bold text-[#0F2A4A] mb-6">Contact Information</h2>
               <div className="flex flex-col gap-5 mb-8">
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-red-china/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-4 h-4 text-red-china" />
+                  <div className="w-9 h-9 bg-[#C8102E]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-4 h-4 text-[#C8102E]" />
                   </div>
                   <div>
-                    <div className="text-navy font-medium text-sm">Email</div>
-                    <a href="mailto:info@ssourcing.cn" className="text-slate-600 text-sm hover:text-red-china transition-colors">
+                    <div className="text-[#0F2A4A] font-medium text-sm">Email</div>
+                    <a href="mailto:info@ssourcing.cn" className="text-slate-600 text-sm hover:text-[#C8102E] transition-colors">
                       info@ssourcing.cn
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-red-china/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 text-red-china" />
+                  <div className="w-9 h-9 bg-[#C8102E]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-4 h-4 text-[#C8102E]" />
                   </div>
                   <div>
-                    <div className="text-navy font-medium text-sm">Phone / WhatsApp</div>
-                    <a href="https://wa.me/8618600000000" className="text-slate-600 text-sm hover:text-red-china transition-colors">
+                    <div className="text-[#0F2A4A] font-medium text-sm">Phone / WhatsApp</div>
+                    <a href="https://wa.me/8618600000000" className="text-slate-600 text-sm hover:text-[#C8102E] transition-colors">
                       +86 186 0000 0000
                     </a>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-red-china/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-4 h-4 text-red-china" />
+                  <div className="w-9 h-9 bg-[#C8102E]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-4 h-4 text-[#C8102E]" />
                   </div>
                   <div>
-                    <div className="text-navy font-medium text-sm">Office Locations</div>
+                    <div className="text-[#0F2A4A] font-medium text-sm">Office Locations</div>
                     <div className="text-slate-600 text-sm">Shenzhen, Guangdong</div>
                     <div className="text-slate-600 text-sm">Yiwu, Zhejiang</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-9 h-9 bg-red-china/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Clock className="w-4 h-4 text-red-china" />
+                  <div className="w-9 h-9 bg-[#C8102E]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <Clock className="w-4 h-4 text-[#C8102E]" />
                   </div>
                   <div>
-                    <div className="text-navy font-medium text-sm">Response Time</div>
+                    <div className="text-[#0F2A4A] font-medium text-sm">Response Time</div>
                     <div className="text-slate-600 text-sm">Within 24 hours (business days)</div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-slate-50 border border-slate-200 rounded-xl p-5">
-                <h3 className="text-navy font-semibold text-sm mb-3">What Happens Next?</h3>
+                <h3 className="text-[#0F2A4A] font-semibold text-sm mb-3">What Happens Next?</h3>
                 <ol className="flex flex-col gap-2">
                   {[
                     'We review your inquiry within 24 hours',
@@ -195,7 +195,7 @@ export default function Contact() {
                     'We begin supplier research',
                   ].map((step, i) => (
                     <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="w-5 h-5 bg-red-china text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                      <span className="w-5 h-5 bg-[#C8102E] text-white rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                         {i + 1}
                       </span>
                       {step}
@@ -210,13 +210,13 @@ export default function Contact() {
               {status === 'success' ? (
                 <div className="bg-green-50 border border-green-200 rounded-xl p-10 text-center">
                   <CheckCircle className="w-14 h-14 text-green-500 mx-auto mb-4" />
-                  <h2 className="text-2xl font-bold text-navy mb-2">Inquiry Received!</h2>
+                  <h2 className="text-2xl font-bold text-[#0F2A4A] mb-2">Inquiry Received!</h2>
                   <p className="text-slate-600 mb-6">
                     Thank you for your sourcing inquiry. Our team will review your requirements and respond within 24 hours with a tailored plan.
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="bg-navy text-white px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-navy-600 transition-colors"
+                    className="bg-[#0F2A4A] text-white px-6 py-2.5 rounded-md font-semibold text-sm hover:bg-[#0C2240] transition-colors"
                   >
                     Submit Another Inquiry
                   </button>
@@ -225,11 +225,11 @@ export default function Contact() {
                 <form onSubmit={onSubmit} className="flex flex-col gap-6">
                   {/* Contact Details */}
                   <div>
-                    <h3 className="text-navy font-semibold text-base mb-4 pb-2 border-b border-slate-200">Your Contact Details</h3>
+                    <h3 className="text-[#0F2A4A] font-semibold text-base mb-4 pb-2 border-b border-slate-200">Your Contact Details</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-navy mb-1.5">
-                          Full Name <span className="text-red-china">*</span>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">
+                          Full Name <span className="text-[#C8102E]">*</span>
                         </label>
                         <input
                           type="text"
@@ -237,12 +237,12 @@ export default function Contact() {
                           value={values.full_name}
                           onChange={onChange}
                           placeholder="Your full name"
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy mb-1.5">
-                          Business Email <span className="text-red-china">*</span>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">
+                          Business Email <span className="text-[#C8102E]">*</span>
                         </label>
                         <input
                           type="email"
@@ -250,40 +250,40 @@ export default function Contact() {
                           value={values.email}
                           onChange={onChange}
                           placeholder="you@company.com"
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy mb-1.5">Company Name</label>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Company Name</label>
                         <input
                           type="text"
                           name="company"
                           value={values.company}
                           onChange={onChange}
                           placeholder="Your company"
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy mb-1.5">Country</label>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Country</label>
                         <input
                           type="text"
                           name="country"
                           value={values.country}
                           onChange={onChange}
                           placeholder="e.g. United States"
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                         />
                       </div>
                       <div className="sm:col-span-2">
-                        <label className="block text-sm font-medium text-navy mb-1.5">Phone / WhatsApp</label>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Phone / WhatsApp</label>
                         <input
                           type="text"
                           name="phone"
                           value={values.phone}
                           onChange={onChange}
                           placeholder="+1 555 000 0000"
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                         />
                       </div>
                     </div>
@@ -291,15 +291,15 @@ export default function Contact() {
 
                   {/* Product Details */}
                   <div>
-                    <h3 className="text-navy font-semibold text-base mb-4 pb-2 border-b border-slate-200">Product Requirements</h3>
+                    <h3 className="text-[#0F2A4A] font-semibold text-base mb-4 pb-2 border-b border-slate-200">Product Requirements</h3>
                     <div className="flex flex-col gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-navy mb-1.5">Product Category</label>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Product Category</label>
                         <select
                           name="product_category"
                           value={values.product_category}
                           onChange={onChange}
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china bg-white"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E] bg-white"
                         >
                           <option value="">Select a category</option>
                           {productCategories.map((cat) => (
@@ -308,8 +308,8 @@ export default function Contact() {
                         </select>
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy mb-1.5">
-                          Product Description <span className="text-red-china">*</span>
+                        <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">
+                          Product Description <span className="text-[#C8102E]">*</span>
                         </label>
                         <textarea
                           name="product_description"
@@ -317,30 +317,30 @@ export default function Contact() {
                           onChange={onChange}
                           rows={4}
                           placeholder="Describe the product you want to source — include specifications, materials, dimensions, or any reference products."
-                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china resize-none"
+                          className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E] resize-none"
                         />
                       </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-navy mb-1.5">Estimated Quantity</label>
+                          <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Estimated Quantity</label>
                           <input
                             type="text"
                             name="estimated_quantity"
                             value={values.estimated_quantity}
                             onChange={onChange}
                             placeholder="e.g. 500 units / month"
-                            className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                            className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                           />
                         </div>
                         <div>
-                          <label className="block text-sm font-medium text-navy mb-1.5">Target Unit Price</label>
+                          <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Target Unit Price</label>
                           <input
                             type="text"
                             name="target_price"
                             value={values.target_price}
                             onChange={onChange}
                             placeholder="e.g. USD 5–8 per unit"
-                            className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china"
+                            className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E]"
                           />
                         </div>
                       </div>
@@ -349,14 +349,14 @@ export default function Contact() {
 
                   {/* Services */}
                   <div>
-                    <h3 className="text-navy font-semibold text-base mb-4 pb-2 border-b border-slate-200">Services Needed</h3>
+                    <h3 className="text-[#0F2A4A] font-semibold text-base mb-4 pb-2 border-b border-slate-200">Services Needed</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {serviceOptions.map((svc) => (
                         <label
                           key={svc}
                           className={`flex items-center gap-2 p-3 rounded-lg border cursor-pointer transition-colors text-sm ${
                             values.services_needed.includes(svc)
-                              ? 'border-red-china bg-red-china/5 text-navy'
+                              ? 'border-[#C8102E] bg-[#C8102E]/5 text-[#0F2A4A]'
                               : 'border-slate-200 text-slate-600 hover:border-slate-300'
                           }`}
                         >
@@ -374,14 +374,14 @@ export default function Contact() {
 
                   {/* Additional Message */}
                   <div>
-                    <label className="block text-sm font-medium text-navy mb-1.5">Additional Notes</label>
+                    <label className="block text-sm font-medium text-[#0F2A4A] mb-1.5">Additional Notes</label>
                     <textarea
                       name="message"
                       value={values.message}
                       onChange={onChange}
                       rows={3}
                       placeholder="Any other details, special requirements, or questions for our team."
-                      className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-navy placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-red-china/30 focus:border-red-china resize-none"
+                      className="w-full border border-slate-300 rounded-md px-3 py-2.5 text-sm text-[#0F2A4A] placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#C8102E]/30 focus:border-[#C8102E] resize-none"
                     />
                   </div>
 
@@ -397,7 +397,7 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={status === 'submitting'}
-                    className="bg-red-china text-white px-8 py-3.5 rounded-md font-semibold text-base hover:bg-red-china-600 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="bg-[#C8102E] text-white px-8 py-3.5 rounded-md font-semibold text-base hover:bg-[#A80D26] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === 'submitting' ? 'Submitting…' : 'Submit Sourcing Inquiry'}
                   </button>

@@ -153,7 +153,7 @@ export default function Home() {
   return (
     <div ref={containerRef}>
       {/* Hero */}
-      <section className="relative bg-navy overflow-hidden">
+      <section className="relative bg-[#0F2A4A] overflow-hidden">
         <div
           className="absolute inset-0 opacity-20"
           data-strk-bg-id="hero-bg-main-b1c2d3"
@@ -169,7 +169,7 @@ export default function Home() {
             </div>
             <h1 id="hero-title" className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               China Sourcing Agent<br />
-              <span className="text-red-china">for Global Buyers</span>
+              <span className="text-[#C8102E]">for Global Buyers</span>
             </h1>
             <p id="hero-subtitle" className="text-lg md:text-xl text-slate-300 leading-relaxed mb-8 max-w-2xl">
               We help overseas businesses find reliable Chinese suppliers, verify factories, inspect quality, and coordinate shipping — so you can import with confidence.
@@ -177,7 +177,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-red-china text-white px-7 py-3.5 rounded-md font-semibold text-base hover:bg-red-china-600 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-[#C8102E] text-white px-7 py-3.5 rounded-md font-semibold text-base hover:bg-[#A80D26] transition-colors"
               >
                 Get a Free Sourcing Quote
                 <ArrowRight className="w-4 h-4" />
@@ -205,8 +205,8 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">What We Do</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">End-to-End Sourcing Services</h2>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">What We Do</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F2A4A] mt-2 mb-4">End-to-End Sourcing Services</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
               From finding the right factory to getting goods to your door, we manage every step of the China sourcing process.
             </p>
@@ -215,18 +215,18 @@ export default function Home() {
             {services.map((svc) => {
               const Icon = svc.icon
               return (
-                <div key={svc.title} className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-md hover:border-red-china/30 transition-all group">
-                  <div className="w-11 h-11 bg-red-china/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-red-china/20 transition-colors">
-                    <Icon className="w-5 h-5 text-red-china" />
+                <div key={svc.title} className="bg-white border border-slate-200 rounded-xl p-6 hover:shadow-md hover:border-[#C8102E]/30 transition-all group">
+                  <div className="w-11 h-11 bg-[#C8102E]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#C8102E]/20 transition-colors">
+                    <Icon className="w-5 h-5 text-[#C8102E]" />
                   </div>
-                  <h3 id={svc.titleId} className="text-navy font-semibold text-lg mb-2">{svc.title}</h3>
+                  <h3 id={svc.titleId} className="text-[#0F2A4A] font-semibold text-lg mb-2">{svc.title}</h3>
                   <p id={svc.descId} className="text-slate-600 text-sm leading-relaxed">{svc.desc}</p>
                 </div>
               )
             })}
           </div>
           <div className="text-center mt-10">
-            <Link to="/services" className="inline-flex items-center gap-2 text-red-china font-semibold hover:underline">
+            <Link to="/services" className="inline-flex items-center gap-2 text-[#C8102E] font-semibold hover:underline">
               View All Services <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -237,8 +237,8 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Why Buyers Choose Us</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Problems We Solve</h2>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Why Buyers Choose Us</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F2A4A] mt-2 mb-4">Problems We Solve</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
               Sourcing from China comes with real risks. Here's how we help you avoid the most common pitfalls.
             </p>
@@ -249,7 +249,7 @@ export default function Home() {
                 <div className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                   <div>
-                    <h3 className="text-navy font-semibold mb-1">{p.title}</h3>
+                    <h3 className="text-[#0F2A4A] font-semibold mb-1">{p.title}</h3>
                     <p className="text-slate-600 text-sm leading-relaxed">{p.desc}</p>
                   </div>
                 </div>
@@ -263,8 +263,8 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Our Process</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">How We Work</h2>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Our Process</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F2A4A] mt-2 mb-4">How We Work</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
               A structured, transparent process from your first inquiry to final delivery.
             </p>
@@ -273,15 +273,15 @@ export default function Home() {
             {processSteps.map((step) => (
               <div key={step.step} className="relative">
                 <div className="bg-slate-50 rounded-xl p-6 border border-slate-200 h-full">
-                  <div className="text-4xl font-bold text-red-china/20 mb-3">{step.step}</div>
-                  <h3 className="text-navy font-semibold text-lg mb-2">{step.title}</h3>
+                  <div className="text-4xl font-bold text-[#C8102E]/20 mb-3">{step.step}</div>
+                  <h3 className="text-[#0F2A4A] font-semibold text-lg mb-2">{step.title}</h3>
                   <p className="text-slate-600 text-sm leading-relaxed">{step.desc}</p>
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link to="/how-it-works" className="inline-flex items-center gap-2 bg-navy text-white px-6 py-3 rounded-md font-semibold hover:bg-navy-600 transition-colors">
+            <Link to="/how-it-works" className="inline-flex items-center gap-2 bg-[#0F2A4A] text-white px-6 py-3 rounded-md font-semibold hover:bg-[#0C2240] transition-colors">
               See Full Process <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -292,8 +292,8 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">Client Results</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Case Studies</h2>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">Client Results</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F2A4A] mt-2 mb-4">Case Studies</h2>
             <p className="text-slate-600 max-w-2xl mx-auto">
               Real results from real clients. Here's how we've helped global buyers source successfully from China.
             </p>
@@ -313,15 +313,15 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-xs font-medium text-red-china bg-red-china/10 px-2 py-1 rounded-full">{cs.client}</span>
-                  <h3 id={cs.titleId} className="text-navy font-semibold text-lg mt-3 mb-2">{cs.product}</h3>
+                  <span className="text-xs font-medium text-[#C8102E] bg-[#C8102E]/10 px-2 py-1 rounded-full">{cs.client}</span>
+                  <h3 id={cs.titleId} className="text-[#0F2A4A] font-semibold text-lg mt-3 mb-2">{cs.product}</h3>
                   <p id={cs.descId} className="text-slate-600 text-sm leading-relaxed">{cs.result}</p>
                 </div>
               </div>
             ))}
           </div>
           <div className="text-center mt-10">
-            <Link to="/case-studies" className="inline-flex items-center gap-2 text-red-china font-semibold hover:underline">
+            <Link to="/case-studies" className="inline-flex items-center gap-2 text-[#C8102E] font-semibold hover:underline">
               View All Case Studies <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -329,7 +329,7 @@ export default function Home() {
       </section>
 
       {/* Trust Banner */}
-      <section className="py-14 bg-navy">
+      <section className="py-14 bg-[#0F2A4A]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {trustPoints.map((tp) => (
@@ -346,14 +346,14 @@ export default function Home() {
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <span className="text-red-china text-sm font-semibold uppercase tracking-wider">FAQ</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-navy mt-2 mb-4">Frequently Asked Questions</h2>
+            <span className="text-[#C8102E] text-sm font-semibold uppercase tracking-wider">FAQ</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[#0F2A4A] mt-2 mb-4">Frequently Asked Questions</h2>
           </div>
           <div className="flex flex-col gap-4">
             {faqs.map((faq, i) => (
               <details key={i} className="group bg-slate-50 border border-slate-200 rounded-xl">
                 <summary className="flex items-center justify-between p-5 cursor-pointer list-none">
-                  <span className="text-navy font-semibold text-sm md:text-base pr-4">{faq.q}</span>
+                  <span className="text-[#0F2A4A] font-semibold text-sm md:text-base pr-4">{faq.q}</span>
                   <ChevronDown className="w-5 h-5 text-slate-400 flex-shrink-0 group-open:rotate-180 transition-transform" />
                 </summary>
                 <div className="px-5 pb-5">
@@ -366,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-16 md:py-20 bg-red-china">
+      <section className="py-16 md:py-20 bg-[#C8102E]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <MessageSquare className="w-10 h-10 text-white/60 mx-auto mb-4" />
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -377,7 +377,7 @@ export default function Home() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 bg-white text-red-china px-8 py-4 rounded-md font-bold text-base hover:bg-slate-100 transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-[#C8102E] px-8 py-4 rounded-md font-bold text-base hover:bg-slate-100 transition-colors"
           >
             Get a Free Sourcing Quote
             <ArrowRight className="w-5 h-5" />
