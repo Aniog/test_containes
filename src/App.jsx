@@ -1,15 +1,22 @@
-import './App.css'
+import './App.css';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import Flavors from './components/Flavors';
+import Story from './components/Story';
+import Sustainability from './components/Sustainability';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <main className="app-loading-shell">
-      <div className="app-loading-content" role="status" aria-live="polite">
-        <p className="app-loading-text">
-          Tell Strikingly Agent what you want to build!
-        </p>
-      </div>
-    </main>
-  )
+    <div className="font-poppins">
+      <Navbar />
+      <Hero />
+      <Flavors />
+      <Story />
+      <Sustainability />
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
