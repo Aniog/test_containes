@@ -266,7 +266,7 @@ const HomePage = () => {
             {[
               { icon: Shield, title: 'Verified Suppliers Only', desc: 'Every supplier goes through our multi-step verification process before being recommended.' },
               { icon: Award, title: 'Bilingual Team', desc: 'Native Chinese speakers with fluent English ensure nothing gets lost in translation.' },
-              { icon: Globe, title: 'On-the-Ground Presence', desc: 'Our team is based in China's key manufacturing hubs — Guangzhou, Shenzhen, Yiwu, and more.' },
+              { icon: Globe, title: 'On-the-Ground Presence', desc: "Our team is based in China's key manufacturing hubs — Guangzhou, Shenzhen, Yiwu, and more." },
               { icon: FileCheck, title: 'Transparent Reporting', desc: 'Detailed inspection reports with photos, measurements, and defect analysis for every order.' },
               { icon: Package, title: 'No Hidden Fees', desc: 'Clear pricing structure with no surprises. You know exactly what you pay for.' },
               { icon: Users, title: 'Dedicated Account Manager', desc: 'One point of contact who knows your business, products, and quality standards.' },
