@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the person submitting the inquiry"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address for follow-up communication"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company or business name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 30,
+      "description": "Phone number with country code"
+    },
+    "country": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Country where the buyer is located"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Description of the product or products they want to source"
+    },
+    "quantity": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Estimated order quantity or MOQ requirements"
+    },
+    "budget": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Target budget or price range"
+    },
+    "timeline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Expected delivery timeline"
+    },
+    "services_needed": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["supplier_sourcing", "factory_audit", "quality_inspection", "production_followup", "shipping", "negotiation"]
+      },
+      "description": "Which services the client is interested in"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Additional details or questions"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "create": { "allow": ["*"] }
+  }
+}
