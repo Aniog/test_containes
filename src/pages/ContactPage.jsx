@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { DataClient, User } from '@strikingly/sdk';
+import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import SectionLabel from '@/components/SectionLabel';
@@ -78,12 +78,6 @@ export default function ContactPage() {
     setStatus('submitting');
 
     try {
-      const userRecord = await User.upsert({
-        email: values.email,
-        name: values.full_name,
-        role: 'guest',
-      });
-
       const { data: response, error: createError } = await client
         .from('Sourcing Inquiries')
         .insert({
@@ -99,7 +93,6 @@ export default function ContactPage() {
             services_needed: values.services_needed.length > 0 ? values.services_needed : undefined,
             message: values.message || undefined,
             status: 'new',
-            user_id: userRecord?.id,
           },
         })
         .select()

@@ -1,26 +1,10 @@
-import { DataClient, User } from '@strikingly/sdk';
+import { DataClient } from '@strikingly/sdk';
 import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '@/config.jsx';
 
 const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY);
 
 export async function submitSourcingInquiry(formData) {
   console.log('[SourcingInquiry] Submitting inquiry:', formData);
-
-  let userId = null;
-  try {
-    const userRecord = await User.upsert({
-      email: formData.email,
-      name: formData.full_name,
-      browserId: User.getBrowserId?.() ?? undefined,
-      role: 'guest',
-    });
-    if (userRecord?.id) {
-      userId = userRecord.id;
-      console.log('[SourcingInquiry] User upserted, id:', userId);
-    }
-  } catch (err) {
-    console.warn('[SourcingInquiry] User upsert failed (non-blocking):', err.message);
-  }
 
   const payload = {
     data: {
@@ -35,7 +19,6 @@ export async function submitSourcingInquiry(formData) {
       services_needed: formData.services_needed || [],
       message: formData.message || '',
       status: 'new',
-      ...(userId ? { user_id: userId } : {}),
     },
   };
 
