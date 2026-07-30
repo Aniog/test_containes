@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Sourcing Inquiries",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "integer",
+      "description": "Reference to the user who submitted this inquiry",
+      "x-foreignKey": "users.id"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Full name of the inquirer"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Email address of the inquirer"
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Company name"
+    },
+    "phone": {
+      "type": "string",
+      "maxLength": 50,
+      "description": "Phone or WhatsApp number"
+    },
+    "product_category": {
+      "type": "string",
+      "enum": ["Consumer Electronics", "Textiles & Apparel", "Home & Garden", "Industrial & Machinery", "Health & Beauty", "Toys & Sports", "Packaging & Printing", "Building Materials", "Other"],
+      "description": "Product category being sourced"
+    },
+    "product_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000,
+      "description": "Detailed description of the product to source"
+    },
+    "estimated_quantity": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Estimated order quantity"
+    },
+    "target_price": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Target price per unit"
+    },
+    "message": {
+      "type": "string",
+      "maxLength": 5000,
+      "description": "Additional notes or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["new", "in_review", "quoted", "closed"],
+      "default": "new",
+      "description": "Current status of the inquiry"
+    }
+  },
+  "required": ["name", "email", "product_description"],
+  "additionalProperties": false,
+  "x-security": {
+    "x-ownerColumn": "user_id",
+    "create": { "allow": ["*"] },
+    "read": { "allow": ["owner"] },
+    "update": { "allow": ["owner"] },
+    "delete": { "allow": [] }
+  }
+}
