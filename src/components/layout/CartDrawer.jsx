@@ -40,16 +40,10 @@ export default function CartDrawer() {
                 {items.map((item) => (
                   <div key={`${item.id}-${item.variant}`} className="flex gap-4 py-3 border-b border-warm/50 last:border-0">
                     {/* Thumbnail */}
-                    <div className="w-20 h-20 flex-shrink-0 rounded-sm overflow-hidden bg-sand">
-                      <img
-                        data-strk-img-id={`cart-${item.id}`}
-                        data-strk-img={`[cart-title-${item.id}]`}
-                        data-strk-img-ratio="1x1"
-                        data-strk-img-width="160"
-                        src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'/%3E"
-                        alt={item.name}
-                        className="w-full h-full object-cover"
-                      />
+                    <div className="w-20 h-20 flex-shrink-0 rounded-sm overflow-hidden bg-sand flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center">
+                        <div className="w-3 h-3 rounded-full bg-gold/40" />
+                      </div>
                     </div>
 
                     <div className="flex-1 min-w-0">
