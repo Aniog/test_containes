@@ -1,6 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, Clock, CheckCircle, Send } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, CheckCircle, Send, AlertCircle } from 'lucide-react'
+import { DataClient } from '@strikingly/sdk'
+import { STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY } from '../config.jsx'
+
+const client = new DataClient(STRK_PROJECT_URL, STRK_PROJECT_ANON_KEY)
 
 const productCategories = [
   'Electronics & Components',
@@ -41,14 +45,52 @@ const initialForm = {
 export default function Contact() {
   const [form, setForm] = useState(initialForm)
   const [submitted, setSubmitted] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('Inquiry submitted:', form)
+    setError(null)
+    setSubmitting(true)
+
+    const { data: response, error: insertError } = await client
+      .from('Sourcing Inquiries')
+      .insert({
+        data: {
+          name: form.name,
+          company: form.company || undefined,
+          email: form.email,
+          phone: form.phone || undefined,
+          country: form.country,
+          product_category: form.productCategory,
+          service: form.service,
+          product_description: form.productDesc,
+          target_price: form.targetPrice || undefined,
+          quantity: form.quantity || undefined,
+          message: form.message || undefined,
+          status: 'new',
+        },
+      })
+      .select()
+      .single()
+
+    setSubmitting(false)
+
+    if (insertError || response?.success === false) {
+      const msg =
+        Array.isArray(response?.errors) && response.errors.length > 0
+          ? response.errors.join(', ')
+          : insertError?.message || 'Submission failed. Please try again.'
+      console.error('Inquiry submission error:', msg)
+      setError(msg)
+      return
+    }
+
+    console.log('Inquiry submitted successfully:', response?.data)
     setSubmitted(true)
   }
 
@@ -298,11 +340,18 @@ export default function Contact() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-amber-500 text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-base"
+                      disabled={submitting}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-amber-500 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold px-8 py-3.5 rounded-lg transition-colors text-base"
                     >
                       <Send className="w-4 h-4" />
-                      Submit Sourcing Inquiry
+                      {submitting ? 'Submitting…' : 'Submit Sourcing Inquiry'}
                     </button>
+                    {error && (
+                      <div className="mt-3 flex items-start gap-2 text-red-600 text-sm">
+                        <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                        <span>{error}</span>
+                      </div>
+                    )}
                     <p className="text-brand-muted text-xs mt-3">
                       By submitting this form, you agree to be contacted by SSourcing China regarding your inquiry. We do not share your information with third parties.
                     </p>
